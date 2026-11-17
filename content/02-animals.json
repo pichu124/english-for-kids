@@ -1,0 +1,19 @@
+{
+  "id": "animals",
+  "order": 2,
+  "title": "Animals",
+  "titleVi": "Con vật",
+  "icon": "🐶",
+  "color": "#7ccf5b",
+  "intro": "Let's meet some animals!",
+  "playPrompt": "Where is the {word}?",
+  "block": { "name": "Grass block", "style": "grass", "color": "#6cc04a" },
+  "words": [
+    { "id": "dog", "text": "dog", "image": { "emoji": "🐶" }, "sentence": "This is a dog. Woof woof!", "accept": ["doggy", "dogs", "dawg"] },
+    { "id": "cat", "text": "cat", "image": { "emoji": "🐱" }, "sentence": "This is a cat. Meow!", "accept": ["kitty", "cats", "kat"] },
+    { "id": "fish", "text": "fish", "image": { "emoji": "🐟" }, "sentence": "This is a fish. It can swim.", "accept": ["fishy", "fist"] },
+    { "id": "bird", "text": "bird", "image": { "emoji": "🐦" }, "sentence": "This is a bird. It can fly.", "accept": ["birdie", "birds", "bert", "bud"] },
+    { "id": "duck", "text": "duck", "image": { "emoji": "🦆" }, "sentence": "This is a duck. Quack quack!", "accept": ["ducky", "ducks", "dark"] },
+    { "id": "cow", "text": "cow", "image": { "emoji": "🐮" }, "sentence": "This is a cow. Moo!", "accept": ["cows", "kao", "cal"] }
+  ]
+}

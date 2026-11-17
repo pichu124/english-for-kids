@@ -1,0 +1,134 @@
+/**
+ * Progress lives only in this browser (localStorage). Every access is wrapped in
+ * try/catch: in a private window or with storage blocked the app still runs,
+ * it just forgets progress when closed.
+ */
+
+const KEY = 'efk.v1';
+
+export type WordStatus = {
+  /** Child said it successfully at least once (recognizer or parent). */
+  said: boolean;
+  /** How the last success was judged. */
+  by?: 'auto' | 'parent';
+  tries: number;
+  /** Last thing the recognizer heard (text only — never audio). */
+  heard?: string;
+  last?: string; // ISO date
+};
+
+export type PlacedBlock = { id: string; type: string; x: number; y: number };
+
+export type DayLog = {
+  seconds: number;
+  lessons: number;
+  /** Speaking attempts and how they were judged. */
+  auto: number;
+  parent: number;
+  miss: number;
+  noVoice: number;
+};
+
+export type State = {
+  childName: string;
+  settings: {
+    /** 0 = no limit */
+    dailyLimitMin: number;
+    rate: number;
+    voiceURI?: string;
+  };
+  topics: Record<string, { completed: number; lastDone?: string }>;
+  words: Record<string, WordStatus>;
+  blocks: {
+    /** Earned blocks not yet placed, by type. */
+    inventory: Record<string, number>;
+    placed: PlacedBlock[];
+    totalEarned: number;
+  };
+  days: Record<string, DayLog>;
+  /** Extra minutes a parent granted today, keyed by date. */
+  bonus: Record<string, number>;
+};
+
+export function defaultState(): State {
+  return {
+    childName: '',
+    settings: { dailyLimitMin: 0, rate: 0.8 },
+    topics: {},
+    words: {},
+    blocks: { inventory: {}, placed: [], totalEarned: 0 },
+    days: {},
+    bonus: {},
+  };
+}
+
+let state: State = load();
+
+function load(): State {
+  const base = defaultState();
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return base;
+    const parsed = JSON.parse(raw) as Partial<State>;
+    return {
+      ...base,
+      ...parsed,
+      settings: { ...base.settings, ...(parsed.settings ?? {}) },
+      blocks: { ...base.blocks, ...(parsed.blocks ?? {}) },
+    };
+  } catch {
+    return base;
+  }
+}
+
+export function getState(): State {
+  return state;
+}
+
+export function save(): void {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(state));
+  } catch {
+    /* storage full or blocked — keep going in memory */
+  }
+}
+
+export function update(fn: (s: State) => void): void {
+  fn(state);
+  save();
+}
+
+export function resetProgress(keepSettings = true): void {
+  const fresh = defaultState();
+  if (keepSettings) {
+    fresh.childName = state.childName;
+    fresh.settings = state.settings;
+  }
+  state = fresh;
+  save();
+}
+
+export function today(): string {
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+export function dayLog(date = today()): DayLog {
+  if (!state.days[date]) {
+    state.days[date] = { seconds: 0, lessons: 0, auto: 0, parent: 0, miss: 0, noVoice: 0 };
+  }
+  return state.days[date];
+}
+
+export const wordKey = (topicId: string, wordId: string) => `${topicId}/${wordId}`;
+
+/** Ask the browser not to evict our storage (best effort). */
+export function requestPersistence(): void {
+  try {
+    navigator.storage?.persist?.().catch(() => {});
+  } catch {
+    /* ignore */
+  }
+}
