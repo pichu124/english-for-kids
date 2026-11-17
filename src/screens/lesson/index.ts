@@ -1,6 +1,7 @@
 import { Bix } from '../../art/bix';
 import { topicById } from '../../content';
 import { h } from '../../lib/dom';
+import { limitReached } from '../../lib/usage';
 import type { Ctx } from '../../router';
 import { homeButton } from '../widgets';
 import { runListen } from './listen';
@@ -11,8 +12,8 @@ import { runSpeak } from './speak';
 
 export function lessonScreen(ctx: Ctx): HTMLElement {
   const topic = topicById(ctx.params.topic ?? '');
-  if (!topic) {
-    queueMicrotask(() => ctx.go('home'));
+  if (!topic || limitReached()) {
+    queueMicrotask(() => ctx.go(topic ? 'rest' : 'home'));
     return h('main');
   }
 
