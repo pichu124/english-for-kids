@@ -22,7 +22,7 @@
         if (mode === 'denied') { this.onerror && this.onerror({ error: 'not-allowed' }); this.onend && this.onend(); return; }
         if (mode === 'silent') { this.onerror && this.onerror({ error: 'no-speech' }); this.onend && this.onend(); return; }
         const label = document.querySelector('.speak .word-label')?.textContent || '';
-        const said = mode === 'match' ? `${label}` : 'banana phone';
+        const said = mode === 'match' ? `${label}` : 'zebra on a skateboard';
         this.onspeechstart && this.onspeechstart();
         const alt = [{ transcript: said }, { transcript: said + 's' }];
         alt.isFinal = true;
@@ -34,4 +34,5 @@
     abort() { this.onend && this.onend(); }
   }
   window.webkitSpeechRecognition = FakeRec;
+  window.SpeechRecognition = FakeRec;
 })();

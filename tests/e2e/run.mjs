@@ -34,7 +34,7 @@ await page.waitForSelector('.home');
 await snap('01-home');
 step('home');
 
-export async function playLesson(topicIndex, voice = 'match') {
+export async function playLesson(topicIndex, voice = 'match', parentHelps = true) {
   await page.evaluate((v) => (window.__voice = v), voice);
   await page.locator('.island').nth(topicIndex).click({ force: true });
   await page.waitForSelector('.listen');
@@ -55,7 +55,7 @@ export async function playLesson(topicIndex, voice = 'match') {
   let k = 0;
   while (await page.locator('.speak').count()) {
     const ok = page.locator('.pbtn-ok');
-    if (await ok.count()) { if (k === 1) await snap('03b-parent-bar'); await ok.click({ force: true }); }
+    if (parentHelps && (await ok.count())) { if (k === 1) await snap('03b-parent-bar'); await ok.click({ force: true }); }
     else if (await page.locator('.btn-mic.is-ready').count()) { if (k === 0) await snap('03-speak'); await tap('.btn-mic'); k++; }
     await page.waitForTimeout(100);
     if (k > 40) throw new Error('speak step stuck');
@@ -89,6 +89,9 @@ export async function playLesson(topicIndex, voice = 'match') {
 }
 
 await playLesson(0, 'match');
+const log = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0]);
+if (log.auto !== 6 || log.parent !== 0) throw new Error(`expected 6 auto-judged words, got ${JSON.stringify(log)}`);
+step('all 6 words recognized automatically');
 await tap('.reward-actions .btn-good'); // Home
 await page.waitForSelector('.home');
 const stars = await page.locator('.island.is-done').count();
@@ -96,16 +99,31 @@ if (stars !== 1) throw new Error(`expected 1 finished island, got ${stars}`);
 step('progress shows a star');
 
 await playLesson(1, 'silent');
+const log2 = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0]);
+if (log2.parent !== 6) throw new Error(`expected 6 parent-judged words, got ${JSON.stringify(log2)}`);
+step('parent buttons work when no voice is heard');
 await tap('.reward-actions .btn-sun'); // My World
 await page.waitForTimeout(500);
 await snap('06-after-reward');
+
+await page.goto(base);
+await tap('.btn-play');
+await page.waitForSelector('.home');
+const before = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0].miss);
+await playLesson(2, 'miss', false);
+const missLog = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0]);
+if (missLog.miss - before !== 12) throw new Error(`expected 2 tries x 6 words, got ${missLog.miss - before}`);
+const spokenAll = await page.evaluate(() => window.__spoken.join(' | '));
+if (/wrong|no!/i.test(spokenAll)) throw new Error('Bix should never say wrong');
+step('misheard twice → "Try again" then moves on, never "wrong"');
+await tap('.reward-actions .btn-good');
 
 // progress survives reload
 await page.reload();
 await tap('.btn-play');
 await page.waitForSelector('.home');
 const after = await page.locator('.island.is-done').count();
-if (after !== 2) throw new Error(`expected 2 finished islands after reload, got ${after}`);
+if (after !== 3) throw new Error(`expected 3 finished islands after reload, got ${after}`);
 step('progress survives reload');
 
 if (errors.length) {

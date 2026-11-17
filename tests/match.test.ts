@@ -41,6 +41,8 @@ describe('matchSpeech', () => {
     expect(m('banana', ['red car'])).toBe(false);
     expect(m('good morning', ['hello'])).toBe(false);
     expect(m('dog', [])).toBe(false);
+    expect(m('egg', ['zebra on a skateboard'], ['ag', 'ack'])).toBe(false);
+    expect(m('I\'m fine', ['i like a fish'])).toBe(false);
   });
 
   it('checks every alternative, not just the first', () => {

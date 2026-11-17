@@ -68,6 +68,7 @@ export function soundKey(word: string): string {
 }
 
 function allowedDistance(len: number): number {
+  if (len <= 2) return 0; // tiny variants like "ag" must match exactly
   if (len <= 3) return 1;
   if (len <= 5) return 2;
   return Math.ceil(len * 0.4);
@@ -105,6 +106,7 @@ export function matchSpeech(target: string, accepts: readonly string[], alternat
       const n = c.split(' ').length;
       const cKey = c.split(' ').map(soundKey).join(' ');
       for (const w of windows(words, n)) {
+        if (w.length < 2) continue; // never match on a lone "a" or "i"
         if (levenshtein(w, c) <= allowedDistance(c.length)) return { ok: true, how: 'close', heard: alt };
         const wKey = w.split(' ').map(soundKey).join(' ');
         if (cKey.length >= 2 && wKey === cKey) return { ok: true, how: 'sound', heard: alt };

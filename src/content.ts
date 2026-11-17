@@ -16,6 +16,8 @@ export type Word = {
   ask?: string;
   /** Other transcriptions that should count, e.g. "mom" for "mum". */
   accept?: string[];
+  /** Optional prompt for the tap game, overriding the topic's playPrompt. */
+  play?: string;
 };
 
 export type Topic = {
@@ -76,7 +78,7 @@ export const topicById = (id: string) => topics.find((t) => t.id === id);
 
 export const askFor = (w: Word) => w.ask ?? `Can you say ${w.text}?`;
 
-export const playPromptFor = (t: Topic, w: Word) => t.playPrompt.replace('{word}', w.text);
+export const playPromptFor = (t: Topic, w: Word) => w.play ?? t.playPrompt.replace('{word}', w.text);
 
 /** Block type definitions, one per topic. */
 export function blockDefs(): BlockDef[] {
