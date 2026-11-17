@@ -71,8 +71,12 @@ export function say(text: string, opts: { rate?: number; pitch?: number } = {}):
     u.lang = 'en-US';
     u.rate = rate;
     u.pitch = opts.pitch ?? 1.1;
-    const v = pickVoice();
-    if (v) u.voice = v;
+    try {
+      const v = pickVoice();
+      if (v) u.voice = v;
+    } catch {
+      /* odd voice objects on some devices — fall back to the default voice */
+    }
     u.onend = finish;
     u.onerror = finish;
     const timer = setTimeout(finish, Math.min(12000, 1200 + (text.length * 110) / rate));
