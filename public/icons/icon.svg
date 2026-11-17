@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs><clipPath id="r"><rect width="512" height="512" rx="112"/></clipPath></defs>
+  <g clip-path="url(#r)">
+  <rect width="512" height="512" fill="#7cc8ff"/>
+  <rect y="372" width="512" height="140" fill="#6cc04a"/>
+  <rect y="402" width="512" height="110" fill="#b07a45"/>
+  </g>
+  <g stroke="#1d2440" stroke-width="10" stroke-linejoin="round">
+    <rect x="246" y="66" width="20" height="64" fill="#1d2440"/>
+    <polygon points="226,70 244,52 300,52 282,70" fill="#ffa3a3"/>
+    <polygon points="282,70 300,52 300,96 282,114" fill="#d94848"/>
+    <rect x="226" y="70" width="56" height="44" fill="#ff6b6b"/>
+    <polygon points="112,150 152,110 440,110 400,150" fill="#7fe3d9"/>
+    <polygon points="400,150 440,110 440,350 400,390" fill="#1b9a8e"/>
+    <rect x="112" y="150" width="288" height="240" fill="#2ec4b6"/>
+  </g>
+  <rect x="146" y="196" width="94" height="84" rx="8" fill="#fff" stroke="#ff7a00" stroke-width="14"/>
+  <rect x="272" y="196" width="94" height="84" rx="8" fill="#fff" stroke="#ff7a00" stroke-width="14"/>
+  <rect x="238" y="226" width="36" height="14" fill="#ff7a00"/>
+  <rect x="180" y="216" width="32" height="42" rx="4" fill="#1d2440"/>
+  <rect x="306" y="216" width="32" height="42" rx="4" fill="#1d2440"/>
+  <rect x="187" y="223" width="11" height="11" fill="#fff"/>
+  <rect x="313" y="223" width="11" height="11" fill="#fff"/>
+  <rect x="136" y="300" width="36" height="20" fill="#ff8fab"/>
+  <rect x="340" y="300" width="36" height="20" fill="#ff8fab"/>
+  <path d="M212 306 h20 v14 h48 v-14 h20 v20 h-10 v14 h-68 v-14 h-10z" fill="#1d2440"/>
+</svg>
