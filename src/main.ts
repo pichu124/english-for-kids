@@ -5,6 +5,7 @@ import '@fontsource/baloo-2/latin-800.css';
 import './styles/base.css';
 import './styles/screens.css';
 import './styles/lesson.css';
+import './styles/world.css';
 
 import { requestPersistence } from './lib/storage';
 import { startUsageClock } from './lib/usage';
@@ -13,13 +14,15 @@ import { homeScreen } from './screens/home';
 import { lessonScreen } from './screens/lesson';
 import { restScreen } from './screens/rest';
 import { startScreen } from './screens/start';
+import { worldScreen } from './screens/world';
 import { h } from './lib/dom';
 
 register('start', startScreen);
 register('home', homeScreen);
 register('rest', restScreen);
 register('lesson', lessonScreen);
-for (const name of ['world', 'parent'] as const) {
+register('world', worldScreen);
+for (const name of ['parent'] as const) {
   register(name, (ctx) => h('main', { onclick: () => ctx.go('home') }, `${name} — coming soon`));
 }
 
