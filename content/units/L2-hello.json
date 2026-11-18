@@ -1,0 +1,33 @@
+{
+  "id": "hello",
+  "level": "L2",
+  "topic": "hello",
+  "order": 5,
+  "title": "Hello",
+  "titleVi": "Chào hỏi",
+  "icon": "👋",
+  "color": "#a6dd5c",
+  "intro": "Let's say hello!",
+  "playPrompt": "Which one is {word}?",
+  "block": {
+    "name": "Star block",
+    "style": "gold",
+    "color": "#ffc93c"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Hello",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "hello",
+    "goodbye",
+    "thank-you",
+    "good-morning",
+    "how-are-you",
+    {
+      "id": "im-fine",
+      "play": "Which one is: I'm fine?"
+    }
+  ]
+}

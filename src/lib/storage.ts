@@ -49,6 +49,8 @@ export type State = {
     voiceURI?: string;
     /** Speech-recognizer configuration that works on this device (see SR_MODES). */
     srMode?: SrMode;
+    /** Level shown on the home map (L0…L4). */
+    level?: string;
   };
   topics: Record<string, { completed: number; lastDone?: string }>;
   words: Record<string, WordStatus>;

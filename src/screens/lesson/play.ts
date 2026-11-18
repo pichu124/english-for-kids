@@ -8,7 +8,6 @@ export const PLAY_ROUNDS = 6;
 
 /** Step 3 — Play: Bix says a word, the child taps the right picture. */
 export async function runPlay(ui: LessonUI): Promise<void> {
-  ui.setStep(2);
   await ui.talk("Let's play a game! Listen and touch.", 'happy', "Let's play!");
 
   const words = ui.topic.words;
@@ -16,7 +15,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
   let order: Word[] = [];
   while (order.length < PLAY_ROUNDS) order = order.concat(shuffle(words));
   order = order.slice(0, PLAY_ROUNDS);
-  const nOptions = Math.min(4, words.length);
+  const nOptions = Math.min(ui.level.choices, words.length);
 
   for (let round = 0; round < PLAY_ROUNDS; round++) {
     const target = order[round];

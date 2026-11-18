@@ -7,7 +7,6 @@ import type { LessonUI } from './shared';
 
 /** Step 4 — Reward: one building block for "My World". */
 export async function runReward(ui: LessonUI): Promise<void> {
-  ui.setStep(3);
   const t = ui.topic;
   update((s) => {
     const tp = (s.topics[t.id] ??= { completed: 0 });

@@ -27,7 +27,6 @@ const NOVOICE_MSG: Record<NoVoice, string> = {
 
 /** Step 2 — Speak: the child says each word; Bix cheers. Never "wrong". */
 export async function runSpeak(ui: LessonUI): Promise<void> {
-  ui.setStep(1);
   await ui.talk("Now it's your turn! Press the button and talk.", 'encourage', 'Your turn!');
   for (const w of ui.topic.words) {
     await speakWord(ui, w);
@@ -37,7 +36,7 @@ export async function runSpeak(ui: LessonUI): Promise<void> {
 }
 
 async function speakWord(ui: LessonUI, w: Word): Promise<void> {
-  const card = wordCard(w, { cls: 'word-card-md pop' });
+  const card = wordCard(w, { cls: 'word-card-md pop', label: ui.level.showText });
   const mic = h('button', { class: 'btn btn-mic', 'aria-label': 'Talk', html: MIC_SVG });
   const ear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
   const rings = h('div', { class: 'mic-rings', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'));

@@ -257,11 +257,18 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 
 ---
 
-## 11. Việc cần bạn chốt
+## 11. Đã chốt (18/11/2026)
 
-1. **Thứ tự ưu tiên:** Starters cho Shin trước (đề xuất), hay Early Years cho casa trước?
-2. **Ai duyệt nội dung tiếng Anh:** bạn, cô nước ngoài bên casa, hay người khác?
-3. **Giọng đọc:** dùng TTS đọc sẵn (gần như miễn phí, cần tài khoản Azure hoặc Google Cloud), hay thu giọng người thật cho một phần?
-4. **Hình ảnh:** emoji và hình tự vẽ (đề xuất cho GĐ 1–2), hay đầu tư một bộ hình riêng từ đầu?
-5. **Nối với casa:** có định đưa vào casa trong năm học này không? Nếu có thì ở mức nào (A, B hay C)?
-6. **Micro:** chọn một trong ba hướng ở `docs/GHI-CHU-MICRO.md` trước khi làm phần `say` cho các bậc mới.
+| # | Câu hỏi | Quyết định |
+|---|---|---|
+| 1 | Ưu tiên bậc nào | **Làm cả Starters (bậc 2) lẫn Early Years (bậc 0–1)** song song |
+| 2 | Ai duyệt nội dung tiếng Anh | **Claude** soạn và duyệt. Bố mẹ xem lại khi bé dùng |
+| 3 | Giọng đọc | **Tạm dùng giọng có sẵn của máy** (`speechSynthesis`). Đọc sẵn bằng TTS để sau |
+| 4 | Hình ảnh | **Emoji cho từ có hình rõ ràng, hình SVG tự vẽ phong cách khối cho phần còn lại** (giống khối màu và Bix). Chưa đầu tư bộ hình riêng: không tốn tiền, chạy offline, đồng bộ phong cách. Đổi khi bậc 3–4 cần nhiều từ khó vẽ bằng emoji |
+| 5 | Nối với casa-mamnon | **Dự kiến đưa vào casa trong thời gian tới, dùng cho cả trường.** Làm mức A sớm. Định dạng nội dung và bộ máy phải sẵn cho mức B và C (nhiều bé, tiến độ theo tài khoản, dữ liệu trên VPS của trường) |
+| 6 | Micro | **Để sau** (xem `docs/GHI-CHU-MICRO.md`). Trong lúc chờ, phần nói vẫn có 2 nút cho bố mẹ chấm |
+
+**Lộ trình điều chỉnh theo quyết định:**
+- **GĐ 1 (nền móng):** định dạng v2, bậc học, mở bài qua link (mức A), danh mục bài công khai `catalog.json` (chuẩn bị mức B), kiểm tra nội dung tự động. Kèm mỗi bậc Early Years một Unit mẫu.
+- **GĐ 2 và GĐ 3 làm song song:** Starters (cho Shin) và Early Years (cho casa), mỗi đợt thêm vài Unit của cả hai.
+- **GĐ 5 (nối casa) đưa lên sớm hơn:** khi có đủ Unit cho lứa `3-4`, `4-5`, `5-6`, thử mức A với một nhóm lớp.

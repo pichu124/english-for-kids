@@ -73,3 +73,6 @@
 
 .p-trace { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
 .p-trace summary { cursor: pointer; font-family: var(--font); font-size: 13px; }
+.p-level { display: flex; flex-direction: column; gap: 10px; }
+.p-level + .p-level { border-top: 2px solid #e6eaf2; padding-top: 12px; }
+.p-level-title { font-size: 16px; color: var(--primary-dark); margin: 0; }

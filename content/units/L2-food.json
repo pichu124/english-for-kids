@@ -1,0 +1,39 @@
+{
+  "id": "food",
+  "level": "L2",
+  "topic": "food",
+  "order": 3,
+  "title": "Food",
+  "titleVi": "Đồ ăn",
+  "icon": "🍎",
+  "color": "#b8e05a",
+  "intro": "Yummy! Let's learn food!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Cake block",
+    "style": "cake",
+    "color": "#ff9ecb"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "apple",
+      "play": "Where is the apple?"
+    },
+    "banana",
+    "cake",
+    {
+      "id": "egg",
+      "play": "Where is the egg?"
+    },
+    {
+      "id": "milk",
+      "play": "Where is the milk?"
+    },
+    "ice-cream"
+  ]
+}

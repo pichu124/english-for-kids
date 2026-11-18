@@ -1,0 +1,103 @@
+{
+  "topic": "family",
+  "words": [
+    {
+      "id": "mum",
+      "text": "mum",
+      "image": {
+        "emoji": "👩"
+      },
+      "sentence": "This is my mum. I love my mum!",
+      "topic": "family",
+      "accept": [
+        "mom",
+        "mam",
+        "mommy",
+        "mummy",
+        "mama",
+        "ma'am",
+        "mon",
+        "mump"
+      ]
+    },
+    {
+      "id": "dad",
+      "text": "dad",
+      "image": {
+        "emoji": "👨"
+      },
+      "sentence": "This is my dad. I love my dad!",
+      "topic": "family",
+      "accept": [
+        "daddy",
+        "dada",
+        "dead",
+        "dat",
+        "did"
+      ]
+    },
+    {
+      "id": "baby",
+      "text": "baby",
+      "image": {
+        "emoji": "👶"
+      },
+      "sentence": "This is a baby. So cute!",
+      "topic": "family",
+      "accept": [
+        "babies",
+        "bebe",
+        "bae bee",
+        "maybe"
+      ]
+    },
+    {
+      "id": "grandma",
+      "text": "grandma",
+      "image": {
+        "emoji": "👵"
+      },
+      "sentence": "This is my grandma.",
+      "topic": "family",
+      "accept": [
+        "grandmother",
+        "granma",
+        "grandmom",
+        "granny",
+        "grandmama"
+      ]
+    },
+    {
+      "id": "grandpa",
+      "text": "grandpa",
+      "image": {
+        "emoji": "👴"
+      },
+      "sentence": "This is my grandpa.",
+      "topic": "family",
+      "accept": [
+        "grandfather",
+        "granpa",
+        "grandpop",
+        "grampa",
+        "grandpapa"
+      ]
+    },
+    {
+      "id": "brother",
+      "text": "brother",
+      "image": {
+        "emoji": "👦"
+      },
+      "sentence": "This is my brother.",
+      "topic": "family",
+      "accept": [
+        "bro",
+        "brothers",
+        "bruder",
+        "brodder",
+        "brada"
+      ]
+    }
+  ]
+}

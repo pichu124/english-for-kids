@@ -5,12 +5,11 @@ import { type LessonUI, wordCard } from './shared';
 
 /** Step 1 — Listen: one big card at a time; Bix reads the word and a sentence. */
 export async function runListen(ui: LessonUI): Promise<void> {
-  ui.setStep(0);
   await ui.talk(ui.topic.intro, 'talk');
   await ui.talk('Listen!', 'idle');
 
   for (const w of ui.topic.words) {
-    const card = wordCard(w, { cls: 'word-card-xl pop' });
+    const card = wordCard(w, { cls: 'word-card-xl pop', label: ui.level.showText });
     const next = h('button', { class: 'btn btn-round btn-good btn-next', 'aria-label': 'Next', hidden: true }, h('span', { class: 'icon-next' }));
     ui.stage.replaceChildren(h('div', { class: 'listen' }, card, next));
 
@@ -33,7 +32,7 @@ export async function runListen(ui: LessonUI): Promise<void> {
 }
 
 async function readWord(ui: LessonUI, w: Word): Promise<void> {
-  await ui.talk(`${w.text}.`, 'talk', w.text);
+  await ui.talk(`${w.text}.`, 'talk', ui.level.showText ? w.text : '🔊');
   await ui.pause(250);
   await ui.talk(w.sentence, 'idle');
 }

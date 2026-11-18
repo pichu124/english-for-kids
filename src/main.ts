@@ -8,6 +8,7 @@ import './styles/lesson.css';
 import './styles/world.css';
 import './styles/parent.css';
 
+import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
 import { requestPersistence } from './lib/storage';
 import { startUsageClock } from './lib/usage';
@@ -29,6 +30,7 @@ register('parent', parentScreen);
 mount(document.getElementById('app')!);
 requestPersistence();
 initPWA();
+readDeepLink();
 startUsageClock(() => {
   const s = currentScreen();
   return s === 'home' || s === 'lesson' || s === 'world';

@@ -1,0 +1,89 @@
+{
+  "topic": "animals",
+  "words": [
+    {
+      "id": "dog",
+      "text": "dog",
+      "image": {
+        "emoji": "🐶"
+      },
+      "sentence": "This is a dog. Woof woof!",
+      "topic": "animals",
+      "accept": [
+        "doggy",
+        "dogs",
+        "dawg"
+      ]
+    },
+    {
+      "id": "cat",
+      "text": "cat",
+      "image": {
+        "emoji": "🐱"
+      },
+      "sentence": "This is a cat. Meow!",
+      "topic": "animals",
+      "accept": [
+        "kitty",
+        "cats",
+        "kat"
+      ]
+    },
+    {
+      "id": "fish",
+      "text": "fish",
+      "image": {
+        "emoji": "🐟"
+      },
+      "sentence": "This is a fish. It can swim.",
+      "topic": "animals",
+      "accept": [
+        "fishy",
+        "fist"
+      ]
+    },
+    {
+      "id": "bird",
+      "text": "bird",
+      "image": {
+        "emoji": "🐦"
+      },
+      "sentence": "This is a bird. It can fly.",
+      "topic": "animals",
+      "accept": [
+        "birdie",
+        "birds",
+        "bert",
+        "bud"
+      ]
+    },
+    {
+      "id": "duck",
+      "text": "duck",
+      "image": {
+        "emoji": "🦆"
+      },
+      "sentence": "This is a duck. Quack quack!",
+      "topic": "animals",
+      "accept": [
+        "ducky",
+        "ducks",
+        "dark"
+      ]
+    },
+    {
+      "id": "cow",
+      "text": "cow",
+      "image": {
+        "emoji": "🐮"
+      },
+      "sentence": "This is a cow. Moo!",
+      "topic": "animals",
+      "accept": [
+        "cows",
+        "kao",
+        "cal"
+      ]
+    }
+  ]
+}

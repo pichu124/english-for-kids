@@ -1,0 +1,36 @@
+{
+  "id": "family",
+  "level": "L2",
+  "topic": "family",
+  "order": 4,
+  "title": "Family",
+  "titleVi": "Gia đình",
+  "icon": "🏠",
+  "color": "#8fd46b",
+  "intro": "Let's meet my family!",
+  "playPrompt": "Where is {word}?",
+  "block": {
+    "name": "Brick block",
+    "style": "brick",
+    "color": "#e2553f"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Family",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "mum",
+    "dad",
+    {
+      "id": "baby",
+      "play": "Where is the baby?"
+    },
+    "grandma",
+    "grandpa",
+    {
+      "id": "brother",
+      "play": "Where is my brother?"
+    }
+  ]
+}

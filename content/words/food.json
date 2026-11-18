@@ -1,0 +1,97 @@
+{
+  "topic": "food",
+  "words": [
+    {
+      "id": "apple",
+      "text": "apple",
+      "image": {
+        "emoji": "🍎"
+      },
+      "sentence": "This is an apple. Yummy!",
+      "topic": "food",
+      "accept": [
+        "apples",
+        "apo",
+        "appo",
+        "happy"
+      ]
+    },
+    {
+      "id": "banana",
+      "text": "banana",
+      "image": {
+        "emoji": "🍌"
+      },
+      "sentence": "This is a banana. It is yellow.",
+      "topic": "food",
+      "accept": [
+        "bananas",
+        "nana",
+        "banan"
+      ]
+    },
+    {
+      "id": "cake",
+      "text": "cake",
+      "image": {
+        "emoji": "🍰"
+      },
+      "sentence": "This is a cake. Happy birthday!",
+      "topic": "food",
+      "accept": [
+        "cakes",
+        "kate",
+        "kake",
+        "cave"
+      ]
+    },
+    {
+      "id": "egg",
+      "text": "egg",
+      "image": {
+        "emoji": "🥚"
+      },
+      "sentence": "This is an egg.",
+      "topic": "food",
+      "accept": [
+        "eggs",
+        "ack",
+        "ag",
+        "ache",
+        "aig"
+      ]
+    },
+    {
+      "id": "milk",
+      "text": "milk",
+      "image": {
+        "emoji": "🥛"
+      },
+      "sentence": "This is milk. I like milk!",
+      "topic": "food",
+      "accept": [
+        "milks",
+        "meal",
+        "mik",
+        "melk",
+        "mill"
+      ]
+    },
+    {
+      "id": "ice-cream",
+      "text": "ice cream",
+      "image": {
+        "emoji": "🍦"
+      },
+      "sentence": "This is ice cream. It is cold!",
+      "topic": "food",
+      "accept": [
+        "icecream",
+        "i scream",
+        "ice-cream",
+        "ice cream cone",
+        "ice"
+      ]
+    }
+  ]
+}

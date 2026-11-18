@@ -1,5 +1,5 @@
 import { Bix } from '../../art/bix';
-import { topicById } from '../../content';
+import { levelById, topicById, type StepType } from '../../content';
 import { h } from '../../lib/dom';
 import { limitReached } from '../../lib/usage';
 import type { Ctx } from '../../router';
@@ -17,10 +17,13 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
     return h('main');
   }
 
-  const total = topic.words.length * 2 + PLAY_ROUNDS;
+  const level = levelById(topic.level)!;
+  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯' };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': PLAY_ROUNDS };
+  const total = topic.steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });
-  const stepIcons = ['👂', '🎤', '🎯', '🎁'].map((icon) => h('span', { class: 'progress-step' }, icon));
+  const stepIcons = [...topic.steps.map((s) => STEP_ICON[s]), '🎁'].map((icon) => h('span', { class: 'progress-step' }, icon));
   const bar = h('div', { class: 'progress', role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': total }, h('div', { class: 'progress-track' }, fill), h('div', { class: 'progress-steps' }, stepIcons));
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const stage = h('section', { class: 'stage' });
@@ -37,6 +40,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   const ui = makeUI({
     ctx,
     topic,
+    level,
     bix,
     stage,
     parentBar,
@@ -56,9 +60,12 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   (async () => {
     try {
       await ui.pause(300);
-      await runListen(ui);
-      await runSpeak(ui);
-      await runPlay(ui);
+      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay };
+      for (const [i, step] of topic.steps.entries()) {
+        ui.setStep(i);
+        await RUN[step](ui);
+      }
+      ui.setStep(topic.steps.length);
       await runReward(ui);
     } catch (e) {
       if (!(e instanceof Aborted)) console.error(e);

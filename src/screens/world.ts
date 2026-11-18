@@ -7,6 +7,7 @@ import { getState, update, type PlacedBlock } from '../lib/storage';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
 import { homeButton } from './widgets';
+import { currentLevel } from '../lib/level';
 
 export const COLS = 12;
 export const ROWS = 7;
@@ -73,8 +74,10 @@ export function worldScreen(ctx: Ctx): HTMLElement {
 
   function renderTray() {
     const inv = getState().blocks.inventory;
+    const lvl = currentLevel().id;
     tray.replaceChildren(
-      ...defs.map((d) => {
+      // blocks the child owns, plus the ones that can be earned at this level
+      ...defs.filter((d) => (inv[d.type] ?? 0) > 0 || d.level === lvl).map((d) => {
         const n = inv[d.type] ?? 0;
         const item = h(
           'button',

@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "thu": "npm run build && vite preview --host --port 4173",
     "test": "vitest run",
-    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/offline.mjs",
+    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/levels.mjs && node tests/e2e/offline.mjs",
     "typecheck": "tsc --noEmit",
     "icons": "node scripts/make-icons.mjs"
   },

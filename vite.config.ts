@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readdirSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 
@@ -92,6 +92,43 @@ self.addEventListener('fetch', (event) => {
 // Vite chặn mọi tên miền lạ; chỉ mở thêm đúng các tên *.trycloudflare.com.
 const TUNNEL_HOSTS = ['.trycloudflare.com'];
 
+/**
+ * Emits /catalog.json: the public list of units (no child data), so casa-mamnon can
+ * link to a unit (`/?unit=<id>`) or suggest one matching the week's topic and words.
+ */
+function catalog(): Plugin {
+  const readDir = (dir: string) =>
+    readdirSync(dir)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')));
+  return {
+    name: 'efk-catalog',
+    apply: 'build',
+    generateBundle() {
+      const text = new Map<string, string>();
+      for (const b of readDir('content/words')) for (const w of b.words ?? []) text.set(w.id, w.text);
+      const units = readDir('content/units')
+        .map((u) => ({
+          id: u.id,
+          level: u.level,
+          topic: u.topic,
+          title: u.title,
+          titleVi: u.titleVi ?? u.title,
+          icon: u.icon,
+          casa: u.casa ?? null,
+          words: (u.words ?? []).map((r: string | { id: string }) => text.get(typeof r === 'string' ? r : r.id) ?? ''),
+          path: `/?unit=${encodeURIComponent(u.id)}`,
+        }))
+        .sort((a, b) => String(a.level).localeCompare(b.level) || String(a.id).localeCompare(b.id));
+      this.emitFile({
+        type: 'asset',
+        fileName: 'catalog.json',
+        source: JSON.stringify({ app: 'Bix English', version: gitVersion(), formatVersion: 2, units }, null, 2),
+      });
+    },
+  };
+}
+
 /** Short git commit of this build, shown in the parent area ("which version is on the tablet?"). */
 function gitVersion(): string {
   try {
@@ -106,5 +143,5 @@ export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(gitVersion()) },
   server: { allowedHosts: TUNNEL_HOSTS },
   preview: { allowedHosts: TUNNEL_HOSTS },
-  plugins: [serviceWorker()],
+  plugins: [catalog(), serviceWorker()],
 });

@@ -1,0 +1,97 @@
+{
+  "topic": "colors",
+  "words": [
+    {
+      "id": "red",
+      "text": "red",
+      "image": {
+        "color": "#e63946"
+      },
+      "sentence": "This block is red.",
+      "topic": "colors",
+      "accept": [
+        "read",
+        "bread",
+        "rad",
+        "rid",
+        "wed"
+      ]
+    },
+    {
+      "id": "blue",
+      "text": "blue",
+      "image": {
+        "color": "#2f80ed"
+      },
+      "sentence": "This block is blue.",
+      "topic": "colors",
+      "accept": [
+        "blew",
+        "bloo",
+        "boo",
+        "blu"
+      ]
+    },
+    {
+      "id": "green",
+      "text": "green",
+      "image": {
+        "color": "#43b649"
+      },
+      "sentence": "This block is green.",
+      "topic": "colors",
+      "accept": [
+        "grin",
+        "grain",
+        "greene",
+        "clean"
+      ]
+    },
+    {
+      "id": "yellow",
+      "text": "yellow",
+      "image": {
+        "color": "#ffd23f"
+      },
+      "sentence": "This block is yellow.",
+      "topic": "colors",
+      "accept": [
+        "yello",
+        "jello",
+        "hello",
+        "yolo"
+      ]
+    },
+    {
+      "id": "orange",
+      "text": "orange",
+      "image": {
+        "color": "#ff8c1a"
+      },
+      "sentence": "This block is orange.",
+      "topic": "colors",
+      "accept": [
+        "oranges",
+        "orang",
+        "orinj",
+        "orage"
+      ]
+    },
+    {
+      "id": "pink",
+      "text": "pink",
+      "image": {
+        "color": "#ff7eb6"
+      },
+      "sentence": "This block is pink.",
+      "topic": "colors",
+      "accept": [
+        "pin",
+        "ping",
+        "pig",
+        "think",
+        "pinky"
+      ]
+    }
+  ]
+}

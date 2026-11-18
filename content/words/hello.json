@@ -1,0 +1,102 @@
+{
+  "topic": "hello",
+  "words": [
+    {
+      "id": "hello",
+      "text": "hello",
+      "image": {
+        "emoji": "🙋"
+      },
+      "sentence": "Hello! Nice to meet you.",
+      "topic": "hello",
+      "accept": [
+        "hallo",
+        "hullo",
+        "helo",
+        "hi hello",
+        "yellow"
+      ]
+    },
+    {
+      "id": "goodbye",
+      "text": "goodbye",
+      "image": {
+        "emoji": "👋"
+      },
+      "sentence": "Goodbye! See you later.",
+      "topic": "hello",
+      "accept": [
+        "good bye",
+        "bye bye",
+        "bye",
+        "goodbyes",
+        "good by"
+      ]
+    },
+    {
+      "id": "thank-you",
+      "text": "thank you",
+      "image": {
+        "emoji": "🙏"
+      },
+      "sentence": "Here is a gift for you. Thank you!",
+      "topic": "hello",
+      "accept": [
+        "thanks",
+        "thank u",
+        "tank you",
+        "thankyou",
+        "thank you very much",
+        "sank you"
+      ]
+    },
+    {
+      "id": "good-morning",
+      "text": "good morning",
+      "image": {
+        "emoji": "🌞"
+      },
+      "sentence": "Good morning! The sun is up.",
+      "topic": "hello",
+      "accept": [
+        "morning",
+        "good mornin",
+        "goodmorning"
+      ]
+    },
+    {
+      "id": "how-are-you",
+      "text": "how are you",
+      "image": {
+        "emoji": "🙂❓"
+      },
+      "sentence": "How are you? I am happy today!",
+      "topic": "hello",
+      "accept": [
+        "how r you",
+        "how you",
+        "how are u",
+        "how're you",
+        "how are ya"
+      ],
+      "ask": "Can you say: how are you?"
+    },
+    {
+      "id": "im-fine",
+      "text": "I'm fine",
+      "image": {
+        "emoji": "👍"
+      },
+      "sentence": "How are you? I'm fine, thank you!",
+      "topic": "hello",
+      "accept": [
+        "i am fine",
+        "im fine",
+        "fine",
+        "i'm fine thank you",
+        "i'm fun"
+      ],
+      "ask": "Can you say: I'm fine?"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 /** Parent area (Vietnamese). Gated behind a multiplication question. */
-import { topics } from '../content';
+import { LEVELS, topics, topicsOfLevel } from '../content';
+import { currentLevel, setLevel } from '../lib/level';
 import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
@@ -71,6 +72,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     ),
     summaryCard(),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
+    card('Bậc học của bé', levelField()),
     card('Giọng đọc & micro', voiceTools()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable()),
@@ -78,11 +80,48 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
     card('Xoá tiến độ', resetField()),
-    h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} chủ đề · dữ liệu chỉ lưu trên máy này`),
+    h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} bài · dữ liệu chỉ lưu trên máy này`),
   );
 
   function card(title: string, ...body: (HTMLElement | null)[]) {
     return h('section', { class: 'p-card' }, h('h2', {}, title), ...body);
+  }
+
+  function levelField() {
+    const wrap = h('div', {});
+    const render = () => {
+      const cur = currentLevel().id;
+      wrap.replaceChildren(
+        h(
+          'div',
+          { class: 'p-seg' },
+          LEVELS.map((l) => {
+            const n = topicsOfLevel(l.id).length;
+            return h(
+              'button',
+              {
+                class: `p-seg-btn ${l.id === cur ? 'is-on' : ''}`,
+                disabled: n === 0,
+                onclick: () => {
+                  setLevel(l.id);
+                  render();
+                },
+              },
+              n ? `${l.nameVi} · ${n} bài` : `${l.nameVi} · sắp có`,
+            );
+          }),
+        ),
+        h(
+          'p',
+          { class: 'p-muted' },
+          'Màn hình chính chỉ hiện các bài của bậc đang chọn. Bậc 0 không hiện chữ (bé chưa biết đọc) và chỉ cho chọn giữa 3 hình. Khung đối chiếu: ' +
+            (LEVELS.find((l) => l.id === cur)?.framework ?? '') +
+            '. Sao và khối bé đã có ở bậc khác vẫn được giữ.',
+        ),
+      );
+    };
+    render();
+    return wrap;
   }
 
   function summaryCard() {
@@ -200,33 +239,34 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     return h(
       'div',
       { class: 'p-topics' },
-      topics.map((t) => {
-        const done = s.topics[t.id]?.completed ?? 0;
-        return h(
+      LEVELS.filter((l) => topicsOfLevel(l.id).length).map((l) =>
+        h(
           'div',
-          { class: 'p-topic' },
-          h('h3', {}, `${t.icon} ${t.title} — ${t.titleVi}`, h('small', {}, done ? ` · đã học ${done} lần` : ' · chưa học')),
-          h(
-            'ul',
-            { class: 'p-words' },
-            t.words.map((w) => {
-              const st = s.words[wordKey(t.id, w.id)];
-              let chip: HTMLElement;
-              if (st?.said && st.by === 'auto') chip = h('span', { class: 'chip chip-ok' }, '✓ Máy nghe đúng');
-              else if (st?.said) chip = h('span', { class: 'chip chip-parent' }, '✓ Bố mẹ chấm');
-              else if (st?.tries) chip = h('span', { class: 'chip chip-try' }, `Đã thử ${st.tries} lần`);
-              else chip = h('span', { class: 'chip' }, 'Chưa nói');
-              return h(
-                'li',
-                {},
-                h('b', {}, w.text),
-                chip,
-                st?.heard ? h('span', { class: 'p-heard' }, `máy nghe: “${st.heard}”`) : null,
-              );
-            }),
-          ),
-        );
-      }),
+          { class: 'p-level' },
+          h('h3', { class: 'p-level-title' }, l.nameVi),
+          topicsOfLevel(l.id).map((t) => {
+            const done = s.topics[t.id]?.completed ?? 0;
+            return h(
+              'div',
+              { class: 'p-topic' },
+              h('h3', {}, `${t.icon} ${t.title} — ${t.titleVi}`, h('small', {}, done ? ` · đã học ${done} lần` : ' · chưa học')),
+              h(
+                'ul',
+                { class: 'p-words' },
+                t.words.map((w) => {
+                  const st = s.words[wordKey(t.id, w.id)];
+                  let chip: HTMLElement;
+                  if (st?.said && st.by === 'auto') chip = h('span', { class: 'chip chip-ok' }, '✓ Máy nghe đúng');
+                  else if (st?.said) chip = h('span', { class: 'chip chip-parent' }, '✓ Bố mẹ chấm');
+                  else if (st?.tries) chip = h('span', { class: 'chip chip-try' }, `Đã thử ${st.tries} lần`);
+                  else chip = h('span', { class: 'chip' }, 'Chưa nói');
+                  return h('li', {}, h('b', {}, w.text), chip, st?.heard ? h('span', { class: 'p-heard' }, `máy nghe: “${st.heard}”`) : null);
+                }),
+              ),
+            );
+          }),
+        ),
+      ),
     );
   }
 

@@ -1,0 +1,15 @@
+{
+  "id": "l1-body",
+  "level": "L1",
+  "topic": "body",
+  "order": 1,
+  "title": "My Body",
+  "titleVi": "Cơ thể của bé",
+  "icon": "🙋",
+  "color": "#8fd46b",
+  "intro": "Look at me! Let's learn about my body!",
+  "playPrompt": "Show me your {word}!",
+  "block": { "name": "Wood block", "style": "wood", "color": "#c98b52" },
+  "casa": { "luaTuoi": "4-5", "chuDe": "My Body", "monHoc": "Communication and Language" },
+  "words": ["eyes", "ears", "nose", "mouth", "hands", "feet"]
+}

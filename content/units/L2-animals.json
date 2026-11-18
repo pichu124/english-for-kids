@@ -1,0 +1,30 @@
+{
+  "id": "animals",
+  "level": "L2",
+  "topic": "animals",
+  "order": 2,
+  "title": "Animals",
+  "titleVi": "Con vật",
+  "icon": "🐶",
+  "color": "#7ccf5b",
+  "intro": "Let's meet some animals!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Grass block",
+    "style": "grass",
+    "color": "#6cc04a"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Animals",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "dog",
+    "cat",
+    "fish",
+    "bird",
+    "duck",
+    "cow"
+  ]
+}

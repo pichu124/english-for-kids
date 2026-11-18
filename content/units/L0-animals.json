@@ -1,0 +1,20 @@
+{
+  "id": "l0-animals",
+  "level": "L0",
+  "topic": "animals",
+  "order": 1,
+  "title": "Animal Friends",
+  "titleVi": "Bạn thú nhỏ",
+  "icon": "🐣",
+  "color": "#9be06a",
+  "intro": "Hello! Let's meet some animal friends!",
+  "playPrompt": "Where's the {word}?",
+  "block": { "name": "Sky block", "style": "window", "color": "#4fb3ff" },
+  "casa": { "luaTuoi": "3-4", "chuDe": "Animals", "monHoc": "Communication and Language" },
+  "words": [
+    { "id": "cat", "sentence": "Meow, meow! A cat!" },
+    { "id": "dog", "sentence": "Woof, woof! A dog!" },
+    { "id": "duck", "sentence": "Quack, quack! A duck!" },
+    { "id": "cow", "sentence": "Moo, moo! A cow!" }
+  ]
+}

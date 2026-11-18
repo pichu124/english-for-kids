@@ -1,6 +1,7 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
+import { takePendingUnit } from '../lib/level';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
 
@@ -16,7 +17,9 @@ export function startScreen(ctx: Ctx): HTMLElement {
         sfx.unlock();
         sfx.tap();
         setCounting(true);
-        ctx.go(limitReached() ? 'rest' : 'home');
+        if (limitReached()) return ctx.go('rest');
+        const unit = takePendingUnit();
+        ctx.go(unit ? 'lesson' : 'home', unit ? { topic: unit } : {});
       },
     },
     h('span', { class: 'play-icon', 'aria-hidden': 'true' }),

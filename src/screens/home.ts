@@ -1,7 +1,8 @@
 import { blockSVG } from '../art/blocks';
 import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
-import { topics } from '../content';
+import { topicsOfLevel } from '../content';
+import { currentLevel } from '../lib/level';
 import { fromHTML, h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
 import { getState } from '../lib/storage';
@@ -18,6 +19,8 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     return h('main');
   }
   const s = getState();
+  const level = currentLevel();
+  const topics = topicsOfLevel(level.id);
   const name = s.childName.trim();
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const hi = name ? `Hi, ${name}!` : 'Hi there!';
@@ -69,7 +72,8 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'home' },
     h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), world, parentButton(ctx)),
-    h('section', { class: 'map', 'aria-label': 'Topics' }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
+    h('section', { class: `map map-n${Math.min(topics.length, 6)}`, 'aria-label': 'Topics' }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
+    h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),
   );
 
   setTimeout(async () => {

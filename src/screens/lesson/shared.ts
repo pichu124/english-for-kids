@@ -1,6 +1,6 @@
 import type { Bix } from '../../art/bix';
 import { isoCube } from '../../art/cube';
-import type { Topic, Word } from '../../content';
+import type { Level, Topic, Word } from '../../content';
 import { fromHTML, h, wait } from '../../lib/dom';
 import type { Ctx } from '../../router';
 
@@ -9,11 +9,12 @@ export class Aborted extends Error {}
 export type LessonUI = {
   ctx: Ctx;
   topic: Topic;
+  level: Level;
   bix: Bix;
   stage: HTMLElement;
   /** Small area under the stage for the parent fallback buttons. */
   parentBar: HTMLElement;
-  setStep(i: 0 | 1 | 2 | 3): void;
+  setStep(i: number): void;
   tick(): void;
   /** Throw Aborted if the child left the lesson. */
   guard(): void;
