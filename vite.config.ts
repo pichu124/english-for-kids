@@ -87,7 +87,13 @@ self.addEventListener('fetch', (event) => {
 });
 `;
 
+// Cho phép mở qua đường hầm Cloudflare (cloudflared) khi thử trên tablet thật.
+// Vite chặn mọi tên miền lạ; chỉ mở thêm đúng các tên *.trycloudflare.com.
+const TUNNEL_HOSTS = ['.trycloudflare.com'];
+
 export default defineConfig({
   build: { target: 'es2021' },
+  server: { allowedHosts: TUNNEL_HOSTS },
+  preview: { allowedHosts: TUNNEL_HOSTS },
   plugins: [serviceWorker()],
 });

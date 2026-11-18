@@ -90,6 +90,36 @@ Tạo file `content/06-tên.json` rồi build lại. Mẫu:
 - **Không bao giờ báo “sai”**: lần 1 chưa khớp thì Bix nói “Try again!”; lần 2 thì “Good try! Let's go on.” rồi sang từ khác.
 - Khi máy không thu được giọng (trình duyệt không hỗ trợ, chưa cấp quyền micro, mất mạng), sẽ hiện 2 nút nhỏ cho bố mẹ: **“✓ Bé nói đúng”** / **“↻ Thử lại”**. Khi máy nghe ra từ khác, 2 nút này cũng hiện để bố mẹ chấm lại.
 
+## Thử trước khi lên VPS
+
+### Bước 1: trên máy tính (5 phút)
+
+```powershell
+git clone https://github.com/pichu124/english-for-kids.git
+cd english-for-kids
+npm install
+npm test
+npm run dev
+```
+
+Mở Chrome ở `http://localhost:5173`. Micro chạy được vì `localhost` được Chrome coi là an toàn. Bấm F12 rồi Ctrl+Shift+M, chọn khung 1280×800 nằm ngang để xem gần giống tablet. Giọng đọc trên Windows khác Android, nên nghe thử thật phải dùng tablet.
+
+### Bước 2: trên tablet thật, qua đường hầm Cloudflare (không cần VPS, không cần tài khoản)
+
+Cách này giống `docs/PHEP-THU-DIEN-THOAI.md` bên casa-mamnon. Cài một lần: `winget install --id Cloudflare.cloudflared`.
+
+```powershell
+npm run thu                                      # cửa sổ 1: build rồi chạy bản build ở cổng 4173
+cloudflared tunnel --url http://localhost:4173   # cửa sổ 2: in ra https://<ngẫu-nhiên>.trycloudflare.com
+```
+
+Mở địa chỉ `https://….trycloudflare.com` bằng Chrome trên tablet. Có HTTPS nên micro, offline và "Thêm vào màn hình chính" đều thử được. Làm theo checklist bên dưới.
+
+- Máy tính phải bật và hai cửa sổ phải mở trong lúc thử. Mỗi lần chạy lại, địa chỉ đổi khác.
+- Ai có link đều mở được trong lúc đường hầm chạy. App không có dữ liệu trên máy chủ nên không lộ gì, nhưng thử xong vẫn nên tắt cả hai cửa sổ (Ctrl+C).
+- Tiến độ của bé gắn với tên miền: những gì học trên link thử **không** chuyển sang bản VPS. Thử xong thì gỡ icon app thử trên tablet (giữ icon → Gỡ cài đặt) để khỏi nhầm với bản thật.
+- Windows có thể hỏi quyền tường lửa cho Node: chọn Huỷ cũng được, vì đường hầm nối vào `localhost`.
+
 ## Triển khai
 
 **Chọn: VPS InterData** (máy chung với CASA Mầm non và Chăm sóc lead). Xem **`docs/TRIEN-KHAI-VPS.md`**: lấy mã, build, thêm một tệp Caddy riêng, kiểm, cập nhật bằng `~/cap-nhat-bix.sh`, quay lui, gỡ. App là trang tĩnh: không chạy dịch vụ, không mở cổng, không có dữ liệu trên máy chủ.
