@@ -73,5 +73,33 @@ const st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')))
 if (Object.keys(st.topics).length || st.blocks.totalEarned || st.childName !== 'Su') throw new Error('reset wrong ' + JSON.stringify(st));
 console.log('✓ reset clears progress, keeps name');
 
+// The parent area is long: it must scroll with a finger on a phone/tablet.
+{
+  const { devices } = require('playwright');
+  const ctx = await browser.newContext({ ...devices['Pixel 7'] });
+  const ph = await ctx.newPage();
+  await ph.goto(base);
+  await ph.locator('.btn-play').click({ force: true });
+  await ph.locator('.btn-parent').click();
+  const [x, y] = (await ph.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
+  for (const ch of String(x * y)) await ph.locator(`.key:text-is("${ch}")`).click();
+  await ph.locator('.key-ok').click();
+  await ph.waitForSelector('.p-wrap');
+  const cdp = await ctx.newCDPSession(ph);
+  const vp = ph.viewportSize();
+  const cx = Math.round(vp.width / 2);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: cx, y: Math.round(vp.height * 0.8) }] });
+  for (let i = 1; i <= 12; i++) {
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: cx, y: Math.round(vp.height * (0.8 - (0.6 * i) / 12)) }] });
+    await ph.waitForTimeout(16);
+  }
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await ph.waitForTimeout(600);
+  const top = await ph.evaluate(() => document.querySelector('.screen-parent').scrollTop);
+  if (top < 100) throw new Error(`parent area did not scroll with a finger swipe (scrollTop=${top})`);
+  console.log('✓ parent area scrolls with a finger on a phone');
+  await ctx.close();
+}
+
 if (errors.length) throw new Error(errors.join('\n'));
 await browser.close();

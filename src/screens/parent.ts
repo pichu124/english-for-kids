@@ -1,6 +1,7 @@
 /** Parent area (Vietnamese). Gated behind a multiplication question. */
 import { topics } from '../content';
 import { h } from '../lib/dom';
+import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
 import { getState, resetProgress, save, today, update, wordKey, type DayLog } from '../lib/storage';
@@ -70,10 +71,10 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     ),
     summaryCard(),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
+    card('Giọng đọc & micro', voiceTools()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable()),
     card('Từ bé đã nói được', wordsList()),
-    card('Giọng đọc & micro', voiceTools()),
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
     card('Xoá tiến độ', resetField()),
@@ -272,22 +273,64 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     });
     const beepBtn = h('button', { class: 'p-btn', onclick: () => { sfx.unlock(); sfx.success(); } }, '🔔 Thử loa (tiếng chuông)');
 
-    const micOut = h('div', { class: 'p-mic-out' }, recognitionSupported() ? 'Bấm “Thử micro”, rồi nói một từ tiếng Anh (ví dụ “dog”).' : '⚠️ Trình duyệt này không có nhận dạng giọng nói. Hãy dùng Chrome trên Android.');
+    // Microphone check in two parts, so a parent can tell *which* part is broken:
+    // (1) can the page open the microphone at all, (2) does speech recognition answer.
+    const advice = browserAdvice();
+    const envInfo = h(
+      'div',
+      { class: 'p-mic-out' },
+      h('div', {}, `Đang mở bằng: ${browserLabel()}.`),
+      h('div', {}, `HTTPS: ${window.isSecureContext ? 'có ✓' : 'KHÔNG — micro sẽ bị chặn'} · Nhận giọng nói: ${recognitionSupported() ? 'có ✓' : 'không có'}`),
+      advice ? h('div', { class: 'p-warn' }, `⚠️ ${advice}`) : null,
+    );
+    const micOut = h('div', { class: 'p-mic-out' }, 'Bấm “Thử micro”, cho phép micro nếu được hỏi, rồi nói một từ tiếng Anh (ví dụ “dog”).');
     const micBtn = h('button', { class: 'p-btn' }, '🎤 Thử micro');
+    const line = (text: string, cls = '') => h('div', { class: cls }, text);
+    const PERMISSION_HELP =
+      'Mở quyền micro: (1) trong Chrome, chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép; (2) nếu vẫn không được: Cài đặt Android → Ứng dụng → Chrome → Quyền → Micrô → Cho phép. Rồi tải lại trang.';
     micBtn.addEventListener('click', async () => {
       micBtn.setAttribute('disabled', '');
-      micOut.textContent = 'Đang nghe… hãy nói';
+      micOut.replaceChildren(line('Bước 1/2: mở micro…'));
+      // (1) Open the mic for a moment (nothing is recorded; it is closed straight away).
+      let micOk = false;
+      try {
+        if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error(), { name: 'NoMediaDevices' });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach((t) => t.stop());
+        micOk = true;
+        micOut.replaceChildren(line('Bước 1/2: micro mở được ✓'), line('Bước 2/2: đang nghe… hãy nói “dog”'));
+      } catch (e) {
+        const name = (e as Error)?.name || 'Lỗi';
+        const why: Record<string, string> = {
+          NotAllowedError: 'Micro đang bị chặn cho trang này. ' + PERMISSION_HELP,
+          SecurityError: 'Micro bị chặn vì trang không chạy HTTPS hoặc đang mở trong ứng dụng khác.',
+          NotFoundError: 'Không tìm thấy micro trên máy.',
+          NotReadableError: 'Micro đang bị ứng dụng khác dùng (gọi điện, ghi âm, Zalo…). Tắt ứng dụng đó rồi thử lại.',
+          NoMediaDevices: 'Trình duyệt này không cho trang dùng micro. ' + (advice || 'Hãy mở bằng Chrome.'),
+        };
+        micOut.replaceChildren(line(`Bước 1/2: không mở được micro (${name}).`, 'p-warn'), line(why[name] ?? PERMISSION_HELP));
+      }
+      if (!micOk) {
+        micBtn.removeAttribute('disabled');
+        return;
+      }
+      // (2) Speech recognition.
       const out = await listenOnce({ timeoutMs: 5000 });
       micBtn.removeAttribute('disabled');
-      if (out.status === 'heard') micOut.replaceChildren('Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a)));
-      else
-        micOut.textContent = {
-          nothing: 'Không nghe thấy gì. Thử nói to và gần máy hơn.',
-          denied: 'Chưa có quyền micro. Vào ⋮ → Cài đặt → Cài đặt trang web → Micrô, cho phép trang này.',
-          offline: 'Nhận giọng nói cần Internet (Chrome gửi âm thanh tới máy chủ nhận dạng của Google). Hãy bật mạng.',
-          unsupported: 'Trình duyệt này không hỗ trợ nhận giọng nói.',
-          error: `Lỗi: ${'error' in out ? out.error : ''}`,
-        }[out.status];
+      const step1 = line('Bước 1/2: micro mở được ✓');
+      if (out.status === 'heard') {
+        micOut.replaceChildren(step1, h('div', {}, 'Bước 2/2 ✓ Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))));
+        return;
+      }
+      const msg: Record<Exclude<typeof out.status, 'heard'>, string> = {
+        nothing: 'Không nghe thấy gì. Nói to, gần máy hơn, rồi thử lại.',
+        denied: 'Dịch vụ nhận giọng nói bị chặn. ' + PERMISSION_HELP,
+        nomic: 'Nhận giọng nói không mở được micro. Tắt các ứng dụng đang dùng micro rồi thử lại.',
+        offline: 'Nhận giọng nói cần Internet (Chrome gửi âm thanh tới dịch vụ nhận dạng của Google). Hãy bật mạng.',
+        unsupported: 'Trình duyệt này không có nhận giọng nói. ' + (advice || 'Hãy mở bằng Chrome trên Android.'),
+        error: `Lỗi nhận giọng nói: ${'error' in out ? out.error : 'không rõ'}. Chụp màn hình này gửi người làm app.`,
+      };
+      micOut.replaceChildren(step1, line(`Bước 2/2: ${msg[out.status]}`, out.status === 'nothing' ? '' : 'p-warn'));
     });
 
     return h(
@@ -297,6 +340,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('label', { class: 'p-row' }, 'Giọng đọc', voiceSel),
       h('div', { class: 'p-row' }, testBtn, beepBtn),
       diag,
+      envInfo,
       h('div', { class: 'p-row' }, micBtn, micOut),
     );
   }

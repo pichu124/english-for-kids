@@ -31,7 +31,8 @@ export function recognitionSupported(): boolean {
 export type ListenOutcome =
   | { status: 'heard'; alternatives: string[]; stoppedEarly: boolean }
   | { status: 'nothing' } // no speech / nothing understood
-  | { status: 'denied' } // mic permission refused
+  | { status: 'denied' } // mic permission refused (site or Android app permission)
+  | { status: 'nomic' } // no microphone, or another app is using it
   | { status: 'offline' } // recognizer needs network
   | { status: 'unsupported' }
   | { status: 'error'; error: string };
@@ -83,6 +84,7 @@ export function listenOnce(opts: {
       if (heard.size) return resolve({ status: 'heard', alternatives: [...heard], stoppedEarly });
       if (errorCode === 'not-allowed' || errorCode === 'service-not-allowed') return resolve({ status: 'denied' });
       if (errorCode === 'network') return resolve({ status: 'offline' });
+      if (errorCode === 'audio-capture') return resolve({ status: 'nomic' });
       if (!errorCode || errorCode === 'no-speech' || errorCode === 'aborted' || errorCode === 'no-match') {
         return resolve({ status: 'nothing' });
       }

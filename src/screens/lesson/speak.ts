@@ -12,12 +12,15 @@ const MIC_SVG = `<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="4" 
 type Attempt =
   | { kind: 'pass'; heard: string }
   | { kind: 'miss'; heard: string } // recognizer heard something else, or nothing
-  | { kind: 'novoice'; reason: 'denied' | 'offline' | 'unsupported' | 'error' };
+  | { kind: 'novoice'; reason: NoVoice };
 
-const NOVOICE_MSG: Record<'denied' | 'offline' | 'unsupported' | 'error', string> = {
-  denied: 'Chưa có quyền dùng micro. Bố mẹ bật quyền micro cho trang này trong Chrome, hoặc chấm giúp bé:',
+type NoVoice = 'denied' | 'nomic' | 'offline' | 'unsupported' | 'error';
+
+const NOVOICE_MSG: Record<NoVoice, string> = {
+  denied: 'Micro đang bị chặn. Bố mẹ xem cách mở ở Khu bố mẹ → Thử micro. Tạm thời chấm giúp bé:',
+  nomic: 'Không mở được micro (máy không có micro, hoặc ứng dụng khác đang dùng). Bố mẹ chấm giúp bé:',
   offline: 'Nhận giọng nói cần mạng mà máy đang offline. Bố mẹ chấm giúp bé nhé:',
-  unsupported: 'Trình duyệt này không nhận giọng nói. Bố mẹ nghe bé nói rồi chấm giúp:',
+  unsupported: 'Trình duyệt này không nhận giọng nói (hay gặp khi mở link từ Zalo/Messenger, hoặc trên iPhone). Mở bằng Chrome trên Android, hoặc chấm giúp bé:',
   error: 'Micro đang gặp lỗi. Bố mẹ chấm giúp bé nhé:',
 };
 
@@ -143,7 +146,7 @@ async function attempt(ui: LessonUI, w: Word, mic: HTMLElement, rings: HTMLEleme
       return m.ok ? { kind: 'pass', heard: m.heard } : { kind: 'miss', heard: out.alternatives[0] ?? '' };
     }
     if (out.status === 'nothing') return { kind: 'miss', heard: '' };
-    return { kind: 'novoice', reason: out.status === 'unsupported' ? 'unsupported' : out.status === 'denied' ? 'denied' : out.status === 'offline' ? 'offline' : 'error' };
+    return { kind: 'novoice', reason: out.status === 'error' ? 'error' : out.status };
   } finally {
     mic.classList.remove('is-listening');
     rings.classList.remove('is-on');

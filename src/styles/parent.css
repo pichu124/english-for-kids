@@ -1,6 +1,17 @@
 /* Parent area: calm, readable, scrollable. */
-.screen-parent { overflow-y: auto; -webkit-overflow-scrolling: touch; user-select: text; -webkit-user-select: text; background: #f4f7fb; }
-.parent { height: auto; min-height: 100%; font-size: 17px; color: var(--ink); }
+/* The page itself never scrolls (kid screens are fixed); this screen scrolls inside
+   its own box, which must stay exactly one screen tall for that to work. */
+.screen.screen-parent {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  user-select: text;
+  -webkit-user-select: text;
+  background: #f4f7fb;
+}
+.parent { font-size: 17px; color: var(--ink); }
 
 .gate { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; background: #f4f7fb; }
 .gate-hint { font-size: 18px; color: var(--ink-soft); text-align: center; }
