@@ -399,6 +399,35 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       location.reload();
     });
 
+    // Advanced check: same recognizer, different languages. Tells apart "the speech
+    // service works but not in English" from "Chrome cannot use the service at all".
+    const advOut = h('div', { class: 'p-mic-out' });
+    const advBtn = h('button', { class: 'p-btn' }, '🧪 Thử nâng cao (4 lần)');
+    advBtn.addEventListener('click', async () => {
+      advBtn.setAttribute('disabled', '');
+      const plan: [string, string, string][] = [
+        ['en-US', 'tiếng Anh (Mỹ)', 'dog'],
+        ['en-GB', 'tiếng Anh (Anh)', 'dog'],
+        ['', 'không chỉ định ngôn ngữ', 'dog'],
+        ['vi-VN', 'tiếng Việt', 'xin chào'],
+      ];
+      const rows: HTMLElement[] = [];
+      for (const [i, [lang, label, say]] of plan.entries()) {
+        advOut.replaceChildren(...rows, line(`Lần ${i + 1}/4 (${label}): hãy nói “${say}”…`));
+        if (i > 0) await new Promise((r) => setTimeout(r, 500));
+        const o = await listenOnce({ timeoutMs: 7000, mode: 'alts', lang });
+        const result =
+          o.status === 'heard'
+            ? `✓ ra chữ: ${o.alternatives.slice(0, 5).join(' · ')}`
+            : o.trace.events.some((e) => e.startsWith('nomatch'))
+              ? '✗ nghe thấy tiếng nhưng không ra chữ (nomatch)'
+              : `✗ ${o.status}${o.trace.error ? ` (${o.trace.error})` : ''}`;
+        rows.push(line(`Lần ${i + 1} — ${label}: ${result}`, o.status === 'heard' ? '' : 'p-warn'));
+      }
+      advOut.replaceChildren(...rows, line('Chụp màn hình này gửi người làm app.'));
+      advBtn.removeAttribute('disabled');
+    });
+
     return h(
       'div',
       { class: 'p-stack' },
@@ -409,6 +438,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       diag,
       envInfo,
       h('div', { class: 'p-row' }, micBtn, micOut),
+      h('div', { class: 'p-row' }, advBtn, advOut),
     );
   }
 

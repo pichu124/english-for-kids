@@ -80,6 +80,8 @@ export function listenOnce(opts: {
   onEvent?: (line: string) => void;
   /** Override the saved recognizer mode (the mic test tries both). */
   mode?: SrMode;
+  /** Recognition language; '' = do not set it (browser/device default). Diagnostics only. */
+  lang?: string;
 }): Promise<ListenOutcome> {
   const C = ctor();
   if (!C) return Promise.resolve({ status: 'unsupported', trace: { events: [], error: '', gotAudio: false, ms: 0 } });
@@ -91,7 +93,8 @@ export function listenOnce(opts: {
   return new Promise((resolve) => {
     const rec = new C();
     active = rec;
-    rec.lang = 'en-US';
+    const lang = opts.lang ?? 'en-US';
+    if (lang) rec.lang = lang;
     rec.maxAlternatives = mode === 'simple' ? 1 : 5;
     rec.interimResults = mode === 'full';
     rec.continuous = false;
@@ -195,7 +198,7 @@ export function listenOnce(opts: {
 
     try {
       rec.start();
-      log(`start() gọi (chế độ ${SR_MODE_LABEL[mode]})`);
+      log(`start() gọi (chế độ ${SR_MODE_LABEL[mode]}, ngôn ngữ ${lang || 'mặc định của máy'})`);
     } catch (err) {
       errorCode = String((err as Error)?.name || 'error');
       log(`start() lỗi: ${errorCode}`);
