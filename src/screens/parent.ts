@@ -286,6 +286,8 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const micOut = h('div', { class: 'p-mic-out' }, 'Bấm “Thử micro”, cho phép micro nếu được hỏi, rồi nói một từ tiếng Anh (ví dụ “dog”).');
     const micBtn = h('button', { class: 'p-btn' }, '🎤 Thử micro');
     const line = (text: string, cls = '') => h('div', { class: cls }, text);
+    const GOOGLE_APP_PERMISSION =
+      'Nhiều khả năng app “Google” trên máy (app làm việc nhận giọng cho Chrome) chưa có quyền micro. Vào Cài đặt Android → Ứng dụng → Google → Quyền → Micrô → chọn “Cho phép khi dùng ứng dụng”. Trên máy Samsung: Cài đặt → Quản lý chung → Bàn phím/Ngôn ngữ → chọn dịch vụ nhập giọng nói của Google.';
     const GBOARD_TEST =
       'Kiểm tra nhanh dịch vụ giọng nói của máy: mở một ô gõ chữ bất kỳ, chạm 🎤 trên bàn phím Gboard rồi nói “hello”. Ra chữ = dịch vụ của Google chạy tốt (báo người làm app); không ra chữ = làm theo cách sửa ở trên.';
     const SERVICE_HELP =
@@ -300,12 +302,13 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       // to start it later), and BEFORE touching the mic ourselves: opening the mic
       // first and closing it can leave it busy for a moment and make this fail.
       let out = await listenOnce({ timeoutMs: 8000, mode: 'full', onEvent: (l) => live.append(h('div', {}, l)) });
+      const first = out;
       const traces = [h('div', {}, 'Lần 1 (đầy đủ):'), ...out.trace.events.map((l) => h('div', {}, l))];
       let usedSimple = false;
 
       // Nothing at all came back? Some Android builds only work with the plain
       // configuration (no live partial results, one alternative): try that too.
-      if (out.status === 'service' || out.status === 'nothing') {
+      if (out.status === 'service' || out.status === 'nothing' || out.status === 'denied') {
         const live2 = h('div', { class: 'p-trace' });
         micOut.replaceChildren(line('Lần 1 không nghe được. Lần 2 (chế độ đơn giản): hãy nói lại “dog”.'), live2);
         await new Promise((r) => setTimeout(r, 400));
@@ -328,8 +331,8 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
 
       const msg: Record<Exclude<typeof out.status, 'heard'>, string> = {
         nothing: 'Micro có thu âm thanh nhưng không nghe ra tiếng nói. Nói to, gần máy hơn, rồi thử lại.',
-        service: 'Bộ nhận giọng nói đã khởi động nhưng không thu được chút âm thanh nào (đã thử cả 2 chế độ). Thường do dịch vụ giọng nói của Google trên máy bị tắt, cũ, hoặc bị ứng dụng khác giành micro.',
-        denied: 'Nhận giọng nói bị chặn quyền micro.',
+        service: 'Bộ nhận giọng nói đã khởi động nhưng không thu được chút âm thanh nào. Thường do dịch vụ giọng nói của Google trên máy bị tắt, cũ, hoặc bị ứng dụng khác giành micro.',
+        denied: 'Dịch vụ nhận giọng nói của máy từ chối quyền micro.',
         nomic: 'Nhận giọng nói không mở được micro (ứng dụng khác đang dùng micro?).',
         offline: 'Nhận giọng nói cần Internet (Chrome gửi âm thanh tới dịch vụ nhận dạng của Google). Hãy bật mạng.',
         unsupported: 'Trình duyệt này không có nhận giọng nói. ' + (advice || 'Hãy mở bằng Chrome trên Android.'),
@@ -346,8 +349,13 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
           stream.getTracks().forEach((t) => t.stop());
           if (out.status === 'nothing') rows.push(line('Micro: trang mở được micro ✓'));
           else {
-            rows.push(line('Micro: trang mở được micro ✓ — vậy micro và quyền đều ổn, lỗi nằm ở bộ nhận giọng nói.'));
-            if (out.status === 'service' || out.status === 'error') rows.push(line(SERVICE_HELP), line(GBOARD_TEST));
+            rows.push(line('Micro: trang mở được micro ✓ — vậy Chrome và quyền micro của trang đều ổn, lỗi nằm ở dịch vụ nhận giọng nói của máy.'));
+            if (out.status === 'denied' || first.status === 'denied') {
+              // Chrome may open the mic, but the system speech app (usually "Google") refused:
+              // Android reports that as "not-allowed" too.
+              rows.push(line(GOOGLE_APP_PERMISSION, 'p-warn'));
+            }
+            if (out.status === 'service' || out.status === 'error' || out.status === 'denied') rows.push(line(SERVICE_HELP), line(GBOARD_TEST));
           }
         } catch (e) {
           const name = (e as Error)?.name || 'Lỗi';
