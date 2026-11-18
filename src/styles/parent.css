@@ -70,3 +70,6 @@
 .p-heard { font-size: 13px; color: var(--ink-soft); font-style: italic; }
 .p-mic-out { flex: 1 1 260px; font-size: 15px; color: var(--ink-soft); }
 .p-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
+
+.p-trace { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+.p-trace summary { cursor: pointer; font-family: var(--font); font-size: 13px; }

@@ -13,9 +13,14 @@ type SR = {
   stop(): void;
   abort(): void;
   onresult: ((e: SREvent) => void) | null;
-  onerror: ((e: { error: string }) => void) | null;
+  onerror: ((e: { error: string; message?: string }) => void) | null;
   onend: (() => void) | null;
+  onstart: (() => void) | null;
+  onaudiostart: (() => void) | null;
+  onsoundstart: (() => void) | null;
   onspeechstart: (() => void) | null;
+  onspeechend: (() => void) | null;
+  onnomatch: (() => void) | null;
 };
 type SREvent = { resultIndex: number; results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }> };
 
@@ -28,14 +33,27 @@ export function recognitionSupported(): boolean {
   return typeof window !== 'undefined' && !!ctor();
 }
 
-export type ListenOutcome =
+/** What happened during one listen, for the parent-area diagnosis. */
+export type ListenTrace = {
+  /** e.g. ["start 80ms", "audiostart 210ms", "error:no-speech 5300ms", "end 5310ms"] */
+  events: string[];
+  /** Raw error code from the browser ('' if none). */
+  error: string;
+  /** Did the recognizer actually start capturing audio? */
+  gotAudio: boolean;
+  ms: number;
+};
+
+export type ListenOutcome = (
   | { status: 'heard'; alternatives: string[]; stoppedEarly: boolean }
-  | { status: 'nothing' } // no speech / nothing understood
+  | { status: 'nothing' } // listened, but no speech / nothing understood
+  | { status: 'service' } // ended without ever capturing audio: the device's speech service is not working
   | { status: 'denied' } // mic permission refused (site or Android app permission)
   | { status: 'nomic' } // no microphone, or another app is using it
   | { status: 'offline' } // recognizer needs network
   | { status: 'unsupported' }
-  | { status: 'error'; error: string };
+  | { status: 'error'; error: string }
+) & { trace: ListenTrace };
 
 let active: SR | null = null;
 
@@ -56,9 +74,11 @@ export function listenOnce(opts: {
   timeoutMs?: number;
   onTranscript?: (alternatives: string[]) => boolean;
   onSpeechStart?: () => void;
+  /** Called with every recognizer event (for live diagnostics). */
+  onEvent?: (line: string) => void;
 }): Promise<ListenOutcome> {
   const C = ctor();
-  if (!C) return Promise.resolve({ status: 'unsupported' });
+  if (!C) return Promise.resolve({ status: 'unsupported', trace: { events: [], error: '', gotAudio: false, ms: 0 } });
   cancelListening();
   stopSpeaking();
 
@@ -74,6 +94,14 @@ export function listenOnce(opts: {
     let errorCode = '';
     let settled = false;
     let stoppedEarly = false;
+    let gotAudio = false;
+    const t0 = Date.now();
+    const events: string[] = [];
+    const log = (name: string) => {
+      const line = `${name} ${Date.now() - t0}ms`;
+      events.push(line);
+      opts.onEvent?.(line);
+    };
 
     const finish = () => {
       if (settled) return;
@@ -81,17 +109,21 @@ export function listenOnce(opts: {
       clearTimeout(hardStop);
       clearTimeout(softStop);
       if (active === rec) active = null;
-      if (heard.size) return resolve({ status: 'heard', alternatives: [...heard], stoppedEarly });
-      if (errorCode === 'not-allowed' || errorCode === 'service-not-allowed') return resolve({ status: 'denied' });
-      if (errorCode === 'network') return resolve({ status: 'offline' });
-      if (errorCode === 'audio-capture') return resolve({ status: 'nomic' });
+      const trace: ListenTrace = { events, error: errorCode, gotAudio, ms: Date.now() - t0 };
+      if (heard.size) return resolve({ status: 'heard', alternatives: [...heard], stoppedEarly, trace });
+      if (errorCode === 'not-allowed' || errorCode === 'service-not-allowed') return resolve({ status: 'denied', trace });
+      if (errorCode === 'network') return resolve({ status: 'offline', trace });
+      if (errorCode === 'audio-capture') return resolve({ status: 'nomic', trace });
       if (!errorCode || errorCode === 'no-speech' || errorCode === 'aborted' || errorCode === 'no-match') {
-        return resolve({ status: 'nothing' });
+        // Never captured any audio: the speech service did not really run.
+        // Not the child's fault, so the caller must not answer "Try again!".
+        return resolve({ status: gotAudio ? 'nothing' : 'service', trace });
       }
-      resolve({ status: 'error', error: errorCode });
+      resolve({ status: 'error', error: errorCode, trace });
     };
 
     rec.onresult = (e) => {
+      gotAudio = true;
       const batch: string[] = [];
       for (let i = e.resultIndex; i < e.results.length; i++) {
         const r = e.results[i];
@@ -114,9 +146,28 @@ export function listenOnce(opts: {
     };
     rec.onerror = (e) => {
       errorCode = e.error || 'error';
+      log(`error:${errorCode}${e.message ? ` (${e.message})` : ''}`);
     };
-    rec.onend = finish;
-    rec.onspeechstart = () => opts.onSpeechStart?.();
+    rec.onend = () => {
+      log('end');
+      finish();
+    };
+    rec.onstart = () => log('start');
+    rec.onaudiostart = () => {
+      gotAudio = true;
+      log('audiostart');
+    };
+    rec.onsoundstart = () => {
+      gotAudio = true;
+      log('soundstart');
+    };
+    rec.onspeechstart = () => {
+      gotAudio = true;
+      log('speechstart');
+      opts.onSpeechStart?.();
+    };
+    rec.onspeechend = () => log('speechend');
+    rec.onnomatch = () => log('nomatch');
 
     const timeout = opts.timeoutMs ?? 6000;
     const softStop = setTimeout(() => {
@@ -138,8 +189,10 @@ export function listenOnce(opts: {
 
     try {
       rec.start();
+      log('start() gọi');
     } catch (err) {
       errorCode = String((err as Error)?.name || 'error');
+      log(`start() lỗi: ${errorCode}`);
       finish();
     }
   });

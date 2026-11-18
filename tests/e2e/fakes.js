@@ -17,19 +17,28 @@
   };
   Object.defineProperty(window, 'speechSynthesis', { value: fakeSynth, configurable: true });
 
+  // Modes: 'match' (says the word), 'miss' (says something else), 'silent' (mic on, no speech),
+  // 'broken' (ends at once without capturing audio, like a dead speech service), 'denied'.
   class FakeRec {
     start() {
       const mode = window.__voice;
+      const fire = (name, arg) => this[name] && this[name](arg);
+      if (mode === 'broken') {
+        setTimeout(() => { fire('onstart'); fire('onerror', { error: 'no-speech' }); fire('onend'); }, 60);
+        return;
+      }
       setTimeout(() => {
-        if (mode === 'denied') { this.onerror && this.onerror({ error: 'not-allowed' }); this.onend && this.onend(); return; }
-        if (mode === 'silent') { this.onerror && this.onerror({ error: 'no-speech' }); this.onend && this.onend(); return; }
+        fire('onstart');
+        if (mode === 'denied') { fire('onerror', { error: 'not-allowed' }); fire('onend'); return; }
+        fire('onaudiostart');
+        if (mode === 'silent') { fire('onerror', { error: 'no-speech' }); fire('onend'); return; }
         const label = document.querySelector('.speak .word-label')?.textContent || '';
         const said = mode === 'match' ? `${label}` : 'zebra on a skateboard';
-        this.onspeechstart && this.onspeechstart();
+        fire('onspeechstart');
         const alt = [{ transcript: said }, { transcript: said + 's' }];
         alt.isFinal = true;
-        this.onresult && this.onresult({ resultIndex: 0, results: [alt] });
-        setTimeout(() => this.onend && this.onend(), 30);
+        fire('onresult', { resultIndex: 0, results: [alt] });
+        setTimeout(() => fire('onend'), 30);
       }, 120);
     }
     stop() { setTimeout(() => this.onend && this.onend(), 10); }

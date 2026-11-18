@@ -118,12 +118,26 @@ if (/wrong|no!/i.test(spokenAll)) throw new Error('Bix should never say wrong');
 step('misheard twice → "Try again" then moves on, never "wrong"');
 await tap('.reward-actions .btn-good');
 
+// Speech service that dies at once: never blame the child, go straight to the parent buttons.
+{
+  const before = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0]);
+  await page.evaluate(() => (window.__spoken = []));
+  await playLesson(3, 'broken');
+  const after = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem('efk.v1')).days)[0]);
+  if (after.noVoice - before.noVoice !== 6 || after.miss !== before.miss) throw new Error(`broken service should be "no voice", got ${JSON.stringify(after)}`);
+  const said = await page.evaluate(() => window.__spoken.join(' | '));
+  const askedAgain = (said.match(/Try again! (mum|dad|baby|grandma|grandpa|brother)!/g) || []).length;
+  if (askedAgain) throw new Error('child was told "Try again" although the speech service never listened');
+  step('dead speech service → parent buttons at once, no "Try again" for the child');
+  await tap('.reward-actions .btn-good');
+}
+
 // progress survives reload
 await page.reload();
 await tap('.btn-play');
 await page.waitForSelector('.home');
 const after = await page.locator('.island.is-done').count();
-if (after !== 3) throw new Error(`expected 3 finished islands after reload, got ${after}`);
+if (after !== 4) throw new Error(`expected 4 finished islands after reload, got ${after}`);
 step('progress survives reload');
 
 if (errors.length) {

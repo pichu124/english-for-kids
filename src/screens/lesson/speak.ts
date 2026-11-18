@@ -14,11 +14,12 @@ type Attempt =
   | { kind: 'miss'; heard: string } // recognizer heard something else, or nothing
   | { kind: 'novoice'; reason: NoVoice };
 
-type NoVoice = 'denied' | 'nomic' | 'offline' | 'unsupported' | 'error';
+type NoVoice = 'denied' | 'nomic' | 'service' | 'offline' | 'unsupported' | 'error';
 
 const NOVOICE_MSG: Record<NoVoice, string> = {
   denied: 'Micro đang bị chặn. Bố mẹ xem cách mở ở Khu bố mẹ → Thử micro. Tạm thời chấm giúp bé:',
   nomic: 'Không mở được micro (máy không có micro, hoặc ứng dụng khác đang dùng). Bố mẹ chấm giúp bé:',
+  service: 'Bộ nhận giọng nói của máy chưa chạy (tắt ngay, không thu được âm thanh). Bố mẹ xem Khu bố mẹ → Thử micro. Tạm thời chấm giúp bé:',
   offline: 'Nhận giọng nói cần mạng mà máy đang offline. Bố mẹ chấm giúp bé nhé:',
   unsupported: 'Trình duyệt này không nhận giọng nói (hay gặp khi mở link từ Zalo/Messenger, hoặc trên iPhone). Mở bằng Chrome trên Android, hoặc chấm giúp bé:',
   error: 'Micro đang gặp lỗi. Bố mẹ chấm giúp bé nhé:',

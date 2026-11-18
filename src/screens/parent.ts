@@ -286,51 +286,63 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const micOut = h('div', { class: 'p-mic-out' }, 'Bấm “Thử micro”, cho phép micro nếu được hỏi, rồi nói một từ tiếng Anh (ví dụ “dog”).');
     const micBtn = h('button', { class: 'p-btn' }, '🎤 Thử micro');
     const line = (text: string, cls = '') => h('div', { class: cls }, text);
+    const SERVICE_HELP =
+      'Cách sửa thường gặp: (1) Mở CH Play, tìm và cập nhật “Google” và “Speech Recognition & Synthesis from Google” (Dịch vụ giọng nói của Google); (2) Cài đặt Android → Ứng dụng → Google → đảm bảo không bị Tắt, quyền Micrô = Cho phép; (3) Cài đặt → Quản lý chung/Hệ thống → Ngôn ngữ → Nhập bằng giọng nói: chọn của Google. Rồi tắt hẳn Chrome, mở lại và thử.';
     const PERMISSION_HELP =
       'Mở quyền micro: (1) trong Chrome, chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép; (2) nếu vẫn không được: Cài đặt Android → Ứng dụng → Chrome → Quyền → Micrô → Cho phép. Rồi tải lại trang.';
     micBtn.addEventListener('click', async () => {
       micBtn.setAttribute('disabled', '');
-      micOut.replaceChildren(line('Bước 1/2: mở micro…'));
-      // (1) Open the mic for a moment (nothing is recorded; it is closed straight away).
-      let micOk = false;
-      try {
-        if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error(), { name: 'NoMediaDevices' });
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        stream.getTracks().forEach((t) => t.stop());
-        micOk = true;
-        micOut.replaceChildren(line('Bước 1/2: micro mở được ✓'), line('Bước 2/2: đang nghe… hãy nói “dog”'));
-      } catch (e) {
-        const name = (e as Error)?.name || 'Lỗi';
-        const why: Record<string, string> = {
-          NotAllowedError: 'Micro đang bị chặn cho trang này. ' + PERMISSION_HELP,
-          SecurityError: 'Micro bị chặn vì trang không chạy HTTPS hoặc đang mở trong ứng dụng khác.',
-          NotFoundError: 'Không tìm thấy micro trên máy.',
-          NotReadableError: 'Micro đang bị ứng dụng khác dùng (gọi điện, ghi âm, Zalo…). Tắt ứng dụng đó rồi thử lại.',
-          NoMediaDevices: 'Trình duyệt này không cho trang dùng micro. ' + (advice || 'Hãy mở bằng Chrome.'),
-        };
-        micOut.replaceChildren(line(`Bước 1/2: không mở được micro (${name}).`, 'p-warn'), line(why[name] ?? PERMISSION_HELP));
-      }
-      if (!micOk) {
-        micBtn.removeAttribute('disabled');
-        return;
-      }
-      // (2) Speech recognition.
-      const out = await listenOnce({ timeoutMs: 5000 });
-      micBtn.removeAttribute('disabled');
-      const step1 = line('Bước 1/2: micro mở được ✓');
+      const live = h('div', { class: 'p-trace' });
+      micOut.replaceChildren(line('Đang nghe… hãy nói “dog”.'), live);
+      // Start recognition straight away, inside the tap (some Android builds refuse
+      // to start it later), and BEFORE touching the mic ourselves: opening the mic
+      // first and closing it can leave it busy for a moment and make this fail.
+      const out = await listenOnce({ timeoutMs: 5000, onEvent: (l) => live.append(h('div', {}, l)) });
+      const trace = h('details', { class: 'p-trace' }, h('summary', {}, `Chi tiết kỹ thuật (${out.trace.ms} ms)`), ...out.trace.events.map((l) => h('div', {}, l)));
+
       if (out.status === 'heard') {
-        micOut.replaceChildren(step1, h('div', {}, 'Bước 2/2 ✓ Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))));
+        micBtn.removeAttribute('disabled');
+        micOut.replaceChildren(h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))), trace);
         return;
       }
+
       const msg: Record<Exclude<typeof out.status, 'heard'>, string> = {
-        nothing: 'Không nghe thấy gì. Nói to, gần máy hơn, rồi thử lại.',
-        denied: 'Dịch vụ nhận giọng nói bị chặn. ' + PERMISSION_HELP,
-        nomic: 'Nhận giọng nói không mở được micro. Tắt các ứng dụng đang dùng micro rồi thử lại.',
+        nothing: 'Micro có thu âm thanh nhưng không nghe ra tiếng nói. Nói to, gần máy hơn, rồi thử lại.',
+        service: 'Bộ nhận giọng nói tắt ngay mà không thu được chút âm thanh nào. Thường do dịch vụ giọng nói của Google trên máy bị tắt hoặc cũ.',
+        denied: 'Nhận giọng nói bị chặn quyền micro.',
+        nomic: 'Nhận giọng nói không mở được micro (ứng dụng khác đang dùng micro?).',
         offline: 'Nhận giọng nói cần Internet (Chrome gửi âm thanh tới dịch vụ nhận dạng của Google). Hãy bật mạng.',
         unsupported: 'Trình duyệt này không có nhận giọng nói. ' + (advice || 'Hãy mở bằng Chrome trên Android.'),
-        error: `Lỗi nhận giọng nói: ${'error' in out ? out.error : 'không rõ'}. Chụp màn hình này gửi người làm app.`,
+        error: `Lỗi nhận giọng nói: ${out.trace.error || 'không rõ'}.`,
       };
-      micOut.replaceChildren(step1, line(`Bước 2/2: ${msg[out.status]}`, out.status === 'nothing' ? '' : 'p-warn'));
+      const rows: HTMLElement[] = [line(`✗ ${msg[out.status]}`, out.status === 'nothing' ? '' : 'p-warn')];
+
+      // Now, separately, can the page open the microphone at all?
+      if (out.status !== 'unsupported' && out.status !== 'offline') {
+        await new Promise((r) => setTimeout(r, 300));
+        try {
+          if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error(), { name: 'NoMediaDevices' });
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          stream.getTracks().forEach((t) => t.stop());
+          if (out.status === 'nothing') rows.push(line('Micro: trang mở được micro ✓'));
+          else {
+            rows.push(line('Micro: trang mở được micro ✓ — vậy micro và quyền đều ổn, lỗi nằm ở bộ nhận giọng nói.'));
+            if (out.status === 'service' || out.status === 'error') rows.push(line(SERVICE_HELP));
+          }
+        } catch (e) {
+          const name = (e as Error)?.name || 'Lỗi';
+          const why: Record<string, string> = {
+            NotAllowedError: 'Micro đang bị chặn. ' + PERMISSION_HELP,
+            SecurityError: 'Micro bị chặn vì trang không chạy HTTPS hoặc đang mở trong ứng dụng khác.',
+            NotFoundError: 'Không tìm thấy micro trên máy.',
+            NotReadableError: 'Micro đang bị ứng dụng khác dùng (gọi điện, ghi âm, Zalo…). Tắt ứng dụng đó rồi thử lại.',
+            NoMediaDevices: 'Trình duyệt này không cho trang dùng micro. ' + (advice || 'Hãy mở bằng Chrome.'),
+          };
+          rows.push(line(`Micro: trang không mở được micro (${name}). ${why[name] ?? PERMISSION_HELP}`, 'p-warn'));
+        }
+      }
+      micBtn.removeAttribute('disabled');
+      micOut.replaceChildren(...rows, trace);
     });
 
     return h(
