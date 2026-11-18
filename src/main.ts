@@ -23,6 +23,7 @@ import { worldScreen } from './screens/world';
 import { bookScreen } from './screens/book';
 import { wardrobeScreen } from './screens/wardrobe';
 import { gardenScreen } from './screens/garden';
+import { gamesScreen } from './screens/games';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -35,6 +36,7 @@ register('parent', parentScreen);
 register('book', bookScreen);
 register('wardrobe', wardrobeScreen);
 register('garden', gardenScreen);
+register('games', gamesScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);
@@ -43,6 +45,6 @@ initPWA();
 readDeepLink();
 startUsageClock(() => {
   const s = currentScreen();
-  return s === 'home' || s === 'lesson' || s === 'world';
+  return !!s && ['home', 'lesson', 'world', 'book', 'wardrobe', 'garden', 'games', 'stories', 'story'].includes(s);
 });
 go('start');

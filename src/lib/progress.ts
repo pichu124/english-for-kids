@@ -40,3 +40,22 @@ export function learningDays(): string[] {
     .map(([day]) => day)
     .sort();
 }
+
+/**
+ * Words for mini-games: learned words of this level first (one per spelling),
+ * topped up from the level's units in map order so a new child can play too.
+ */
+export function practicePool(level: string, min: number): Word[] {
+  const s = getState();
+  const seen = new Set<string>();
+  const learned: Word[] = [];
+  const rest: Word[] = [];
+  for (const t of topicsOfLevel(level)) {
+    for (const w of t.words) {
+      if (seen.has(w.text)) continue;
+      seen.add(w.text);
+      (isLearned(s.words[wordKey(t.id, w.id)]) ? learned : rest).push(w);
+    }
+  }
+  return learned.length >= min ? learned : learned.concat(rest.slice(0, min - learned.length));
+}

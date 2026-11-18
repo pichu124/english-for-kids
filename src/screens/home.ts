@@ -101,6 +101,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
     dockBtn('📖', 'My Words', 'book', stickers || undefined),
     dockBtn('👕', 'Bix', 'wardrobe', newClothes ? 'NEW' : undefined, newClothes > 0),
+    dockBtn('🎮', 'Games', 'games'),
     dockBtn('🌻', 'Garden', 'garden', learningDays().length || undefined, gardenHasNew()),
   );
 

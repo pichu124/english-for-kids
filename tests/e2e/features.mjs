@@ -100,6 +100,57 @@ if (!(await page.locator('.garden-friend').count())) fail('3+ plants should brin
 if (shots) await page.screenshot({ path: `${shots}/garden.png` });
 step('garden: one plant per learning day (gaps cost nothing), new plant glows once');
 
+// ---------- A5: mini-games ----------
+await home();
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.waitForSelector('.games');
+await page.locator('.game-pick[data-game="memory"]').click({ force: true });
+await page.waitForSelector('.mem-card');
+const ids = await page.locator('.mem-card').evaluateAll((els) => els.map((e) => e.dataset.id));
+if (ids.length !== 12) fail(`Starters memory should have 12 cards, got ${ids.length}`);
+// One mismatch first (flips back), then every pair.
+const first = ids[0];
+const other = ids.findIndex((x) => x !== first);
+await page.locator('.mem-card').nth(0).click({ force: true });
+await page.locator('.mem-card').nth(other).click({ force: true });
+await page.waitForTimeout(1400);
+if (await page.locator('.mem-card.is-up').count()) fail('a mismatched pair should flip back');
+const done = new Set();
+for (let i = 0; i < ids.length; i++) {
+  if (done.has(i)) continue;
+  const j = ids.findIndex((x, k) => k !== i && x === ids[i]);
+  await page.locator('.mem-card').nth(i).click({ force: true });
+  await page.locator('.mem-card').nth(j).click({ force: true });
+  done.add(i); done.add(j);
+  await page.waitForTimeout(500);
+}
+await page.waitForSelector('.game-done', { timeout: 8000 });
+if ((await page.locator('.mem-card.is-done').count()) !== 12) fail('all cards should be matched');
+if (shots) await page.screenshot({ path: `${shots}/memory.png` });
+step('memory: mismatches flip back, finding all 6 pairs ends the game');
+
+await page.locator('.btn-home').first().click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.locator('.game-pick[data-game="balloons"]').click({ force: true });
+await page.waitForSelector('.balloon');
+let shot = false;
+for (let i = 0; i < 200 && !(await page.locator('.game-done').count()); i++) {
+  const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
+  const m = said.match(/pop the (.+)!$/);
+  if (m) {
+    const b = page.locator(`.balloon:not(.is-popped)[aria-label="${m[1]}" i]`);
+    if (await b.count()) {
+      if (shots && !shot) { await page.screenshot({ path: `${shots}/balloons.png` }); shot = true; }
+      await b.first().click({ force: true });
+    }
+  }
+  await page.waitForTimeout(120);
+}
+if (!(await page.locator('.game-done').count())) fail('popping 5 named balloons should end the game');
+if ((await page.locator('.balloon-stars .on').count()) !== 5) fail('5 stars after 5 rounds');
+step('balloons: pop the balloon Bix names, 5 rounds then done');
+
 // __MORE__
 
 if (errors.length) fail('page errors: ' + errors.join(' | '));
