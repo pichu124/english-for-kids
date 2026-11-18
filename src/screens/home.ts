@@ -1,6 +1,6 @@
 import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
-import { topicsOfLevel } from '../content';
+import { topicsOfLevel, type Topic } from '../content';
 import { currentLevel } from '../lib/level';
 import { buildReview, REVIEW_ID } from '../lib/review';
 import { fromHTML, h } from '../lib/dom';
@@ -14,7 +14,8 @@ import { gardenHasNew } from './garden';
 import { storyOpen } from './stories';
 import { storiesOfLevel } from '../content';
 import { unlockedItems } from '../art/outfit';
-import { parentButton } from './widgets';
+import { confetti, parentButton } from './widgets';
+import { answerChat, chatToday, greeting, levelToCelebrate, markCelebrated } from '../lib/memory';
 
 let greetedThisSession = false;
 
@@ -120,10 +121,37 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   requestAnimationFrame(() => el.querySelector('.island.is-next')?.scrollIntoView({ inline: 'center', block: 'nearest' }));
   setTimeout(async () => {
     if (!ctx.alive()) return;
-    const line = greetedThisSession ? `${hi} Pick an island!` : `${hi} I am Bix. Let's play!`;
+    if (levelToCelebrate(level)) {
+      markCelebrated(level);
+      confetti(document.body, 60);
+      sfx.reward();
+      await bix.talk(`Wow! You finished all the ${level.name} islands! You are a star!`, 'happy', '🌟 You are a star!');
+      return;
+    }
+    const first = !greetedThisSession;
     greetedThisSession = true;
-    await bix.talk(line, 'idle', hi);
+    await bix.talk(first ? greeting(hi) : `${hi} Pick an island!`, 'idle', hi);
+    const chat = first ? chatToday() : null;
+    if (chat?.chat && ctx.alive()) askChat(chat);
   }, 350);
+
+  /** Bix asks a yes/no question about something the child learned; big 👍 / 👎 answers. */
+  function askChat(t: Topic) {
+    const c = t.chat!;
+    const reply = (answer: 'yes' | 'no' | null) => {
+      box.remove();
+      answerChat(t, answer);
+      if (!answer) return;
+      sfx.pop();
+      void bix.talk(answer === 'yes' ? c.yes : c.no, answer === 'yes' ? 'happy' : 'idle');
+    };
+    const yes = h('button', { class: 'chat-btn chat-yes', 'aria-label': 'Yes', onclick: () => reply('yes') }, '👍');
+    const no = h('button', { class: 'chat-btn chat-no', 'aria-label': 'No', onclick: () => reply('no') }, '👎');
+    const box = h('div', { class: 'chat-box pop' }, yes, no);
+    ctx.onCleanup(() => box.isConnected && answerChat(t, null));
+    el.querySelector('.home-top')?.appendChild(box);
+    void bix.talk(c.ask, 'listen');
+  }
 
   return el;
 }

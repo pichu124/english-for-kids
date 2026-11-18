@@ -71,6 +71,10 @@ export type State = {
   outfit?: Record<string, string>;
   /** How many wardrobe items the child has already seen (for the "new!" glow). */
   outfitSeen?: number;
+  /** Bix's memory: when each unit's chat question was last asked, the child's answers, levels celebrated. */
+  chats?: Record<string, string>;
+  chatAnswers?: Record<string, 'yes' | 'no'>;
+  celebrated?: string[];
   /** Adaptive difficulty: first-try results of recent picture rounds. */
   adapt?: { recent: boolean[] };
   /** Stories read to the end, by story id. */

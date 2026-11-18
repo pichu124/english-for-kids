@@ -209,6 +209,41 @@ nc = await playCards('animals');
 if (nc !== 4) fail(`too few rounds → level default (4), got ${nc}`);
 step('adaptive: often wrong → 3 pictures, always right → one more, few rounds → level default');
 
+// ---------- B9: Bix remembers and chats ----------
+await setState((st) => {
+  for (const t of Object.values(st.topics)) t.lastDone = '2026-01-02';
+  st.topics.animals.lastDone = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  delete st.chats;
+});
+await page.evaluate(() => (window.__spoken.length = 0));
+await home();
+await page.waitForSelector('.chat-box', { timeout: 15000 });
+const spoken = await page.evaluate(() => window.__spoken.join(' | '));
+if (!spoken.includes('Welcome back! Last time we learned Animals!')) fail('greeting should recall the last unit: ' + spoken);
+if (!spoken.includes('Do you like dogs?')) fail('Bix should ask the Animals chat question');
+if (shots) await page.screenshot({ path: `${shots}/chat.png` });
+await page.locator('.chat-yes').click({ force: true });
+await page.waitForTimeout(300);
+if (!(await page.evaluate(() => window.__spoken.includes('Woof! Dogs are great!')))) fail('👍 should get the yes reply');
+s = await state();
+if (s.chatAnswers?.animals !== 'yes') fail('the answer should be remembered');
+await home();
+await page.waitForTimeout(2500);
+if (await page.locator('.chat-box').count()) fail('only one chat question a day');
+// All Little Bix islands done → a one-time celebration.
+await setState((st) => {
+  for (const id of ['l0-animals', 'l0-colors', 'l0-food', 'l0-toys', 'l0-weather', 'l0-transport']) st.topics[id] = { completed: 1, lastDone: '2026-01-02' };
+  st.settings.level = 'L0';
+});
+await page.evaluate(() => (window.__spoken.length = 0));
+await home();
+await page.waitForTimeout(800);
+if (!(await page.evaluate(() => window.__spoken.some((t) => t.startsWith('Wow! You finished all the Little Bix islands'))))) fail('finishing a level should be celebrated');
+s = await state();
+if (!s.celebrated?.includes('L0')) fail('celebration should happen once');
+await setState((st) => (st.settings.level = 'L2'));
+step('Bix: "Welcome back! Last time we learned…", one 👍/👎 question a day, cheers when a level is done');
+
 // ---------- A6: tips in the parent area ----------
 await home();
 await page.locator('.btn-parent').click({ force: true });
@@ -219,7 +254,8 @@ await page.click('.key-ok');
 await page.waitForSelector('.p-tips .tip-card');
 const tipText = await page.locator('.p-tips .tip-card').first().textContent();
 if (!tipText.includes('Animals') && !tipText.includes('Con vật') && !tipText.includes('🐶')) fail('first tip should be for the unit just done (Animals), got: ' + tipText.slice(0, 80));
-step('parent area lists "Chơi cùng con" tips for the units just learned');
+if (!(await page.locator('.p-chat li').count())) fail('parent area should show what the child told Bix');
+step('parent area lists "Chơi cùng con" tips and the child\'s answers to Bix');
 
 // __MORE__
 

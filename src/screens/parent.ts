@@ -99,6 +99,22 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       { class: 'p-tips' },
       h('p', { class: 'p-muted' }, recent.length ? 'Gợi ý theo các bài bé vừa học. Mỗi ngày chỉ cần 2–3 phút chơi cùng con ngoài đời là đủ.' : 'Bé chưa học bài nào. Đây là gợi ý cho những bài đầu tiên.'),
       list.map((t, i) => tipCard(t, i === 0)),
+      chatAnswers(),
+    );
+  }
+
+  /** What the child told Bix (👍/👎) — a conversation starter for parents. */
+  function chatAnswers() {
+    const ans = getState().chatAnswers ?? {};
+    const rows = Object.entries(ans)
+      .map(([id, a]) => ({ t: topics.find((x) => x.id === id), a }))
+      .filter((r) => r.t?.chat);
+    if (!rows.length) return null;
+    return h(
+      'div',
+      {},
+      h('h3', { class: 'p-sub' }, 'Bé trả lời Bix'),
+      h('ul', { class: 'p-chat' }, rows.map((r) => h('li', {}, h('span', { lang: 'en' }, r.t!.chat!.ask), ' ', r.a === 'yes' ? '👍' : '👎'))),
     );
   }
 
