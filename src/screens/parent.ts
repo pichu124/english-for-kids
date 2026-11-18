@@ -171,7 +171,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const rows = lastDays(14).map((d) => {
       const l: DayLog | undefined = s.days[d];
       const [, m, day] = d.split('-');
-      const cells = l ? [Math.round(l.seconds / 60), l.lessons, l.auto, l.parent, l.miss, l.noVoice] : ['', '', '', '', '', ''];
+      const cells = l ? [Math.floor(l.seconds / 60), l.lessons, l.auto, l.parent, l.miss, l.noVoice] : ['', '', '', '', '', ''];
       return h('tr', { class: l ? '' : 'is-empty' }, h('td', {}, `${day}/${m}`), cells.map((c) => h('td', {}, String(c))));
     });
     return h(
