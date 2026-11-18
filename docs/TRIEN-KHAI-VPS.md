@@ -37,7 +37,7 @@ Phải in `v22.12` trở lên (Vite 8 cần Node 20.19+ hoặc 22.12+). Máy đ�
 sudo apt-get install -y rsync
 sudo mkdir -p /opt/bix-english /var/www/bix-english
 sudo chown casa:casa /opt/bix-english /var/www/bix-english
-git clone https://github.com/pichu124/english-for-kids.git /opt/bix-english
+git clone -b main https://github.com/pichu124/english-for-kids.git /opt/bix-english
 cd /opt/bix-english
 npm ci --no-audit --no-fund
 npm test
@@ -62,25 +62,36 @@ Phải in `103.195.238.114  bix-english.duckdns.org`. Chưa ra thì chờ vài p
 
 ## 3. HTTPS qua Caddy
 
-Tạo tệp riêng cho app, **từng dòng một** (dòng dài dán vào dễ bị ngắt). Bản đầy đủ của tệp này có trong kho mã ở `deploy/bix-english.caddy`, để đối chiếu.
+Tạo tệp riêng cho app bằng `nano`:
 
 ```bash
-echo 'bix-english.duckdns.org {' | sudo tee /etc/caddy/sites/bix-english.caddy
-echo '    root * /var/www/bix-english' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    encode zstd gzip' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    file_server' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header Permissions-Policy "microphone=(self), camera=(), geolocation=()"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header Referrer-Policy "no-referrer"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header X-Content-Type-Options "nosniff"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header /sw.js Cache-Control "no-cache"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header /assets/* Cache-Control "public, max-age=31536000, immutable"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '    header /manifest.webmanifest Content-Type "application/manifest+json"' | sudo tee -a /etc/caddy/sites/bix-english.caddy
-echo '}' | sudo tee -a /etc/caddy/sites/bix-english.caddy
+sudo nano /etc/caddy/sites/bix-english.caddy
+```
+
+Dán đúng nội dung dưới đây (cũng là nội dung tệp `deploy/bix-english.caddy` trong kho mã). Lưu bằng Ctrl+O, Enter, rồi thoát bằng Ctrl+X:
+
+```
+bix-english.duckdns.org {
+    root * /var/www/bix-english
+    encode zstd gzip
+    file_server
+    header Permissions-Policy "microphone=(self), camera=(), geolocation=()"
+    header Referrer-Policy "no-referrer"
+    header X-Content-Type-Options "nosniff"
+    header /sw.js Cache-Control "no-cache"
+    header /assets/* Cache-Control "public, max-age=31536000, immutable"
+    header /manifest.webmanifest Content-Type "application/manifest+json"
+}
+```
+
+Kiểm tra cú pháp:
+
+```bash
 cat /etc/caddy/sites/bix-english.caddy
 sudo caddy validate --config /etc/caddy/Caddyfile
 ```
 
-So nội dung `cat` in ra với `deploy/bix-english.caddy`. Chỉ khi thấy `Valid configuration` mới nạp lại:
+Chỉ khi thấy `Valid configuration` mới nạp lại:
 
 ```bash
 sudo systemctl reload caddy
