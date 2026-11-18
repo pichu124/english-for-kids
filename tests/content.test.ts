@@ -26,9 +26,21 @@ describe('content (format v2)', () => {
     }
   });
 
+  it('pre-readers get a command, Starters a question', async () => {
+    const { askFor } = await import('../src/content');
+    const dog = topics.find((t) => t.id === 'l0-animals')!.words.find((w) => w.id === 'dog')!;
+    expect(askFor(dog, 'L0')).toBe('Say: dog!');
+    expect(askFor(dog, 'L2')).toBe('Can you say dog?');
+  });
+
+  it('accept lists avoid everyday words a child says anyway', () => {
+    const risky = ['no', 'yes', 'and', 'here', 'the', 'a', 'i', 'it', 'is'];
+    for (const t of topics) for (const w of t.words) for (const a of w.accept ?? []) expect(risky, `${t.id}/${w.id}: "${a}"`).not.toContain(a.toLowerCase());
+  });
+
   it('unit-level sentences override the word bank', () => {
     const cat = topics.find((t) => t.id === 'l0-animals')!.words.find((w) => w.id === 'cat')!;
-    expect(cat.sentence).toBe('Meow, meow! A cat!');
+    expect(cat.sentence).toBe('Meow... meow! A cat!');
     const cat2 = topics.find((t) => t.id === 'animals')!.words.find((w) => w.id === 'cat')!;
     expect(cat2.sentence).toMatch(/^This is a cat/);
   });

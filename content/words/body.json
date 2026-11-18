@@ -1,11 +1,87 @@
 {
   "topic": "body",
   "words": [
-    { "id": "eyes", "text": "eyes", "topic": "body", "image": { "emoji": "👀" }, "sentence": "These are my eyes. I can see.", "accept": ["eye", "ice", "eyes eyes"] },
-    { "id": "ears", "text": "ears", "topic": "body", "image": { "emoji": "👂" }, "sentence": "These are my ears. I can hear.", "accept": ["ear", "years", "here"] },
-    { "id": "nose", "text": "nose", "topic": "body", "image": { "emoji": "👃" }, "sentence": "This is my nose. I can smell.", "accept": ["knows", "no", "nos"] },
-    { "id": "mouth", "text": "mouth", "topic": "body", "image": { "emoji": "👄" }, "sentence": "This is my mouth. I can eat.", "accept": ["mouse", "mount", "mouf"] },
-    { "id": "hands", "text": "hands", "topic": "body", "image": { "emoji": "👐" }, "sentence": "These are my hands. I can clap.", "accept": ["hand", "hans", "and"] },
-    { "id": "feet", "text": "feet", "topic": "body", "image": { "emoji": "🦶" }, "sentence": "These are my feet. I can jump.", "accept": ["foot", "fit", "fee"] }
+    {
+      "id": "eyes",
+      "text": "eyes",
+      "topic": "body",
+      "image": {
+        "emoji": "👀"
+      },
+      "sentence": "These are my eyes. I can see.",
+      "accept": [
+        "eye",
+        "ice"
+      ]
+    },
+    {
+      "id": "ears",
+      "text": "ears",
+      "topic": "body",
+      "image": {
+        "emoji": "👂"
+      },
+      "sentence": "These are my ears. I can hear.",
+      "accept": [
+        "ear",
+        "years"
+      ]
+    },
+    {
+      "id": "nose",
+      "text": "nose",
+      "topic": "body",
+      "image": {
+        "emoji": "👃"
+      },
+      "sentence": "This is my nose. I can smell.",
+      "accept": [
+        "knows",
+        "nos",
+        "noses"
+      ]
+    },
+    {
+      "id": "mouth",
+      "text": "mouth",
+      "topic": "body",
+      "image": {
+        "emoji": "👄"
+      },
+      "sentence": "This is my mouth. I can eat.",
+      "accept": [
+        "mouse",
+        "mount",
+        "mouf"
+      ]
+    },
+    {
+      "id": "hands",
+      "text": "hands",
+      "topic": "body",
+      "image": {
+        "emoji": "👐"
+      },
+      "sentence": "These are my hands. I can clap.",
+      "accept": [
+        "hand",
+        "hans",
+        "hanz"
+      ]
+    },
+    {
+      "id": "feet",
+      "text": "feet",
+      "topic": "body",
+      "image": {
+        "emoji": "🦶"
+      },
+      "sentence": "These are my feet. I can jump.",
+      "accept": [
+        "foot",
+        "fit",
+        "fee"
+      ]
+    }
   ]
 }

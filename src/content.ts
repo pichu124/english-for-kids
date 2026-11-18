@@ -197,7 +197,10 @@ export const topicsOfLevel = (level: string) => topics.filter((t) => t.level ===
 /** Levels that have at least one unit. */
 export const levelsWithContent = () => LEVELS.filter((l) => topics.some((t) => t.level === l.id));
 
-export const askFor = (w: Word) => w.ask ?? `Can you say ${w.text}?`;
+/** Speaking prompt. Pre-readers (L0–L1) get a command, not a yes/no question
+ *  ("Can you say dog?" → a 3-year-old answers "Yes!"). */
+export const askFor = (w: Word, level?: LevelId) =>
+  w.ask ?? (level === 'L0' || level === 'L1' ? `Say: ${w.text}!` : `Can you say ${w.text}?`);
 
 export const playPromptFor = (t: Topic, w: Word) => w.play ?? t.playPrompt.replace('{word}', w.text);
 

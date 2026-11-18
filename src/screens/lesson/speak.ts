@@ -47,7 +47,7 @@ async function speakWord(ui: LessonUI, w: Word): Promise<void> {
   let tries = 0;
   let autoStart = false;
 
-  await ui.talk(askFor(w), 'idle');
+  await ui.talk(askFor(w, ui.topic.level), 'idle');
 
   for (;;) {
     let tapped: HTMLElement;
@@ -65,7 +65,7 @@ async function speakWord(ui: LessonUI, w: Word): Promise<void> {
     if (tapped === ear || tapped === card) {
       sfx.tap();
       await ui.talk(`${w.text}.`, 'talk', w.text);
-      await ui.talk(askFor(w), 'idle');
+      await ui.talk(askFor(w, ui.topic.level), 'idle');
       continue;
     }
     if (tapped === ok) return celebrate(ui, w, card, 'parent', '');
@@ -73,7 +73,7 @@ async function speakWord(ui: LessonUI, w: Word): Promise<void> {
       tries++;
       if (tries >= 2) return moveOn(ui);
       ui.parentBar.replaceChildren();
-      await ui.talk(`Try again! ${w.text}!`, 'encourage', 'Try again!');
+      await ui.talk(`Try again! Say: ${w.text}!`, 'encourage', 'Try again!');
       continue;
     }
 
@@ -101,7 +101,7 @@ async function speakWord(ui: LessonUI, w: Word): Promise<void> {
         return;
       }
       sfx.soft();
-      await ui.talk(`Try again! ${w.text}!`, 'encourage', 'Try again!');
+      await ui.talk(`Try again! Say: ${w.text}!`, 'encourage', 'Try again!');
       continue;
     }
 
@@ -116,7 +116,7 @@ async function speakWord(ui: LessonUI, w: Word): Promise<void> {
     if (tries >= 2) return moveOn(ui);
     ui.parentBar.replaceChildren();
     if (t === mic) autoStart = true;
-    else await ui.talk(`Try again! ${w.text}!`, 'encourage', 'Try again!');
+    else await ui.talk(`Try again! Say: ${w.text}!`, 'encourage', 'Try again!');
   }
 }
 
