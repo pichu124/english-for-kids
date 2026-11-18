@@ -12,7 +12,8 @@
       "accept": [
         "rains",
         "rainy"
-      ]
+      ],
+      "anim": "fall"
     },
     {
       "id": "snow",
@@ -26,7 +27,8 @@
         "snows",
         "snowy",
         "snoh"
-      ]
+      ],
+      "anim": "fall"
     },
     {
       "id": "wind",
@@ -39,7 +41,8 @@
       "accept": [
         "winds",
         "windy"
-      ]
+      ],
+      "anim": "sway"
     }
   ]
 }

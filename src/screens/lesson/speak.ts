@@ -5,7 +5,7 @@ import { matchSpeech } from '../../lib/match';
 import { sfx } from '../../lib/sfx';
 import { dayLog, getState, SR_MODES, today, update, wordKey } from '../../lib/storage';
 import { confetti } from '../widgets';
-import { type LessonUI, PRAISE, pick, wordCard } from './shared';
+import { actOut, type LessonUI, PRAISE, pick, wordCard } from './shared';
 
 const MIC_SVG = `<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="4" width="16" height="26" rx="8" fill="#fff"/><path d="M10 22a14 14 0 0 0 28 0" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/><rect x="21.5" y="35" width="5" height="8" fill="#fff"/><rect x="14" y="41" width="20" height="5" rx="2.5" fill="#fff"/></svg>`;
 
@@ -186,6 +186,7 @@ async function celebrate(ui: LessonUI, w: Word, card: HTMLElement, by: 'auto' | 
   sfx.success();
   confetti(document.body, 20);
   card.classList.add('is-done');
+  actOut(card, w);
   await ui.talk(pick(PRAISE), 'happy');
   await ui.pause(700);
 }

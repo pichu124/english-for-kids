@@ -11,7 +11,8 @@
       "sentence": "This is a frog. It can jump!",
       "accept": [
         "frogs"
-      ]
+      ],
+      "anim": "hop"
     },
     {
       "id": "snake",
@@ -24,7 +25,8 @@
       "accept": [
         "snakes",
         "snek"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "spider",
@@ -37,7 +39,8 @@
       "accept": [
         "spiders",
         "spida"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "mouse",

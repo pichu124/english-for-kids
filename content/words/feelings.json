@@ -12,7 +12,8 @@
       "accept": [
         "happi",
         "heppy"
-      ]
+      ],
+      "anim": "bounce"
     },
     {
       "id": "sad",
@@ -52,7 +53,8 @@
         "scare",
         "scary",
         "skaird"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "tired",
@@ -65,7 +67,8 @@
       "accept": [
         "tire",
         "tyred"
-      ]
+      ],
+      "anim": "sway"
     }
   ]
 }

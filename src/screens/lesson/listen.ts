@@ -1,7 +1,7 @@
 import type { Word } from '../../content';
 import { h } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
-import { type LessonUI, wordCard } from './shared';
+import { actOut, type LessonUI, wordCard } from './shared';
 
 /** Step 1 — Listen: one big card at a time; Bix reads the word and a sentence. */
 export async function runListen(ui: LessonUI): Promise<void> {
@@ -32,6 +32,8 @@ export async function runListen(ui: LessonUI): Promise<void> {
 }
 
 async function readWord(ui: LessonUI, w: Word): Promise<void> {
+  const card = ui.stage.querySelector<HTMLElement>('.word-card');
+  if (card) actOut(card, w);
   await ui.talk(`${w.text}.`, 'talk', ui.level.showText ? w.text : '🔊');
   await ui.pause(250);
   await ui.talk(w.sentence, 'idle');

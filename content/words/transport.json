@@ -12,7 +12,8 @@
       "accept": [
         "buses",
         "bass"
-      ]
+      ],
+      "anim": "drive"
     },
     {
       "id": "plane",
@@ -27,7 +28,8 @@
         "plain",
         "airplane",
         "aeroplane"
-      ]
+      ],
+      "anim": "fly"
     },
     {
       "id": "boat",
@@ -39,7 +41,8 @@
       "sentence": "This is a boat. It is on the water.",
       "accept": [
         "boats"
-      ]
+      ],
+      "anim": "swim"
     },
     {
       "id": "bike",
@@ -52,7 +55,8 @@
       "accept": [
         "bikes",
         "bicycle"
-      ]
+      ],
+      "anim": "drive"
     },
     {
       "id": "helicopter",
@@ -66,7 +70,8 @@
         "helicopters",
         "copter",
         "helicopta"
-      ]
+      ],
+      "anim": "fly"
     },
     {
       "id": "motorbike",
@@ -80,7 +85,8 @@
         "motorbikes",
         "motor bike",
         "motorcycle"
-      ]
+      ],
+      "anim": "drive"
     }
   ]
 }

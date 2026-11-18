@@ -13,7 +13,8 @@
         "balls",
         "bowl",
         "bol"
-      ]
+      ],
+      "anim": "bounce"
     },
     {
       "id": "teddy",
@@ -40,7 +41,8 @@
       "accept": [
         "kites",
         "kate"
-      ]
+      ],
+      "anim": "fly"
     },
     {
       "id": "robot",
@@ -54,7 +56,8 @@
         "robots",
         "robert",
         "row bot"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "train",
@@ -68,7 +71,8 @@
         "trains",
         "chain",
         "rain"
-      ]
+      ],
+      "anim": "drive"
     },
     {
       "id": "car",
@@ -81,7 +85,8 @@
       "accept": [
         "cars",
         "cart"
-      ]
+      ],
+      "anim": "drive"
     }
   ]
 }

@@ -58,7 +58,22 @@ export type Word = {
   accept?: string[];
   /** Prompt for the tap game, overriding the unit's playPrompt. */
   play?: string;
+  /** Little animation that acts out the word's meaning (default from its topic). */
+  anim?: Anim;
 };
+
+/** Animations that act out a word (Endless-Alphabet style), see styles/lesson.css. */
+export const ANIMS = ['bounce', 'wiggle', 'hop', 'fly', 'drive', 'swim', 'fall', 'spin', 'pulse', 'sway', 'shine', 'wave'] as const;
+export type Anim = (typeof ANIMS)[number];
+const TOPIC_ANIM: Record<string, Anim> = {
+  animals: 'wiggle', animals2: 'hop', zoo: 'wiggle', farm: 'wiggle', transport: 'drive', weather: 'fall', world: 'sway',
+  food: 'bounce', food2: 'bounce', fruit: 'bounce', meals: 'bounce', toys: 'spin', toys2: 'spin', actions: 'bounce',
+  body: 'pulse', clothes: 'sway', clothes2: 'sway', colors: 'spin', colours2: 'spin', numbers: 'pulse', numbers2: 'pulse',
+  shapes: 'spin', feelings: 'pulse', family: 'wave', people: 'wave', school: 'wiggle', home: 'pulse', home2: 'pulse',
+  places: 'pulse', hello: 'wave', positions: 'pulse',
+};
+/** The animation to play for a word. */
+export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
 
 export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant';
 export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant'];
@@ -143,6 +158,7 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ "${w.id}": image.scene phải là một trong ${SCENES.join(', ')}`);
       continue;
     }
+    if (w.anim && !(ANIMS as readonly string[]).includes(w.anim)) problem(file, `từ "${w.id}": anim phải là một trong ${ANIMS.join(', ')}`);
     if (bank.has(w.id)) problem(file, `id từ "${w.id}" bị trùng`);
     bank.set(w.id, w);
   }

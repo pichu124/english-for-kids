@@ -2,7 +2,7 @@ import { playPromptFor, type Word } from '../../content';
 import { h, shuffle } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
 import { confetti } from '../widgets';
-import { type LessonUI, PRAISE, pick, wordCard } from './shared';
+import { actOut, type LessonUI, PRAISE, pick, wordCard } from './shared';
 
 
 /** Step 3 — Play: Bix says a word, the child taps the right picture. */
@@ -43,6 +43,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
       if (tapped.dataset.id === target.id) {
         sfx.success();
         tapped.classList.add('is-right');
+        actOut(tapped, target);
         cards.forEach((c) => c !== tapped && c.classList.add('is-faded'));
         stars.children[round]?.classList.add('on');
         confetti(document.body, 14);

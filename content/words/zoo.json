@@ -39,7 +39,8 @@
       "accept": [
         "monkeys",
         "monkee"
-      ]
+      ],
+      "anim": "hop"
     },
     {
       "id": "tiger",

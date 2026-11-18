@@ -9,7 +9,8 @@
         "emoji": "☀️"
       },
       "sentence": "This is the sun. It is hot!",
-      "accept": []
+      "accept": [],
+      "anim": "shine"
     },
     {
       "id": "tree",
@@ -22,7 +23,8 @@
       "accept": [
         "trees",
         "tee"
-      ]
+      ],
+      "anim": "sway"
     },
     {
       "id": "flower",
@@ -35,7 +37,8 @@
       "accept": [
         "flowers",
         "flour"
-      ]
+      ],
+      "anim": "sway"
     },
     {
       "id": "sea",
@@ -48,7 +51,8 @@
       "accept": [
         "seas",
         "sees"
-      ]
+      ],
+      "anim": "swim"
     },
     {
       "id": "beach",

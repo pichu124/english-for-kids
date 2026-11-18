@@ -40,7 +40,8 @@
       "accept": [
         "fishy",
         "fist"
-      ]
+      ],
+      "anim": "swim"
     },
     {
       "id": "bird",
@@ -55,7 +56,8 @@
         "birds",
         "bert",
         "bud"
-      ]
+      ],
+      "anim": "fly"
     },
     {
       "id": "duck",
@@ -69,7 +71,8 @@
         "ducky",
         "ducks",
         "dark"
-      ]
+      ],
+      "anim": "swim"
     },
     {
       "id": "cow",

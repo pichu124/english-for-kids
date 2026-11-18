@@ -15,7 +15,8 @@
         "helo",
         "hi hello",
         "yellow"
-      ]
+      ],
+      "anim": "wave"
     },
     {
       "id": "goodbye",
@@ -31,7 +32,8 @@
         "bye",
         "goodbyes",
         "good by"
-      ]
+      ],
+      "anim": "wave"
     },
     {
       "id": "thank-you",

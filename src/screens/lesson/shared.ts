@@ -1,7 +1,7 @@
 import type { Bix } from '../../art/bix';
 import { isoCube } from '../../art/cube';
 import { sceneSVG } from '../../art/positions';
-import type { Level, Topic, Word } from '../../content';
+import { animFor, type Level, type Topic, type Word } from '../../content';
 import { fromHTML, h, wait } from '../../lib/dom';
 import type { Ctx } from '../../router';
 
@@ -98,6 +98,17 @@ export function graphemes(s: string): number {
     /* fall through */
   }
   return [...s].length;
+}
+
+/** Play the word's meaning animation on its picture (no-op with reduced motion). */
+export function actOut(card: HTMLElement, w: Word): void {
+  const pic = card.querySelector<HTMLElement>('.pic');
+  if (!pic) return;
+  const cls = `act-${animFor(w)}`;
+  pic.classList.remove(cls);
+  void pic.offsetWidth;
+  pic.classList.add(cls);
+  pic.addEventListener('animationend', () => pic.classList.remove(cls), { once: true });
 }
 
 export function wordCard(w: Word, opts: { label?: boolean; cls?: string } = {}): HTMLButtonElement {

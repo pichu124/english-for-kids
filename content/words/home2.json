@@ -12,7 +12,8 @@
       "accept": [
         "clocks",
         "clok"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "mirror",
@@ -55,7 +56,8 @@
         "phones",
         "fone",
         "telephone"
-      ]
+      ],
+      "anim": "wiggle"
     },
     {
       "id": "computer",
