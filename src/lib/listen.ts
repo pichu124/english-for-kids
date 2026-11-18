@@ -3,7 +3,7 @@
  * Audio goes only to the browser's own recognizer; we keep nothing but the text.
  */
 import { sfx } from './sfx';
-import { getState } from './storage';
+import { getState, SR_MODE_LABEL, type SrMode } from './storage';
 import { stopSpeaking } from './tts';
 
 type SR = {
@@ -79,7 +79,7 @@ export function listenOnce(opts: {
   /** Called with every recognizer event (for live diagnostics). */
   onEvent?: (line: string) => void;
   /** Override the saved recognizer mode (the mic test tries both). */
-  mode?: 'full' | 'simple';
+  mode?: SrMode;
 }): Promise<ListenOutcome> {
   const C = ctor();
   if (!C) return Promise.resolve({ status: 'unsupported', trace: { events: [], error: '', gotAudio: false, ms: 0 } });
@@ -93,7 +93,7 @@ export function listenOnce(opts: {
     active = rec;
     rec.lang = 'en-US';
     rec.maxAlternatives = mode === 'simple' ? 1 : 5;
-    rec.interimResults = mode !== 'simple';
+    rec.interimResults = mode === 'full';
     rec.continuous = false;
 
     const heard = new Set<string>();
@@ -195,7 +195,7 @@ export function listenOnce(opts: {
 
     try {
       rec.start();
-      log(`start() gọi (chế độ ${mode === 'simple' ? 'đơn giản' : 'đầy đủ'})`);
+      log(`start() gọi (chế độ ${SR_MODE_LABEL[mode]})`);
     } catch (err) {
       errorCode = String((err as Error)?.name || 'error');
       log(`start() lỗi: ${errorCode}`);

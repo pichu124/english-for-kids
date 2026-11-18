@@ -37,6 +37,12 @@
         return;
       }
       if (mode === 'full-nomatch') { window.__voice = 'match'; this.start(); window.__voice = 'full-nomatch'; return; }
+      // Only gives text with a single alternative and no partial results.
+      if (mode === 'simple-text-only' && (this.interimResults || this.maxAlternatives > 1)) {
+        setTimeout(() => { fire('onstart'); fire('onaudiostart'); fire('onspeechstart'); fire('onspeechend'); fire('onnomatch'); fire('onend'); }, 80);
+        return;
+      }
+      if (mode === 'simple-text-only') { window.__voice = 'match'; this.start(); window.__voice = 'simple-text-only'; return; }
       if (mode === 'broken') {
         setTimeout(() => { fire('onstart'); fire('onerror', { error: 'no-speech' }); fire('onend'); }, 60);
         return;

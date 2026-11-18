@@ -3,7 +3,7 @@ import { h } from '../../lib/dom';
 import { listenOnce, recognitionSupported, type ListenOutcome } from '../../lib/listen';
 import { matchSpeech } from '../../lib/match';
 import { sfx } from '../../lib/sfx';
-import { dayLog, getState, today, update, wordKey } from '../../lib/storage';
+import { dayLog, getState, SR_MODES, today, update, wordKey } from '../../lib/storage';
 import { confetti } from '../widgets';
 import { type LessonUI, PRAISE, pick, wordCard } from './shared';
 
@@ -158,16 +158,18 @@ async function attempt(ui: LessonUI, w: Word, mic: HTMLElement, rings: HTMLEleme
 /**
  * Some Android speech services hear the voice but never return text in the full
  * configuration (live partial results, 5 alternatives) — they answer "nomatch".
- * After two such attempts in a row, switch this device to the simple mode for good.
+ * After two such attempts in a row, step this device down to the next plainer mode.
  */
-let fullModeNomatches = 0;
+let modeNomatches = 0;
 function noteFullModeNomatch(out: ListenOutcome): void {
-  if ((getState().settings.srMode ?? 'full') !== 'full') return;
+  const mode = getState().settings.srMode ?? 'full';
+  const i = SR_MODES.indexOf(mode);
+  if (i >= SR_MODES.length - 1) return; // already the plainest mode
   const heardVoiceNoText = out.status === 'nothing' && out.trace.events.some((e) => e.startsWith('speechstart'));
-  fullModeNomatches = heardVoiceNoText ? fullModeNomatches + 1 : 0;
-  if (fullModeNomatches >= 2) {
-    update((s) => (s.settings.srMode = 'simple'));
-    fullModeNomatches = 0;
+  modeNomatches = heardVoiceNoText ? modeNomatches + 1 : 0;
+  if (modeNomatches >= 2) {
+    update((s) => (s.settings.srMode = SR_MODES[i + 1]));
+    modeNomatches = 0;
   }
 }
 

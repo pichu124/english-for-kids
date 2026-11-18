@@ -4,7 +4,7 @@ import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
-import { getState, resetProgress, save, today, update, wordKey, type DayLog } from '../lib/storage';
+import { getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
 import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
@@ -296,26 +296,29 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       'Mở quyền micro: (1) trong Chrome, chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép; (2) nếu vẫn không được: Cài đặt Android → Ứng dụng → Chrome → Quyền → Micrô → Cho phép. Rồi tải lại trang.';
     micBtn.addEventListener('click', async () => {
       micBtn.setAttribute('disabled', '');
-      const live = h('div', { class: 'p-trace' });
-      micOut.replaceChildren(line('Lần 1: đang nghe… hãy nói “dog”.'), live);
-      // Start recognition straight away, inside the tap (some Android builds refuse
-      // to start it later), and BEFORE touching the mic ourselves: opening the mic
-      // first and closing it can leave it busy for a moment and make this fail.
-      let out = await listenOnce({ timeoutMs: 8000, mode: 'full', onEvent: (l) => live.append(h('div', {}, l)) });
-      const first = out;
-      const traces = [h('div', {}, 'Lần 1 (đầy đủ):'), ...out.trace.events.map((l) => h('div', {}, l))];
-      let usedSimple = false;
-
-      // Nothing at all came back? Some Android builds only work with the plain
-      // configuration (no live partial results, one alternative): try that too.
-      if (out.status === 'service' || out.status === 'nothing' || out.status === 'denied') {
-        const live2 = h('div', { class: 'p-trace' });
-        micOut.replaceChildren(line('Lần 1 không nghe được. Lần 2 (chế độ đơn giản): hãy nói lại “dog”.'), live2);
-        await new Promise((r) => setTimeout(r, 400));
-        out = await listenOnce({ timeoutMs: 8000, mode: 'simple', onEvent: (l) => live2.append(h('div', {}, l)) });
-        traces.push(h('div', {}, 'Lần 2 (đơn giản):'), ...out.trace.events.map((l) => h('div', {}, l)));
-        usedSimple = true;
+      // Try each recognizer configuration, richest first, and keep the first that
+      // returns text. Start straight away inside the tap (some Android builds refuse
+      // to start later), and BEFORE touching the mic ourselves.
+      const traces: HTMLElement[] = [];
+      let out: Awaited<ReturnType<typeof listenOnce>> | null = null;
+      let first: Awaited<ReturnType<typeof listenOnce>> | null = null;
+      let worked: SrMode | null = null;
+      for (const [i, mode] of SR_MODES.entries()) {
+        const live = h('div', { class: 'p-trace' });
+        micOut.replaceChildren(line(i === 0 ? 'Lần 1: đang nghe… hãy nói “dog”.' : `Lần ${i + 1} (chế độ ${SR_MODE_LABEL[mode]}): hãy nói lại “dog”.`), live);
+        if (i > 0) await new Promise((r) => setTimeout(r, 400));
+        out = await listenOnce({ timeoutMs: 8000, mode, onEvent: (l) => live.append(h('div', {}, l)) });
+        first ??= out;
+        traces.push(h('div', {}, `Lần ${i + 1} (${SR_MODE_LABEL[mode]}):`), ...out.trace.events.map((l) => h('div', {}, l)));
+        if (out.status === 'heard') {
+          worked = mode;
+          break;
+        }
+        // Only a recognizer that listened but gave no text is worth retrying in another mode.
+        if (!(out.status === 'service' || out.status === 'nothing' || out.status === 'denied')) break;
       }
+      if (!out || !first) return;
+      const usedSimple = worked !== null && worked !== 'full';
       const trace = h('details', { class: 'p-trace' }, h('summary', {}, `Chi tiết kỹ thuật (lần cuối ${out.trace.ms} ms)`), ...traces);
 
       if (out.status === 'heard') {
@@ -324,11 +327,12 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
         // Round 1 (full) gave nothing but round 2 (simple) gave text: this device needs
         // the simple mode. Seen on a real phone: full mode hears speech, answers "nomatch".
         const simpleNeeded = usedSimple;
-        update((st) => (st.settings.srMode = simpleNeeded ? 'simple' : 'full'));
+        update((st) => (st.settings.srMode = worked ?? 'full'));
         micBtn.removeAttribute('disabled');
         micOut.replaceChildren(
           h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))),
-          ...(simpleNeeded ? [line('Chế độ đầy đủ không ra chữ, chế độ đơn giản thì ra. App đã chuyển sang chế độ đơn giản cho bài học.', 'p-saved')] : []),
+          ...(simpleNeeded ? [line(`Chế độ đầy đủ không ra chữ trên máy này. App đã chuyển sang chế độ “${SR_MODE_LABEL[worked!]}” cho bài học.`, 'p-saved')] : []),
+          line(`Mẹo: máy liệt kê ${out.alternatives.length} cách nghe. Nếu “dog” không có trong danh sách, thử nói gần máy hơn, ở chỗ yên tĩnh, nói một lần rồi dừng.`),
           trace,
         );
         return;

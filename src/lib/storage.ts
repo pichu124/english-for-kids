@@ -17,6 +17,17 @@ export type WordStatus = {
   last?: string; // ISO date
 };
 
+/**
+ * Recognizer configurations, most lenient first:
+ *  full   = live partial results + 5 alternatives
+ *  alts   = final result only + 5 alternatives
+ *  simple = final result only + 1 alternative
+ * Some Android speech services hear the voice but answer "nomatch" in the richer modes.
+ */
+export const SR_MODES = ['full', 'alts', 'simple'] as const;
+export type SrMode = (typeof SR_MODES)[number];
+export const SR_MODE_LABEL: Record<SrMode, string> = { full: 'đầy đủ', alts: 'không kết quả tạm, 5 phương án', simple: 'đơn giản' };
+
 export type PlacedBlock = { id: string; type: string; x: number; y: number };
 
 export type DayLog = {
@@ -36,9 +47,8 @@ export type State = {
     dailyLimitMin: number;
     rate: number;
     voiceURI?: string;
-    /** 'simple' = no interim results, 1 alternative. Picked automatically by the
-     *  parent-area mic test on devices where the full mode never hears anything. */
-    srMode?: 'full' | 'simple';
+    /** Speech-recognizer configuration that works on this device (see SR_MODES). */
+    srMode?: SrMode;
   };
   topics: Record<string, { completed: number; lastDone?: string }>;
   words: Record<string, WordStatus>;
