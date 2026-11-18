@@ -1,0 +1,66 @@
+{
+  "id": "l1-clothes",
+  "level": "L1",
+  "topic": "clothes",
+  "order": 3,
+  "title": "Get Dressed",
+  "titleVi": "Mặc quần áo",
+  "icon": "🧦",
+  "color": "#a6dd5c",
+  "intro": "Time to get dressed!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Sock block",
+    "style": "plain",
+    "color": "#b388ff"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Clothes",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "hat",
+      "sentence": "Put on your hat!"
+    },
+    {
+      "id": "shoes",
+      "sentence": "Put on your shoes!",
+      "play": "Where are the shoes?"
+    },
+    {
+      "id": "socks",
+      "sentence": "Put on your socks!",
+      "play": "Where are the socks?"
+    },
+    {
+      "id": "jacket",
+      "sentence": "Put on your jacket!"
+    },
+    {
+      "id": "t-shirt",
+      "sentence": "Put on your T-shirt!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Put on your hat!",
+      "emoji": "👒"
+    },
+    {
+      "say": "Take off your shoes!",
+      "emoji": "👟"
+    },
+    {
+      "say": "Zip up your jacket!",
+      "emoji": "🧥"
+    }
+  ]
+}

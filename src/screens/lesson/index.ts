@@ -7,6 +7,7 @@ import { homeButton } from '../widgets';
 import { runListen } from './listen';
 import { runPlay } from './play';
 import { runDoIt } from './doit';
+import { runChant } from './chant';
 import { runReward } from './reward';
 import { Aborted, makeUI } from './shared';
 import { runSpeak } from './speak';
@@ -19,8 +20,8 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   }
 
   const level = levelById(topic.level)!;
-  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸' };
-  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': level.playRounds, 'do-it': topic.actions.length };
+  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸', chant: '🥁' };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2 };
   const total = topic.steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });
@@ -61,7 +62,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   (async () => {
     try {
       await ui.pause(300);
-      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay, 'do-it': runDoIt };
+      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay, 'do-it': runDoIt, chant: runChant };
       for (const [i, step] of topic.steps.entries()) {
         ui.setStep(i);
         await RUN[step](ui);

@@ -31,7 +31,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "actions": [
     {
@@ -50,5 +51,14 @@
       "say": "Close your eyes!",
       "emoji": "😌"
     }
-  ]
+  ],
+  "chant": {
+    "title": "Body Chant",
+    "lines": [
+      "Eyes to see and ears to hear,",
+      "I can smell with my nose right here!",
+      "Hands to clap and feet to stamp,",
+      "Stamp, stamp, stamp and jump, jump, jump!"
+    ]
+  }
 }

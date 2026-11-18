@@ -1,0 +1,30 @@
+{
+  "id": "l2-home",
+  "level": "L2",
+  "topic": "home",
+  "order": 11,
+  "title": "My Home",
+  "titleVi": "Ngôi nhà",
+  "icon": "🏡",
+  "color": "#8fd46b",
+  "intro": "Come in! This is my home!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Door block",
+    "style": "wood",
+    "color": "#a0522d"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The home",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "bed",
+    "chair",
+    "door",
+    "window",
+    "bath",
+    "sofa"
+  ]
+}

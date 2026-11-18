@@ -1,0 +1,45 @@
+{
+  "id": "l2-school",
+  "level": "L2",
+  "topic": "school",
+  "order": 9,
+  "title": "School",
+  "titleVi": "Trường học",
+  "icon": "🎒",
+  "color": "#9be06a",
+  "intro": "Let's go to school!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Book block",
+    "style": "brick",
+    "color": "#4f7cff"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "School",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "words": [
+    "book",
+    "pen",
+    "pencil",
+    "ruler",
+    "bag",
+    "teacher"
+  ],
+  "chant": {
+    "title": "School Chant",
+    "lines": [
+      "Book and pen, book and pen,",
+      "Pencil, ruler, school bag, pen!",
+      "Hello, teacher, how are you?",
+      "I am fine, and how are you?"
+    ]
+  }
+}

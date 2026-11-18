@@ -1,0 +1,137 @@
+{
+  "topic": "numbers",
+  "words": [
+    {
+      "id": "one",
+      "text": "one",
+      "topic": "numbers",
+      "image": {
+        "emoji": "1️⃣"
+      },
+      "sentence": "This is number one.",
+      "accept": [
+        "1",
+        "won"
+      ]
+    },
+    {
+      "id": "two",
+      "text": "two",
+      "topic": "numbers",
+      "image": {
+        "emoji": "2️⃣"
+      },
+      "sentence": "This is number two.",
+      "accept": [
+        "2",
+        "too"
+      ]
+    },
+    {
+      "id": "three",
+      "text": "three",
+      "topic": "numbers",
+      "image": {
+        "emoji": "3️⃣"
+      },
+      "sentence": "This is number three.",
+      "accept": [
+        "3",
+        "tree",
+        "free"
+      ]
+    },
+    {
+      "id": "four",
+      "text": "four",
+      "topic": "numbers",
+      "image": {
+        "emoji": "4️⃣"
+      },
+      "sentence": "This is number four.",
+      "accept": [
+        "4",
+        "fore"
+      ]
+    },
+    {
+      "id": "five",
+      "text": "five",
+      "topic": "numbers",
+      "image": {
+        "emoji": "5️⃣"
+      },
+      "sentence": "This is number five.",
+      "accept": [
+        "5",
+        "fife"
+      ]
+    },
+    {
+      "id": "six",
+      "text": "six",
+      "topic": "numbers",
+      "image": {
+        "emoji": "6️⃣"
+      },
+      "sentence": "This is number six.",
+      "accept": [
+        "6",
+        "sick"
+      ]
+    },
+    {
+      "id": "seven",
+      "text": "seven",
+      "topic": "numbers",
+      "image": {
+        "emoji": "7️⃣"
+      },
+      "sentence": "This is number seven.",
+      "accept": [
+        "7",
+        "sevens"
+      ]
+    },
+    {
+      "id": "eight",
+      "text": "eight",
+      "topic": "numbers",
+      "image": {
+        "emoji": "8️⃣"
+      },
+      "sentence": "This is number eight.",
+      "accept": [
+        "8",
+        "eighth"
+      ]
+    },
+    {
+      "id": "nine",
+      "text": "nine",
+      "topic": "numbers",
+      "image": {
+        "emoji": "9️⃣"
+      },
+      "sentence": "This is number nine.",
+      "accept": [
+        "9",
+        "nein"
+      ]
+    },
+    {
+      "id": "ten",
+      "text": "ten",
+      "topic": "numbers",
+      "image": {
+        "emoji": "🔟"
+      },
+      "sentence": "This is number ten.",
+      "accept": [
+        "10",
+        "tan",
+        "tin"
+      ]
+    }
+  ]
+}

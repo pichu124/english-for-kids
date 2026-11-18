@@ -50,7 +50,8 @@ if (label !== 'Little Bix' || l0 < 1) throw new Error(`home should show Little B
 if (shots) await page.screenshot({ path: `${shots}/l0-home.png` });
 step(`home shows level "${label}" (${l0} unit)`);
 
-// 3. Parent switches to Starters
+// 3. Parent switches to Starters (count comes from the public catalog)
+const cat0 = await (await page.request.get(`${base}/catalog.json`)).json();
 await tap('.btn-parent');
 const [a, b] = (await page.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
 for (const ch of String(a * b)) await page.click(`.key:text-is("${ch}")`);
@@ -59,8 +60,9 @@ await page.click('.p-seg-btn:has-text("Starters")');
 await page.click('.p-btn-main:text("Xong")');
 await page.waitForSelector('.home');
 const l2 = await page.locator('.island').count();
-if (l2 !== 8) throw new Error(`Starters should show 8 units, got ${l2}`);
-step('parent switches the level to Starters → 8 units');
+const expectL2 = cat0.units.filter((u) => u.level === "L2").length;
+if (l2 !== expectL2) throw new Error(`Starters should show ${expectL2} units, got ${l2}`);
+step(`parent switches the level to Starters → ${l2} units`);
 
 // 4. Public catalog for casa-mamnon
 const cat = await (await page.request.get(`${base}/catalog.json`)).json();

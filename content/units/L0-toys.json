@@ -1,0 +1,60 @@
+{
+  "id": "l0-toys",
+  "level": "L0",
+  "topic": "toys",
+  "order": 4,
+  "title": "Toy Box",
+  "titleVi": "Hộp đồ chơi",
+  "icon": "🧸",
+  "color": "#9be06a",
+  "intro": "Let's open the toy box!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Toy block",
+    "style": "plain",
+    "color": "#ff924c"
+  },
+  "casa": {
+    "luaTuoi": "3-4",
+    "chuDe": "Toys",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "ball",
+      "sentence": "Bounce, bounce! A ball!"
+    },
+    {
+      "id": "teddy",
+      "sentence": "Hug, hug! A teddy!"
+    },
+    {
+      "id": "car",
+      "sentence": "Beep, beep! A car!"
+    },
+    {
+      "id": "train",
+      "sentence": "Choo, choo! A train!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Throw the ball!",
+      "emoji": "⚽"
+    },
+    {
+      "say": "Hug your teddy!",
+      "emoji": "🧸"
+    },
+    {
+      "say": "Drive the car. Beep, beep!",
+      "emoji": "🚗"
+    }
+  ]
+}

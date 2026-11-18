@@ -1,0 +1,90 @@
+{
+  "id": "l1-numbers",
+  "level": "L1",
+  "topic": "numbers",
+  "order": 4,
+  "title": "Count to Five",
+  "titleVi": "Đếm đến 5",
+  "icon": "🐥",
+  "color": "#b8e05a",
+  "intro": "Let's count the little ducks!",
+  "playPrompt": "Find {word} ducks!",
+  "block": {
+    "name": "Duck block",
+    "style": "plain",
+    "color": "#ffd23f"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Numbers",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "words": [
+    {
+      "id": "one",
+      "image": {
+        "emoji": "🐥"
+      },
+      "sentence": "Let's count! One duck.",
+      "play": "Find one duck!"
+    },
+    {
+      "id": "two",
+      "image": {
+        "emoji": "🐥🐥"
+      },
+      "sentence": "One, two! Two ducks."
+    },
+    {
+      "id": "three",
+      "image": {
+        "emoji": "🐥🐥🐥"
+      },
+      "sentence": "One, two, three! Three ducks."
+    },
+    {
+      "id": "four",
+      "image": {
+        "emoji": "🐥🐥🐥🐥"
+      },
+      "sentence": "One, two, three, four! Four ducks."
+    },
+    {
+      "id": "five",
+      "image": {
+        "emoji": "🐥🐥🐥🐥🐥"
+      },
+      "sentence": "One, two, three, four, five! Five ducks."
+    }
+  ],
+  "actions": [
+    {
+      "say": "Clap two times! Clap, clap!",
+      "emoji": "👏"
+    },
+    {
+      "say": "Jump three times! Jump, jump, jump!",
+      "emoji": "🦘"
+    },
+    {
+      "say": "Show me five fingers!",
+      "emoji": "🖐️"
+    }
+  ],
+  "chant": {
+    "title": "Counting Chant",
+    "lines": [
+      "One, two, three, four, five,",
+      "Five yellow ducks can swim and dive!",
+      "Count with me, it's fun to do:",
+      "One, two, three, four, five, for you!"
+    ]
+  }
+}

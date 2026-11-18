@@ -175,3 +175,27 @@
 .btn-did { width: clamp(120px, 22vmin, 180px); height: clamp(120px, 22vmin, 180px); border-radius: 50%; padding: 0; }
 .did-check { font-size: clamp(64px, 12vmin, 110px); line-height: 1; }
 @media (orientation: portrait) { .doit { flex-direction: column; } }
+
+/* ----- pictures with several emoji (counting) ----- */
+.pic-multi { display: flex; flex-wrap: wrap; justify-content: center; align-content: center; max-width: 92%; line-height: 1.05; }
+.word-card .pic-multi.pic-n2, .word-card .pic-multi.pic-n3 { font-size: 0.5em; }
+.word-card-xl .pic-multi, .word-card-md .pic-multi { font-size: clamp(56px, 11vmin, 110px) !important; }
+.word-card-play .pic-multi { font-size: clamp(30px, 6vmin, 58px) !important; }
+
+/* ----- chant ----- */
+.chant { display: flex; flex-direction: column; align-items: center; gap: 2vmin; width: 100%; }
+.chant-head { display: flex; align-items: center; gap: 2vmin; }
+.chant-title { font-size: clamp(26px, 5vmin, 44px); }
+.chant-drum { font-size: clamp(48px, 9vmin, 80px); }
+.chant-drum.hit { animation: drum-hit .25s; }
+@keyframes drum-hit { 40% { transform: scale(1.25) rotate(-8deg); } }
+.chant-lines { display: flex; flex-direction: column; gap: 1.2vmin; width: min(100%, 760px); }
+.chant-line {
+  display: flex; align-items: center; gap: 2vmin;
+  background: rgba(255, 255, 255, .75); border: 3px solid transparent; border-radius: 18px;
+  padding: 0.8vmin 2.4vmin; font-size: clamp(20px, 4vmin, 36px); font-weight: 800;
+  transition: transform .15s, background .15s;
+}
+.chant-line.is-on { background: #fff; border-color: var(--ink); transform: scale(1.04); box-shadow: 0 6px 0 rgba(29, 36, 64, .2); }
+.chant-emoji { font-size: 1.3em; }
+.btn-chant-done { width: clamp(100px, 18vmin, 150px); height: clamp(100px, 18vmin, 150px); border-radius: 50%; padding: 0; }

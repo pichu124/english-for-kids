@@ -75,7 +75,20 @@ export function wordPicture(w: Word, cls = ''): HTMLElement {
   if (w.image.color) {
     return h('div', { class: `pic pic-color ${cls}` }, fromHTML(isoCube(w.image.color)));
   }
-  return h('div', { class: `pic pic-emoji ${cls}`, 'aria-hidden': 'true' }, w.image.emoji ?? '❓');
+  const emoji = w.image.emoji ?? '❓';
+  const n = graphemes(emoji);
+  return h('div', { class: `pic pic-emoji ${n > 1 ? `pic-multi pic-n${Math.min(n, 10)}` : ''} ${cls}`, 'aria-hidden': 'true' }, emoji);
+}
+
+/** Number of visible characters (an emoji with skin tone or ZWJ counts as one). */
+export function graphemes(s: string): number {
+  try {
+    const Seg = (Intl as unknown as { Segmenter?: new (l?: string, o?: { granularity: string }) => { segment(s: string): Iterable<unknown> } }).Segmenter;
+    if (Seg) return [...new Seg(undefined, { granularity: 'grapheme' }).segment(s)].length;
+  } catch {
+    /* fall through */
+  }
+  return [...s].length;
 }
 
 export function wordCard(w: Word, opts: { label?: boolean; cls?: string } = {}): HTMLButtonElement {

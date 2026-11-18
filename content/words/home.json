@@ -1,0 +1,88 @@
+{
+  "topic": "home",
+  "words": [
+    {
+      "id": "bed",
+      "text": "bed",
+      "topic": "home",
+      "image": {
+        "emoji": "🛏️"
+      },
+      "sentence": "This is my bed. Good night!",
+      "accept": [
+        "beds",
+        "bad",
+        "bet"
+      ]
+    },
+    {
+      "id": "chair",
+      "text": "chair",
+      "topic": "home",
+      "image": {
+        "emoji": "🪑"
+      },
+      "sentence": "This is a chair. Sit down, please.",
+      "accept": [
+        "chairs",
+        "share",
+        "cheer"
+      ]
+    },
+    {
+      "id": "door",
+      "text": "door",
+      "topic": "home",
+      "image": {
+        "emoji": "🚪"
+      },
+      "sentence": "This is the door. Knock, knock!",
+      "accept": [
+        "doors",
+        "dorr"
+      ]
+    },
+    {
+      "id": "window",
+      "text": "window",
+      "topic": "home",
+      "image": {
+        "emoji": "🪟"
+      },
+      "sentence": "This is a window. I can see the sun.",
+      "accept": [
+        "windows",
+        "windo",
+        "win dough"
+      ]
+    },
+    {
+      "id": "bath",
+      "text": "bath",
+      "topic": "home",
+      "image": {
+        "emoji": "🛁"
+      },
+      "sentence": "This is the bath. Splash, splash!",
+      "accept": [
+        "bat",
+        "bass",
+        "path"
+      ]
+    },
+    {
+      "id": "sofa",
+      "text": "sofa",
+      "topic": "home",
+      "image": {
+        "emoji": "🛋️"
+      },
+      "sentence": "This is the sofa. It is big.",
+      "accept": [
+        "sofas",
+        "soda",
+        "sopha"
+      ]
+    }
+  ]
+}

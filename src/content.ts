@@ -59,13 +59,17 @@ export type Word = {
   play?: string;
 };
 
-export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant'];
 /** Steps a unit gets when it does not list its own. */
 export const DEFAULT_STEPS: StepType[] = ['listen', 'say', 'tap-picture'];
 
 /** A "do it" command (Total Physical Response): the child acts it out, then taps ✓. */
 export type Action = { say: string; emoji: string };
+
+/** A short rhythmic chant: Bix says it on a beat, then the child joins in. */
+export type ChantLine = { text: string; emoji?: string };
+export type Chant = { title: string; lines: ChantLine[] };
 
 export type CasaLink = { luaTuoi?: string; chuDe?: string; monHoc?: string };
 
@@ -87,14 +91,16 @@ export type Topic = {
   block: { name: string; style: BlockStyle; color: string };
   steps: StepType[];
   actions: Action[];
+  chant?: Chant;
   casa?: CasaLink;
   words: Word[];
 };
 
 type BankFile = { topic?: string; words: Word[] };
-type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept'>>);
-type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'titleVi' | 'intro' | 'order'> & {
+type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept' | 'image'>>);
+type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'chant' | 'titleVi' | 'intro' | 'order'> & {
   actions?: Action[];
+  chant?: { title: string; lines: (string | ChantLine)[] };
   order?: number;
   titleVi?: string;
   intro?: string;
@@ -157,6 +163,16 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   }
   if (steps.includes('do-it') && actions.length < 2) return problem(where, 'bước "do-it" cần ít nhất 2 hành động trong "actions"'), null;
   if (actions.length && !steps.includes('do-it')) problem(where, 'có "actions" nhưng "steps" không có "do-it"');
+  let chant: Chant | undefined;
+  if (u.chant) {
+    const lines = (u.chant.lines ?? []).map((l) => (typeof l === 'string' ? { text: l } : l));
+    if (typeof u.chant.title !== 'string' || lines.length < 2 || lines.some((l) => typeof l?.text !== 'string' || !l.text)) {
+      return problem(where, '"chant" cần "title" và ít nhất 2 dòng'), null;
+    }
+    chant = { title: u.chant.title, lines };
+  }
+  if (steps.includes('chant') && !chant) return problem(where, 'bước "chant" cần mục "chant"'), null;
+  if (chant && !steps.includes('chant')) problem(where, 'có "chant" nhưng "steps" không có "chant"');
   if (u.casa?.luaTuoi && u.casa.luaTuoi !== level.casaLuaTuoi) {
     problem(where, `casa.luaTuoi "${u.casa.luaTuoi}" không khớp bậc ${level.id} ("${level.casaLuaTuoi}")`);
   }
@@ -198,6 +214,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     block: u.block,
     steps,
     actions,
+    chant,
     casa: u.casa,
     words,
   };

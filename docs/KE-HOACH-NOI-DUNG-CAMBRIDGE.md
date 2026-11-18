@@ -279,19 +279,28 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 
 | Bậc | Unit đã có | Hoạt động |
 |---|---|---|
-| L0 Little Bix (3–4) | Animal Friends · Colour Fun · Yummy Food | listen, **do-it**, say, tap-picture (3 hình, 4 lượt, không chữ) |
-| L1 Bix Explorer (4–5) | My Body · My Family | listen, **do-it**, say, tap-picture (3 hình, 5 lượt) |
-| L2 Starters (5–7) | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys | listen, say, tap-picture (4 hình, 6 lượt) |
+| L0 Little Bix (3–4) | Animal Friends · Colour Fun · Yummy Food · Toy Box | listen, do-it, say, tap-picture (+ chant ở Animal Friends) |
+| L1 Bix Explorer (4–5) | My Body · My Family · Get Dressed · Count to Five | listen, do-it, say, tap-picture (+ chant ở My Body, Count to Five) |
+| L2 Starters (5–7) | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School · Numbers 1–10 · My Home | listen, say, tap-picture (+ chant ở School) |
+
+Tổng: **19 Unit** (L0: 4, L1: 4, L2: 11).
 
 **Đợt 1 (18/11/2026):**
-- thêm hoạt động `do-it` (TPR: Bix ra lệnh, bé làm theo rồi chạm ✓; không cần micro);
-- thêm 6 Unit;
-- bản đồ chuyển sang vuốt ngang khi có từ 8 bài trở lên;
-- kiểm tra tự động: từ chấp nhận không được trùng một từ khác trong cùng bài, không chứa từ thông dụng.
+- hoạt động `do-it` (TPR, không cần micro);
+- 6 Unit;
+- bản đồ vuốt ngang khi có từ 8 bài trở lên;
+- kiểm tra từ chấp nhận.
 
-Duyệt tiếng Anh: Claude soạn và duyệt, Gemini duyệt chéo khi gọi được (đợt 1 Gemini quá thời gian, Claude tự duyệt).
+**Đợt 2 (18/11/2026):**
+- hoạt động `chant`: Bix đọc vè theo nhịp trống, vòng 2 bé đọc theo, dòng đang đọc được tô sáng (bậc 0 hiện hình thay chữ);
+- hình đếm nhiều emoji (🐥🐥🐥);
+- số đếm chấp nhận cả chữ số ("3") vì bộ nhận giọng hay viết số;
+- 6 Unit mới: L2 School / Numbers 1–10 / My Home, L0 Toy Box, L1 Get Dressed / Count to Five;
+- vè cho Animal Friends và My Body.
+
+Duyệt tiếng Anh: Claude soạn và duyệt. Gemini duyệt chéo: đợt 1 quá thời gian; đợt 2 có 4 góp ý được nhận (mạo từ trong vè, câu lệnh "Find three ducks!", nhịp vè Body, câu "school bag, pen").
 
 **Đợt tiếp theo (đề xuất):**
-- L2: School, Numbers 1–10, The home;
-- L0–L1: Numbers 1–5, Toys, Clothes;
-- hoạt động `chant`.
+- L2: Weather / Places, Food & drink 2, Transport;
+- L0–L1: Shapes, Weather, Transport;
+- hoạt động `review` (ôn từ sắp quên).

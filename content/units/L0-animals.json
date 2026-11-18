@@ -41,7 +41,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "actions": [
     {
@@ -56,5 +57,26 @@
       "say": "Moo like a cow!",
       "emoji": "🐮"
     }
-  ]
+  ],
+  "chant": {
+    "title": "Animal Chant",
+    "lines": [
+      {
+        "text": "The cat says meow, meow, meow!",
+        "emoji": "🐱"
+      },
+      {
+        "text": "The dog says woof, woof, woof!",
+        "emoji": "🐶"
+      },
+      {
+        "text": "The duck says quack, quack, quack!",
+        "emoji": "🦆"
+      },
+      {
+        "text": "The cow says moo, moo, moo!",
+        "emoji": "🐮"
+      }
+    ]
+  }
 }

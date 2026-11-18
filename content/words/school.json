@@ -1,0 +1,88 @@
+{
+  "topic": "school",
+  "words": [
+    {
+      "id": "book",
+      "text": "book",
+      "topic": "school",
+      "image": {
+        "emoji": "📕"
+      },
+      "sentence": "This is my book. I can read!",
+      "accept": [
+        "books",
+        "buck"
+      ]
+    },
+    {
+      "id": "pen",
+      "text": "pen",
+      "topic": "school",
+      "image": {
+        "emoji": "🖊️"
+      },
+      "sentence": "This is my pen. It is blue.",
+      "accept": [
+        "pens",
+        "pan",
+        "ben"
+      ]
+    },
+    {
+      "id": "pencil",
+      "text": "pencil",
+      "topic": "school",
+      "image": {
+        "emoji": "✏️"
+      },
+      "sentence": "This is my pencil. I can draw.",
+      "accept": [
+        "pencils",
+        "pensil",
+        "pencel"
+      ]
+    },
+    {
+      "id": "ruler",
+      "text": "ruler",
+      "topic": "school",
+      "image": {
+        "emoji": "📏"
+      },
+      "sentence": "This is my ruler. It is long.",
+      "accept": [
+        "rulers",
+        "rula",
+        "roller"
+      ]
+    },
+    {
+      "id": "bag",
+      "text": "bag",
+      "topic": "school",
+      "image": {
+        "emoji": "🎒"
+      },
+      "sentence": "This is my school bag.",
+      "accept": [
+        "bags",
+        "back",
+        "beg"
+      ]
+    },
+    {
+      "id": "teacher",
+      "text": "teacher",
+      "topic": "school",
+      "image": {
+        "emoji": "🧑‍🏫"
+      },
+      "sentence": "This is my teacher. Hello, teacher!",
+      "accept": [
+        "teachers",
+        "teecher",
+        "teach"
+      ]
+    }
+  ]
+}

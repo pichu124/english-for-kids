@@ -1,0 +1,34 @@
+{
+  "id": "l2-numbers",
+  "level": "L2",
+  "topic": "numbers",
+  "order": 10,
+  "title": "Numbers 1–10",
+  "titleVi": "Số đếm 1–10",
+  "icon": "🔢",
+  "color": "#a6dd5c",
+  "intro": "Let's count from one to ten!",
+  "playPrompt": "Where is number {word}?",
+  "block": {
+    "name": "Number block",
+    "style": "gold",
+    "color": "#7bd389"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Numbers",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten"
+  ]
+}
