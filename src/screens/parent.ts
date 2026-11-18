@@ -291,7 +291,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const GBOARD_TEST =
       'Kiểm tra nhanh dịch vụ giọng nói của máy: mở một ô gõ chữ bất kỳ, chạm 🎤 trên bàn phím Gboard rồi nói “hello”. Ra chữ = dịch vụ của Google chạy tốt (báo người làm app); không ra chữ = làm theo cách sửa ở trên.';
     const SERVICE_HELP =
-      'Cách sửa thường gặp: (1) Mở CH Play, tìm và cập nhật “Google” và “Speech Recognition & Synthesis from Google” (Dịch vụ giọng nói của Google); (2) Cài đặt Android → Ứng dụng → Google → đảm bảo không bị Tắt, quyền Micrô = Cho phép; (3) Cài đặt → Quản lý chung/Hệ thống → Ngôn ngữ → Nhập bằng giọng nói: chọn của Google. Rồi tắt hẳn Chrome, mở lại và thử.';
+      'Cách sửa thường gặp: (0) Máy có bàn phím Baidu/Sogou hoặc bản ROM Trung Quốc: Cài đặt → tìm “Manage keyboards” / “Quản lý bàn phím” → BẬT “Google Voice Typing”; rồi tìm “voice input” → chọn Google (đã sửa được trên máy thật); (1) Mở CH Play, tìm và cập nhật “Google” và “Speech Recognition & Synthesis from Google” (Dịch vụ giọng nói của Google); (2) Cài đặt Android → Ứng dụng → Google → đảm bảo không bị Tắt, quyền Micrô = Cho phép; (3) Cài đặt → Quản lý chung/Hệ thống → Ngôn ngữ → Nhập bằng giọng nói: chọn của Google. Rồi tắt hẳn Chrome, mở lại và thử.';
     const PERMISSION_HELP =
       'Mở quyền micro: (1) trong Chrome, chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép; (2) nếu vẫn không được: Cài đặt Android → Ứng dụng → Chrome → Quyền → Micrô → Cho phép. Rồi tải lại trang.';
     micBtn.addEventListener('click', async () => {
@@ -319,11 +319,15 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       const trace = h('details', { class: 'p-trace' }, h('summary', {}, `Chi tiết kỹ thuật (lần cuối ${out.trace.ms} ms)`), ...traces);
 
       if (out.status === 'heard') {
-        update((st) => (st.settings.srMode = usedSimple ? 'simple' : 'full'));
+        // Only switch to the simple mode when the full one never even got audio;
+        // a "nomatch" in round 1 just means it did not catch the word that time.
+        const simpleNeeded = usedSimple && (first.status === 'service' || first.status === 'denied');
+        if (!usedSimple || simpleNeeded) update((st) => (st.settings.srMode = simpleNeeded ? 'simple' : 'full'));
         micBtn.removeAttribute('disabled');
         micOut.replaceChildren(
           h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))),
-          ...(usedSimple ? [line('Máy này chỉ chạy được ở chế độ đơn giản. App đã tự chuyển sang chế độ này cho bài học.', 'p-saved')] : []),
+          ...(simpleNeeded ? [line('Máy này chỉ chạy được ở chế độ đơn giản. App đã tự chuyển sang chế độ này cho bài học.', 'p-saved')] : []),
+          ...(usedSimple && !simpleNeeded ? [line('Lần 1 có nghe thấy tiếng nhưng chưa ra chữ — chỉ là lần đó chưa bắt được từ, không cần đổi chế độ.')] : []),
           trace,
         );
         return;
