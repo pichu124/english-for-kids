@@ -67,6 +67,12 @@ export type State = {
   bonus: Record<string, number>;
   /** Spaced review: per word key, its box (1–5) and next due date. */
   review: Record<string, { box: number; due: string }>;
+  /** Bix's clothes: item id per slot (hat, neck, hand, color). */
+  outfit?: Record<string, string>;
+  /** How many wardrobe items the child has already seen (for the "new!" glow). */
+  outfitSeen?: number;
+  /** Garden: plant type per learning day. */
+  garden?: Record<string, string>;
 };
 
 export function defaultState(): State {

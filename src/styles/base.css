@@ -244,3 +244,6 @@ h1, h2, h3, p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Bix's wardrobe */
+.bix.has-hat .bix-antenna { display: none; }

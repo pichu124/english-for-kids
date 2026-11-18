@@ -5,15 +5,16 @@
  */
 import { fromHTML, h } from '../lib/dom';
 import { say } from '../lib/tts';
+import { itemById, type Outfit } from './outfit';
 
 export type Mood = 'idle' | 'hello' | 'talk' | 'happy' | 'encourage' | 'listen' | 'sleep';
 
 const HEAD = '#2ec4b6';
 const HEAD_TOP = '#7fe3d9';
 const HEAD_SIDE = '#1b9a8e';
-const BODY = '#ffb703';
-const BODY_TOP = '#ffd166';
-const BODY_SIDE = '#df9500';
+const BODY = 'var(--bix-body, #ffb703)';
+const BODY_TOP = 'var(--bix-body-top, #ffd166)';
+const BODY_SIDE = 'var(--bix-body-side, #df9500)';
 const ARM = '#7b6cf6';
 const ARM_SIDE = '#5a4bd6';
 const LEG = '#3d4a8a';
@@ -21,9 +22,9 @@ const INK = '#1d2440';
 
 function box(x: number, y: number, w: number, hgt: number, d: number, front: string, top: string, side: string, extra = '') {
   return `<g ${extra}>
-    <polygon points="${x},${y} ${x + d},${y - d} ${x + w + d},${y - d} ${x + w},${y}" fill="${top}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
-    <polygon points="${x + w},${y} ${x + w + d},${y - d} ${x + w + d},${y + hgt - d} ${x + w},${y + hgt}" fill="${side}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
-    <rect x="${x}" y="${y}" width="${w}" height="${hgt}" fill="${front}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="${x},${y} ${x + d},${y - d} ${x + w + d},${y - d} ${x + w},${y}" style="fill:${top}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="${x + w},${y} ${x + w + d},${y - d} ${x + w + d},${y + hgt - d} ${x + w},${y + hgt}" style="fill:${side}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="${x}" y="${y}" width="${w}" height="${hgt}" style="fill:${front}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
   </g>`;
 }
 
@@ -54,8 +55,9 @@ const SVG = `
       ${box(102, 230, 24, 38, 8, LEG, '#5a68b0', '#2b3566')}
     </g>
     <g class="bix-body">
-      ${box(54, 160, 84, 72, 12, BODY, BODY_TOP, BODY_SIDE)}
+      <g class="bix-body-box">${box(54, 160, 84, 72, 12, BODY, BODY_TOP, BODY_SIDE)}</g>
       ${heart}
+      <g class="bix-wear-neck"></g>
     </g>
     <g class="bix-head">
       <g class="bix-antenna">
@@ -94,7 +96,9 @@ const SVG = `
         <g class="mouth mouth-big"><path d="M74 120 h44 v8 h-4 v8 h-6 v4 h-24 v-4 h-6 v-8 h-4z" fill="${INK}"/><rect x="86" y="132" width="20" height="7" fill="#ff6b81"/></g>
         <g class="mouth mouth-o"><rect x="88" y="122" width="16" height="16" rx="3" fill="${INK}"/></g>
       </g>
+      <g class="bix-wear-hat"></g>
     </g>
+    <g class="bix-wear-hand"></g>
     <g class="bix-arm bix-arm-l">
       ${box(30, 164, 22, 54, 8, ARM, '#a397ff', ARM_SIDE)}
       ${box(30, 218, 22, 16, 6, HEAD, HEAD_TOP, HEAD_SIDE)}
@@ -109,6 +113,12 @@ const SVG = `
   </g>
 </svg>`;
 
+/** Where the current outfit comes from (set once by the app; empty in tests). */
+let outfitSource: () => Outfit = () => ({});
+export function setOutfitSource(fn: () => Outfit): void {
+  outfitSource = fn;
+}
+
 export class Bix {
   readonly el: HTMLElement;
   private bubble: HTMLElement;
@@ -118,6 +128,20 @@ export class Bix {
     this.bubble = h('div', { class: 'bix-bubble', 'aria-live': 'polite' });
     this.el = h('div', { class: `bix bix-${opts.size ?? 'md'} is-idle` }, fromHTML(SVG));
     if (opts.bubble !== false) this.el.appendChild(this.bubble);
+    this.wear(outfitSource());
+  }
+
+  /** Dress Bix: one item per slot; colours tint the body. */
+  wear(outfit: Outfit): this {
+    for (const slot of ['hat', 'neck', 'hand'] as const) {
+      const g = this.el.querySelector(`.bix-wear-${slot}`);
+      if (g) g.innerHTML = itemById(outfit[slot])?.svg ?? '';
+    }
+    this.el.classList.toggle('has-hat', !!itemById(outfit.hat));
+    const c = itemById(outfit.color)?.colors;
+    const vars = ['--bix-body', '--bix-body-top', '--bix-body-side'];
+    vars.forEach((v, i) => (c ? this.el.style.setProperty(v, c[i]) : this.el.style.removeProperty(v)));
+    return this;
   }
 
   setMood(m: Mood): this {

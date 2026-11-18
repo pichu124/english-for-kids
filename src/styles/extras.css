@@ -37,3 +37,26 @@
 .sticker.is-locked .pic { filter: grayscale(1) brightness(1.6); opacity: .25; }
 .sticker-q { position: absolute; font-size: clamp(34px, 6vmin, 52px); font-weight: 800; color: #b8c2dc; }
 .sticker-label { font-weight: 800; font-size: clamp(14px, 2.6vmin, 20px); }
+
+/* ---------- Bix's wardrobe ---------- */
+.wardrobe { height: 100%; display: flex; flex-direction: column; }
+.ward-body { flex: 1; min-height: 0; display: flex; align-items: center; gap: 3vmin; padding: 0 3vmin 3vmin; }
+.ward-bix { flex: 0 0 38%; display: flex; justify-content: center; align-items: flex-end; padding-top: 10vmin; }
+.ward-bix .bix-svg { height: clamp(220px, 58vmin, 480px); }
+.ward-bix .bix-bubble { top: -4vmin; }
+.ward-shelves { flex: 1; display: flex; flex-direction: column; gap: 2vmin; overflow-y: auto; max-height: 100%; padding: 1vmin; }
+.ward-shelf { display: flex; flex-wrap: wrap; gap: 2vmin; background: rgba(255, 255, 255, .55); border: 3px solid var(--ink); border-radius: 22px; padding: 1.6vmin; }
+.ward-item {
+  position: relative; width: clamp(72px, 13vmin, 112px); aspect-ratio: 1; font: inherit;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff; border: 3px solid var(--ink); border-radius: 20px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); cursor: pointer;
+}
+.ward-icon { font-size: clamp(36px, 7vmin, 62px); line-height: 1; }
+.ward-item.is-on { background: #fff4b8; box-shadow: 0 0 0 5px #ffca3a, 0 5px 0 rgba(29, 36, 64, .2); }
+.ward-item.is-locked { background: #e8ecf6; border-style: dashed; }
+.ward-item.is-locked .ward-icon { filter: grayscale(1); opacity: .3; }
+.ward-lock { position: absolute; bottom: 4px; font-size: clamp(13px, 2.2vmin, 17px); font-weight: 800; color: #5b6488; }
+.ward-item.is-new { animation: pulse 1.2s ease-in-out infinite; }
+.ward-item.is-new::after { content: 'NEW'; position: absolute; top: -10px; right: -10px; background: #ef476f; color: #fff; font-size: 13px; font-weight: 800; padding: 2px 6px; border-radius: 8px; border: 2px solid var(--ink); }
+.ward-thumb { width: clamp(52px, 9.5vmin, 84px); height: clamp(52px, 9.5vmin, 84px); display: block; }
+.ward-item.is-locked .ward-thumb { filter: grayscale(1); opacity: .3; }

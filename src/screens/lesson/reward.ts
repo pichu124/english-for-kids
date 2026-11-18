@@ -3,6 +3,8 @@ import { fromHTML, h } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
 import { dayLog, today, update } from '../../lib/storage';
 import { scheduleUnit } from '../../lib/review';
+import { lessonsDone } from '../../lib/progress';
+import { ITEMS } from '../../art/outfit';
 import { confetti } from '../widgets';
 import type { LessonUI } from './shared';
 
@@ -23,7 +25,9 @@ export async function runReward(ui: LessonUI): Promise<void> {
   const chest = h('div', { class: 'reward-chest', 'aria-hidden': 'true' }, h('div', { class: 'chest-lid' }), h('div', { class: 'chest-box' }));
   const world = h('button', { class: 'btn btn-sun', 'aria-label': 'My World' }, '🧱 My World');
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home' }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
-  const actions = h('div', { class: 'reward-actions', hidden: true }, world, home);
+  const newItem = ITEMS.find((i) => i.at === lessonsDone());
+  const clothes = newItem ? h('button', { class: 'btn btn-sun', 'aria-label': 'Bix' }, `${newItem.icon} New for Bix!`) : null;
+  const actions = h('div', { class: 'reward-actions', hidden: true }, clothes, world, home);
   ui.stage.replaceChildren(h('div', { class: 'reward' }, h('div', { class: 'reward-stage' }, chest, block), h('div', { class: 'reward-name' }, t.block.name), actions));
 
   sfx.reward();
@@ -34,10 +38,12 @@ export async function runReward(ui: LessonUI): Promise<void> {
   await ui.talk('You did it! Here is a block for you!', 'happy', 'You did it!');
   actions.hidden = false;
   actions.classList.add('pop');
+  if (clothes) await ui.talk('And new clothes for me!', 'happy');
 
-  const tapped = await ui.tapAny([world, home]);
+  const tapped = await ui.tapAny(clothes ? [clothes, world, home] : [world, home]);
   sfx.tap();
-  ui.ctx.go(tapped === world ? 'world' : 'home', tapped === world ? { fresh: t.id } : {});
+  if (tapped === clothes) ui.ctx.go('wardrobe');
+  else ui.ctx.go(tapped === world ? 'world' : 'home', tapped === world ? { fresh: t.id } : {});
 }
 
 /** End of a review session: no block, just a big star and back home. */

@@ -61,6 +61,23 @@ if ((await page.evaluate(() => window.__spoken.length)) <= before) fail('tapping
 if (shots) await page.screenshot({ path: `${shots}/book.png` });
 step(`after a lesson: ${got} stickers in the book, tap says the word`);
 
+// ---------- A3: Bix's wardrobe ----------
+// One lesson done above → the cap is unlocked; the dock shows NEW.
+await home();
+if (!(await page.locator('.dock-btn[aria-label="Bix"].is-new').count())) fail('dock should flag new clothes after the first lesson');
+await page.locator('.dock-btn[aria-label="Bix"]').click({ force: true });
+await page.waitForSelector('.wardrobe');
+if (await page.locator('.ward-item[data-item="crown"]:not(.is-locked)').count()) fail('crown needs 12 lessons');
+await page.locator('.ward-item[data-item="cap"]').click({ force: true });
+await page.waitForSelector('.ward-bix .bix.has-hat');
+s = await state();
+if (s.outfit?.hat !== 'cap') fail('wearing the cap should be saved');
+if (shots) await page.screenshot({ path: `${shots}/wardrobe.png` });
+await home();
+if (!(await page.locator('.home-bix .bix.has-hat').count())) fail('Bix on the home screen should wear the cap');
+if (await page.locator('.dock-btn[aria-label="Bix"].is-new').count()) fail('NEW should go once the wardrobe was opened');
+step('wardrobe: cap unlocked by 1 lesson, Bix wears it everywhere, crown still locked');
+
 // __MORE__
 
 if (errors.length) fail('page errors: ' + errors.join(' | '));

@@ -9,7 +9,8 @@ import { getState } from '../lib/storage';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
 import type { Ctx, ScreenName } from '../router';
-import { stickerCount } from '../lib/progress';
+import { lessonsDone, stickerCount } from '../lib/progress';
+import { unlockedItems } from '../art/outfit';
 import { parentButton } from './widgets';
 
 let greetedThisSession = false;
@@ -92,11 +93,13 @@ export function homeScreen(ctx: Ctx): HTMLElement {
       badge ? h('span', { class: 'badge' }, String(badge)) : null,
     );
   const stickers = stickerCount(level.id).got;
+  const newClothes = unlockedItems(lessonsDone()).length - (getState().outfitSeen ?? 0);
   const dock = h(
     'nav',
     { class: 'home-dock', 'aria-label': 'Menu' },
     dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
     dockBtn('📖', 'My Words', 'book', stickers || undefined),
+    dockBtn('👕', 'Bix', 'wardrobe', newClothes ? 'NEW' : undefined, newClothes > 0),
   );
 
   const el = h(

@@ -21,6 +21,9 @@ import { parentScreen } from './screens/parent';
 import { startScreen } from './screens/start';
 import { worldScreen } from './screens/world';
 import { bookScreen } from './screens/book';
+import { wardrobeScreen } from './screens/wardrobe';
+import { setOutfitSource } from './art/bix';
+import { getState } from './lib/storage';
 
 register('start', startScreen);
 register('home', homeScreen);
@@ -29,6 +32,8 @@ register('lesson', lessonScreen);
 register('world', worldScreen);
 register('parent', parentScreen);
 register('book', bookScreen);
+register('wardrobe', wardrobeScreen);
+setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);
 requestPersistence();
