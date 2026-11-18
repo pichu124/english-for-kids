@@ -71,8 +71,8 @@ export type State = {
   outfit?: Record<string, string>;
   /** How many wardrobe items the child has already seen (for the "new!" glow). */
   outfitSeen?: number;
-  /** Garden: plant type per learning day. */
-  garden?: Record<string, string>;
+  /** Last day the child looked at the garden (for the "new flower" glow). */
+  gardenSeen?: string;
 };
 
 export function defaultState(): State {

@@ -22,6 +22,7 @@ import { startScreen } from './screens/start';
 import { worldScreen } from './screens/world';
 import { bookScreen } from './screens/book';
 import { wardrobeScreen } from './screens/wardrobe';
+import { gardenScreen } from './screens/garden';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -33,6 +34,7 @@ register('world', worldScreen);
 register('parent', parentScreen);
 register('book', bookScreen);
 register('wardrobe', wardrobeScreen);
+register('garden', gardenScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);

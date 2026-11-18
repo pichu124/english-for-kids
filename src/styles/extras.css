@@ -60,3 +60,22 @@
 .ward-item.is-new::after { content: 'NEW'; position: absolute; top: -10px; right: -10px; background: #ef476f; color: #fff; font-size: 13px; font-weight: 800; padding: 2px 6px; border-radius: 8px; border: 2px solid var(--ink); }
 .ward-thumb { width: clamp(52px, 9.5vmin, 84px); height: clamp(52px, 9.5vmin, 84px); display: block; }
 .ward-item.is-locked .ward-thumb { filter: grayscale(1); opacity: .3; }
+
+/* ---------- Garden ---------- */
+.screen-garden { overflow-y: auto; touch-action: pan-y; }
+.garden { min-height: 100%; display: flex; flex-direction: column; position: relative; background: linear-gradient(transparent 0 30%, #9be07a 30%, #6cc04a 100%); }
+.garden-bix { position: absolute; left: 3vmin; top: 14vmin; z-index: 1; }
+.garden-bix .bix-svg { height: clamp(100px, 20vmin, 170px); }
+.garden-friends { position: absolute; inset: 14vmin 0 auto 0; height: 16vmin; pointer-events: none; }
+.garden-friend { position: absolute; left: calc(30% + var(--i) * 15%); top: calc(var(--i) * 3vmin); font-size: clamp(30px, 6vmin, 50px); animation: float 3s ease-in-out infinite; animation-delay: calc(var(--i) * -.7s); }
+.garden-field { margin-top: 30vmin; display: flex; flex-wrap: wrap; gap: 2.5vmin 3vmin; padding: 2vmin 4vmin 6vmin; justify-content: center; }
+.plot { position: relative; width: clamp(80px, 14vmin, 120px); height: clamp(90px, 16vmin, 136px); background: none; border: 0; cursor: pointer; font: inherit; }
+.plot-soil { position: absolute; left: 6%; right: 6%; bottom: 0; height: 32%; background: #8a5a35; border: 3px solid var(--ink); border-radius: 50%; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .18); }
+.plot-plant { position: absolute; left: 0; right: 0; bottom: 14%; font-size: clamp(54px, 10vmin, 92px); line-height: 1; text-align: center; transform-origin: 50% 100%; }
+.plot.is-empty .plot-plant { opacity: .45; font-size: clamp(36px, 7vmin, 60px); }
+.plot.is-empty .plot-soil { border-style: dashed; }
+.plot.is-fresh .plot-plant { animation: grow 1.2s cubic-bezier(.2, 1.4, .4, 1) both; }
+.plot.is-wiggle .plot-plant { animation: wiggle .2s ease-in-out 4 alternate; }
+@keyframes grow { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(3vmin, -2vmin); } }
+@media (prefers-reduced-motion: reduce) { .garden-friend, .plot.is-fresh .plot-plant, .plot.is-wiggle .plot-plant { animation: none; } }

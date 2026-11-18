@@ -78,6 +78,28 @@ if (!(await page.locator('.home-bix .bix.has-hat').count())) fail('Bix on the ho
 if (await page.locator('.dock-btn[aria-label="Bix"].is-new').count()) fail('NEW should go once the wardrobe was opened');
 step('wardrobe: cap unlocked by 1 lesson, Bix wears it everywhere, crown still locked');
 
+// ---------- A4: Garden ----------
+// Today had a lesson (above) → a fresh plant and a glowing dock button.
+await home();
+if (!(await page.locator('.dock-btn[aria-label="Garden"].is-new').count())) fail('garden should glow after today\'s first lesson');
+await page.locator('.dock-btn[aria-label="Garden"]').click({ force: true });
+await page.waitForSelector('.garden .plot.is-fresh');
+if (await page.locator('.plot.is-empty').count()) fail('no empty plot when today already grew a plant');
+// Past learning days (with gaps) each add a plant; nothing is lost for days off.
+await setState((st) => {
+  for (const d of ['2026-01-03', '2026-01-04', '2026-01-09', '2026-02-20', '2026-03-01']) st.days[d] = { seconds: 300, lessons: 1, auto: 0, parent: 0, miss: 0, noVoice: 0 };
+  st.days['2026-01-05'] = { seconds: 60, lessons: 0, auto: 0, parent: 0, miss: 0, noVoice: 0 };
+});
+await home();
+if (await page.locator('.dock-btn[aria-label="Garden"].is-new').count()) fail('glow should go once the garden was seen today');
+await page.locator('.dock-btn[aria-label="Garden"]').click({ force: true });
+await page.waitForSelector('.garden');
+const plots = await page.locator('.plot:not(.is-empty)').count();
+if (plots !== 6) fail(`6 learning days should give 6 plants, got ${plots}`);
+if (!(await page.locator('.garden-friend').count())) fail('3+ plants should bring a butterfly');
+if (shots) await page.screenshot({ path: `${shots}/garden.png` });
+step('garden: one plant per learning day (gaps cost nothing), new plant glows once');
+
 // __MORE__
 
 if (errors.length) fail('page errors: ' + errors.join(' | '));

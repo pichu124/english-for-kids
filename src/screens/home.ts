@@ -9,7 +9,8 @@ import { getState } from '../lib/storage';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
 import type { Ctx, ScreenName } from '../router';
-import { lessonsDone, stickerCount } from '../lib/progress';
+import { learningDays, lessonsDone, stickerCount } from '../lib/progress';
+import { gardenHasNew } from './garden';
 import { unlockedItems } from '../art/outfit';
 import { parentButton } from './widgets';
 
@@ -100,6 +101,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
     dockBtn('📖', 'My Words', 'book', stickers || undefined),
     dockBtn('👕', 'Bix', 'wardrobe', newClothes ? 'NEW' : undefined, newClothes > 0),
+    dockBtn('🌻', 'Garden', 'garden', learningDays().length || undefined, gardenHasNew()),
   );
 
   const el = h(
