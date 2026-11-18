@@ -3,6 +3,7 @@ import type { Word } from '../content';
 import { h, reducedMotion, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { practicePool } from '../lib/progress';
+import { choicesFor } from '../lib/adapt';
 import { sfx } from '../lib/sfx';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
@@ -123,7 +124,7 @@ const BALLOON_COLORS = ['#ef476f', '#4cc9f0', '#ffd166', '#06d6a0', '#9b5de5', '
 
 function balloons(ctx: Ctx): HTMLElement {
   const level = currentLevel();
-  const n = Math.max(3, level.choices);
+  const n = Math.max(3, choicesFor(level, 6));
   const pool = practicePool(level.id, 6);
   const ROUNDS = 5;
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('idle');

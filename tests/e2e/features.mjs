@@ -185,6 +185,30 @@ s = await state();
 if (s.storiesRead?.['story-animals'] !== 1) fail('reading to the end should be saved');
 step('story: Bix reads each page, words are tappable, 2 picture questions, "The End"');
 
+// ---------- B8: adaptive difficulty ----------
+const playCards = async (unit) => {
+  await page.goto(`${base}/?unit=${unit}`);
+  await page.locator('.btn-play').click({ force: true });
+  for (let i = 0; i < 400 && !(await page.locator('.play .word-card-play').count()); i++) {
+    if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+    else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
+    else if (await page.locator('.btn-did').count()) await page.locator('.btn-did').click({ force: true });
+    else if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+    await page.waitForTimeout(80);
+  }
+  return page.locator('.play .word-card-play').count();
+};
+await setState((st) => (st.adapt = { recent: Array(12).fill(false) }));
+let nc = await playCards('animals');
+if (nc !== 3) fail(`struggling child: Starters game should drop to 3 pictures, got ${nc}`);
+await setState((st) => (st.adapt = { recent: Array(12).fill(true) }));
+nc = await playCards('l1-family');
+if (nc !== 4) fail(`strong child: Explorer game should rise to 4 pictures, got ${nc}`);
+await setState((st) => (st.adapt = { recent: [true, false, true] }));
+nc = await playCards('animals');
+if (nc !== 4) fail(`too few rounds → level default (4), got ${nc}`);
+step('adaptive: often wrong → 3 pictures, always right → one more, few rounds → level default');
+
 // ---------- A6: tips in the parent area ----------
 await home();
 await page.locator('.btn-parent').click({ force: true });

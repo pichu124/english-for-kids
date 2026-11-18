@@ -3,6 +3,7 @@ import { levelById, storiesOfLevel, storyById, topicById, type Story, type Word 
 import { h, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { markKnown } from '../lib/progress';
+import { choicesFor, hintAfter, recordTap } from '../lib/adapt';
 import { sfx } from '../lib/sfx';
 import { getState, update } from '../lib/storage';
 import { say } from '../lib/tts';
@@ -126,7 +127,7 @@ export function storyScreen(ctx: Ctx): HTMLElement {
     const bix = new Bix({ size: 'sm' }).setMood('happy');
     for (const [qi, q] of story.questions.entries()) {
       if (!ctx.alive()) return;
-      const others = shuffle(unit.words.filter((w) => w.id !== q.answer.id)).slice(0, Math.min(level.choices, unit.words.length) - 1);
+      const others = shuffle(unit.words.filter((w) => w.id !== q.answer.id)).slice(0, choicesFor(level, unit.words.length) - 1);
       const cards = shuffle<Word>([q.answer, ...others]).map((w) => {
         const c = wordCard(w, { label: false, cls: 'word-card-play pop' });
         c.dataset.id = w.id;
@@ -147,7 +148,7 @@ export function storyScreen(ctx: Ctx): HTMLElement {
             c.classList.remove('shake');
             void c.offsetWidth;
             c.classList.add('shake');
-            if (misses >= 2) cards.find((x) => x.dataset.id === q.answer.id)?.classList.add('is-hint');
+            if (misses >= hintAfter()) cards.find((x) => x.dataset.id === q.answer.id)?.classList.add('is-hint');
             void bix.talk(`Try again! ${q.ask}`, 'encourage', 'Try again!');
           });
         }
@@ -158,6 +159,7 @@ export function storyScreen(ctx: Ctx): HTMLElement {
       cards.forEach((c) => c !== right && c.classList.add('is-faded'));
       actOut(right, q.answer);
       if (misses === 0) markKnown(unit.id, q.answer.id);
+      recordTap(misses === 0);
       await bix.talk(`${pick(PRAISE)} ${q.answer.text}!`, 'happy');
       await wait(400);
     }

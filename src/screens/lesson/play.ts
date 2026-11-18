@@ -2,6 +2,7 @@ import { playPromptFor, type Word } from '../../content';
 import { h, shuffle } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
 import { confetti } from '../widgets';
+import { choicesFor, hintAfter, recordTap } from '../../lib/adapt';
 import { actOut, type LessonUI, PRAISE, pick, wordCard } from './shared';
 
 
@@ -15,9 +16,8 @@ export async function runPlay(ui: LessonUI): Promise<void> {
   let order: Word[] = [];
   while (order.length < PLAY_ROUNDS) order = order.concat(shuffle(words));
   order = order.slice(0, PLAY_ROUNDS);
-  const nOptions = Math.min(ui.level.choices, words.length);
-
   for (let round = 0; round < PLAY_ROUNDS; round++) {
+    const nOptions = choicesFor(ui.level, words.length);
     const target = order[round];
     const others = shuffle(words.filter((w) => w.id !== target.id)).slice(0, nOptions - 1);
     const options = shuffle([target, ...others]);
@@ -48,6 +48,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
         stars.children[round]?.classList.add('on');
         confetti(document.body, 14);
         ui.onPlayResult?.(target, misses === 0);
+        recordTap(misses === 0);
         await ui.talk(`${pick(PRAISE)} ${target.text}!`, 'happy');
         await ui.pause(500);
         break;
@@ -58,7 +59,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
       tapped.classList.remove('shake');
       void tapped.offsetWidth;
       tapped.classList.add('shake');
-      if (misses >= 2) cards.find((c) => c.dataset.id === target.id)?.classList.add('is-hint');
+      if (misses >= hintAfter()) cards.find((c) => c.dataset.id === target.id)?.classList.add('is-hint');
       await ui.talk(`Try again! ${prompt}`, 'encourage', 'Try again!');
     }
     ui.tick();

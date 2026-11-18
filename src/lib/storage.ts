@@ -71,6 +71,8 @@ export type State = {
   outfit?: Record<string, string>;
   /** How many wardrobe items the child has already seen (for the "new!" glow). */
   outfitSeen?: number;
+  /** Adaptive difficulty: first-try results of recent picture rounds. */
+  adapt?: { recent: boolean[] };
   /** Stories read to the end, by story id. */
   storiesRead?: Record<string, number>;
   /** Last day the child looked at the garden (for the "new flower" glow). */

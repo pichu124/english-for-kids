@@ -11,6 +11,7 @@ import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 import { tipCard } from './tip';
+import { ADJUST_LABEL, adjustment } from '../lib/adapt';
 
 export function parentScreen(ctx: Ctx): HTMLElement {
   const root = h('main', { class: 'parent' });
@@ -77,7 +78,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
-    card('Nhật ký 14 ngày', logTable()),
+    card('Nhật ký 14 ngày', logTable(), h('p', { class: 'p-muted' }, `Độ khó trò chọn hình: ${ADJUST_LABEL[String(adjustment()) as '0']}. App tự điều chỉnh theo khoảng 12 lượt gần nhất.`)),
     card('Từ bé đã nói được', wordsList()),
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
