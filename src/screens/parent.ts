@@ -78,7 +78,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
     card('Xoá tiến độ', resetField()),
-    h('p', { class: 'p-muted p-foot' }, `Bản 0 · ${topics.length} chủ đề · dữ liệu chỉ lưu trên máy này`),
+    h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} chủ đề · dữ liệu chỉ lưu trên máy này`),
   );
 
   function card(title: string, ...body: (HTMLElement | null)[]) {
@@ -365,9 +365,27 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       micOut.replaceChildren(...rows, trace);
     });
 
+    const refreshBtn = h('button', { class: 'p-btn' }, '🔄 Tải bản mới nhất');
+    refreshBtn.addEventListener('click', async () => {
+      refreshBtn.setAttribute('disabled', '');
+      refreshBtn.textContent = 'Đang tải…';
+      // Drop the offline copy so the next load comes straight from the server.
+      // Progress (localStorage) is NOT touched.
+      try {
+        const regs = (await navigator.serviceWorker?.getRegistrations?.()) ?? [];
+        await Promise.all(regs.map((r) => r.unregister()));
+        const keys = (await caches?.keys?.()) ?? [];
+        await Promise.all(keys.filter((k) => k.startsWith('efk-')).map((k) => caches.delete(k)));
+      } catch {
+        /* reload anyway */
+      }
+      location.reload();
+    });
+
     return h(
       'div',
       { class: 'p-stack' },
+      h('div', { class: 'p-row' }, h('span', { class: 'p-muted' }, `Phiên bản đang chạy: ${__APP_VERSION__}`), refreshBtn),
       h('label', { class: 'p-row' }, 'Tốc độ đọc', rate, rateLabel),
       h('label', { class: 'p-row' }, 'Giọng đọc', voiceSel),
       h('div', { class: 'p-row' }, testBtn, beepBtn),

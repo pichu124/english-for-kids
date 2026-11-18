@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -91,8 +92,18 @@ self.addEventListener('fetch', (event) => {
 // Vite chặn mọi tên miền lạ; chỉ mở thêm đúng các tên *.trycloudflare.com.
 const TUNNEL_HOSTS = ['.trycloudflare.com'];
 
+/** Short git commit of this build, shown in the parent area ("which version is on the tablet?"). */
+function gitVersion(): string {
+  try {
+    return execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+  } catch {
+    return 'dev';
+  }
+}
+
 export default defineConfig({
   build: { target: 'es2021' },
+  define: { __APP_VERSION__: JSON.stringify(gitVersion()) },
   server: { allowedHosts: TUNNEL_HOSTS },
   preview: { allowedHosts: TUNNEL_HOSTS },
   plugins: [serviceWorker()],
