@@ -286,6 +286,8 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const micOut = h('div', { class: 'p-mic-out' }, 'Bấm “Thử micro”, cho phép micro nếu được hỏi, rồi nói một từ tiếng Anh (ví dụ “dog”).');
     const micBtn = h('button', { class: 'p-btn' }, '🎤 Thử micro');
     const line = (text: string, cls = '') => h('div', { class: cls }, text);
+    const GBOARD_TEST =
+      'Kiểm tra nhanh dịch vụ giọng nói của máy: mở một ô gõ chữ bất kỳ, chạm 🎤 trên bàn phím Gboard rồi nói “hello”. Ra chữ = dịch vụ của Google chạy tốt (báo người làm app); không ra chữ = làm theo cách sửa ở trên.';
     const SERVICE_HELP =
       'Cách sửa thường gặp: (1) Mở CH Play, tìm và cập nhật “Google” và “Speech Recognition & Synthesis from Google” (Dịch vụ giọng nói của Google); (2) Cài đặt Android → Ứng dụng → Google → đảm bảo không bị Tắt, quyền Micrô = Cho phép; (3) Cài đặt → Quản lý chung/Hệ thống → Ngôn ngữ → Nhập bằng giọng nói: chọn của Google. Rồi tắt hẳn Chrome, mở lại và thử.';
     const PERMISSION_HELP =
@@ -293,22 +295,40 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     micBtn.addEventListener('click', async () => {
       micBtn.setAttribute('disabled', '');
       const live = h('div', { class: 'p-trace' });
-      micOut.replaceChildren(line('Đang nghe… hãy nói “dog”.'), live);
+      micOut.replaceChildren(line('Lần 1: đang nghe… hãy nói “dog”.'), live);
       // Start recognition straight away, inside the tap (some Android builds refuse
       // to start it later), and BEFORE touching the mic ourselves: opening the mic
       // first and closing it can leave it busy for a moment and make this fail.
-      const out = await listenOnce({ timeoutMs: 5000, onEvent: (l) => live.append(h('div', {}, l)) });
-      const trace = h('details', { class: 'p-trace' }, h('summary', {}, `Chi tiết kỹ thuật (${out.trace.ms} ms)`), ...out.trace.events.map((l) => h('div', {}, l)));
+      let out = await listenOnce({ timeoutMs: 8000, mode: 'full', onEvent: (l) => live.append(h('div', {}, l)) });
+      const traces = [h('div', {}, 'Lần 1 (đầy đủ):'), ...out.trace.events.map((l) => h('div', {}, l))];
+      let usedSimple = false;
+
+      // Nothing at all came back? Some Android builds only work with the plain
+      // configuration (no live partial results, one alternative): try that too.
+      if (out.status === 'service' || out.status === 'nothing') {
+        const live2 = h('div', { class: 'p-trace' });
+        micOut.replaceChildren(line('Lần 1 không nghe được. Lần 2 (chế độ đơn giản): hãy nói lại “dog”.'), live2);
+        await new Promise((r) => setTimeout(r, 400));
+        out = await listenOnce({ timeoutMs: 8000, mode: 'simple', onEvent: (l) => live2.append(h('div', {}, l)) });
+        traces.push(h('div', {}, 'Lần 2 (đơn giản):'), ...out.trace.events.map((l) => h('div', {}, l)));
+        usedSimple = true;
+      }
+      const trace = h('details', { class: 'p-trace' }, h('summary', {}, `Chi tiết kỹ thuật (lần cuối ${out.trace.ms} ms)`), ...traces);
 
       if (out.status === 'heard') {
+        update((st) => (st.settings.srMode = usedSimple ? 'simple' : 'full'));
         micBtn.removeAttribute('disabled');
-        micOut.replaceChildren(h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))), trace);
+        micOut.replaceChildren(
+          h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))),
+          ...(usedSimple ? [line('Máy này chỉ chạy được ở chế độ đơn giản. App đã tự chuyển sang chế độ này cho bài học.', 'p-saved')] : []),
+          trace,
+        );
         return;
       }
 
       const msg: Record<Exclude<typeof out.status, 'heard'>, string> = {
         nothing: 'Micro có thu âm thanh nhưng không nghe ra tiếng nói. Nói to, gần máy hơn, rồi thử lại.',
-        service: 'Bộ nhận giọng nói tắt ngay mà không thu được chút âm thanh nào. Thường do dịch vụ giọng nói của Google trên máy bị tắt hoặc cũ.',
+        service: 'Bộ nhận giọng nói đã khởi động nhưng không thu được chút âm thanh nào (đã thử cả 2 chế độ). Thường do dịch vụ giọng nói của Google trên máy bị tắt, cũ, hoặc bị ứng dụng khác giành micro.',
         denied: 'Nhận giọng nói bị chặn quyền micro.',
         nomic: 'Nhận giọng nói không mở được micro (ứng dụng khác đang dùng micro?).',
         offline: 'Nhận giọng nói cần Internet (Chrome gửi âm thanh tới dịch vụ nhận dạng của Google). Hãy bật mạng.',
@@ -327,7 +347,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
           if (out.status === 'nothing') rows.push(line('Micro: trang mở được micro ✓'));
           else {
             rows.push(line('Micro: trang mở được micro ✓ — vậy micro và quyền đều ổn, lỗi nằm ở bộ nhận giọng nói.'));
-            if (out.status === 'service' || out.status === 'error') rows.push(line(SERVICE_HELP));
+            if (out.status === 'service' || out.status === 'error') rows.push(line(SERVICE_HELP), line(GBOARD_TEST));
           }
         } catch (e) {
           const name = (e as Error)?.name || 'Lỗi';

@@ -23,6 +23,14 @@
     start() {
       const mode = window.__voice;
       const fire = (name, arg) => this[name] && this[name](arg);
+      // Like the reporter's Android phone: starts, then hears nothing until stopped
+      // (error "aborted") — but only in the full configuration.
+      if (mode === 'simple-only' && this.interimResults) {
+        this._hung = true;
+        setTimeout(() => fire('onstart'), 7);
+        return;
+      }
+      if (mode === 'simple-only') { window.__voice = 'match'; this.start(); window.__voice = 'simple-only'; return; }
       if (mode === 'broken') {
         setTimeout(() => { fire('onstart'); fire('onerror', { error: 'no-speech' }); fire('onend'); }, 60);
         return;
@@ -41,7 +49,10 @@
         setTimeout(() => fire('onend'), 30);
       }, 120);
     }
-    stop() { setTimeout(() => this.onend && this.onend(), 10); }
+    stop() {
+      if (this._hung) { this._hung = false; setTimeout(() => { this.onerror && this.onerror({ error: 'aborted' }); this.onend && this.onend(); }, 20); return; }
+      setTimeout(() => this.onend && this.onend(), 10);
+    }
     abort() { this.onend && this.onend(); }
   }
   window.webkitSpeechRecognition = FakeRec;

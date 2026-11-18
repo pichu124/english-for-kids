@@ -2,6 +2,8 @@
  * One-shot speech recognition (Chrome: webkitSpeechRecognition).
  * Audio goes only to the browser's own recognizer; we keep nothing but the text.
  */
+import { sfx } from './sfx';
+import { getState } from './storage';
 import { stopSpeaking } from './tts';
 
 type SR = {
@@ -76,18 +78,22 @@ export function listenOnce(opts: {
   onSpeechStart?: () => void;
   /** Called with every recognizer event (for live diagnostics). */
   onEvent?: (line: string) => void;
+  /** Override the saved recognizer mode (the mic test tries both). */
+  mode?: 'full' | 'simple';
 }): Promise<ListenOutcome> {
   const C = ctor();
   if (!C) return Promise.resolve({ status: 'unsupported', trace: { events: [], error: '', gotAudio: false, ms: 0 } });
   cancelListening();
   stopSpeaking();
+  sfx.pause();
+  const mode = opts.mode ?? getState().settings.srMode ?? 'full';
 
   return new Promise((resolve) => {
     const rec = new C();
     active = rec;
     rec.lang = 'en-US';
-    rec.maxAlternatives = 5;
-    rec.interimResults = true;
+    rec.maxAlternatives = mode === 'simple' ? 1 : 5;
+    rec.interimResults = mode !== 'simple';
     rec.continuous = false;
 
     const heard = new Set<string>();
@@ -189,7 +195,7 @@ export function listenOnce(opts: {
 
     try {
       rec.start();
-      log('start() gọi');
+      log(`start() gọi (chế độ ${mode === 'simple' ? 'đơn giản' : 'đầy đủ'})`);
     } catch (err) {
       errorCode = String((err as Error)?.name || 'error');
       log(`start() lỗi: ${errorCode}`);

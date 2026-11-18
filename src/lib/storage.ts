@@ -36,6 +36,9 @@ export type State = {
     dailyLimitMin: number;
     rate: number;
     voiceURI?: string;
+    /** 'simple' = no interim results, 1 alternative. Picked automatically by the
+     *  parent-area mic test on devices where the full mode never hears anything. */
+    srMode?: 'full' | 'simple';
   };
   topics: Record<string, { completed: number; lastDone?: string }>;
   words: Record<string, WordStatus>;

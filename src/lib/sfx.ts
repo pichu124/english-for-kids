@@ -33,6 +33,16 @@ function tone(freq: number, start: number, dur: number, type: OscillatorType = '
 }
 
 export const sfx = {
+  /** Release the audio output while speech recognition listens: on some Android
+   *  devices a running AudioContext stops the speech service from hearing anything.
+   *  The next sound effect resumes it automatically. */
+  pause() {
+    try {
+      if (ctx && ctx.state === 'running') void ctx.suspend();
+    } catch {
+      /* ignore */
+    }
+  },
   /** Call once from a tap so later sounds are allowed. */
   unlock() {
     ac();
