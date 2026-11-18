@@ -1,7 +1,6 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
-import { say } from '../lib/tts';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
 
@@ -16,7 +15,6 @@ export function startScreen(ctx: Ctx): HTMLElement {
       onclick: () => {
         sfx.unlock();
         sfx.tap();
-        void say(' '); // warm up speechSynthesis inside the user gesture
         setCounting(true);
         ctx.go(limitReached() ? 'rest' : 'home');
       },

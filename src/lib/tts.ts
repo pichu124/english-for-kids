@@ -6,6 +6,12 @@ const synth: SpeechSynthesis | undefined =
 
 let voices: SpeechSynthesisVoice[] = [];
 let generation = 0;
+/** Utterances still in flight. Chrome can garbage-collect an utterance mid-speech
+ *  (it then goes silent and never fires `onend`) unless something holds on to it. */
+const live = new Set<SpeechSynthesisUtterance>();
+
+/** What happened to the last line spoken — shown in the parent area to diagnose "no sound". */
+export const lastSpeech: { text: string; voice: string; result: string } = { text: '', voice: '', result: '' };
 
 function loadVoices() {
   if (!synth) return;
@@ -16,16 +22,37 @@ if (synth) {
   synth.addEventListener?.('voiceschanged', loadVoices);
 }
 
+/** Voices load asynchronously in Chrome; wait (briefly) for the first list. */
+function voicesReady(): Promise<void> {
+  if (!synth || voices.length) return Promise.resolve();
+  return new Promise((resolve) => {
+    const t = setTimeout(resolve, 1000);
+    synth.addEventListener?.(
+      'voiceschanged',
+      () => {
+        clearTimeout(t);
+        loadVoices();
+        resolve();
+      },
+      { once: true },
+    );
+  });
+}
+
 export function ttsSupported(): boolean {
   return !!synth;
 }
 
-export function englishVoices(): SpeechSynthesisVoice[] {
+export function allVoices(): SpeechSynthesisVoice[] {
   loadVoices();
-  return voices.filter((v) => v.lang.replace('_', '-').toLowerCase().startsWith('en'));
+  return voices;
 }
 
-function pickVoice(): SpeechSynthesisVoice | undefined {
+export function englishVoices(): SpeechSynthesisVoice[] {
+  return allVoices().filter((v) => v.lang.replace('_', '-').toLowerCase().startsWith('en'));
+}
+
+export function pickVoice(): SpeechSynthesisVoice | undefined {
   const list = englishVoices();
   const wanted = getState().settings.voiceURI;
   if (wanted) {
@@ -45,7 +72,7 @@ function pickVoice(): SpeechSynthesisVoice | undefined {
 export function stopSpeaking(): void {
   generation++;
   try {
-    synth?.cancel();
+    if (synth && (synth.speaking || synth.pending)) synth.cancel();
   } catch {
     /* ignore */
   }
@@ -53,57 +80,71 @@ export function stopSpeaking(): void {
 
 /**
  * Speak text and resolve when done. Always resolves (never rejects) — on some
- * Android builds `onend` never fires, so a length-based timeout backs it up.
+ * devices `onend` never fires, so a length-based timeout backs it up.
  */
 export function say(text: string, opts: { rate?: number; pitch?: number } = {}): Promise<void> {
   const myGen = ++generation;
-  if (!synth) return new Promise((r) => setTimeout(r, 400));
+  if (!synth) {
+    lastSpeech.result = 'Trình duyệt không có giọng đọc';
+    return new Promise((r) => setTimeout(r, 400));
+  }
   return new Promise((resolve) => {
+    const rate = opts.rate ?? getState().settings.rate ?? 0.8;
+    const u = new SpeechSynthesisUtterance(text);
     let done = false;
-    const finish = () => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const finish = (result: string) => {
       if (done) return;
       done = true;
       clearTimeout(timer);
+      live.delete(u);
+      if (lastSpeech.text === text && result) lastSpeech.result = result;
       resolve();
     };
-    const rate = opts.rate ?? getState().settings.rate ?? 0.8;
-    const u = new SpeechSynthesisUtterance(text);
     u.lang = 'en-US';
     u.rate = rate;
     u.pitch = opts.pitch ?? 1.1;
-    try {
-      const v = pickVoice();
-      if (v) u.voice = v;
-    } catch {
-      /* odd voice objects on some devices — fall back to the default voice */
-    }
-    u.onend = finish;
-    u.onerror = finish;
-    const timer = setTimeout(finish, Math.min(12000, 1200 + (text.length * 110) / rate));
-    try {
-      synth.cancel();
-      // Chrome sometimes drops an utterance queued right after cancel().
-      setTimeout(() => {
-        if (myGen !== generation) return finish();
+    u.onstart = () => {
+      if (lastSpeech.text === text) lastSpeech.result = '✓ Đang đọc';
+    };
+    u.onend = () => finish('✓ Đã đọc xong');
+    u.onerror = (e) => finish(`Lỗi: ${(e as SpeechSynthesisErrorEvent).error || 'không rõ'}`);
+
+    const start = () => {
+      if (myGen !== generation) return finish('bị thay bằng câu khác');
+      try {
+        const v = pickVoice();
+        if (v) u.voice = v;
+        lastSpeech.voice = v ? `${v.name} (${v.lang})` : 'giọng mặc định của máy';
+      } catch {
+        lastSpeech.voice = 'giọng mặc định của máy';
+      }
+      lastSpeech.text = text;
+      lastSpeech.result = 'Đã gửi cho trình duyệt, chưa thấy bắt đầu đọc';
+      live.add(u);
+      timer = setTimeout(() => finish(''), Math.min(12000, 1500 + (text.length * 110) / rate));
+      try {
+        synth.resume(); // Chrome can get stuck "paused" (e.g. after the tab was in the background)
+      } catch {
+        /* ignore */
+      }
+      try {
         synth.speak(u);
-      }, 60);
-    } catch {
-      finish();
+      } catch {
+        finish('Lỗi khi gọi speak()');
+      }
+    };
+
+    // Cancel only if something is actually playing: cancel() followed at once by
+    // speak() makes Chrome drop the new line, so leave a short gap in that case.
+    const busy = synth.speaking || synth.pending;
+    if (busy) {
+      try {
+        synth.cancel();
+      } catch {
+        /* ignore */
+      }
     }
+    void voicesReady().then(() => (busy ? setTimeout(start, 120) : start()));
   });
-}
-
-/** Speak several lines in order; stops early if something else starts speaking. */
-export async function sayAll(lines: string[], gapMs = 250): Promise<void> {
-  for (const line of lines) {
-    const before = generation;
-    await say(line);
-    if (generation !== before + 1) return; // interrupted
-    await new Promise((r) => setTimeout(r, gapMs));
-  }
-}
-
-/** Is a sequence started at `gen` still current? */
-export function speechGeneration(): number {
-  return generation;
 }

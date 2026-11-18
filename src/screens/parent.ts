@@ -4,7 +4,8 @@ import { h } from '../lib/dom';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
 import { getState, resetProgress, save, today, update, wordKey, type DayLog } from '../lib/storage';
-import { englishVoices, say, ttsSupported } from '../lib/tts';
+import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
+import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 
@@ -247,6 +248,30 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     window.speechSynthesis?.addEventListener?.('voiceschanged', fillVoices);
     voiceSel.addEventListener('change', () => update((st) => (st.settings.voiceURI = voiceSel.value || undefined)));
 
+    // "No sound?" diagnostics: tells apart a muted tab/speaker from missing voices.
+    const diag = h('div', { class: 'p-mic-out' });
+    const showDiag = (extra = '') => {
+      const all = allVoices();
+      const en = englishVoices();
+      const v = pickVoice();
+      diag.replaceChildren(
+        h('div', {}, ttsSupported() ? `Máy có ${all.length} giọng đọc, trong đó ${en.length} giọng tiếng Anh.` : '⚠️ Trình duyệt này không có giọng đọc.'),
+        h('div', {}, `Đang dùng: ${v ? `${v.name} (${v.lang})` : 'giọng mặc định của máy (không tìm thấy giọng tiếng Anh)'}`),
+        ...(extra ? [h('div', {}, extra)] : []),
+      );
+    };
+    showDiag();
+    window.speechSynthesis?.addEventListener?.('voiceschanged', () => showDiag());
+    const testBtn = h('button', { class: 'p-btn' }, '🔊 Nghe thử giọng đọc');
+    testBtn.addEventListener('click', async () => {
+      testBtn.setAttribute('disabled', '');
+      showDiag('Đang đọc: “This is a dog. Can you say dog?”…');
+      await say('This is a dog. Can you say dog?');
+      testBtn.removeAttribute('disabled');
+      showDiag(`Kết quả: ${lastSpeech.result || '—'} · giọng: ${lastSpeech.voice || '—'}`);
+    });
+    const beepBtn = h('button', { class: 'p-btn', onclick: () => { sfx.unlock(); sfx.success(); } }, '🔔 Thử loa (tiếng chuông)');
+
     const micOut = h('div', { class: 'p-mic-out' }, recognitionSupported() ? 'Bấm “Thử micro”, rồi nói một từ tiếng Anh (ví dụ “dog”).' : '⚠️ Trình duyệt này không có nhận dạng giọng nói. Hãy dùng Chrome trên Android.');
     const micBtn = h('button', { class: 'p-btn' }, '🎤 Thử micro');
     micBtn.addEventListener('click', async () => {
@@ -268,9 +293,10 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     return h(
       'div',
       { class: 'p-stack' },
-      h('label', { class: 'p-row' }, 'Tốc độ đọc', rate, rateLabel, h('button', { class: 'p-btn', onclick: () => void say('This is a dog. Can you say dog?') }, '🔊 Nghe thử')),
+      h('label', { class: 'p-row' }, 'Tốc độ đọc', rate, rateLabel),
       h('label', { class: 'p-row' }, 'Giọng đọc', voiceSel),
-      ttsSupported() ? null : h('p', { class: 'p-warn' }, '⚠️ Trình duyệt không có giọng đọc.'),
+      h('div', { class: 'p-row' }, testBtn, beepBtn),
+      diag,
       h('div', { class: 'p-row' }, micBtn, micOut),
     );
   }

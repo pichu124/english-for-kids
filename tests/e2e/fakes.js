@@ -8,6 +8,8 @@
     getVoices: () => [{ name: 'Fake US', lang: 'en-US', voiceURI: 'fake', localService: true, default: true }],
     addEventListener() {},
     cancel() {},
+    resume() {},
+    pending: false,
     speak(u) {
       window.__spoken.push(u.text);
       setTimeout(() => u.onend && u.onend(), 20);
