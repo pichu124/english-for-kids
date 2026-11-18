@@ -1,0 +1,78 @@
+{
+  "id": "l1-farm",
+  "level": "L1",
+  "topic": "farm",
+  "order": 7,
+  "title": "On the Farm",
+  "titleVi": "Ở nông trại",
+  "icon": "🐷",
+  "color": "#8fd46b",
+  "intro": "Let's visit the farm!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Hay block",
+    "style": "wood",
+    "color": "#e9c46a"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Animals",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "words": [
+    "pig",
+    "sheep",
+    "horse",
+    "goat",
+    {
+      "id": "cow",
+      "sentence": "This is a cow. Moo, moo!"
+    },
+    {
+      "id": "duck",
+      "sentence": "This is a duck. Quack, quack!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Oink like a pig!",
+      "emoji": "🐷"
+    },
+    {
+      "say": "Gallop like a horse!",
+      "emoji": "🐴"
+    },
+    {
+      "say": "Baa like a sheep!",
+      "emoji": "🐑"
+    }
+  ],
+  "chant": {
+    "title": "Farm Chant",
+    "lines": [
+      {
+        "text": "On the farm, what do you see?",
+        "emoji": "🚜"
+      },
+      {
+        "text": "A pig, a sheep, a cow and me!",
+        "emoji": "🐷"
+      },
+      {
+        "text": "Oink, oink! Baa, baa! Moo, moo, moo!",
+        "emoji": "🐑"
+      },
+      {
+        "text": "Neigh, neigh! Quack, quack! How do you do?",
+        "emoji": "🐴"
+      }
+    ]
+  }
+}

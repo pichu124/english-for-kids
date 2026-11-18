@@ -1,0 +1,86 @@
+{
+  "topic": "transport",
+  "words": [
+    {
+      "id": "bus",
+      "text": "bus",
+      "topic": "transport",
+      "image": {
+        "emoji": "🚌"
+      },
+      "sentence": "This is a bus. I go to school by bus.",
+      "accept": [
+        "buses",
+        "bass"
+      ]
+    },
+    {
+      "id": "plane",
+      "text": "plane",
+      "topic": "transport",
+      "image": {
+        "emoji": "✈️"
+      },
+      "sentence": "This is a plane. It can fly.",
+      "accept": [
+        "planes",
+        "plain",
+        "airplane",
+        "aeroplane"
+      ]
+    },
+    {
+      "id": "boat",
+      "text": "boat",
+      "topic": "transport",
+      "image": {
+        "emoji": "⛵"
+      },
+      "sentence": "This is a boat. It is on the water.",
+      "accept": [
+        "boats"
+      ]
+    },
+    {
+      "id": "bike",
+      "text": "bike",
+      "topic": "transport",
+      "image": {
+        "emoji": "🚲"
+      },
+      "sentence": "This is my bike. I can ride it!",
+      "accept": [
+        "bikes",
+        "bicycle"
+      ]
+    },
+    {
+      "id": "helicopter",
+      "text": "helicopter",
+      "topic": "transport",
+      "image": {
+        "emoji": "🚁"
+      },
+      "sentence": "This is a helicopter. It is very loud!",
+      "accept": [
+        "helicopters",
+        "copter",
+        "helicopta"
+      ]
+    },
+    {
+      "id": "motorbike",
+      "text": "motorbike",
+      "topic": "transport",
+      "image": {
+        "emoji": "🏍️"
+      },
+      "sentence": "This is a motorbike. Vroom, vroom!",
+      "accept": [
+        "motorbikes",
+        "motor bike",
+        "motorcycle"
+      ]
+    }
+  ]
+}

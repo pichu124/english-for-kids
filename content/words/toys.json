@@ -80,8 +80,7 @@
       "sentence": "This is a car. Beep beep!",
       "accept": [
         "cars",
-        "cart",
-        "card"
+        "cart"
       ]
     }
   ]

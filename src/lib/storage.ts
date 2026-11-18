@@ -63,6 +63,8 @@ export type State = {
   days: Record<string, DayLog>;
   /** Extra minutes a parent granted today, keyed by date. */
   bonus: Record<string, number>;
+  /** Spaced review: per word key, its box (1–5) and next due date. */
+  review: Record<string, { box: number; due: string }>;
 };
 
 export function defaultState(): State {
@@ -74,6 +76,7 @@ export function defaultState(): State {
     blocks: { inventory: {}, placed: [], totalEarned: 0 },
     days: {},
     bonus: {},
+    review: {},
   };
 }
 
@@ -90,6 +93,7 @@ function load(): State {
       ...parsed,
       settings: { ...base.settings, ...(parsed.settings ?? {}) },
       blocks: { ...base.blocks, ...(parsed.blocks ?? {}) },
+      review: parsed.review ?? {},
     };
   } catch {
     return base;

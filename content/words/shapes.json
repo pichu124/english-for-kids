@@ -1,0 +1,71 @@
+{
+  "topic": "shapes",
+  "words": [
+    {
+      "id": "circle",
+      "text": "circle",
+      "topic": "shapes",
+      "image": {
+        "emoji": "🔵"
+      },
+      "sentence": "This is a circle. It's round!",
+      "accept": [
+        "circles",
+        "cercle",
+        "circo"
+      ]
+    },
+    {
+      "id": "square",
+      "text": "square",
+      "topic": "shapes",
+      "image": {
+        "emoji": "🟦"
+      },
+      "sentence": "This is a square.",
+      "accept": [
+        "squares",
+        "sqware"
+      ]
+    },
+    {
+      "id": "triangle",
+      "text": "triangle",
+      "topic": "shapes",
+      "image": {
+        "emoji": "🔺"
+      },
+      "sentence": "This is a triangle.",
+      "accept": [
+        "triangles",
+        "try angle"
+      ]
+    },
+    {
+      "id": "star",
+      "text": "star",
+      "topic": "shapes",
+      "image": {
+        "emoji": "⭐"
+      },
+      "sentence": "This is a star. Twinkle, twinkle!",
+      "accept": [
+        "stars",
+        "starr"
+      ]
+    },
+    {
+      "id": "heart",
+      "text": "heart",
+      "topic": "shapes",
+      "image": {
+        "emoji": "❤️"
+      },
+      "sentence": "This is a heart. I love you!",
+      "accept": [
+        "hearts",
+        "hart"
+      ]
+    }
+  ]
+}

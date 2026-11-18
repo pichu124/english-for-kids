@@ -1,0 +1,80 @@
+{
+  "topic": "world",
+  "words": [
+    {
+      "id": "sun",
+      "text": "sun",
+      "topic": "world",
+      "image": {
+        "emoji": "☀️"
+      },
+      "sentence": "This is the sun. It is hot!",
+      "accept": []
+    },
+    {
+      "id": "tree",
+      "text": "tree",
+      "topic": "world",
+      "image": {
+        "emoji": "🌳"
+      },
+      "sentence": "This is a tree. It is tall.",
+      "accept": [
+        "trees",
+        "tee"
+      ]
+    },
+    {
+      "id": "flower",
+      "text": "flower",
+      "topic": "world",
+      "image": {
+        "emoji": "🌸"
+      },
+      "sentence": "This is a flower. It is pink.",
+      "accept": [
+        "flowers",
+        "flour"
+      ]
+    },
+    {
+      "id": "sea",
+      "text": "sea",
+      "topic": "world",
+      "image": {
+        "emoji": "🌊"
+      },
+      "sentence": "This is the sea. I can swim in the sea!",
+      "accept": [
+        "seas",
+        "sees"
+      ]
+    },
+    {
+      "id": "beach",
+      "text": "beach",
+      "topic": "world",
+      "image": {
+        "emoji": "🏖️"
+      },
+      "sentence": "This is the beach. I like the beach!",
+      "accept": [
+        "beaches"
+      ]
+    },
+    {
+      "id": "water",
+      "text": "water",
+      "topic": "world",
+      "image": {
+        "emoji": "💧"
+      },
+      "sentence": "This is water. I drink water.",
+      "accept": [
+        "waters",
+        "wata",
+        "wader"
+      ]
+    }
+  ]
+}

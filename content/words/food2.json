@@ -1,0 +1,83 @@
+{
+  "topic": "food2",
+  "words": [
+    {
+      "id": "bread",
+      "text": "bread",
+      "topic": "food2",
+      "image": {
+        "emoji": "🍞"
+      },
+      "sentence": "This is bread. I like bread!",
+      "accept": [
+        "bred",
+        "breads"
+      ]
+    },
+    {
+      "id": "rice",
+      "text": "rice",
+      "topic": "food2",
+      "image": {
+        "emoji": "🍚"
+      },
+      "sentence": "This is rice. Yummy rice!",
+      "accept": [
+        "rices"
+      ]
+    },
+    {
+      "id": "chicken",
+      "text": "chicken",
+      "topic": "food2",
+      "image": {
+        "emoji": "🍗"
+      },
+      "sentence": "This is chicken. I like chicken!",
+      "accept": [
+        "chickens",
+        "chiken"
+      ]
+    },
+    {
+      "id": "juice",
+      "text": "juice",
+      "topic": "food2",
+      "image": {
+        "emoji": "🧃"
+      },
+      "sentence": "This is juice. I like orange juice!",
+      "accept": [
+        "juices",
+        "juse"
+      ]
+    },
+    {
+      "id": "carrot",
+      "text": "carrot",
+      "topic": "food2",
+      "image": {
+        "emoji": "🥕"
+      },
+      "sentence": "This is a carrot. It is orange.",
+      "accept": [
+        "carrots",
+        "carot",
+        "carat"
+      ]
+    },
+    {
+      "id": "tomato",
+      "text": "tomato",
+      "topic": "food2",
+      "image": {
+        "emoji": "🍅"
+      },
+      "sentence": "This is a tomato. It is red.",
+      "accept": [
+        "tomatoes",
+        "tomahto"
+      ]
+    }
+  ]
+}

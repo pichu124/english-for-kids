@@ -15,6 +15,8 @@ export type LessonUI = {
   /** Small area under the stage for the parent fallback buttons. */
   parentBar: HTMLElement;
   setStep(i: number): void;
+  /** Called after each tap-game round (review sessions update their schedule). */
+  onPlayResult?: (w: Word, firstTry: boolean) => void;
   tick(): void;
   /** Throw Aborted if the child left the lesson. */
   guard(): void;
@@ -27,7 +29,7 @@ export type LessonUI = {
   talk(text: string, after?: Parameters<Bix['talk']>[1], bubble?: string): Promise<void>;
 };
 
-export function makeUI(base: Omit<LessonUI, 'guard' | 'tap' | 'tapAny' | 'pause' | 'talk'>): LessonUI {
+export function makeUI(base: Omit<LessonUI, 'guard' | 'tap' | 'tapAny' | 'pause' | 'talk' | 'onPlayResult'> & Pick<Partial<LessonUI>, 'onPlayResult'>): LessonUI {
   const pending = new Set<(e: Error) => void>();
   base.ctx.onCleanup(() => pending.forEach((rej) => rej(new Aborted())));
   const guard = () => {
@@ -72,6 +74,9 @@ export function makeUI(base: Omit<LessonUI, 'guard' | 'tap' | 'tapAny' | 'pause'
 
 /** The picture for a word: a big emoji, or a voxel cube in the word's color. */
 export function wordPicture(w: Word, cls = ''): HTMLElement {
+  if (w.image.text) {
+    return h('div', { class: `pic pic-text ${cls}`, 'aria-hidden': 'true' }, h('span', {}, w.image.text));
+  }
   if (w.image.color) {
     return h('div', { class: `pic pic-color ${cls}` }, fromHTML(isoCube(w.image.color)));
   }

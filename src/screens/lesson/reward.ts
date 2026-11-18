@@ -2,6 +2,7 @@ import { blockSVG } from '../../art/blocks';
 import { fromHTML, h } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
 import { dayLog, today, update } from '../../lib/storage';
+import { scheduleUnit } from '../../lib/review';
 import { confetti } from '../widgets';
 import type { LessonUI } from './shared';
 
@@ -16,6 +17,7 @@ export async function runReward(ui: LessonUI): Promise<void> {
     s.blocks.totalEarned++;
     dayLog().lessons++;
   });
+  scheduleUnit(t);
 
   const block = h('div', { class: 'reward-block' }, fromHTML(blockSVG(t.block.style, t.block.color)));
   const chest = h('div', { class: 'reward-chest', 'aria-hidden': 'true' }, h('div', { class: 'chest-lid' }), h('div', { class: 'chest-box' }));
@@ -36,4 +38,18 @@ export async function runReward(ui: LessonUI): Promise<void> {
   const tapped = await ui.tapAny([world, home]);
   sfx.tap();
   ui.ctx.go(tapped === world ? 'world' : 'home', tapped === world ? { fresh: t.id } : {});
+}
+
+/** End of a review session: no block, just a big star and back home. */
+export async function runReviewReward(ui: LessonUI): Promise<void> {
+  update(() => dayLog().lessons++);
+  const star = h('div', { class: 'review-star pop', 'aria-hidden': 'true' }, '🌟');
+  const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home' }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
+  ui.stage.replaceChildren(h('div', { class: 'reward' }, star, h('div', { class: 'reward-name' }, 'Great remembering!'), h('div', { class: 'reward-actions' }, home)));
+  sfx.reward();
+  confetti(document.body, 30);
+  await ui.talk('Great remembering! You are a star!', 'happy', 'You are a star!');
+  await ui.tap(home);
+  sfx.tap();
+  ui.ctx.go('home');
 }

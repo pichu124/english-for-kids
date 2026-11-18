@@ -1,0 +1,53 @@
+{
+  "id": "l1-feelings",
+  "level": "L1",
+  "topic": "feelings",
+  "order": 6,
+  "title": "Feelings",
+  "titleVi": "Cảm xúc",
+  "icon": "😀",
+  "color": "#9be06a",
+  "intro": "How do you feel today?",
+  "playPrompt": "Who is {word}?",
+  "block": {
+    "name": "Smile block",
+    "style": "gold",
+    "color": "#ffd23f"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Feelings",
+    "monHoc": "Personal, Social and Emotional Development"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    "happy",
+    "sad",
+    "angry",
+    "scared",
+    "tired"
+  ],
+  "actions": [
+    {
+      "say": "Show me a happy face!",
+      "emoji": "😀"
+    },
+    {
+      "say": "Show me a sad face!",
+      "emoji": "😢"
+    },
+    {
+      "say": "Show me an angry face! Grr!",
+      "emoji": "😠"
+    },
+    {
+      "say": "Stretch and yawn!",
+      "emoji": "🥱"
+    }
+  ]
+}

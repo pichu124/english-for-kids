@@ -129,3 +129,5 @@
 .map-many::-webkit-scrollbar { display: none; }
 .map-many .island { flex: 0 0 auto; width: clamp(150px, 20vw, 220px); scroll-snap-align: center; }
 .map-many .map-path { left: 0; right: auto; width: calc(var(--n, 10) * 26vw); }
+.island-review .island-name { background: var(--sun); }
+.island-review .island-icon { animation: pulse 1.4s ease-in-out infinite; }

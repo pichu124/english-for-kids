@@ -1,0 +1,86 @@
+{
+  "topic": "zoo",
+  "words": [
+    {
+      "id": "elephant",
+      "text": "elephant",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🐘"
+      },
+      "sentence": "This is an elephant. It is very big!",
+      "accept": [
+        "elephants",
+        "elefant"
+      ]
+    },
+    {
+      "id": "giraffe",
+      "text": "giraffe",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🦒"
+      },
+      "sentence": "This is a giraffe. It has a long neck.",
+      "accept": [
+        "giraffes",
+        "giraf",
+        "jiraf"
+      ]
+    },
+    {
+      "id": "monkey",
+      "text": "monkey",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🐒"
+      },
+      "sentence": "This is a monkey. It can climb!",
+      "accept": [
+        "monkeys",
+        "monkee"
+      ]
+    },
+    {
+      "id": "tiger",
+      "text": "tiger",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🐯"
+      },
+      "sentence": "This is a tiger. Roar!",
+      "accept": [
+        "tigers",
+        "tiga",
+        "tigger"
+      ]
+    },
+    {
+      "id": "zebra",
+      "text": "zebra",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🦓"
+      },
+      "sentence": "This is a zebra. It is black and white.",
+      "accept": [
+        "zebras",
+        "zibra"
+      ]
+    },
+    {
+      "id": "crocodile",
+      "text": "crocodile",
+      "topic": "zoo",
+      "image": {
+        "emoji": "🐊"
+      },
+      "sentence": "This is a crocodile. Snap, snap!",
+      "accept": [
+        "crocodiles",
+        "croc",
+        "crocodail"
+      ]
+    }
+  ]
+}

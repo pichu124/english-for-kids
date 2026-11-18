@@ -1,0 +1,60 @@
+{
+  "id": "l0-weather",
+  "level": "L0",
+  "topic": "weather",
+  "order": 5,
+  "title": "Sunny & Rainy",
+  "titleVi": "Nắng và mưa",
+  "icon": "🌦️",
+  "color": "#b8e05a",
+  "intro": "What's the weather like today?",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Cloud block",
+    "style": "plain",
+    "color": "#cfe8ff"
+  },
+  "casa": {
+    "luaTuoi": "3-4",
+    "chuDe": "Weather",
+    "monHoc": "Understanding the World"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "sun",
+      "sentence": "Hello, sun! It's hot!"
+    },
+    {
+      "id": "rain",
+      "sentence": "Drip, drop! Rain!"
+    },
+    {
+      "id": "snow",
+      "sentence": "Brr! Snow! It's cold!"
+    },
+    {
+      "id": "wind",
+      "sentence": "Whoosh! Wind!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Make rain with your fingers! Drip, drop!",
+      "emoji": "🌧️"
+    },
+    {
+      "say": "Blow like the wind! Whoosh!",
+      "emoji": "💨"
+    },
+    {
+      "say": "Brr! Shake, shake! It's cold!",
+      "emoji": "❄️"
+    }
+  ]
+}

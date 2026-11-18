@@ -1,0 +1,45 @@
+{
+  "id": "l2-zoo",
+  "level": "L2",
+  "topic": "zoo",
+  "order": 13,
+  "title": "Zoo Animals",
+  "titleVi": "Thú ở sở thú",
+  "icon": "🦒",
+  "color": "#8fd46b",
+  "intro": "Welcome to the zoo!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Jungle block",
+    "style": "grass",
+    "color": "#2e9d4a"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Animals",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "elephant",
+    "giraffe",
+    "monkey",
+    "tiger",
+    "zebra",
+    "crocodile"
+  ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Zoo Chant",
+    "lines": [
+      "Elephant, elephant, big and grey,",
+      "Monkey, monkey, come and play!",
+      "Tiger, tiger, roar, roar, roar!",
+      "Crocodile, crocodile, snap, snap, snap!"
+    ]
+  }
+}

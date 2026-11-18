@@ -1,0 +1,29 @@
+{
+  "id": "l2-colours2",
+  "level": "L2",
+  "topic": "colours2",
+  "order": 17,
+  "title": "More Colours",
+  "titleVi": "Thêm màu sắc",
+  "icon": "🎨",
+  "color": "#8fd46b",
+  "intro": "More colours! Let's look!",
+  "playPrompt": "Touch {word}!",
+  "block": {
+    "name": "Rainbow block 2",
+    "style": "rainbow",
+    "color": "#ffffff"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Colours",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "black",
+    "white",
+    "brown",
+    "grey",
+    "purple"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "l1-shapes",
+  "level": "L1",
+  "topic": "shapes",
+  "order": 5,
+  "title": "Shapes",
+  "titleVi": "Hình khối",
+  "icon": "🔺",
+  "color": "#a6dd5c",
+  "intro": "Look! Shapes everywhere!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Shape block",
+    "style": "plain",
+    "color": "#4cc9f0"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Shapes",
+    "monHoc": "Mathematics"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    "circle",
+    "square",
+    "triangle",
+    "star",
+    "heart"
+  ],
+  "actions": [
+    {
+      "say": "Draw a circle in the air!",
+      "emoji": "⭕"
+    },
+    {
+      "say": "Make a big star with your body!",
+      "emoji": "⭐"
+    },
+    {
+      "say": "Make a heart with your hands!",
+      "emoji": "❤️"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "topic": "weather",
+  "words": [
+    {
+      "id": "rain",
+      "text": "rain",
+      "topic": "weather",
+      "image": {
+        "emoji": "🌧️"
+      },
+      "sentence": "It's raining. I can see the rain.",
+      "accept": [
+        "rains",
+        "rainy"
+      ]
+    },
+    {
+      "id": "snow",
+      "text": "snow",
+      "topic": "weather",
+      "image": {
+        "emoji": "❄️"
+      },
+      "sentence": "This is snow. It's cold!",
+      "accept": [
+        "snows",
+        "snowy",
+        "snoh"
+      ]
+    },
+    {
+      "id": "wind",
+      "text": "wind",
+      "topic": "weather",
+      "image": {
+        "emoji": "💨"
+      },
+      "sentence": "This is the wind. Whoosh!",
+      "accept": [
+        "winds",
+        "windy"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
 import { topicsOfLevel } from '../content';
 import { currentLevel } from '../lib/level';
+import { buildReview, REVIEW_ID } from '../lib/review';
 import { fromHTML, h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
 import { getState } from '../lib/storage';
@@ -52,6 +53,28 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     return btn;
   });
 
+  // Words due for review: a special island first on the map.
+  const review = buildReview(level.id);
+  if (review) {
+    islands.unshift(
+      h(
+        'button',
+        {
+          class: 'island island-review',
+          style: '--i:0',
+          'aria-label': 'Review',
+          onclick: () => {
+            sfx.tap();
+            ctx.go('lesson', { topic: REVIEW_ID });
+          },
+        },
+        fromHTML(islandSVG('#ffd166')),
+        h('span', { class: 'island-icon', 'aria-hidden': 'true' }, '🔁'),
+        h('span', { class: 'island-name' }, `Review · ${review.topic.words.length}`),
+      ),
+    );
+  }
+
   const totalBlocks = s.blocks.totalEarned;
   const world = h(
     'button',
@@ -72,7 +95,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'home' },
     h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), world, parentButton(ctx)),
-    h('section', { class: `map map-n${Math.min(topics.length, 6)} ${topics.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
+    h('section', { class: `map map-n${Math.min(topics.length, 6)} ${islands.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
     h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),
   );
 

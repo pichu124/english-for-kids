@@ -1,0 +1,71 @@
+{
+  "topic": "feelings",
+  "words": [
+    {
+      "id": "happy",
+      "text": "happy",
+      "topic": "feelings",
+      "image": {
+        "emoji": "😀"
+      },
+      "sentence": "I'm happy! Ha, ha, ha!",
+      "accept": [
+        "happi",
+        "heppy"
+      ]
+    },
+    {
+      "id": "sad",
+      "text": "sad",
+      "topic": "feelings",
+      "image": {
+        "emoji": "😢"
+      },
+      "sentence": "I'm sad. Boo hoo.",
+      "accept": [
+        "sadd",
+        "saad"
+      ]
+    },
+    {
+      "id": "angry",
+      "text": "angry",
+      "topic": "feelings",
+      "image": {
+        "emoji": "😠"
+      },
+      "sentence": "I'm angry! Grr!",
+      "accept": [
+        "angri",
+        "angery"
+      ]
+    },
+    {
+      "id": "scared",
+      "text": "scared",
+      "topic": "feelings",
+      "image": {
+        "emoji": "😨"
+      },
+      "sentence": "I'm scared! Oh dear!",
+      "accept": [
+        "scare",
+        "scary",
+        "skaird"
+      ]
+    },
+    {
+      "id": "tired",
+      "text": "tired",
+      "topic": "feelings",
+      "image": {
+        "emoji": "🥱"
+      },
+      "sentence": "I'm tired. Yawn!",
+      "accept": [
+        "tire",
+        "tyred"
+      ]
+    }
+  ]
+}

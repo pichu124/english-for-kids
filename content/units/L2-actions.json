@@ -1,0 +1,72 @@
+{
+  "id": "l2-actions",
+  "level": "L2",
+  "topic": "actions",
+  "order": 15,
+  "title": "Actions",
+  "titleVi": "Hành động",
+  "icon": "🏃",
+  "color": "#b8e05a",
+  "intro": "Stand up! Let's move!",
+  "playPrompt": "Who can {word}?",
+  "block": {
+    "name": "Action block",
+    "style": "plain",
+    "color": "#ff595e"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Sports & leisure",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "run",
+      "play": "Who is running?"
+    },
+    {
+      "id": "jump",
+      "play": "Who is jumping?"
+    },
+    {
+      "id": "swim",
+      "play": "Who is swimming?"
+    },
+    {
+      "id": "dance",
+      "play": "Who is dancing?"
+    },
+    {
+      "id": "sing",
+      "play": "Who is singing?"
+    },
+    {
+      "id": "sleep",
+      "play": "Who is sleeping?"
+    }
+  ],
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "actions": [
+    {
+      "say": "Run fast! Run, run, run!",
+      "emoji": "🏃"
+    },
+    {
+      "say": "Jump up high!",
+      "emoji": "🤸"
+    },
+    {
+      "say": "Swim, swim, swim!",
+      "emoji": "🏊"
+    },
+    {
+      "say": "Dance, dance, dance!",
+      "emoji": "💃"
+    }
+  ]
+}

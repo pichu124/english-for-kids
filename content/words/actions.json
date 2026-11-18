@@ -1,0 +1,88 @@
+{
+  "topic": "actions",
+  "words": [
+    {
+      "id": "run",
+      "text": "run",
+      "topic": "actions",
+      "image": {
+        "emoji": "🏃"
+      },
+      "sentence": "I can run. Run, run, run!",
+      "accept": [
+        "runs",
+        "ran",
+        "running",
+        "rum"
+      ]
+    },
+    {
+      "id": "jump",
+      "text": "jump",
+      "topic": "actions",
+      "image": {
+        "emoji": "🤸"
+      },
+      "sentence": "I can jump. Jump, jump, jump!",
+      "accept": [
+        "jumps",
+        "jumping",
+        "jam"
+      ]
+    },
+    {
+      "id": "swim",
+      "text": "swim",
+      "topic": "actions",
+      "image": {
+        "emoji": "🏊"
+      },
+      "sentence": "I can swim in the sea.",
+      "accept": [
+        "swims",
+        "swimming",
+        "svim"
+      ]
+    },
+    {
+      "id": "dance",
+      "text": "dance",
+      "topic": "actions",
+      "image": {
+        "emoji": "💃"
+      },
+      "sentence": "I can dance. Look at me!",
+      "accept": [
+        "dances",
+        "dancing",
+        "dans"
+      ]
+    },
+    {
+      "id": "sing",
+      "text": "sing",
+      "topic": "actions",
+      "image": {
+        "emoji": "🎤"
+      },
+      "sentence": "I can sing. La, la, la!",
+      "accept": [
+        "sings",
+        "singing"
+      ]
+    },
+    {
+      "id": "sleep",
+      "text": "sleep",
+      "topic": "actions",
+      "image": {
+        "emoji": "😴"
+      },
+      "sentence": "I can sleep. Good night!",
+      "accept": [
+        "sleeps",
+        "sleeping"
+      ]
+    }
+  ]
+}

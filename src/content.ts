@@ -48,7 +48,7 @@ export type Word = {
   /** What the child should say (and what is shown). */
   text: string;
   /** Picture: an emoji, or a color swatch (for color words). */
-  image: { emoji?: string; color?: string };
+  image: { emoji?: string; color?: string; text?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
@@ -90,6 +90,8 @@ export type Topic = {
   playPrompt: string;
   block: { name: string; style: BlockStyle; color: string };
   steps: StepType[];
+  /** Rounds of the tap game, if different from the level's default (review sessions). */
+  playRounds?: number;
   actions: Action[];
   chant?: Chant;
   casa?: CasaLink;
@@ -132,8 +134,8 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ sai cấu trúc: ${JSON.stringify(w)}`);
       continue;
     }
-    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string')) {
-      problem(file, `từ "${w.id}" cần image.emoji hoặc image.color`);
+    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string')) {
+      problem(file, `từ "${w.id}" cần image.emoji, image.color hoặc image.text`);
       continue;
     }
     if (bank.has(w.id)) problem(file, `id từ "${w.id}" bị trùng`);

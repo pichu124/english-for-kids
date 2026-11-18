@@ -56,33 +56,46 @@ deploy/             tệp Caddy cho VPS
 vercel.json         (cách khác) cấu hình Vercel
 ```
 
-## Thêm chủ đề mới (không cần sửa code)
+## Thêm bài học mới (không cần sửa code)
 
-Tạo file `content/06-tên.json` rồi build lại. Mẫu:
+Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến độ nằm ở `docs/KE-HOACH-NOI-DUNG-CAMBRIDGE.md`.
+
+- `content/words/<chủ-đề>.json`: **ngân hàng từ**. Mỗi từ khai một lần, dùng lại được ở nhiều bậc và nhiều bài.
+- `content/units/<Bậc>-<chủ-đề>.json`: **một bài (Unit)** ở một bậc, liệt kê id các từ.
 
 ```json
 {
-  "id": "toys",
-  "order": 6,
-  "title": "Toys",
-  "titleVi": "Đồ chơi",
-  "icon": "🧸",
+  "id": "l1-farm",
+  "level": "L1",
+  "topic": "farm",
+  "order": 7,
+  "title": "On the Farm",
+  "titleVi": "Ở nông trại",
+  "icon": "🐷",
   "color": "#8fd46b",
-  "intro": "Let's play with toys!",
-  "playPrompt": "Where is the {word}?",
-  "block": { "name": "Wood block", "style": "wood", "color": "#c98b52" },
-  "words": [
-    { "id": "ball", "text": "ball", "image": { "emoji": "⚽" }, "sentence": "This is a ball.", "accept": ["bowl", "balls"] }
-  ]
+  "intro": "Let's visit the farm!",
+  "playPrompt": "Where's the {word}?",
+  "block": { "name": "Hay block", "style": "wood", "color": "#e9c46a" },
+  "casa": { "luaTuoi": "4-5", "chuDe": "Animals", "monHoc": "Communication and Language" },
+  "steps": ["listen", "do-it", "say", "tap-picture", "chant"],
+  "words": ["pig", "sheep", { "id": "cow", "sentence": "This is a cow. Moo, moo!" }],
+  "actions": [{ "say": "Oink like a pig!", "emoji": "🐷" }],
+  "chant": { "title": "Farm Chant", "lines": ["On the farm, what do you see?", "A pig, a sheep, a cow and me!"] }
 }
 ```
 
-- `image`: `{ "emoji": "…" }` hoặc `{ "color": "#rrggbb" }` (vẽ khối màu, dùng cho từ chỉ màu).
-- `accept`: những cách máy hay nghe nhầm mà vẫn tính là đúng (ví dụ `mom` cho `mum`).
-- `ask` (tuỳ chọn): câu hỏi ở bước Nói, mặc định là “Can you say {text}?”.
-- `play` (tuỳ chọn): câu hỏi riêng của từ này ở bước Chơi.
-- `block.style`: một trong `grass, brick, rainbow, cake, window, wood, stone, gold, plain`.
-- Mỗi chủ đề cần ít nhất 3 từ (nên có 6). File sai cấu trúc sẽ bị bỏ qua, có cảnh báo trong console.
+**Các trường:**
+- **`level`**: `L0` (3–4 tuổi, không hiện chữ), `L1` (4–5), `L2` (Starters 5–7), `L3` (Movers), `L4` (Flyers). `casa.luaTuoi` phải khớp bậc: `3-4`, `4-5`, `5-6`.
+- **`steps`**: thứ tự hoạt động. `listen` (nghe), `say` (nói), `tap-picture` (chọn hình), `do-it` (làm theo lệnh, cần `actions`), `chant` (vè, cần `chant`).
+- **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
+- **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).
+- **`accept`**: những cách máy hay nghe nhầm mà vẫn tính là đúng. **Không** đưa từ thông dụng (no, and, here, son…) hay một từ khác trong cùng bài vào đây. Bộ test sẽ chặn.
+- **`block.style`**: `grass, brick, rainbow, cake, window, wood, stone, gold, plain`.
+- **Id của bài và của từ không bao giờ đổi**, vì tiến độ của bé gắn với chúng.
+
+**Kiểm tra:** `npm test` báo lỗi nếu thiếu từ, câu mẫu không chứa từ cần học, lứa không khớp casa, hoặc từ chấp nhận dễ nhầm.
+
+**Link mở thẳng một bài** (dùng trong casa-mamnon): `https://<tên-miền>/?unit=<id>`. Danh mục mọi bài: `https://<tên-miền>/catalog.json`.
 
 ## Cách chấm điểm phần Nói
 

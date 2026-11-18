@@ -1,0 +1,30 @@
+{
+  "id": "l2-food2",
+  "level": "L2",
+  "topic": "food2",
+  "order": 18,
+  "title": "Food & Drink",
+  "titleVi": "Đồ ăn & uống",
+  "icon": "🍞",
+  "color": "#a6dd5c",
+  "intro": "Lunch time! What do you like?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Lunch block",
+    "style": "cake",
+    "color": "#f4a261"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food & drink",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "bread",
+    "rice",
+    "chicken",
+    "juice",
+    "carrot",
+    "tomato"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "topic": "colours2",
+  "words": [
+    {
+      "id": "black",
+      "text": "black",
+      "topic": "colours2",
+      "image": {
+        "color": "#2b2d42"
+      },
+      "sentence": "This block is black.",
+      "accept": [
+        "blak",
+        "blacks"
+      ]
+    },
+    {
+      "id": "white",
+      "text": "white",
+      "topic": "colours2",
+      "image": {
+        "color": "#ffffff"
+      },
+      "sentence": "This block is white.",
+      "accept": [
+        "whyte",
+        "whites"
+      ]
+    },
+    {
+      "id": "brown",
+      "text": "brown",
+      "topic": "colours2",
+      "image": {
+        "color": "#8d5524"
+      },
+      "sentence": "This block is brown.",
+      "accept": [
+        "browns",
+        "brawn"
+      ]
+    },
+    {
+      "id": "grey",
+      "text": "grey",
+      "topic": "colours2",
+      "image": {
+        "color": "#9e9e9e"
+      },
+      "sentence": "This block is grey.",
+      "accept": [
+        "gray",
+        "greys"
+      ]
+    },
+    {
+      "id": "purple",
+      "text": "purple",
+      "topic": "colours2",
+      "image": {
+        "color": "#8e44ad"
+      },
+      "sentence": "This block is purple.",
+      "accept": [
+        "purples",
+        "purpel"
+      ]
+    }
+  ]
+}

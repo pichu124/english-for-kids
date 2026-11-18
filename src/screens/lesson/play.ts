@@ -10,7 +10,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
   await ui.talk("Let's play a game! Listen and touch.", 'happy', "Let's play!");
 
   const words = ui.topic.words;
-  const PLAY_ROUNDS = ui.level.playRounds;
+  const PLAY_ROUNDS = ui.topic.playRounds ?? ui.level.playRounds;
   // Each word once (repeat if a topic has fewer than 6 words).
   let order: Word[] = [];
   while (order.length < PLAY_ROUNDS) order = order.concat(shuffle(words));
@@ -46,6 +46,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
         cards.forEach((c) => c !== tapped && c.classList.add('is-faded'));
         stars.children[round]?.classList.add('on');
         confetti(document.body, 14);
+        ui.onPlayResult?.(target, misses === 0);
         await ui.talk(`${pick(PRAISE)} ${target.text}!`, 'happy');
         await ui.pause(500);
         break;

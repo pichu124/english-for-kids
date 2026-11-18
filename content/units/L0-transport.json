@@ -1,0 +1,60 @@
+{
+  "id": "l0-transport",
+  "level": "L0",
+  "topic": "transport",
+  "order": 6,
+  "title": "Go, Go, Go!",
+  "titleVi": "Đi nào!",
+  "icon": "🚗",
+  "color": "#9be06a",
+  "intro": "Let's go for a ride!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Wheel block",
+    "style": "stone",
+    "color": "#adb5bd"
+  },
+  "casa": {
+    "luaTuoi": "3-4",
+    "chuDe": "Transport",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "car",
+      "sentence": "Vroom, vroom! A car!"
+    },
+    {
+      "id": "bus",
+      "sentence": "Honk, honk! A bus!"
+    },
+    {
+      "id": "boat",
+      "sentence": "Splash, splash! A boat!"
+    },
+    {
+      "id": "plane",
+      "sentence": "Zoom, zoom! A plane!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Drive a car! Vroom, vroom!",
+      "emoji": "🚗"
+    },
+    {
+      "say": "Fly like a plane! Zoom!",
+      "emoji": "✈️"
+    },
+    {
+      "say": "Row your boat! Row, row!",
+      "emoji": "🚣"
+    }
+  ]
+}

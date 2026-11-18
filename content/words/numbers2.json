@@ -1,0 +1,125 @@
+{
+  "topic": "numbers2",
+  "words": [
+    {
+      "id": "eleven",
+      "text": "eleven",
+      "topic": "numbers2",
+      "image": {
+        "text": "11"
+      },
+      "sentence": "This is number eleven.",
+      "accept": [
+        "11"
+      ]
+    },
+    {
+      "id": "twelve",
+      "text": "twelve",
+      "topic": "numbers2",
+      "image": {
+        "text": "12"
+      },
+      "sentence": "This is number twelve.",
+      "accept": [
+        "12"
+      ]
+    },
+    {
+      "id": "thirteen",
+      "text": "thirteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "13"
+      },
+      "sentence": "This is number thirteen.",
+      "accept": [
+        "13"
+      ]
+    },
+    {
+      "id": "fourteen",
+      "text": "fourteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "14"
+      },
+      "sentence": "This is number fourteen.",
+      "accept": [
+        "14"
+      ]
+    },
+    {
+      "id": "fifteen",
+      "text": "fifteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "15"
+      },
+      "sentence": "This is number fifteen.",
+      "accept": [
+        "15"
+      ]
+    },
+    {
+      "id": "sixteen",
+      "text": "sixteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "16"
+      },
+      "sentence": "This is number sixteen.",
+      "accept": [
+        "16"
+      ]
+    },
+    {
+      "id": "seventeen",
+      "text": "seventeen",
+      "topic": "numbers2",
+      "image": {
+        "text": "17"
+      },
+      "sentence": "This is number seventeen.",
+      "accept": [
+        "17"
+      ]
+    },
+    {
+      "id": "eighteen",
+      "text": "eighteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "18"
+      },
+      "sentence": "This is number eighteen.",
+      "accept": [
+        "18"
+      ]
+    },
+    {
+      "id": "nineteen",
+      "text": "nineteen",
+      "topic": "numbers2",
+      "image": {
+        "text": "19"
+      },
+      "sentence": "This is number nineteen.",
+      "accept": [
+        "19"
+      ]
+    },
+    {
+      "id": "twenty",
+      "text": "twenty",
+      "topic": "numbers2",
+      "image": {
+        "text": "20"
+      },
+      "sentence": "This is number twenty.",
+      "accept": [
+        "20"
+      ]
+    }
+  ]
+}

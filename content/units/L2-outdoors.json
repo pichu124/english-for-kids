@@ -1,0 +1,30 @@
+{
+  "id": "l2-outdoors",
+  "level": "L2",
+  "topic": "outdoors",
+  "order": 14,
+  "title": "Outdoors",
+  "titleVi": "Ngoài trời",
+  "icon": "🌳",
+  "color": "#a6dd5c",
+  "intro": "Let's go outside!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Flower block",
+    "style": "plain",
+    "color": "#ff8fab"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The world around us",
+    "monHoc": "Understanding the World"
+  },
+  "words": [
+    "sun",
+    "tree",
+    "flower",
+    "sea",
+    "beach",
+    "water"
+  ]
+}

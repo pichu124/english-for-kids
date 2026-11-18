@@ -2,6 +2,9 @@ import { Bix } from '../../art/bix';
 import { levelById, topicById, type StepType } from '../../content';
 import { h } from '../../lib/dom';
 import { limitReached } from '../../lib/usage';
+import { currentLevel } from '../../lib/level';
+import { buildReview, recordReview, REVIEW_ID } from '../../lib/review';
+import { runReviewReward } from './reward';
 import type { Ctx } from '../../router';
 import { homeButton } from '../widgets';
 import { runListen } from './listen';
@@ -13,7 +16,8 @@ import { Aborted, makeUI } from './shared';
 import { runSpeak } from './speak';
 
 export function lessonScreen(ctx: Ctx): HTMLElement {
-  const topic = topicById(ctx.params.topic ?? '');
+  const review = ctx.params.topic === REVIEW_ID ? buildReview(currentLevel().id) : null;
+  const topic = review ? review.topic : topicById(ctx.params.topic ?? '');
   if (!topic || limitReached()) {
     queueMicrotask(() => ctx.go(topic ? 'rest' : 'home'));
     return h('main');
@@ -21,7 +25,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
 
   const level = levelById(topic.level)!;
   const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸', chant: '🥁' };
-  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2 };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': topic.playRounds ?? level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2 };
   const total = topic.steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });
@@ -52,6 +56,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
         s.classList.toggle('is-past', j < i);
       });
     },
+    onPlayResult: review ? (w, firstTry) => recordReview(review.keys.get(w.id) ?? '', firstTry) : undefined,
     tick() {
       done = Math.min(total, done + 1);
       fill.style.width = `${(done / total) * 100}%`;
@@ -68,7 +73,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
         await RUN[step](ui);
       }
       ui.setStep(topic.steps.length);
-      await runReward(ui);
+      await (review ? runReviewReward(ui) : runReward(ui));
     } catch (e) {
       if (!(e instanceof Aborted)) console.error(e);
     }

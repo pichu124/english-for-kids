@@ -277,30 +277,37 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 
 ## 12. Tiến độ nội dung
 
-| Bậc | Unit đã có | Hoạt động |
+| Bậc | Unit đã có | Số bài |
 |---|---|---|
-| L0 Little Bix (3–4) | Animal Friends · Colour Fun · Yummy Food · Toy Box | listen, do-it, say, tap-picture (+ chant ở Animal Friends) |
-| L1 Bix Explorer (4–5) | My Body · My Family · Get Dressed · Count to Five | listen, do-it, say, tap-picture (+ chant ở My Body, Count to Five) |
-| L2 Starters (5–7) | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School · Numbers 1–10 · My Home | listen, say, tap-picture (+ chant ở School) |
+| **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
+| **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 | 7 |
+| **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink | 18 |
 
-Tổng: **19 Unit** (L0: 4, L1: 4, L2: 11).
+Tổng: **31 Unit**. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Riêng Actions ở bậc Starters cũng có `do-it`.
 
-**Đợt 1 (18/11/2026):**
-- hoạt động `do-it` (TPR, không cần micro);
-- 6 Unit;
-- bản đồ vuốt ngang khi có từ 8 bài trở lên;
-- kiểm tra từ chấp nhận.
+**Phủ chủ đề Starters:** animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions).
+- Chưa có: *places & directions*, *time* (phần lớn thuộc Movers), *work*.
+- Mỗi chủ đề hiện có khoảng 6 từ. Danh sách đầy đủ của Starters nhiều hơn, sẽ bổ sung bằng Unit "phần 2" khi cần.
 
-**Đợt 2 (18/11/2026):**
-- hoạt động `chant`: Bix đọc vè theo nhịp trống, vòng 2 bé đọc theo, dòng đang đọc được tô sáng (bậc 0 hiện hình thay chữ);
-- hình đếm nhiều emoji (🐥🐥🐥);
-- số đếm chấp nhận cả chữ số ("3") vì bộ nhận giọng hay viết số;
-- 6 Unit mới: L2 School / Numbers 1–10 / My Home, L0 Toy Box, L1 Get Dressed / Count to Five;
-- vè cho Animal Friends và My Body.
+**Hoạt động có sẵn:**
+- `listen`, `say`, `tap-picture`;
+- `do-it` (làm theo lệnh, không cần micro);
+- `chant` (vè theo nhịp trống, vòng 2 bé đọc theo);
+- **ôn bài cách quãng**: học xong một bài thì các từ vào hộp 1, hẹn ôn sau 1, 2, 4, 7, 14 ngày. Trả lời đúng ngay lần đầu thì lên hộp, sai thì về hộp 1. Khi có từ 3 từ đến hạn, màn hình chính hiện đảo **Review**.
 
-Duyệt tiếng Anh: Claude soạn và duyệt. Gemini duyệt chéo: đợt 1 quá thời gian; đợt 2 có 4 góp ý được nhận (mạo từ trong vè, câu lệnh "Find three ducks!", nhịp vè Body, câu "school bag, pen").
+**Lịch sử các đợt:**
+- **Đợt 1:** hoạt động `do-it`, thêm 6 Unit, bản đồ vuốt ngang.
+- **Đợt 2:** hoạt động `chant`, hình đếm nhiều emoji, số đếm chấp nhận chữ số, thêm 6 Unit.
+- **Đợt 3:**
+  - ôn bài cách quãng, hình chữ số lớn (`image.text`);
+  - thêm 12 Unit: L2 Transport / Zoo / Outdoors / Actions / Numbers 11–20 / More Colours / Food & Drink; L0 Sunny & Rainy / Go, Go, Go!; L1 Shapes / Feelings / On the Farm;
+  - `monHoc` gán theo casa: Mathematics cho số đếm và hình khối, Understanding the World cho thời tiết và ngoài trời, Personal, Social and Emotional Development cho cảm xúc.
 
-**Đợt tiếp theo (đề xuất):**
-- L2: Weather / Places, Food & drink 2, Transport;
-- L0–L1: Shapes, Weather, Transport;
-- hoạt động `review` (ôn từ sắp quên).
+**Duyệt tiếng Anh:** Claude soạn và duyệt, Gemini duyệt chéo từng đợt. Claude xem từng góp ý, nhận góp ý đúng, giải thích khi không nhận (ví dụ giữ "Maa" cho dê để không trùng "Baa" của cừu). Từ thông dụng mà Gemini phát hiện được đưa vào danh sách cấm của bộ test.
+
+**Việc còn lại cho bậc 0–2:**
+- Unit "phần 2" cho các chủ đề lớn (Animals, Food, Home);
+- places & directions;
+- thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát).
+
+Sau đó là bậc 3–4 (Movers, Flyers) với các hoạt động đọc và viết.

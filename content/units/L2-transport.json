@@ -1,0 +1,30 @@
+{
+  "id": "l2-transport",
+  "level": "L2",
+  "topic": "transport",
+  "order": 12,
+  "title": "Transport",
+  "titleVi": "Phương tiện",
+  "icon": "🚌",
+  "color": "#9be06a",
+  "intro": "Let's go! Beep, beep!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Road block",
+    "style": "stone",
+    "color": "#6c757d"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Transport",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "bus",
+    "plane",
+    "boat",
+    "bike",
+    "helicopter",
+    "motorbike"
+  ]
+}
