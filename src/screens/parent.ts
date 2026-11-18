@@ -5,7 +5,7 @@ import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
-import { getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
+import { addProfile, MAX_PROFILES, profileAnimal, profiles, removeProfile, switchProfile, getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
 import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
@@ -73,6 +73,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('button', { class: 'p-btn p-btn-main', onclick: () => ctx.go(limitReached() ? 'rest' : 'home') }, 'Xong, quay lại cho bé →'),
     ),
     summaryCard(),
+    card('Các bé dùng máy này', profilesField()),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
     card('Chơi cùng con', tipsList()),
@@ -182,7 +183,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
   }
 
   function nameField() {
-    const input = h('input', { class: 'p-input', type: 'text', maxlength: 20, placeholder: 'Ví dụ: Su, Bin, Mia', value: s.childName }) as HTMLInputElement;
+    const input = h('input', { class: 'p-input p-name', type: 'text', maxlength: 20, placeholder: 'Ví dụ: Su, Bin, Mia', value: s.childName }) as HTMLInputElement;
     const ok = h('span', { class: 'p-saved', hidden: true }, '✓ Đã lưu');
     input.addEventListener('input', () => {
       update((st) => (st.childName = input.value.trim()));
@@ -190,6 +191,49 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     });
     const hear = h('button', { class: 'p-btn', onclick: () => void say(`Hi, ${input.value.trim() || 'there'}!`) }, '🔊 Nghe Bix chào');
     return h('div', { class: 'p-row' }, input, hear, ok);
+  }
+
+  /** Up to 4 children: each has their own progress, Bix clothes, garden, stories. */
+  function profilesField() {
+    const kids = profiles();
+    const rows = kids.map((k, i) => {
+      const label = k.name || `Bé ${i + 1} (chưa đặt tên)`;
+      let armed = false;
+      const del = kids.length > 1 ? h('button', { class: 'p-btn p-btn-danger p-btn-sm', 'aria-label': `Xoá hồ sơ ${label}` }, 'Xoá') : null;
+      del?.addEventListener('click', () => {
+        if (!armed) {
+          armed = true;
+          del.textContent = 'Bấm lần nữa để xoá';
+          setTimeout(() => ((armed = false), (del.textContent = 'Xoá')), 4000);
+          return;
+        }
+        removeProfile(k.id);
+        rerender();
+      });
+      return h(
+        'li',
+        { class: `p-kid ${k.active ? 'is-active' : ''}`, 'data-profile': k.id },
+        h('span', { class: 'p-kid-animal', 'aria-hidden': 'true' }, profileAnimal(k.id)),
+        h('span', { class: 'p-kid-name' }, label),
+        k.active ? h('span', { class: 'p-kid-on' }, 'Đang dùng') : h('button', { class: 'p-btn p-btn-sm', onclick: () => (switchProfile(k.id), rerender()) }, 'Chuyển sang bé này'),
+        del,
+      );
+    });
+    const input = h('input', { class: 'p-input p-new-kid', type: 'text', maxlength: 20, placeholder: 'Tên bé mới' }) as HTMLInputElement;
+    const add = h('button', { class: 'p-btn', 'aria-label': 'Thêm bé' }, '+ Thêm bé');
+    add.addEventListener('click', () => {
+      const id = addProfile(input.value);
+      if (!id) return;
+      switchProfile(id);
+      rerender();
+    });
+    return h(
+      'div',
+      {},
+      h('ul', { class: 'p-kids' }, rows),
+      kids.length < MAX_PROFILES ? h('div', { class: 'p-row' }, input, add) : h('p', { class: 'p-muted' }, `Tối đa ${MAX_PROFILES} bé trên một máy.`),
+      h('p', { class: 'p-muted' }, 'Mỗi bé có tiến độ, sticker, tủ đồ, vườn và giới hạn giờ riêng. Khi có từ 2 bé, màn hình đầu tiên sẽ cho bé chạm vào con vật của mình. Các phần dưới đây là của bé đang dùng.'),
+    );
   }
 
   function limitField() {
@@ -574,7 +618,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       rerender();
       window.scrollTo(0, 0);
     });
-    return h('div', {}, h('p', { class: 'p-muted' }, 'Xoá sao, khối, danh sách từ và nhật ký. Giữ lại tên bé và cài đặt.'), btn);
+    return h('div', {}, h('p', { class: 'p-muted' }, 'Xoá sao, khối, sticker, tủ đồ, vườn và nhật ký của bé đang dùng. Giữ lại tên bé và cài đặt. Các bé khác không bị ảnh hưởng.'), btn);
   }
 }
 

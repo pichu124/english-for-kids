@@ -39,7 +39,7 @@ await page.click('.key-ok');
 await page.waitForSelector('.p-wrap');
 console.log('✓ math gate');
 
-await page.fill('.p-input[type=text]', 'Su');
+await page.fill('.p-name', 'Su');
 const name = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')).childName);
 if (name !== 'Su') throw new Error('name not saved');
 console.log('✓ child name saved');

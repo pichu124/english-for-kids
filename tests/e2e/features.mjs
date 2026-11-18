@@ -257,6 +257,46 @@ if (!tipText.includes('Animals') && !tipText.includes('Con vật') && !tipText.i
 if (!(await page.locator('.p-chat li').count())) fail('parent area should show what the child told Bix');
 step('parent area lists "Chơi cùng con" tips and the child\'s answers to Bix');
 
+// ---------- B10: several children on one device ----------
+// (still in the parent area) add "Mia" → she becomes the active child with a fresh start.
+await page.fill('.p-new-kid', 'Mia');
+await page.locator('.p-btn[aria-label="Thêm bé"]').click({ force: true });
+await page.waitForSelector('.p-kid.is-active[data-profile="p2"]');
+const mia = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1.p2')));
+if (mia.childName !== 'Mia' || Object.keys(mia.topics).length) fail('new child should start fresh with her name');
+const firstKid = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')));
+if (!Object.keys(firstKid.topics).length) fail("first child's progress must stay in the original key");
+await page.goto(base);
+await page.waitForSelector('.who-btn');
+if ((await page.locator('.who-btn').count()) !== 2) fail('start screen should show 2 children');
+if (shots) await page.screenshot({ path: `${shots}/who.png` });
+await page.evaluate(() => (window.__spoken.length = 0));
+await page.locator('.who-btn[data-profile="p2"]').click({ force: true });
+await page.waitForSelector('.home');
+await page.waitForTimeout(800);
+if (!(await page.evaluate(() => window.__spoken.some((t) => t.startsWith('Hi, Mia!'))))) fail('Bix should greet Mia');
+if (await page.locator('.dock-btn[aria-label="My Words"] .badge').count()) fail('Mia has no stickers yet');
+await page.goto(base);
+await page.locator('.who-btn[data-profile="p1"]').click({ force: true });
+await page.waitForSelector('.home');
+if (!(await page.locator('.dock-btn[aria-label="My Words"] .badge').count())) fail('first child keeps her stickers');
+step('profiles: add a child in the parent area, each taps their animal, progress kept apart');
+
+// Remove Mia → single child again, plain Play button.
+await page.locator('.btn-parent').click({ force: true });
+await page.waitForSelector('.gate');
+const [ra, rb] = (await page.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
+for (const ch of String(ra * rb)) await page.click(`.key:text-is("${ch}")`);
+await page.click('.key-ok');
+await page.waitForSelector('.p-kid[data-profile="p2"]');
+await page.locator('.p-kid[data-profile="p2"] .p-btn-danger').click({ force: true });
+await page.locator('.p-kid[data-profile="p2"] .p-btn-danger').click({ force: true });
+await page.waitForFunction(() => !document.querySelector('.p-kid[data-profile="p2"]'));
+if (await page.evaluate(() => localStorage.getItem('efk.v1.p2'))) fail("removed child's data should be deleted");
+await page.goto(base);
+await page.waitForSelector('.btn-play');
+step('removing a child deletes only that child; one child → plain Play button');
+
 // __MORE__
 
 if (errors.length) fail('page errors: ' + errors.join(' | '));

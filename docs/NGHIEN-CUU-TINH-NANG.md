@@ -104,6 +104,16 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
    - mừng khi bé xong một bậc.
 10. **Nhiều hồ sơ bé**: tối đa 3–4 bé trên một máy. Cần cho anh chị em, và là bước đệm khi đưa vào casa-mamnon (mức C).
 
+**Tiến độ Đợt B (đã xong):**
+- [x] 7. **Truyện**: 15 truyện, 5 trang mỗi truyện (L0: 3, L1: 4, L2: 8). Nút **Stories** trên màn hình chính. Mỗi truyện mở khi bé học xong bài tương ứng. Bix đọc, từ đang đọc được tô sáng nếu trình duyệt báo vị trí từ, chạm vào từ thì nghe lại. Cuối truyện có 2 câu hỏi chọn hình.
+- [x] 8. **Độ khó tự điều chỉnh**: theo 12 lượt chọn hình gần nhất. Đúng ngay dưới 50% thì bớt một hình (tối thiểu 2) và gợi ý sau 1 lần nhầm. Từ 90% trở lên thì thêm một hình (tối đa 4). Áp dụng cho bài học, câu hỏi cuối truyện và bóng bay. Khu bố mẹ hiện trạng thái. *Gợi ý bài theo từ yếu* đã có sẵn qua đảo **Review** (ôn tập ngắt quãng).
+- [x] 9. **Bix nhớ và trò chuyện**:
+  - lời chào theo lần học trước ("Welcome back! Last time we learned Animals!", nghỉ từ 4 ngày: "I missed you!");
+  - mỗi ngày một câu hỏi có/không về bài đã học, nút 👍/👎, mỗi bài hỏi lại sau ít nhất 7 ngày;
+  - chúc mừng một lần khi xong cả bậc;
+  - khu bố mẹ hiện câu trả lời của bé.
+- [x] 10. **Nhiều hồ sơ bé**: tối đa 4 bé. Bé đầu tiên giữ khoá lưu cũ (`efk.v1`), bé thêm sau lưu ở `efk.v1.p2`… Từ 2 bé trở lên, màn hình đầu cho bé chạm vào con vật của mình. Quản lý trong khu bố mẹ (thêm, chuyển, xoá hai bước). Cài đặt máy được chép sang bé mới.
+
 ### Đợt C: để sau
 11. **Bài hát và giai điệu thật**: thu giọng người hát vè, nhạc nền nhẹ (bật/tắt được trong khu bố mẹ).
 12. **Huy hiệu Unit và chứng nhận hoàn thành bậc**: bố mẹ in được.

@@ -96,12 +96,96 @@ export function defaultState(): State {
   };
 }
 
+// ---------------------------------------------------------------- child profiles
+// Up to 4 children per device. The first child keeps the original key, so
+// progress from before profiles existed is kept as-is.
+const INDEX_KEY = 'efk.profiles';
+export const MAX_PROFILES = 4;
+type ProfileIndex = { active: string; ids: string[] };
+const keyFor = (id: string) => (id === 'p1' ? KEY : `${KEY}.${id}`);
+
+function readIndex(): ProfileIndex {
+  try {
+    const raw = localStorage.getItem(INDEX_KEY);
+    const p = raw ? (JSON.parse(raw) as ProfileIndex) : null;
+    if (p && Array.isArray(p.ids) && p.ids.length && p.ids.includes(p.active)) return p;
+  } catch {
+    /* fall through */
+  }
+  return { active: 'p1', ids: ['p1'] };
+}
+function writeIndex(): void {
+  try {
+    localStorage.setItem(INDEX_KEY, JSON.stringify(index));
+  } catch {
+    /* keep in memory */
+  }
+}
+
+let index: ProfileIndex = readIndex();
 let state: State = load();
+
+export type Profile = { id: string; name: string; active: boolean };
+/** Each child gets an animal, so pre-readers can find their own button. */
+export const PROFILE_ANIMALS = ['🦊', '🐼', '🐯', '🐸', '🐨', '🦁'];
+export const profileAnimal = (id: string) => PROFILE_ANIMALS[(Number(id.slice(1)) - 1) % PROFILE_ANIMALS.length];
+
+export function profiles(): Profile[] {
+  return index.ids.map((id) => {
+    if (id === index.active) return { id, name: state.childName, active: true };
+    let name = '';
+    try {
+      name = (JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}') as Partial<State>).childName ?? '';
+    } catch {
+      /* unreadable — show as unnamed */
+    }
+    return { id, name, active: false };
+  });
+}
+
+export function switchProfile(id: string): void {
+  if (!index.ids.includes(id) || id === index.active) return;
+  save();
+  index.active = id;
+  writeIndex();
+  state = load();
+}
+
+/** Add a child; device settings (voice, microphone mode, level, time limit) are copied from the current one. */
+export function addProfile(name: string): string | null {
+  if (index.ids.length >= MAX_PROFILES) return null;
+  let n = 2;
+  while (index.ids.includes(`p${n}`)) n++;
+  const id = `p${n}`;
+  const fresh = defaultState();
+  fresh.childName = name.trim();
+  fresh.settings = { ...state.settings };
+  try {
+    localStorage.setItem(keyFor(id), JSON.stringify(fresh));
+  } catch {
+    return null;
+  }
+  index.ids.push(id);
+  writeIndex();
+  return id;
+}
+
+export function removeProfile(id: string): void {
+  if (index.ids.length <= 1 || !index.ids.includes(id)) return;
+  if (id === index.active) switchProfile(index.ids.find((x) => x !== id)!);
+  index.ids = index.ids.filter((x) => x !== id);
+  writeIndex();
+  try {
+    localStorage.removeItem(keyFor(id));
+  } catch {
+    /* ignore */
+  }
+}
 
 function load(): State {
   const base = defaultState();
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(keyFor(index.active));
     if (!raw) return base;
     const parsed = JSON.parse(raw) as Partial<State>;
     return {
@@ -122,7 +206,7 @@ export function getState(): State {
 
 export function save(): void {
   try {
-    localStorage.setItem(KEY, JSON.stringify(state));
+    localStorage.setItem(keyFor(index.active), JSON.stringify(state));
   } catch {
     /* storage full or blocked — keep going in memory */
   }

@@ -32,7 +32,7 @@ Test e2e dùng giọng đọc và nhận giọng **giả lập** (`tests/e2e/fak
 ## Cấu trúc thư mục
 
 ```
-content/            Nội dung bài học, mỗi chủ đề một file JSON
+content/            words/ (ngân hàng từ), units/ (bài), stories/ (truyện)
 public/             manifest, icon (icon.svg → PNG bằng `npm run icons`)
 scripts/            make-icons.mjs, cap-nhat-vps.sh (cập nhật trên VPS)
 src/
@@ -44,11 +44,17 @@ src/
     tts.ts          đọc bằng speechSynthesis (en-US, tốc độ 0.8)
     listen.ts       nghe bằng SpeechRecognition (maxAlternatives 5)
     match.ts        chấm dễ: chứa từ / gần giống (Levenshtein) / giống âm
-    storage.ts      localStorage (bọc try/catch)
+    storage.ts      localStorage (bọc try/catch), tối đa 4 hồ sơ bé
+    progress.ts     sticker, số bài đã học, ngày học, từ cho trò chơi
+    adapt.ts        độ khó tự điều chỉnh của trò chọn hình
+    memory.ts       Bix nhớ bài trước, câu hỏi trò chuyện mỗi ngày
+    review.ts       ôn tập ngắt quãng (Leitner)
     usage.ts        đếm phút học, giới hạn mỗi ngày
     sfx.ts          hiệu ứng âm thanh tổng hợp (không cần file)
     pwa.ts          đăng ký service worker, nút cài app
-  screens/          start, home, lesson/ (listen, speak, play, reward), world, parent, rest
+  screens/          start (chọn bé), home, lesson/ (listen, speak, play, do-it, chant, reward), world,
+                    book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay),
+                    stories (truyện), parent, rest
   styles/
 tests/              match.test.ts + e2e/
 vite.config.ts      có plugin sinh dist/sw.js (precache toàn bộ app)
@@ -91,7 +97,30 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).
 - **`accept`**: những cách máy hay nghe nhầm mà vẫn tính là đúng. **Không** đưa từ thông dụng (no, and, here, son…) hay một từ khác trong cùng bài vào đây. Bộ test sẽ chặn.
 - **`block.style`**: `grass, brick, rainbow, cake, window, wood, stone, gold, plain`.
+- **`parentTip`** (`{ "vi": "...", "say": "..." }`): thẻ **Chơi cùng con**. `vi` là việc bố mẹ làm ở nhà, `say` là câu tiếng Anh bố mẹ nói.
+- **`chat`** (`{ "ask": "Do you like pigs?", "yes": "...", "no": "..." }`): câu hỏi có/không Bix hỏi bé, mỗi ngày một câu, kèm hai câu đáp.
+- **`anim`** (trong ngân hàng từ): cách hình chuyển động khi đọc, gồm `bounce, wiggle, hop, fly, drive, swim, fall, spin, pulse, sway, shine, wave`. Bỏ trống thì lấy theo chủ đề.
 - **Id của bài và của từ không bao giờ đổi**, vì tiến độ của bé gắn với chúng.
+
+### Thêm truyện
+
+`content/stories/<id-bài>.json`. Truyện mở khi bé học xong bài đó. Đáp án câu hỏi là id một từ của bài.
+
+```json
+{
+  "id": "story-l2-zoo",
+  "unit": "l2-zoo",
+  "title": "A Day at the Zoo",
+  "icon": "🦁",
+  "pages": [
+    { "text": "Bix goes to the zoo.", "scene": "🎟️", "bix": true },
+    { "text": "The giraffe has a long neck.", "scene": "🦒" }
+  ],
+  "questions": [{ "ask": "Who has a long neck?", "answer": "giraffe" }]
+}
+```
+
+Câu ngắn, thì hiện tại, gọi nhân vật là "Bix" (không dùng he/she). `"bix": true` vẽ Bix nhỏ cạnh cảnh.
 
 **Kiểm tra:** `npm test` báo lỗi nếu thiếu từ, câu mẫu không chứa từ cần học, lứa không khớp casa, hoặc từ chấp nhận dễ nhầm.
 

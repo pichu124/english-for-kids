@@ -78,3 +78,10 @@
 .p-level-title { font-size: 16px; color: var(--primary-dark); margin: 0; }
 .p-sub { font-size: 17px; margin: 14px 0 6px; }
 .p-chat { margin: 0; padding-left: 20px; line-height: 1.6; }
+.p-kids { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.p-kid { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 10px; border: 2px solid #e1e5f0; border-radius: 14px; }
+.p-kid.is-active { border-color: #8ac926; background: #f3fbe9; }
+.p-kid-animal { font-size: 30px; }
+.p-kid-name { font-weight: 700; flex: 1; min-width: 120px; }
+.p-kid-on { font-size: 14px; color: #4a7a17; font-weight: 700; }
+.p-btn-sm { min-height: 44px; padding: 6px 12px; font-size: 15px; }
