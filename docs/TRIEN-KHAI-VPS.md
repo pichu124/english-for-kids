@@ -34,7 +34,7 @@ node --version
 Phải in `v22.12` trở lên (Vite 8 cần Node 20.19+ hoặc 22.12+). Máy đã có Node 22 từ khi cài casa-mamnon.
 
 ```bash
-sudo apt-get install -y rsync
+rsync --version          # máy InterData đã có sẵn (3.2.7); chỉ khi báo không có lệnh mới cài: sudo apt-get install -y rsync
 sudo mkdir -p /opt/bix-english /var/www/bix-english
 sudo chown casa:casa /opt/bix-english /var/www/bix-english
 git clone -b main https://github.com/pichu124/english-for-kids.git /opt/bix-english
