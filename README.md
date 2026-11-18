@@ -34,7 +34,7 @@ Test e2e dùng giọng đọc và nhận giọng **giả lập** (`tests/e2e/fak
 ```
 content/            Nội dung bài học, mỗi chủ đề một file JSON
 public/             manifest, icon (icon.svg → PNG bằng `npm run icons`)
-scripts/            make-icons.mjs
+scripts/            make-icons.mjs, cap-nhat-vps.sh (cập nhật trên VPS)
 src/
   main.ts           khởi động, đăng ký màn hình
   router.ts         chuyển màn hình + dọn dẹp khi rời màn
@@ -52,7 +52,8 @@ src/
   styles/
 tests/              match.test.ts + e2e/
 vite.config.ts      có plugin sinh dist/sw.js (precache toàn bộ app)
-vercel.json         header cho sw.js, cache assets, quyền micro
+deploy/             tệp Caddy cho VPS
+vercel.json         (cách khác) cấu hình Vercel
 ```
 
 ## Thêm chủ đề mới (không cần sửa code)
@@ -89,11 +90,11 @@ Tạo file `content/06-tên.json` rồi build lại. Mẫu:
 - **Không bao giờ báo “sai”**: lần 1 chưa khớp thì Bix nói “Try again!”; lần 2 thì “Good try! Let's go on.” rồi sang từ khác.
 - Khi máy không thu được giọng (trình duyệt không hỗ trợ, chưa cấp quyền micro, mất mạng), sẽ hiện 2 nút nhỏ cho bố mẹ: **“✓ Bé nói đúng”** / **“↻ Thử lại”**. Khi máy nghe ra từ khác, 2 nút này cũng hiện để bố mẹ chấm lại.
 
-## Deploy lên Vercel
+## Triển khai
 
-1. Vào vercel.com → **Add New… → Project** → chọn repo `english-for-kids`. Vercel tự đọc `vercel.json` (build `npm run build`, thư mục `dist`).
-2. Dùng tên miền **Production** (dạng `ten-du-an.vercel.app`) cho tablet. Bản Preview của nhánh có thể bị Vercel yêu cầu đăng nhập.
-3. Hoặc dùng CLI: `npx vercel` rồi `npx vercel --prod`.
+**Chọn: VPS InterData** (máy chung với CASA Mầm non và Chăm sóc lead). Xem **`docs/TRIEN-KHAI-VPS.md`**: lấy mã, build, thêm một tệp Caddy riêng, kiểm, cập nhật bằng `~/cap-nhat-bix.sh`, quay lui, gỡ. App là trang tĩnh: không chạy dịch vụ, không mở cổng, không có dữ liệu trên máy chủ.
+
+Cách khác: Vercel. `vercel.json` đã có sẵn. Vào vercel.com → Add New… → Project → chọn repo, dùng tên miền Production `*.vercel.app` (bản Preview có thể bắt đăng nhập).
 
 ## Checklist thử thật trên tablet (Chrome Android)
 
