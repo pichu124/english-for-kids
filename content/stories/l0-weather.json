@@ -1,0 +1,40 @@
+{
+  "id": "story-l0-weather",
+  "unit": "l0-weather",
+  "title": "Sun and Rain",
+  "icon": "☀️",
+  "pages": [
+    {
+      "text": "Look! The sun.",
+      "scene": "☀️🌳",
+      "bix": true
+    },
+    {
+      "text": "Oh! Rain. Drip, drop!",
+      "scene": "🌧️☂️"
+    },
+    {
+      "text": "Whoosh! The wind.",
+      "scene": "💨🍃"
+    },
+    {
+      "text": "Snow! It is cold.",
+      "scene": "❄️⛄"
+    },
+    {
+      "text": "Now the sun is back!",
+      "scene": "☀️🌈",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What is cold and white?",
+      "answer": "snow"
+    },
+    {
+      "ask": "What goes drip, drop?",
+      "answer": "rain"
+    }
+  ]
+}

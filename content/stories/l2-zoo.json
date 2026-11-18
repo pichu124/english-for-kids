@@ -1,0 +1,39 @@
+{
+  "id": "story-l2-zoo",
+  "unit": "l2-zoo",
+  "title": "A Day at the Zoo",
+  "icon": "🦁",
+  "pages": [
+    {
+      "text": "Bix goes to the zoo.",
+      "scene": "🎟️",
+      "bix": true
+    },
+    {
+      "text": "The elephant is big and grey.",
+      "scene": "🐘"
+    },
+    {
+      "text": "The giraffe has a long neck.",
+      "scene": "🦒"
+    },
+    {
+      "text": "The monkey eats a banana. Ha, ha!",
+      "scene": "🐒🍌"
+    },
+    {
+      "text": "The tiger is sleeping. Shh!",
+      "scene": "🐯💤"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who has a long neck?",
+      "answer": "giraffe"
+    },
+    {
+      "ask": "Who is sleeping?",
+      "answer": "tiger"
+    }
+  ]
+}

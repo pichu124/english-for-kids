@@ -270,6 +270,41 @@ export const topics: Topic[] = Object.entries(unitFiles)
 }
 
 export const topicById = (id: string) => topics.find((t) => t.id === id);
+
+// ---------------------------------------------------------------- stories
+
+export type StoryPage = { text: string; scene: string; bix?: boolean };
+export type Story = { id: string; unit: string; level: LevelId; title: string; icon: string; pages: StoryPage[]; questions: { ask: string; answer: Word }[] };
+type StoryFile = Omit<Story, 'level' | 'questions'> & { questions: { ask: string; answer: string }[] };
+
+const storyFiles = import.meta.glob<{ default: StoryFile }>('../content/stories/*.json', { eager: true });
+
+function buildStory(file: string, s: StoryFile): Story | null {
+  const where = `${file}${s?.id ? ` (${s.id})` : ''}`;
+  if (!s || typeof s.id !== 'string' || typeof s.title !== 'string' || typeof s.icon !== 'string') return problem(where, 'truyện cần "id", "title", "icon"'), null;
+  const unit = topicById(s.unit);
+  if (!unit) return problem(where, `truyện gắn với bài "${s.unit}" không có`), null;
+  if (!Array.isArray(s.pages) || s.pages.length < 2 || s.pages.some((p) => typeof p?.text !== 'string' || !p.text || typeof p.scene !== 'string')) {
+    return problem(where, 'truyện cần ít nhất 2 trang, mỗi trang có "text" và "scene"'), null;
+  }
+  const questions: Story['questions'] = [];
+  for (const q of s.questions ?? []) {
+    const answer = unit.words.find((w) => w.id === q?.answer);
+    if (typeof q?.ask !== 'string' || !answer) {
+      problem(where, `câu hỏi "${q?.ask}": đáp án "${q?.answer}" phải là một từ của bài ${unit.id}`);
+      continue;
+    }
+    questions.push({ ask: q.ask, answer });
+  }
+  return { id: s.id, unit: unit.id, level: unit.level, title: s.title, icon: s.icon, pages: s.pages, questions };
+}
+
+export const stories: Story[] = Object.entries(storyFiles)
+  .map(([file, mod]) => buildStory(file, mod.default))
+  .filter((s): s is Story => !!s)
+  .sort((a, b) => topics.findIndex((t) => t.id === a.unit) - topics.findIndex((t) => t.id === b.unit));
+export const storyById = (id: string) => stories.find((s) => s.id === id);
+export const storiesOfLevel = (level: string) => stories.filter((s) => s.level === level);
 export const topicsOfLevel = (level: string) => topics.filter((t) => t.level === level);
 /** Levels that have at least one unit. */
 export const levelsWithContent = () => LEVELS.filter((l) => topics.some((t) => t.level === l.id));

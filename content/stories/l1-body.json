@@ -1,0 +1,43 @@
+{
+  "id": "story-l1-body",
+  "unit": "l1-body",
+  "title": "Bix Wakes Up",
+  "icon": "👀",
+  "pages": [
+    {
+      "text": "Good morning! Bix opens two eyes.",
+      "scene": "☀️👀",
+      "bix": true
+    },
+    {
+      "text": "Bix washes two hands.",
+      "scene": "👐💧",
+      "bix": true
+    },
+    {
+      "text": "Bix smells breakfast with a nose. Mmm!",
+      "scene": "👃🍳",
+      "bix": true
+    },
+    {
+      "text": "Bix eats with a mouth. Yum!",
+      "scene": "👄🍞",
+      "bix": true
+    },
+    {
+      "text": "Bix walks to school on two feet.",
+      "scene": "🦶🏫",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix open?",
+      "answer": "eyes"
+    },
+    {
+      "ask": "What does Bix wash?",
+      "answer": "hands"
+    }
+  ]
+}

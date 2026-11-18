@@ -1,0 +1,39 @@
+{
+  "id": "story-animals",
+  "unit": "animals",
+  "title": "At the Pond",
+  "icon": "🦆",
+  "pages": [
+    {
+      "text": "Bix walks to the pond.",
+      "scene": "🌳💧",
+      "bix": true
+    },
+    {
+      "text": "A fish swims in the water.",
+      "scene": "🐟💧"
+    },
+    {
+      "text": "A duck swims too. Quack, quack!",
+      "scene": "🦆"
+    },
+    {
+      "text": "A bird sings in the tree.",
+      "scene": "🐦🌳"
+    },
+    {
+      "text": "A dog runs and jumps in the water. Splash!",
+      "scene": "🐶💦"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What sings in the tree?",
+      "answer": "bird"
+    },
+    {
+      "ask": "What swims in the water?",
+      "answer": "fish"
+    }
+  ]
+}

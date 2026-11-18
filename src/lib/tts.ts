@@ -82,7 +82,7 @@ export function stopSpeaking(): void {
  * Speak text and resolve when done. Always resolves (never rejects) — on some
  * devices `onend` never fires, so a length-based timeout backs it up.
  */
-export function say(text: string, opts: { rate?: number; pitch?: number } = {}): Promise<void> {
+export function say(text: string, opts: { rate?: number; pitch?: number; onWord?: (charIndex: number) => void } = {}): Promise<void> {
   const myGen = ++generation;
   if (!synth) {
     lastSpeech.result = 'Trình duyệt không có giọng đọc';
@@ -108,6 +108,7 @@ export function say(text: string, opts: { rate?: number; pitch?: number } = {}):
       if (lastSpeech.text === text) lastSpeech.result = '✓ Đang đọc';
     };
     u.onend = () => finish('✓ Đã đọc xong');
+    if (opts.onWord) u.onboundary = (e) => e.name === 'word' && opts.onWord?.(e.charIndex);
     u.onerror = (e) => finish(`Lỗi: ${(e as SpeechSynthesisErrorEvent).error || 'không rõ'}`);
 
     const start = () => {

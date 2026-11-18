@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { contentProblems, LEVELS, topics, topicsOfLevel } from '../src/content';
+import { contentProblems, LEVELS, stories, topics, topicsOfLevel } from '../src/content';
 
 describe('content (format v2)', () => {
   it('has no problems', () => {
@@ -49,6 +49,14 @@ describe('content (format v2)', () => {
       expect(t.parentTip?.say, t.id).toBeTruthy();
       expect(t.chat?.ask.endsWith('?'), t.id).toBe(true);
       expect(`${t.chat?.ask} ${t.chat?.yes} ${t.chat?.no} ${t.parentTip?.say}`, t.id).not.toMatch(/\bLet us\b/);
+    }
+  });
+  it('has stories for every level with content, each with questions', () => {
+    expect(stories.length).toBeGreaterThanOrEqual(15);
+    for (const l of ['L0', 'L1', 'L2']) expect(stories.some((st) => st.level === l)).toBe(true);
+    for (const st of stories) {
+      expect(st.questions.length, st.id).toBeGreaterThanOrEqual(2);
+      expect(st.pages.length, st.id).toBeGreaterThanOrEqual(4);
     }
   });
 });

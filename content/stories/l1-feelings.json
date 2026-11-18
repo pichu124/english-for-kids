@@ -1,0 +1,42 @@
+{
+  "id": "story-l1-feelings",
+  "unit": "l1-feelings",
+  "title": "How Do You Feel?",
+  "icon": "😀",
+  "pages": [
+    {
+      "text": "Bix plays with a ball. Bix is happy!",
+      "scene": "⚽😀",
+      "bix": true
+    },
+    {
+      "text": "Oh no! The ball is gone. Bix is sad.",
+      "scene": "😢",
+      "bix": true
+    },
+    {
+      "text": "A big dog barks. Bix is scared!",
+      "scene": "🐶😨",
+      "bix": true
+    },
+    {
+      "text": "The dog has the ball! Thank you, dog!",
+      "scene": "🐶⚽"
+    },
+    {
+      "text": "Bix plays all day. Now Bix is tired.",
+      "scene": "🥱🌙",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "How is Bix with the ball?",
+      "answer": "happy"
+    },
+    {
+      "ask": "How is Bix at night?",
+      "answer": "tired"
+    }
+  ]
+}

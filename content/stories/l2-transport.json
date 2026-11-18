@@ -1,0 +1,42 @@
+{
+  "id": "story-l2-transport",
+  "unit": "l2-transport",
+  "title": "Going to Grandma",
+  "icon": "🚌",
+  "pages": [
+    {
+      "text": "Bix is going to Grandma's house.",
+      "scene": "🏡",
+      "bix": true
+    },
+    {
+      "text": "First, Bix gets on a bus.",
+      "scene": "🚌",
+      "bix": true
+    },
+    {
+      "text": "Then Bix gets on a boat.",
+      "scene": "⛵🌊",
+      "bix": true
+    },
+    {
+      "text": "A helicopter flies over the sea.",
+      "scene": "🚁"
+    },
+    {
+      "text": "Bix rides a bike to Grandma. Hello, Grandma!",
+      "scene": "🚲👵",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What goes on the water?",
+      "answer": "boat"
+    },
+    {
+      "ask": "What does Bix ride at the end?",
+      "answer": "bike"
+    }
+  ]
+}

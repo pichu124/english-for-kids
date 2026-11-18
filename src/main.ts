@@ -24,6 +24,7 @@ import { bookScreen } from './screens/book';
 import { wardrobeScreen } from './screens/wardrobe';
 import { gardenScreen } from './screens/garden';
 import { gamesScreen } from './screens/games';
+import { storiesScreen, storyScreen } from './screens/stories';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -37,6 +38,8 @@ register('book', bookScreen);
 register('wardrobe', wardrobeScreen);
 register('garden', gardenScreen);
 register('games', gamesScreen);
+register('stories', storiesScreen);
+register('story', storyScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);

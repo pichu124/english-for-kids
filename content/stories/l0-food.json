@@ -1,0 +1,40 @@
+{
+  "id": "story-l0-food",
+  "unit": "l0-food",
+  "title": "Snack Time",
+  "icon": "🍎",
+  "pages": [
+    {
+      "text": "Bix is hungry.",
+      "scene": "🍽️",
+      "bix": true
+    },
+    {
+      "text": "An apple. Crunch, crunch!",
+      "scene": "🍎"
+    },
+    {
+      "text": "A banana. Yummy!",
+      "scene": "🍌"
+    },
+    {
+      "text": "Milk. Glug, glug!",
+      "scene": "🥛"
+    },
+    {
+      "text": "And cake! Happy Bix!",
+      "scene": "🍰🎉",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix drink?",
+      "answer": "milk"
+    },
+    {
+      "ask": "What is yellow?",
+      "answer": "banana"
+    }
+  ]
+}

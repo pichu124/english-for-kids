@@ -1,0 +1,39 @@
+{
+  "id": "story-l2-home",
+  "unit": "l2-home",
+  "title": "Where Is Bix?",
+  "icon": "🏠",
+  "pages": [
+    {
+      "text": "Bix is playing hide and seek.",
+      "scene": "🙈"
+    },
+    {
+      "text": "Is Bix under the bed? No!",
+      "scene": "🛏️"
+    },
+    {
+      "text": "Is Bix behind the door? No!",
+      "scene": "🚪"
+    },
+    {
+      "text": "Is Bix in the bath? No!",
+      "scene": "🛁"
+    },
+    {
+      "text": "Bix is on the sofa! Found you!",
+      "scene": "🛋️😄",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where is Bix?",
+      "answer": "sofa"
+    },
+    {
+      "ask": "Where do we look first? Under the...",
+      "answer": "bed"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "story-l2-toys",
+  "unit": "l2-toys",
+  "title": "The Toy Party",
+  "icon": "🧸",
+  "pages": [
+    {
+      "text": "It is a party in the toy box!",
+      "scene": "📦🎉"
+    },
+    {
+      "text": "The teddy dances.",
+      "scene": "🧸💃"
+    },
+    {
+      "text": "The robot sings. Beep, boop!",
+      "scene": "🤖🎵"
+    },
+    {
+      "text": "The train goes choo, choo!",
+      "scene": "🚂"
+    },
+    {
+      "text": "Bix plays with the ball. What a party!",
+      "scene": "⚽🎉",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who goes choo, choo?",
+      "answer": "train"
+    },
+    {
+      "ask": "Who dances?",
+      "answer": "teddy"
+    }
+  ]
+}

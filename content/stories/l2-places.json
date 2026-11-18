@@ -1,0 +1,43 @@
+{
+  "id": "story-l2-places",
+  "unit": "l2-places",
+  "title": "A Busy Day",
+  "icon": "🏞️",
+  "pages": [
+    {
+      "text": "In the morning, Bix goes to school.",
+      "scene": "🏫🌅",
+      "bix": true
+    },
+    {
+      "text": "After school, Bix goes to the shop.",
+      "scene": "🏪🛒",
+      "bix": true
+    },
+    {
+      "text": "Bix buys some apples.",
+      "scene": "🍎🍎",
+      "bix": true
+    },
+    {
+      "text": "Then Bix plays in the park.",
+      "scene": "🏞️⚽",
+      "bix": true
+    },
+    {
+      "text": "At night, Bix walks home down the street.",
+      "scene": "🛣️🌙",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where does Bix buy apples?",
+      "answer": "shop"
+    },
+    {
+      "ask": "Where does Bix play?",
+      "answer": "park"
+    }
+  ]
+}

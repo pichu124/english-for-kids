@@ -156,6 +156,35 @@ if (!(await page.locator('.game-done').count())) fail('popping 5 named balloons 
 if ((await page.locator('.balloon-stars .on').count()) !== 5) fail('5 stars after 5 rounds');
 step('balloons: pop the balloon Bix names, 5 rounds then done');
 
+// ---------- B7: stories ----------
+await home();
+if (!(await page.locator('.dock-btn[aria-label="Stories"].is-new').count())) fail('finishing Animals should open its story (dock glows)');
+await page.locator('.dock-btn[aria-label="Stories"]').click({ force: true });
+await page.waitForSelector('.story-book');
+if (!(await page.locator('.story-book.is-locked').count())) fail('stories of unfinished units should be locked');
+await page.locator('.story-book[data-story="story-animals"]').click({ force: true });
+await page.waitForSelector('.story-page');
+await page.waitForTimeout(300);
+if (!(await page.evaluate(() => window.__spoken.some((t) => t.startsWith('Bix walks to the pond'))))) fail('Bix should read the first page');
+const nBefore = await page.evaluate(() => window.__spoken.length);
+await page.locator('.story-word[aria-label="pond"]').click({ force: true });
+await page.waitForTimeout(200);
+if ((await page.evaluate(() => window.__spoken.at(-1))) !== 'pond' || (await page.evaluate(() => window.__spoken.length)) <= nBefore) fail('tapping a word should say it');
+if (shots) await page.screenshot({ path: `${shots}/story-page.png` });
+for (let i = 0; i < 5; i++) { await page.locator('.story-next').click({ force: true }); await page.waitForTimeout(150); }
+await page.waitForSelector('.story-quiz');
+for (let i = 0; i < 100 && !(await page.locator('.story-end').count()); i++) {
+  const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
+  const ans = said.includes('sings') ? 'bird' : said.includes('swims') ? 'fish' : '';
+  const c = page.locator(`.story-quiz .word-card-play[aria-label="${ans}"]:not(.is-right)`);
+  if (ans && (await c.count())) await c.click({ force: true });
+  await page.waitForTimeout(150);
+}
+await page.waitForSelector('.story-end');
+s = await state();
+if (s.storiesRead?.['story-animals'] !== 1) fail('reading to the end should be saved');
+step('story: Bix reads each page, words are tappable, 2 picture questions, "The End"');
+
 // ---------- A6: tips in the parent area ----------
 await home();
 await page.locator('.btn-parent').click({ force: true });

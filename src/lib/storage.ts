@@ -71,6 +71,8 @@ export type State = {
   outfit?: Record<string, string>;
   /** How many wardrobe items the child has already seen (for the "new!" glow). */
   outfitSeen?: number;
+  /** Stories read to the end, by story id. */
+  storiesRead?: Record<string, number>;
   /** Last day the child looked at the garden (for the "new flower" glow). */
   gardenSeen?: string;
 };

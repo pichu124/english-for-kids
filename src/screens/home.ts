@@ -11,6 +11,8 @@ import { limitReached } from '../lib/usage';
 import type { Ctx, ScreenName } from '../router';
 import { learningDays, lessonsDone, stickerCount } from '../lib/progress';
 import { gardenHasNew } from './garden';
+import { storyOpen } from './stories';
+import { storiesOfLevel } from '../content';
 import { unlockedItems } from '../art/outfit';
 import { parentButton } from './widgets';
 
@@ -94,6 +96,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
       badge ? h('span', { class: 'badge' }, String(badge)) : null,
     );
   const stickers = stickerCount(level.id).got;
+  const newStories = storiesOfLevel(level.id).filter((st) => storyOpen(st) && !getState().storiesRead?.[st.id]).length;
   const newClothes = unlockedItems(lessonsDone()).length - (getState().outfitSeen ?? 0);
   const dock = h(
     'nav',
@@ -101,6 +104,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
     dockBtn('📖', 'My Words', 'book', stickers || undefined),
     dockBtn('👕', 'Bix', 'wardrobe', newClothes ? 'NEW' : undefined, newClothes > 0),
+    dockBtn('📚', 'Stories', 'stories', newStories || undefined, newStories > 0),
     dockBtn('🎮', 'Games', 'games'),
     dockBtn('🌻', 'Garden', 'garden', learningDays().length || undefined, gardenHasNew()),
   );

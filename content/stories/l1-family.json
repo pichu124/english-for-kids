@@ -1,0 +1,40 @@
+{
+  "id": "story-l1-family",
+  "unit": "l1-family",
+  "title": "My Family",
+  "icon": "👨‍👩‍👧",
+  "pages": [
+    {
+      "text": "Bix visits a family.",
+      "scene": "🏠",
+      "bix": true
+    },
+    {
+      "text": "This is Mum. She is kind.",
+      "scene": "👩"
+    },
+    {
+      "text": "This is Dad. He is tall.",
+      "scene": "👨"
+    },
+    {
+      "text": "This is the baby. The baby is small.",
+      "scene": "👶🍼"
+    },
+    {
+      "text": "Grandma and Grandpa say hello!",
+      "scene": "👵👴",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who is small?",
+      "answer": "baby"
+    },
+    {
+      "ask": "Who is tall?",
+      "answer": "dad"
+    }
+  ]
+}

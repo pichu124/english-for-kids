@@ -1,0 +1,42 @@
+{
+  "id": "story-l2-school",
+  "unit": "l2-school",
+  "title": "First Day at School",
+  "icon": "🏫",
+  "pages": [
+    {
+      "text": "Today Bix goes to school.",
+      "scene": "🏫",
+      "bix": true
+    },
+    {
+      "text": "Bix has a new bag.",
+      "scene": "🎒",
+      "bix": true
+    },
+    {
+      "text": "In the bag there is a book and a pencil.",
+      "scene": "📕✏️"
+    },
+    {
+      "text": "The teacher says, \"Hello, Bix!\"",
+      "scene": "🧑‍🏫👋",
+      "bix": true
+    },
+    {
+      "text": "Bix draws a line with a ruler. School is fun!",
+      "scene": "📏😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What is new?",
+      "answer": "bag"
+    },
+    {
+      "ask": "Who says hello?",
+      "answer": "teacher"
+    }
+  ]
+}

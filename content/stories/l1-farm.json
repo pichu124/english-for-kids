@@ -1,0 +1,40 @@
+{
+  "id": "story-l1-farm",
+  "unit": "l1-farm",
+  "title": "Down on the Farm",
+  "icon": "🐷",
+  "pages": [
+    {
+      "text": "Bix is on the farm.",
+      "scene": "🌾🏡",
+      "bix": true
+    },
+    {
+      "text": "The pig is in the mud. Oink!",
+      "scene": "🐷🟫"
+    },
+    {
+      "text": "The sheep is white. Baa!",
+      "scene": "🐑"
+    },
+    {
+      "text": "The horse can run fast.",
+      "scene": "🐴💨"
+    },
+    {
+      "text": "The goat eats grass. Good night, farm!",
+      "scene": "🐐🌙",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who is in the mud?",
+      "answer": "pig"
+    },
+    {
+      "ask": "Who can run fast?",
+      "answer": "horse"
+    }
+  ]
+}

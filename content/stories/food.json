@@ -1,0 +1,41 @@
+{
+  "id": "story-food",
+  "unit": "food",
+  "title": "The Picnic",
+  "icon": "🧺",
+  "pages": [
+    {
+      "text": "Bix has a picnic in the park.",
+      "scene": "🧺🌳",
+      "bix": true
+    },
+    {
+      "text": "There is an egg and an apple.",
+      "scene": "🥚🍎"
+    },
+    {
+      "text": "There is a banana and some milk.",
+      "scene": "🍌🥛"
+    },
+    {
+      "text": "Bix has a big cake. Yummy!",
+      "scene": "🍰",
+      "bix": true
+    },
+    {
+      "text": "Then Bix has an ice cream. What a picnic!",
+      "scene": "🍦😋",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What is big?",
+      "answer": "cake"
+    },
+    {
+      "ask": "What is cold?",
+      "answer": "ice-cream"
+    }
+  ]
+}

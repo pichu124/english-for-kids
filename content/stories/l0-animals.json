@@ -1,0 +1,40 @@
+{
+  "id": "story-l0-animals",
+  "unit": "l0-animals",
+  "title": "Hello, Farm!",
+  "icon": "🐮",
+  "pages": [
+    {
+      "text": "Bix goes to the farm.",
+      "scene": "🏡🌳",
+      "bix": true
+    },
+    {
+      "text": "Look! A cat. Meow!",
+      "scene": "🐱"
+    },
+    {
+      "text": "Look! A dog. Woof!",
+      "scene": "🐶"
+    },
+    {
+      "text": "Look! A duck. Quack!",
+      "scene": "🦆💧"
+    },
+    {
+      "text": "A cow says moo. Bye-bye, farm!",
+      "scene": "🐮🌻",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who says meow?",
+      "answer": "cat"
+    },
+    {
+      "ask": "Who says quack?",
+      "answer": "duck"
+    }
+  ]
+}
