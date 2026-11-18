@@ -1,0 +1,85 @@
+{
+  "topic": "places",
+  "words": [
+    {
+      "id": "park",
+      "text": "park",
+      "topic": "places",
+      "image": {
+        "emoji": "🏞️"
+      },
+      "sentence": "This is the park. I play in the park.",
+      "accept": [
+        "parks",
+        "parque"
+      ]
+    },
+    {
+      "id": "shop",
+      "text": "shop",
+      "topic": "places",
+      "image": {
+        "emoji": "🏪"
+      },
+      "sentence": "This is a shop. I can buy apples.",
+      "accept": [
+        "shops",
+        "shopping"
+      ]
+    },
+    {
+      "id": "school",
+      "text": "school",
+      "topic": "places",
+      "image": {
+        "emoji": "🏫"
+      },
+      "sentence": "This is my school. I like my school!",
+      "accept": [
+        "schools",
+        "skool",
+        "scool"
+      ]
+    },
+    {
+      "id": "garden",
+      "text": "garden",
+      "topic": "places",
+      "image": {
+        "emoji": "🏡"
+      },
+      "sentence": "This is the garden. It has flowers.",
+      "accept": [
+        "gardens",
+        "gardin",
+        "garten"
+      ]
+    },
+    {
+      "id": "zoo",
+      "text": "zoo",
+      "topic": "places",
+      "image": {
+        "emoji": "🦁🐘"
+      },
+      "sentence": "This is the zoo. I can see a lion!",
+      "accept": [
+        "zoos",
+        "zu"
+      ]
+    },
+    {
+      "id": "street",
+      "text": "street",
+      "topic": "places",
+      "image": {
+        "emoji": "🛣️"
+      },
+      "sentence": "This is my street. Look at the cars!",
+      "accept": [
+        "streets",
+        "stret"
+      ]
+    }
+  ]
+}

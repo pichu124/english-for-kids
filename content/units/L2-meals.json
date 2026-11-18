@@ -1,0 +1,33 @@
+{
+  "id": "l2-meals",
+  "level": "L2",
+  "topic": "meals",
+  "order": 21,
+  "title": "Snacks & Meals",
+  "titleVi": "Đồ ăn vặt & bữa ăn",
+  "icon": "🍔",
+  "color": "#b8e05a",
+  "intro": "What's for dinner?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Snack block",
+    "style": "plain",
+    "color": "#e9c46a"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food & drink",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "burger",
+    {
+      "id": "chips",
+      "play": "Where are the chips?"
+    },
+    "chocolate",
+    "sausage",
+    "potato",
+    "onion"
+  ]
+}

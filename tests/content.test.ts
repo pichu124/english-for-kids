@@ -34,7 +34,7 @@ describe('content (format v2)', () => {
   });
 
   it('accept lists avoid everyday words a child says anyway', () => {
-    const risky = ['no', 'yes', 'and', 'here', 'the', 'a', 'i', 'it', 'is', 'am', 'did', 'maybe', 'put', 'happy', 'okay', 'what', 'mommy daddy', 'son', 'card', 'boss', 'vote', 'bought', 'bite', 'peach', 'sink', 'slip', 'rise', 'reign', 'look', 'big', 'see'];
+    const risky = ['no', 'yes', 'and', 'here', 'the', 'a', 'i', 'it', 'is', 'am', 'did', 'maybe', 'put', 'happy', 'okay', 'what', 'mommy daddy', 'son', 'card', 'boss', 'vote', 'bought', 'bite', 'peach', 'sink', 'slip', 'rise', 'reign', 'look', 'big', 'see', 'wash', 'pair', 'goal', 'straight', 'sue', 'snack', 'union', 'bark', 'chop', 'dull', 'year', 'kids', 'frock', 'frag', 'glock', 'compute', 'gem'];
     for (const t of topics) for (const w of t.words) for (const a of w.accept ?? []) expect(risky, `${t.id}/${w.id}: "${a}"`).not.toContain(a.toLowerCase());
   });
 

@@ -1,0 +1,84 @@
+{
+  "topic": "clothes2",
+  "words": [
+    {
+      "id": "glasses",
+      "text": "glasses",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "👓"
+      },
+      "sentence": "These are my glasses.",
+      "accept": [
+        "glass",
+        "glases"
+      ]
+    },
+    {
+      "id": "boots",
+      "text": "boots",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "👢"
+      },
+      "sentence": "These are my boots. They are red.",
+      "accept": [
+        "boot",
+        "bootz"
+      ]
+    },
+    {
+      "id": "handbag",
+      "text": "handbag",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "👜"
+      },
+      "sentence": "This is my mum's handbag.",
+      "accept": [
+        "handbags",
+        "hand bag"
+      ]
+    },
+    {
+      "id": "shorts",
+      "text": "shorts",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "🩳"
+      },
+      "sentence": "These are my shorts.",
+      "accept": [
+        "short",
+        "shortz"
+      ]
+    },
+    {
+      "id": "jeans",
+      "text": "jeans",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "👖"
+      },
+      "sentence": "These are my jeans. They are blue.",
+      "accept": [
+        "jean",
+        "genes",
+        "jeens"
+      ]
+    },
+    {
+      "id": "watch",
+      "text": "watch",
+      "topic": "clothes2",
+      "image": {
+        "emoji": "⌚"
+      },
+      "sentence": "This is my watch. What time is it?",
+      "accept": [
+        "watches",
+        "wach"
+      ]
+    }
+  ]
+}

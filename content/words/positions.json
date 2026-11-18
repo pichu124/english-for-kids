@@ -1,0 +1,79 @@
+{
+  "topic": "positions",
+  "words": [
+    {
+      "id": "in",
+      "text": "in",
+      "topic": "positions",
+      "image": {
+        "scene": "in"
+      },
+      "sentence": "The ball is in the box.",
+      "accept": [
+        "inn"
+      ]
+    },
+    {
+      "id": "on",
+      "text": "on",
+      "topic": "positions",
+      "image": {
+        "scene": "on"
+      },
+      "sentence": "The ball is on the box.",
+      "accept": []
+    },
+    {
+      "id": "under",
+      "text": "under",
+      "topic": "positions",
+      "image": {
+        "scene": "under"
+      },
+      "sentence": "The ball is under the table.",
+      "accept": [
+        "onder",
+        "anda"
+      ]
+    },
+    {
+      "id": "next-to",
+      "text": "next to",
+      "topic": "positions",
+      "image": {
+        "scene": "next to"
+      },
+      "sentence": "The ball is next to the box.",
+      "accept": [
+        "next",
+        "nexto"
+      ]
+    },
+    {
+      "id": "behind",
+      "text": "behind",
+      "topic": "positions",
+      "image": {
+        "scene": "behind"
+      },
+      "sentence": "The ball is behind the box.",
+      "accept": [
+        "be hind",
+        "behine"
+      ]
+    },
+    {
+      "id": "in-front-of",
+      "text": "in front of",
+      "topic": "positions",
+      "image": {
+        "scene": "in front of"
+      },
+      "sentence": "The ball is in front of the box.",
+      "accept": [
+        "in front",
+        "front"
+      ]
+    }
+  ]
+}

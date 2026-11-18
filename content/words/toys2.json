@@ -1,0 +1,86 @@
+{
+  "topic": "toys2",
+  "words": [
+    {
+      "id": "doll",
+      "text": "doll",
+      "topic": "toys2",
+      "image": {
+        "emoji": "🪆"
+      },
+      "sentence": "This is my doll. She is pretty.",
+      "accept": [
+        "dolls",
+        "dol"
+      ]
+    },
+    {
+      "id": "game",
+      "text": "game",
+      "topic": "toys2",
+      "image": {
+        "emoji": "🎲"
+      },
+      "sentence": "This is a game. Let's play!",
+      "accept": [
+        "games",
+        "gaim"
+      ]
+    },
+    {
+      "id": "monster",
+      "text": "monster",
+      "topic": "toys2",
+      "image": {
+        "emoji": "👾"
+      },
+      "sentence": "This is a monster. It is funny!",
+      "accept": [
+        "monsters",
+        "monsta"
+      ]
+    },
+    {
+      "id": "guitar",
+      "text": "guitar",
+      "topic": "toys2",
+      "image": {
+        "emoji": "🎸"
+      },
+      "sentence": "This is a guitar. I can play the guitar.",
+      "accept": [
+        "guitars",
+        "gitar",
+        "gita"
+      ]
+    },
+    {
+      "id": "piano",
+      "text": "piano",
+      "topic": "toys2",
+      "image": {
+        "emoji": "🎹"
+      },
+      "sentence": "This is a piano. La, la, la!",
+      "accept": [
+        "pianos",
+        "pyano",
+        "piana"
+      ]
+    },
+    {
+      "id": "camera",
+      "text": "camera",
+      "topic": "toys2",
+      "image": {
+        "emoji": "📷"
+      },
+      "sentence": "This is a camera. Smile!",
+      "accept": [
+        "cameras",
+        "camra",
+        "kamera"
+      ]
+    }
+  ]
+}

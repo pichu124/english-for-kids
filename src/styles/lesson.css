@@ -214,3 +214,7 @@
 .word-card-play .pic-text span { font-size: clamp(48px, 10vmin, 96px); }
 
 .review-star { font-size: clamp(120px, 26vmin, 240px); }
+
+/* ----- position scenes (in / on / under …) ----- */
+.pic-scene { width: 86%; }
+.pic-scene svg { display: block; width: 100%; height: auto; }

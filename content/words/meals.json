@@ -1,0 +1,88 @@
+{
+  "topic": "meals",
+  "words": [
+    {
+      "id": "burger",
+      "text": "burger",
+      "topic": "meals",
+      "image": {
+        "emoji": "🍔"
+      },
+      "sentence": "This is a burger. Yummy!",
+      "accept": [
+        "burgers",
+        "berger",
+        "burga"
+      ]
+    },
+    {
+      "id": "chips",
+      "text": "chips",
+      "topic": "meals",
+      "image": {
+        "emoji": "🍟"
+      },
+      "sentence": "These are chips. I like chips!",
+      "accept": [
+        "chip",
+        "fries",
+        "french fries"
+      ]
+    },
+    {
+      "id": "chocolate",
+      "text": "chocolate",
+      "topic": "meals",
+      "image": {
+        "emoji": "🍫"
+      },
+      "sentence": "This is chocolate. It is sweet!",
+      "accept": [
+        "chocolates",
+        "choclate",
+        "chocolat"
+      ]
+    },
+    {
+      "id": "sausage",
+      "text": "sausage",
+      "topic": "meals",
+      "image": {
+        "emoji": "🌭"
+      },
+      "sentence": "This is a sausage.",
+      "accept": [
+        "sausages",
+        "sosig",
+        "sossage"
+      ]
+    },
+    {
+      "id": "potato",
+      "text": "potato",
+      "topic": "meals",
+      "image": {
+        "emoji": "🥔"
+      },
+      "sentence": "This is a potato.",
+      "accept": [
+        "potatoes",
+        "potahto",
+        "tato"
+      ]
+    },
+    {
+      "id": "onion",
+      "text": "onion",
+      "topic": "meals",
+      "image": {
+        "emoji": "🧅"
+      },
+      "sentence": "This is an onion. It makes me cry!",
+      "accept": [
+        "onions",
+        "onyon"
+      ]
+    }
+  ]
+}

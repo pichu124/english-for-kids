@@ -50,7 +50,6 @@
       },
       "sentence": "This is my mouth. I can eat.",
       "accept": [
-        "mouse",
         "mount",
         "mouf"
       ]
@@ -162,6 +161,31 @@
       "sentence": "This is my foot. I can stamp.",
       "accept": [
         "feet"
+      ]
+    },
+    {
+      "id": "eye",
+      "text": "eye",
+      "topic": "body",
+      "image": {
+        "emoji": "👁️"
+      },
+      "sentence": "This is my eye. I can see you!",
+      "accept": [
+        "eyes",
+        "aye"
+      ]
+    },
+    {
+      "id": "ear",
+      "text": "ear",
+      "topic": "body",
+      "image": {
+        "emoji": "👂"
+      },
+      "sentence": "This is my ear. I can hear you!",
+      "accept": [
+        "ears"
       ]
     }
   ]

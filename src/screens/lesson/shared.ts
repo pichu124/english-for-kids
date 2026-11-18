@@ -1,5 +1,6 @@
 import type { Bix } from '../../art/bix';
 import { isoCube } from '../../art/cube';
+import { sceneSVG } from '../../art/positions';
 import type { Level, Topic, Word } from '../../content';
 import { fromHTML, h, wait } from '../../lib/dom';
 import type { Ctx } from '../../router';
@@ -74,6 +75,9 @@ export function makeUI(base: Omit<LessonUI, 'guard' | 'tap' | 'tapAny' | 'pause'
 
 /** The picture for a word: a big emoji, or a voxel cube in the word's color. */
 export function wordPicture(w: Word, cls = ''): HTMLElement {
+  if (w.image.scene) {
+    return h('div', { class: `pic pic-scene ${cls}` }, fromHTML(sceneSVG(w.image.scene)));
+  }
   if (w.image.text) {
     return h('div', { class: `pic pic-text ${cls}`, 'aria-hidden': 'true' }, h('span', {}, w.image.text));
   }

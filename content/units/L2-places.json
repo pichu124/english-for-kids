@@ -1,0 +1,30 @@
+{
+  "id": "l2-places",
+  "level": "L2",
+  "topic": "places",
+  "order": 27,
+  "title": "Places",
+  "titleVi": "Nơi chốn",
+  "icon": "🏞️",
+  "color": "#8fd46b",
+  "intro": "Let's go out! Where shall we go?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Town block",
+    "style": "brick",
+    "color": "#9d8189"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Places & directions",
+    "monHoc": "Understanding the World"
+  },
+  "words": [
+    "park",
+    "shop",
+    "school",
+    "garden",
+    "zoo",
+    "street"
+  ]
+}

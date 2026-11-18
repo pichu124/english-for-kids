@@ -1,0 +1,42 @@
+{
+  "id": "l2-clothes2",
+  "level": "L2",
+  "topic": "clothes2",
+  "order": 23,
+  "title": "Clothes 2",
+  "titleVi": "Quần áo 2",
+  "icon": "👓",
+  "color": "#9be06a",
+  "intro": "Let's get dressed again!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Denim block",
+    "style": "plain",
+    "color": "#457b9d"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Clothes",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "glasses",
+      "play": "Where are the glasses?"
+    },
+    {
+      "id": "boots",
+      "play": "Where are the boots?"
+    },
+    "handbag",
+    {
+      "id": "shorts",
+      "play": "Where are the shorts?"
+    },
+    {
+      "id": "jeans",
+      "play": "Where are the jeans?"
+    },
+    "watch"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "l1-positions",
+  "level": "L1",
+  "topic": "positions",
+  "order": 8,
+  "title": "In, On, Under",
+  "titleVi": "Trong, trên, dưới",
+  "icon": "📦",
+  "color": "#b8e05a",
+  "intro": "Where's the ball? Let's find it!",
+  "playPrompt": "The ball is {word} the box. Find it!",
+  "block": {
+    "name": "Box block",
+    "style": "wood",
+    "color": "#deb887"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "Position words",
+    "monHoc": "Mathematics"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    "in",
+    "on",
+    {
+      "id": "under",
+      "play": "The ball is under the table. Find it!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Hands on your head!",
+      "emoji": "🙆"
+    },
+    {
+      "say": "Hands under your chin!",
+      "emoji": "🤔"
+    },
+    {
+      "say": "Jump in! Jump out!",
+      "emoji": "⭕"
+    }
+  ]
+}

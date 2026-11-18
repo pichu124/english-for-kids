@@ -1,0 +1,30 @@
+{
+  "id": "l2-toys2",
+  "level": "L2",
+  "topic": "toys2",
+  "order": 24,
+  "title": "Toys 2",
+  "titleVi": "Đồ chơi 2",
+  "icon": "🎸",
+  "color": "#a6dd5c",
+  "intro": "More toys! Let's play!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Music block",
+    "style": "gold",
+    "color": "#b388ff"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Toys",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "doll",
+    "game",
+    "monster",
+    "guitar",
+    "piano",
+    "camera"
+  ]
+}

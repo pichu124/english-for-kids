@@ -1,0 +1,52 @@
+{
+  "id": "l2-face",
+  "level": "L2",
+  "topic": "face",
+  "order": 25,
+  "title": "My Face",
+  "titleVi": "Khuôn mặt",
+  "icon": "👁️",
+  "color": "#b8e05a",
+  "intro": "Look at my face!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Face block",
+    "style": "plain",
+    "color": "#ffb4a2"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The body & the face",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "eye",
+    "ear",
+    "nose",
+    "mouth"
+  ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "do-it"
+  ],
+  "actions": [
+    {
+      "say": "Touch your nose!",
+      "emoji": "👃"
+    },
+    {
+      "say": "Point to your eye!",
+      "emoji": "👁️"
+    },
+    {
+      "say": "Touch your ear!",
+      "emoji": "👂"
+    },
+    {
+      "say": "Open your mouth! Aaah!",
+      "emoji": "👄"
+    }
+  ]
+}

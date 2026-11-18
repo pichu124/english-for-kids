@@ -1,0 +1,33 @@
+{
+  "id": "l2-positions",
+  "level": "L2",
+  "topic": "positions",
+  "order": 28,
+  "title": "Where Is It?",
+  "titleVi": "Ở đâu?",
+  "icon": "📦",
+  "color": "#a6dd5c",
+  "intro": "Where is the ball? Let's look!",
+  "playPrompt": "The ball is {word} the box. Find it!",
+  "block": {
+    "name": "Box block",
+    "style": "wood",
+    "color": "#c98b52"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Places & directions",
+    "monHoc": "Mathematics"
+  },
+  "words": [
+    "in",
+    "on",
+    {
+      "id": "under",
+      "play": "The ball is under the table. Find it!"
+    },
+    "next-to",
+    "behind",
+    "in-front-of"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "l2-home2",
+  "level": "L2",
+  "topic": "home2",
+  "order": 22,
+  "title": "My Home 2",
+  "titleVi": "Ngôi nhà 2",
+  "icon": "🕰️",
+  "color": "#8fd46b",
+  "intro": "Let's look around my home!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Lamp block",
+    "style": "window",
+    "color": "#ffd166"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The home",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "clock",
+    "mirror",
+    "television",
+    "phone",
+    "computer",
+    "picture"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "topic": "people",
+  "words": [
+    {
+      "id": "boy",
+      "text": "boy",
+      "topic": "people",
+      "image": {
+        "emoji": "👦"
+      },
+      "sentence": "This is a boy. His name is Tom.",
+      "accept": [
+        "boys",
+        "boi",
+        "buoy"
+      ]
+    },
+    {
+      "id": "girl",
+      "text": "girl",
+      "topic": "people",
+      "image": {
+        "emoji": "👧"
+      },
+      "sentence": "This is a girl. Her name is Anna.",
+      "accept": [
+        "girls",
+        "gurl"
+      ]
+    },
+    {
+      "id": "man",
+      "text": "man",
+      "topic": "people",
+      "image": {
+        "emoji": "👨"
+      },
+      "sentence": "This is a man. He is tall.",
+      "accept": [
+        "men",
+        "mann"
+      ]
+    },
+    {
+      "id": "woman",
+      "text": "woman",
+      "topic": "people",
+      "image": {
+        "emoji": "👩"
+      },
+      "sentence": "This is a woman. She is happy.",
+      "accept": [
+        "women",
+        "womman"
+      ]
+    },
+    {
+      "id": "friend",
+      "text": "friend",
+      "topic": "people",
+      "image": {
+        "emoji": "🧑‍🤝‍🧑"
+      },
+      "sentence": "This is my friend. We play together.",
+      "accept": [
+        "friends",
+        "fren",
+        "frend"
+      ]
+    },
+    {
+      "id": "children",
+      "text": "children",
+      "topic": "people",
+      "image": {
+        "emoji": "👧🧒👦"
+      },
+      "sentence": "These are children. They are at school.",
+      "accept": [
+        "child",
+        "childrens"
+      ]
+    }
+  ]
+}

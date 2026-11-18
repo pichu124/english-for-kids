@@ -1,0 +1,88 @@
+{
+  "topic": "home2",
+  "words": [
+    {
+      "id": "clock",
+      "text": "clock",
+      "topic": "home2",
+      "image": {
+        "emoji": "🕰️"
+      },
+      "sentence": "This is a clock. Tick, tock!",
+      "accept": [
+        "clocks",
+        "clok"
+      ]
+    },
+    {
+      "id": "mirror",
+      "text": "mirror",
+      "topic": "home2",
+      "image": {
+        "emoji": "🪞"
+      },
+      "sentence": "This is a mirror. I can see my face!",
+      "accept": [
+        "mirrors",
+        "mira",
+        "miror"
+      ]
+    },
+    {
+      "id": "television",
+      "text": "television",
+      "topic": "home2",
+      "image": {
+        "emoji": "📺"
+      },
+      "sentence": "This is a television. I can watch TV.",
+      "accept": [
+        "tv",
+        "t v",
+        "telly",
+        "televisions"
+      ]
+    },
+    {
+      "id": "phone",
+      "text": "phone",
+      "topic": "home2",
+      "image": {
+        "emoji": "📱"
+      },
+      "sentence": "This is a phone. Hello? Hello?",
+      "accept": [
+        "phones",
+        "fone",
+        "telephone"
+      ]
+    },
+    {
+      "id": "computer",
+      "text": "computer",
+      "topic": "home2",
+      "image": {
+        "emoji": "💻"
+      },
+      "sentence": "This is a computer. I can play games.",
+      "accept": [
+        "computers",
+        "computa"
+      ]
+    },
+    {
+      "id": "picture",
+      "text": "picture",
+      "topic": "home2",
+      "image": {
+        "emoji": "🖼️"
+      },
+      "sentence": "This is a picture. It is beautiful.",
+      "accept": [
+        "pictures",
+        "pitcher",
+        "pikture"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "topic": "animals2",
+  "words": [
+    {
+      "id": "frog",
+      "text": "frog",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🐸"
+      },
+      "sentence": "This is a frog. It can jump!",
+      "accept": [
+        "frogs"
+      ]
+    },
+    {
+      "id": "snake",
+      "text": "snake",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🐍"
+      },
+      "sentence": "This is a snake. Hiss, hiss!",
+      "accept": [
+        "snakes",
+        "snek"
+      ]
+    },
+    {
+      "id": "spider",
+      "text": "spider",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🕷️"
+      },
+      "sentence": "This is a spider. It has eight legs.",
+      "accept": [
+        "spiders",
+        "spida"
+      ]
+    },
+    {
+      "id": "mouse",
+      "text": "mouse",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🐭"
+      },
+      "sentence": "This is a mouse. It is small.",
+      "accept": [
+        "mice",
+        "mous",
+        "mauss"
+      ]
+    },
+    {
+      "id": "lizard",
+      "text": "lizard",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🦎"
+      },
+      "sentence": "This is a lizard. It is green.",
+      "accept": [
+        "lizards",
+        "lizzard",
+        "lisard"
+      ]
+    },
+    {
+      "id": "hippo",
+      "text": "hippo",
+      "topic": "animals2",
+      "image": {
+        "emoji": "🦛"
+      },
+      "sentence": "This is a hippo. It likes water.",
+      "accept": [
+        "hippos",
+        "hipo",
+        "hippopotamus"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "topic": "fruit",
+  "words": [
+    {
+      "id": "grapes",
+      "text": "grapes",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🍇"
+      },
+      "sentence": "These are grapes. They are purple.",
+      "accept": [
+        "grape",
+        "grapps"
+      ]
+    },
+    {
+      "id": "lemon",
+      "text": "lemon",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🍋"
+      },
+      "sentence": "This is a lemon. It is yellow.",
+      "accept": [
+        "lemons",
+        "lemmon",
+        "lemun"
+      ]
+    },
+    {
+      "id": "mango",
+      "text": "mango",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🥭"
+      },
+      "sentence": "This is a mango. It is sweet!",
+      "accept": [
+        "mangos",
+        "mangoes",
+        "mengo"
+      ]
+    },
+    {
+      "id": "pear",
+      "text": "pear",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🍐"
+      },
+      "sentence": "This is a pear. It is green.",
+      "accept": [
+        "pears",
+        "pare"
+      ]
+    },
+    {
+      "id": "pineapple",
+      "text": "pineapple",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🍍"
+      },
+      "sentence": "This is a pineapple. It is big!",
+      "accept": [
+        "pineapples",
+        "pine apple"
+      ]
+    },
+    {
+      "id": "watermelon",
+      "text": "watermelon",
+      "topic": "fruit",
+      "image": {
+        "emoji": "🍉"
+      },
+      "sentence": "This is a watermelon. It is red inside.",
+      "accept": [
+        "watermelons",
+        "water melon"
+      ]
+    }
+  ]
+}

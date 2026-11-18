@@ -1,0 +1,33 @@
+{
+  "id": "l2-fruit",
+  "level": "L2",
+  "topic": "fruit",
+  "order": 20,
+  "title": "Fruit",
+  "titleVi": "Hoa quả",
+  "icon": "🍉",
+  "color": "#a6dd5c",
+  "intro": "Fruit is yummy and good for you!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Fruit block",
+    "style": "cake",
+    "color": "#ff6b6b"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food & drink",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "grapes",
+      "play": "Where are the grapes?"
+    },
+    "lemon",
+    "mango",
+    "pear",
+    "pineapple",
+    "watermelon"
+  ]
+}

@@ -8,6 +8,7 @@
  * changes. Unit and word ids never change: the child's progress is keyed on them.
  */
 import { BLOCK_STYLES, type BlockDef, type BlockStyle } from './art/blocks';
+import { SCENES } from './art/positions';
 
 // ---------------------------------------------------------------- levels
 
@@ -48,7 +49,7 @@ export type Word = {
   /** What the child should say (and what is shown). */
   text: string;
   /** Picture: an emoji, or a color swatch (for color words). */
-  image: { emoji?: string; color?: string; text?: string };
+  image: { emoji?: string; color?: string; text?: string; scene?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
@@ -134,8 +135,12 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ sai cấu trúc: ${JSON.stringify(w)}`);
       continue;
     }
-    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string')) {
-      problem(file, `từ "${w.id}" cần image.emoji, image.color hoặc image.text`);
+    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string')) {
+      problem(file, `từ "${w.id}" cần image.emoji, image.color, image.text hoặc image.scene`);
+      continue;
+    }
+    if (w.image.scene && !(SCENES as readonly string[]).includes(w.image.scene)) {
+      problem(file, `từ "${w.id}": image.scene phải là một trong ${SCENES.join(', ')}`);
       continue;
     }
     if (bank.has(w.id)) problem(file, `id từ "${w.id}" bị trùng`);

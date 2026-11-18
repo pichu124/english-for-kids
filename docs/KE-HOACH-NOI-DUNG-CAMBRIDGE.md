@@ -280,14 +280,15 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 | Bậc | Unit đã có | Số bài |
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
-| **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 | 7 |
-| **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink | 18 |
+| **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
+| **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? | 28 |
 
-Tổng: **31 Unit**. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Riêng Actions ở bậc Starters cũng có `do-it`.
+Tổng: **42 Unit**, **195 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
 
-**Phủ chủ đề Starters:** animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions).
-- Chưa có: *places & directions*, *time* (phần lớn thuộc Movers), *work*.
-- Mỗi chủ đề hiện có khoảng 6 từ. Danh sách đầy đủ của Starters nhiều hơn, sẽ bổ sung bằng Unit "phần 2" khi cần.
+**Phủ chủ đề Starters:**
+- Đủ: animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions), **places & directions** (gồm từ chỉ vị trí in / on / under / next to / behind / in front of).
+- Các chủ đề lớn đã có "phần 2": Animals 2, Fruit + Snacks & Meals, My Home 2, Clothes 2, Toys 2, My Face, People.
+- Chưa có: *time* và *work* (phần lớn thuộc Movers).
 
 **Hoạt động có sẵn:**
 - `listen`, `say`, `tap-picture`;
@@ -305,9 +306,13 @@ Tổng: **31 Unit**. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Riê
 
 **Duyệt tiếng Anh:** Claude soạn và duyệt, Gemini duyệt chéo từng đợt. Claude xem từng góp ý, nhận góp ý đúng, giải thích khi không nhận (ví dụ giữ "Maa" cho dê để không trùng "Baa" của cừu). Từ thông dụng mà Gemini phát hiện được đưa vào danh sách cấm của bộ test.
 
+- **Đợt 4:**
+  - 9 Unit "phần 2" cho Starters và 2 Unit vị trí (L2 Where Is It?, L1 In, On, Under);
+  - hình cảnh vị trí vẽ bằng SVG (`image.scene`): hộp và quả bóng, riêng "under" dùng cái bàn để thấy rõ;
+  - duyệt chéo Gemini: bỏ thêm các từ chấp nhận có nghĩa riêng (có "glock", tên một loại súng), sửa "I can see my face!", "Where is the boy?".
+
 **Việc còn lại cho bậc 0–2:**
-- Unit "phần 2" cho các chủ đề lớn (Animals, Food, Home);
-- places & directions;
-- thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát).
+- thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);
+- duyệt lại toàn bộ khi bé và các lớp dùng thật, dựa trên dòng *"máy nghe: …"*.
 
 Sau đó là bậc 3–4 (Movers, Flyers) với các hoạt động đọc và viết.

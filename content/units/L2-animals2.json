@@ -1,0 +1,45 @@
+{
+  "id": "l2-animals2",
+  "level": "L2",
+  "topic": "animals2",
+  "order": 19,
+  "title": "Animals 2",
+  "titleVi": "Con vật 2",
+  "icon": "🐸",
+  "color": "#9be06a",
+  "intro": "More animals! Let's look!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Pond block",
+    "style": "window",
+    "color": "#2a9d8f"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Animals",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "frog",
+    "snake",
+    "spider",
+    "mouse",
+    "lizard",
+    "hippo"
+  ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Animal Chant 2",
+    "lines": [
+      "Frog, frog, jump, jump, jump!",
+      "Snake, snake, hiss, hiss, hiss!",
+      "Mouse, mouse, small and grey,",
+      "Hippo, hippo, swims all day!"
+    ]
+  }
+}
