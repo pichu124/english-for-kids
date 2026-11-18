@@ -4,6 +4,7 @@ import { h } from '../../lib/dom';
 import { limitReached } from '../../lib/usage';
 import { currentLevel } from '../../lib/level';
 import { buildReview, recordReview, REVIEW_ID } from '../../lib/review';
+import { markKnown } from '../../lib/progress';
 import { runReviewReward } from './reward';
 import type { Ctx } from '../../router';
 import { homeButton } from '../widgets';
@@ -56,7 +57,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
         s.classList.toggle('is-past', j < i);
       });
     },
-    onPlayResult: review ? (w, firstTry) => recordReview(review.keys.get(w.id) ?? '', firstTry) : undefined,
+    onPlayResult: review ? (w, firstTry) => recordReview(review.keys.get(w.id) ?? '', firstTry) : (w, firstTry) => firstTry && markKnown(topic.id, w.id),
     tick() {
       done = Math.min(total, done + 1);
       fill.style.width = `${(done / total) * 100}%`;

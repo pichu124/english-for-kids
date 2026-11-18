@@ -1,4 +1,3 @@
-import { blockSVG } from '../art/blocks';
 import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
 import { topicsOfLevel } from '../content';
@@ -9,7 +8,8 @@ import { sfx } from '../lib/sfx';
 import { getState } from '../lib/storage';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
-import type { Ctx } from '../router';
+import type { Ctx, ScreenName } from '../router';
+import { stickerCount } from '../lib/progress';
 import { parentButton } from './widgets';
 
 let greetedThisSession = false;
@@ -76,25 +76,33 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   }
 
   const totalBlocks = s.blocks.totalEarned;
-  const world = h(
-    'button',
-    {
-      class: 'btn btn-world',
-      'aria-label': 'My World',
-      onclick: () => {
-        sfx.tap();
-        ctx.go('world');
+  const dockBtn = (icon: string, label: string, go: ScreenName, badge?: number | string, isNew = false) =>
+    h(
+      'button',
+      {
+        class: `dock-btn ${isNew ? 'is-new' : ''}`,
+        'aria-label': label,
+        onclick: () => {
+          sfx.tap();
+          ctx.go(go);
+        },
       },
-    },
-    h('span', { class: 'btn-world-blocks', html: blockSVG('grass', '#6cc04a') + blockSVG('brick', '#e2553f') }),
-    h('span', {}, 'My World'),
-    totalBlocks ? h('span', { class: 'badge' }, String(totalBlocks)) : null,
+      h('span', { class: 'dock-icon', 'aria-hidden': 'true' }, icon),
+      h('span', {}, label),
+      badge ? h('span', { class: 'badge' }, String(badge)) : null,
+    );
+  const stickers = stickerCount(level.id).got;
+  const dock = h(
+    'nav',
+    { class: 'home-dock', 'aria-label': 'Menu' },
+    dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
+    dockBtn('📖', 'My Words', 'book', stickers || undefined),
   );
 
   const el = h(
     'main',
     { class: 'home' },
-    h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), world, parentButton(ctx)),
+    h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), dock, parentButton(ctx)),
     h('section', { class: `map map-n${Math.min(topics.length, 6)} ${islands.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
     h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),
   );

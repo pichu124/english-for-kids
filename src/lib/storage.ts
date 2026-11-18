@@ -12,6 +12,8 @@ export type WordStatus = {
   /** How the last success was judged. */
   by?: 'auto' | 'parent';
   tries: number;
+  /** Picked the right picture first time in a tap game. */
+  known?: boolean;
   /** Last thing the recognizer heard (text only — never audio). */
   heard?: string;
   last?: string; // ISO date

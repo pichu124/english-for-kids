@@ -7,6 +7,7 @@ import './styles/screens.css';
 import './styles/lesson.css';
 import './styles/world.css';
 import './styles/parent.css';
+import './styles/extras.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
@@ -19,6 +20,7 @@ import { restScreen } from './screens/rest';
 import { parentScreen } from './screens/parent';
 import { startScreen } from './screens/start';
 import { worldScreen } from './screens/world';
+import { bookScreen } from './screens/book';
 
 register('start', startScreen);
 register('home', homeScreen);
@@ -26,6 +28,7 @@ register('rest', restScreen);
 register('lesson', lessonScreen);
 register('world', worldScreen);
 register('parent', parentScreen);
+register('book', bookScreen);
 
 mount(document.getElementById('app')!);
 requestPersistence();

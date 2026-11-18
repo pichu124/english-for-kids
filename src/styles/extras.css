@@ -1,0 +1,39 @@
+/* ---------- home dock (My World, My Words, Bix, Garden, Stories) ---------- */
+.home-dock { margin-left: auto; margin-right: 12vmin; margin-bottom: 3vmin; display: flex; gap: 2vmin; flex-wrap: wrap; justify-content: flex-end; max-width: 60vw; }
+.dock-btn {
+  position: relative; font: inherit; font-weight: 800; color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: clamp(70px, 11vmin, 104px); padding: 8px 10px 6px;
+  background: #fff; border: 3px solid var(--ink); border-radius: 18px;
+  box-shadow: 0 6px 0 rgba(29, 36, 64, .25); cursor: pointer;
+  font-size: clamp(13px, 2.2vmin, 18px);
+}
+.dock-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(29, 36, 64, .25); }
+.dock-icon { font-size: clamp(30px, 6vmin, 50px); line-height: 1; }
+.dock-btn .badge { top: -10px; right: -10px; min-width: 30px; height: 30px; font-size: 15px; }
+.dock-btn.is-new { animation: pulse 1.2s ease-in-out infinite; }
+
+/* ---------- Word Book ---------- */
+.screen-book { overflow-y: auto; touch-action: pan-y; }
+.book { height: auto; min-height: 100%; display: flex; flex-direction: column; }
+.book-top { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 3vmin; padding: 1.5vmin 3vmin; background: linear-gradient(var(--sky-1), rgba(124, 200, 255, .85)); }
+.book-count { font-size: clamp(20px, 4vmin, 34px); font-weight: 800; background: #fff; border: 3px solid var(--ink); border-radius: 14px; padding: 0 14px; }
+.book-bix { margin-left: auto; }
+.book-bix .bix-svg { height: clamp(80px, 13vmin, 120px); }
+.book-pages { display: flex; flex-direction: column; gap: 3vmin; padding: 2vmin 3vmin 6vmin; }
+.book-page { background: rgba(255, 255, 255, .7); border: 3px solid var(--ink); border-radius: 24px; padding: 2vmin 2.5vmin; }
+.book-title { font-size: clamp(22px, 4vmin, 34px); margin-bottom: 1.5vmin; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(96px, 15vmin, 140px), 1fr)); gap: 2vmin; }
+.sticker {
+  position: relative; aspect-ratio: 1; font: inherit; color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: #fff; border: 3px dashed #b8c2dc; border-radius: 22px; padding: 6px; cursor: pointer;
+}
+.sticker .pic-emoji { font-size: clamp(42px, 8vmin, 70px); }
+.sticker .pic-color, .sticker .pic-scene { width: 70%; }
+.sticker .pic-text span { font-size: clamp(30px, 6vmin, 52px); }
+.sticker.is-got { border: 3px solid var(--ink); box-shadow: 0 5px 0 rgba(29, 36, 64, .2), inset 0 0 0 4px #ffe680; transform: rotate(var(--tilt, -2deg)); }
+.sticker.is-got:nth-child(even) { --tilt: 2deg; }
+.sticker.is-locked .pic { filter: grayscale(1) brightness(1.6); opacity: .25; }
+.sticker-q { position: absolute; font-size: clamp(34px, 6vmin, 52px); font-weight: 800; color: #b8c2dc; }
+.sticker-label { font-weight: 800; font-size: clamp(14px, 2.6vmin, 20px); }
