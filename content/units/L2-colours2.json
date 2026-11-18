@@ -25,5 +25,14 @@
     "brown",
     "grey",
     "purple"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Chỉ đồ vật màu đen, trắng, nâu quanh nhà và hỏi màu gì.",
+    "say": "What colour is it?"
+  },
+  "chat": {
+    "ask": "Do you like purple?",
+    "yes": "Me too! Purple is lovely!",
+    "no": "Okay! Brown is nice too!"
+  }
 }

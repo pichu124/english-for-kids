@@ -26,5 +26,14 @@
     "hand",
     "leg",
     "foot"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đứng trước gương, chỉ vào tóc, tay, chân và hỏi con.",
+    "say": "Where is your hair?"
+  },
+  "chat": {
+    "ask": "Can you wave your hand?",
+    "yes": "Hello, hello! Great waving!",
+    "no": "Let's try! Wave, wave!"
+  }
 }

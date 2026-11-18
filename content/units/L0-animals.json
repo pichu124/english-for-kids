@@ -78,5 +78,14 @@
         "emoji": "🐮"
       }
     ]
+  },
+  "parentTip": {
+    "vi": "Khi gặp chó, mèo ngoài đời, chỉ vào và hỏi con. Con chỉ cần gật hoặc kêu 'meo meo' là giỏi rồi.",
+    "say": "Is it a cat?"
+  },
+  "chat": {
+    "ask": "Do you like cats?",
+    "yes": "Meow! Cats are so cute!",
+    "no": "That's okay! Dogs are fun too!"
   }
 }

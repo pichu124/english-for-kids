@@ -45,5 +45,14 @@
       "say": "Make a heart with your hands!",
       "emoji": "❤️"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Tìm hình tròn, hình vuông quanh nhà: đồng hồ, cửa sổ, bánh quy.",
+    "say": "Is it a circle?"
+  },
+  "chat": {
+    "ask": "Do you like stars?",
+    "yes": "Me too! Stars are pretty!",
+    "no": "Okay! Hearts are nice too!"
+  }
 }

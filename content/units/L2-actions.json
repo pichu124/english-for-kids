@@ -68,5 +68,14 @@
       "say": "Dance, dance, dance!",
       "emoji": "💃"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Chơi 'Bix bảo': bố mẹ nói 'Jump!', 'Run!', con làm theo. Đổi vai cho con ra lệnh.",
+    "say": "Can you jump high?"
+  },
+  "chat": {
+    "ask": "Can you jump?",
+    "yes": "Wow! Jump, jump, jump!",
+    "no": "Let's try! It's fun!"
+  }
 }

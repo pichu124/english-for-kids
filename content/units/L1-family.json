@@ -66,5 +66,14 @@
       "say": "Rock the baby. Shh!",
       "emoji": "👶"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Xem ảnh gia đình, chỉ từng người và hỏi con.",
+    "say": "Who is this? Is it Dad?"
+  },
+  "chat": {
+    "ask": "Do you have a sister?",
+    "yes": "Sisters are fun!",
+    "no": "Your family is lovely!"
+  }
 }

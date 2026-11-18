@@ -82,6 +82,15 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
    - **Bắn bóng bay**: nghe từ, chạm vào bóng có hình đúng.
 6. **Thẻ "Chơi cùng con"** (trụ cột xã hội + ý nghĩa): hết bài hiện một gợi ý ngắn bằng tiếng Việt cho bố mẹ, ví dụ *"Chỉ đồ vật trong nhà và hỏi: What colour is it?"*. Nội dung lấy từ trường mới `parentTip` của Unit.
 
+**Tiến độ Đợt A (đã xong):**
+- [x] 1. Từ sống động: trường `anim` (12 kiểu), mặc định theo chủ đề, riêng từng từ khi cần.
+- [x] 2. Sổ sticker **My Words**: sticker khi bé nói được hoặc chọn đúng ngay lần đầu; chạm vào thì nghe lại và từ chuyển động.
+- [x] 3. **Tủ đồ của Bix**: 16 món (mũ, đồ đeo cổ, đồ cầm tay, màu áo), mở dần theo số bài đã học (1 → 30 bài). Bix mặc ở mọi màn hình. Bix đọc tên món bằng tiếng Anh ("Look! A crown!").
+- [x] 4. **Vườn của bé**: mỗi ngày có học mọc một cây. Nghỉ không mất gì. Bướm, ong, bọ rùa, chim ghé vườn khi đủ 3 / 6 / 10 / 15 cây.
+- [x] 5. **Trò chơi nhỏ**: lật thẻ tìm cặp và bắn bóng bay. *Khác đề xuất:* hai trò nằm ở nút **Games** riêng, không chen vào bước chọn hình, để bài học giữ nhịp quen thuộc. Trò chơi dùng từ bé đã học (thiếu thì lấy thêm từ bài đầu của bậc). Không tính giờ, không có "sai", không phát khối.
+- [x] 6. **Chơi cùng con**: cả 42 bài có `parentTip` (việc làm ở nhà và câu tiếng Anh bố mẹ nói, có nút nghe). Thẻ hiện thu gọn ở màn hình thưởng, và trong khu bố mẹ theo các bài bé vừa học.
+- Lối vào: màn hình chính có hàng nút **My World · My Words · Bix · Games · Garden**. Nút sáng lên khi có đồ mới hoặc cây mới.
+
 ### Đợt B: đáng làm, công sức vừa (mỗi mục 1–3 ngày)
 7. **Truyện tương tác ngắn** (học Monkey Stories, Duolingo ABC):
    - 4–6 trang, mỗi trang một cảnh (emoji/SVG) và một câu Bix đọc;

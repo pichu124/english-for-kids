@@ -41,5 +41,14 @@
       "Tiger, tiger, roar, roar, roar!",
       "Crocodile, crocodile, snap, snap, snap!"
     ]
+  },
+  "parentTip": {
+    "vi": "Xem tranh hoặc đi sở thú, chỉ con khỉ, con hổ và hỏi con.",
+    "say": "Look! Is it a monkey?"
+  },
+  "chat": {
+    "ask": "Do you like monkeys?",
+    "yes": "Ooh, ooh! Monkeys are funny!",
+    "no": "Okay! Elephants are great too!"
   }
 }

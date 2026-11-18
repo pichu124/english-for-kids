@@ -30,5 +30,14 @@
     "eighteen",
     "nineteen",
     "twenty"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đếm bậc cầu thang hoặc kẹo từ 11 đến 20.",
+    "say": "How many?"
+  },
+  "chat": {
+    "ask": "Can you count to twenty?",
+    "yes": "Wow! You are a counting star!",
+    "no": "Let's count together, step by step!"
+  }
 }

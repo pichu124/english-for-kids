@@ -62,5 +62,14 @@
       "say": "Zip up your jacket!",
       "emoji": "🧥"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Lúc thay đồ, cầm đôi giày, đôi tất và hỏi con.",
+    "say": "Are these your shoes?"
+  },
+  "chat": {
+    "ask": "Do you like hats?",
+    "yes": "Me too! Hats are fun!",
+    "no": "Okay! Shoes are cool too!"
+  }
 }

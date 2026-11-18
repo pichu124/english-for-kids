@@ -26,5 +26,14 @@
     "guitar",
     "piano",
     "camera"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Giả vờ chơi đàn, chụp ảnh và hỏi con có biết chơi không.",
+    "say": "Can you play the guitar?"
+  },
+  "chat": {
+    "ask": "Do you like music?",
+    "yes": "La, la, la! Me too!",
+    "no": "Okay! Games are fun too!"
+  }
 }

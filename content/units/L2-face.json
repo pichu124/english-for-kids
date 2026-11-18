@@ -48,5 +48,14 @@
       "say": "Open your mouth! Aaah!",
       "emoji": "👄"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đứng trước gương, chỉ vào mắt, tai, mũi, miệng và hỏi con.",
+    "say": "Where is your nose?"
+  },
+  "chat": {
+    "ask": "Can you close your eyes?",
+    "yes": "Good! Now open them! Peekaboo!",
+    "no": "Okay! Let's blink together!"
+  }
 }

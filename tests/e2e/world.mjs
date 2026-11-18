@@ -17,7 +17,7 @@ await page.evaluate(() =>
 );
 await page.reload();
 await page.click('.btn-play', { force: true });
-await page.click('.btn-world', { force: true });
+await page.click('.dock-btn[aria-label="My World"]', { force: true });
 await page.waitForSelector('.world-grid');
 await page.waitForTimeout(300);
 

@@ -26,5 +26,14 @@
     "juice",
     "carrot",
     "tomato"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Bữa sáng, hỏi con có thích bánh mì, cơm không.",
+    "say": "Do you like bread?"
+  },
+  "chat": {
+    "ask": "Do you like rice?",
+    "yes": "Me too! Rice is yummy!",
+    "no": "Bread is yummy too!"
+  }
 }

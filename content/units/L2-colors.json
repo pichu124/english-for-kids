@@ -26,5 +26,14 @@
     "yellow",
     "orange",
     "pink"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Khi mặc đồ, hỏi con màu của chiếc váy, chiếc áo.",
+    "say": "Is this dress pink?"
+  },
+  "chat": {
+    "ask": "Do you like pink?",
+    "yes": "Me too! Pink is pretty!",
+    "no": "Okay! Green is nice too!"
+  }
 }

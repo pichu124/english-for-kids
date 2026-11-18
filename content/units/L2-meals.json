@@ -29,5 +29,14 @@
     "sausage",
     "potato",
     "onion"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Khi ăn vặt, hỏi con có thích sô-cô-la, khoai tây chiên không.",
+    "say": "Do you like chocolate?"
+  },
+  "chat": {
+    "ask": "Do you like burgers?",
+    "yes": "Yummy! Burgers are great!",
+    "no": "Okay! Potatoes are yummy too!"
+  }
 }

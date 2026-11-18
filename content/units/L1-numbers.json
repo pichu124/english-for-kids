@@ -86,5 +86,14 @@
       "Count with me, it's fun to do:",
       "One, two, three, four, five, for you!"
     ]
+  },
+  "parentTip": {
+    "vi": "Cùng đếm ngón tay, bậc cầu thang hay hạt kẹo đến 5.",
+    "say": "Can you count to five?"
+  },
+  "chat": {
+    "ask": "Can you count to five?",
+    "yes": "Wow! One, two, three, four, five!",
+    "no": "Let's count together!"
   }
 }

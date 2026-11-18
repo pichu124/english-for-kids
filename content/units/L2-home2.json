@@ -26,5 +26,14 @@
     "phone",
     "computer",
     "picture"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Hỏi con đồng hồ, gương, điện thoại ở đâu trong nhà.",
+    "say": "Where is the clock?"
+  },
+  "chat": {
+    "ask": "Do you like watching TV?",
+    "yes": "Me too! TV is fun!",
+    "no": "Okay! Books are fun too!"
+  }
 }

@@ -58,5 +58,14 @@
       "say": "Drink your milk. Glug, glug!",
       "emoji": "🥛"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Lúc ăn uống, đưa cốc sữa hoặc quả táo và hỏi con có muốn không.",
+    "say": "Do you want milk?"
+  },
+  "chat": {
+    "ask": "Do you like apples?",
+    "yes": "Yummy! Apples are sweet!",
+    "no": "Okay! Bananas are yummy too!"
+  }
 }

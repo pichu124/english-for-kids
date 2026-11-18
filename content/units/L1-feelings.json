@@ -49,5 +49,14 @@
       "say": "Stretch and yawn!",
       "emoji": "🥱"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Buổi tối hỏi con hôm nay vui hay buồn. Bố mẹ làm mặt vui, mặt buồn để con đoán.",
+    "say": "Are you happy today?"
+  },
+  "chat": {
+    "ask": "Are you happy today?",
+    "yes": "Yay! I am happy too!",
+    "no": "Oh! A big hug for you!"
+  }
 }

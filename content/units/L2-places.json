@@ -26,5 +26,14 @@
     "garden",
     "zoo",
     "street"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đi đường, chỉ trường học, cửa hàng, công viên và hỏi con.",
+    "say": "Is this a school?"
+  },
+  "chat": {
+    "ask": "Do you like the park?",
+    "yes": "Me too! The park is fun!",
+    "no": "Okay! The zoo is fun too!"
+  }
 }

@@ -35,5 +35,14 @@
     "t-shirt",
     "dress",
     "jacket"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Lúc chọn quần áo, cầm chiếc áo và hỏi con có muốn mặc không.",
+    "say": "Do you want this blue T-shirt?"
+  },
+  "chat": {
+    "ask": "Do you like dresses?",
+    "yes": "Me too! Dresses are pretty!",
+    "no": "Okay! T-shirts are cool too!"
+  }
 }

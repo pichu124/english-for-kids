@@ -44,4 +44,11 @@ describe('content (format v2)', () => {
     const cat2 = topics.find((t) => t.id === 'animals')!.words.find((w) => w.id === 'cat')!;
     expect(cat2.sentence).toMatch(/^This is a cat/);
   });
+  it('every unit has a "play together" tip and a chat question', () => {
+    for (const t of topics) {
+      expect(t.parentTip?.say, t.id).toBeTruthy();
+      expect(t.chat?.ask.endsWith('?'), t.id).toBe(true);
+      expect(`${t.chat?.ask} ${t.chat?.yes} ${t.chat?.no} ${t.parentTip?.say}`, t.id).not.toMatch(/\bLet us\b/);
+    }
+  });
 });

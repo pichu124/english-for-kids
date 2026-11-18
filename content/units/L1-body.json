@@ -60,5 +60,14 @@
       "Hands to clap and feet to stamp,",
       "Stamp, stamp, stamp and jump, jump, jump!"
     ]
+  },
+  "parentTip": {
+    "vi": "Chơi 'chạm vào…': bố mẹ nói, con chạm vào mũi, tai, tay. Đổi vai cho con ra lệnh.",
+    "say": "Where is your nose?"
+  },
+  "chat": {
+    "ask": "Can you touch your nose?",
+    "yes": "Great! Beep, beep, nose!",
+    "no": "Try it! It's fun!"
   }
 }

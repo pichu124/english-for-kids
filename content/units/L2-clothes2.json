@@ -38,5 +38,14 @@
       "play": "Where are the jeans?"
     },
     "watch"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Chỉ đồng hồ, kính của bố mẹ và hỏi con đó là gì.",
+    "say": "Is this a watch?"
+  },
+  "chat": {
+    "ask": "Do you like boots?",
+    "yes": "Me too! Boots are cool!",
+    "no": "Okay! Shorts are nice too!"
+  }
 }

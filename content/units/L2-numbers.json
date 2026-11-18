@@ -30,5 +30,14 @@
     "eight",
     "nine",
     "ten"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Cùng đếm ngón tay từ 1 đến 10 rồi hỏi con.",
+    "say": "How many fingers?"
+  },
+  "chat": {
+    "ask": "Can you count to ten?",
+    "yes": "Wow! You are a counting star!",
+    "no": "Let's count together!"
+  }
 }

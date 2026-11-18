@@ -26,5 +26,14 @@
     "window",
     "bath",
     "sofa"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đi quanh nhà, chỉ sofa, ghế, cửa và hỏi con.",
+    "say": "What is this?"
+  },
+  "chat": {
+    "ask": "Do you like your bed?",
+    "yes": "Me too! Beds are cosy!",
+    "no": "Okay! The sofa is nice too!"
+  }
 }

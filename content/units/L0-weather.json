@@ -56,5 +56,14 @@
       "say": "Brr! Shake, shake! It's cold!",
       "emoji": "❄️"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Buổi sáng mở cửa sổ, cùng con nhìn trời và hỏi.",
+    "say": "Is it sunny today?"
+  },
+  "chat": {
+    "ask": "Do you like rain?",
+    "yes": "Splash, splash! Rain is fun!",
+    "no": "Okay! Sun is nice too!"
+  }
 }

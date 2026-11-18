@@ -32,5 +32,14 @@
       "id": "brother",
       "play": "Where is my brother?"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Xem ảnh ông bà, hỏi con đó là ai.",
+    "say": "Who is this?"
+  },
+  "chat": {
+    "ask": "Do you love your grandma?",
+    "yes": "Grandmas are great!",
+    "no": "Your family loves you!"
+  }
 }

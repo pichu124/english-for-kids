@@ -41,5 +41,14 @@
       "Mouse, mouse, small and grey,",
       "Hippo, hippo, swims all day!"
     ]
+  },
+  "parentTip": {
+    "vi": "Xem sách tranh con vật, chỉ vào ếch, rắn, chuột và hỏi con.",
+    "say": "Is that a green frog?"
+  },
+  "chat": {
+    "ask": "Do you like frogs?",
+    "yes": "Ribbit! Frogs are funny!",
+    "no": "Okay! Mice are cute too!"
   }
 }

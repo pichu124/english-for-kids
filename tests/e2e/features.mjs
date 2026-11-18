@@ -44,6 +44,11 @@ for (let i = 0; i < 800 && !(await page.locator('.reward-actions:not([hidden])')
   }
   await page.waitForTimeout(80);
 }
+await page.waitForSelector('.reward .tip-card');
+await page.locator('.reward .tip-head').click({ force: true });
+if (!(await page.locator('.reward .tip-body:not([hidden])').count())) fail('tip card should open');
+if (shots) await page.screenshot({ path: `${shots}/reward-tip.png` });
+step('reward screen shows a "Chơi cùng con" card for parents');
 let s = await state();
 const known = Object.entries(s.words).filter(([k, v]) => k.startsWith('animals/') && v.known).length;
 if (!known) fail('right-first-time picks should mark words known');
@@ -150,6 +155,18 @@ for (let i = 0; i < 200 && !(await page.locator('.game-done').count()); i++) {
 if (!(await page.locator('.game-done').count())) fail('popping 5 named balloons should end the game');
 if ((await page.locator('.balloon-stars .on').count()) !== 5) fail('5 stars after 5 rounds');
 step('balloons: pop the balloon Bix names, 5 rounds then done');
+
+// ---------- A6: tips in the parent area ----------
+await home();
+await page.locator('.btn-parent').click({ force: true });
+await page.waitForSelector('.gate');
+const [ga, gb] = (await page.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
+for (const ch of String(ga * gb)) await page.click(`.key:text-is("${ch}")`);
+await page.click('.key-ok');
+await page.waitForSelector('.p-tips .tip-card');
+const tipText = await page.locator('.p-tips .tip-card').first().textContent();
+if (!tipText.includes('Animals') && !tipText.includes('Con vật') && !tipText.includes('🐶')) fail('first tip should be for the unit just done (Animals), got: ' + tipText.slice(0, 80));
+step('parent area lists "Chơi cùng con" tips for the units just learned');
 
 // __MORE__
 

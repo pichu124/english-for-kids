@@ -26,5 +26,14 @@
     "robot",
     "train",
     "car"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Cầm đồ chơi của con và hỏi có phải của con không.",
+    "say": "Is this your ball?"
+  },
+  "chat": {
+    "ask": "Do you like robots?",
+    "yes": "Beep, boop! Robots are cool!",
+    "no": "Okay! Kites are fun too!"
+  }
 }

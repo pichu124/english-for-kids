@@ -26,5 +26,14 @@
     "bird",
     "duck",
     "cow"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đi công viên, tìm chim, cá, chó và hỏi con có thấy không.",
+    "say": "Can you see a bird?"
+  },
+  "chat": {
+    "ask": "Do you like dogs?",
+    "yes": "Woof! Dogs are great!",
+    "no": "Okay! Cats are nice too!"
+  }
 }

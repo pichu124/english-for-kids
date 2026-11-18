@@ -6,6 +6,7 @@ import { scheduleUnit } from '../../lib/review';
 import { lessonsDone } from '../../lib/progress';
 import { ITEMS } from '../../art/outfit';
 import { confetti } from '../widgets';
+import { tipCard } from '../tip';
 import type { LessonUI } from './shared';
 
 /** Step 4 — Reward: one building block for "My World". */
@@ -38,6 +39,8 @@ export async function runReward(ui: LessonUI): Promise<void> {
   await ui.talk('You did it! Here is a block for you!', 'happy', 'You did it!');
   actions.hidden = false;
   actions.classList.add('pop');
+  const tip = tipCard(t);
+  if (tip) ui.stage.querySelector('.reward')?.appendChild(tip);
   if (clothes) await ui.talk('And new clothes for me!', 'happy');
 
   const tapped = await ui.tapAny(clothes ? [clothes, world, home] : [world, home]);

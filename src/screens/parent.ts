@@ -10,6 +10,7 @@ import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } fr
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
+import { tipCard } from './tip';
 
 export function parentScreen(ctx: Ctx): HTMLElement {
   const root = h('main', { class: 'parent' });
@@ -73,6 +74,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     summaryCard(),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
+    card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable()),
@@ -82,6 +84,22 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Xoá tiến độ', resetField()),
     h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} bài · dữ liệu chỉ lưu trên máy này`),
   );
+
+  /** Tips for the units the child did most recently (or the first units of the level). */
+  function tipsList() {
+    const st = getState();
+    const recent = topics
+      .filter((t) => st.topics[t.id]?.lastDone)
+      .sort((a, b) => (st.topics[b.id].lastDone ?? '').localeCompare(st.topics[a.id].lastDone ?? ''))
+      .slice(0, 4);
+    const list = recent.length ? recent : topicsOfLevel(currentLevel().id).slice(0, 3);
+    return h(
+      'div',
+      { class: 'p-tips' },
+      h('p', { class: 'p-muted' }, recent.length ? 'Gợi ý theo các bài bé vừa học. Mỗi ngày chỉ cần 2–3 phút chơi cùng con ngoài đời là đủ.' : 'Bé chưa học bài nào. Đây là gợi ý cho những bài đầu tiên.'),
+      list.map((t, i) => tipCard(t, i === 0)),
+    );
+  }
 
   function card(title: string, ...body: (HTMLElement | null)[]) {
     return h('section', { class: 'p-card' }, h('h2', {}, title), ...body);

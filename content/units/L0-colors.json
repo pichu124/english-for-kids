@@ -56,5 +56,14 @@
       "say": "Clap, clap, clap!",
       "emoji": "👏"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Cầm một đồ chơi màu đỏ và hỏi con. Lần sau đổi sang màu khác.",
+    "say": "Is it red?"
+  },
+  "chat": {
+    "ask": "Do you like red?",
+    "yes": "Me too! Red is great!",
+    "no": "Okay! Blue is nice too!"
+  }
 }

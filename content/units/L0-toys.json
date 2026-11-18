@@ -56,5 +56,14 @@
       "say": "Drive the car. Beep, beep!",
       "emoji": "🚗"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Giấu quả bóng sau lưng rồi hỏi. Con tìm thấy thì reo 'Ball!' cùng con.",
+    "say": "Where is the ball?"
+  },
+  "chat": {
+    "ask": "Do you like balls?",
+    "yes": "Me too! Let's play ball!",
+    "no": "Okay! Teddy is fun too!"
+  }
 }

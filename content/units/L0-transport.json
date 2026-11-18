@@ -56,5 +56,14 @@
       "say": "Row your boat! Row, row!",
       "emoji": "🚣"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Khi ra đường, chỉ xe buýt, ô tô và hỏi con có nhìn thấy không.",
+    "say": "Can you see the bus?"
+  },
+  "chat": {
+    "ask": "Do you like buses?",
+    "yes": "Beep, beep! Buses are fun!",
+    "no": "Okay! Planes are fun too!"
+  }
 }

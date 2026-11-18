@@ -74,5 +74,14 @@
         "emoji": "🐴"
       }
     ]
+  },
+  "parentTip": {
+    "vi": "Bố mẹ giả tiếng con vật ('quạc quạc') và hỏi. Con đáp đúng thì đổi vai.",
+    "say": "Is it a duck?"
+  },
+  "chat": {
+    "ask": "Do you like pigs?",
+    "yes": "Oink, oink! Pigs are funny!",
+    "no": "Okay! Ducks are fun too!"
   }
 }

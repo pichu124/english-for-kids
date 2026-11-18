@@ -35,5 +35,14 @@
       "play": "Where is the milk?"
     },
     "ice-cream"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Lúc ăn, đưa quả chuối và hỏi con có muốn không.",
+    "say": "Do you want a banana?"
+  },
+  "chat": {
+    "ask": "Do you like ice cream?",
+    "yes": "Me too! Ice cream is yummy!",
+    "no": "Okay! Apples are yummy too!"
+  }
 }

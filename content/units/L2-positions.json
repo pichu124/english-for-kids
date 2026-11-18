@@ -29,5 +29,14 @@
     "next-to",
     "behind",
     "in-front-of"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Giấu gấu bông dưới gầm bàn, sau ghế rồi hỏi con gấu ở đâu.",
+    "say": "Is it under the table?"
+  },
+  "chat": {
+    "ask": "Is there a toy under your bed?",
+    "yes": "Wow! A secret toy!",
+    "no": "Okay! Under the bed is empty!"
+  }
 }

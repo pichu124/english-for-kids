@@ -41,5 +41,14 @@
       "Hello, teacher, how are you?",
       "I am fine, and how are you?"
     ]
+  },
+  "parentTip": {
+    "vi": "Lúc soạn cặp, hỏi con bút chì, thước kẻ ở đâu.",
+    "say": "Where is your pencil?"
+  },
+  "chat": {
+    "ask": "Do you like your school?",
+    "yes": "Me too! School is fun!",
+    "no": "Okay! Home is nice too!"
   }
 }

@@ -132,3 +132,15 @@
 .balloon-ear { position: absolute; top: 2vmin; right: 3vmin; z-index: 2; }
 @keyframes rise { from { transform: translateY(110%); } to { transform: translateY(calc(-1 * (100vh - 100%))); } }
 @keyframes popped { to { transform: scale(1.6); opacity: 0; } }
+
+/* ---------- "Chơi cùng con" tip card (for parents) ---------- */
+.tip-card { background: #fffdf3; border: 2px solid #e6dcb2; border-radius: 16px; font-size: 16px; color: var(--ink); text-align: left; max-width: 560px; }
+.tip-head { font: inherit; font-weight: 700; width: 100%; text-align: left; background: none; border: 0; padding: 10px 14px; min-height: 44px; cursor: pointer; color: inherit; }
+.tip-head::after { content: ' ▾'; }
+.tip-head[aria-expanded='true']::after { content: ' ▴'; }
+.tip-body { padding: 0 14px 12px; line-height: 1.45; }
+.tip-body p + p { margin-top: 6px; }
+.tip-hear { font-size: 20px; background: #fff; border: 2px solid #e6dcb2; border-radius: 10px; min-width: 44px; min-height: 40px; cursor: pointer; }
+.reward { position: relative; }
+.reward .tip-card { position: absolute; left: 0; top: 0; z-index: 2; max-width: min(440px, 44vw); opacity: .95; }
+.p-tips { display: flex; flex-direction: column; gap: 10px; }

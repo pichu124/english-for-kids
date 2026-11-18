@@ -111,6 +111,10 @@ export type Topic = {
   actions: Action[];
   chant?: Chant;
   casa?: CasaLink;
+  /** "Play together" card for parents: what to do at home (Vietnamese) and the English line to say. */
+  parentTip?: { vi: string; say: string };
+  /** A yes/no question Bix asks the child about the topic, with its two replies. */
+  chat?: { ask: string; yes: string; no: string };
   words: Word[];
 };
 
@@ -200,6 +204,13 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     problem(where, `casa.luaTuoi "${u.casa.luaTuoi}" không khớp bậc ${level.id} ("${level.casaLuaTuoi}")`);
   }
 
+  if (u.parentTip && (typeof u.parentTip.vi !== 'string' || !u.parentTip.vi || typeof u.parentTip.say !== 'string' || !u.parentTip.say)) {
+    problem(where, '"parentTip" cần "vi" và "say"');
+  }
+  if (u.chat && ['ask', 'yes', 'no'].some((k) => typeof u.chat?.[k as 'ask'] !== 'string' || !u.chat?.[k as 'ask'])) {
+    problem(where, '"chat" cần "ask", "yes" và "no"');
+  }
+
   const words: Word[] = [];
   for (const ref of u.words ?? []) {
     const id = typeof ref === 'string' ? ref : ref?.id;
@@ -239,6 +250,8 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     actions,
     chant,
     casa: u.casa,
+    parentTip: u.parentTip,
+    chat: u.chat,
     words,
   };
 }

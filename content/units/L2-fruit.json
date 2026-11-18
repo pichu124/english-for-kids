@@ -29,5 +29,14 @@
     "pear",
     "pineapple",
     "watermelon"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đi chợ hay mở tủ lạnh, cầm quả xoài, quả lê và hỏi con.",
+    "say": "Is this a mango?"
+  },
+  "chat": {
+    "ask": "Do you like mangoes?",
+    "yes": "Me too! Mangoes are sweet!",
+    "no": "Okay! Grapes are yummy too!"
+  }
 }

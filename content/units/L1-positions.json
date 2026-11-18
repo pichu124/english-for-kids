@@ -46,5 +46,14 @@
       "say": "Jump in! Jump out!",
       "emoji": "⭕"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đặt gấu bông lên bàn, vào hộp, xuống gầm bàn rồi hỏi con gấu ở đâu.",
+    "say": "Is teddy on the table?"
+  },
+  "chat": {
+    "ask": "Is your teddy on your bed?",
+    "yes": "Good night, teddy!",
+    "no": "Let's find your teddy!"
+  }
 }

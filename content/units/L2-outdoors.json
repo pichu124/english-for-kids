@@ -26,5 +26,14 @@
     "sea",
     "beach",
     "water"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Đi dạo, chỉ cây, hoa, mặt trời và hỏi con.",
+    "say": "Where is the sun?"
+  },
+  "chat": {
+    "ask": "Do you like the beach?",
+    "yes": "Me too! The beach is fun!",
+    "no": "Okay! Trees are nice too!"
+  }
 }

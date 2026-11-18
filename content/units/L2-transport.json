@@ -26,5 +26,14 @@
     "bike",
     "helicopter",
     "motorbike"
-  ]
+  ],
+  "parentTip": {
+    "vi": "Ra đường, chỉ xe buýt, xe máy và hỏi con.",
+    "say": "Look! Is that a bus?"
+  },
+  "chat": {
+    "ask": "Do you like bikes?",
+    "yes": "Me too! Bikes are fun!",
+    "no": "Okay! Boats are fun too!"
+  }
 }

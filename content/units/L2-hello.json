@@ -29,5 +29,14 @@
       "id": "im-fine",
       "play": "Which one is: I'm fine?"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Mỗi sáng chào con bằng tiếng Anh và chờ con đáp 'I'm fine'.",
+    "say": "Good morning! How are you?"
+  },
+  "chat": {
+    "ask": "Do you say hello to friends?",
+    "yes": "Hello, hello! Friends are great!",
+    "no": "Let's try! Say hello!"
+  }
 }

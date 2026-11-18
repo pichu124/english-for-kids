@@ -32,5 +32,14 @@
       "id": "children",
       "play": "Where are the children?"
     }
-  ]
+  ],
+  "parentTip": {
+    "vi": "Xem truyện tranh, chỉ bạn trai, bạn gái và hỏi con.",
+    "say": "Is she a girl?"
+  },
+  "chat": {
+    "ask": "Do you have a friend?",
+    "yes": "Friends are great!",
+    "no": "I am your friend!"
+  }
 }
