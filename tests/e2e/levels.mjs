@@ -23,16 +23,19 @@ if (await page.locator('.listen .word-label').count()) throw new Error('level 0 
 if (shots) await page.screenshot({ path: `${shots}/l0-listen.png` });
 step('?unit=l0-animals opens the unit; no written words at level 0');
 
-// play through to the tap game and count the choices
-while (await page.locator('.listen').count()) {
-  await page.locator('.btn-next:not([hidden])').click({ force: true }).catch(() => {});
-  await page.waitForTimeout(60);
+// play through (listen → do-it → say) to the tap game and count the choices
+let sawDoIt = false;
+for (let i = 0; i < 400 && !(await page.locator('.play').count()); i++) {
+  if (await page.locator('.btn-next:not([hidden])').count()) await tap('.btn-next:not([hidden])');
+  else if (await page.locator('.btn-did:not([hidden])').count()) {
+    if (!sawDoIt && shots) await page.screenshot({ path: `${shots}/l0-doit.png` });
+    sawDoIt = true;
+    await tap('.btn-did:not([hidden])');
+  } else if (await page.locator('.btn-mic.is-ready').count()) await tap('.btn-mic');
+  await page.waitForTimeout(80);
 }
-await page.waitForSelector('.speak');
-while (await page.locator('.speak').count()) {
-  if (await page.locator('.btn-mic.is-ready').count()) await tap('.btn-mic');
-  await page.waitForTimeout(120);
-}
+if (!sawDoIt) throw new Error('level 0 unit should have a do-it step');
+step('do-it step: act out commands, tap ✓');
 await page.waitForSelector('.play');
 const choices = await page.locator('.word-card-play').count();
 if (choices !== 3) throw new Error(`level 0 should offer 3 pictures, got ${choices}`);
@@ -56,8 +59,8 @@ await page.click('.p-seg-btn:has-text("Starters")');
 await page.click('.p-btn-main:text("Xong")');
 await page.waitForSelector('.home');
 const l2 = await page.locator('.island').count();
-if (l2 !== 5) throw new Error(`Starters should show 5 units, got ${l2}`);
-step('parent switches the level to Starters → 5 units');
+if (l2 !== 8) throw new Error(`Starters should show 8 units, got ${l2}`);
+step('parent switches the level to Starters → 8 units');
 
 // 4. Public catalog for casa-mamnon
 const cat = await (await page.request.get(`${base}/catalog.json`)).json();

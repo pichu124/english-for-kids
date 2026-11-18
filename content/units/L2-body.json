@@ -1,0 +1,30 @@
+{
+  "id": "l2-body",
+  "level": "L2",
+  "topic": "body",
+  "order": 6,
+  "title": "My Body",
+  "titleVi": "Cơ thể",
+  "icon": "💪",
+  "color": "#a6dd5c",
+  "intro": "Let's learn about our bodies!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Stone block",
+    "style": "stone",
+    "color": "#9aa3b5"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The body & the face",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "face",
+    "hair",
+    "arm",
+    "hand",
+    "leg",
+    "foot"
+  ]
+}

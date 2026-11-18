@@ -26,14 +26,16 @@ export type Level = {
   showText: boolean;
   /** Pictures to choose from in the tap game. */
   choices: number;
+  /** Rounds of the tap game. */
+  playRounds: number;
 };
 
 export const LEVELS: Level[] = [
-  { id: 'L0', name: 'Little Bix', nameVi: 'Bậc 0 · Little Bix (3–4 tuổi)', ages: '3–4', framework: 'Cambridge Early Years', casaLuaTuoi: '3-4', showText: false, choices: 3 },
-  { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3 },
-  { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4 },
-  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4 },
-  { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4 },
+  { id: 'L0', name: 'Little Bix', nameVi: 'Bậc 0 · Little Bix (3–4 tuổi)', ages: '3–4', framework: 'Cambridge Early Years', casaLuaTuoi: '3-4', showText: false, choices: 3, playRounds: 4 },
+  { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3, playRounds: 5 },
+  { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6 },
+  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
+  { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
 ];
 
 export const levelById = (id: string): Level | undefined => LEVELS.find((l) => l.id === id);
@@ -57,8 +59,13 @@ export type Word = {
   play?: string;
 };
 
-export type StepType = 'listen' | 'say' | 'tap-picture';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it'];
+/** Steps a unit gets when it does not list its own. */
+export const DEFAULT_STEPS: StepType[] = ['listen', 'say', 'tap-picture'];
+
+/** A "do it" command (Total Physical Response): the child acts it out, then taps ✓. */
+export type Action = { say: string; emoji: string };
 
 export type CasaLink = { luaTuoi?: string; chuDe?: string; monHoc?: string };
 
@@ -79,13 +86,15 @@ export type Topic = {
   playPrompt: string;
   block: { name: string; style: BlockStyle; color: string };
   steps: StepType[];
+  actions: Action[];
   casa?: CasaLink;
   words: Word[];
 };
 
 type BankFile = { topic?: string; words: Word[] };
 type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept'>>);
-type UnitFile = Omit<Topic, 'words' | 'steps' | 'titleVi' | 'intro' | 'order'> & {
+type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'titleVi' | 'intro' | 'order'> & {
+  actions?: Action[];
   order?: number;
   titleVi?: string;
   intro?: string;
@@ -140,8 +149,14 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (!u.block || typeof u.block.name !== 'string' || !BLOCK_STYLES.includes(u.block.style)) {
     return problem(where, `block.style phải là một trong ${BLOCK_STYLES.join(', ')}`), null;
   }
-  const steps = u.steps ?? STEP_TYPES;
+  const steps = u.steps ?? DEFAULT_STEPS;
   if (!steps.length || steps.some((s) => !STEP_TYPES.includes(s))) return problem(where, `steps chỉ gồm ${STEP_TYPES.join(', ')}`), null;
+  const actions = Array.isArray(u.actions) ? u.actions : [];
+  if (actions.some((a) => typeof a?.say !== 'string' || !a.say || typeof a?.emoji !== 'string' || !a.emoji)) {
+    return problem(where, 'mỗi hành động trong "actions" cần "say" và "emoji"'), null;
+  }
+  if (steps.includes('do-it') && actions.length < 2) return problem(where, 'bước "do-it" cần ít nhất 2 hành động trong "actions"'), null;
+  if (actions.length && !steps.includes('do-it')) problem(where, 'có "actions" nhưng "steps" không có "do-it"');
   if (u.casa?.luaTuoi && u.casa.luaTuoi !== level.casaLuaTuoi) {
     problem(where, `casa.luaTuoi "${u.casa.luaTuoi}" không khớp bậc ${level.id} ("${level.casaLuaTuoi}")`);
   }
@@ -160,6 +175,14 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     words.push(w);
   }
   if (words.length < 3) return problem(where, 'cần ít nhất 3 từ (trò chơi chọn hình cần 3 lựa chọn)'), null;
+  // An accepted mishearing must not be another word of the same unit, or saying
+  // "cat" would also count as "kite".
+  for (const w of words) {
+    for (const a of w.accept ?? []) {
+      const other = words.find((x) => x !== w && x.text.toLowerCase() === a.toLowerCase());
+      if (other) problem(where, `"${a}" (chấp nhận cho "${w.text}") lại là một từ khác trong bài`);
+    }
+  }
 
   return {
     id: u.id,
@@ -174,6 +197,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     playPrompt: u.playPrompt,
     block: u.block,
     steps,
+    actions,
     casa: u.casa,
     words,
   };

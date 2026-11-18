@@ -1,0 +1,30 @@
+{
+  "id": "l2-toys",
+  "level": "L2",
+  "topic": "toys",
+  "order": 8,
+  "title": "Toys",
+  "titleVi": "Đồ chơi",
+  "icon": "🧸",
+  "color": "#9be06a",
+  "intro": "Let's play with my toys!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Toy block",
+    "style": "window",
+    "color": "#ffb703"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Toys",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "ball",
+    "teddy",
+    "kite",
+    "robot",
+    "train",
+    "car"
+  ]
+}

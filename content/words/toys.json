@@ -1,0 +1,88 @@
+{
+  "topic": "toys",
+  "words": [
+    {
+      "id": "ball",
+      "text": "ball",
+      "topic": "toys",
+      "image": {
+        "emoji": "⚽"
+      },
+      "sentence": "This is a ball. I can kick it!",
+      "accept": [
+        "balls",
+        "bowl",
+        "bol"
+      ]
+    },
+    {
+      "id": "teddy",
+      "text": "teddy",
+      "topic": "toys",
+      "image": {
+        "emoji": "🧸"
+      },
+      "sentence": "This is my teddy. I love my teddy!",
+      "accept": [
+        "teddy bear",
+        "teddies",
+        "tedy"
+      ]
+    },
+    {
+      "id": "kite",
+      "text": "kite",
+      "topic": "toys",
+      "image": {
+        "emoji": "🪁"
+      },
+      "sentence": "This is a kite. It can fly!",
+      "accept": [
+        "kites",
+        "kate"
+      ]
+    },
+    {
+      "id": "robot",
+      "text": "robot",
+      "topic": "toys",
+      "image": {
+        "emoji": "🤖"
+      },
+      "sentence": "This is a robot. Beep beep!",
+      "accept": [
+        "robots",
+        "robert",
+        "row bot"
+      ]
+    },
+    {
+      "id": "train",
+      "text": "train",
+      "topic": "toys",
+      "image": {
+        "emoji": "🚂"
+      },
+      "sentence": "This is a train. Choo choo!",
+      "accept": [
+        "trains",
+        "chain",
+        "rain"
+      ]
+    },
+    {
+      "id": "car",
+      "text": "car",
+      "topic": "toys",
+      "image": {
+        "emoji": "🚗"
+      },
+      "sentence": "This is a car. Beep beep!",
+      "accept": [
+        "cars",
+        "cart",
+        "card"
+      ]
+    }
+  ]
+}

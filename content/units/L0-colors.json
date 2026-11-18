@@ -1,0 +1,60 @@
+{
+  "id": "l0-colors",
+  "level": "L0",
+  "topic": "colors",
+  "order": 2,
+  "title": "Colour Fun",
+  "titleVi": "Màu sắc vui",
+  "icon": "🖍️",
+  "color": "#b8e05a",
+  "intro": "Look! So many colours!",
+  "playPrompt": "Where's {word}?",
+  "block": {
+    "name": "Sun block",
+    "style": "plain",
+    "color": "#ffca3a"
+  },
+  "casa": {
+    "luaTuoi": "3-4",
+    "chuDe": "Colours",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "red",
+      "sentence": "Look! It's red!"
+    },
+    {
+      "id": "blue",
+      "sentence": "Look! It's blue!"
+    },
+    {
+      "id": "yellow",
+      "sentence": "Look! It's yellow!"
+    },
+    {
+      "id": "green",
+      "sentence": "Look! It's green!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Touch something red!",
+      "emoji": "🔴"
+    },
+    {
+      "say": "Touch something blue!",
+      "emoji": "🔵"
+    },
+    {
+      "say": "Clap, clap, clap!",
+      "emoji": "👏"
+    }
+  ]
+}

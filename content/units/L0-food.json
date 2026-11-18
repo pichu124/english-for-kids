@@ -1,0 +1,62 @@
+{
+  "id": "l0-food",
+  "level": "L0",
+  "topic": "food",
+  "order": 3,
+  "title": "Yummy Food",
+  "titleVi": "Đồ ăn ngon",
+  "icon": "🍌",
+  "color": "#a6dd5c",
+  "intro": "I'm hungry! Let's find some yummy food!",
+  "playPrompt": "Where's the {word}?",
+  "block": {
+    "name": "Yummy block",
+    "style": "cake",
+    "color": "#ffd166"
+  },
+  "casa": {
+    "luaTuoi": "3-4",
+    "chuDe": "Food",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "apple",
+      "sentence": "Yum, yum! An apple!",
+      "play": "Where's the apple?"
+    },
+    {
+      "id": "banana",
+      "sentence": "Yum, yum! A banana!"
+    },
+    {
+      "id": "milk",
+      "sentence": "Yum! I like milk!",
+      "play": "Where's the milk?"
+    },
+    {
+      "id": "cake",
+      "sentence": "Yum, yum! A cake!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Rub your tummy. Yum, yum!",
+      "emoji": "😋"
+    },
+    {
+      "say": "Eat a banana. Munch, munch!",
+      "emoji": "🍌"
+    },
+    {
+      "say": "Drink your milk. Glug, glug!",
+      "emoji": "🥛"
+    }
+  ]
+}

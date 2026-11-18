@@ -1,0 +1,70 @@
+{
+  "id": "l1-family",
+  "level": "L1",
+  "topic": "family",
+  "order": 2,
+  "title": "My Family",
+  "titleVi": "Gia đình bé",
+  "icon": "👨‍👩‍👧",
+  "color": "#9be06a",
+  "intro": "Hello! This is my family!",
+  "playPrompt": "Where's {word}?",
+  "block": {
+    "name": "Heart block",
+    "style": "brick",
+    "color": "#ff8c69"
+  },
+  "casa": {
+    "luaTuoi": "4-5",
+    "chuDe": "My Family",
+    "monHoc": "Communication and Language"
+  },
+  "steps": [
+    "listen",
+    "do-it",
+    "say",
+    "tap-picture"
+  ],
+  "words": [
+    {
+      "id": "mum",
+      "sentence": "Hello, Mum! I love you, Mum."
+    },
+    {
+      "id": "dad",
+      "sentence": "Hello, Dad! I love you, Dad."
+    },
+    {
+      "id": "baby",
+      "sentence": "Shh! The baby is sleeping.",
+      "play": "Where's the baby?"
+    },
+    {
+      "id": "sister",
+      "sentence": "This is my sister. Hello, sister!",
+      "play": "Where's my sister?"
+    },
+    {
+      "id": "grandma",
+      "sentence": "Hello, Grandma! Big hug!"
+    },
+    {
+      "id": "grandpa",
+      "sentence": "Hello, Grandpa! Big hug!"
+    }
+  ],
+  "actions": [
+    {
+      "say": "Wave hello to Mum!",
+      "emoji": "👋"
+    },
+    {
+      "say": "Give a big hug!",
+      "emoji": "🤗"
+    },
+    {
+      "say": "Rock the baby. Shh!",
+      "emoji": "👶"
+    }
+  ]
+}

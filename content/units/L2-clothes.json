@@ -1,0 +1,39 @@
+{
+  "id": "l2-clothes",
+  "level": "L2",
+  "topic": "clothes",
+  "order": 7,
+  "title": "Clothes",
+  "titleVi": "Quần áo",
+  "icon": "👕",
+  "color": "#8fd46b",
+  "intro": "Let's get dressed!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Pink block",
+    "style": "plain",
+    "color": "#ff7eb6"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Clothes",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "hat",
+      "play": "Where is the hat?"
+    },
+    {
+      "id": "shoes",
+      "play": "Where are the shoes?"
+    },
+    {
+      "id": "socks",
+      "play": "Where are the socks?"
+    },
+    "t-shirt",
+    "dress",
+    "jacket"
+  ]
+}

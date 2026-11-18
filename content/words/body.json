@@ -82,6 +82,87 @@
         "fit",
         "fee"
       ]
+    },
+    {
+      "id": "face",
+      "text": "face",
+      "topic": "body",
+      "image": {
+        "emoji": "🙂"
+      },
+      "sentence": "This is my face. I can smile.",
+      "accept": [
+        "faces",
+        "fase",
+        "phase"
+      ]
+    },
+    {
+      "id": "hair",
+      "text": "hair",
+      "topic": "body",
+      "image": {
+        "emoji": "💇‍♀️"
+      },
+      "sentence": "This is my hair. It is long.",
+      "accept": [
+        "hairs",
+        "hare",
+        "hear"
+      ]
+    },
+    {
+      "id": "arm",
+      "text": "arm",
+      "topic": "body",
+      "image": {
+        "emoji": "💪"
+      },
+      "sentence": "This is my arm. It is strong.",
+      "accept": [
+        "arms",
+        "harm"
+      ]
+    },
+    {
+      "id": "hand",
+      "text": "hand",
+      "topic": "body",
+      "image": {
+        "emoji": "✋"
+      },
+      "sentence": "This is my hand. I can wave.",
+      "accept": [
+        "hands",
+        "hen",
+        "hant"
+      ]
+    },
+    {
+      "id": "leg",
+      "text": "leg",
+      "topic": "body",
+      "image": {
+        "emoji": "🦵"
+      },
+      "sentence": "This is my leg. I can kick.",
+      "accept": [
+        "legs",
+        "lag",
+        "lake"
+      ]
+    },
+    {
+      "id": "foot",
+      "text": "foot",
+      "topic": "body",
+      "image": {
+        "emoji": "🦶"
+      },
+      "sentence": "This is my foot. I can stamp.",
+      "accept": [
+        "feet"
+      ]
     }
   ]
 }

@@ -31,9 +31,7 @@
       "accept": [
         "daddy",
         "dada",
-        "dead",
-        "dat",
-        "did"
+        "dat"
       ]
     },
     {
@@ -47,8 +45,7 @@
       "accept": [
         "babies",
         "bebe",
-        "bae bee",
-        "maybe"
+        "bae bee"
       ]
     },
     {
@@ -97,6 +94,20 @@
         "bruder",
         "brodder",
         "brada"
+      ]
+    },
+    {
+      "id": "sister",
+      "text": "sister",
+      "topic": "family",
+      "image": {
+        "emoji": "👧"
+      },
+      "sentence": "This is my sister.",
+      "accept": [
+        "sisters",
+        "sista",
+        "system"
       ]
     }
   ]

@@ -4,13 +4,13 @@ import { sfx } from '../../lib/sfx';
 import { confetti } from '../widgets';
 import { type LessonUI, PRAISE, pick, wordCard } from './shared';
 
-export const PLAY_ROUNDS = 6;
 
 /** Step 3 — Play: Bix says a word, the child taps the right picture. */
 export async function runPlay(ui: LessonUI): Promise<void> {
   await ui.talk("Let's play a game! Listen and touch.", 'happy', "Let's play!");
 
   const words = ui.topic.words;
+  const PLAY_ROUNDS = ui.level.playRounds;
   // Each word once (repeat if a topic has fewer than 6 words).
   let order: Word[] = [];
   while (order.length < PLAY_ROUNDS) order = order.concat(shuffle(words));

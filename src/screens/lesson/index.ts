@@ -5,7 +5,8 @@ import { limitReached } from '../../lib/usage';
 import type { Ctx } from '../../router';
 import { homeButton } from '../widgets';
 import { runListen } from './listen';
-import { PLAY_ROUNDS, runPlay } from './play';
+import { runPlay } from './play';
+import { runDoIt } from './doit';
 import { runReward } from './reward';
 import { Aborted, makeUI } from './shared';
 import { runSpeak } from './speak';
@@ -18,8 +19,8 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   }
 
   const level = levelById(topic.level)!;
-  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯' };
-  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': PLAY_ROUNDS };
+  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸' };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': level.playRounds, 'do-it': topic.actions.length };
   const total = topic.steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });
@@ -60,7 +61,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   (async () => {
     try {
       await ui.pause(300);
-      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay };
+      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay, 'do-it': runDoIt };
       for (const [i, step] of topic.steps.entries()) {
         ui.setStep(i);
         await RUN[step](ui);

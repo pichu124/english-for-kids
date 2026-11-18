@@ -72,10 +72,11 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'home' },
     h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), world, parentButton(ctx)),
-    h('section', { class: `map map-n${Math.min(topics.length, 6)}`, 'aria-label': 'Topics' }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
+    h('section', { class: `map map-n${Math.min(topics.length, 6)} ${topics.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
     h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),
   );
 
+  requestAnimationFrame(() => el.querySelector('.island.is-next')?.scrollIntoView({ inline: 'center', block: 'nearest' }));
   setTimeout(async () => {
     if (!ctx.alive()) return;
     const line = greetedThisSession ? `${hi} Pick an island!` : `${hi} I am Bix. Let's play!`;

@@ -25,7 +25,7 @@ await page.reload();
 await page.click('.btn-play', { force: true });
 await page.waitForSelector('.home');
 const islands = await page.locator('.island').count();
-if (islands !== 5) throw new Error(`offline: expected 5 islands, got ${islands}`);
+if (islands < 5) throw new Error(`offline: expected the Starters islands, got ${islands}`);
 await page.locator('.island').nth(3).click({ force: true });
 await page.waitForSelector('.listen .word-card');
 const font = await page.evaluate(() => document.fonts.check('800 20px "Baloo 2"'));

@@ -272,3 +272,26 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 - **GĐ 1 (nền móng):** định dạng v2, bậc học, mở bài qua link (mức A), danh mục bài công khai `catalog.json` (chuẩn bị mức B), kiểm tra nội dung tự động. Kèm mỗi bậc Early Years một Unit mẫu.
 - **GĐ 2 và GĐ 3 làm song song:** Starters (cho Shin) và Early Years (cho casa), mỗi đợt thêm vài Unit của cả hai.
 - **GĐ 5 (nối casa) đưa lên sớm hơn:** khi có đủ Unit cho lứa `3-4`, `4-5`, `5-6`, thử mức A với một nhóm lớp.
+
+---
+
+## 12. Tiến độ nội dung
+
+| Bậc | Unit đã có | Hoạt động |
+|---|---|---|
+| L0 Little Bix (3–4) | Animal Friends · Colour Fun · Yummy Food | listen, **do-it**, say, tap-picture (3 hình, 4 lượt, không chữ) |
+| L1 Bix Explorer (4–5) | My Body · My Family | listen, **do-it**, say, tap-picture (3 hình, 5 lượt) |
+| L2 Starters (5–7) | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys | listen, say, tap-picture (4 hình, 6 lượt) |
+
+**Đợt 1 (18/11/2026):**
+- thêm hoạt động `do-it` (TPR: Bix ra lệnh, bé làm theo rồi chạm ✓; không cần micro);
+- thêm 6 Unit;
+- bản đồ chuyển sang vuốt ngang khi có từ 8 bài trở lên;
+- kiểm tra tự động: từ chấp nhận không được trùng một từ khác trong cùng bài, không chứa từ thông dụng.
+
+Duyệt tiếng Anh: Claude soạn và duyệt, Gemini duyệt chéo khi gọi được (đợt 1 Gemini quá thời gian, Claude tự duyệt).
+
+**Đợt tiếp theo (đề xuất):**
+- L2: School, Numbers 1–10, The home;
+- L0–L1: Numbers 1–5, Toys, Clothes;
+- hoạt động `chant`.

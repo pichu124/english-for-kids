@@ -1,0 +1,89 @@
+{
+  "topic": "clothes",
+  "words": [
+    {
+      "id": "hat",
+      "text": "hat",
+      "topic": "clothes",
+      "image": {
+        "emoji": "👒"
+      },
+      "sentence": "This is my hat. I like my hat!",
+      "accept": [
+        "hats",
+        "had",
+        "hut"
+      ]
+    },
+    {
+      "id": "shoes",
+      "text": "shoes",
+      "topic": "clothes",
+      "image": {
+        "emoji": "👟"
+      },
+      "sentence": "These are my shoes. They are new!",
+      "accept": [
+        "shoe",
+        "shoos",
+        "chews"
+      ]
+    },
+    {
+      "id": "socks",
+      "text": "socks",
+      "topic": "clothes",
+      "image": {
+        "emoji": "🧦"
+      },
+      "sentence": "These are my socks. They are blue.",
+      "accept": [
+        "sock",
+        "sox"
+      ]
+    },
+    {
+      "id": "t-shirt",
+      "text": "T-shirt",
+      "topic": "clothes",
+      "image": {
+        "emoji": "👕"
+      },
+      "sentence": "This is my T-shirt. It is green.",
+      "accept": [
+        "tshirt",
+        "t shirt",
+        "tee shirt",
+        "shirt"
+      ]
+    },
+    {
+      "id": "dress",
+      "text": "dress",
+      "topic": "clothes",
+      "image": {
+        "emoji": "👗"
+      },
+      "sentence": "This is a dress. It is pink.",
+      "accept": [
+        "dresses",
+        "dres",
+        "dressed"
+      ]
+    },
+    {
+      "id": "jacket",
+      "text": "jacket",
+      "topic": "clothes",
+      "image": {
+        "emoji": "🧥"
+      },
+      "sentence": "This is my jacket. It is warm.",
+      "accept": [
+        "jackets",
+        "jacked",
+        "jaket"
+      ]
+    }
+  ]
+}
