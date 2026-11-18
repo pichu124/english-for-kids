@@ -31,6 +31,12 @@
         return;
       }
       if (mode === 'simple-only') { window.__voice = 'match'; this.start(); window.__voice = 'simple-only'; return; }
+      // Like the same phone after its settings were fixed: full mode hears speech but says "nomatch".
+      if (mode === 'full-nomatch' && this.interimResults) {
+        setTimeout(() => { fire('onstart'); fire('onaudiostart'); fire('onsoundstart'); fire('onspeechstart'); fire('onspeechend'); fire('onnomatch'); fire('onend'); }, 80);
+        return;
+      }
+      if (mode === 'full-nomatch') { window.__voice = 'match'; this.start(); window.__voice = 'full-nomatch'; return; }
       if (mode === 'broken') {
         setTimeout(() => { fire('onstart'); fire('onerror', { error: 'no-speech' }); fire('onend'); }, 60);
         return;

@@ -321,13 +321,14 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       if (out.status === 'heard') {
         // Only switch to the simple mode when the full one never even got audio;
         // a "nomatch" in round 1 just means it did not catch the word that time.
-        const simpleNeeded = usedSimple && (first.status === 'service' || first.status === 'denied');
-        if (!usedSimple || simpleNeeded) update((st) => (st.settings.srMode = simpleNeeded ? 'simple' : 'full'));
+        // Round 1 (full) gave nothing but round 2 (simple) gave text: this device needs
+        // the simple mode. Seen on a real phone: full mode hears speech, answers "nomatch".
+        const simpleNeeded = usedSimple;
+        update((st) => (st.settings.srMode = simpleNeeded ? 'simple' : 'full'));
         micBtn.removeAttribute('disabled');
         micOut.replaceChildren(
           h('div', {}, '✓ Micro và nhận giọng nói đều chạy. Máy nghe được: ', ...out.alternatives.map((a) => h('span', { class: 'chip' }, a))),
-          ...(simpleNeeded ? [line('Máy này chỉ chạy được ở chế độ đơn giản. App đã tự chuyển sang chế độ này cho bài học.', 'p-saved')] : []),
-          ...(usedSimple && !simpleNeeded ? [line('Lần 1 có nghe thấy tiếng nhưng chưa ra chữ — chỉ là lần đó chưa bắt được từ, không cần đổi chế độ.')] : []),
+          ...(simpleNeeded ? [line('Chế độ đầy đủ không ra chữ, chế độ đơn giản thì ra. App đã chuyển sang chế độ đơn giản cho bài học.', 'p-saved')] : []),
           trace,
         );
         return;
