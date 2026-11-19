@@ -79,8 +79,17 @@ console.log('✓ reset clears progress, keeps name');
   const ctx = await browser.newContext({ ...devices['Pixel 7'] });
   const ph = await ctx.newPage();
   await ph.goto(base);
+  // Held upright, the kid screens ask to turn the phone; sideways they work.
+  if (!(await ph.locator('.rotate').isVisible())) throw new Error('portrait phone should show "Turn me sideways"');
+  const portrait = ph.viewportSize();
+  await ph.setViewportSize({ width: portrait.height, height: portrait.width });
+  if (await ph.locator('.rotate').isVisible()) throw new Error('landscape phone should not show the rotate screen');
   await ph.locator('.btn-play').click({ force: true });
   await ph.locator('.btn-parent').click();
+  // The parent area works upright again.
+  await ph.setViewportSize(portrait);
+  if (await ph.locator('.rotate').isVisible()) throw new Error('parent area should work on an upright phone');
+  console.log('✓ upright phone: kid screens ask to turn sideways, parent area still works');
   const [x, y] = (await ph.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
   for (const ch of String(x * y)) await ph.locator(`.key:text-is("${ch}")`).click();
   await ph.locator('.key-ok').click();

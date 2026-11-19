@@ -1,0 +1,115 @@
+/*
+ * Phones. The kid screens are designed for landscape (as in the brief):
+ *  - phone held upright → a friendly "turn me sideways" screen (the parent area still works upright);
+ *  - phone held sideways (only ~320–430px tall) → compact versions of the busiest screens.
+ * Tap targets stay ≥ 64px.
+ */
+
+/* ---------- "Turn your phone" ---------- */
+.rotate {
+  position: fixed; inset: 0; z-index: 500; display: none;
+  flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; text-align: center;
+  background: linear-gradient(var(--sky-1), var(--sky-2, #d8f0ff));
+}
+.rotate-phone { font-size: 84px; line-height: 1; animation: rotate-hint 2.4s ease-in-out infinite; }
+.rotate-en { font-size: 30px; font-weight: 800; color: #fff; -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 0 3px 0 var(--ink); }
+.rotate-vi { font-size: 16px; color: var(--ink-soft); background: rgba(255, 255, 255, .75); border-radius: 12px; padding: 6px 14px; }
+.rotate .bix-svg { height: 150px; }
+@keyframes rotate-hint { 0%, 25% { transform: rotate(0); } 55%, 80% { transform: rotate(-90deg); } 100% { transform: rotate(0); } }
+@media (prefers-reduced-motion: reduce) { .rotate-phone { animation: none; transform: rotate(-90deg); } }
+@media (orientation: portrait) and (max-width: 600px) {
+  body:not(.allow-portrait) .rotate { display: flex; }
+}
+
+/* ---------- phone held sideways: short screens ---------- */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* home: smaller Bix, compact one-row menu */
+  .home-top { min-height: 0; padding: 6px 12px 0; gap: 10px; }
+  .home-bix .bix-svg { height: clamp(84px, 26vh, 120px); }
+  .home-bix .bix-bubble { font-size: 16px; padding: 6px 12px; }
+  .home-dock { margin-right: 4px; margin-bottom: 4px; gap: 6px; flex-wrap: nowrap; max-width: none; padding-top: 50px; }
+  .dock-btn { min-width: 64px; min-height: 64px; padding: 4px 4px 3px; border-radius: 14px; font-size: 11px; box-shadow: 0 4px 0 rgba(29, 36, 64, .25); }
+  .dock-icon { font-size: 26px; }
+  .dock-btn .badge { top: -8px; right: -8px; min-width: 24px; height: 24px; font-size: 12px; }
+  .btn-parent { top: 6px; right: 8px; min-height: 40px; font-size: 13px; }
+  .chat-box { left: 100px; top: auto; bottom: -70px; gap: 10px; }
+  .chat-btn { width: 64px; font-size: 34px; border-radius: 18px; }
+  .cert-btn { width: 72px; font-size: 40px; }
+  .map-many .island { width: clamp(120px, 18vw, 170px); }
+
+  /* My World: one scrolling row of blocks so the building area keeps its space */
+  .world-top { min-height: 0; padding: 4px 12px 0; }
+  .world-bix .bix-svg { height: 70px; }
+  .world-tray { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; overflow-y: hidden; padding: 10px 12px 12px; gap: 14px; touch-action: pan-x; scrollbar-width: thin; }
+  .tray-item { flex: 0 0 auto; width: 64px; height: 64px; }
+  .tray-count { min-width: 26px; height: 26px; font-size: 14px; right: -6px; bottom: -6px; }
+
+  /* lesson */
+  .lesson-top { padding: 6px 12px 0; gap: 10px; }
+  .lesson-topic { font-size: 34px; }
+  .lesson-bix .bix-svg { height: clamp(90px, 30vh, 130px); }
+  .lesson-bix .bix-bubble { font-size: 16px; padding: 6px 12px; }
+  .chant { gap: 6px; }
+  .chant-head { gap: 8px; }
+  .chant-drum { font-size: 36px; }
+  .chant-title { font-size: 22px; }
+  .chant-lines { gap: 4px; }
+  .chant-line { font-size: 16px; padding: 3px 12px; border-radius: 12px; }
+  .chant-line.is-on { transform: scale(1.02); }
+  .btn-chant-done, .btn-did { width: 72px; height: 72px; min-height: 72px; }
+  .stage { position: relative; }
+  .btn-chant-done { position: absolute; right: 10px; bottom: 10px; }
+  .chant-lines { width: min(100%, 560px); }
+  .play-cards { gap: 10px; }
+  .word-card-play { width: clamp(64px, calc((100vh - 110px) / 2), 150px); }
+  .word-card-play .pic-emoji { font-size: clamp(40px, 18vh, 80px); }
+  .word-card-play .pic-text span { font-size: clamp(30px, 12vh, 60px); }
+  .btn-chant-done .did-check, .btn-did .did-check { font-size: 40px; }
+  .doit-card { width: clamp(150px, 46vh, 220px); font-size: clamp(80px, 28vh, 130px); }
+
+  /* reward: chest and buttons side by side; the parents' tip lives in the parent area */
+  .reward { display: grid; grid-template-columns: auto auto; grid-template-areas: 'stage name' 'stage actions'; align-items: center; column-gap: 20px; row-gap: 12px; }
+  .reward-stage { grid-area: stage; width: clamp(150px, 50vh, 220px); height: clamp(150px, 50vh, 220px); }
+  .reward-name { grid-area: name; font-size: 22px; justify-self: center; }
+  .reward-actions { grid-area: actions; flex-direction: column; gap: 12px; }
+  .reward-actions .btn { min-height: 64px; font-size: 18px; padding: 0 18px; }
+  .reward .tip-card { display: none; }
+  .review-star { font-size: 70px; }
+
+  /* other kid screens */
+  .book-top { padding: 4px 12px; gap: 10px; }
+  .book-top .btn-round, .lesson-top .btn-round { width: 64px; height: 64px; }
+  .world-title { font-size: 26px; }
+  .garden-bix { top: 74px; }
+  .garden-field { margin-top: 26vh; }
+  .ward-bix { padding-top: 40px; }
+  .ward-bix .bix-svg { height: clamp(150px, 55vh, 220px); }
+  .ward-shelves { gap: 8px; }
+  .ward-shelf { padding: 8px; gap: 8px; }
+  .ward-item { width: 64px; }
+  .ward-thumb { width: 46px; height: 46px; }
+  .story-scene { min-height: 0; padding: 6px 24px; }
+  .story-emoji { font-size: clamp(60px, 26vh, 110px); }
+  .story-bix .bix-svg { height: clamp(70px, 26vh, 110px); }
+  .story-text { font-size: clamp(20px, 7vh, 30px); }
+  .story-stage { gap: 8px; padding-bottom: 8px; }
+  .story-controls .btn-round { width: 64px; height: 64px; }
+  .story-shelf { padding-top: 8px; }
+  .story-book { width: clamp(120px, 40vh, 170px); }
+  .mem-card { width: clamp(64px, 22vh, 96px); }
+  .mem-grid { gap: 8px; }
+  .mem-grid.mem-12 { grid-template-columns: repeat(6, auto); }
+  .mem-grid.mem-12 .mem-card { width: clamp(64px, 26vh, 100px); }
+  .game-pick { width: clamp(130px, 42vh, 190px); }
+  .balloon { width: clamp(80px, 26vh, 120px); }
+  .start-wrap .bix-svg { height: clamp(150px, 62vh, 260px); }
+}
+
+/* ---------- tablets held upright (phones get the "turn me" screen) ---------- */
+@media (orientation: portrait) and (min-width: 601px) {
+  .home-top { flex-wrap: wrap; }
+  .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: nowrap; }
+  .chat-box { top: auto; bottom: -96px; left: 50%; transform: translateX(-50%); }
+  .lesson-bix .bix-bubble { left: 62%; max-width: 44vw; }
+  .reward .tip-card { position: static; order: 9; max-width: 90vw; }
+}

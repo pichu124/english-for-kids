@@ -8,6 +8,7 @@ import './styles/lesson.css';
 import './styles/world.css';
 import './styles/parent.css';
 import './styles/extras.css';
+import './styles/phone.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
@@ -15,6 +16,8 @@ import { requestPersistence } from './lib/storage';
 import { startUsageClock } from './lib/usage';
 import { currentScreen, go, mount, onNavigate, register } from './router';
 import { setBackground } from './lib/music';
+import { Bix } from './art/bix';
+import { h } from './lib/dom';
 import { homeScreen } from './screens/home';
 import { lessonScreen } from './screens/lesson';
 import { restScreen } from './screens/rest';
@@ -58,4 +61,18 @@ startUsageClock(() => {
 const MUSIC_SCREENS = ['home', 'world', 'book', 'wardrobe', 'garden', 'stories', 'games', 'certificate'];
 onNavigate((name) => setBackground(MUSIC_SCREENS.includes(name) && !document.hidden));
 document.addEventListener('visibilitychange', () => setBackground(!document.hidden && MUSIC_SCREENS.includes(currentScreen() ?? '')));
+// Phones held upright: kid screens ask to turn the phone (they are made for landscape);
+// the parent area works either way.
+{
+  const bix = new Bix({ size: 'md', bubble: false }).setMood('hello');
+  document.body.appendChild(
+    h('div', { class: 'rotate', role: 'dialog', 'aria-label': 'Turn your phone' },
+      bix.el,
+      h('div', { class: 'rotate-phone', 'aria-hidden': 'true' }, '📱'),
+      h('p', { class: 'rotate-en' }, 'Turn me sideways!'),
+      h('p', { class: 'rotate-vi', lang: 'vi' }, 'Xoay ngang điện thoại để bé học nhé'),
+    ),
+  );
+  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest'));
+}
 go('start');

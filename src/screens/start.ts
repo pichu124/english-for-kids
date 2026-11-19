@@ -10,6 +10,12 @@ import { getState, profileAnimal, profiles, switchProfile } from '../lib/storage
 export function startScreen(ctx: Ctx): HTMLElement {
   const bix = new Bix({ size: 'lg', bubble: false }).setMood('hello');
   const start = () => {
+    // Installed app / fullscreen: keep it sideways (ignored where not allowed).
+    try {
+      void (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.('landscape')?.catch(() => {});
+    } catch {
+      /* not supported */
+    }
     sfx.unlock();
     sfx.tap();
     setCounting(true);
