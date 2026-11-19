@@ -2,6 +2,8 @@ import { h } from '../../lib/dom';
 import { sfx } from '../../lib/sfx';
 import { say } from '../../lib/tts';
 import { confetti } from '../widgets';
+import { musicMode, playTune, type Player } from '../../lib/music';
+import { tuneFor } from '../../lib/tunes';
 import type { LessonUI } from './shared';
 
 /**
@@ -24,18 +26,33 @@ export async function runChant(ui: LessonUI): Promise<void> {
   const done = h('button', { class: 'btn btn-good btn-chant-done', 'aria-label': 'Done', hidden: true }, h('span', { class: 'did-check' }, '✓'));
   ui.stage.replaceChildren(h('div', { class: 'chant' }, h('div', { class: 'chant-head' }, drum, h('h2', { class: 'chant-title' }, c.title)), h('div', { class: 'chant-lines' }, rows), done));
 
+  const hit = () => {
+    drum.classList.remove('hit');
+    void drum.offsetWidth;
+    drum.classList.add('hit');
+  };
+  // With music on, a public-domain tune plays underneath and the drum follows its beat;
+  // otherwise a plain drum beat as before.
+  const tune = musicMode() !== 'off' ? tuneFor(ui.topic.id, c.tune) : null;
+  const beatMs = tune ? (60 / tune.bpm) * tune.beatEvery * 1000 : 380;
+  let player: Player | null = null;
+  ui.ctx.onCleanup(() => player?.stop());
   const beat = async (n: number) => {
     for (let i = 0; i < n; i++) {
-      sfx.pop();
-      drum.classList.remove('hit');
-      void drum.offsetWidth;
-      drum.classList.add('hit');
-      await ui.pause(380);
+      if (!player) {
+        sfx.pop();
+        hit();
+      }
+      await ui.pause(beatMs);
     }
   };
 
   for (const round of [1, 2]) {
     await ui.talk(round === 1 ? "Listen and clap! Let's chant!" : 'Now say it with me!', 'happy', round === 1 ? 'Listen and clap! 👏' : 'Say it with me! 🎤');
+    if (tune) {
+      player = playTune(tune, { vol: 0.32, onBeat: hit });
+      drum.title = tune.name;
+    }
     await beat(4);
     for (const [i, line] of c.lines.entries()) {
       rows.forEach((r, j) => r.classList.toggle('is-on', j === i));
@@ -48,6 +65,8 @@ export async function runChant(ui: LessonUI): Promise<void> {
       ui.tick();
     }
     rows.forEach((r) => r.classList.remove('is-on'));
+    player?.stop();
+    player = null;
   }
   ui.bix.setMood('happy');
   sfx.success();

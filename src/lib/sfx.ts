@@ -2,6 +2,11 @@
 
 let ctx: AudioContext | null = null;
 
+/** The shared AudioContext (music uses it too, so pausing for the microphone pauses everything). */
+export function audioContext(): AudioContext | null {
+  return ac();
+}
+
 function ac(): AudioContext | null {
   try {
     if (!ctx) {

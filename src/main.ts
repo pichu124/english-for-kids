@@ -13,7 +13,8 @@ import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
 import { requestPersistence } from './lib/storage';
 import { startUsageClock } from './lib/usage';
-import { currentScreen, go, mount, register } from './router';
+import { currentScreen, go, mount, onNavigate, register } from './router';
+import { setBackground } from './lib/music';
 import { homeScreen } from './screens/home';
 import { lessonScreen } from './screens/lesson';
 import { restScreen } from './screens/rest';
@@ -52,4 +53,9 @@ startUsageClock(() => {
   const s = currentScreen();
   return !!s && ['home', 'lesson', 'world', 'book', 'wardrobe', 'garden', 'games', 'stories', 'story'].includes(s);
 });
+// Soft background music (only if a parent turned it on) on the calm screens — never while
+// Bix teaches, reads a story or listens to the microphone.
+const MUSIC_SCREENS = ['home', 'world', 'book', 'wardrobe', 'garden', 'stories', 'games', 'certificate'];
+onNavigate((name) => setBackground(MUSIC_SCREENS.includes(name) && !document.hidden));
+document.addEventListener('visibilitychange', () => setBackground(!document.hidden && MUSIC_SCREENS.includes(currentScreen() ?? '')));
 go('start');

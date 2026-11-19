@@ -9,6 +9,7 @@
  */
 import { BLOCK_STYLES, type BlockDef, type BlockStyle } from './art/blocks';
 import { SCENES } from './art/positions';
+import { TUNE_IDS } from './lib/tunes';
 
 // ---------------------------------------------------------------- levels
 
@@ -85,7 +86,7 @@ export type Action = { say: string; emoji: string };
 
 /** A short rhythmic chant: Bix says it on a beat, then the child joins in. */
 export type ChantLine = { text: string; emoji?: string };
-export type Chant = { title: string; lines: ChantLine[] };
+export type Chant = { title: string; lines: ChantLine[]; tune?: string };
 
 export type CasaLink = { luaTuoi?: string; chuDe?: string; monHoc?: string };
 
@@ -122,7 +123,7 @@ type BankFile = { topic?: string; words: Word[] };
 type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept' | 'image'>>);
 type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'chant' | 'titleVi' | 'intro' | 'order'> & {
   actions?: Action[];
-  chant?: { title: string; lines: (string | ChantLine)[] };
+  chant?: { title: string; lines: (string | ChantLine)[]; tune?: string };
   order?: number;
   titleVi?: string;
   intro?: string;
@@ -196,7 +197,8 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     if (typeof u.chant.title !== 'string' || lines.length < 2 || lines.some((l) => typeof l?.text !== 'string' || !l.text)) {
       return problem(where, '"chant" cần "title" và ít nhất 2 dòng'), null;
     }
-    chant = { title: u.chant.title, lines };
+    if (u.chant.tune && !TUNE_IDS.includes(u.chant.tune)) problem(where, `chant.tune phải là một trong ${TUNE_IDS.join(', ')}`);
+    chant = { title: u.chant.title, lines, tune: u.chant.tune };
   }
   if (steps.includes('chant') && !chant) return problem(where, 'bước "chant" cần mục "chant"'), null;
   if (chant && !steps.includes('chant')) problem(where, 'có "chant" nhưng "steps" không có "chant"');

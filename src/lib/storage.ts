@@ -53,6 +53,8 @@ export type State = {
     srMode?: SrMode;
     /** Level shown on the home map (L0…L4). */
     level?: string;
+    /** Music: 'off', 'chant' (default: only during chants) or 'all' (also soft background music). */
+    music?: 'off' | 'chant' | 'all';
   };
   topics: Record<string, { completed: number; lastDone?: string }>;
   words: Record<string, WordStatus>;

@@ -99,6 +99,7 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
 - **`block.style`**: `grass, brick, rainbow, cake, window, wood, stone, gold, plain`.
 - **`parentTip`** (`{ "vi": "...", "say": "..." }`): thẻ **Chơi cùng con**. `vi` là việc bố mẹ làm ở nhà, `say` là câu tiếng Anh bố mẹ nói.
 - **`chat`** (`{ "ask": "Do you like pigs?", "yes": "...", "no": "..." }`): câu hỏi có/không Bix hỏi bé, mỗi ngày một câu, kèm hai câu đáp.
+- **`chant.tune`**: giai điệu nền của bài vè: `twinkle, oldmac, row, mary, london, frere`. Bỏ trống thì máy tự chọn cố định theo bài.
 - **`anim`** (trong ngân hàng từ): cách hình chuyển động khi đọc, gồm `bounce, wiggle, hop, fly, drive, swim, fall, spin, pulse, sway, shine, wave`. Bỏ trống thì lấy theo chủ đề.
 - **Id của bài và của từ không bao giờ đổi**, vì tiến độ của bé gắn với chúng.
 

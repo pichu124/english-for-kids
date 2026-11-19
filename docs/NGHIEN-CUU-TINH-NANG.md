@@ -120,7 +120,12 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 13. **Trò chuyện với Bix bằng AI** (bản 2): chỉ dùng từ bé đã học, cần dịch vụ nhận giọng ổn định (xem `docs/GHI-CHU-MICRO.md`).
 
 **Tiến độ Đợt C:**
-- [ ] 11. Nhạc: thống nhất **không cần người hát**. Dùng giai điệu dân gian đã hết bản quyền (Twinkle Twinkle, Old MacDonald…), tổng hợp bằng Web Audio, Bix đọc lời vè theo nhịp. Không tải nhạc có bản quyền từ mạng.
+- [x] 11. **Nhạc** (không cần người hát, không file nhạc, không bản quyền):
+  - 6 giai điệu dân gian đã hết bản quyền, nhập từng nốt (`src/lib/tunes.ts`): Twinkle Twinkle, Old MacDonald, Row Row Row Your Boat, Mary Had a Little Lamb, London Bridge, Frère Jacques;
+  - bộ tổng hợp Web Audio (`src/lib/music.ts`): giai điệu, bè trầm theo hợp âm, tiếng gõ nhịp;
+  - bước vè có nhạc nền, trống nhảy theo nhịp, Bix đọc lời theo nhịp. Mỗi bài vè có giai điệu riêng (trường `chant.tune`, ví dụ nông trại dùng Old MacDonald);
+  - khu bố mẹ có 3 chế độ: Tắt / Chỉ khi đọc vè (mặc định) / Vè + nhạc nền nhẹ, kèm nút nghe thử từng bài;
+  - nhạc nền chỉ phát rất nhỏ ở các màn hình yên tĩnh, tắt khi học, đọc truyện, bật micro hoặc khi app chạy nền.
 - [x] 12. **Huy hiệu và giấy chứng nhận**:
   - mỗi bài có huy hiệu trong My Words: đồng khi học xong, bạc khi mọi từ thành sticker, vàng khi đủ sticker và học 3 lần;
   - mỗi bậc có một cúp; xong cả bậc thì có giấy chứng nhận ghi tên bé và ngày, in khổ A4 ngang hoặc lưu PDF;

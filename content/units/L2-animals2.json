@@ -40,7 +40,8 @@
       "Snake, snake, hiss, hiss, hiss!",
       "Mouse, mouse, small and grey,",
       "Hippo, hippo, swims all day!"
-    ]
+    ],
+    "tune": "row"
   },
   "parentTip": {
     "vi": "Xem sách tranh con vật, chỉ vào ếch, rắn, chuột và hỏi con.",

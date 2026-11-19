@@ -13,6 +13,15 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 await page.addInitScript(readFileSync(new URL('./fakes.js', import.meta.url), 'utf8'));
+// Count music beat ticks: the synthesizer's ticks are the only sounds at 1600/1200 Hz.
+await page.addInitScript(() => {
+  window.__ticks = 0;
+  const orig = AudioParam.prototype.setValueAtTime;
+  AudioParam.prototype.setValueAtTime = function (v, t) {
+    if (v === 1600 || v === 1200) window.__ticks++;
+    return orig.call(this, v, t);
+  };
+});
 const state = () => page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1') || '{}'));
 const setState = (fn) => page.evaluate(`(() => { const s = JSON.parse(localStorage.getItem('efk.v1')); (${fn})(s); localStorage.setItem('efk.v1', JSON.stringify(s)); })()`);
 const home = async () => {
@@ -330,6 +339,69 @@ if (await page.evaluate(() => localStorage.getItem('efk.v1.p2'))) fail("removed 
 await page.goto(base);
 await page.waitForSelector('.btn-play');
 step('removing a child deletes only that child; one child → plain Play button');
+
+// ---------- C11: music ----------
+const ticks = () => page.evaluate(() => window.__ticks);
+const toChant = async (unit) => {
+  await page.goto(`${base}/?unit=${unit}`);
+  await page.locator('.btn-play').click({ force: true });
+  for (let i = 0; i < 600 && !(await page.locator('.chant').count()); i++) {
+    if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+    else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
+    else if (await page.locator('.btn-did').count()) await page.locator('.btn-did').click({ force: true });
+    else if (await page.locator('.play').count()) {
+      const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
+      const cards = page.locator('.word-card-play:not(.is-faded):not(.is-right)');
+      for (let k = 0; k < (await cards.count()); k++) {
+        const label = (await cards.nth(k).getAttribute('aria-label')).toLowerCase();
+        if (said.includes(label)) { await cards.nth(k).click({ force: true }); break; }
+      }
+    }
+    await page.waitForTimeout(80);
+  }
+  await page.waitForSelector('.chant');
+};
+await toChant('l1-farm');
+let t0 = await ticks();
+await page.waitForTimeout(2500);
+if ((await ticks()) - t0 < 3) fail('default music mode should play a tune under the chant');
+if ((await page.locator('.chant-drum').getAttribute('title')) !== 'Old MacDonald Had a Farm') fail('farm chant should use Old MacDonald');
+step('chant: a public-domain tune (Old MacDonald) plays under the farm chant');
+
+// Default: no background music on the home screen.
+await home();
+t0 = await ticks();
+await page.waitForTimeout(1500);
+if ((await ticks()) !== t0) fail('no background music unless a parent turns it on');
+// Parent picks "Vè + nhạc nền" → soft music at home, silence in a lesson.
+await page.locator('.btn-parent').click({ force: true });
+await page.waitForSelector('.gate');
+const [ma, mb] = (await page.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
+for (const ch of String(ma * mb)) await page.click(`.key:text-is("${ch}")`);
+await page.click('.key-ok');
+await page.locator('.p-seg-btn[data-music="all"]').click({ force: true });
+t0 = await ticks();
+await page.locator('.p-btn[data-tune="twinkle"]').click({ force: true });
+await page.waitForTimeout(1200);
+if ((await ticks()) - t0 < 2) fail('tune preview should play');
+await home();
+t0 = await ticks();
+await page.waitForTimeout(1500);
+if ((await ticks()) - t0 < 2) fail('background music should play at home when turned on');
+await page.locator('.island').first().click({ force: true });
+await page.waitForSelector('.lesson');
+await page.waitForTimeout(600);
+t0 = await ticks();
+await page.waitForTimeout(1200);
+if ((await ticks()) !== t0) fail('background music must stop during a lesson');
+// "Tắt nhạc" → the chant falls back to the plain drum.
+await setState((st) => (st.settings.music = 'off'));
+await toChant('l1-farm');
+t0 = await ticks();
+await page.waitForTimeout(2000);
+if ((await ticks()) !== t0) fail('music off → no tune under the chant');
+await setState((st) => (st.settings.music = 'chant'));
+step('music: background only when chosen and only on calm screens; off means off');
 
 // __MORE__
 

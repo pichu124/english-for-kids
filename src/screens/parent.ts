@@ -12,6 +12,8 @@ import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 import { tipCard } from './tip';
+import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '../lib/music';
+import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
 
 export function parentScreen(ctx: Ctx): HTMLElement {
@@ -80,6 +82,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Huy hiệu & giấy chứng nhận', certField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
+    card('Nhạc', musicField()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable(), h('p', { class: 'p-muted' }, `Độ khó trò chọn hình: ${ADJUST_LABEL[String(adjustment()) as '0']}. App tự điều chỉnh theo khoảng 12 lượt gần nhất.`)),
     card('Từ bé đã nói được', wordsList()),
@@ -260,6 +263,45 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       kids.length < MAX_PROFILES ? h('div', { class: 'p-row' }, input, add) : h('p', { class: 'p-muted' }, `Tối đa ${MAX_PROFILES} bé trên một máy.`),
       h('p', { class: 'p-muted' }, 'Mỗi bé có tiến độ, sticker, tủ đồ, vườn và giới hạn giờ riêng. Khi có từ 2 bé, màn hình đầu tiên sẽ cho bé chạm vào con vật của mình. Các phần dưới đây là của bé đang dùng.'),
     );
+  }
+
+  /** Music under chants (default) and optional soft background music; preview each tune. */
+  function musicField() {
+    const wrap = h('div', {});
+    let preview: Player | null = null;
+    ctx.onCleanup(() => preview?.stop());
+    const render = () => {
+      const cur = musicMode();
+      wrap.replaceChildren(
+        h(
+          'div',
+          { class: 'p-seg' },
+          (['off', 'chant', 'all'] as MusicMode[]).map((m) =>
+            h('button', { class: `p-seg-btn ${m === cur ? 'is-on' : ''}`, 'data-music': m, onclick: () => (update((st) => (st.settings.music = m)), render()) }, MUSIC_LABEL[m]),
+          ),
+        ),
+        h('p', { class: 'p-muted' }, 'Giai điệu dân gian đã hết bản quyền (Twinkle Twinkle, Old MacDonald…), máy tự chơi bằng nhạc cụ tổng hợp, không cần mạng. Bix đọc lời vè theo nhịp nhạc. Nhạc nền chỉ phát rất nhỏ ở màn hình chính, tủ đồ, vườn…; tắt hẳn khi học, đọc truyện và khi bật micro.'),
+        h(
+          'div',
+          { class: 'p-row p-tunes' },
+          TUNES.map((t) => {
+            const b = h('button', { class: 'p-btn p-btn-sm', 'data-tune': t.id }, `▶ ${t.name}`);
+            b.addEventListener('click', () => {
+              const same = preview?.tune.id === t.id;
+              preview?.stop();
+              preview = null;
+              wrap.querySelectorAll('[data-tune]').forEach((x) => (x.textContent = `▶ ${TUNES.find((y) => y.id === (x as HTMLElement).dataset.tune)?.name}`));
+              if (same) return;
+              preview = playTune(t, { vol: 0.6, loops: 1 });
+              b.textContent = `⏹ ${t.name}`;
+            });
+            return b;
+          }),
+        ),
+      );
+    };
+    render();
+    return wrap;
   }
 
   function limitField() {

@@ -40,7 +40,8 @@
       "Monkey, monkey, come and play!",
       "Tiger, tiger, roar, roar, roar!",
       "Crocodile, crocodile, snap, snap, snap!"
-    ]
+    ],
+    "tune": "oldmac"
   },
   "parentTip": {
     "vi": "Xem tranh hoặc đi sở thú, chỉ con khỉ, con hổ và hỏi con.",
