@@ -4,18 +4,14 @@ import { sfx } from '../lib/sfx';
 import { takePendingUnit } from '../lib/level';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
+import { primeSpeech } from '../lib/tts';
 import { getState, profileAnimal, profiles, switchProfile } from '../lib/storage';
 
 /** First screen: one big Play button. The tap also unlocks audio + speech on Android. */
 export function startScreen(ctx: Ctx): HTMLElement {
   const bix = new Bix({ size: 'lg', bubble: false }).setMood('hello');
   const start = () => {
-    // Installed app / fullscreen: keep it sideways (ignored where not allowed).
-    try {
-      void (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> }).lock?.('landscape')?.catch(() => {});
-    } catch {
-      /* not supported */
-    }
+    primeSpeech(); // must happen inside the tap (Android drops the first line otherwise)
     sfx.unlock();
     sfx.tap();
     setCounting(true);

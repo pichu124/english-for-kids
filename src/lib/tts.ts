@@ -72,7 +72,31 @@ export function pickVoice(): SpeechSynthesisVoice | undefined {
 export function stopSpeaking(): void {
   generation++;
   try {
-    if (synth && (synth.speaking || synth.pending)) synth.cancel();
+    if (synth && (synth.speaking || synth.pending) && !onlyPrimer()) synth.cancel();
+  } catch {
+    /* ignore */
+  }
+}
+
+/**
+ * Wake the speech engine from inside a tap. Android Chrome can silently drop the
+ * first line spoken after the page loads unless speaking started from a user
+ * gesture; a silent one-word utterance in the Play tap unlocks it.
+ */
+let primed = false;
+let primer: SpeechSynthesisUtterance | null = null;
+/** True when nothing but the silent wake-up line is playing (it must not be cancelled). */
+const onlyPrimer = () => live.size > 0 && [...live].every((u) => u === primer);
+export function primeSpeech(): void {
+  if (!synth || primed) return;
+  primed = true;
+  try {
+    const u = (primer = new SpeechSynthesisUtterance('hi'));
+    u.lang = 'en-US';
+    u.volume = 0;
+    u.onend = u.onerror = () => live.delete(u);
+    live.add(u);
+    synth.speak(u);
   } catch {
     /* ignore */
   }
@@ -81,6 +105,7 @@ export function stopSpeaking(): void {
 /**
  * Speak text and resolve when done. Always resolves (never rejects) — on some
  * devices `onend` never fires, so a length-based timeout backs it up.
+ * If a line has not started after ~1.5 s (the engine dropped it), it is sent once more.
  */
 export function say(text: string, opts: { rate?: number; pitch?: number; onWord?: (charIndex: number) => void } = {}): Promise<void> {
   const myGen = ++generation;
@@ -90,29 +115,25 @@ export function say(text: string, opts: { rate?: number; pitch?: number; onWord?
   }
   return new Promise((resolve) => {
     const rate = opts.rate ?? getState().settings.rate ?? 0.8;
-    const u = new SpeechSynthesisUtterance(text);
     let done = false;
+    let started = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let watchdog: ReturnType<typeof setTimeout> | undefined;
+    let current: SpeechSynthesisUtterance | null = null;
     const finish = (result: string) => {
       if (done) return;
       done = true;
       clearTimeout(timer);
-      live.delete(u);
+      clearTimeout(watchdog);
+      if (current) live.delete(current);
       if (lastSpeech.text === text && result) lastSpeech.result = result;
       resolve();
     };
-    u.lang = 'en-US';
-    u.rate = rate;
-    u.pitch = opts.pitch ?? 1.1;
-    u.onstart = () => {
-      if (lastSpeech.text === text) lastSpeech.result = '✓ Đang đọc';
-    };
-    u.onend = () => finish('✓ Đã đọc xong');
-    if (opts.onWord) u.onboundary = (e) => e.name === 'word' && opts.onWord?.(e.charIndex);
-    u.onerror = (e) => finish(`Lỗi: ${(e as SpeechSynthesisErrorEvent).error || 'không rõ'}`);
-
-    const start = () => {
-      if (myGen !== generation) return finish('bị thay bằng câu khác');
+    const make = () => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = rate;
+      u.pitch = opts.pitch ?? 1.1;
       try {
         const v = pickVoice();
         if (v) u.voice = v;
@@ -120,25 +141,63 @@ export function say(text: string, opts: { rate?: number; pitch?: number; onWord?
       } catch {
         lastSpeech.voice = 'giọng mặc định của máy';
       }
-      lastSpeech.text = text;
-      lastSpeech.result = 'Đã gửi cho trình duyệt, chưa thấy bắt đầu đọc';
-      live.add(u);
-      timer = setTimeout(() => finish(''), Math.min(12000, 1500 + (text.length * 110) / rate));
+      u.onstart = () => {
+        started = true;
+        if (lastSpeech.text === text) lastSpeech.result = '✓ Đang đọc';
+      };
+      u.onend = () => u === current && finish(started ? '✓ Đã đọc xong' : '✓ Xong (máy không báo bắt đầu)');
+      if (opts.onWord) u.onboundary = (e) => e.name === 'word' && opts.onWord?.(e.charIndex);
+      u.onerror = (e) => {
+        if (u !== current) return;
+        const err = (e as SpeechSynthesisErrorEvent).error || 'không rõ';
+        // "interrupted"/"canceled" also happen when we resend; only a real error ends the line.
+        if (err === 'interrupted' || err === 'canceled') {
+          if (myGen !== generation) finish(`Dừng: ${err}`);
+          return;
+        }
+        finish(`Lỗi: ${err}`);
+      };
+      return u;
+    };
+    const send = () => {
+      if (myGen !== generation) return finish('bị thay bằng câu khác');
+      if (current) live.delete(current);
+      current = make();
+      live.add(current);
       try {
         synth.resume(); // Chrome can get stuck "paused" (e.g. after the tab was in the background)
       } catch {
         /* ignore */
       }
       try {
-        synth.speak(u);
+        synth.speak(current);
       } catch {
         finish('Lỗi khi gọi speak()');
       }
     };
 
+    const start = () => {
+      if (myGen !== generation) return finish('bị thay bằng câu khác');
+      lastSpeech.text = text;
+      lastSpeech.result = 'Đã gửi cho trình duyệt, chưa thấy bắt đầu đọc';
+      timer = setTimeout(() => finish(''), Math.min(14000, 3000 + (text.length * 110) / rate));
+      send();
+      // Dropped by the engine (common for the first line on Android): send it once more.
+      watchdog = setTimeout(() => {
+        if (done || started || synth.speaking || myGen !== generation) return;
+        lastSpeech.result = 'Câu đầu bị bỏ qua, đang đọc lại';
+        try {
+          synth.cancel();
+        } catch {
+          /* ignore */
+        }
+        setTimeout(() => !done && send(), 150);
+      }, 1500);
+    };
+
     // Cancel only if something is actually playing: cancel() followed at once by
     // speak() makes Chrome drop the new line, so leave a short gap in that case.
-    const busy = synth.speaking || synth.pending;
+    const busy = (synth.speaking || synth.pending) && !onlyPrimer();
     if (busy) {
       try {
         synth.cancel();
