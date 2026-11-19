@@ -119,6 +119,15 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 12. **Huy hiệu Unit và chứng nhận hoàn thành bậc**: bố mẹ in được.
 13. **Trò chuyện với Bix bằng AI** (bản 2): chỉ dùng từ bé đã học, cần dịch vụ nhận giọng ổn định (xem `docs/GHI-CHU-MICRO.md`).
 
+**Tiến độ Đợt C:**
+- [ ] 11. Nhạc: thống nhất **không cần người hát**. Dùng giai điệu dân gian đã hết bản quyền (Twinkle Twinkle, Old MacDonald…), tổng hợp bằng Web Audio, Bix đọc lời vè theo nhịp. Không tải nhạc có bản quyền từ mạng.
+- [x] 12. **Huy hiệu và giấy chứng nhận**:
+  - mỗi bài có huy hiệu trong My Words: đồng khi học xong, bạc khi mọi từ thành sticker, vàng khi đủ sticker và học 3 lần;
+  - mỗi bậc có một cúp; xong cả bậc thì có giấy chứng nhận ghi tên bé và ngày, in khổ A4 ngang hoặc lưu PDF;
+  - Bix chúc mừng kèm nút 🏆 ở màn hình chính; khu bố mẹ có bảng huy hiệu theo bậc;
+  - lời trên giấy ghi rõ "topics based on…": đây là kỷ niệm của gia đình/lớp, không phải chứng chỉ Cambridge.
+- [ ] 13. Trò chuyện bằng AI: để lại cho tới khi giải quyết xong micro.
+
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.
 

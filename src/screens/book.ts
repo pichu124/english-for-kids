@@ -1,7 +1,7 @@
-import { topicsOfLevel } from '../content';
+import { levelsWithContent, topicsOfLevel } from '../content';
 import { h } from '../lib/dom';
 import { currentLevel } from '../lib/level';
-import { isLearned, stickerCount } from '../lib/progress';
+import { isLearned, levelDone, levelProgress, stickerCount, unitBadge } from '../lib/progress';
 import { sfx } from '../lib/sfx';
 import { getState, wordKey } from '../lib/storage';
 import { say } from '../lib/tts';
@@ -18,8 +18,23 @@ export function bookScreen(ctx: Ctx): HTMLElement {
   const pages = topicsOfLevel(level.id).map((t) =>
     h(
       'section',
-      { class: 'book-page' },
-      h('h2', { class: 'book-title' }, h('span', { 'aria-hidden': 'true' }, t.icon), ` ${t.title}`),
+      { class: 'book-page', 'data-unit': t.id },
+      h(
+        'h2',
+        { class: 'book-title' },
+        h('span', { 'aria-hidden': 'true' }, t.icon),
+        t.title,
+        (() => {
+          const tier = unitBadge(t);
+          const m = h('button', { class: `medal medal-${tier}`, 'aria-label': tier === 'none' ? 'No badge yet' : `${tier} badge`, 'data-tier': tier }, tier === 'none' ? '🔒' : t.icon);
+          m.addEventListener('click', () => {
+            sfx.pop();
+            const line = { none: 'Finish this lesson to get a badge!', bronze: 'A bronze badge! Collect all the stickers for silver!', silver: 'A silver badge! Play it three times for gold!', gold: 'A gold badge! Wow!' }[tier];
+            void say(line);
+          });
+          return m;
+        })(),
+      ),
       h(
         'div',
         { class: 'book-grid' },
@@ -56,6 +71,26 @@ export function bookScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'book' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'My Words'), h('div', { class: 'book-count' }, `⭐ ${got} / ${total}`)),
+    h(
+      'div',
+      { class: 'book-trophies' },
+      levelsWithContent().map((l) => {
+        const done = levelDone(l.id);
+        const p = levelProgress(l.id);
+        const b = h(
+          'button',
+          { class: `trophy ${done ? 'is-got' : 'is-locked'}`, 'aria-label': done ? `${l.name} certificate` : `${l.name}: ${p.done} of ${p.total}`, 'data-level': l.id },
+          h('span', { class: 'trophy-icon', 'aria-hidden': 'true' }, '🏆'),
+          `${l.name} ${done ? '' : `${p.done}/${p.total}`}`,
+        );
+        b.addEventListener('click', () => {
+          if (done) return sfx.tap(), ctx.go('certificate', { level: l.id, from: 'book' });
+          sfx.soft();
+          void say(`Finish all the ${l.name} islands to get a certificate!`);
+        });
+        return b;
+      }),
+    ),
     h('div', { class: 'book-pages' }, pages),
   );
 }

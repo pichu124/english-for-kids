@@ -25,6 +25,7 @@ import { wardrobeScreen } from './screens/wardrobe';
 import { gardenScreen } from './screens/garden';
 import { gamesScreen } from './screens/games';
 import { storiesScreen, storyScreen } from './screens/stories';
+import { certificateScreen } from './screens/certificate';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -40,6 +41,7 @@ register('garden', gardenScreen);
 register('games', gamesScreen);
 register('stories', storiesScreen);
 register('story', storyScreen);
+register('certificate', certificateScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);

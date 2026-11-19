@@ -59,3 +59,36 @@ export function practicePool(level: string, min: number): Word[] {
   }
   return learned.length >= min ? learned : learned.concat(rest.slice(0, min - learned.length));
 }
+
+// ---------------------------------------------------------------- badges & certificates
+
+export type Tier = 'none' | 'bronze' | 'silver' | 'gold';
+export const TIER_NAME: Record<Tier, string> = { none: '', bronze: 'bronze', silver: 'silver', gold: 'gold' };
+
+/**
+ * A badge per unit: bronze = finished once, silver = every word is a sticker,
+ * gold = every word a sticker and the unit finished 3 times.
+ */
+export function unitBadge(t: Topic): Tier {
+  const done = getState().topics[t.id]?.completed ?? 0;
+  if (!done) return 'none';
+  const all = learnedIn(t).length === t.words.length;
+  if (all && done >= 3) return 'gold';
+  return all ? 'silver' : 'bronze';
+}
+
+export function levelProgress(level: string): { done: number; total: number } {
+  const list = topicsOfLevel(level);
+  const s = getState();
+  return { done: list.filter((t) => (s.topics[t.id]?.completed ?? 0) > 0).length, total: list.length };
+}
+export const levelDone = (level: string) => {
+  const p = levelProgress(level);
+  return p.total > 0 && p.done === p.total;
+};
+
+/** Day the last unit of a level was finished (the certificate date). */
+export function levelDoneOn(level: string): string {
+  const s = getState();
+  return topicsOfLevel(level).reduce((d, t) => ((s.topics[t.id]?.lastDone ?? '') > d ? s.topics[t.id].lastDone! : d), '');
+}

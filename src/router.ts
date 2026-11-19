@@ -2,7 +2,7 @@
 import { cancelListening } from './lib/listen';
 import { stopSpeaking } from './lib/tts';
 
-export type ScreenName = 'start' | 'home' | 'lesson' | 'world' | 'parent' | 'rest' | 'book' | 'wardrobe' | 'garden' | 'stories' | 'story' | 'games';
+export type ScreenName = 'start' | 'home' | 'lesson' | 'world' | 'parent' | 'rest' | 'book' | 'wardrobe' | 'garden' | 'stories' | 'story' | 'games' | 'certificate';
 
 export type Ctx = {
   /** False once the user has left this screen — stop async sequences. */

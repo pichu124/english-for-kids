@@ -200,3 +200,49 @@
 }
 .who-btn:active { transform: translateY(5px); box-shadow: 0 2px 0 rgba(29, 36, 64, .25); }
 .who-animal { font-size: clamp(56px, 11vmin, 96px); line-height: 1; }
+
+/* ---------- Badges (My Words) ---------- */
+.book-title { display: flex; align-items: center; gap: .4em; }
+.medal { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; width: clamp(44px, 7vmin, 60px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--ink); font-size: clamp(22px, 3.6vmin, 30px); box-shadow: 0 4px 0 rgba(29, 36, 64, .2); }
+.medal-none { background: #eef1f8; border-style: dashed; border-color: #b8c2dc; box-shadow: none; filter: grayscale(1); opacity: .5; }
+.medal-bronze { background: radial-gradient(circle at 35% 30%, #ffd2a6, #cd7f32); }
+.medal-silver { background: radial-gradient(circle at 35% 30%, #ffffff, #b8c0cc); }
+.medal-gold { background: radial-gradient(circle at 35% 30%, #fff3b0, #f4b400); }
+.book-trophies { display: flex; gap: 2vmin; flex-wrap: wrap; padding: 2vmin 3vmin 0; }
+.trophy { font: inherit; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 8px; padding: 8px 14px; min-height: 56px; background: #fff; border: 3px solid var(--ink); border-radius: 18px; cursor: pointer; font-size: clamp(15px, 2.6vmin, 20px); }
+.trophy-icon { font-size: clamp(26px, 5vmin, 40px); }
+.trophy.is-locked { border-style: dashed; color: #7d86a6; }
+.trophy.is-locked .trophy-icon { filter: grayscale(1); opacity: .4; }
+.trophy.is-got { background: #fff4b8; animation: pulse 1.6s ease-in-out infinite; }
+
+/* ---------- Certificate ---------- */
+.screen-certificate { overflow-y: auto; }
+.cert-page { min-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 2vmin; padding: 2vmin 3vmin 4vmin; }
+.cert-actions { align-self: stretch; display: flex; align-items: center; gap: 3vmin; }
+.cert-print { font-size: 18px; }
+.cert { width: min(100%, 1000px); aspect-ratio: 297 / 210; background: #fffdf5; border: 10px solid #f4b400; outline: 4px solid var(--ink); outline-offset: -18px; border-radius: 18px; padding: 3.2%; color: var(--ink); text-align: center; container-type: inline-size; }
+.cert-inner { height: 100%; border: 3px dashed #e2a400; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6cqw; padding: 1.5cqw; }
+.cert-top { font-size: 3cqw; letter-spacing: .4em; }
+.cert-title { font-size: 7cqw; line-height: 1; color: #e2553f; text-shadow: 0 .4cqw 0 rgba(0, 0, 0, .08); }
+.cert-sub, .cert-what { font-size: 2.2cqw; }
+.cert-name { font-size: 6cqw; font-weight: 800; line-height: 1.1; border-bottom: .35cqw solid var(--ink); padding: 0 3cqw; }
+.cert-level { font-size: 3.6cqw; font-weight: 800; color: #3a86ff; }
+.cert-small { font-size: 1.6cqw; color: #5b6488; }
+.cert-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: .5cqw; font-size: 2.6cqw; max-width: 80%; }
+.cert-foot { width: 100%; display: flex; align-items: flex-end; justify-content: space-between; margin-top: auto; }
+.cert-sign { width: 30%; display: flex; flex-direction: column; align-items: center; gap: .3cqw; font-size: 1.6cqw; }
+.cert-sign b { font-size: 2cqw; order: -1; }
+.cert-line { width: 100%; border-top: .25cqw solid var(--ink); order: 0; }
+.cert-sign b + .cert-line, .cert-sign .cert-line { margin-top: .5cqw; }
+.cert-bix .bix-svg { height: 12cqw; }
+.cert-bix .bix-all, .cert-bix .lids { animation: none; }
+@media print {
+  @page { size: A4 landscape; margin: 8mm; }
+  html, body { background: #fff !important; }
+  body::before, body::after, .sky, .clouds, .confetti, .cert-actions { display: none !important; }
+  .cert-page { padding: 0; }
+  .cert { width: auto; height: 188mm; margin: 0 auto; box-shadow: none; break-inside: avoid; }
+  .cert-page { min-height: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+.cert-btn { font-size: clamp(44px, 8vmin, 64px); background: #fff4b8; border: 4px solid var(--ink); border-radius: 26px; width: clamp(84px, 14vmin, 112px); aspect-ratio: 1; cursor: pointer; animation: pulse 1.2s ease-in-out infinite; }

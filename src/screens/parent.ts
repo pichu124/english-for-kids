@@ -1,5 +1,6 @@
 /** Parent area (Vietnamese). Gated behind a multiplication question. */
-import { LEVELS, topics, topicsOfLevel } from '../content';
+import { LEVELS, levelsWithContent, topics, topicsOfLevel } from '../content';
+import { levelDone, levelProgress, unitBadge } from '../lib/progress';
 import { currentLevel, setLevel } from '../lib/level';
 import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
@@ -76,6 +77,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Các bé dùng máy này', profilesField()),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
+    card('Huy hiệu & giấy chứng nhận', certField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
@@ -86,6 +88,30 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Xoá tiến độ', resetField()),
     h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} bài · dữ liệu chỉ lưu trên máy này`),
   );
+
+  /** Badges per level and the printable certificate once a level is complete. */
+  function certField() {
+    const rows = levelsWithContent().map((l) => {
+      const p = levelProgress(l.id);
+      const tiers = topicsOfLevel(l.id).map(unitBadge);
+      const count = (t: string) => tiers.filter((x) => x === t).length;
+      return h(
+        'li',
+        { class: 'p-cert-row' },
+        h('b', {}, l.nameVi),
+        h('span', {}, ` ${p.done}/${p.total} bài · 🥇 ${count('gold')} · 🥈 ${count('silver')} · 🥉 ${count('bronze')} `),
+        levelDone(l.id)
+          ? h('button', { class: 'p-btn p-btn-sm', 'data-level': l.id, onclick: () => ctx.go('certificate', { level: l.id, from: 'parent' }) }, '🏆 Xem & in giấy chứng nhận')
+          : h('span', { class: 'p-muted' }, '(xong cả bậc sẽ có giấy chứng nhận)'),
+      );
+    });
+    return h(
+      'div',
+      {},
+      h('ul', { class: 'p-kids' }, rows),
+      h('p', { class: 'p-muted' }, 'Huy hiệu mỗi bài: đồng khi học xong, bạc khi mọi từ thành sticker, vàng khi đủ sticker và học 3 lần. Giấy chứng nhận in khổ A4 ngang (hoặc lưu PDF), là kỷ niệm của gia đình/lớp học, không phải chứng chỉ Cambridge.'),
+    );
+  }
 
   /** Tips for the units the child did most recently (or the first units of the level). */
   function tipsList() {

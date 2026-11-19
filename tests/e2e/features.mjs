@@ -257,6 +257,40 @@ if (!tipText.includes('Animals') && !tipText.includes('Con vật') && !tipText.i
 if (!(await page.locator('.p-chat li').count())) fail('parent area should show what the child told Bix');
 step('parent area lists "Chơi cùng con" tips and the child\'s answers to Bix');
 
+// ---------- C12: badges & certificates ----------
+// (still in the parent area; Little Bix was completed in the B9 check)
+if (!(await page.locator('.p-cert-row .p-btn[data-level="L0"]').count())) fail('parent area should offer the Little Bix certificate');
+if (await page.locator('.p-cert-row .p-btn[data-level="L2"]').count()) fail('no Starters certificate before all 28 islands');
+await setState((st) => {
+  st.topics.animals.completed = 3;
+  for (const w of ['dog', 'cat', 'fish', 'bird', 'duck', 'cow']) st.words[`animals/${w}`] = { said: true, tries: 1 };
+  st.childName = 'Su';
+});
+await home();
+await page.locator('.dock-btn[aria-label="My Words"]').click({ force: true });
+await page.waitForSelector('.book');
+if ((await page.locator('.book-page[data-unit="animals"] .medal').getAttribute('data-tier')) !== 'gold') fail('all stickers + 3 times → gold badge');
+if ((await page.locator('.book-page[data-unit="colors"] .medal').getAttribute('data-tier')) !== 'none') fail('unfinished unit has no badge');
+if (!(await page.locator('.trophy.is-got[data-level="L0"]').count())) fail('Little Bix trophy should be earned');
+if (!(await page.locator('.trophy.is-locked[data-level="L2"]').count())) fail('Starters trophy still locked');
+if (shots) await page.screenshot({ path: `${shots}/badges.png` });
+await page.locator('.trophy[data-level="L0"]').click({ force: true });
+await page.waitForSelector('.cert');
+const certText = await page.locator('.cert').textContent();
+if (!certText.includes('Su') || !certText.includes('Little Bix') || !certText.includes('6 islands')) fail('certificate text: ' + certText);
+await page.evaluate(() => (window.print = () => (window.__printed = true)));
+await page.locator('.cert-print').click({ force: true });
+if (!(await page.evaluate(() => window.__printed))) fail('print button should open printing');
+if (shots) { await page.waitForTimeout(1500); await page.screenshot({ path: `${shots}/certificate.png` }); await page.emulateMedia({ media: 'print' }); await page.screenshot({ path: `${shots}/certificate-print.png` }); await page.emulateMedia({ media: 'screen' }); }
+step('badges: bronze/silver/gold per unit, trophy per level, printable certificate');
+await home();
+await page.locator('.btn-parent').click({ force: true });
+await page.waitForSelector('.gate');
+const [ca, cb] = (await page.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
+for (const ch of String(ca * cb)) await page.click(`.key:text-is("${ch}")`);
+await page.click('.key-ok');
+await page.waitForSelector('.p-kids');
+
 // ---------- B10: several children on one device ----------
 // (still in the parent area) add "Mia" → she becomes the active child with a fresh start.
 await page.fill('.p-new-kid', 'Mia');

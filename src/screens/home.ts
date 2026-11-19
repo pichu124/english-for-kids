@@ -126,6 +126,10 @@ export function homeScreen(ctx: Ctx): HTMLElement {
       confetti(document.body, 60);
       sfx.reward();
       await bix.talk(`Wow! You finished all the ${level.name} islands! You are a star!`, 'happy', '🌟 You are a star!');
+      if (!ctx.alive()) return;
+      const cert = h('button', { class: 'chat-box cert-btn pop', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { level: level.id, from: 'home' })) }, '🏆');
+      el.querySelector('.home-top')?.appendChild(cert);
+      await bix.talk('Here is your certificate! Tap the cup!', 'happy', 'Tap the cup!');
       return;
     }
     const first = !greetedThisSession;
