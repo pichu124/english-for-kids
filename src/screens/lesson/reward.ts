@@ -6,6 +6,7 @@ import { scheduleUnit } from '../../lib/review';
 import { lessonsDone } from '../../lib/progress';
 import { ITEMS } from '../../art/outfit';
 import { confetti } from '../widgets';
+import { fixEmoji } from '../../lib/emoji';
 import { tipCard } from '../tip';
 import { todayRunning } from '../../lib/today';
 import { todayNextButton } from '../today';
@@ -27,7 +28,7 @@ export async function runReward(ui: LessonUI, part: 1 | 2 = 1): Promise<void> {
 
   const block = h('div', { class: 'reward-block' }, fromHTML(blockSVG(t.block.style, t.block.color)));
   const chest = h('div', { class: 'reward-chest', 'aria-hidden': 'true' }, h('div', { class: 'chest-lid' }), h('div', { class: 'chest-box' }));
-  const world = h('button', { class: 'btn btn-sun', 'aria-label': 'My World' }, '🧱 My World');
+  const world = h('button', { class: 'btn btn-sun', 'aria-label': 'My World' }, `${fixEmoji('🧱')} My World`);
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home' }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
   const newItem = ITEMS.find((i) => i.at === lessonsDone());
   const clothes = newItem ? h('button', { class: 'btn btn-sun', 'aria-label': 'Bix' }, `${newItem.icon} New for Bix!`) : null;

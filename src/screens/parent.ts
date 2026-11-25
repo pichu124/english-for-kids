@@ -12,9 +12,12 @@ import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 import { tipCard } from './tip';
+import { NEWER_EMOJI, emojiOk, recheckEmoji, wordEmoji } from '../lib/emoji';
+import { wordPicture } from './lesson/shared';
 import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '../lib/music';
 import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
+import { PART_LABEL, passed, shields, testResults, type Part } from '../lib/mocktest';
 
 let unlockedAt = 0;
 
@@ -92,17 +95,53 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
     card('Huy hiệu & giấy chứng nhận', certField()),
+    card('Thi thử Starters', testField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
     card('Nhạc', musicField()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable(), h('p', { class: 'p-muted' }, `Độ khó trò chọn hình: ${ADJUST_LABEL[String(adjustment()) as '0']}. App tự điều chỉnh theo khoảng 12 lượt gần nhất.`)),
     card('Từ bé đã nói được', wordsList()),
+    card('Kiểm tra hình', emojiField()),
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
     card('Xoá tiến độ', resetField()),
     h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} bài · dữ liệu chỉ lưu trên máy này`),
   );
+
+  /** Results of the Starters practice test and what to do next. */
+  function testField() {
+    const results = testResults();
+    if (!results.length)
+      return h('p', { class: 'p-muted' }, 'Bé chưa làm bài thi thử. Đảo 🎓 "Test" ở cuối bản đồ Starters có 15 câu, mô phỏng 3 phần của bài thi Cambridge Pre A1 Starters: nghe, đánh vần, đọc. Nên cho bé làm khi đã học gần hết các đảo.');
+    const last = results[results.length - 1];
+    const parts = Object.keys(PART_LABEL) as Part[];
+    const weak = parts.filter((p) => shields(last.score[p]) <= 3);
+    const advice = passed(last.score)
+      ? '✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu bậc Movers khi app có (vẫn ôn Starters song song).'
+      : `Nên luyện thêm: ${weak.map((p) => PART_LABEL[p].toLowerCase()).join(', ') || 'mọi phần'}. ${weak.includes('spelling') ? 'Đánh vần: chơi bảng ABC và phần Đọc & Viết. ' : ''}${weak.includes('listening') ? 'Nghe: học lại phần Nghe & Nói các đảo. ' : ''}${weak.includes('reading') ? 'Đọc: phần Đọc & Viết (bước đọc và câu đúng/sai). ' : ''}`;
+    return h(
+      'div',
+      {},
+      h(
+        'ul',
+        { class: 'p-kids p-tests' },
+        results
+          .slice(-3)
+          .reverse()
+          .map((r) =>
+            h(
+              'li',
+              { class: 'p-cert-row' },
+              h('b', {}, new Date(r.day + 'T12:00:00').toLocaleDateString('vi-VN')),
+              parts.map((p) => h('span', {}, ` ${PART_LABEL[p]} ${r.score[p][0]}/${r.score[p][1]} ${'🛡️'.repeat(shields(r.score[p]))}`)),
+            ),
+          ),
+      ),
+      h('p', { class: passed(last.score) ? 'p-saved' : 'p-muted' }, advice),
+      h('p', { class: 'p-muted' }, 'Đây là bài luyện tập trong app, không phải bài thi chính thức của Cambridge. Thang 1–5 khiên mô phỏng cách Cambridge báo kết quả.'),
+    );
+  }
 
   /** Badges per level and the printable certificate once a level is complete. */
   function certField() {
@@ -232,6 +271,45 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     });
     const hear = h('button', { class: 'p-btn', onclick: () => void say(`Hi, ${input.value.trim() || 'there'}!`) }, '🔊 Nghe Bix chào');
     return h('div', { class: 'p-row' }, input, hear, ok);
+  }
+
+  /** Which pictures this phone can draw; the missing ones are replaced automatically. */
+  function emojiField() {
+    const wrap = h('div', {});
+    const render = () => {
+      const list = Object.entries(NEWER_EMOJI);
+      const bad = list.filter(([e]) => !emojiOk(e));
+      const all = h('div', { class: 'p-emoji-all', hidden: true });
+      const showAll = h('button', { class: 'p-btn p-btn-sm' }, '👀 Xem tất cả hình của các bài');
+      showAll.addEventListener('click', () => {
+        all.hidden = !all.hidden;
+        if (!all.hidden && !all.childElementCount) {
+          const seen = new Set<string>();
+          for (const t of topics)
+            for (const w of t.words) {
+              if (seen.has(w.text)) continue;
+              seen.add(w.text);
+              all.appendChild(h('span', { class: 'p-emoji-cell' }, wordPicture(w), h('small', { lang: 'en' }, w.text)));
+            }
+        }
+      });
+      wrap.replaceChildren(
+        h('p', {}, bad.length ? `Máy này không vẽ được ${bad.length}/${list.length} hình mới. App đã tự thay bằng hình cũ cùng nghĩa, hoặc ghi chữ.` : `✓ Máy này vẽ được đủ ${list.length} hình mới (emoji từ năm 2018 trở về sau).`),
+        h(
+          'div',
+          { class: 'p-emoji-grid' },
+          list.map(([e, alt]) => {
+            const ok = emojiOk(e);
+            return h('span', { class: `p-emoji ${ok ? '' : 'is-bad'}`, 'data-emoji': e, title: ok ? 'hiện được' : 'không hiện được' }, ok ? e : wordEmoji(e) ?? (alt || 'Aa'), h('small', {}, ok ? '✓' : '→'));
+          }),
+        ),
+        h('p', { class: 'p-muted' }, 'Hình nào trên máy bé hiện ra ô vuông hay dấu hỏi, bố mẹ chụp màn hình gửi lại để sửa. Bấm "Xem tất cả hình" để soát các hình của bài học.'),
+        h('div', { class: 'p-row' }, showAll, h('button', { class: 'p-btn p-btn-sm', onclick: () => (recheckEmoji(), render()) }, '🔄 Kiểm tra lại')),
+        all,
+      );
+    };
+    render();
+    return wrap;
   }
 
   /** This week at a glance + the printable weekly report. */

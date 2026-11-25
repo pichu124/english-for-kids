@@ -1,0 +1,42 @@
+{
+  "id": "l2-vehicles",
+  "level": "L2",
+  "topic": "vehicles",
+  "order": 37,
+  "title": "Big Vehicles",
+  "titleVi": "Xe to, tàu thuyền",
+  "icon": "🚚",
+  "color": "#9be06a",
+  "intro": "Brrm! Big vehicles!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Road block",
+    "style": "stone",
+    "color": "#6c757d"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Transport",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "truck",
+    "car",
+    "ship",
+    "bus",
+    {
+      "id": "train",
+      "sentence": "This is a train. Choo, choo!"
+    },
+    "helicopter"
+  ],
+  "parentTip": {
+    "vi": "Ra đường hay xem tranh, chỉ xe tải, tàu thuỷ và hỏi con.",
+    "say": "Look! Is that a truck?"
+  },
+  "chat": {
+    "ask": "Do you like big trucks?",
+    "yes": "Me too! Beep, beep!",
+    "no": "Okay! Ships are fun too!"
+  }
+}

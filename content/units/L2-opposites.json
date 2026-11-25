@@ -1,0 +1,39 @@
+{
+  "id": "l2-opposites",
+  "level": "L2",
+  "topic": "opposites",
+  "order": 29,
+  "title": "Big and Small",
+  "titleVi": "To và nhỏ (tính từ)",
+  "icon": "🐘",
+  "color": "#f4a261",
+  "intro": "Big or small? Let's look!",
+  "playPrompt": "Which one is {word}?",
+  "block": {
+    "name": "Giant block",
+    "style": "stone",
+    "color": "#8d99ae"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Adjectives",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "big",
+    "small",
+    "long",
+    "old",
+    "young",
+    "beautiful"
+  ],
+  "parentTip": {
+    "vi": "Đặt hai đồ vật to và nhỏ cạnh nhau rồi hỏi con. Đổi sang dài/ngắn, cũ/mới.",
+    "say": "Which one is big?"
+  },
+  "chat": {
+    "ask": "Are you big?",
+    "yes": "Wow! You are big and strong!",
+    "no": "That's okay! Small is great too!"
+  }
+}

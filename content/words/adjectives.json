@@ -1,0 +1,84 @@
+{
+  "topic": "adjectives",
+  "words": [
+    {
+      "id": "big",
+      "text": "big",
+      "image": {
+        "emoji": "🐘"
+      },
+      "sentence": "The elephant is big. Very big!",
+      "accept": [
+        "bigg",
+        "beeg"
+      ],
+      "topic": "adjectives"
+    },
+    {
+      "id": "small",
+      "text": "small",
+      "image": {
+        "emoji": "🐭"
+      },
+      "sentence": "The mouse is small.",
+      "accept": [
+        "smol",
+        "smaal"
+      ],
+      "topic": "adjectives"
+    },
+    {
+      "id": "long",
+      "text": "long",
+      "image": {
+        "emoji": "🐍"
+      },
+      "sentence": "The snake is long.",
+      "accept": [
+        "longg",
+        "lonk"
+      ],
+      "topic": "adjectives"
+    },
+    {
+      "id": "old",
+      "text": "old",
+      "image": {
+        "emoji": "👴"
+      },
+      "sentence": "My grandpa is old.",
+      "accept": [
+        "olde",
+        "ould"
+      ],
+      "topic": "adjectives"
+    },
+    {
+      "id": "young",
+      "text": "young",
+      "image": {
+        "emoji": "👶"
+      },
+      "sentence": "The baby is young.",
+      "accept": [
+        "yung",
+        "yong"
+      ],
+      "topic": "adjectives"
+    },
+    {
+      "id": "beautiful",
+      "text": "beautiful",
+      "image": {
+        "emoji": "🌸"
+      },
+      "sentence": "The flower is beautiful.",
+      "accept": [
+        "butiful",
+        "bootiful",
+        "beautifull"
+      ],
+      "topic": "adjectives"
+    }
+  ]
+}

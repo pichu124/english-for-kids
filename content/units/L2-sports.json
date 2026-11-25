@@ -1,0 +1,39 @@
+{
+  "id": "l2-sports",
+  "level": "L2",
+  "topic": "sports",
+  "order": 32,
+  "title": "Sports",
+  "titleVi": "Thể thao",
+  "icon": "⚽",
+  "color": "#90be6d",
+  "intro": "Let's play sports!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Pitch block",
+    "style": "grass",
+    "color": "#55a630"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Sports & leisure",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "football",
+    "basketball",
+    "tennis",
+    "baseball",
+    "badminton",
+    "hockey"
+  ],
+  "parentTip": {
+    "vi": "Ra sân chơi bóng cùng con, hỏi \"Can you kick the ball?\". Con làm được thì reo \"Yes, I can!\".",
+    "say": "Can you play football?"
+  },
+  "chat": {
+    "ask": "Can you play football?",
+    "yes": "Great! Kick, kick, goal!",
+    "no": "Let's try! It's fun!"
+  }
+}

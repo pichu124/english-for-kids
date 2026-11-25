@@ -143,6 +143,11 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] **Báo cáo tuần**: mục "Tuần này" trong khu bố mẹ và trang báo cáo in khổ A4 dọc hoặc lưu PDF. Trang gồm: ngày học (7 ô), phút, lượt học xong, từ mới thành sticker, từ nên chơi lại (từ bé phải thử lại trong tuần), gợi ý "Chơi cùng con" cho tuần tới. Từ bản này, app ghi ngày bé học được từ (`firstAt`) và lần nhầm (`slips`, `slipAt`).
 - [x] **Bài học gọn hơn**: mỗi bài Starters có 2 phần. Phần 1 **Nghe & Nói** (👂🎤🎯, cùng vận động/vè nếu có). Phần 2 **Đọc & Viết** (📖🔤✍️). Mỗi phần có phần thưởng riêng. Đảo ✏️ khi xong phần 2. Chạm đảo đã nghe thì chọn phần, phần nên học tiếp sáng lên. "Today" ưu tiên phần Đọc & Viết của bài đã nghe, nên các ngày xen kẽ: bài mới → luyện đọc–viết bài đó. Link `?unit=…&part=2` mở thẳng phần 2.
 
+### Đợt E (chuẩn bị trước bậc Movers)
+- [x] **Kiểm tra hình emoji**: 22 emoji mới (2018 trở về sau) được thử vẽ trên máy lúc mở app. Cái nào máy không vẽ được thì thay bằng emoji cũ cùng nghĩa (🧸→🐻, 🧑‍🏫→👩‍🏫, 🥱→😴…), không có thì ghi chính từ đó. Khu bố mẹ có mục "Kiểm tra hình" (xem tất cả hình, kiểm tra lại).
+- [x] **Bù nội dung Starters**: 10 bài mới (mẫu câu, tính từ, từ còn thiếu), xem `docs/KE-HOACH-NOI-DUNG-CAMBRIDGE.md` §12.
+- [x] **Thi thử Starters**: đảo 🎓 Test, 15 câu, 3 phần, khiên 1–5, kết quả và lời khuyên trong khu bố mẹ.
+
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.
 

@@ -16,6 +16,7 @@ import { storyOpen } from './stories';
 import { storiesOfLevel } from '../content';
 import { unlockedItems } from '../art/outfit';
 import { confetti, parentButton } from './widgets';
+import { fixEmoji } from '../lib/emoji';
 import { answerChat, chatToday, greeting, levelToCelebrate, markCelebrated } from '../lib/memory';
 
 let greetedThisSession = false;
@@ -58,6 +59,19 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     );
     return btn;
   });
+
+  // Starters: a practice-test island at the end of the map.
+  if (level.reading?.length) {
+    islands.push(
+      h(
+        'button',
+        { class: 'island island-test', style: `--i:${islands.length}`, 'aria-label': 'Starters Test', onclick: () => (sfx.tap(), ctx.go('test')) },
+        fromHTML(islandSVG('#ffd166')),
+        h('span', { class: 'island-icon', 'aria-hidden': 'true' }, '🎓'),
+        h('span', { class: 'island-name' }, 'Test'),
+      ),
+    );
+  }
 
   // Words due for review: a special island first on the map.
   const review = buildReview(level.id);
@@ -103,7 +117,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   const dock = h(
     'nav',
     { class: 'home-dock', 'aria-label': 'Menu' },
-    dockBtn('🧱', 'My World', 'world', totalBlocks || undefined),
+    dockBtn(fixEmoji('🧱'), 'My World', 'world', totalBlocks || undefined),
     dockBtn('📖', 'My Words', 'book', stickers || undefined),
     dockBtn('👕', 'Bix', 'wardrobe', newClothes ? 'NEW' : undefined, newClothes > 0),
     level.showText ? dockBtn('🔤', 'ABC', 'abc') : null,

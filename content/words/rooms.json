@@ -1,0 +1,84 @@
+{
+  "topic": "rooms",
+  "words": [
+    {
+      "id": "kitchen",
+      "text": "kitchen",
+      "image": {
+        "emoji": "🍳"
+      },
+      "sentence": "Mum is in the kitchen.",
+      "accept": [
+        "kitchin",
+        "kichen"
+      ],
+      "topic": "rooms"
+    },
+    {
+      "id": "bathroom",
+      "text": "bathroom",
+      "image": {
+        "emoji": "🚿"
+      },
+      "sentence": "The bath is in the bathroom.",
+      "accept": [
+        "bath room",
+        "bathrooms"
+      ],
+      "topic": "rooms"
+    },
+    {
+      "id": "bedroom",
+      "text": "bedroom",
+      "image": {
+        "emoji": "🛏️"
+      },
+      "sentence": "I sleep in my bedroom.",
+      "accept": [
+        "bed room",
+        "bedrooms"
+      ],
+      "topic": "rooms"
+    },
+    {
+      "id": "living-room",
+      "text": "living room",
+      "image": {
+        "emoji": "🛋️"
+      },
+      "sentence": "We watch TV in the living room.",
+      "accept": [
+        "livingroom",
+        "living-room",
+        "leaving room"
+      ],
+      "topic": "rooms"
+    },
+    {
+      "id": "dining-room",
+      "text": "dining room",
+      "image": {
+        "emoji": "🍽️"
+      },
+      "sentence": "We eat in the dining room.",
+      "accept": [
+        "diningroom",
+        "dining-room"
+      ],
+      "topic": "rooms"
+    },
+    {
+      "id": "hall",
+      "text": "hall",
+      "image": {
+        "emoji": "🚪"
+      },
+      "sentence": "My shoes are in the hall.",
+      "accept": [
+        "hallway",
+        "haul"
+      ],
+      "topic": "rooms"
+    }
+  ]
+}

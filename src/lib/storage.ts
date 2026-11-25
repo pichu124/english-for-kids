@@ -89,6 +89,8 @@ export type State = {
   /** Today's guided plan, and how many days it was finished. */
   today?: { day: string; steps: { kind: 'review' | 'lesson' | 'fun'; id?: string; done?: boolean }[]; finished?: boolean };
   todayDays?: number;
+  /** Starters practice tests: day and [right, asked] per part. */
+  tests?: { day: string; score: Record<'listening' | 'spelling' | 'reading', [number, number]> }[];
   /** Letters found right first time in the letter game (⭐ on the ABC board). */
   letters?: Record<string, boolean>;
   /** Stories read to the end, by story id. */

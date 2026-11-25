@@ -1,0 +1,57 @@
+{
+  "id": "l2-gotit",
+  "level": "L2",
+  "topic": "gotit",
+  "order": 31,
+  "title": "I've Got…",
+  "titleVi": "Con có… (have got)",
+  "icon": "🎁",
+  "color": "#cdb4db",
+  "intro": "Look what I've got!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Present block",
+    "style": "rainbow",
+    "color": "#cdb4db"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Toys",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "dog",
+      "sentence": "I've got a dog."
+    },
+    {
+      "id": "cat",
+      "sentence": "She's got a cat."
+    },
+    {
+      "id": "kite",
+      "sentence": "He's got a kite."
+    },
+    {
+      "id": "bike",
+      "sentence": "I've got a bike."
+    },
+    {
+      "id": "robot",
+      "sentence": "I've got a robot."
+    },
+    {
+      "id": "doll",
+      "sentence": "She's got a doll."
+    }
+  ],
+  "parentTip": {
+    "vi": "Hỏi về đồ chơi của con: \"Have you got a…?\" Con trả lời \"Yes, I have!\" hoặc \"No, I haven't.\"",
+    "say": "Have you got a ball?"
+  },
+  "chat": {
+    "ask": "Have you got a ball?",
+    "yes": "Great! Let's play ball!",
+    "no": "Okay! A kite is fun too!"
+  }
+}

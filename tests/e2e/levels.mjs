@@ -44,7 +44,7 @@ step('level 0 tap game offers 3 pictures');
 // 2. Home now shows level 0
 await tap('.btn-home');
 await page.waitForSelector('.home');
-const l0 = await page.locator('.island').count();
+const l0 = await page.locator('.island:not(.island-test):not(.island-review)').count();
 const label = await page.locator('.home-level').innerText();
 if (label !== 'Little Bix' || l0 < 1) throw new Error(`home should show Little Bix units, got "${label}" with ${l0}`);
 if (shots) await page.screenshot({ path: `${shots}/l0-home.png` });
@@ -59,7 +59,7 @@ await page.click('.key-ok');
 await page.click('.p-seg-btn:has-text("Starters")');
 await page.click('.p-btn-main:text("Xong")');
 await page.waitForSelector('.home');
-const l2 = await page.locator('.island').count();
+const l2 = await page.locator('.island:not(.island-test):not(.island-review)').count();
 const expectL2 = cat0.units.filter((u) => u.level === "L2").length;
 if (l2 !== expectL2) throw new Error(`Starters should show ${expectL2} units, got ${l2}`);
 step(`parent switches the level to Starters → ${l2} units`);

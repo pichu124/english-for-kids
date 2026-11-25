@@ -1,0 +1,39 @@
+{
+  "id": "l2-rooms",
+  "level": "L2",
+  "topic": "rooms",
+  "order": 35,
+  "title": "My Rooms",
+  "titleVi": "Các phòng trong nhà",
+  "icon": "🏠",
+  "color": "#bde0fe",
+  "intro": "Come in! This is my house.",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Room block",
+    "style": "window",
+    "color": "#a2d2ff"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "The home",
+    "monHoc": "Understanding the World"
+  },
+  "words": [
+    "kitchen",
+    "bathroom",
+    "bedroom",
+    "living-room",
+    "dining-room",
+    "hall"
+  ],
+  "parentTip": {
+    "vi": "Đi quanh nhà cùng con: \"Where is Dad?\" – \"He's in the kitchen.\" Cho con dẫn đường.",
+    "say": "Where is Dad?"
+  },
+  "chat": {
+    "ask": "Do you like your bedroom?",
+    "yes": "Me too! Bedrooms are cosy!",
+    "no": "Okay! The living room is nice too!"
+  }
+}

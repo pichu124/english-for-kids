@@ -1,0 +1,57 @@
+{
+  "id": "l2-like",
+  "level": "L2",
+  "topic": "like",
+  "order": 30,
+  "title": "I Like It!",
+  "titleVi": "Con thích / không thích",
+  "icon": "😋",
+  "color": "#ff8fab",
+  "intro": "What do you like?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Yummy block",
+    "style": "cake",
+    "color": "#ffafcc"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food & drink",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    {
+      "id": "apple",
+      "sentence": "I like apples. Yum!"
+    },
+    {
+      "id": "banana",
+      "sentence": "I like bananas!"
+    },
+    {
+      "id": "carrot",
+      "sentence": "I don't like carrots."
+    },
+    {
+      "id": "chocolate",
+      "sentence": "I like chocolate!"
+    },
+    {
+      "id": "tomato",
+      "sentence": "I don't like tomatoes."
+    },
+    {
+      "id": "ice-cream",
+      "sentence": "I like ice cream!"
+    }
+  ],
+  "parentTip": {
+    "vi": "Bữa ăn, hỏi con từng món. Con trả lời \"I like…\" hoặc \"I don't like…\". Bố mẹ cũng nói thích gì.",
+    "say": "Do you like carrots?"
+  },
+  "chat": {
+    "ask": "Do you like carrots?",
+    "yes": "Crunch, crunch! Carrots are good!",
+    "no": "That's okay! I like apples!"
+  }
+}

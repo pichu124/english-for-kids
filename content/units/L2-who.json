@@ -1,0 +1,57 @@
+{
+  "id": "l2-who",
+  "level": "L2",
+  "topic": "who",
+  "order": 34,
+  "title": "Who Is It?",
+  "titleVi": "Ai đây?",
+  "icon": "🙋",
+  "color": "#a2d2ff",
+  "intro": "Who is it? Let's see!",
+  "playPrompt": "Where is my {word}?",
+  "block": {
+    "name": "Family block",
+    "style": "wood",
+    "color": "#bc8a5f"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Family & friends",
+    "monHoc": "Personal, Social and Emotional Development"
+  },
+  "words": [
+    {
+      "id": "sister",
+      "sentence": "She's my sister. She is seven."
+    },
+    {
+      "id": "brother",
+      "sentence": "He's my brother. He is ten."
+    },
+    {
+      "id": "friend",
+      "sentence": "He's my friend. We play together."
+    },
+    {
+      "id": "teacher",
+      "sentence": "She's my teacher. She is nice."
+    },
+    {
+      "id": "grandpa",
+      "sentence": "He's my grandpa. He is old."
+    },
+    {
+      "id": "grandma",
+      "sentence": "She's my grandma. I love her."
+    }
+  ],
+  "parentTip": {
+    "vi": "Xem ảnh gia đình, chỉ từng người: \"Who is he?\" – con trả lời \"He's my…\".",
+    "say": "Who is he?"
+  },
+  "chat": {
+    "ask": "Have you got a sister?",
+    "yes": "Sisters are fun!",
+    "no": "Brothers are fun too!"
+  }
+}

@@ -318,3 +318,5 @@
 .yn-btn.is-right { box-shadow: 0 0 0 6px #8ac926, 0 6px 0 rgba(29, 36, 64, .25); }
 .yn-btn.is-hint { box-shadow: 0 0 0 6px #ffca3a; animation: pulse 1s ease-in-out infinite; }
 @media (orientation: portrait) { .yesno { flex-direction: column; } }
+/* this phone cannot draw the emoji: the word, written big */
+.pic-word span { font-size: clamp(20px, 4.4vmin, 40px) !important; font-weight: 800; color: #3a86ff; text-align: center; line-height: 1.1; padding: 0 6px; word-break: break-word; }

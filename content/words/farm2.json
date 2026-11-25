@@ -1,0 +1,18 @@
+{
+  "topic": "farm",
+  "words": [
+    {
+      "id": "chicken-bird",
+      "text": "chicken",
+      "image": {
+        "emoji": "🐔"
+      },
+      "sentence": "This is a chicken. Cluck, cluck!",
+      "accept": [
+        "chickens",
+        "chiken"
+      ],
+      "topic": "farm"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { Bix } from '../art/bix';
 import { choicesFor, hintAfter, recordTap } from '../lib/adapt';
 import { h, shuffle } from '../lib/dom';
 import { letterName } from '../lib/letters';
+import { wordEmoji } from '../lib/emoji';
 import { currentLevel } from '../lib/level';
 import { sfx } from '../lib/sfx';
 import { getState, update } from '../lib/storage';
@@ -14,6 +15,8 @@ import { confetti, homeButton } from './widgets';
 
 export type Letter = { letter: string; word: string; emoji: string; note?: string };
 export const LETTERS: Letter[] = (alphabet as { letters: Letter[] }).letters;
+/** The picture for a letter's word, or '' when this phone cannot draw it (the word is shown anyway). */
+const pic = (l: Letter) => wordEmoji(l.emoji) ?? '';
 const COLORS = ['#ef476f', '#ff924c', '#ffca3a', '#8ac926', '#4cc9f0', '#7b6cf6'];
 
 /** "ay. ay is for apple." — letter names as sounds, see lib/letters. */
@@ -40,7 +43,7 @@ function alphabetBoard(ctx: Ctx): HTMLElement {
     big.hidden = false;
     big.replaceChildren(
       h('div', { class: 'abc-big-letter' }, `${l.letter} ${l.letter.toLowerCase()}`),
-      h('div', { class: 'abc-big-pic', 'aria-hidden': 'true' }, l.emoji),
+      h('div', { class: 'abc-big-pic', 'aria-hidden': 'true' }, pic(l)),
       h('div', { class: 'abc-big-word', lang: 'en' }, l.word),
     );
     big.classList.remove('pop');
@@ -134,7 +137,7 @@ function letterGame(ctx: Ctx): HTMLElement {
         starRow.children[r]?.classList.add('on');
         recordTap(misses === 0);
         if (misses === 0) update((s) => ((s.letters ??= {})[target.letter] = true));
-        await bix.talk(`${pick(PRAISE)} ${line(target)}`, 'happy', `${target.letter} ${target.emoji}`);
+        await bix.talk(`${pick(PRAISE)} ${line(target)}`, 'happy', `${target.letter} ${pic(target)}`.trim());
         void round(r + 1);
       });
       return t;

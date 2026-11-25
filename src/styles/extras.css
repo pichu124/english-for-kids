@@ -368,3 +368,46 @@
   .part-btn { width: 150px; padding: 8px; font-size: 15px; }
   .part-icons { font-size: 36px; }
 }
+
+/* ---------- Starters practice test ---------- */
+.test { height: 100%; display: flex; flex-direction: column; }
+.test-part { font-weight: 800; font-size: clamp(16px, 3vmin, 26px); background: #fff; border: 3px solid var(--ink); border-radius: 14px; padding: 0 12px; }
+.test-part:empty { display: none; }
+.test-dots { margin-left: auto; display: flex; gap: 5px; flex-wrap: wrap; max-width: 40vw; }
+.test-dots span { width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; }
+.test-dots span.on { background: #8ac926; }
+.test-dots span.now { background: #ffca3a; }
+.test-body { flex: 1; min-height: 0; display: flex; align-items: center; }
+.test-bix { width: 26%; display: flex; justify-content: center; align-items: flex-end; align-self: stretch; padding-bottom: 3vmin; }
+.test-bix .bix-bubble { left: 40%; top: -12%; }
+.test-stage { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 3vmin 3vmin; }
+.test-q { display: flex; align-items: center; gap: 3vmin; }
+.test-card { width: clamp(120px, 22vmin, 200px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 6px 0 rgba(29, 36, 64, .25); cursor: pointer; padding: 0; }
+.test-card .pic-emoji { font-size: clamp(60px, 13vmin, 120px); }
+.test-card .pic-color, .test-card .pic-scene { width: 72%; }
+.test-words { grid-template-columns: repeat(3, auto); }
+.test-intro { display: flex; flex-direction: column; align-items: center; gap: 1vmin; font-size: clamp(28px, 6vmin, 52px); font-weight: 800; }
+.test-intro span { font-size: clamp(70px, 15vmin, 130px); }
+.test-result { display: flex; flex-direction: column; align-items: center; gap: 1.6vmin; }
+.test-medal { font-size: clamp(64px, 13vmin, 110px); line-height: 1; }
+.test-row { display: flex; align-items: center; gap: 2vmin; background: #fff; border: 3px solid var(--ink); border-radius: 16px; padding: 4px 14px; }
+.test-row-name { font-weight: 800; font-size: clamp(16px, 3vmin, 26px); min-width: 8em; }
+.test-shields span { font-size: clamp(22px, 4.4vmin, 38px); filter: grayscale(1); opacity: .25; }
+.test-shields span.on { filter: none; opacity: 1; }
+.island-test .island-name { background: #ffd166; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .test-card { width: clamp(64px, 30vh, 120px); border-radius: 16px; }
+  .test-card .pic-emoji { font-size: clamp(40px, 17vh, 72px); }
+  .test-q { gap: 12px; }
+  .test-bix .bix-svg { height: clamp(90px, 30vh, 130px); }
+  .test-intro span { font-size: 54px; }
+  .test-intro { font-size: 26px; }
+  .test-result { gap: 6px; }
+  .test-medal { font-size: 44px; }
+  .test-row { padding: 2px 10px; }
+  .test-row-name { font-size: 15px; }
+  .test-shields span { font-size: 20px; }
+  .test-dots span { width: 10px; height: 10px; }
+}
+.test-shields span { display: inline-block; border-radius: 50%; padding: 2px; }
+.test-shields span.on { background: radial-gradient(circle, #ffe680 0 60%, transparent 62%); }

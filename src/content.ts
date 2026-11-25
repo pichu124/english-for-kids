@@ -10,6 +10,7 @@
 import { BLOCK_STYLES, type BlockDef, type BlockStyle } from './art/blocks';
 import { SCENES } from './art/positions';
 import { TUNE_IDS } from './lib/tunes';
+import { fixEmoji } from './lib/emoji';
 
 // ---------------------------------------------------------------- levels
 
@@ -73,7 +74,7 @@ const TOPIC_ANIM: Record<string, Anim> = {
   food: 'bounce', food2: 'bounce', fruit: 'bounce', meals: 'bounce', toys: 'spin', toys2: 'spin', actions: 'bounce',
   body: 'pulse', clothes: 'sway', clothes2: 'sway', colors: 'spin', colours2: 'spin', numbers: 'pulse', numbers2: 'pulse',
   shapes: 'spin', feelings: 'pulse', family: 'wave', people: 'wave', school: 'wiggle', home: 'pulse', home2: 'pulse',
-  places: 'pulse', hello: 'wave', positions: 'pulse',
+  places: 'pulse', hello: 'wave', positions: 'pulse', adjectives: 'pulse', sports: 'bounce', rooms: 'pulse', food3: 'bounce',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
@@ -229,7 +230,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
       return problem(where, '"chant" cần "title" và ít nhất 2 dòng'), null;
     }
     if (u.chant.tune && !TUNE_IDS.includes(u.chant.tune)) problem(where, `chant.tune phải là một trong ${TUNE_IDS.join(', ')}`);
-    chant = { title: u.chant.title, lines, tune: u.chant.tune };
+    chant = { title: u.chant.title, lines: lines.map((l) => (l.emoji ? { ...l, emoji: fixEmoji(l.emoji, '') || undefined } : l)), tune: u.chant.tune };
   }
   if (steps.includes('chant') && !chant) return problem(where, 'bước "chant" cần mục "chant"'), null;
   if (chant && !steps.includes('chant')) problem(where, 'có "chant" nhưng "steps" không có "chant"');
@@ -276,13 +277,13 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     order: u.order ?? 99,
     title: u.title,
     titleVi: u.titleVi ?? u.title,
-    icon: u.icon,
+    icon: fixEmoji(u.icon),
     color: u.color,
     intro: u.intro ?? `Let's learn ${u.title}!`,
     playPrompt: u.playPrompt,
     block: u.block,
     steps,
-    actions,
+    actions: actions.map((a) => ({ ...a, emoji: fixEmoji(a.emoji) })),
     chant,
     casa: u.casa,
     parentTip: u.parentTip,
@@ -331,7 +332,8 @@ function buildStory(file: string, s: StoryFile): Story | null {
     }
     questions.push({ ask: q.ask, answer });
   }
-  return { id: s.id, unit: unit.id, level: unit.level, title: s.title, icon: s.icon, pages: s.pages, questions };
+  const pages = s.pages.map((p) => ({ ...p, scene: fixEmoji(p.scene, '') }));
+  return { id: s.id, unit: unit.id, level: unit.level, title: s.title, icon: fixEmoji(s.icon), pages, questions };
 }
 
 export const stories: Story[] = Object.entries(storyFiles)

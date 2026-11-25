@@ -1,0 +1,84 @@
+{
+  "topic": "sports",
+  "words": [
+    {
+      "id": "football",
+      "text": "football",
+      "image": {
+        "emoji": "⚽"
+      },
+      "sentence": "I can play football.",
+      "accept": [
+        "foot ball",
+        "soccer",
+        "footbal"
+      ],
+      "topic": "sports"
+    },
+    {
+      "id": "basketball",
+      "text": "basketball",
+      "image": {
+        "emoji": "🏀"
+      },
+      "sentence": "Can you play basketball? Yes, I can!",
+      "accept": [
+        "basket ball",
+        "basketbal"
+      ],
+      "topic": "sports"
+    },
+    {
+      "id": "tennis",
+      "text": "tennis",
+      "image": {
+        "emoji": "🎾"
+      },
+      "sentence": "I can play tennis.",
+      "accept": [
+        "tenis",
+        "tennish"
+      ],
+      "topic": "sports"
+    },
+    {
+      "id": "baseball",
+      "text": "baseball",
+      "image": {
+        "emoji": "⚾"
+      },
+      "sentence": "Can you play baseball? Yes, I can!",
+      "accept": [
+        "base ball",
+        "basebal"
+      ],
+      "topic": "sports"
+    },
+    {
+      "id": "badminton",
+      "text": "badminton",
+      "image": {
+        "emoji": "🏸"
+      },
+      "sentence": "I like badminton.",
+      "accept": [
+        "badmington",
+        "bad minton"
+      ],
+      "topic": "sports"
+    },
+    {
+      "id": "hockey",
+      "text": "hockey",
+      "image": {
+        "emoji": "🏑"
+      },
+      "sentence": "Let's play hockey!",
+      "accept": [
+        "hokey",
+        "hocky"
+      ],
+      "topic": "sports"
+    }
+  ]
+}

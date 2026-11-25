@@ -4,6 +4,7 @@ import { sceneSVG } from '../../art/positions';
 import { animFor, type Level, type Topic, type Word } from '../../content';
 import { fromHTML, h, wait } from '../../lib/dom';
 import type { Ctx } from '../../router';
+import { fixEmoji, wordEmoji } from '../../lib/emoji';
 
 export class Aborted extends Error {}
 
@@ -84,7 +85,10 @@ export function wordPicture(w: Word, cls = ''): HTMLElement {
   if (w.image.color) {
     return h('div', { class: `pic pic-color ${cls}` }, fromHTML(isoCube(w.image.color)));
   }
-  const emoji = w.image.emoji ?? '❓';
+  const raw = w.image.emoji ?? '❓';
+  const emoji = graphemes(raw) > 1 ? fixEmoji(raw) : wordEmoji(raw);
+  // This phone cannot draw the emoji and there is no older look-alike: show the word.
+  if (emoji === null) return h('div', { class: `pic pic-text pic-word ${cls}`, 'aria-hidden': 'true' }, h('span', { lang: 'en' }, w.text));
   const n = graphemes(emoji);
   return h('div', { class: `pic pic-emoji ${n > 1 ? `pic-multi pic-n${Math.min(n, 10)}` : ''} ${cls}`, 'aria-hidden': 'true' }, emoji);
 }

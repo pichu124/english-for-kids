@@ -1,0 +1,39 @@
+{
+  "id": "l2-farm",
+  "level": "L2",
+  "topic": "farm",
+  "order": 38,
+  "title": "Farm Animals",
+  "titleVi": "Con vật nông trại",
+  "icon": "🐔",
+  "color": "#8fd46b",
+  "intro": "Welcome to the farm!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Hay block",
+    "style": "wood",
+    "color": "#e9c46a"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Animals",
+    "monHoc": "Understanding the World"
+  },
+  "words": [
+    "chicken-bird",
+    "goat",
+    "horse",
+    "sheep",
+    "cow",
+    "duck"
+  ],
+  "parentTip": {
+    "vi": "Bố mẹ giả tiếng con vật (\"cluck, cluck!\") và hỏi con: \"Is it a chicken?\"",
+    "say": "Is it a chicken?"
+  },
+  "chat": {
+    "ask": "Do you like horses?",
+    "yes": "Neigh! Horses are great!",
+    "no": "Okay! Chickens are fun too!"
+  }
+}

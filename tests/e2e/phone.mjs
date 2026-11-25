@@ -47,9 +47,9 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     };
     await p.goto(base); await check('start');
     await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home'); await check('home');
-    for (const [btn, name] of [['My Words', 'book'], ['Bix', 'wardrobe'], ['Garden', 'garden'], ['Games', 'games'], ['Stories', 'stories'], ['My World', 'world'], ['Today', 'today'], ['ABC', 'abc']]) {
+    for (const [btn, name] of [['My Words', 'book'], ['Bix', 'wardrobe'], ['Garden', 'garden'], ['Games', 'games'], ['Stories', 'stories'], ['My World', 'world'], ['Today', 'today'], ['Test', 'test'], ['ABC', 'abc']]) {
       await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
-      await p.locator(btn === 'Today' ? '.home-today' : `.dock-btn[aria-label="${btn}"]`).click({ force: true }); await check(name);
+      await p.locator(btn === 'Today' ? '.home-today' : btn === 'Test' ? '.island-test' : `.dock-btn[aria-label="${btn}"]`).click({ force: true }); if (btn === 'Test') await p.waitForSelector('.test-q', { timeout: 15000 }); await check(name);
     }
     await p.locator('.abc-game-btn').click({ force: true }); await p.waitForSelector('.abc-choice'); await check('letter-game');
     try {

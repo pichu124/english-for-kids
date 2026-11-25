@@ -33,6 +33,7 @@ import { certificateScreen } from './screens/certificate';
 import { abcScreen } from './screens/abc';
 import { todayScreen } from './screens/today';
 import { reportScreen } from './screens/report';
+import { testScreen } from './screens/test';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -52,6 +53,7 @@ register('certificate', certificateScreen);
 register('abc', abcScreen);
 register('today', todayScreen);
 register('report', reportScreen);
+register('test', testScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);
@@ -60,7 +62,7 @@ initPWA();
 readDeepLink();
 startUsageClock(() => {
   const s = currentScreen();
-  return !!s && ['home', 'lesson', 'world', 'book', 'wardrobe', 'garden', 'games', 'stories', 'story', 'abc', 'today'].includes(s);
+  return !!s && ['home', 'lesson', 'world', 'book', 'wardrobe', 'garden', 'games', 'stories', 'story', 'abc', 'today', 'test'].includes(s);
 });
 // Soft background music (only if a parent turned it on) on the calm screens — never while
 // Bix teaches, reads a story or listens to the microphone.

@@ -1,0 +1,81 @@
+{
+  "id": "l2-howmany",
+  "level": "L2",
+  "topic": "howmany",
+  "order": 33,
+  "title": "How Many?",
+  "titleVi": "Bao nhiêu? (There is / There are)",
+  "icon": "🔢",
+  "color": "#ffd166",
+  "intro": "Let's count apples!",
+  "playPrompt": "Find {word} apples!",
+  "block": {
+    "name": "Number block",
+    "style": "window",
+    "color": "#ffd166"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Numbers",
+    "monHoc": "Mathematics"
+  },
+  "words": [
+    {
+      "id": "one",
+      "image": {
+        "emoji": "🍎"
+      },
+      "sentence": "There is one apple.",
+      "play": "Find one apple!"
+    },
+    {
+      "id": "two",
+      "image": {
+        "emoji": "🍎🍎"
+      },
+      "sentence": "There are two apples.",
+      "play": "Find two apples!"
+    },
+    {
+      "id": "three",
+      "image": {
+        "emoji": "🍎🍎🍎"
+      },
+      "sentence": "There are three apples.",
+      "play": "Find three apples!"
+    },
+    {
+      "id": "four",
+      "image": {
+        "emoji": "🍎🍎🍎🍎"
+      },
+      "sentence": "There are four apples.",
+      "play": "Find four apples!"
+    },
+    {
+      "id": "five",
+      "image": {
+        "emoji": "🍎🍎🍎🍎🍎"
+      },
+      "sentence": "There are five apples.",
+      "play": "Find five apples!"
+    },
+    {
+      "id": "six",
+      "image": {
+        "emoji": "🍎🍎🍎🍎🍎🍎"
+      },
+      "sentence": "There are six apples.",
+      "play": "Find six apples!"
+    }
+  ],
+  "parentTip": {
+    "vi": "Đếm đồ vật quanh nhà: \"How many apples?\" – \"There are three apples.\"",
+    "say": "How many apples?"
+  },
+  "chat": {
+    "ask": "Can you count to six?",
+    "yes": "Wow! One, two, three, four, five, six!",
+    "no": "Let's count together!"
+  }
+}

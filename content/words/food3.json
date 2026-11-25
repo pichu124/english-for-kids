@@ -1,0 +1,84 @@
+{
+  "topic": "food3",
+  "words": [
+    {
+      "id": "orange-fruit",
+      "text": "orange",
+      "image": {
+        "emoji": "🍊"
+      },
+      "sentence": "This is an orange. It is sweet.",
+      "accept": [
+        "oranges",
+        "orang"
+      ],
+      "topic": "food3"
+    },
+    {
+      "id": "meat",
+      "text": "meat",
+      "image": {
+        "emoji": "🥩"
+      },
+      "sentence": "This is meat. Dogs like meat.",
+      "accept": [
+        "meet",
+        "meats"
+      ],
+      "topic": "food3"
+    },
+    {
+      "id": "coconut",
+      "text": "coconut",
+      "image": {
+        "emoji": "🥥"
+      },
+      "sentence": "This is a coconut. It is big!",
+      "accept": [
+        "coconuts",
+        "coco nut"
+      ],
+      "topic": "food3"
+    },
+    {
+      "id": "kiwi",
+      "text": "kiwi",
+      "image": {
+        "emoji": "🥝"
+      },
+      "sentence": "This is a kiwi. It is green inside.",
+      "accept": [
+        "kiwis",
+        "keewee"
+      ],
+      "topic": "food3"
+    },
+    {
+      "id": "sweets",
+      "text": "sweets",
+      "image": {
+        "emoji": "🍬"
+      },
+      "sentence": "These are sweets. Yummy!",
+      "accept": [
+        "sweet",
+        "sweeties",
+        "candy"
+      ],
+      "topic": "food3"
+    },
+    {
+      "id": "lemonade",
+      "text": "lemonade",
+      "image": {
+        "emoji": "🍋🥤"
+      },
+      "sentence": "This is lemonade. It is cold.",
+      "accept": [
+        "lemon aid",
+        "lemonaid"
+      ],
+      "topic": "food3"
+    }
+  ]
+}

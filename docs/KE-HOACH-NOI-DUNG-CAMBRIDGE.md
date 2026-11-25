@@ -281,9 +281,9 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
-| **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? | 28 |
+| **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
-Tổng: **42 Unit**, **195 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
+Tổng: **52 Unit**, **222 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
 
 **Phủ chủ đề Starters:**
 - Đủ: animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions), **places & directions** (gồm từ chỉ vị trí in / on / under / next to / behind / in front of).
@@ -316,6 +316,14 @@ Tổng: **42 Unit**, **195 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - bước **spell**: chạm chữ cái vào ô (thêm 1–2 chữ thừa). Bix đọc tên từng chữ cái. Nhầm thì chữ chỉ rung, nhầm 2 lần thì chữ đúng sáng lên. Đánh vần không nhầm lần nào thì sticker có dấu ✏️;
   - màn **ABC** (bậc 1–2): 26 chữ, chạm vào nghe "bee. bee is for ball."; trò "Find the letter …", tìm đúng ngay lần đầu thì chữ được ⭐;
   - chữ cái được đọc bằng tên viết theo âm ("ay, bee, see…"), vì giọng máy đọc một chữ đứng riêng hay sai (chữ "a" thành "ơ"). App chưa dạy âm riêng của chữ (phonics /a/, /b/): giọng máy không phát âm được chuẩn.
+
+- **Đợt 6: bù chỗ trống của Starters** (đối chiếu danh sách từ Pre A1 Starters):
+  - mẫu câu: *I like / I don't like* (I Like It!), *I've got / She's got* (I've Got…), *Can you…? Yes, I can* (Sports), *There is / There are* + đếm (How Many?: cả 6 hình đều là táo để bé phải đếm), *He's my / She's my* (Who Is It?);
+  - tính từ: big, small, long, old, young, beautiful;
+  - từ mới: 6 môn thể thao, 6 phòng trong nhà, orange, meat, coconut, kiwi, sweets, lemonade, truck, ship, chicken (con gà). "Lorry" được chấp nhận khi bé nói "truck" (hai hình quá giống nhau nên không để chung một bài);
+  - mọi emoji mới đều là loại trước 2018. Emoji mới hơn có hình dự phòng tự động (xem `src/lib/emoji.ts`);
+  - duyệt chéo Gemini: nhận "Where is my …?" thay "Who is my …?" và bài đếm phải buộc bé đếm; không nhận "not too much" (sweets đếm được) và giữ "The baby is young" (đúng, có trong danh sách Starters).
+- **Bài thi thử Starters** (đảo 🎓 cuối bản đồ): 15 câu, Nghe 5 · Đánh vần 3 · Đọc 7. Tính lần chọn đầu, không gợi ý, không nói "sai". Mỗi phần 1–5 khiên. Khu bố mẹ xem kết quả và lời khuyên (từ 80% trở lên: sẵn sàng sang Movers).
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

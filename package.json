@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "thu": "npm run build && vite preview --host --port 4173",
     "test": "vitest run",
-    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/levels.mjs && node tests/e2e/review.mjs && node tests/e2e/offline.mjs && node tests/e2e/features.mjs && node tests/e2e/phone.mjs && node tests/e2e/speech.mjs && node tests/e2e/reading.mjs && node tests/e2e/today.mjs && node tests/e2e/backup.mjs && node tests/e2e/report.mjs",
+    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/levels.mjs && node tests/e2e/review.mjs && node tests/e2e/offline.mjs && node tests/e2e/features.mjs && node tests/e2e/phone.mjs && node tests/e2e/speech.mjs && node tests/e2e/reading.mjs && node tests/e2e/today.mjs && node tests/e2e/backup.mjs && node tests/e2e/report.mjs && node tests/e2e/emoji.mjs && node tests/e2e/mocktest.mjs",
     "typecheck": "tsc --noEmit",
     "icons": "node scripts/make-icons.mjs"
   },

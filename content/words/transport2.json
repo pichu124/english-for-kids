@@ -1,0 +1,32 @@
+{
+  "topic": "transport",
+  "words": [
+    {
+      "id": "truck",
+      "text": "truck",
+      "image": {
+        "emoji": "🚚"
+      },
+      "sentence": "This is a truck. It is big.",
+      "accept": [
+        "trucks",
+        "truk",
+        "lorry"
+      ],
+      "topic": "transport"
+    },
+    {
+      "id": "ship",
+      "text": "ship",
+      "image": {
+        "emoji": "🚢"
+      },
+      "sentence": "This is a ship. It is on the sea.",
+      "accept": [
+        "ships",
+        "shipp"
+      ],
+      "topic": "transport"
+    }
+  ]
+}

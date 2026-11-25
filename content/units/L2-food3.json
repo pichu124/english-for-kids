@@ -1,0 +1,39 @@
+{
+  "id": "l2-food3",
+  "level": "L2",
+  "topic": "food3",
+  "order": 36,
+  "title": "More Food",
+  "titleVi": "Thêm đồ ăn",
+  "icon": "🍊",
+  "color": "#ffb703",
+  "intro": "Mmm! More food!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Fruit block",
+    "style": "cake",
+    "color": "#fb8500"
+  },
+  "casa": {
+    "luaTuoi": "5-6",
+    "chuDe": "Food & drink",
+    "monHoc": "Communication and Language"
+  },
+  "words": [
+    "orange-fruit",
+    "meat",
+    "coconut",
+    "kiwi",
+    "sweets",
+    "lemonade"
+  ],
+  "parentTip": {
+    "vi": "Đi chợ hay mở tủ lạnh, cầm quả cam, quả kiwi và hỏi con.",
+    "say": "Is this an orange?"
+  },
+  "chat": {
+    "ask": "Do you like sweets?",
+    "yes": "Me too! But not too many sweets!",
+    "no": "Okay! Fruit is yummy too!"
+  }
+}
