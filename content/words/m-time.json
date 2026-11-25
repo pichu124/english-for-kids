@@ -1,0 +1,101 @@
+{
+  "topic": "time",
+  "words": [
+    {
+      "id": "oclock-7",
+      "text": "seven o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "7:00"
+      },
+      "sentence": "It's seven o'clock. Time to get up!",
+      "accept": [
+        "7 oclock",
+        "7 o'clock",
+        "seven oclock",
+        "seven o clock"
+      ],
+      "play": "Find seven o'clock!"
+    },
+    {
+      "id": "oclock-8",
+      "text": "eight o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "8:00"
+      },
+      "sentence": "It's eight o'clock. Time for school!",
+      "accept": [
+        "8 oclock",
+        "8 o'clock",
+        "eight oclock",
+        "eight o clock"
+      ],
+      "play": "Find eight o'clock!"
+    },
+    {
+      "id": "oclock-12",
+      "text": "twelve o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "12:00"
+      },
+      "sentence": "It's twelve o'clock. Time for lunch!",
+      "accept": [
+        "12 oclock",
+        "12 o'clock",
+        "twelve oclock",
+        "twelve o clock"
+      ],
+      "play": "Find twelve o'clock!"
+    },
+    {
+      "id": "oclock-3",
+      "text": "three o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "3:00"
+      },
+      "sentence": "It's three o'clock. Time to go home!",
+      "accept": [
+        "3 oclock",
+        "3 o'clock",
+        "three oclock",
+        "three o clock"
+      ],
+      "play": "Find three o'clock!"
+    },
+    {
+      "id": "oclock-5",
+      "text": "five o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "5:00"
+      },
+      "sentence": "It's five o'clock. Time to play!",
+      "accept": [
+        "5 oclock",
+        "5 o'clock",
+        "five oclock",
+        "five o clock"
+      ],
+      "play": "Find five o'clock!"
+    },
+    {
+      "id": "oclock-9",
+      "text": "nine o'clock",
+      "topic": "time",
+      "image": {
+        "clock": "9:00"
+      },
+      "sentence": "It's nine o'clock. Time for bed!",
+      "accept": [
+        "9 oclock",
+        "9 o'clock",
+        "nine oclock",
+        "nine o clock"
+      ],
+      "play": "Find nine o'clock!"
+    }
+  ]
+}

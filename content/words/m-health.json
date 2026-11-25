@@ -1,0 +1,84 @@
+{
+  "topic": "health",
+  "words": [
+    {
+      "id": "a-cold",
+      "text": "cold",
+      "topic": "health",
+      "image": {
+        "emoji": "🤧"
+      },
+      "sentence": "I've got a cold. Atishoo!",
+      "accept": [
+        "colds",
+        "coled"
+      ]
+    },
+    {
+      "id": "cough",
+      "text": "cough",
+      "topic": "health",
+      "image": {
+        "emoji": "😷"
+      },
+      "sentence": "I've got a cough.",
+      "accept": [
+        "coughs",
+        "coff"
+      ]
+    },
+    {
+      "id": "headache",
+      "text": "headache",
+      "topic": "health",
+      "image": {
+        "emoji": "🤕"
+      },
+      "sentence": "I've got a headache.",
+      "accept": [
+        "head ache",
+        "headaches"
+      ]
+    },
+    {
+      "id": "stomach-ache",
+      "text": "stomach-ache",
+      "topic": "health",
+      "image": {
+        "emoji": "🤢"
+      },
+      "sentence": "I've got a stomach-ache.",
+      "accept": [
+        "stomach ache",
+        "stomachache",
+        "tummy ache"
+      ]
+    },
+    {
+      "id": "temperature",
+      "text": "temperature",
+      "topic": "health",
+      "image": {
+        "emoji": "🤒"
+      },
+      "sentence": "I've got a temperature. I'm hot!",
+      "accept": [
+        "temprature",
+        "temperatures"
+      ]
+    },
+    {
+      "id": "medicine",
+      "text": "medicine",
+      "topic": "health",
+      "image": {
+        "emoji": "💊"
+      },
+      "sentence": "Take your medicine, please.",
+      "accept": [
+        "medicines",
+        "medecine"
+      ]
+    }
+  ]
+}

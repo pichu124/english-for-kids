@@ -1,0 +1,83 @@
+{
+  "topic": "jobs",
+  "words": [
+    {
+      "id": "doctor",
+      "text": "doctor",
+      "topic": "jobs",
+      "image": {
+        "emoji": "👨‍⚕️"
+      },
+      "sentence": "He's a doctor. He works in a hospital.",
+      "accept": [
+        "doctors",
+        "docter"
+      ]
+    },
+    {
+      "id": "nurse",
+      "text": "nurse",
+      "topic": "jobs",
+      "image": {
+        "emoji": "👩‍⚕️"
+      },
+      "sentence": "She's a nurse. She helps people.",
+      "accept": [
+        "nurses",
+        "nurs"
+      ]
+    },
+    {
+      "id": "farmer",
+      "text": "farmer",
+      "topic": "jobs",
+      "image": {
+        "emoji": "👨‍🌾"
+      },
+      "sentence": "He's a farmer. He works on a farm.",
+      "accept": [
+        "farmers",
+        "farma"
+      ]
+    },
+    {
+      "id": "cook",
+      "text": "cook",
+      "topic": "jobs",
+      "image": {
+        "emoji": "👨‍🍳"
+      },
+      "sentence": "He's a cook. He makes pizza.",
+      "accept": [
+        "cooks",
+        "cuck"
+      ]
+    },
+    {
+      "id": "clown",
+      "text": "clown",
+      "topic": "jobs",
+      "image": {
+        "emoji": "🤡"
+      },
+      "sentence": "The clown is very funny.",
+      "accept": [
+        "clowns",
+        "cloun"
+      ]
+    },
+    {
+      "id": "pop-star",
+      "text": "pop star",
+      "topic": "jobs",
+      "image": {
+        "emoji": "👩‍🎤"
+      },
+      "sentence": "She's a pop star. She sings songs.",
+      "accept": [
+        "popstar",
+        "pop-star"
+      ]
+    }
+  ]
+}

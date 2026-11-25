@@ -1,0 +1,43 @@
+{
+  "id": "story-l3-health",
+  "unit": "l3-health",
+  "title": "Bix Is Ill",
+  "icon": "🤒",
+  "pages": [
+    {
+      "text": "Last week, Bix felt ill.",
+      "scene": "🛏️",
+      "bix": true
+    },
+    {
+      "text": "Bix had a cold. Atishoo!",
+      "scene": "🤧",
+      "bix": true
+    },
+    {
+      "text": "Bix had a temperature too.",
+      "scene": "🤒",
+      "bix": true
+    },
+    {
+      "text": "The doctor gave Bix some medicine.",
+      "scene": "👨‍⚕️💊",
+      "bix": true
+    },
+    {
+      "text": "Now Bix is better. Hooray!",
+      "scene": "😀🎉",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What did Bix have? Atishoo!",
+      "answer": "a-cold"
+    },
+    {
+      "ask": "What did the doctor give Bix?",
+      "answer": "medicine"
+    }
+  ]
+}

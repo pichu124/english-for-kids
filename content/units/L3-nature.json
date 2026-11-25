@@ -1,0 +1,34 @@
+{
+  "id": "l3-nature",
+  "level": "L3",
+  "topic": "nature",
+  "order": 7,
+  "title": "The World Around Us",
+  "titleVi": "Thiên nhiên",
+  "icon": "🏝️",
+  "color": "#90be6d",
+  "intro": "Let's explore the world!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Island block",
+    "style": "grass",
+    "color": "#55a630"
+  },
+  "words": [
+    "mountain",
+    "forest",
+    "island",
+    "moon",
+    "field",
+    "jungle"
+  ],
+  "parentTip": {
+    "vi": "Xem ảnh du lịch hoặc tranh, chỉ núi, rừng, đảo và hỏi con.",
+    "say": "Is this a mountain?"
+  },
+  "chat": {
+    "ask": "Do you want to go to an island?",
+    "yes": "Me too! Let's swim in the sea!",
+    "no": "Okay! Mountains are fun too!"
+  }
+}

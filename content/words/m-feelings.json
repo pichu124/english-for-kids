@@ -1,0 +1,57 @@
+{
+  "topic": "feelings2",
+  "words": [
+    {
+      "id": "hungry",
+      "text": "hungry",
+      "topic": "feelings2",
+      "image": {
+        "emoji": "😋"
+      },
+      "sentence": "I'm hungry. Can I have a sandwich?",
+      "accept": [
+        "hungri",
+        "hungary"
+      ]
+    },
+    {
+      "id": "thirsty",
+      "text": "thirsty",
+      "topic": "feelings2",
+      "image": {
+        "emoji": "🚰"
+      },
+      "sentence": "I'm thirsty. Can I have some water?",
+      "accept": [
+        "thirstie",
+        "thursty"
+      ]
+    },
+    {
+      "id": "surprised",
+      "text": "surprised",
+      "topic": "feelings2",
+      "image": {
+        "emoji": "😲"
+      },
+      "sentence": "Wow! I'm surprised!",
+      "accept": [
+        "surprise",
+        "suprised"
+      ]
+    },
+    {
+      "id": "bored",
+      "text": "bored",
+      "topic": "feelings2",
+      "image": {
+        "emoji": "😒"
+      },
+      "sentence": "I'm bored. Let's play a game!",
+      "accept": [
+        "board",
+        "boring"
+      ]
+    }
+  ]
+}

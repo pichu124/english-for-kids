@@ -1,0 +1,89 @@
+{
+  "topic": "past",
+  "words": [
+    {
+      "id": "went",
+      "text": "went",
+      "topic": "past",
+      "image": {
+        "emoji": "🚶"
+      },
+      "sentence": "Yesterday I went to the park.",
+      "accept": [
+        "wend",
+        "whent"
+      ],
+      "play": "Yesterday I went to the park. Which picture?"
+    },
+    {
+      "id": "saw",
+      "text": "saw",
+      "topic": "past",
+      "image": {
+        "emoji": "👀"
+      },
+      "sentence": "I saw a big dog.",
+      "accept": [
+        "sore",
+        "sau"
+      ],
+      "play": "I saw a big dog. Which picture?"
+    },
+    {
+      "id": "ate",
+      "text": "ate",
+      "topic": "past",
+      "image": {
+        "emoji": "🍔"
+      },
+      "sentence": "I ate a burger for lunch.",
+      "accept": [
+        "eight",
+        "eat"
+      ],
+      "play": "I ate a burger for lunch. Which picture?"
+    },
+    {
+      "id": "drank",
+      "text": "drank",
+      "topic": "past",
+      "image": {
+        "emoji": "🥛"
+      },
+      "sentence": "I drank some milk.",
+      "accept": [
+        "drunk",
+        "drenk"
+      ],
+      "play": "I drank some milk. Which picture?"
+    },
+    {
+      "id": "played",
+      "text": "played",
+      "topic": "past",
+      "image": {
+        "emoji": "⚽"
+      },
+      "sentence": "I played football with my friends.",
+      "accept": [
+        "play",
+        "plaid"
+      ],
+      "play": "I played football with my friends. Which picture?"
+    },
+    {
+      "id": "swam",
+      "text": "swam",
+      "topic": "past",
+      "image": {
+        "emoji": "🏊"
+      },
+      "sentence": "Then I swam in the pool.",
+      "accept": [
+        "swim",
+        "swum"
+      ],
+      "play": "Then I swam in the pool. Which picture?"
+    }
+  ]
+}

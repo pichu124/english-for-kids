@@ -1,0 +1,34 @@
+{
+  "id": "l3-food",
+  "level": "L3",
+  "topic": "food",
+  "order": 10,
+  "title": "Lunch Time",
+  "titleVi": "Bữa trưa",
+  "icon": "🥪",
+  "color": "#ffb703",
+  "intro": "It's lunch time! Yum!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Lunch block",
+    "style": "cake",
+    "color": "#fb8500"
+  },
+  "words": [
+    "sandwich",
+    "soup",
+    "pasta",
+    "salad",
+    "cheese",
+    "pancake"
+  ],
+  "parentTip": {
+    "vi": "Bữa trưa, hỏi \"What would you like?\" và để con trả lời \"I'd like some soup, please.\"",
+    "say": "What would you like?"
+  },
+  "chat": {
+    "ask": "Do you like pasta?",
+    "yes": "Me too! Pasta is yummy!",
+    "no": "Okay! Soup is good too!"
+  }
+}

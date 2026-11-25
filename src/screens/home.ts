@@ -61,7 +61,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   });
 
   // Starters: a practice-test island at the end of the map.
-  if (level.reading?.length) {
+  if (level.id === 'L2') {
     islands.push(
       h(
         'button',

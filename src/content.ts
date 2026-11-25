@@ -39,7 +39,7 @@ export const LEVELS: Level[] = [
   { id: 'L0', name: 'Little Bix', nameVi: 'Bậc 0 · Little Bix (3–4 tuổi)', ages: '3–4', framework: 'Cambridge Early Years', casaLuaTuoi: '3-4', showText: false, choices: 3, playRounds: 4 },
   { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3, playRounds: 5 },
   { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6, reading: ['read', 'spell', 'sentence'] },
-  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
+  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6, reading: ['read', 'write', 'sentence', 'text'] },
   { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
 ];
 
@@ -53,7 +53,7 @@ export type Word = {
   /** What the child should say (and what is shown). */
   text: string;
   /** Picture: an emoji, or a color swatch (for color words). */
-  image: { emoji?: string; color?: string; text?: string; scene?: string };
+  image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
@@ -75,14 +75,20 @@ const TOPIC_ANIM: Record<string, Anim> = {
   body: 'pulse', clothes: 'sway', clothes2: 'sway', colors: 'spin', colours2: 'spin', numbers: 'pulse', numbers2: 'pulse',
   shapes: 'spin', feelings: 'pulse', family: 'wave', people: 'wave', school: 'wiggle', home: 'pulse', home2: 'pulse',
   places: 'pulse', hello: 'wave', positions: 'pulse', adjectives: 'pulse', sports: 'bounce', rooms: 'pulse', food3: 'bounce',
+  health: 'wiggle', town: 'pulse', jobs: 'wave', time: 'pulse', days: 'pulse', nature: 'sway', sea: 'swim', compare: 'bounce', food4: 'bounce', feelings2: 'pulse', past: 'bounce',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
 
-export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence' | 'write' | 'text';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence', 'write', 'text'];
 /** Part 2 of a unit ("Read & Write"); everything else is part 1 ("Listen & Say"). */
-export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence'];
+export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 'text'];
+
+/** A short text to read (Movers): a few sentences and questions about it. */
+export type ReadingText = { title: string; lines: string[]; questions: { q: string; options: string[]; answer: number }[] };
+/** Words to type on the letter keyboard (Movers writing): one word, letters only, 3–8 letters. */
+export const writable = (w: Word) => /^[a-z]+$/i.test(w.text) && w.text.length >= 3 && w.text.length <= 8;
 
 /** First sentence of a word's example, without the final punctuation: "This is a dog". */
 export const firstSentence = (w: Word) => w.sentence.split(/(?<=[.!?])\s+/)[0].trim().replace(/[.!?]+$/, '');
@@ -139,6 +145,8 @@ export type Topic = {
   actions: Action[];
   chant?: Chant;
   casa?: CasaLink;
+  /** Movers: a short text to read in part 2 (the "text" step). */
+  text?: ReadingText;
   /** "Play together" card for parents: what to do at home (Vietnamese) and the English line to say. */
   parentTip?: { vi: string; say: string };
   /** A yes/no question Bix asks the child about the topic, with its two replies. */
@@ -184,8 +192,12 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ sai cấu trúc: ${JSON.stringify(w)}`);
       continue;
     }
-    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string')) {
+    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string' && typeof w.image.clock !== 'string')) {
       problem(file, `từ "${w.id}" cần image.emoji, image.color, image.text hoặc image.scene`);
+      continue;
+    }
+    if (w.image.clock && !/^([1-9]|1[0-2]):(00|15|30|45)$/.test(w.image.clock)) {
+      problem(file, `từ "${w.id}": image.clock dạng "3:00", "7:30" (giờ 1–12, phút 00/15/30/45)`);
       continue;
     }
     if (w.image.scene && !(SCENES as readonly string[]).includes(w.image.scene)) {
@@ -261,6 +273,14 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (words.length < 3) return problem(where, 'cần ít nhất 3 từ (trò chơi chọn hình cần 3 lựa chọn)'), null;
   if (steps.includes('spell') && words.filter((w) => spellable(w)).length < 2) steps.splice(steps.indexOf('spell'), 1);
   if (steps.includes('sentence') && sentenceCount(words) === 0) steps.splice(steps.indexOf('sentence'), 1);
+  if (steps.includes('write') && words.filter(writable).length < 2) steps.splice(steps.indexOf('write'), 1);
+  if (u.text) {
+    const tx = u.text;
+    const bad = typeof tx.title !== 'string' || !Array.isArray(tx.lines) || tx.lines.length < 2 || !Array.isArray(tx.questions) || !tx.questions.length ||
+      tx.questions.some((q) => typeof q?.q !== 'string' || !Array.isArray(q.options) || q.options.length < 2 || !(q.answer >= 0 && q.answer < q.options.length));
+    if (bad) problem(where, '"text" cần "title", ít nhất 2 dòng "lines" và "questions" (q, options, answer là số thứ tự đáp án đúng)');
+  }
+  if (steps.includes('text') && !u.text) steps.splice(steps.indexOf('text'), 1);
   // An accepted mishearing must not be another word of the same unit, or saying
   // "cat" would also count as "kite".
   for (const w of words) {
@@ -288,6 +308,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     casa: u.casa,
     parentTip: u.parentTip,
     chat: u.chat,
+    text: u.text,
     words,
   };
 }

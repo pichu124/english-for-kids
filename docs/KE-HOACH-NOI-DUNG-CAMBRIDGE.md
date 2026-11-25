@@ -281,9 +281,10 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
+| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday | 12 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
-Tổng: **52 Unit**, **222 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
+Tổng: **64 Unit**, **291 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
 
 **Phủ chủ đề Starters:**
 - Đủ: animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions), **places & directions** (gồm từ chỉ vị trí in / on / under / next to / behind / in front of).
@@ -324,6 +325,13 @@ Tổng: **52 Unit**, **222 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - mọi emoji mới đều là loại trước 2018. Emoji mới hơn có hình dự phòng tự động (xem `src/lib/emoji.ts`);
   - duyệt chéo Gemini: nhận "Where is my …?" thay "Who is my …?" và bài đếm phải buộc bé đếm; không nhận "not too much" (sweets đếm được) và giữ "The baby is young" (đúng, có trong danh sách Starters).
 - **Bài thi thử Starters** (đảo 🎓 cuối bản đồ): 15 câu, Nghe 5 · Đánh vần 3 · Đọc 7. Tính lần chọn đầu, không gợi ý, không nói "sai". Mỗi phần 1–5 khiên. Khu bố mẹ xem kết quả và lời khuyên (từ 80% trở lên: sẵn sàng sang Movers).
+
+- **Đợt M1: mở bậc 3 Movers (7–8 tuổi)**, 12 bài:
+  - What's the Weather? · What's the Matter? (sức khoẻ) · In Town · Jobs · What Time Is It? (đồng hồ vẽ bằng SVG) · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster (so sánh hơn) · Lunch Time · How Do You Feel? · Yesterday (quá khứ đơn);
+  - phần 2 "Đọc & Viết" của Movers: đọc (📖) → **gõ từ** trên bàn phím a–z (⌨️, không có chữ cái gợi ý sẵn) → câu (✍️) → **đọc đoạn văn** 4 câu và trả lời câu hỏi (📃, 4 bài có đoạn văn);
+  - 3 truyện thì quá khứ đơn: A Rainy Day, Bix Is Ill, Bix's Busy Day;
+  - danh sách từ soạn theo hiểu biết về A1 Movers (môi trường cloud không mở được trang Cambridge để tải bản chính thức). Cần đối chiếu lại khi có file PDF;
+  - duyệt chéo Gemini: nhận "flying away", "On Mondays…" cho thói quen, câu hỏi trò chọn hình riêng cho từng động từ quá khứ; không nhận "in the fields", "during the day", "than I am".
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import alphabet from '../content/alphabet.json';
-import { buildable, firstSentence, hasPart2, partSteps, sentenceCount, sentenceEnd, spellable, topics, topicsOfLevel, yesNoAble } from '../src/content';
+import { writable, buildable, firstSentence, hasPart2, partSteps, sentenceCount, sentenceEnd, spellable, topics, topicsOfLevel, yesNoAble } from '../src/content';
 import { letterName, spellOut } from '../src/lib/letters';
 
 describe('reading & spelling', () => {
@@ -29,9 +29,17 @@ describe('reading & spelling', () => {
       const canSpell = t.words.filter((w) => spellable(w)).length >= 2;
       expect(t.steps.includes('spell'), t.id).toBe(canSpell);
     }
-    for (const t of topics.filter((x) => x.level !== 'L2')) {
-      expect(t.steps.includes('read') || t.steps.includes('spell'), t.id).toBe(false);
+    for (const t of topics.filter((x) => x.level === 'L0' || x.level === 'L1')) {
+      expect(t.steps.some((st) => ['read', 'spell', 'sentence', 'write', 'text'].includes(st)), t.id).toBe(false);
     }
+    // Movers: read, type the word, sentences, and a short text where the unit has one.
+    for (const t of topicsOfLevel('L3')) {
+      expect(t.steps, t.id).toContain('read');
+      expect(t.steps.includes('write'), t.id).toBe(t.words.filter(writable).length >= 2);
+      expect(t.steps.includes('text'), t.id).toBe(!!t.text);
+      expect(t.steps.includes('spell'), t.id).toBe(false);
+    }
+    expect(topicsOfLevel('L3').filter((t) => t.text).length).toBeGreaterThanOrEqual(4);
   });
 
   it('spellable: single words of 2–6 letters', () => {

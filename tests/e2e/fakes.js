@@ -107,3 +107,17 @@ setInterval(() => {
   const yn = document.querySelector('.yesno[data-truth]');
   if (yn && !yn.querySelector('.yn-btn.is-right')) yn.querySelector(yn.getAttribute('data-truth') === 'true' ? '.yn-yes' : '.yn-no')?.click();
 }, 150);
+
+// Movers steps: type the word on the a–z keyboard; answer the text questions.
+setInterval(() => {
+  if (window.__manualReading) return;
+  const w = window.__manualWrite ? null : document.querySelector('.write[data-word]');
+  if (w) {
+    const word = w.getAttribute('data-word');
+    const n = w.querySelectorAll('.wr-box.is-filled').length;
+    if (n < word.length) w.querySelector(`.wr-key[data-key="${word[n]}"]`)?.click();
+    return;
+  }
+  const q = window.__manualText ? null : document.querySelector('.tx-ask[data-answer]');
+  if (q && !document.querySelector('.tx-opt.is-right')) document.querySelector(`.tx-opt[data-k="${q.getAttribute('data-answer')}"]`)?.click();
+}, 150);

@@ -1,0 +1,34 @@
+{
+  "id": "l3-sea",
+  "level": "L3",
+  "topic": "sea",
+  "order": 8,
+  "title": "Amazing Animals",
+  "titleVi": "Con vật kỳ thú",
+  "icon": "🐬",
+  "color": "#48cae4",
+  "intro": "Look at these amazing animals!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Ocean block",
+    "style": "gold",
+    "color": "#48cae4"
+  },
+  "words": [
+    "dolphin",
+    "whale",
+    "shark",
+    "penguin",
+    "panda",
+    "bat"
+  ],
+  "parentTip": {
+    "vi": "Xem phim hoặc sách về động vật, hỏi con: \"Can a penguin fly? No, it can't!\"",
+    "say": "Can a penguin fly?"
+  },
+  "chat": {
+    "ask": "Do you like dolphins?",
+    "yes": "Me too! Dolphins are clever!",
+    "no": "Okay! Pandas are lovely!"
+  }
+}

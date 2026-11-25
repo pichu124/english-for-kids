@@ -1,0 +1,72 @@
+{
+  "id": "l3-town",
+  "level": "L3",
+  "topic": "town",
+  "order": 3,
+  "title": "In Town",
+  "titleVi": "Ở thị trấn",
+  "icon": "🏙️",
+  "color": "#b8c0ff",
+  "intro": "Let's go to town!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "City block",
+    "style": "brick",
+    "color": "#9d8189"
+  },
+  "words": [
+    "hospital",
+    "library",
+    "cinema",
+    "supermarket",
+    "bus-stop",
+    "swimming-pool"
+  ],
+  "parentTip": {
+    "vi": "Đi qua thị trấn cùng con, chỉ bệnh viện, siêu thị và hỏi \"Where is the library?\".",
+    "say": "Where is the supermarket?"
+  },
+  "chat": {
+    "ask": "Do you like the cinema?",
+    "yes": "Me too! Films are fun!",
+    "no": "Okay! The library is nice too!"
+  },
+  "text": {
+    "title": "Saturday in Town",
+    "lines": [
+      "On Saturday, Anna went to town with her dad.",
+      "First, they went to the library and got two books.",
+      "Then they bought food at the supermarket.",
+      "In the afternoon, they swam in the swimming pool."
+    ],
+    "questions": [
+      {
+        "q": "Who went to town with Anna?",
+        "options": [
+          "her mum",
+          "her dad",
+          "her friend"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where did they get books?",
+        "options": [
+          "at the library",
+          "at the cinema",
+          "at the hospital"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did they do in the afternoon?",
+        "options": [
+          "They swam.",
+          "They slept.",
+          "They watched a film."
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

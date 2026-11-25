@@ -1,0 +1,34 @@
+{
+  "id": "l3-compare",
+  "level": "L3",
+  "topic": "compare",
+  "order": 9,
+  "title": "Taller, Faster",
+  "titleVi": "So sánh hơn",
+  "icon": "🏎️",
+  "color": "#f4a261",
+  "intro": "Who is taller? What is faster?",
+  "playPrompt": "Which one is {word}?",
+  "block": {
+    "name": "Race block",
+    "style": "stone",
+    "color": "#8d99ae"
+  },
+  "words": [
+    "tall",
+    "fast",
+    "slow",
+    "strong",
+    "quiet",
+    "loud"
+  ],
+  "parentTip": {
+    "vi": "So sánh đồ vật và người trong nhà: \"Who is taller, you or Mum?\"",
+    "say": "Who is taller?"
+  },
+  "chat": {
+    "ask": "Are you taller than your friend?",
+    "yes": "Wow! You are tall!",
+    "no": "That's okay! You will grow!"
+  }
+}

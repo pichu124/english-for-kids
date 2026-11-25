@@ -1,0 +1,83 @@
+{
+  "topic": "nature",
+  "words": [
+    {
+      "id": "mountain",
+      "text": "mountain",
+      "topic": "nature",
+      "image": {
+        "emoji": "⛰️"
+      },
+      "sentence": "This is a mountain. It is very high.",
+      "accept": [
+        "mountains",
+        "mountin"
+      ]
+    },
+    {
+      "id": "forest",
+      "text": "forest",
+      "topic": "nature",
+      "image": {
+        "emoji": "🌲🌲🌲"
+      },
+      "sentence": "There are lots of trees in the forest.",
+      "accept": [
+        "forests",
+        "forrest"
+      ]
+    },
+    {
+      "id": "island",
+      "text": "island",
+      "topic": "nature",
+      "image": {
+        "emoji": "🏝️"
+      },
+      "sentence": "This is an island. There is water all around it.",
+      "accept": [
+        "islands",
+        "iland"
+      ]
+    },
+    {
+      "id": "moon",
+      "text": "moon",
+      "topic": "nature",
+      "image": {
+        "emoji": "🌙"
+      },
+      "sentence": "Look at the moon in the sky!",
+      "accept": [
+        "moons",
+        "mun"
+      ]
+    },
+    {
+      "id": "field",
+      "text": "field",
+      "topic": "nature",
+      "image": {
+        "emoji": "🌾"
+      },
+      "sentence": "The farmer works in the field.",
+      "accept": [
+        "fields",
+        "feeld"
+      ]
+    },
+    {
+      "id": "jungle",
+      "text": "jungle",
+      "topic": "nature",
+      "image": {
+        "emoji": "🌴🐒"
+      },
+      "sentence": "Monkeys live in the jungle.",
+      "accept": [
+        "jungles",
+        "jangle"
+      ]
+    }
+  ]
+}

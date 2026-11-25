@@ -1,0 +1,57 @@
+{
+  "topic": "weather",
+  "words": [
+    {
+      "id": "sunny",
+      "text": "sunny",
+      "topic": "weather",
+      "image": {
+        "emoji": "☀️"
+      },
+      "sentence": "It's sunny today. Let's go to the park!",
+      "accept": [
+        "sunnie",
+        "sonny"
+      ]
+    },
+    {
+      "id": "cloudy",
+      "text": "cloudy",
+      "topic": "weather",
+      "image": {
+        "emoji": "☁️"
+      },
+      "sentence": "It's cloudy. I can't see the sun.",
+      "accept": [
+        "cloudie",
+        "clowdy"
+      ]
+    },
+    {
+      "id": "windy",
+      "text": "windy",
+      "topic": "weather",
+      "image": {
+        "emoji": "🌬️"
+      },
+      "sentence": "It's windy. My hat is flying away!",
+      "accept": [
+        "windie",
+        "wendy"
+      ]
+    },
+    {
+      "id": "rainbow",
+      "text": "rainbow",
+      "topic": "weather",
+      "image": {
+        "emoji": "🌈"
+      },
+      "sentence": "Look! There is a rainbow in the sky.",
+      "accept": [
+        "rainbows",
+        "rain bow"
+      ]
+    }
+  ]
+}

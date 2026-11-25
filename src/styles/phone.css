@@ -156,3 +156,23 @@
   .reward { grid-template-areas: 'stage actions' 'name actions'; }
   .reward-actions { flex-direction: column; flex-wrap: nowrap; }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+  .write { display: grid; grid-template-columns: auto auto; grid-template-areas: 'top slots' 'top keys'; column-gap: 14px; row-gap: 6px; align-items: center; }
+  .write .spell-top { grid-area: top; flex-direction: column; gap: 8px; }
+  .write .spell-slots { grid-area: slots; }
+  .wr-keys { grid-area: keys; gap: 5px; grid-template-columns: repeat(7, auto); }
+  .wr-key { width: 42px; height: 42px; font-size: 21px; border-radius: 10px; }
+  .lesson-body:has(.write) .lesson-bix { width: 16%; }
+  .lesson-body:has(.write) .lesson-bix .bix-bubble { display: none; }
+  .text-read { gap: 12px; }
+  .tx-card { padding: 8px 14px; border-radius: 16px; }
+  .tx-title { font-size: 17px; }
+  .tx-line { font-size: 15px; margin: .15em 0; }
+  .tx-ask { font-size: 17px; }
+  .tx-opts { gap: 6px; }
+  .tx-opt { font-size: 15px; min-height: 56px; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .lesson-body:has(.text-read) .lesson-bix { width: 16%; }
+  .lesson-body:has(.text-read) .lesson-bix .bix-bubble { display: none; }
+}

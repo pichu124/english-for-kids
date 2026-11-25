@@ -1,0 +1,72 @@
+{
+  "id": "l3-past",
+  "level": "L3",
+  "topic": "past",
+  "order": 12,
+  "title": "Yesterday",
+  "titleVi": "Hôm qua (quá khứ đơn)",
+  "icon": "📆",
+  "color": "#a2d2ff",
+  "intro": "What did you do yesterday?",
+  "playPrompt": "Which picture is {word}?",
+  "block": {
+    "name": "Memory block",
+    "style": "window",
+    "color": "#a2d2ff"
+  },
+  "words": [
+    "went",
+    "saw",
+    "ate",
+    "drank",
+    "played",
+    "swam"
+  ],
+  "parentTip": {
+    "vi": "Buổi tối hỏi con \"What did you do today?\". Giúp con nói \"I played… I ate… I went…\"",
+    "say": "What did you do today?"
+  },
+  "chat": {
+    "ask": "Did you play outside today?",
+    "yes": "Great! Playing outside is fun!",
+    "no": "Okay! Tomorrow, maybe!"
+  },
+  "text": {
+    "title": "Ben's Day",
+    "lines": [
+      "Yesterday Ben went to the beach with his family.",
+      "He swam in the sea and played football on the sand.",
+      "At lunch time, he ate a sandwich and drank some juice.",
+      "In the evening, he saw the moon. He was very tired!"
+    ],
+    "questions": [
+      {
+        "q": "Where did Ben go?",
+        "options": [
+          "to the beach",
+          "to the zoo",
+          "to school"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did he eat?",
+        "options": [
+          "a pizza",
+          "a sandwich",
+          "a cake"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How was Ben in the evening?",
+        "options": [
+          "hungry",
+          "tired",
+          "angry"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "l3-jobs",
+  "level": "L3",
+  "topic": "jobs",
+  "order": 4,
+  "title": "Jobs",
+  "titleVi": "Nghề nghiệp",
+  "icon": "👩‍⚕️",
+  "color": "#ffd6a5",
+  "intro": "What do they do?",
+  "playPrompt": "Who is the {word}?",
+  "block": {
+    "name": "Work block",
+    "style": "wood",
+    "color": "#bc8a5f"
+  },
+  "words": [
+    "doctor",
+    "nurse",
+    "farmer",
+    "cook",
+    "clown",
+    "pop-star"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con về nghề của người trong nhà: \"What does Dad do? He's a…\". Con muốn làm nghề gì?",
+    "say": "What does Grandpa do?"
+  },
+  "chat": {
+    "ask": "Do you want to be a doctor?",
+    "yes": "Great! Doctors help people!",
+    "no": "Okay! Maybe a pop star?"
+  },
+  "text": {
+    "title": "My Family",
+    "lines": [
+      "My name is Lucy.",
+      "My mum is a nurse. She works in a hospital.",
+      "My dad is a cook. He makes great pancakes!",
+      "My grandpa was a farmer. He had lots of cows."
+    ],
+    "questions": [
+      {
+        "q": "What is Lucy's mum?",
+        "options": [
+          "a nurse",
+          "a cook",
+          "a farmer"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who makes pancakes?",
+        "options": [
+          "Lucy",
+          "her dad",
+          "her grandpa"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Grandpa have?",
+        "options": [
+          "lots of cows",
+          "lots of books",
+          "lots of cars"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

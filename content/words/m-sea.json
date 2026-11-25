@@ -1,0 +1,83 @@
+{
+  "topic": "sea",
+  "words": [
+    {
+      "id": "dolphin",
+      "text": "dolphin",
+      "topic": "sea",
+      "image": {
+        "emoji": "🐬"
+      },
+      "sentence": "The dolphin can jump out of the water.",
+      "accept": [
+        "dolphins",
+        "dolfin"
+      ]
+    },
+    {
+      "id": "whale",
+      "text": "whale",
+      "topic": "sea",
+      "image": {
+        "emoji": "🐳"
+      },
+      "sentence": "The whale is very, very big.",
+      "accept": [
+        "whales",
+        "wale"
+      ]
+    },
+    {
+      "id": "shark",
+      "text": "shark",
+      "topic": "sea",
+      "image": {
+        "emoji": "🦈"
+      },
+      "sentence": "The shark has got big teeth.",
+      "accept": [
+        "sharks",
+        "shak"
+      ]
+    },
+    {
+      "id": "penguin",
+      "text": "penguin",
+      "topic": "sea",
+      "image": {
+        "emoji": "🐧"
+      },
+      "sentence": "The penguin can swim, but it cannot fly.",
+      "accept": [
+        "penguins",
+        "pengwin"
+      ]
+    },
+    {
+      "id": "panda",
+      "text": "panda",
+      "topic": "sea",
+      "image": {
+        "emoji": "🐼"
+      },
+      "sentence": "The panda is black and white.",
+      "accept": [
+        "pandas",
+        "pander"
+      ]
+    },
+    {
+      "id": "bat",
+      "text": "bat",
+      "topic": "sea",
+      "image": {
+        "emoji": "🦇"
+      },
+      "sentence": "The bat sleeps in the day.",
+      "accept": [
+        "bats",
+        "batt"
+      ]
+    }
+  ]
+}

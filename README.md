@@ -98,6 +98,12 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
   - `spell`: chạm chữ cái để ghép từ, 3 từ ngắn nhất (từ đơn 2–6 chữ cái). Bài có dưới 2 từ như vậy thì bỏ bước này;
   - `sentence`: ghép câu từ câu mẫu đầu tiên của từ (3–6 từ), và một câu đúng/sai dạng "This is a/an …";
   - các bước khác là phần 1 "Nghe & Nói". Tắt phần 2 cho một bài bằng `"reading": false`. Link `?unit=<id>&part=2` mở thẳng phần 2.
+- **Movers (bậc 3)**: phần 2 gồm `read`, `write` (gõ từ trên bàn phím a–z, từ đơn 3–8 chữ cái), `sentence`, `text`. Bài có đoạn văn thì thêm:
+  ```json
+  "text": { "title": "Tom Is Ill", "lines": ["Yesterday Tom was ill.", "..."],
+            "questions": [{ "q": "Who was ill?", "options": ["Tom", "the doctor"], "answer": 0 }] }
+  ```
+  `answer` là số thứ tự đáp án đúng (bắt đầu từ 0). Hình đồng hồ: `"image": { "clock": "7:00" }`.
 - **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).

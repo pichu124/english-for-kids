@@ -1,0 +1,42 @@
+{
+  "id": "story-l3-weather",
+  "unit": "l3-weather",
+  "title": "A Rainy Day",
+  "icon": "🌈",
+  "pages": [
+    {
+      "text": "Yesterday morning, it was cloudy.",
+      "scene": "☁️☁️",
+      "bix": true
+    },
+    {
+      "text": "Bix went for a walk.",
+      "scene": "🌳🚶",
+      "bix": true
+    },
+    {
+      "text": "Then it rained! Bix was very wet.",
+      "scene": "🌧️💦",
+      "bix": true
+    },
+    {
+      "text": "After the rain, the sun came out.",
+      "scene": "☀️"
+    },
+    {
+      "text": "There was a big rainbow in the sky. Bix was happy!",
+      "scene": "🌈😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "How was the weather yesterday morning?",
+      "answer": "cloudy"
+    },
+    {
+      "ask": "What was in the sky after the rain?",
+      "answer": "rainbow"
+    }
+  ]
+}

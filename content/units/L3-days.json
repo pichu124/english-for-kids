@@ -1,0 +1,35 @@
+{
+  "id": "l3-days",
+  "level": "L3",
+  "topic": "days",
+  "order": 6,
+  "title": "Days of the Week",
+  "titleVi": "Các ngày trong tuần",
+  "icon": "📅",
+  "color": "#fdffb6",
+  "intro": "Monday, Tuesday… Let's learn the days!",
+  "playPrompt": "Find {word}!",
+  "block": {
+    "name": "Calendar block",
+    "style": "plain",
+    "color": "#fdffb6"
+  },
+  "words": [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
+  ],
+  "parentTip": {
+    "vi": "Mỗi sáng hỏi \"What day is it today?\". Cùng hát tên 7 ngày trong tuần.",
+    "say": "What day is it today?"
+  },
+  "chat": {
+    "ask": "Do you like Saturdays?",
+    "yes": "Me too! No school!",
+    "no": "Okay! Mondays are fun too!"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "topic": "compare",
+  "words": [
+    {
+      "id": "tall",
+      "text": "tall",
+      "topic": "compare",
+      "image": {
+        "emoji": "🦒"
+      },
+      "sentence": "The giraffe is taller than the horse.",
+      "accept": [
+        "taller",
+        "tal"
+      ]
+    },
+    {
+      "id": "fast",
+      "text": "fast",
+      "topic": "compare",
+      "image": {
+        "emoji": "🏎️"
+      },
+      "sentence": "The car is faster than the bike.",
+      "accept": [
+        "faster",
+        "fass"
+      ]
+    },
+    {
+      "id": "slow",
+      "text": "slow",
+      "topic": "compare",
+      "image": {
+        "emoji": "🐌"
+      },
+      "sentence": "The snail is very slow.",
+      "accept": [
+        "slower",
+        "slo"
+      ]
+    },
+    {
+      "id": "strong",
+      "text": "strong",
+      "topic": "compare",
+      "image": {
+        "emoji": "💪"
+      },
+      "sentence": "My dad is stronger than me.",
+      "accept": [
+        "stronger",
+        "strang"
+      ]
+    },
+    {
+      "id": "quiet",
+      "text": "quiet",
+      "topic": "compare",
+      "image": {
+        "emoji": "🤫"
+      },
+      "sentence": "Be quiet in the library, please.",
+      "accept": [
+        "quieter",
+        "quite"
+      ]
+    },
+    {
+      "id": "loud",
+      "text": "loud",
+      "topic": "compare",
+      "image": {
+        "emoji": "📢"
+      },
+      "sentence": "The music is very loud!",
+      "accept": [
+        "louder",
+        "lowd"
+      ]
+    }
+  ]
+}

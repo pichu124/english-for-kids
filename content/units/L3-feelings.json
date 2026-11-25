@@ -1,0 +1,40 @@
+{
+  "id": "l3-feelings",
+  "level": "L3",
+  "topic": "feelings",
+  "order": 11,
+  "title": "How Do You Feel?",
+  "titleVi": "Cảm giác",
+  "icon": "😲",
+  "color": "#cdb4db",
+  "intro": "How do you feel today?",
+  "playPrompt": "Who is {word}?",
+  "block": {
+    "name": "Mood block",
+    "style": "rainbow",
+    "color": "#cdb4db"
+  },
+  "words": [
+    "hungry",
+    "thirsty",
+    {
+      "id": "tired",
+      "sentence": "I'm tired. I want to go to bed."
+    },
+    "surprised",
+    "bored",
+    {
+      "id": "happy",
+      "sentence": "I'm happy. It's my birthday!"
+    }
+  ],
+  "parentTip": {
+    "vi": "Hỏi con \"Are you hungry? Are you thirsty?\" trước bữa ăn, và để con hỏi lại bố mẹ.",
+    "say": "Are you hungry?"
+  },
+  "chat": {
+    "ask": "Are you hungry now?",
+    "yes": "Let's have a snack!",
+    "no": "Okay! Maybe later!"
+  }
+}

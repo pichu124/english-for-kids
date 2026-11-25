@@ -1,0 +1,80 @@
+{
+  "id": "l3-weather",
+  "level": "L3",
+  "topic": "weather",
+  "order": 1,
+  "title": "What's the Weather?",
+  "titleVi": "Thời tiết",
+  "icon": "🌈",
+  "color": "#8ecae6",
+  "intro": "What's the weather like today?",
+  "playPrompt": "Where is {word}?",
+  "block": {
+    "name": "Sky block",
+    "style": "rainbow",
+    "color": "#8ecae6"
+  },
+  "words": [
+    "sunny",
+    "cloudy",
+    "windy",
+    "rainbow",
+    {
+      "id": "rain",
+      "sentence": "It's raining. Take your umbrella!",
+      "play": "Where is the rain?"
+    },
+    {
+      "id": "snow",
+      "sentence": "It's snowing. Let's make a snowman!",
+      "play": "Where is the snow?"
+    }
+  ],
+  "parentTip": {
+    "vi": "Mỗi sáng mở cửa sổ, hỏi con thời tiết hôm nay. Con trả lời \"It's sunny / cloudy / windy\".",
+    "say": "What's the weather like today?"
+  },
+  "chat": {
+    "ask": "Do you like rainy days?",
+    "yes": "Me too! Splash, splash!",
+    "no": "Okay! Sunny days are great!"
+  },
+  "text": {
+    "title": "A Windy Day",
+    "lines": [
+      "It was windy on Sunday.",
+      "Sam and his sister went to the park with their kite.",
+      "The kite flew very high.",
+      "Then it was cloudy, and it rained. They went home."
+    ],
+    "questions": [
+      {
+        "q": "What was the weather like on Sunday?",
+        "options": [
+          "sunny",
+          "windy",
+          "snowy"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did they take to the park?",
+        "options": [
+          "a ball",
+          "a kite",
+          "a book"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Why did they go home?",
+        "options": [
+          "It rained.",
+          "They were hungry.",
+          "It was dark."
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "l3-time",
+  "level": "L3",
+  "topic": "time",
+  "order": 5,
+  "title": "What Time Is It?",
+  "titleVi": "Xem giờ",
+  "icon": "🕒",
+  "color": "#caffbf",
+  "intro": "Tick, tock! What time is it?",
+  "playPrompt": "Find {word}!",
+  "block": {
+    "name": "Clock block",
+    "style": "window",
+    "color": "#caffbf"
+  },
+  "words": [
+    "oclock-7",
+    "oclock-8",
+    "oclock-12",
+    "oclock-3",
+    "oclock-5",
+    "oclock-9"
+  ],
+  "parentTip": {
+    "vi": "Chỉ đồng hồ trong nhà vào giờ tròn: \"What time is it? It's seven o'clock.\" Kim ngắn chỉ giờ.",
+    "say": "What time is it?"
+  },
+  "chat": {
+    "ask": "Do you go to bed at nine o'clock?",
+    "yes": "Good night! Sleep well!",
+    "no": "Okay! Sleep is important!"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "topic": "town",
+  "words": [
+    {
+      "id": "hospital",
+      "text": "hospital",
+      "topic": "town",
+      "image": {
+        "emoji": "🏥"
+      },
+      "sentence": "This is the hospital. Doctors work here.",
+      "accept": [
+        "hospitals",
+        "hospitle"
+      ]
+    },
+    {
+      "id": "library",
+      "text": "library",
+      "topic": "town",
+      "image": {
+        "emoji": "📚"
+      },
+      "sentence": "I get books at the library.",
+      "accept": [
+        "librairy",
+        "libraries"
+      ]
+    },
+    {
+      "id": "cinema",
+      "text": "cinema",
+      "topic": "town",
+      "image": {
+        "emoji": "🎬"
+      },
+      "sentence": "We watch films at the cinema.",
+      "accept": [
+        "cinemas",
+        "sinema"
+      ]
+    },
+    {
+      "id": "supermarket",
+      "text": "supermarket",
+      "topic": "town",
+      "image": {
+        "emoji": "🛒"
+      },
+      "sentence": "Mum buys food at the supermarket.",
+      "accept": [
+        "super market",
+        "supermarkets"
+      ]
+    },
+    {
+      "id": "bus-stop",
+      "text": "bus stop",
+      "topic": "town",
+      "image": {
+        "emoji": "🚏"
+      },
+      "sentence": "I wait for the bus at the bus stop.",
+      "accept": [
+        "bus-stop",
+        "busstop"
+      ]
+    },
+    {
+      "id": "swimming-pool",
+      "text": "swimming pool",
+      "topic": "town",
+      "image": {
+        "emoji": "🏊"
+      },
+      "sentence": "I swim in the swimming pool.",
+      "accept": [
+        "swimming-pool",
+        "swim pool",
+        "pool"
+      ]
+    }
+  ]
+}

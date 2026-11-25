@@ -1,0 +1,89 @@
+{
+  "topic": "days",
+  "words": [
+    {
+      "id": "monday",
+      "text": "Monday",
+      "topic": "days",
+      "image": {
+        "text": "Mon"
+      },
+      "sentence": "On Mondays I go to school.",
+      "accept": [
+        "mondays"
+      ]
+    },
+    {
+      "id": "tuesday",
+      "text": "Tuesday",
+      "topic": "days",
+      "image": {
+        "text": "Tue"
+      },
+      "sentence": "On Tuesdays I play football.",
+      "accept": [
+        "tuesdays"
+      ]
+    },
+    {
+      "id": "wednesday",
+      "text": "Wednesday",
+      "topic": "days",
+      "image": {
+        "text": "Wed"
+      },
+      "sentence": "On Wednesdays I go swimming.",
+      "accept": [
+        "wednesdays"
+      ]
+    },
+    {
+      "id": "thursday",
+      "text": "Thursday",
+      "topic": "days",
+      "image": {
+        "text": "Thu"
+      },
+      "sentence": "On Thursdays I read books.",
+      "accept": [
+        "thursdays"
+      ]
+    },
+    {
+      "id": "friday",
+      "text": "Friday",
+      "topic": "days",
+      "image": {
+        "text": "Fri"
+      },
+      "sentence": "On Fridays I see my grandma.",
+      "accept": [
+        "fridays"
+      ]
+    },
+    {
+      "id": "saturday",
+      "text": "Saturday",
+      "topic": "days",
+      "image": {
+        "text": "Sat"
+      },
+      "sentence": "On Saturdays I go to the park.",
+      "accept": [
+        "saturdays"
+      ]
+    },
+    {
+      "id": "sunday",
+      "text": "Sunday",
+      "topic": "days",
+      "image": {
+        "text": "Sun"
+      },
+      "sentence": "On Sundays I sleep late!",
+      "accept": [
+        "sundays"
+      ]
+    }
+  ]
+}

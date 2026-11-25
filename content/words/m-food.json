@@ -1,0 +1,83 @@
+{
+  "topic": "food4",
+  "words": [
+    {
+      "id": "sandwich",
+      "text": "sandwich",
+      "topic": "food4",
+      "image": {
+        "emoji": "🥪"
+      },
+      "sentence": "I have a sandwich for lunch.",
+      "accept": [
+        "sandwiches",
+        "sanwich"
+      ]
+    },
+    {
+      "id": "soup",
+      "text": "soup",
+      "topic": "food4",
+      "image": {
+        "emoji": "🍲"
+      },
+      "sentence": "This soup is hot. Be careful!",
+      "accept": [
+        "soups",
+        "soap"
+      ]
+    },
+    {
+      "id": "pasta",
+      "text": "pasta",
+      "topic": "food4",
+      "image": {
+        "emoji": "🍝"
+      },
+      "sentence": "I like pasta with tomato sauce.",
+      "accept": [
+        "paster",
+        "pastas"
+      ]
+    },
+    {
+      "id": "salad",
+      "text": "salad",
+      "topic": "food4",
+      "image": {
+        "emoji": "🥗"
+      },
+      "sentence": "A salad is good for you.",
+      "accept": [
+        "salads",
+        "sallad"
+      ]
+    },
+    {
+      "id": "cheese",
+      "text": "cheese",
+      "topic": "food4",
+      "image": {
+        "emoji": "🧀"
+      },
+      "sentence": "Mice like cheese!",
+      "accept": [
+        "cheeses",
+        "chees"
+      ]
+    },
+    {
+      "id": "pancake",
+      "text": "pancake",
+      "topic": "food4",
+      "image": {
+        "emoji": "🥞"
+      },
+      "sentence": "We have pancakes for breakfast.",
+      "accept": [
+        "pancakes",
+        "pan cake"
+      ]
+    }
+  ]
+}

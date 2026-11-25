@@ -1,0 +1,72 @@
+{
+  "id": "l3-health",
+  "level": "L3",
+  "topic": "health",
+  "order": 2,
+  "title": "What's the Matter?",
+  "titleVi": "Sức khoẻ",
+  "icon": "🤒",
+  "color": "#ffafcc",
+  "intro": "Oh no! What's the matter?",
+  "playPrompt": "Who has got {word}?",
+  "block": {
+    "name": "Care block",
+    "style": "plain",
+    "color": "#ffc8dd"
+  },
+  "words": [
+    "a-cold",
+    "cough",
+    "headache",
+    "stomach-ache",
+    "temperature",
+    "medicine"
+  ],
+  "parentTip": {
+    "vi": "Chơi \"bác sĩ\": bố mẹ giả bị ốm, con hỏi \"What's the matter?\" rồi cho uống \"medicine\".",
+    "say": "What's the matter?"
+  },
+  "chat": {
+    "ask": "Do you like going to the doctor?",
+    "yes": "Great! Doctors help us!",
+    "no": "It's okay. Doctors are kind!"
+  },
+  "text": {
+    "title": "Tom Is Ill",
+    "lines": [
+      "Yesterday Tom was ill.",
+      "He had a headache and a temperature.",
+      "His mum took him to the doctor.",
+      "The doctor gave him some medicine. Today Tom is better."
+    ],
+    "questions": [
+      {
+        "q": "Who was ill?",
+        "options": [
+          "Tom",
+          "Tom's mum",
+          "the doctor"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did Tom have?",
+        "options": [
+          "a cough",
+          "a headache",
+          "a stomach-ache"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How is Tom today?",
+        "options": [
+          "better",
+          "worse",
+          "sad"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

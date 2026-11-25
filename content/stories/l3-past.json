@@ -1,0 +1,43 @@
+{
+  "id": "story-l3-past",
+  "unit": "l3-past",
+  "title": "Bix's Busy Day",
+  "icon": "📆",
+  "pages": [
+    {
+      "text": "Yesterday was Saturday.",
+      "scene": "📅",
+      "bix": true
+    },
+    {
+      "text": "Bix went to the park.",
+      "scene": "🏞️",
+      "bix": true
+    },
+    {
+      "text": "Bix played football with friends.",
+      "scene": "⚽",
+      "bix": true
+    },
+    {
+      "text": "Then Bix ate a burger and drank some milk.",
+      "scene": "🍔🥛",
+      "bix": true
+    },
+    {
+      "text": "In the evening, Bix saw the moon. Good night!",
+      "scene": "🌙😴",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What did Bix play?",
+      "answer": "played"
+    },
+    {
+      "ask": "What did Bix do in the evening?",
+      "answer": "saw"
+    }
+  ]
+}
