@@ -16,6 +16,7 @@ function label(st: TodayStep): { icon: string; text: string; say: string } {
   if (st.kind === 'review') return { icon: '🔁', text: 'Review', say: 'review your words' };
   if (st.kind === 'lesson') {
     const t = topicById(st.id ?? '');
+    if (st.part === 2) return { icon: '📖', text: `${t?.title ?? 'Lesson'} · Read`, say: `read and write ${t?.title ?? ''}` };
     return { icon: t?.icon ?? '⭐', text: t?.title ?? 'Lesson', say: `learn ${t?.title ?? 'a new lesson'}` };
   }
   const [kind, id] = (st.id ?? '').split(':');
@@ -59,7 +60,7 @@ export function todayScreen(ctx: Ctx): HTMLElement {
       }
       return ctx.go('lesson', { topic: REVIEW_ID });
     }
-    if (st.kind === 'lesson') return ctx.go('lesson', { topic: st.id! });
+    if (st.kind === 'lesson') return ctx.go('lesson', st.part === 2 ? { topic: st.id!, part: '2' } : { topic: st.id! });
     const fun = st.id ?? resolveFun(plan);
     update((s) => (s.today!.steps[i].id = fun));
     const [kind, id] = fun.split(':');

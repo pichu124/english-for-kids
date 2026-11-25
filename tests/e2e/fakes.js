@@ -91,3 +91,19 @@ setInterval(() => {
     if (tile) tile.click();
   }
 }, 120);
+
+// Sentence step: build the sentence word by word; answer yes/no.
+setInterval(() => {
+  if (window.__manualReading) return;
+  const b = document.querySelector('.sentence-build[data-sentence]');
+  if (b) {
+    const words = b.getAttribute('data-sentence').split(/\s+/);
+    const n = b.querySelectorAll('.sb-gap.is-filled').length;
+    if (n >= words.length) return;
+    const tile = [...b.querySelectorAll('.sb-tile:not(.is-used)')].find((t) => t.textContent === words[n]);
+    if (tile) tile.click();
+    return;
+  }
+  const yn = document.querySelector('.yesno[data-truth]');
+  if (yn && !yn.querySelector('.yn-btn.is-right')) yn.querySelector(yn.getAttribute('data-truth') === 'true' ? '.yn-yes' : '.yn-no')?.click();
+}, 150);

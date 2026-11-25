@@ -38,9 +38,9 @@ await page.waitForSelector('.today-card');
 const kinds = await page.locator('.today-card[data-kind]').evaluateAll((els) => els.map((e) => e.dataset.kind));
 if (kinds.join(',') !== 'review,lesson,fun') fail('plan should be review → lesson → fun, got ' + kinds.join(','));
 if (!(await page.locator('.today-card.is-now[data-kind="review"]').count())) fail('review is first');
-if (!(await page.locator('.today-card[data-kind="lesson"]').textContent()).includes('Colors')) fail('lesson = next unit (Colors)');
+if (!(await page.locator('.today-card[data-kind="lesson"]').textContent()).includes('Animals · Read')) fail('lesson = Read & Write of Animals (heard, not yet read)');
 if (shots) await page.screenshot({ path: `${shots}/today-plan.png` });
-step('Today plan: review (words due) → next lesson (Colors) → story or game → prize');
+step('Today plan: review (words due) → Read & Write of Animals (heard before) → story or game → prize');
 
 // helper: answer whatever the lesson asks until the Next button appears
 const playUntilNext = async () => {
@@ -91,7 +91,7 @@ await page.locator('.today-next').click({ force: true });
 await page.waitForSelector('.today-card[data-kind="review"].is-done');
 step('review done → ▶ Next → back to the plan with ✓');
 
-// 2) lesson (Colors)
+// 2) lesson (Animals part 2)
 await page.locator('.today-go').click({ force: true });
 await page.waitForSelector('.lesson');
 await playUntilNext();
@@ -99,10 +99,10 @@ if (shots) await page.screenshot({ path: `${shots}/today-next.png` });
 await page.locator('.today-next').click({ force: true });
 await page.waitForSelector('.today-card[data-kind="lesson"].is-done');
 let s = await state();
-if (!(s.topics.colors?.completed > 0)) fail('the lesson counts as a normal lesson');
-step('lesson Colors done → its block, sticker etc. as usual, then ▶ Next');
+if (s.topics.animals?.readDone !== 1) fail('the Read & Write part counts');
+step('Read & Write of Animals done → block etc. as usual, then ▶ Next');
 
-// 3) fun: the Colors story does not exist, Animals story is open and unread → story
+// 3) fun: the Animals story is open and unread → story
 const funLabel = await page.locator('.today-card[data-kind="fun"]').textContent();
 await page.locator('.today-go').click({ force: true });
 await page.waitForFunction(() => document.querySelector('.story, .games, .game'));

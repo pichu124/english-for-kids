@@ -32,6 +32,7 @@ import { storiesScreen, storyScreen } from './screens/stories';
 import { certificateScreen } from './screens/certificate';
 import { abcScreen } from './screens/abc';
 import { todayScreen } from './screens/today';
+import { reportScreen } from './screens/report';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -50,6 +51,7 @@ register('story', storyScreen);
 register('certificate', certificateScreen);
 register('abc', abcScreen);
 register('today', todayScreen);
+register('report', reportScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);
@@ -77,6 +79,6 @@ document.addEventListener('visibilitychange', () => setBackground(!document.hidd
       h('p', { class: 'rotate-vi', lang: 'vi' }, 'Xoay ngang điện thoại để bé học nhé'),
     ),
   );
-  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest'));
+  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report'));
 }
 go('start');

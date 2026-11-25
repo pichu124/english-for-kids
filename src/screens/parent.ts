@@ -1,6 +1,6 @@
 /** Parent area (Vietnamese). Gated behind a multiplication question. */
 import { LEVELS, levelsWithContent, topics, topicsOfLevel } from '../content';
-import { levelDone, levelProgress, unitBadge } from '../lib/progress';
+import { levelDone, levelProgress, unitBadge, weekReport } from '../lib/progress';
 import { currentLevel, setLevel } from '../lib/level';
 import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
@@ -16,10 +16,17 @@ import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '.
 import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
 
+let unlockedAt = 0;
+
 export function parentScreen(ctx: Ctx): HTMLElement {
   const root = h('main', { class: 'parent' });
-  const show = () => root.replaceChildren(panel(ctx, show));
-  root.appendChild(gate(ctx, show));
+  const show = () => {
+    unlockedAt = Date.now();
+    root.replaceChildren(panel(ctx, show));
+  };
+  // Coming back from the weekly report shortly after unlocking: no second question.
+  if (ctx.params.back === 'report' && Date.now() - unlockedAt < 10 * 60 * 1000) show();
+  else root.appendChild(gate(ctx, show));
   return root;
 }
 
@@ -79,6 +86,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).')
       : null,
     summaryCard(),
+    card('Tuần này', weekField()),
     card('Các bé dùng máy này', profilesField()),
     h('div', { id: 'p-backup' }, card('Sao lưu tiến độ', backupField())),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
@@ -224,6 +232,20 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     });
     const hear = h('button', { class: 'p-btn', onclick: () => void say(`Hi, ${input.value.trim() || 'there'}!`) }, '🔊 Nghe Bix chào');
     return h('div', { class: 'p-row' }, input, hear, ok);
+  }
+
+  /** This week at a glance + the printable weekly report. */
+  function weekField() {
+    const r = weekReport();
+    const WD = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+    return h(
+      'div',
+      { class: 'p-week' },
+      h('div', { class: 'p-week-days', 'aria-label': 'Các ngày trong tuần' }, r.days.map((d) => h('span', { class: d.lessons ? 'is-on' : '' }, WD[new Date(d.day + 'T12:00:00').getDay()]))),
+      h('p', {}, `${r.learnedDays}/7 ngày có học · ${r.minutes} phút · ${r.lessons} lượt học xong · ${r.newWords.length} từ mới`),
+      r.practise.length ? h('p', { class: 'p-muted' }, `Từ nên chơi lại: ${r.practise.slice(0, 5).map((x) => x.word.text).join(', ')}`) : null,
+      h('div', { class: 'p-row' }, h('button', { class: 'p-btn', 'data-report': 'open', onclick: () => ctx.go('report') }, '📄 Xem báo cáo tuần (in được)')),
+    );
   }
 
   /** Backup file: download / share it, restore it (here or on a new device). */

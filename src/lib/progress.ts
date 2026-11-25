@@ -1,11 +1,22 @@
 /** What the child has learned, for the Word Book and other rewards. */
 import { topics, topicsOfLevel, type Topic, type Word } from '../content';
-import { getState, update, wordKey, type WordStatus } from './storage';
+import { getState, today, update, wordKey, type WordStatus } from './storage';
 
 export function markKnown(topicId: string, wordId: string): void {
   update((s) => {
     const ws = (s.words[wordKey(topicId, wordId)] ??= { said: false, tries: 0 });
     ws.known = true;
+    ws.firstAt ??= today();
+  });
+}
+
+/** A round on this word needed more than one try (key = "unit/word"). */
+export function noteSlip(key: string): void {
+  if (!key) return;
+  update((s) => {
+    const ws = (s.words[key] ??= { said: false, tries: 0 });
+    ws.slips = (ws.slips ?? 0) + 1;
+    ws.slipAt = today();
   });
 }
 
@@ -14,6 +25,7 @@ export function markSpelled(topicId: string, wordId: string): void {
     const ws = (s.words[wordKey(topicId, wordId)] ??= { said: false, tries: 0 });
     ws.spelled = true;
     ws.known = true;
+    ws.firstAt ??= today();
   });
 }
 
@@ -38,7 +50,7 @@ export function stickerCount(level?: string): { got: number; total: number } {
 
 /** Lessons finished, summed over all units (drives Bix's wardrobe). */
 export function lessonsDone(): number {
-  return Object.values(getState().topics).reduce((n, t) => n + (t.completed ?? 0), 0);
+  return Object.values(getState().topics).reduce((n, t) => n + (t.completed ?? 0) + (t.readDone ?? 0), 0);
 }
 
 /** Distinct days with at least one finished lesson (the garden). */
@@ -99,4 +111,63 @@ export const levelDone = (level: string) => {
 export function levelDoneOn(level: string): string {
   const s = getState();
   return topicsOfLevel(level).reduce((d, t) => ((s.topics[t.id]?.lastDone ?? '') > d ? s.topics[t.id].lastDone! : d), '');
+}
+
+// ---------------------------------------------------------------- weekly report
+
+export type WeekReport = {
+  from: string;
+  to: string;
+  days: { day: string; lessons: number; minutes: number }[];
+  learnedDays: number;
+  minutes: number;
+  lessons: number;
+  newWords: { topic: Topic; word: Word }[];
+  practise: { topic: Topic; word: Word; slips: number }[];
+  recentTopics: Topic[];
+  spoken: { auto: number; parent: number; miss: number };
+};
+
+const isoDay = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+/** The last 7 days (today included), for the parent area and the printable report. */
+export function weekReport(): WeekReport {
+  const s = getState();
+  const now = new Date();
+  const list = Array.from({ length: 7 }, (_, i) => isoDay(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 6 + i)));
+  const from = list[0];
+  const days = list.map((day) => ({ day, lessons: s.days[day]?.lessons ?? 0, minutes: Math.round((s.days[day]?.seconds ?? 0) / 60) }));
+  const inWeek = (d?: string) => !!d && d >= from;
+  const seen = new Set<string>();
+  const newWords: WeekReport['newWords'] = [];
+  const practise: WeekReport['practise'] = [];
+  for (const t of topics) {
+    for (const w of t.words) {
+      const ws = s.words[wordKey(t.id, w.id)];
+      if (!ws) continue;
+      if (isLearned(ws) && inWeek(ws.firstAt) && !seen.has(w.text)) {
+        seen.add(w.text);
+        newWords.push({ topic: t, word: w });
+      }
+      if ((ws.slips ?? 0) > 0 && inWeek(ws.slipAt)) practise.push({ topic: t, word: w, slips: ws.slips! });
+    }
+  }
+  practise.sort((a, b) => b.slips - a.slips);
+  const uniqPractise = practise.filter((p, i) => practise.findIndex((q) => q.word.text === p.word.text) === i).slice(0, 8);
+  const recentTopics = topics
+    .filter((t) => inWeek(s.topics[t.id]?.lastDone))
+    .sort((a, b) => (s.topics[b.id].lastDone ?? '').localeCompare(s.topics[a.id].lastDone ?? ''));
+  const spoken = list.reduce((acc, d) => ({ auto: acc.auto + (s.days[d]?.auto ?? 0), parent: acc.parent + (s.days[d]?.parent ?? 0), miss: acc.miss + (s.days[d]?.miss ?? 0) }), { auto: 0, parent: 0, miss: 0 });
+  return {
+    from,
+    to: list[6],
+    days,
+    learnedDays: days.filter((d) => d.lessons > 0).length,
+    minutes: days.reduce((n, d) => n + d.minutes, 0),
+    lessons: days.reduce((n, d) => n + d.lessons, 0),
+    newWords,
+    practise: uniqPractise,
+    recentTopics,
+    spoken,
+  };
 }

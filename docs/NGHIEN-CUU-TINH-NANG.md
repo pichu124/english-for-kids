@@ -137,6 +137,11 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] **Sao lưu và khôi phục**: khu bố mẹ tải file sao lưu (mọi bé trên máy), gửi qua menu chia sẻ của máy (Zalo, Drive…). Khôi phục: chọn file, xem trước tên các bé, bấm 2 lần. Quá 7 ngày chưa sao lưu thì có dòng nhắc ở đầu khu bố mẹ. File nằm trong tay bố mẹ, không gửi đi đâu.
 - [x] **Nút "Today"**: lộ trình khoảng 10 phút mỗi ngày: ôn (nếu có từ đến hạn) → bài tiếp theo → truyện chưa đọc hoặc trò chơi → phần thưởng 🌟. Cuối mỗi phần có nút ▶ Next quay về lộ trình. Đếm số ngày hoàn thành (⭐ trên màn Today). Bài mở từ bản đồ vẫn như cũ.
 - [ ] Chế độ "nói theo Bix" không cần micro: tạm chưa làm (bố mẹ quyết định).
+- [x] **Câu ngắn (Starters)**: bước ✍️ trong phần Đọc & Viết:
+  - nghe câu rồi chạm các từ theo đúng thứ tự ("This is a dog."), lấy từ câu mẫu của mỗi từ (3–6 từ, giữ đúng dấu câu);
+  - một câu "Look and read: yes or no?" kiểu bài thi Starters: hình + câu "This is a …", bé tự đọc rồi chọn 👍 hay 👎 (Bix không đọc câu trước).
+- [x] **Báo cáo tuần**: mục "Tuần này" trong khu bố mẹ và trang báo cáo in khổ A4 dọc hoặc lưu PDF. Trang gồm: ngày học (7 ô), phút, lượt học xong, từ mới thành sticker, từ nên chơi lại (từ bé phải thử lại trong tuần), gợi ý "Chơi cùng con" cho tuần tới. Từ bản này, app ghi ngày bé học được từ (`firstAt`) và lần nhầm (`slips`, `slipAt`).
+- [x] **Bài học gọn hơn**: mỗi bài Starters có 2 phần. Phần 1 **Nghe & Nói** (👂🎤🎯, cùng vận động/vè nếu có). Phần 2 **Đọc & Viết** (📖🔤✍️). Mỗi phần có phần thưởng riêng. Đảo ✏️ khi xong phần 2. Chạm đảo đã nghe thì chọn phần, phần nên học tiếp sáng lên. "Today" ưu tiên phần Đọc & Viết của bài đã nghe, nên các ngày xen kẽ: bài mới → luyện đọc–viết bài đó. Link `?unit=…&part=2` mở thẳng phần 2.
 
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.

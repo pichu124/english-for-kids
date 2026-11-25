@@ -93,10 +93,11 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
 **Các trường:**
 - **`level`**: `L0` (3–4 tuổi, không hiện chữ), `L1` (4–5), `L2` (Starters 5–7), `L3` (Movers), `L4` (Flyers). `casa.luaTuoi` phải khớp bậc: `3-4`, `4-5`, `5-6`.
 - **`steps`**: thứ tự hoạt động. `listen` (nghe), `say` (nói), `tap-picture` (chọn hình), `do-it` (làm theo lệnh, cần `actions`), `chant` (vè, cần `chant`).
-- **Đọc và đánh vần** (bậc Starters, tự thêm vào cuối mỗi bài, không cần ghi vào `steps`):
+- **Phần 2 "Đọc & Viết"** (bậc Starters, tự thêm, không cần ghi vào `steps`):
   - `read`: nhìn hình, chọn đúng chữ viết, 4 lượt;
   - `spell`: chạm chữ cái để ghép từ, 3 từ ngắn nhất (từ đơn 2–6 chữ cái). Bài có dưới 2 từ như vậy thì bỏ bước này;
-  - tắt cho một bài bằng `"reading": false`.
+  - `sentence`: ghép câu từ câu mẫu đầu tiên của từ (3–6 từ), và một câu đúng/sai dạng "This is a/an …";
+  - các bước khác là phần 1 "Nghe & Nói". Tắt phần 2 cho một bài bằng `"reading": false`. Link `?unit=<id>&part=2` mở thẳng phần 2.
 - **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).

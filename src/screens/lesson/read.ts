@@ -1,7 +1,8 @@
 import type { Word } from '../../content';
 import { choicesFor, hintAfter, recordTap } from '../../lib/adapt';
 import { h, shuffle } from '../../lib/dom';
-import { markKnown } from '../../lib/progress';
+import { markKnown, noteSlip } from '../../lib/progress';
+import { wordKey } from '../../lib/storage';
 import { sfx } from '../../lib/sfx';
 import { say } from '../../lib/tts';
 import { confetti } from '../widgets';
@@ -48,6 +49,7 @@ export async function runRead(ui: LessonUI): Promise<void> {
         confetti(document.body, 10);
         const alone = misses === 0 && !heard;
         if (alone) markKnown(ui.topic.id, target.id);
+        if (misses > 0) noteSlip(wordKey(ui.topic.id, target.id));
         recordTap(alone);
         await ui.talk(`${pick(PRAISE)} ${target.text}!`, 'happy');
         await ui.pause(300);

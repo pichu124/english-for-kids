@@ -1,6 +1,7 @@
 import { spellable, type Word } from '../../content';
 import { h, shuffle } from '../../lib/dom';
-import { markSpelled } from '../../lib/progress';
+import { markSpelled, noteSlip } from '../../lib/progress';
+import { wordKey } from '../../lib/storage';
 import { sfx } from '../../lib/sfx';
 import { say } from '../../lib/tts';
 import { letterName, spellOut } from '../../lib/letters';
@@ -81,6 +82,7 @@ export async function runSpell(ui: LessonUI): Promise<void> {
     confetti(document.body, 14);
     actOut(pic, target);
     if (slips === 0) markSpelled(ui.topic.id, target.id);
+    else noteSlip(wordKey(ui.topic.id, target.id));
     await ui.pause(250);
     await ui.talk(`${spellOut(word)}. ${target.text}! ${pick(PRAISE)}`, 'happy', `${target.text}! ⭐`);
     await ui.pause(300);

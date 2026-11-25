@@ -133,3 +133,26 @@
   .spell-slots { grid-area: slots; }
   .spell-tiles { grid-area: tiles; max-width: 300px; justify-content: flex-start; }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+  .sentence-build { display: grid; grid-template-columns: auto auto; grid-template-areas: 'top line' 'top tiles'; align-items: center; column-gap: 16px; row-gap: 10px; }
+  .sentence-build .spell-top { grid-area: top; flex-direction: column; gap: 8px; }
+  .sb-line { grid-area: line; font-size: 22px; gap: 6px; justify-content: flex-start; }
+  .sb-gap { min-width: 48px; min-height: 40px; }
+  .sb-tiles { grid-area: tiles; gap: 8px; max-width: 420px; justify-content: flex-start; }
+  .sb-tile { font-size: 20px; padding: 0 12px; border-radius: 12px; }
+  .sb-pic { width: clamp(64px, 24vh, 100px); border-radius: 16px; }
+  .sb-pic .pic-emoji { font-size: clamp(40px, 15vh, 64px); }
+  .yesno { gap: 18px; }
+  .yn-side { gap: 10px; }
+  .yn-text { font-size: 24px; padding: 4px 14px; }
+  .yn-buttons { gap: 10px; }
+  .yn-btn { min-width: 72px; min-height: 72px; font-size: 16px; border-radius: 18px; }
+  .yn-btn span { font-size: 30px; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .reward-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 380px; gap: 10px; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .reward { grid-template-areas: 'stage actions' 'name actions'; }
+  .reward-actions { flex-direction: column; flex-wrap: nowrap; }
+}

@@ -16,6 +16,11 @@ export type WordStatus = {
   known?: boolean;
   /** Spelled it with letter tiles without a slip. */
   spelled?: boolean;
+  /** Day it first became a sticker (said or known) — for the weekly report. */
+  firstAt?: string;
+  /** Rounds that needed more than one try, and the last such day (weekly report: words to practise). */
+  slips?: number;
+  slipAt?: string;
   /** Last thing the recognizer heard (text only — never audio). */
   heard?: string;
   last?: string; // ISO date
@@ -58,7 +63,7 @@ export type State = {
     /** Music: 'off', 'chant' (default: only during chants) or 'all' (also soft background music). */
     music?: 'off' | 'chant' | 'all';
   };
-  topics: Record<string, { completed: number; lastDone?: string }>;
+  topics: Record<string, { completed: number; lastDone?: string; /** times part 2 (Read & Write) was finished */ readDone?: number }>;
   words: Record<string, WordStatus>;
   blocks: {
     /** Earned blocks not yet placed, by type. */

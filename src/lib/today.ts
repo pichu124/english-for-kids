@@ -3,12 +3,12 @@
  * to start — review (if words are due) → the next lesson → a story or a game → a
  * prize for the day. The plan is kept per child and per day.
  */
-import { storiesOfLevel, topicsOfLevel, type Topic } from '../content';
+import { hasPart2, storiesOfLevel, topicsOfLevel, type Topic } from '../content';
 import { currentLevel } from './level';
 import { buildReview } from './review';
 import { getState, today, update } from './storage';
 
-export type TodayStep = { kind: 'review' | 'lesson' | 'fun'; id?: string; done?: boolean };
+export type TodayStep = { kind: 'review' | 'lesson' | 'fun'; id?: string; part?: 1 | 2; done?: boolean };
 export type TodayPlan = { day: string; steps: TodayStep[]; finished?: boolean };
 
 /** First unit not done yet, else the one practised least. */
@@ -25,8 +25,13 @@ export function todayPlan(): TodayPlan {
   const level = currentLevel().id;
   const steps: TodayStep[] = [];
   if (buildReview(level)) steps.push({ kind: 'review' });
+  // Starters: a unit already heard but not yet read & written comes first (so days
+  // alternate: new unit → its Read & Write → next unit …); otherwise the next unit.
+  const st = getState();
+  const toRead = topicsOfLevel(level).find((u) => hasPart2(u) && (st.topics[u.id]?.completed ?? 0) > 0 && !st.topics[u.id]?.readDone);
   const t = suggestedTopic(level);
-  if (t) steps.push({ kind: 'lesson', id: t.id });
+  if (toRead) steps.push({ kind: 'lesson', id: toRead.id, part: 2 });
+  else if (t) steps.push({ kind: 'lesson', id: t.id });
   steps.push({ kind: 'fun' });
   const plan = { day: today(), steps };
   update((st) => (st.today = plan));

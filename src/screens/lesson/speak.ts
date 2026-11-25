@@ -208,6 +208,7 @@ function record(topicId: string, w: Word, a: Attempt, judge: Judge): void {
     ws.last = today();
     if (a.kind === 'pass') {
       ws.said = true;
+      ws.firstAt ??= today();
       ws.by = judge === 'parent' ? 'parent' : 'auto';
     }
     const log = dayLog();

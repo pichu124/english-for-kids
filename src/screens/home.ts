@@ -1,6 +1,6 @@
 import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
-import { topicsOfLevel, type Topic } from '../content';
+import { hasPart2, topicsOfLevel, type Topic } from '../content';
 import { currentLevel } from '../lib/level';
 import { buildReview, REVIEW_ID } from '../lib/review';
 import { fromHTML, h } from '../lib/dom';
@@ -46,12 +46,14 @@ export function homeScreen(ctx: Ctx): HTMLElement {
         'aria-label': t.title,
         onclick: () => {
           sfx.tap();
+          if (done && hasPart2(t)) return choosePart(t);
           ctx.go('lesson', { topic: t.id });
         },
       },
       fromHTML(islandSVG(t.color)),
       h('span', { class: 'island-icon', 'aria-hidden': 'true' }, t.icon),
       done ? h('span', { class: 'island-star', 'aria-label': 'done' }, '⭐') : null,
+      s.topics[t.id]?.readDone ? h('span', { class: 'island-pen', 'aria-label': 'read and write done' }, '✏️') : null,
       h('span', { class: 'island-name' }, t.title),
     );
     return btn;
@@ -149,6 +151,31 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     const chat = first ? chatToday() : null;
     if (chat?.chat && ctx.alive()) askChat(chat);
   }, 350);
+
+  /** A unit whose first part is done: Listen & Say again, or Read & Write. */
+  function choosePart(t: Topic) {
+    el.querySelector('.part-pick')?.remove();
+    const readDone = (getState().topics[t.id]?.readDone ?? 0) > 0;
+    const option = (part: '1' | '2', icons: string, text: string, glow: boolean) =>
+      h(
+        'button',
+        { class: `part-btn ${glow ? 'is-next' : ''}`, 'data-part': part, 'aria-label': text, onclick: (e: Event) => (e.stopPropagation(), sfx.tap(), ctx.go('lesson', part === '2' ? { topic: t.id, part } : { topic: t.id })) },
+        h('span', { class: 'part-icons', 'aria-hidden': 'true' }, icons),
+        h('span', {}, text),
+      );
+    const box = h(
+      'div',
+      { class: 'part-pick', role: 'dialog', 'aria-label': t.title, onclick: () => box.remove() },
+      h(
+        'div',
+        { class: 'part-card pop', onclick: (e: Event) => e.stopPropagation() },
+        h('div', { class: 'part-title' }, h('span', { 'aria-hidden': 'true' }, t.icon), ` ${t.title}`),
+        h('div', { class: 'part-row' }, option('1', '👂🎤', 'Listen & Say', readDone), option('2', '📖✏️', 'Read & Write', !readDone)),
+      ),
+    );
+    el.appendChild(box);
+    void bix.talk(readDone ? 'Listen and say, or read and write?' : "Now let's read and write!", 'happy', readDone ? 'Which one?' : 'Read & Write! 📖');
+  }
 
   /** Bix asks a yes/no question about something the child learned; big 👍 / 👎 answers. */
   function askChat(t: Topic) {

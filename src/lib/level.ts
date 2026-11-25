@@ -19,6 +19,7 @@ export function setLevel(id: string): void {
  * address bar so a reload goes back to the normal home screen.
  */
 let pendingUnit: string | null = null;
+let pendingPart: string | null = null;
 
 export function readDeepLink(): void {
   try {
@@ -27,6 +28,7 @@ export function readDeepLink(): void {
     const level = q.get('level');
     if (unit && topicById(unit)) {
       pendingUnit = unit;
+      pendingPart = q.get('part') === '2' ? '2' : null;
       setLevel(topicById(unit)!.level);
     } else if (level && levelById(level)) {
       setLevel(level);
@@ -37,9 +39,14 @@ export function readDeepLink(): void {
   }
 }
 
-/** The unit a link asked for (once). */
+/** The unit (and part, for ?part=2) a link asked for (once). */
 export function takePendingUnit(): string | null {
   const u = pendingUnit;
   pendingUnit = null;
   return u;
+}
+export function takePendingPart(): string | null {
+  const p = pendingPart;
+  pendingPart = null;
+  return p;
 }

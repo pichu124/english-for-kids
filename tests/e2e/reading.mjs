@@ -17,11 +17,18 @@ await page.addInitScript(() => (window.__manualReading = true));
 const state = () => page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1') || '{}'));
 const spoken = () => page.evaluate(() => window.__spoken);
 
-// Walk a Starters lesson up to the reading step.
+// Part 1 (Listen & Say) has no reading; part 2 (Read & Write) is read → spell → sentence.
 await page.goto(`${base}/?unit=animals`);
 await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.progress-step');
+const p1 = await page.locator('.progress-step').allTextContents();
+if (p1.includes('📖') || !p1.includes('👂')) fail('part 1 = listen, say, tap: ' + p1.join(' '));
+await page.goto(`${base}/?unit=animals&part=2`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.progress-step');
 const icons = await page.locator('.progress-step').allTextContents();
-if (!icons.includes('📖') || !icons.includes('🔤')) fail('Starters lessons should show read 📖 and spell 🔤 steps: ' + icons.join(' '));
+if (icons.join(' ') !== '📖 🔤 ✍️ 🎁') fail('part 2 should be read 📖, spell 🔤, sentence ✍️: ' + icons.join(' '));
+step('a Starters unit has 2 parts: Listen & Say (👂🎤🎯) and Read & Write (📖🔤✍️)');
 for (let i = 0; i < 800 && !(await page.locator('.read-choice').count()); i++) {
   if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
   else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
@@ -87,10 +94,38 @@ if (!(await spoken()).some((t) => t.includes(`. ${word}!`) && /, /.test(t))) fai
 if (shots) await page.screenshot({ path: `${shots}/spell.png` });
 step(`spell: tap letters into boxes ("${word}"), slips wiggle, the right tile glows after two`);
 
-// The other words go fast; the slip-free ones get the ✏️ mark.
+// The other words go fast; then the sentence step by hand.
+await page.evaluate(() => (window.__manualReading = false));
+await page.waitForSelector('.sentence-build[data-sentence]', { timeout: 60000 });
+await page.evaluate(() => (window.__manualReading = true));
+await page.waitForTimeout(500);
+const sentence = await page.locator('.sentence-build').getAttribute('data-sentence');
+const sw = sentence.split(' ');
+if (!(await spoken()).includes(`Listen. ${sentence}.`)) fail('Bix says the sentence first');
+const wrongWord = page.locator('.sb-tile:not(.is-used)').filter({ hasNotText: new RegExp(`^${sw[0]}$`) }).first();
+await wrongWord.click({ force: true });
+for (const w of sw) {
+  await page.locator('.sb-tile:not(.is-used)').filter({ hasText: new RegExp(`^${w}$`) }).first().click({ force: true });
+  await page.waitForTimeout(100);
+}
+if ((await page.locator('.sb-gap.is-filled').allTextContents()).join(' ') !== sentence) fail('the line should read the sentence');
+if (shots) await page.screenshot({ path: `${shots}/sentence.png` });
+await page.waitForSelector('.yesno[data-truth]', { timeout: 15000 });
+await page.waitForTimeout(400);
+const truth = await page.locator('.yesno').getAttribute('data-truth');
+const text = await page.locator('.yn-text').textContent();
+if (!/^This is an? \w/.test(text)) fail('yes/no sentence: ' + text);
+if ((await spoken()).slice(-1)[0].includes(text.replace('.', ''))) fail('the yes/no sentence must be read by the child, not Bix');
+await page.locator(truth === 'true' ? '.yn-no' : '.yn-yes').click({ force: true });
+await page.waitForTimeout(300);
+await page.locator(truth === 'true' ? '.yn-yes' : '.yn-no').click({ force: true });
+await page.waitForSelector('.yn-btn.is-right');
+if (shots) await page.screenshot({ path: `${shots}/yesno.png` });
+step(`sentence: listen and build "${sentence}" from word tiles; "${text}" → yes/no (${truth})`);
 await page.evaluate(() => (window.__manualReading = false));
 await page.waitForSelector('.reward-actions:not([hidden])', { timeout: 60000 });
 let s = await state();
+if (s.topics.animals?.readDone !== 1) fail('finishing part 2 counts as Read & Write done');
 const spelled = Object.entries(s.words).filter(([k, v]) => k.startsWith('animals/') && v.spelled).map(([k]) => k.split('/')[1]);
 if (spelled.includes(word)) fail(`"${word}" had slips → no ✏️`);
 if (spelled.length < 1) fail('slip-free spellings should be marked');
@@ -100,6 +135,28 @@ await page.waitForSelector('.home');
 await page.locator('.dock-btn[aria-label="My Words"]').click({ force: true });
 await page.waitForSelector('.sticker-pen');
 step(`✏️ on stickers spelled without a slip (${spelled.join(', ')})`);
+
+// The island: ✏️ when Read & Write is done; tapping a heard unit offers both parts.
+await page.goto(base);
+await page.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.topics.colors = { completed: 1 }; localStorage.setItem('efk.v1', JSON.stringify(st)); });
+await page.goto(base);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.home');
+if (!(await page.locator('.island[aria-label="Animals"] .island-pen').count())) fail('✏️ on the Animals island');
+await page.locator('.island[aria-label="Colors"]').click({ force: true });
+await page.waitForSelector('.part-pick');
+if (!(await page.locator('.part-btn.is-next[data-part="2"]').count())) fail('Read & Write should glow for a unit only heard');
+if (shots) await page.screenshot({ path: `${shots}/part-pick.png` });
+await page.locator('.part-btn[data-part="2"]').click({ force: true });
+await page.waitForSelector('.read, .progress-step');
+if ((await page.locator('.progress-step').allTextContents())[0] !== '📖') fail('part 2 opens from the chooser');
+await page.goto(base);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.island[aria-label="Food"]').click({ force: true });
+await page.waitForSelector('.lesson');
+if (await page.locator('.part-pick').count()) fail('a new unit starts at once (no chooser)');
+step('islands: ✏️ for Read & Write done; a heard unit offers Listen & Say / Read & Write (the next one glows)');
 
 // ---------- ABC ----------
 await page.goto(base);

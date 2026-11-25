@@ -12,11 +12,12 @@ import { todayNextButton } from '../today';
 import type { LessonUI } from './shared';
 
 /** Step 4 — Reward: one building block for "My World". */
-export async function runReward(ui: LessonUI): Promise<void> {
+export async function runReward(ui: LessonUI, part: 1 | 2 = 1): Promise<void> {
   const t = ui.topic;
   update((s) => {
     const tp = (s.topics[t.id] ??= { completed: 0 });
-    tp.completed++;
+    if (part === 2) tp.readDone = (tp.readDone ?? 0) + 1;
+    else tp.completed++;
     tp.lastDone = today();
     s.blocks.inventory[t.id] = (s.blocks.inventory[t.id] ?? 0) + 1;
     s.blocks.totalEarned++;
@@ -40,7 +41,7 @@ export async function runReward(ui: LessonUI): Promise<void> {
   await ui.pause(150);
   chest.classList.add('is-open');
   block.classList.add('is-out');
-  await ui.talk('You did it! Here is a block for you!', 'happy', 'You did it!');
+  await ui.talk(part === 2 ? 'You can read and write it! Here is a block for you!' : 'You did it! Here is a block for you!', 'happy', part === 2 ? '📖✏️ You did it!' : 'You did it!');
   actions.hidden = false;
   actions.classList.add('pop');
   const tip = tipCard(t);

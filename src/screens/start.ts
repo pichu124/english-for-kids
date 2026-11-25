@@ -1,7 +1,7 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
-import { takePendingUnit } from '../lib/level';
+import { takePendingPart, takePendingUnit } from '../lib/level';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
 import { primeSpeech } from '../lib/tts';
@@ -17,7 +17,8 @@ export function startScreen(ctx: Ctx): HTMLElement {
     setCounting(true);
     if (limitReached()) return ctx.go('rest');
     const unit = takePendingUnit();
-    ctx.go(unit ? 'lesson' : 'home', unit ? { topic: unit } : {});
+    const part = takePendingPart();
+    ctx.go(unit ? 'lesson' : 'home', unit ? { topic: unit, ...(part ? { part } : {}) } : {});
   };
   const kids = profiles();
   // Several children on this device: each taps their own animal to start.

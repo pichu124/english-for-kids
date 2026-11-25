@@ -67,15 +67,22 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       await p.waitForTimeout(80);
     }
     await check('lesson-chant');
-    let sawRead = false, sawSpell = false;
     for (let i = 0; i < 600 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) {
       if (await p.locator('.btn-chant-done:not([hidden])').count()) await p.locator('.btn-chant-done').click({ force: true });
-      if (!sawRead && (await p.locator('.read-choice').count())) { sawRead = true; await p.evaluate(() => (window.__manualReading = true)); await check('lesson-read'); await p.evaluate(() => (window.__manualReading = false)); }
-      if (!sawSpell && (await p.locator('.spell-tile').count())) { sawSpell = true; await p.evaluate(() => (window.__manualReading = true)); await check('lesson-spell'); await p.evaluate(() => (window.__manualReading = false)); }
       await p.waitForTimeout(100);
     }
-    if (!sawRead || !sawSpell) report.push(vn + ' reading steps: NOT SEEN');
     await check('reward');
+    // Part 2: Read & Write — check each kind of screen once.
+    await p.goto(base + '/?unit=l2-zoo&part=2'); await p.locator('.btn-play').click({ force: true });
+    const seen = new Set();
+    for (let i = 0; i < 800 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) {
+      for (const [sel, name] of [['.read-choice', 'lesson-read'], ['.spell-tile', 'lesson-spell'], ['.sb-tile', 'lesson-sentence'], ['.yn-btn', 'lesson-yesno']]) {
+        if (!seen.has(name) && (await p.locator(sel).count())) { seen.add(name); await p.evaluate(() => (window.__manualReading = true)); await check(name); await p.evaluate(() => (window.__manualReading = false)); }
+      }
+      await p.waitForTimeout(100);
+    }
+    if (seen.size < 4) report.push(vn + ' reading screens seen: ' + [...seen].join(',') + ' (missing some)');
+    await check('reward-part2');
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.btn-parent').click({ force: true }); await p.waitForSelector('.gate'); await check('gate');
     const [a, c] = (await p.locator('.gate-q').textContent()).match(/\d+/g).map(Number);
