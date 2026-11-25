@@ -411,3 +411,8 @@
 }
 .test-shields span { display: inline-block; border-radius: 50%; padding: 2px; }
 .test-shields span.on { background: radial-gradient(circle, #ffe680 0 60%, transparent 62%); }
+@media (orientation: portrait) {
+  .test-body { flex-direction: column-reverse; }
+  .test-bix { width: 100%; align-self: center; }
+  .test-q { flex-direction: column; }
+}

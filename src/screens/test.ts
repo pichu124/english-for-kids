@@ -2,7 +2,9 @@ import { Bix } from '../art/bix';
 import type { Word } from '../content';
 import { h } from '../lib/dom';
 import { spellOut } from '../lib/letters';
-import { buildTest, passed, saveResult, shields, type Part, type Question, type Score } from '../lib/mocktest';
+import { buildTest, passed, saveResult, shields, TEST_NAME, TEST_PARTS, type Part, type Question, type Score } from '../lib/mocktest';
+import { currentLevel } from '../lib/level';
+import { letterName } from '../lib/letters';
 import { sfx } from '../lib/sfx';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
@@ -13,6 +15,7 @@ import { confetti, homeButton } from './widgets';
 const PART_EN: Record<Part, { icon: string; name: string }> = {
   listening: { icon: '🎧', name: 'Listening' },
   spelling: { icon: '🔤', name: 'Spelling' },
+  writing: { icon: '✏️', name: 'Writing' },
   reading: { icon: '📖', name: 'Reading' },
 };
 
@@ -25,8 +28,10 @@ export function testScreen(ctx: Ctx): HTMLElement {
     queueMicrotask(() => ctx.go('rest'));
     return h('main');
   }
-  const qs = buildTest('L2');
-  const score: Score = { listening: [0, 0], spelling: [0, 0], reading: [0, 0] };
+  const level = currentLevel().id in TEST_PARTS ? currentLevel().id : 'L2';
+  const parts = TEST_PARTS[level];
+  const qs = buildTest(level);
+  const score: Score = Object.fromEntries(parts.map((p) => [p, [0, 0]]));
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const stage = h('section', { class: 'test-stage' });
   const dots = h('div', { class: 'test-dots', 'aria-hidden': 'true' }, qs.map(() => h('span')));
@@ -34,7 +39,7 @@ export function testScreen(ctx: Ctx): HTMLElement {
   const el = h(
     'main',
     { class: 'test' },
-    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Starters Test'), partTag, dots),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, TEST_NAME[level]), partTag, dots),
     h('div', { class: 'test-body' }, h('div', { class: 'test-bix' }, bix.el), stage),
   );
 
@@ -54,7 +59,7 @@ export function testScreen(ctx: Ctx): HTMLElement {
     partTag.textContent = `${PART_EN[q.part].icon} ${PART_EN[q.part].name}`;
     if (q.part !== lastPart) {
       lastPart = q.part;
-      const intro = { listening: 'Part one. Listen and touch the picture.', spelling: 'Part two. Listen to the letters. Find the word.', reading: 'Part three. Look and read.' }[q.part];
+      const intro = { listening: 'Part one. Listen and touch the picture.', spelling: 'Part two. Listen to the letters. Find the word.', writing: 'Part two. Look and write the word.', reading: 'Part three. Look and read.' }[q.part];
       stage.replaceChildren(h('div', { class: 'test-intro pop' }, h('span', { 'aria-hidden': 'true' }, PART_EN[q.part].icon), PART_EN[q.part].name));
       await bix.talk(intro, 'happy', PART_EN[q.part].name);
       if (!ctx.alive()) return false;
@@ -72,6 +77,39 @@ export function testScreen(ctx: Ctx): HTMLElement {
       void bix.talk(spelled, 'idle', '🔤 👂');
       return (await choose(cards)).dataset.word === q.target.text;
     }
+    if (q.kind === 'type-word') {
+      // First try counts: correct only if typed with no slip (a wrong key types nothing, no hints).
+      const word = q.target.text.toLowerCase();
+      const boxes = word.split('').map(() => h('span', { class: 'spell-slot wr-box' }));
+      const keys = 'abcdefghijklmnopqrstuvwxyz'.split('').map((c) => h('button', { class: 'wr-key', 'data-key': c, 'aria-label': c, lang: 'en' }, c));
+      stage.replaceChildren(h('div', { class: 'test-q write', 'data-answer': word }, h('div', { class: 'spell-top' }, h('div', { class: 'read-pic spell-pic' }, wordPicture(q.target))), h('div', { class: 'spell-slots' }, boxes), h('div', { class: 'wr-keys' }, keys)));
+      let slips = 0;
+      for (let i = 0; i < word.length; ) {
+        const k = await choose(keys);
+        if (!ctx.alive()) return false;
+        if (k.dataset.key === word[i]) {
+          boxes[i].textContent = word[i];
+          boxes[i].classList.add('is-filled');
+          void say(letterName(word[i]));
+          i++;
+        } else {
+          slips++;
+          sfx.soft();
+          k.classList.remove('shake');
+          void k.offsetWidth;
+          k.classList.add('shake');
+        }
+      }
+      return slips === 0;
+    }
+    if (q.kind === 'text-q') {
+      const opts = q.q.options.map((o, k) => h('button', { class: 'read-choice tx-opt pop', 'data-word': String(k), 'aria-label': o, lang: 'en' }, o));
+      stage.replaceChildren(
+        h('div', { class: 'test-q text-read', 'data-answer': String(q.q.answer) }, h('article', { class: 'tx-card' }, h('h3', { class: 'tx-title' }, q.text.title), q.text.lines.map((l) => h('p', { class: 'tx-line', lang: 'en' }, l))), h('div', { class: 'tx-q' }, h('p', { class: 'tx-ask', lang: 'en' }, q.q.q), h('div', { class: 'tx-opts' }, opts))),
+      );
+      void say(q.q.q);
+      return Number((await choose(opts)).dataset.word) === q.q.answer;
+    }
     if (q.kind === 'yes-no') {
       const yes = h('button', { class: 'yn-btn yn-yes pop', 'aria-label': 'Yes', 'data-word': 'yes' }, h('span', { 'aria-hidden': 'true' }, '👍'), 'Yes');
       const no = h('button', { class: 'yn-btn yn-no pop', 'aria-label': 'No', 'data-word': 'no' }, h('span', { 'aria-hidden': 'true' }, '👎'), 'No');
@@ -86,12 +124,13 @@ export function testScreen(ctx: Ctx): HTMLElement {
   };
 
   const finish = async () => {
-    saveResult(score);
+    saveResult(score, level);
     dots.querySelectorAll('span').forEach((d) => d.classList.add('on'));
     const ok = passed(score);
-    const rows = (Object.keys(PART_EN) as Part[]).map((p) =>
-      h('div', { class: 'test-row', 'data-part': p }, h('span', { class: 'test-row-name' }, `${PART_EN[p].icon} ${PART_EN[p].name}`), h('span', { class: 'test-shields', 'aria-label': `${shields(score[p])} of 5` }, Array.from({ length: 5 }, (_, k) => h('span', { class: k < shields(score[p]) ? 'on' : '' }, '🛡️')))),
-    );
+    const rows = parts.map((p) => {
+      const n = shields(score[p] ?? [0, 0]);
+      return h('div', { class: 'test-row', 'data-part': p }, h('span', { class: 'test-row-name' }, `${PART_EN[p].icon} ${PART_EN[p].name}`), h('span', { class: 'test-shields', 'aria-label': `${n} of 5` }, Array.from({ length: 5 }, (_, k) => h('span', { class: k < n ? 'on' : '' }, '🛡️'))));
+    });
     const again = h('button', { class: 'btn btn-sun', 'aria-label': 'Again', onclick: () => (sfx.tap(), ctx.go('test', { t: String(Date.now()) })) }, '🔁 Again');
     const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home', onclick: () => (sfx.tap(), ctx.go('home')) }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
     partTag.textContent = '';
@@ -108,8 +147,9 @@ export function testScreen(ctx: Ctx): HTMLElement {
       if (!ctx.alive()) return;
       const right = await ask(q, i);
       if (!ctx.alive()) return;
-      score[q.part][1]++;
-      if (right) score[q.part][0]++;
+      const sc = (score[q.part] ??= [0, 0]);
+      sc[1]++;
+      if (right) sc[0]++;
       sfx.tap();
       bix.setMood('happy');
       await bix.talk('OK!', 'idle'); // the same for right and wrong: results come at the end, never "wrong"

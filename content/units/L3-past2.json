@@ -1,0 +1,72 @@
+{
+  "id": "l3-past2",
+  "level": "L3",
+  "topic": "past2",
+  "order": 19,
+  "title": "Last Weekend",
+  "titleVi": "Cuối tuần trước (quá khứ đơn)",
+  "icon": "🎉",
+  "color": "#ffc6ff",
+  "intro": "What did you do last weekend?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Weekend block",
+    "style": "cake",
+    "color": "#ffc6ff"
+  },
+  "words": [
+    "had",
+    "made",
+    "took",
+    "gave",
+    "wrote",
+    "bought"
+  ],
+  "parentTip": {
+    "vi": "Thứ Hai hỏi con \"What did you do last weekend?\" và giúp con kể bằng \"I made… I had…\".",
+    "say": "What did you do last weekend?"
+  },
+  "chat": {
+    "ask": "Did you have fun last weekend?",
+    "yes": "Great! Weekends are fun!",
+    "no": "Okay! Next weekend will be fun!"
+  },
+  "text": {
+    "title": "Lily's Birthday",
+    "lines": [
+      "Last Saturday was Lily's birthday.",
+      "She had a party with her friends.",
+      "Her mum made a big chocolate cake.",
+      "Her grandpa gave her a new bike. Lily was very happy!"
+    ],
+    "questions": [
+      {
+        "q": "When was Lily's birthday?",
+        "options": [
+          "last Saturday",
+          "last Monday",
+          "yesterday"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did her mum make?",
+        "options": [
+          "a pizza",
+          "a chocolate cake",
+          "a sandwich"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Grandpa give her?",
+        "options": [
+          "a bike",
+          "a book",
+          "a doll"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

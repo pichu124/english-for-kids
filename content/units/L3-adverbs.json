@@ -1,0 +1,33 @@
+{
+  "id": "l3-adverbs",
+  "level": "L3",
+  "topic": "adverbs",
+  "order": 18,
+  "title": "Quickly and Slowly",
+  "titleVi": "Trạng từ (làm thế nào)",
+  "icon": "🐢",
+  "color": "#bde0fe",
+  "intro": "How do they do it?",
+  "playPrompt": "Find \"{word}\"!",
+  "block": {
+    "name": "Speed block",
+    "style": "window",
+    "color": "#bde0fe"
+  },
+  "words": [
+    "quickly",
+    "slowly",
+    "loudly",
+    "quietly",
+    "well"
+  ],
+  "parentTip": {
+    "vi": "Chơi \"làm theo\": \"Walk slowly! Walk quickly! Talk quietly!\"",
+    "say": "Walk slowly!"
+  },
+  "chat": {
+    "ask": "Can you run quickly?",
+    "yes": "Zoom! You are fast!",
+    "no": "That's okay! Slowly is fine too!"
+  }
+}

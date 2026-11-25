@@ -1,0 +1,70 @@
+{
+  "topic": "animals3",
+  "words": [
+    {
+      "id": "rabbit",
+      "text": "rabbit",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐰"
+      },
+      "sentence": "The rabbit has got long ears.",
+      "accept": [
+        "rabbits",
+        "rabit"
+      ]
+    },
+    {
+      "id": "lion",
+      "text": "lion",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🦁"
+      },
+      "sentence": "The lion is the king of the animals.",
+      "accept": [
+        "lions",
+        "lyon"
+      ]
+    },
+    {
+      "id": "kitten",
+      "text": "kitten",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐈"
+      },
+      "sentence": "A kitten is a baby cat.",
+      "accept": [
+        "kittens",
+        "kiten"
+      ]
+    },
+    {
+      "id": "puppy",
+      "text": "puppy",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐕"
+      },
+      "sentence": "A puppy is a baby dog.",
+      "accept": [
+        "puppies",
+        "pupy"
+      ]
+    },
+    {
+      "id": "bear",
+      "text": "bear",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐻"
+      },
+      "sentence": "The bear lives in the forest.",
+      "accept": [
+        "bears",
+        "bare"
+      ]
+    }
+  ]
+}

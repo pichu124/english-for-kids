@@ -1,0 +1,70 @@
+{
+  "id": "l3-directions",
+  "level": "L3",
+  "topic": "directions",
+  "order": 16,
+  "title": "Left and Right",
+  "titleVi": "Chỉ đường",
+  "icon": "🗺️",
+  "color": "#cdeac0",
+  "intro": "Where is it? Turn left, turn right!",
+  "playPrompt": "Find \"{word}\"!",
+  "block": {
+    "name": "Road block",
+    "style": "stone",
+    "color": "#adb5bd"
+  },
+  "words": [
+    "left",
+    "right",
+    "straight-on",
+    "map"
+  ],
+  "parentTip": {
+    "vi": "Chơi \"dẫn đường\" trong nhà: bố mẹ nói \"Turn left! Go straight on!\", con đi theo tới kho báu.",
+    "say": "Turn left!"
+  },
+  "chat": {
+    "ask": "Can you find your way home?",
+    "yes": "Great! You are clever!",
+    "no": "That's okay! A map can help!"
+  },
+  "text": {
+    "title": "Where Is the Zoo?",
+    "lines": [
+      "Ben is in the park with his map.",
+      "He wants to go to the zoo.",
+      "He goes straight on, then turns left at the school.",
+      "The zoo is next to the library!"
+    ],
+    "questions": [
+      {
+        "q": "What has Ben got?",
+        "options": [
+          "a map",
+          "a ticket",
+          "a kite"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Where does Ben turn left?",
+        "options": [
+          "at the park",
+          "at the school",
+          "at the zoo"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where is the zoo?",
+        "options": [
+          "next to the library",
+          "behind the park",
+          "in the school"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

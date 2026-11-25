@@ -1,0 +1,57 @@
+{
+  "topic": "clothes3",
+  "words": [
+    {
+      "id": "coat",
+      "text": "coat",
+      "topic": "clothes3",
+      "image": {
+        "emoji": "🧥"
+      },
+      "sentence": "It's cold. Put on your coat!",
+      "accept": [
+        "coats",
+        "cote"
+      ]
+    },
+    {
+      "id": "scarf",
+      "text": "scarf",
+      "topic": "clothes3",
+      "image": {
+        "emoji": "🧣"
+      },
+      "sentence": "My scarf is warm and red.",
+      "accept": [
+        "scarves",
+        "scarfs"
+      ]
+    },
+    {
+      "id": "helmet",
+      "text": "helmet",
+      "topic": "clothes3",
+      "image": {
+        "emoji": "⛑️"
+      },
+      "sentence": "Wear a helmet when you ride your bike.",
+      "accept": [
+        "helmets",
+        "helmit"
+      ]
+    },
+    {
+      "id": "gloves",
+      "text": "gloves",
+      "topic": "clothes3",
+      "image": {
+        "emoji": "🧤"
+      },
+      "sentence": "My hands are cold. Where are my gloves?",
+      "accept": [
+        "glove",
+        "gloofs"
+      ]
+    }
+  ]
+}

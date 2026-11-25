@@ -21,12 +21,12 @@ await page.goto(`${base}/?level=L3`);
 await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.home');
 if ((await page.locator('.home-level').textContent()) !== 'Movers') fail('level label');
-const islands = await page.locator('.island:not(.island-review)').count();
-if (islands !== l3 || l3 < 12) fail(`Movers map should show ${l3} (≥12) islands, got ${islands}`);
-if (await page.locator('.island-test').count()) fail('the Starters test island is only for Starters');
+const islands = await page.locator('.island:not(.island-review):not(.island-test)').count();
+if (islands !== l3 || l3 < 22) fail(`Movers map should show ${l3} (≥22) islands, got ${islands}`);
+if ((await page.locator('.island-test').getAttribute('aria-label')) !== 'Movers Test') fail('a Movers Test island at the end of the map');
 if (!(await page.locator('.dock-btn[aria-label="ABC"]').count())) fail('ABC for Movers too');
 if (shots) await page.screenshot({ path: `${shots}/movers-home.png` });
-step(`Movers map: ${islands} islands, no Starters test island`);
+step(`Movers map: ${islands} islands + 🎓 Movers Test`);
 
 // Clock pictures (What Time Is It?)
 await page.goto(`${base}/?unit=l3-time`);
@@ -94,6 +94,48 @@ await page.locator('.dock-btn[aria-label="Stories"]').click({ force: true });
 await page.waitForSelector('.story-book');
 if (!(await page.locator('.story-book[data-story="story-l3-weather"]:not(.is-locked)').count())) fail('A Rainy Day opens after the weather unit');
 step('Movers stories (past simple) on the Movers shelf');
+
+// Movers practice test: listening 5, writing 3 (typed), reading 3 yes/no + a text with 3 questions.
+await page.evaluate(() => { window.__manualReading = true; window.__manualWrite = true; window.__manualText = true; });
+await page.goto(base);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.island-test').click({ force: true });
+await page.waitForSelector('.test');
+if ((await page.locator('.test h1').textContent()) !== 'Movers Test') fail('Movers Test title');
+const parts = { listening: 0, writing: 0, reading: 0 };
+let typedWrong = false;
+for (let i = 0; i < 900 && !(await page.locator('.test-result').count()); i++) {
+  const q = page.locator('.test-q[data-answer]');
+  if (await q.count()) {
+    const idx = await page.locator('.test-dots span.now').count();
+    const answer = await q.getAttribute('data-answer');
+    const tag = (await page.locator('.test-part').textContent()) || '';
+    const part = tag.includes('Listening') ? 'listening' : tag.includes('Writing') ? 'writing' : 'reading';
+    if (part === 'writing') {
+      // first word: one wrong key first (the question then counts as wrong), others clean
+      if (!typedWrong) {
+        typedWrong = true;
+        const wrongKey = 'abcdefghijklmnopqrstuvwxyz'.split('').find((c) => c !== answer[0]);
+        await page.locator(`.wr-key[data-key="${wrongKey}"]`).click({ force: true });
+      }
+      for (const c of answer) { await page.locator(`.wr-key[data-key="${c}"]`).click({ force: true }); await page.waitForTimeout(60); }
+    } else {
+      await q.locator(`button[data-word="${answer}"]`).first().click({ force: true });
+    }
+    parts[part]++;
+    // wait for the next question (one more dot marked "now"), or the result
+    await page.waitForFunction((n) => document.querySelectorAll('.test-dots span.now').length > n || document.querySelector('.test-result'), idx, { timeout: 10000 });
+    await page.waitForFunction(() => document.querySelector('.test-q[data-answer]') || document.querySelector('.test-result'), null, { timeout: 10000 });
+  }
+  await page.waitForTimeout(100);
+}
+await page.waitForSelector('.test-result');
+if (parts.listening !== 5 || parts.writing !== 3 || parts.reading !== 6) fail('Movers test parts: ' + JSON.stringify(parts));
+const res = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')).tests.at(-1));
+if (res.level !== 'L3' || res.score.writing.join('/') !== '2/3' || res.score.reading.join('/') !== '6/6' || res.score.listening.join('/') !== '5/5') fail('Movers test score: ' + JSON.stringify(res));
+if (shots) await page.screenshot({ path: `${shots}/movers-test.png` });
+step('Movers Test: listening 5/5, writing 2/3 (a slip counts), reading 6/6 (yes/no + text)');
 
 if (errors.length) fail('page errors: ' + errors.join(' | '));
 await browser.close();

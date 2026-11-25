@@ -1,0 +1,71 @@
+{
+  "id": "l3-fun",
+  "level": "L3",
+  "topic": "fun",
+  "order": 21,
+  "title": "Fun Things",
+  "titleVi": "Vui chơi",
+  "icon": "🎁",
+  "color": "#caffbf",
+  "intro": "Let's have fun!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Party block",
+    "style": "rainbow",
+    "color": "#caffbf"
+  },
+  "words": [
+    "party",
+    "present",
+    "band",
+    "video",
+    "email"
+  ],
+  "parentTip": {
+    "vi": "Lên kế hoạch sinh nhật với con: \"Who comes to the party? What present?\"",
+    "say": "What present would you like?"
+  },
+  "chat": {
+    "ask": "Do you like parties?",
+    "yes": "Me too! Parties are fun!",
+    "no": "Okay! Quiet days are nice too!"
+  },
+  "text": {
+    "title": "A Present for Sam",
+    "lines": [
+      "Sam's birthday is on Friday.",
+      "His sister wrote him an email.",
+      "She bought him a present: a guitar!",
+      "Now Sam wants to play in a band."
+    ],
+    "questions": [
+      {
+        "q": "When is Sam's birthday?",
+        "options": [
+          "on Friday",
+          "on Sunday",
+          "today"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did his sister write?",
+        "options": [
+          "a letter",
+          "an email",
+          "a story"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What does Sam want now?",
+        "options": [
+          "to play in a band",
+          "to go to the zoo",
+          "to watch a video"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

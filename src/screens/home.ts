@@ -16,6 +16,7 @@ import { storyOpen } from './stories';
 import { storiesOfLevel } from '../content';
 import { unlockedItems } from '../art/outfit';
 import { confetti, parentButton } from './widgets';
+import { hasTest, TEST_NAME } from '../lib/mocktest';
 import { fixEmoji } from '../lib/emoji';
 import { answerChat, chatToday, greeting, levelToCelebrate, markCelebrated } from '../lib/memory';
 
@@ -61,11 +62,11 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   });
 
   // Starters: a practice-test island at the end of the map.
-  if (level.id === 'L2') {
+  if (hasTest(level.id)) {
     islands.push(
       h(
         'button',
-        { class: 'island island-test', style: `--i:${islands.length}`, 'aria-label': 'Starters Test', onclick: () => (sfx.tap(), ctx.go('test')) },
+        { class: 'island island-test', style: `--i:${islands.length}`, 'aria-label': TEST_NAME[level.id], onclick: () => (sfx.tap(), ctx.go('test')) },
         fromHTML(islandSVG('#ffd166')),
         h('span', { class: 'island-icon', 'aria-hidden': 'true' }, '🎓'),
         h('span', { class: 'island-name' }, 'Test'),

@@ -1,0 +1,70 @@
+{
+  "topic": "superlatives",
+  "words": [
+    {
+      "id": "biggest",
+      "text": "biggest",
+      "topic": "superlatives",
+      "image": {
+        "emoji": "🐳"
+      },
+      "sentence": "The whale is the biggest animal.",
+      "accept": [
+        "bigest",
+        "the biggest"
+      ]
+    },
+    {
+      "id": "smallest",
+      "text": "smallest",
+      "topic": "superlatives",
+      "image": {
+        "emoji": "🐜"
+      },
+      "sentence": "The ant is the smallest animal here.",
+      "accept": [
+        "smalest",
+        "the smallest"
+      ]
+    },
+    {
+      "id": "tallest",
+      "text": "tallest",
+      "topic": "superlatives",
+      "image": {
+        "emoji": "🦒"
+      },
+      "sentence": "The giraffe is the tallest animal.",
+      "accept": [
+        "talest",
+        "the tallest"
+      ]
+    },
+    {
+      "id": "fastest",
+      "text": "fastest",
+      "topic": "superlatives",
+      "image": {
+        "emoji": "🐆"
+      },
+      "sentence": "The cheetah is the fastest animal.",
+      "accept": [
+        "fastes",
+        "the fastest"
+      ]
+    },
+    {
+      "id": "best",
+      "text": "best",
+      "topic": "superlatives",
+      "image": {
+        "emoji": "🏆"
+      },
+      "sentence": "You are the best!",
+      "accept": [
+        "the best",
+        "bess"
+      ]
+    }
+  ]
+}

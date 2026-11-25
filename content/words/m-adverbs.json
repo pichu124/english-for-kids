@@ -1,0 +1,70 @@
+{
+  "topic": "adverbs",
+  "words": [
+    {
+      "id": "quickly",
+      "text": "quickly",
+      "topic": "adverbs",
+      "image": {
+        "emoji": "🐇"
+      },
+      "sentence": "The rabbit runs quickly.",
+      "accept": [
+        "quickley",
+        "quick"
+      ]
+    },
+    {
+      "id": "slowly",
+      "text": "slowly",
+      "topic": "adverbs",
+      "image": {
+        "emoji": "🐢"
+      },
+      "sentence": "The tortoise walks slowly.",
+      "accept": [
+        "slowley",
+        "slow lee"
+      ]
+    },
+    {
+      "id": "loudly",
+      "text": "loudly",
+      "topic": "adverbs",
+      "image": {
+        "emoji": "🥁"
+      },
+      "sentence": "Tom plays the drums loudly.",
+      "accept": [
+        "loudley",
+        "loud"
+      ]
+    },
+    {
+      "id": "quietly",
+      "text": "quietly",
+      "topic": "adverbs",
+      "image": {
+        "emoji": "🤫"
+      },
+      "sentence": "The baby is sleeping. Talk quietly!",
+      "accept": [
+        "quietley",
+        "quiet"
+      ]
+    },
+    {
+      "id": "well",
+      "text": "well",
+      "topic": "adverbs",
+      "image": {
+        "emoji": "👍"
+      },
+      "sentence": "Lucy sings very well.",
+      "accept": [
+        "wel",
+        "will"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "story-l3-past2",
+  "unit": "l3-past2",
+  "title": "The Surprise Party",
+  "icon": "🎉",
+  "pages": [
+    {
+      "text": "Last Sunday was Mum's birthday.",
+      "scene": "🎂"
+    },
+    {
+      "text": "Bix and Dad made a cake.",
+      "scene": "🍰",
+      "bix": true
+    },
+    {
+      "text": "Bix wrote a card for Mum.",
+      "scene": "✉️",
+      "bix": true
+    },
+    {
+      "text": "Dad bought some flowers.",
+      "scene": "💐"
+    },
+    {
+      "text": "They had a surprise party. Mum was very happy!",
+      "scene": "🎉😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What did Bix and Dad make?",
+      "answer": "made"
+    },
+    {
+      "ask": "What did Bix write?",
+      "answer": "wrote"
+    }
+  ]
+}

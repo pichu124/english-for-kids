@@ -1,0 +1,57 @@
+{
+  "topic": "travel",
+  "words": [
+    {
+      "id": "ticket",
+      "text": "ticket",
+      "topic": "travel",
+      "image": {
+        "emoji": "🎫"
+      },
+      "sentence": "I need a ticket for the train.",
+      "accept": [
+        "tickets",
+        "tiket"
+      ]
+    },
+    {
+      "id": "tractor",
+      "text": "tractor",
+      "topic": "travel",
+      "image": {
+        "emoji": "🚜"
+      },
+      "sentence": "The farmer drives a tractor.",
+      "accept": [
+        "tractors",
+        "tracter"
+      ]
+    },
+    {
+      "id": "taxi",
+      "text": "taxi",
+      "topic": "travel",
+      "image": {
+        "emoji": "🚕"
+      },
+      "sentence": "Let's take a taxi to the station.",
+      "accept": [
+        "taxis",
+        "taxy"
+      ]
+    },
+    {
+      "id": "station",
+      "text": "station",
+      "topic": "travel",
+      "image": {
+        "emoji": "🚉"
+      },
+      "sentence": "The train is at the station.",
+      "accept": [
+        "stations",
+        "stayshun"
+      ]
+    }
+  ]
+}

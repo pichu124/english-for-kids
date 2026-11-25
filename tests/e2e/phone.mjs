@@ -92,6 +92,26 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       await p.waitForTimeout(100);
     }
     if (seen3.size < 2) report.push(vn + ' Movers screens seen: ' + [...seen3].join(',') + ' (missing some)');
+    // Movers practice test: the typed word and the text question.
+    await p.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.settings.level = 'L3'; localStorage.setItem('efk.v1', JSON.stringify(st)); window.__manualReading = true; window.__manualWrite = true; window.__manualText = true; });
+    await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
+    await p.locator('.island-test').click({ force: true }); await p.waitForSelector('.test');
+    const seenT = new Set();
+    for (let i = 0; i < 600 && seenT.size < 2 && !(await p.locator('.test-result').count()); i++) {
+      const q = p.locator('.test-q[data-answer]');
+      if (await q.count()) {
+        const ans = await q.getAttribute('data-answer');
+        const kind = (await p.locator('.test-q.write').count()) ? 'test-write' : (await p.locator('.test-q.text-read').count()) ? 'test-text' : '';
+        if (kind && !seenT.has(kind)) { seenT.add(kind); await check(kind); }
+        const n = await p.locator('.test-dots span.now').count();
+        if (kind === 'test-write') { for (const c of ans) await p.locator(`.wr-key[data-key="${c}"]`).click({ force: true }); }
+        else await q.locator(`button[data-word="${ans}"]`).first().click({ force: true });
+        await p.waitForFunction((k) => document.querySelectorAll('.test-dots span.now').length > k || document.querySelector('.test-result'), n, { timeout: 10000 }).catch(() => {});
+      }
+      await p.waitForTimeout(100);
+    }
+    if (seenT.size < 2) report.push(vn + ' Movers test screens seen: ' + [...seenT].join(',') + ' (missing some)');
+    await p.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.settings.level = 'L2'; localStorage.setItem('efk.v1', JSON.stringify(st)); window.__manualReading = false; window.__manualWrite = false; window.__manualText = false; });
     await check('reward-part2');
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.btn-parent').click({ force: true }); await p.waitForSelector('.gate'); await check('gate');

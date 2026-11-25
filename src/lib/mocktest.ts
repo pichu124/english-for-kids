@@ -3,19 +3,25 @@
  * Listening (pictures), Spelling (letters said one by one → the written word),
  * Reading (yes/no sentences, picture → word). First answer counts, no hints.
  */
-import { spellable, topicsOfLevel, yesNoAble, type Topic, type Word } from '../content';
+import { buildable, firstSentence, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
 import { shuffle } from './dom';
 import { isLearned } from './progress';
 import { getState, today, update, wordKey } from './storage';
 
-export type Part = 'listening' | 'spelling' | 'reading';
+export type Part = 'listening' | 'spelling' | 'writing' | 'reading';
 export type Question =
   | { part: 'listening'; kind: 'pick-picture'; target: Word; options: Word[]; prompt: string }
   | { part: 'spelling'; kind: 'pick-spelled'; target: Word; options: Word[] }
+  | { part: 'writing'; kind: 'type-word'; target: Word }
   | { part: 'reading'; kind: 'yes-no'; shown: Word; sentence: string; truth: boolean }
-  | { part: 'reading'; kind: 'pick-word'; target: Word; options: Word[] };
+  | { part: 'reading'; kind: 'pick-word'; target: Word; options: Word[] }
+  | { part: 'reading'; kind: 'text-q'; text: ReadingText; q: ReadingText['questions'][number] };
 
-export const PART_LABEL: Record<Part, string> = { listening: 'Nghe', spelling: 'Đánh vần', reading: 'Đọc' };
+export const PART_LABEL: Record<Part, string> = { listening: 'Nghe', spelling: 'Đánh vần', writing: 'Viết', reading: 'Đọc' };
+/** Parts of the practice test per level (Starters / Movers), in order. */
+export const TEST_PARTS: Record<string, Part[]> = { L2: ['listening', 'spelling', 'reading'], L3: ['listening', 'writing', 'reading'] };
+export const TEST_NAME: Record<string, string> = { L2: 'Starters Test', L3: 'Movers Test' };
+export const hasTest = (level: string) => level in TEST_PARTS;
 export const PASS = 0.8;
 
 type Item = { topic: Topic; word: Word };
@@ -63,36 +69,59 @@ export function buildTest(level = 'L2'): Question[] {
   for (const it of take(() => true, 5)) {
     qs.push({ part: 'listening', kind: 'pick-picture', target: it.word, options: shuffle([it.word, ...distractors(it, all, 3)]), prompt: it.word.play ?? `Where is the ${it.word.text}?` });
   }
-  const short = (w: Word) => spellable(w, 5);
-  for (const it of take((x) => short(x.word), 3)) {
-    qs.push({ part: 'spelling', kind: 'pick-spelled', target: it.word, options: shuffle([it.word, ...distractors(it, all, 2, short)]) });
+  const movers = level === 'L3';
+  if (movers) {
+    for (const it of take((x) => writable(x.word) && x.word.text.length <= 7, 3)) qs.push({ part: 'writing', kind: 'type-word', target: it.word });
+  } else {
+    const short = (w: Word) => spellable(w, 5);
+    for (const it of take((x) => short(x.word), 3)) {
+      qs.push({ part: 'spelling', kind: 'pick-spelled', target: it.word, options: shuffle([it.word, ...distractors(it, all, 2, short)]) });
+    }
   }
-  for (const it of take((x) => yesNoAble(x.word), 4)) {
-    const other = distractors(it, all, 1, yesNoAble)[0];
-    const truth = !other || Math.random() < 0.5;
-    const named = truth ? it.word : other;
-    qs.push({ part: 'reading', kind: 'yes-no', shown: it.word, sentence: `This is ${article(named.text)} ${named.text}.`, truth });
+  if (movers) {
+    // Movers: a picture and a whole sentence — its own (yes) or another word's (no).
+    for (const it of take((x) => buildable(x.word), 3)) {
+      const other = distractors(it, all, 1, buildable)[0];
+      const truth = !other || Math.random() < 0.5;
+      const w = truth ? it.word : other;
+      qs.push({ part: 'reading', kind: 'yes-no', shown: it.word, sentence: `${firstSentence(w)}${sentenceEnd(w)}`, truth });
+    }
+  } else {
+    for (const it of take((x) => yesNoAble(x.word), 4)) {
+      const other = distractors(it, all, 1, yesNoAble)[0];
+      const truth = !other || Math.random() < 0.5;
+      const named = truth ? it.word : other;
+      qs.push({ part: 'reading', kind: 'yes-no', shown: it.word, sentence: `This is ${article(named.text)} ${named.text}.`, truth });
+    }
   }
-  for (const it of take(() => true, 3)) {
-    qs.push({ part: 'reading', kind: 'pick-word', target: it.word, options: shuffle([it.word, ...distractors(it, all, 2)]) });
+  const texts = topicsOfLevel(level).map((t) => t.text).filter((t): t is ReadingText => !!t);
+  if (movers && texts.length) {
+    const text = shuffle(texts)[0];
+    for (const q of text.questions.slice(0, 3)) qs.push({ part: 'reading', kind: 'text-q', text, q });
+  } else {
+    for (const it of take(() => true, 3)) {
+      qs.push({ part: 'reading', kind: 'pick-word', target: it.word, options: shuffle([it.word, ...distractors(it, all, 2)]) });
+    }
   }
   return qs;
 }
 
-export type Score = Record<Part, [number, number]>;
-export type TestResult = { day: string; score: Score };
+export type Score = Partial<Record<Part, [number, number]>>;
+export type TestResult = { day: string; level?: string; score: Score };
 
 /** 1–5 shields per part, like the Cambridge Starters report. */
 export const shields = ([got, total]: [number, number]) => (total ? Math.max(1, Math.round((got / total) * 5)) : 0);
 export const passed = (s: Score) => {
-  const got = s.listening[0] + s.spelling[0] + s.reading[0];
-  const total = s.listening[1] + s.spelling[1] + s.reading[1];
+  const parts = Object.values(s).filter((x): x is [number, number] => !!x);
+  const got = parts.reduce((n, p) => n + p[0], 0);
+  const total = parts.reduce((n, p) => n + p[1], 0);
   return total > 0 && got / total >= PASS;
 };
 
-export function saveResult(score: Score): void {
+export function saveResult(score: Score, level = 'L2'): void {
   update((s) => {
-    s.tests = [...(s.tests ?? []), { day: today(), score }].slice(-10);
+    s.tests = [...(s.tests ?? []), { day: today(), level, score }].slice(-20);
   });
 }
-export const testResults = (): TestResult[] => getState().tests ?? [];
+/** Results for one level (old results without a level were Starters). */
+export const testResults = (level = 'L2'): TestResult[] => (getState().tests ?? []).filter((t) => (t.level ?? 'L2') === level);

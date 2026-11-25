@@ -1,0 +1,42 @@
+{
+  "id": "story-l3-hobbies",
+  "unit": "l3-hobbies",
+  "title": "Bix Goes Fishing",
+  "icon": "🎣",
+  "pages": [
+    {
+      "text": "On Saturday, Bix went to the lake with Grandpa.",
+      "scene": "🏞️",
+      "bix": true
+    },
+    {
+      "text": "Grandpa likes fishing.",
+      "scene": "🎣"
+    },
+    {
+      "text": "Bix did not catch a fish, so Bix painted a picture.",
+      "scene": "🖌️",
+      "bix": true
+    },
+    {
+      "text": "Then they sailed a little boat.",
+      "scene": "⛵",
+      "bix": true
+    },
+    {
+      "text": "It was a great day!",
+      "scene": "😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Grandpa like?",
+      "answer": "fishing"
+    },
+    {
+      "ask": "What did they sail?",
+      "answer": "sail"
+    }
+  ]
+}

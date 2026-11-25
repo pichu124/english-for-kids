@@ -1,0 +1,32 @@
+{
+  "id": "l3-clothes",
+  "level": "L3",
+  "topic": "clothes",
+  "order": 20,
+  "title": "Warm Clothes",
+  "titleVi": "Quần áo mùa lạnh",
+  "icon": "🧣",
+  "color": "#e5989b",
+  "intro": "Brr! It's cold. Put on warm clothes!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Wool block",
+    "style": "plain",
+    "color": "#e5989b"
+  },
+  "words": [
+    "coat",
+    "scarf",
+    "helmet",
+    "gloves"
+  ],
+  "parentTip": {
+    "vi": "Trước khi ra ngoài, hỏi con \"What do you need? Your coat? Your helmet?\"",
+    "say": "Where is your coat?"
+  },
+  "chat": {
+    "ask": "Do you like cold days?",
+    "yes": "Me too! Warm scarves are nice!",
+    "no": "Okay! Sunny days are nice!"
+  }
+}

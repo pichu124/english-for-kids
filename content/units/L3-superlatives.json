@@ -1,0 +1,33 @@
+{
+  "id": "l3-superlatives",
+  "level": "L3",
+  "topic": "superlatives",
+  "order": 17,
+  "title": "The Biggest!",
+  "titleVi": "So sánh nhất",
+  "icon": "🏆",
+  "color": "#ffadad",
+  "intro": "Which one is the biggest?",
+  "playPrompt": "Which one is the {word}?",
+  "block": {
+    "name": "Champion block",
+    "style": "gold",
+    "color": "#ffd166"
+  },
+  "words": [
+    "biggest",
+    "smallest",
+    "tallest",
+    "fastest",
+    "best"
+  ],
+  "parentTip": {
+    "vi": "So sánh 3 đồ vật: \"Which is the biggest? Which is the smallest?\"",
+    "say": "Which is the biggest?"
+  },
+  "chat": {
+    "ask": "Are you the tallest in your class?",
+    "yes": "Wow! You are tall!",
+    "no": "Okay! Everyone is different!"
+  }
+}

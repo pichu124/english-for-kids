@@ -147,6 +147,7 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] **Kiểm tra hình emoji**: 22 emoji mới (2018 trở về sau) được thử vẽ trên máy lúc mở app. Cái nào máy không vẽ được thì thay bằng emoji cũ cùng nghĩa (🧸→🐻, 🧑‍🏫→👩‍🏫, 🥱→😴…), không có thì ghi chính từ đó. Khu bố mẹ có mục "Kiểm tra hình" (xem tất cả hình, kiểm tra lại).
 - [x] **Bù nội dung Starters**: 10 bài mới (mẫu câu, tính từ, từ còn thiếu), xem `docs/KE-HOACH-NOI-DUNG-CAMBRIDGE.md` §12.
 - [x] **Thi thử Starters**: đảo 🎓 Test, 15 câu, 3 phần, khiên 1–5, kết quả và lời khuyên trong khu bố mẹ.
+- [x] **Thi thử Movers** (đợt M2): 14 câu, Nghe · Viết (gõ từ) · Đọc (câu đúng/sai + đoạn văn).
 
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.

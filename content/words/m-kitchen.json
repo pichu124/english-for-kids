@@ -1,0 +1,83 @@
+{
+  "topic": "kitchen",
+  "words": [
+    {
+      "id": "bowl",
+      "text": "bowl",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "🥣"
+      },
+      "sentence": "I eat my cereal from a bowl.",
+      "accept": [
+        "bowls",
+        "bole"
+      ]
+    },
+    {
+      "id": "cup",
+      "text": "cup",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "☕"
+      },
+      "sentence": "Grandma drinks a cup of tea.",
+      "accept": [
+        "cups",
+        "cop"
+      ]
+    },
+    {
+      "id": "plate",
+      "text": "plate",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "🍽️"
+      },
+      "sentence": "Put the pasta on your plate.",
+      "accept": [
+        "plates",
+        "plait"
+      ]
+    },
+    {
+      "id": "bottle",
+      "text": "bottle",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "🍼"
+      },
+      "sentence": "The baby drinks from a bottle.",
+      "accept": [
+        "bottles",
+        "botle"
+      ]
+    },
+    {
+      "id": "noodles",
+      "text": "noodles",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "🍜"
+      },
+      "sentence": "I love noodles for lunch.",
+      "accept": [
+        "noodle",
+        "nudels"
+      ]
+    },
+    {
+      "id": "tea",
+      "text": "tea",
+      "topic": "kitchen",
+      "image": {
+        "emoji": "🍵"
+      },
+      "sentence": "Would you like some tea?",
+      "accept": [
+        "teas",
+        "tee"
+      ]
+    }
+  ]
+}

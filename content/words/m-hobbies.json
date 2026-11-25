@@ -1,0 +1,70 @@
+{
+  "topic": "hobbies",
+  "words": [
+    {
+      "id": "skate",
+      "text": "skate",
+      "topic": "hobbies",
+      "image": {
+        "emoji": "⛸️"
+      },
+      "sentence": "I can skate on the ice.",
+      "accept": [
+        "skates",
+        "skayt"
+      ]
+    },
+    {
+      "id": "ride",
+      "text": "ride",
+      "topic": "hobbies",
+      "image": {
+        "emoji": "🚴"
+      },
+      "sentence": "I ride my bike in the park.",
+      "accept": [
+        "rides",
+        "right"
+      ]
+    },
+    {
+      "id": "fishing",
+      "text": "fishing",
+      "topic": "hobbies",
+      "image": {
+        "emoji": "🎣"
+      },
+      "sentence": "Grandpa goes fishing on Sundays.",
+      "accept": [
+        "fishin",
+        "go fishing"
+      ]
+    },
+    {
+      "id": "paint",
+      "text": "paint",
+      "topic": "hobbies",
+      "image": {
+        "emoji": "🖌️"
+      },
+      "sentence": "I like to paint pictures.",
+      "accept": [
+        "paints",
+        "pain"
+      ]
+    },
+    {
+      "id": "sail",
+      "text": "sail",
+      "topic": "hobbies",
+      "image": {
+        "emoji": "⛵"
+      },
+      "sentence": "We sail a boat on the lake.",
+      "accept": [
+        "sails",
+        "sale"
+      ]
+    }
+  ]
+}

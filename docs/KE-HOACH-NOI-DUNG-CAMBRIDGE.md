@@ -281,10 +281,10 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
-| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday | 12 |
+| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen | 22 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
-Tổng: **64 Unit**, **291 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
+Tổng: **74 Unit**, **340 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
 
 **Phủ chủ đề Starters:**
 - Đủ: animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions), **places & directions** (gồm từ chỉ vị trí in / on / under / next to / behind / in front of).
@@ -332,6 +332,14 @@ Tổng: **64 Unit**, **291 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 3 truyện thì quá khứ đơn: A Rainy Day, Bix Is Ill, Bix's Busy Day;
   - danh sách từ soạn theo hiểu biết về A1 Movers (môi trường cloud không mở được trang Cambridge để tải bản chính thức). Cần đối chiếu lại khi có file PDF;
   - duyệt chéo Gemini: nhận "flying away", "On Mondays…" cho thói quen, câu hỏi trò chọn hình riêng cho từng động từ quá khứ; không nhận "in the fields", "during the day", "than I am".
+
+- **Đợt M2 (Movers)**: thêm 10 bài:
+  - Free Time (sở thích), Pets and Wild Animals, Going Places, Left and Right (chỉ đường);
+  - The Biggest! (so sánh nhất), Quickly and Slowly (trạng từ), Last Weekend (quá khứ đơn: had, made, took, gave, wrote, bought);
+  - Warm Clothes, Fun Things, In the Kitchen;
+  - 4 đoạn văn mới và 3 truyện (The Surprise Party, Bix Goes Fishing, The Big Trip).
+  - **Thi thử Movers** (đảo 🎓 cuối bản đồ Movers), 14 câu: Nghe 5 · Viết 3 (gõ từ; chỉ tính đúng khi không gõ nhầm) · Đọc 6 (3 câu "hình + câu: đúng hay sai?" lấy từ câu mẫu, và 1 đoạn văn với 3 câu hỏi). Kết quả ghi riêng theo bậc trong khu bố mẹ.
+  - Duyệt chéo Gemini: nhận cả 3 góp ý ("biscuits" thay "cookies", "when you ride your bike", "Which picture shows …?").
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

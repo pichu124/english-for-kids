@@ -17,7 +17,7 @@ import { wordPicture } from './lesson/shared';
 import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '../lib/music';
 import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
-import { PART_LABEL, passed, shields, testResults, type Part } from '../lib/mocktest';
+import { PART_LABEL, passed, shields, testResults, TEST_NAME, TEST_PARTS, type Part } from '../lib/mocktest';
 
 let unlockedAt = 0;
 
@@ -95,7 +95,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
     card('Huy hiệu & giấy chứng nhận', certField()),
-    card('Thi thử Starters', testField()),
+    card('Thi thử', testField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
     card('Nhạc', musicField()),
@@ -109,38 +109,46 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     h('p', { class: 'p-muted p-foot' }, `Bản 0 · phiên bản ${__APP_VERSION__} · ${topics.length} bài · dữ liệu chỉ lưu trên máy này`),
   );
 
-  /** Results of the Starters practice test and what to do next. */
+  /** Results of the practice tests (Starters, Movers) and what to do next. */
   function testField() {
-    const results = testResults();
-    if (!results.length)
-      return h('p', { class: 'p-muted' }, 'Bé chưa làm bài thi thử. Đảo 🎓 "Test" ở cuối bản đồ Starters có 15 câu, mô phỏng 3 phần của bài thi Cambridge Pre A1 Starters: nghe, đánh vần, đọc. Nên cho bé làm khi đã học gần hết các đảo.');
-    const last = results[results.length - 1];
-    const parts = Object.keys(PART_LABEL) as Part[];
-    const weak = parts.filter((p) => shields(last.score[p]) <= 3);
-    const advice = passed(last.score)
-      ? '✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu bậc Movers khi app có (vẫn ôn Starters song song).'
-      : `Nên luyện thêm: ${weak.map((p) => PART_LABEL[p].toLowerCase()).join(', ') || 'mọi phần'}. ${weak.includes('spelling') ? 'Đánh vần: chơi bảng ABC và phần Đọc & Viết. ' : ''}${weak.includes('listening') ? 'Nghe: học lại phần Nghe & Nói các đảo. ' : ''}${weak.includes('reading') ? 'Đọc: phần Đọc & Viết (bước đọc và câu đúng/sai). ' : ''}`;
-    return h(
-      'div',
-      {},
-      h(
-        'ul',
-        { class: 'p-kids p-tests' },
-        results
-          .slice(-3)
-          .reverse()
-          .map((r) =>
-            h(
-              'li',
-              { class: 'p-cert-row' },
-              h('b', {}, new Date(r.day + 'T12:00:00').toLocaleDateString('vi-VN')),
-              parts.map((p) => h('span', {}, ` ${PART_LABEL[p]} ${r.score[p][0]}/${r.score[p][1]} ${'🛡️'.repeat(shields(r.score[p]))}`)),
+    const blocks = (['L2', 'L3'] as const).map((lv) => {
+      const results = testResults(lv);
+      const name = TEST_NAME[lv];
+      if (!results.length) return lv === 'L2' ? h('p', { class: 'p-muted' }, `${name}: bé chưa làm. Đảo 🎓 "Test" ở cuối bản đồ có khoảng 15 câu mô phỏng bài thi Cambridge (nghe, đánh vần/viết, đọc). Nên cho bé làm khi đã học gần hết các đảo của bậc.`) : null;
+      const last = results[results.length - 1];
+      const parts = TEST_PARTS[lv];
+      const weak = parts.filter((p) => shields(last.score[p] ?? [0, 0]) <= 3);
+      const next = lv === 'L2' ? 'bậc Movers' : 'bậc Flyers (khi app có)';
+      const tips: Record<Part, string> = { spelling: 'Đánh vần: chơi bảng ABC và phần Đọc & Viết. ', writing: 'Viết: bước gõ từ trong phần Đọc & Viết. ', listening: 'Nghe: học lại phần Nghe & Nói các đảo. ', reading: 'Đọc: phần Đọc & Viết (đọc, câu đúng/sai, đoạn văn). ' };
+      const advice = passed(last.score)
+        ? `✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu ${next} (vẫn ôn song song).`
+        : `Nên luyện thêm: ${weak.map((p) => PART_LABEL[p].toLowerCase()).join(', ') || 'mọi phần'}. ${weak.map((p) => tips[p]).join('')}`;
+      return h(
+        'div',
+        { class: 'p-test-level', 'data-level': lv },
+        h('h3', { class: 'p-sub' }, name),
+        h(
+          'ul',
+          { class: 'p-kids p-tests' },
+          results
+            .slice(-3)
+            .reverse()
+            .map((r) =>
+              h(
+                'li',
+                { class: 'p-cert-row' },
+                h('b', {}, new Date(r.day + 'T12:00:00').toLocaleDateString('vi-VN')),
+                parts.map((p) => {
+                  const sc = r.score[p];
+                  return sc ? h('span', {}, ` ${PART_LABEL[p]} ${sc[0]}/${sc[1]} ${'🛡️'.repeat(shields(sc))}`) : null;
+                }),
+              ),
             ),
-          ),
-      ),
-      h('p', { class: passed(last.score) ? 'p-saved' : 'p-muted' }, advice),
-      h('p', { class: 'p-muted' }, 'Đây là bài luyện tập trong app, không phải bài thi chính thức của Cambridge. Thang 1–5 khiên mô phỏng cách Cambridge báo kết quả.'),
-    );
+        ),
+        h('p', { class: passed(last.score) ? 'p-saved' : 'p-muted' }, advice),
+      );
+    });
+    return h('div', {}, blocks, h('p', { class: 'p-muted' }, 'Đây là bài luyện tập trong app, không phải bài thi chính thức của Cambridge. Thang 1–5 khiên mô phỏng cách Cambridge báo kết quả.'));
   }
 
   /** Badges per level and the printable certificate once a level is complete. */

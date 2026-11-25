@@ -1,0 +1,42 @@
+{
+  "id": "story-l3-travel",
+  "unit": "l3-travel",
+  "title": "The Big Trip",
+  "icon": "🚉",
+  "pages": [
+    {
+      "text": "Bix went to see Grandma in the country.",
+      "scene": "🏡",
+      "bix": true
+    },
+    {
+      "text": "First, Bix took a taxi to the station.",
+      "scene": "🚕",
+      "bix": true
+    },
+    {
+      "text": "Bix bought a ticket and got on the train.",
+      "scene": "🎫🚂",
+      "bix": true
+    },
+    {
+      "text": "Near Grandma's house, there was a farmer on a tractor.",
+      "scene": "🚜"
+    },
+    {
+      "text": "Grandma was at the station. Hello, Grandma!",
+      "scene": "👵👋",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "How did Bix go to the station?",
+      "answer": "taxi"
+    },
+    {
+      "ask": "What did the farmer drive?",
+      "answer": "tractor"
+    }
+  ]
+}

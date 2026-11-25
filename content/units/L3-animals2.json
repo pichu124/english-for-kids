@@ -1,0 +1,33 @@
+{
+  "id": "l3-animals2",
+  "level": "L3",
+  "topic": "animals2",
+  "order": 14,
+  "title": "Pets and Wild Animals",
+  "titleVi": "Thú nuôi và thú hoang",
+  "icon": "🦁",
+  "color": "#ffd166",
+  "intro": "Pets at home, animals in the wild!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Wild block",
+    "style": "grass",
+    "color": "#90be6d"
+  },
+  "words": [
+    "rabbit",
+    "lion",
+    "kitten",
+    "puppy",
+    "bear"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con \"Would you like a pet? A kitten or a puppy?\"",
+    "say": "Would you like a pet?"
+  },
+  "chat": {
+    "ask": "Would you like a puppy?",
+    "yes": "Woof! Puppies are lovely!",
+    "no": "Okay! Kittens are lovely too!"
+  }
+}

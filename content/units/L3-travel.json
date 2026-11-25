@@ -1,0 +1,36 @@
+{
+  "id": "l3-travel",
+  "level": "L3",
+  "topic": "travel",
+  "order": 15,
+  "title": "Going Places",
+  "titleVi": "Đi lại",
+  "icon": "🚉",
+  "color": "#9be06a",
+  "intro": "Let's go on a trip!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Station block",
+    "style": "stone",
+    "color": "#6c757d"
+  },
+  "words": [
+    "ticket",
+    "tractor",
+    "taxi",
+    "station",
+    {
+      "id": "bus-stop",
+      "sentence": "We wait at the bus stop."
+    }
+  ],
+  "parentTip": {
+    "vi": "Khi đi xe buýt hay tàu, cho con cầm vé và hỏi \"Where is our ticket?\"",
+    "say": "Where is our ticket?"
+  },
+  "chat": {
+    "ask": "Do you like trains?",
+    "yes": "Choo, choo! Me too!",
+    "no": "Okay! Taxis are fast!"
+  }
+}

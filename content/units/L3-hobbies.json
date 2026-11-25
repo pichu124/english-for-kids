@@ -1,0 +1,75 @@
+{
+  "id": "l3-hobbies",
+  "level": "L3",
+  "topic": "hobbies",
+  "order": 13,
+  "title": "Free Time",
+  "titleVi": "Sở thích",
+  "icon": "⛸️",
+  "color": "#a0c4ff",
+  "intro": "What do you do in your free time?",
+  "playPrompt": "Find \"{word}\"!",
+  "block": {
+    "name": "Fun block",
+    "style": "rainbow",
+    "color": "#a0c4ff"
+  },
+  "words": [
+    "skate",
+    "ride",
+    "fishing",
+    "paint",
+    "sail",
+    {
+      "id": "dance",
+      "sentence": "I love to dance to music."
+    }
+  ],
+  "parentTip": {
+    "vi": "Hỏi con \"What do you like doing?\" và kể sở thích của bố mẹ: \"I like fishing.\"",
+    "say": "What do you like doing?"
+  },
+  "chat": {
+    "ask": "Can you ride a bike?",
+    "yes": "Great! Ring, ring!",
+    "no": "Let's try together! It's fun!"
+  },
+  "text": {
+    "title": "Mia's Week",
+    "lines": [
+      "Mia loves sports.",
+      "On Mondays, she goes swimming.",
+      "On Saturdays, she rides her bike with her dad.",
+      "Her brother does not like sport. He likes to paint."
+    ],
+    "questions": [
+      {
+        "q": "What does Mia do on Mondays?",
+        "options": [
+          "She paints.",
+          "She goes swimming.",
+          "She skates."
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who rides with Mia?",
+        "options": [
+          "her dad",
+          "her brother",
+          "her mum"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What does her brother like?",
+        "options": [
+          "sport",
+          "painting",
+          "fishing"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

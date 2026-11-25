@@ -1,0 +1,71 @@
+{
+  "topic": "fun",
+  "words": [
+    {
+      "id": "party",
+      "text": "party",
+      "topic": "fun",
+      "image": {
+        "emoji": "🎉"
+      },
+      "sentence": "Let's have a party!",
+      "accept": [
+        "parties",
+        "partee"
+      ]
+    },
+    {
+      "id": "present",
+      "text": "present",
+      "topic": "fun",
+      "image": {
+        "emoji": "🎁"
+      },
+      "sentence": "This present is for you.",
+      "accept": [
+        "presents",
+        "presant"
+      ]
+    },
+    {
+      "id": "band",
+      "text": "band",
+      "topic": "fun",
+      "image": {
+        "emoji": "🎸"
+      },
+      "sentence": "My brother plays in a band.",
+      "accept": [
+        "bands",
+        "ban"
+      ]
+    },
+    {
+      "id": "video",
+      "text": "video",
+      "topic": "fun",
+      "image": {
+        "emoji": "📹"
+      },
+      "sentence": "We watched a funny video.",
+      "accept": [
+        "videos",
+        "vidio"
+      ]
+    },
+    {
+      "id": "email",
+      "text": "email",
+      "topic": "fun",
+      "image": {
+        "emoji": "📧"
+      },
+      "sentence": "I wrote an email to my cousin.",
+      "accept": [
+        "emails",
+        "e-mail",
+        "e mail"
+      ]
+    }
+  ]
+}

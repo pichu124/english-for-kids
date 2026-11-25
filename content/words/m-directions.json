@@ -1,0 +1,57 @@
+{
+  "topic": "directions",
+  "words": [
+    {
+      "id": "left",
+      "text": "left",
+      "topic": "directions",
+      "image": {
+        "emoji": "⬅️"
+      },
+      "sentence": "Turn left at the park.",
+      "accept": [
+        "lef",
+        "lift"
+      ]
+    },
+    {
+      "id": "right",
+      "text": "right",
+      "topic": "directions",
+      "image": {
+        "emoji": "➡️"
+      },
+      "sentence": "Turn right at the bank.",
+      "accept": [
+        "rite",
+        "write"
+      ]
+    },
+    {
+      "id": "straight-on",
+      "text": "straight on",
+      "topic": "directions",
+      "image": {
+        "emoji": "⬆️"
+      },
+      "sentence": "Go straight on to the school.",
+      "accept": [
+        "strait on",
+        "straight-on"
+      ]
+    },
+    {
+      "id": "map",
+      "text": "map",
+      "topic": "directions",
+      "image": {
+        "emoji": "🗺️"
+      },
+      "sentence": "Look at the map. Where is the zoo?",
+      "accept": [
+        "maps",
+        "mab"
+      ]
+    }
+  ]
+}

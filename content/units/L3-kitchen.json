@@ -1,0 +1,34 @@
+{
+  "id": "l3-kitchen",
+  "level": "L3",
+  "topic": "kitchen",
+  "order": 22,
+  "title": "In the Kitchen",
+  "titleVi": "Đồ dùng bữa ăn",
+  "icon": "🍵",
+  "color": "#f6bd60",
+  "intro": "What is in the kitchen?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Kitchen block",
+    "style": "wood",
+    "color": "#f6bd60"
+  },
+  "words": [
+    "bowl",
+    "cup",
+    "plate",
+    "bottle",
+    "noodles",
+    "tea"
+  ],
+  "parentTip": {
+    "vi": "Dọn bàn ăn cùng con: \"Can you give me a plate? Where is the cup?\"",
+    "say": "Can you give me a plate?"
+  },
+  "chat": {
+    "ask": "Would you like some noodles?",
+    "yes": "Yum! Noodles are great!",
+    "no": "Okay! Maybe some soup?"
+  }
+}

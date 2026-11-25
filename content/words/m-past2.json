@@ -1,0 +1,83 @@
+{
+  "topic": "past2",
+  "words": [
+    {
+      "id": "had",
+      "text": "had",
+      "topic": "past2",
+      "image": {
+        "emoji": "🎉"
+      },
+      "sentence": "I had a party on my birthday.",
+      "accept": [
+        "head",
+        "hand"
+      ]
+    },
+    {
+      "id": "made",
+      "text": "made",
+      "topic": "past2",
+      "image": {
+        "emoji": "🍪"
+      },
+      "sentence": "We made biscuits with Mum.",
+      "accept": [
+        "maid",
+        "mate"
+      ]
+    },
+    {
+      "id": "took",
+      "text": "took",
+      "topic": "past2",
+      "image": {
+        "emoji": "📸"
+      },
+      "sentence": "Dad took a photo of me.",
+      "accept": [
+        "tuk",
+        "toke"
+      ]
+    },
+    {
+      "id": "gave",
+      "text": "gave",
+      "topic": "past2",
+      "image": {
+        "emoji": "🎁"
+      },
+      "sentence": "I gave Grandma a present.",
+      "accept": [
+        "gav",
+        "cave"
+      ]
+    },
+    {
+      "id": "wrote",
+      "text": "wrote",
+      "topic": "past2",
+      "image": {
+        "emoji": "✉️"
+      },
+      "sentence": "I wrote a letter to my friend.",
+      "accept": [
+        "rote",
+        "road"
+      ]
+    },
+    {
+      "id": "bought",
+      "text": "bought",
+      "topic": "past2",
+      "image": {
+        "emoji": "🛍️"
+      },
+      "sentence": "Mum bought me a new coat.",
+      "accept": [
+        "bot",
+        "boat"
+      ]
+    }
+  ]
+}
