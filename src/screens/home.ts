@@ -5,7 +5,8 @@ import { currentLevel } from '../lib/level';
 import { buildReview, REVIEW_ID } from '../lib/review';
 import { fromHTML, h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
-import { getState } from '../lib/storage';
+import { getState, today } from '../lib/storage';
+import { stopTodayRun, suggestedTopic, todayFinished } from '../lib/today';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
 import type { Ctx, ScreenName } from '../router';
@@ -33,10 +34,8 @@ export function homeScreen(ctx: Ctx): HTMLElement {
   bix.show(hi);
 
   // Suggest the first topic not yet done, else the least practiced one.
-  const next =
-    topics.find((t) => !s.topics[t.id]?.completed) ??
-    [...topics].sort((a, b) => (s.topics[a.id]?.completed ?? 0) - (s.topics[b.id]?.completed ?? 0))[0];
-
+  const next = suggestedTopic(level.id);
+  stopTodayRun(); // back home: whatever was started from Today was left
   const islands = topics.map((t, i) => {
     const done = (s.topics[t.id]?.completed ?? 0) > 0;
     const btn = h(
@@ -111,9 +110,20 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     dockBtn('🌻', 'Garden', 'garden', learningDays().length || undefined, gardenHasNew()),
   );
 
+  const plan = getState().today?.day === today() ? getState().today : undefined;
+  const todayDone = todayFinished();
+  const todayBtn = h(
+    'button',
+    { class: `btn btn-good home-today ${todayDone ? '' : 'is-fresh'}`, 'aria-label': 'Today', onclick: () => (sfx.tap(), ctx.go('today')) },
+    h('span', { class: 'today-play', 'aria-hidden': 'true' }, todayDone ? '🌟' : '▶'),
+    h('span', {}, 'Today'),
+    plan ? h('span', { class: 'today-dots', 'aria-hidden': 'true' }, plan.steps.map((st) => h('i', { class: st.done ? 'on' : '' }))) : null,
+  );
+
   const el = h(
     'main',
     { class: 'home' },
+    todayBtn,
     h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), dock, parentButton(ctx)),
     h('section', { class: `map map-n${Math.min(topics.length, 6)} ${islands.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
     h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),

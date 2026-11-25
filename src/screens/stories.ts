@@ -11,6 +11,8 @@ import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
 import { actOut, pick, PRAISE, wordCard } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
+import { todayRunning } from '../lib/today';
+import { todayNextButton } from './today';
 
 /** A story opens once its unit has been finished — the words are already known. */
 export const storyOpen = (s: Story) => (getState().topics[s.unit]?.completed ?? 0) > 0;
@@ -176,7 +178,8 @@ export function storyScreen(ctx: Ctx): HTMLElement {
     confetti(document.body, 40);
     const again = h('button', { class: 'btn btn-sun', 'aria-label': 'Read again', onclick: () => (sfx.tap(), ctx.go('story', { story: story.id })) }, '🔁 Again');
     const shelf = h('button', { class: 'btn btn-good', 'aria-label': 'Stories', onclick: () => (sfx.tap(), ctx.go('stories')) }, '📚 Stories');
-    stage.replaceChildren(h('div', { class: 'story-end pop' }, h('div', { class: 'review-star' }, '🌟'), h('div', { class: 'reward-name' }, 'The End'), h('div', { class: 'reward-actions' }, again, shelf)));
+    const actions = todayRunning() ? [todayNextButton(ctx)] : [again, shelf];
+    stage.replaceChildren(h('div', { class: 'story-end pop' }, h('div', { class: 'review-star' }, '🌟'), h('div', { class: 'reward-name' }, 'The End'), h('div', { class: 'reward-actions' }, actions)));
     void say('The end! Great reading!');
   };
 

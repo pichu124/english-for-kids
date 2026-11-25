@@ -7,6 +7,8 @@ import { lessonsDone } from '../../lib/progress';
 import { ITEMS } from '../../art/outfit';
 import { confetti } from '../widgets';
 import { tipCard } from '../tip';
+import { todayRunning } from '../../lib/today';
+import { todayNextButton } from '../today';
 import type { LessonUI } from './shared';
 
 /** Step 4 — Reward: one building block for "My World". */
@@ -28,7 +30,9 @@ export async function runReward(ui: LessonUI): Promise<void> {
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home' }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
   const newItem = ITEMS.find((i) => i.at === lessonsDone());
   const clothes = newItem ? h('button', { class: 'btn btn-sun', 'aria-label': 'Bix' }, `${newItem.icon} New for Bix!`) : null;
-  const actions = h('div', { class: 'reward-actions', hidden: true }, clothes, world, home);
+  // Started from Today: one big "Next" instead of World/Home.
+  const next = todayRunning() ? todayNextButton(ui.ctx) : null;
+  const actions = h('div', { class: 'reward-actions', hidden: true }, clothes, ...(next ? [next] : [world, home]));
   ui.stage.replaceChildren(h('div', { class: 'reward' }, h('div', { class: 'reward-stage' }, chest, block), h('div', { class: 'reward-name' }, t.block.name), actions));
 
   sfx.reward();
@@ -43,6 +47,15 @@ export async function runReward(ui: LessonUI): Promise<void> {
   if (tip) ui.stage.querySelector('.reward')?.appendChild(tip);
   if (clothes) await ui.talk('And new clothes for me!', 'happy');
 
+  if (next) {
+    // the Next button navigates by itself; the clothes button still works
+    if (clothes) {
+      await ui.tap(clothes);
+      sfx.tap();
+      ui.ctx.go('wardrobe');
+    }
+    return;
+  }
   const tapped = await ui.tapAny(clothes ? [clothes, world, home] : [world, home]);
   sfx.tap();
   if (tapped === clothes) ui.ctx.go('wardrobe');
@@ -54,10 +67,12 @@ export async function runReviewReward(ui: LessonUI): Promise<void> {
   update(() => dayLog().lessons++);
   const star = h('div', { class: 'review-star pop', 'aria-hidden': 'true' }, '🌟');
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home' }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
-  ui.stage.replaceChildren(h('div', { class: 'reward' }, star, h('div', { class: 'reward-name' }, 'Great remembering!'), h('div', { class: 'reward-actions' }, home)));
+  const next = todayRunning() ? todayNextButton(ui.ctx) : null;
+  ui.stage.replaceChildren(h('div', { class: 'reward' }, star, h('div', { class: 'reward-name' }, 'Great remembering!'), h('div', { class: 'reward-actions' }, next ?? home)));
   sfx.reward();
   confetti(document.body, 30);
   await ui.talk('Great remembering! You are a star!', 'happy', 'You are a star!');
+  if (next) return;
   await ui.tap(home);
   sfx.tap();
   ui.ctx.go('home');

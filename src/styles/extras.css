@@ -302,3 +302,49 @@
 }
 @media (orientation: portrait) { .abc-body { flex-direction: column-reverse; } .abc-big { position: static; align-self: center; } }
 .abc-big[hidden] { display: none; }
+
+/* ---------- Today ---------- */
+.today { height: 100%; display: flex; flex-direction: column; }
+.today-body { flex: 1; min-height: 0; display: flex; align-items: center; }
+.today-bix { width: 28%; display: flex; justify-content: center; align-items: flex-end; align-self: stretch; padding-bottom: 3vmin; }
+.today-bix .bix-bubble { left: 40%; top: -12%; }
+.today-main { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4vmin; padding-right: 3vmin; }
+.today-path { display: flex; align-items: center; gap: 2.4vmin; flex-wrap: wrap; justify-content: center; }
+.today-card {
+  position: relative; width: clamp(110px, 19vmin, 170px); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6vmin;
+  background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 7px 0 rgba(29, 36, 64, .2); text-align: center; padding: 6px;
+}
+.today-card + .today-card::before { content: '➜'; position: absolute; left: calc(-2.4vmin - .55em); font-size: clamp(18px, 3vmin, 28px); color: var(--ink-soft); }
+.today-icon { font-size: clamp(46px, 9vmin, 80px); line-height: 1; }
+.today-label { font-weight: 800; font-size: clamp(14px, 2.6vmin, 22px); line-height: 1.1; }
+.today-card.is-now { background: #fff4b8; animation: pulse 1.4s ease-in-out infinite; }
+.today-card.is-later { opacity: .55; }
+.today-card.is-done { background: #dcf7d0; }
+.today-check { position: absolute; top: -14px; right: -12px; width: 40px; height: 40px; display: grid; place-items: center; background: #2a9d4a; color: #fff; border: 3px solid var(--ink); border-radius: 50%; font-weight: 800; font-size: 22px; }
+.today-prize.is-done { background: #fff1a8; }
+.today-go { font-size: clamp(26px, 5vmin, 44px); min-height: 80px; padding: 0 40px; }
+.today-next { font-size: clamp(22px, 4vmin, 34px); }
+
+/* the Today button on the home screen */
+.home-today {
+  position: absolute; right: 2.4vmin; bottom: 2.4vmin; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-width: clamp(96px, 15vmin, 140px); min-height: clamp(96px, 15vmin, 140px); padding: 8px 12px; border-radius: 30px;
+  font-size: clamp(18px, 3.2vmin, 28px);
+}
+.home-today .today-play { font-size: clamp(34px, 6vmin, 56px); line-height: 1; }
+.home-today.is-fresh { animation: pulse 1.4s ease-in-out infinite; }
+.home-today .today-dots { display: flex; gap: 4px; }
+.home-today .today-dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, .45); border: 2px solid var(--ink); }
+.home-today .today-dots i.on { background: #ffca3a; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .home-today { min-width: 76px; min-height: 76px; border-radius: 22px; font-size: 15px; right: 10px; bottom: 10px; }
+  .home-today .today-play { font-size: 30px; }
+  .today-card { width: clamp(90px, 30vh, 130px); border-radius: 18px; }
+  .today-icon { font-size: clamp(36px, 13vh, 60px); }
+  .today-label { font-size: 14px; }
+  .today-main { gap: 14px; }
+  .today-go { min-height: 64px; font-size: 24px; }
+  .today-bix .bix-svg { height: clamp(90px, 30vh, 130px); }
+}
+@media (orientation: portrait) { .today-body { flex-direction: column-reverse; } .today-bix { width: 100%; } }
+.map-many { padding-right: calc(4vmin + 150px); }

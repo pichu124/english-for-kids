@@ -6,7 +6,7 @@ import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
-import { addProfile, MAX_PROFILES, profileAnimal, profiles, removeProfile, switchProfile, getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
+import { addProfile, backupDue, checkBackup, exportBackup, lastBackup, markBackedUp, restoreBackup, type Backup, MAX_PROFILES, profileAnimal, profiles, removeProfile, switchProfile, getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
 import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
@@ -75,8 +75,12 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('h1', {}, 'Khu vực bố mẹ'),
       h('button', { class: 'p-btn p-btn-main', onclick: () => ctx.go(limitReached() ? 'rest' : 'home') }, 'Xong, quay lại cho bé →'),
     ),
+    backupDue()
+      ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).')
+      : null,
     summaryCard(),
     card('Các bé dùng máy này', profilesField()),
+    h('div', { id: 'p-backup' }, card('Sao lưu tiến độ', backupField())),
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
     card('Huy hiệu & giấy chứng nhận', certField()),
@@ -220,6 +224,113 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     });
     const hear = h('button', { class: 'p-btn', onclick: () => void say(`Hi, ${input.value.trim() || 'there'}!`) }, '🔊 Nghe Bix chào');
     return h('div', { class: 'p-row' }, input, hear, ok);
+  }
+
+  /** Backup file: download / share it, restore it (here or on a new device). */
+  function backupField() {
+    const last = lastBackup();
+    const status = h('p', { class: 'p-muted p-backup-status' }, last ? `Lần sao lưu gần nhất: ${new Date(last).toLocaleDateString('vi-VN')}` : 'Chưa sao lưu lần nào.');
+    const msg = h('p', { class: 'p-saved', hidden: true });
+    const say = (text: string, ok = true) => {
+      msg.textContent = text;
+      msg.hidden = false;
+      msg.classList.toggle('p-error', !ok);
+    };
+    const fileName = () => `bix-english-sao-luu-${today()}.json`;
+    const makeFile = () => new File([JSON.stringify(exportBackup())], fileName(), { type: 'application/json' });
+    const done = () => {
+      markBackedUp();
+      status.textContent = `Lần sao lưu gần nhất: ${new Date().toLocaleDateString('vi-VN')}`;
+      document.querySelector('.p-notice')?.remove();
+    };
+
+    const download = h('button', { class: 'p-btn', 'data-backup': 'download' }, '💾 Tải file sao lưu');
+    download.addEventListener('click', () => {
+      const url = URL.createObjectURL(makeFile());
+      const a = h('a', { href: url, download: fileName() });
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      done();
+      say('✓ Đã tải file sao lưu (thường nằm trong thư mục Tải xuống / Download).');
+    });
+
+    let share: HTMLElement | null = null;
+    try {
+      const probe = new File(['{}'], 'x.json', { type: 'application/json' });
+      if (navigator.canShare?.({ files: [probe] })) {
+        share = h('button', { class: 'p-btn', 'data-backup': 'share' }, '📤 Gửi file (Zalo, Drive, Gmail…)');
+        share.addEventListener('click', async () => {
+          try {
+            await navigator.share({ files: [makeFile()], title: 'Sao lưu Bix English' });
+            done();
+            say('✓ Đã gửi file sao lưu.');
+          } catch {
+            /* the parent closed the share sheet */
+          }
+        });
+      }
+    } catch {
+      /* no file sharing on this browser */
+    }
+
+    // Restore: pick a file → show what is in it → confirm twice → replace.
+    const input = h('input', { type: 'file', accept: '.json,application/json', class: 'p-file', 'aria-label': 'Chọn file sao lưu' }) as HTMLInputElement;
+    const preview = h('div', { class: 'p-restore', hidden: true });
+    const pick = h('button', { class: 'p-btn', 'data-backup': 'restore', onclick: () => input.click() }, '📂 Khôi phục từ file');
+    input.addEventListener('change', async () => {
+      const f = input.files?.[0];
+      input.value = '';
+      if (!f) return;
+      let data: unknown;
+      try {
+        data = JSON.parse(await f.text());
+      } catch {
+        return say('Không đọc được file này. Hãy chọn đúng file .json đã sao lưu.', false);
+      }
+      const problem = checkBackup(data);
+      if (problem) return say(problem, false);
+      const b = data as Backup;
+      const kids = b.index.ids.map((id, i) => {
+        const p = b.profiles[id];
+        const lessons = Object.values(p.topics).reduce((n, t) => n + (t?.completed ?? 0), 0);
+        return `${p.childName || `Bé ${i + 1}`} (${lessons} lượt học)`;
+      });
+      let armed = false;
+      const go = h('button', { class: 'p-btn p-btn-danger', 'data-backup': 'confirm' }, 'Thay tiến độ trên máy này bằng file');
+      go.addEventListener('click', () => {
+        if (!armed) {
+          armed = true;
+          go.textContent = 'Bấm lần nữa để khôi phục';
+          setTimeout(() => ((armed = false), (go.textContent = 'Thay tiến độ trên máy này bằng file')), 5000);
+          return;
+        }
+        restoreBackup(b);
+        rerender();
+        setTimeout(() => {
+          const m = document.querySelector('.p-backup-msg');
+          if (m) m.textContent = '✓ Đã khôi phục tiến độ từ file.';
+        }, 0);
+      });
+      preview.hidden = false;
+      preview.replaceChildren(
+        h('p', {}, `File sao lưu ngày ${new Date(b.exportedAt).toLocaleDateString('vi-VN')}: ${kids.join(', ')}.`),
+        h('p', { class: 'p-muted' }, 'Khôi phục sẽ thay toàn bộ tiến độ hiện có trên máy này (mọi bé) bằng nội dung trong file.'),
+        h('div', { class: 'p-row' }, go, h('button', { class: 'p-btn', onclick: () => (preview.hidden = true) }, 'Huỷ')),
+      );
+    });
+
+    return h(
+      'div',
+      {},
+      h('p', { class: 'p-muted' }, 'Tiến độ chỉ lưu trên máy này. Thỉnh thoảng hãy sao lưu ra file để không mất khi xoá dữ liệu trình duyệt hay đổi máy. File có tên bé và tiến độ học, không có giọng nói; hãy giữ nó như ảnh của gia đình.'),
+      status,
+      h('div', { class: 'p-row' }, download, share, pick, input),
+      preview,
+      msg,
+      h('p', { class: 'p-saved p-backup-msg' }),
+    );
   }
 
   /** Up to 4 children: each has their own progress, Bix clothes, garden, stories. */

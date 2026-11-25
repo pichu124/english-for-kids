@@ -81,6 +81,9 @@ export type State = {
   celebrated?: string[];
   /** Adaptive difficulty: first-try results of recent picture rounds. */
   adapt?: { recent: boolean[] };
+  /** Today's guided plan, and how many days it was finished. */
+  today?: { day: string; steps: { kind: 'review' | 'lesson' | 'fun'; id?: string; done?: boolean }[]; finished?: boolean };
+  todayDays?: number;
   /** Letters found right first time in the letter game (⭐ on the ABC board). */
   letters?: Record<string, boolean>;
   /** Stories read to the end, by story id. */
@@ -256,4 +259,92 @@ export function requestPersistence(): void {
   } catch {
     /* ignore */
   }
+}
+
+// ---------------------------------------------------------------- backup & restore
+// Everything stays on this device; a backup is a small JSON file the parent keeps
+// (Files, Drive, Zalo…) and can load back on this or another device.
+
+const BACKUP_KEY = 'efk.backup';
+export const BACKUP_APP = 'bix-english';
+
+export type Backup = {
+  app: typeof BACKUP_APP;
+  version: 1;
+  exportedAt: string;
+  index: { active: string; ids: string[] };
+  profiles: Record<string, State>;
+};
+
+export function exportBackup(): Backup {
+  save();
+  const profiles: Record<string, State> = {};
+  for (const id of index.ids) {
+    if (id === index.active) profiles[id] = state;
+    else {
+      try {
+        profiles[id] = { ...defaultState(), ...(JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}') as Partial<State>) };
+      } catch {
+        profiles[id] = defaultState();
+      }
+    }
+  }
+  return { app: BACKUP_APP, version: 1, exportedAt: new Date().toISOString(), index: { ...index, ids: [...index.ids] }, profiles };
+}
+
+/** Check a parsed backup file. Returns a Vietnamese reason when it cannot be used. */
+export function checkBackup(b: unknown): string | null {
+  const x = b as Partial<Backup> | null;
+  if (!x || typeof x !== 'object' || x.app !== BACKUP_APP) return 'Đây không phải file sao lưu của Bix English.';
+  if (x.version !== 1) return 'File sao lưu này từ phiên bản khác, chưa đọc được.';
+  const ids = x.index?.ids;
+  if (!Array.isArray(ids) || !ids.length || ids.length > MAX_PROFILES || ids.some((id) => typeof id !== 'string' || !/^p\d+$/.test(id))) return 'File sao lưu bị hỏng (danh sách bé).';
+  if (!x.index || !ids.includes(x.index.active)) return 'File sao lưu bị hỏng (bé đang dùng).';
+  for (const id of ids) {
+    const p = x.profiles?.[id] as Partial<State> | undefined;
+    if (!p || typeof p !== 'object' || typeof p.topics !== 'object' || typeof p.words !== 'object' || typeof p.settings !== 'object') return `File sao lưu bị hỏng (dữ liệu của bé ${id}).`;
+  }
+  return null;
+}
+
+/** Replace everything on this device with the backup (after checkBackup passed). */
+export function restoreBackup(b: Backup): void {
+  for (const id of index.ids) {
+    try {
+      if (!b.index.ids.includes(id)) localStorage.removeItem(keyFor(id));
+    } catch {
+      /* ignore */
+    }
+  }
+  for (const id of b.index.ids) {
+    try {
+      localStorage.setItem(keyFor(id), JSON.stringify(b.profiles[id]));
+    } catch {
+      /* storage full — the reload below shows what was written */
+    }
+  }
+  index = { active: b.index.active, ids: [...b.index.ids] };
+  writeIndex();
+  state = load();
+}
+
+export function lastBackup(): string | null {
+  try {
+    return localStorage.getItem(BACKUP_KEY);
+  } catch {
+    return null;
+  }
+}
+export function markBackedUp(): void {
+  try {
+    localStorage.setItem(BACKUP_KEY, new Date().toISOString());
+  } catch {
+    /* ignore */
+  }
+}
+/** Remind after a week without a backup, once there is progress worth keeping. */
+export function backupDue(): boolean {
+  const any = Object.keys(state.topics).length > 0;
+  const last = lastBackup();
+  return any && (!last || Date.now() - Date.parse(last) > 7 * 86400000);
 }

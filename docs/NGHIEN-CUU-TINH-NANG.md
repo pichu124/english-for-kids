@@ -133,6 +133,11 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
   - lời trên giấy ghi rõ "topics based on…": đây là kỷ niệm của gia đình/lớp, không phải chứng chỉ Cambridge.
 - [ ] 13. Trò chuyện bằng AI: để lại cho tới khi giải quyết xong micro.
 
+### Đợt D (đề xuất sau khi dùng thật)
+- [x] **Sao lưu và khôi phục**: khu bố mẹ tải file sao lưu (mọi bé trên máy), gửi qua menu chia sẻ của máy (Zalo, Drive…). Khôi phục: chọn file, xem trước tên các bé, bấm 2 lần. Quá 7 ngày chưa sao lưu thì có dòng nhắc ở đầu khu bố mẹ. File nằm trong tay bố mẹ, không gửi đi đâu.
+- [x] **Nút "Today"**: lộ trình khoảng 10 phút mỗi ngày: ôn (nếu có từ đến hạn) → bài tiếp theo → truyện chưa đọc hoặc trò chơi → phần thưởng 🌟. Cuối mỗi phần có nút ▶ Next quay về lộ trình. Đếm số ngày hoàn thành (⭐ trên màn Today). Bài mở từ bản đồ vẫn như cũ.
+- [ ] Chế độ "nói theo Bix" không cần micro: tạm chưa làm (bố mẹ quyết định).
+
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.
 

@@ -10,6 +10,8 @@ import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
 import { actOut, pick, PRAISE, wordPicture } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
+import { todayRunning } from '../lib/today';
+import { todayNextButton } from './today';
 
 /**
  * Mini-games that replay words the child already learned:
@@ -59,7 +61,7 @@ function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string): void {
   void bix.talk('You did it! Play again?', 'happy', 'You did it!');
   const again = h('button', { class: 'btn btn-sun', 'aria-label': 'Play again', onclick: () => (sfx.tap(), ctx.go('games', { game })) }, '🔁 Again');
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home', onclick: () => (sfx.tap(), ctx.go('home')) }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
-  host.appendChild(h('div', { class: 'game-done pop' }, again, home));
+  host.appendChild(h('div', { class: 'game-done pop' }, todayRunning() ? todayNextButton(ctx) : [again, home]));
 }
 
 /* ---------- Memory: flip two cards, find the pairs ---------- */
