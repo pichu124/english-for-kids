@@ -291,7 +291,7 @@ Tổng: **42 Unit**, **195 từ** trong ngân hàng từ. 🥁 là bài có vè.
 - Chưa có: *time* và *work* (phần lớn thuộc Movers).
 
 **Hoạt động có sẵn:**
-- `listen`, `say`, `tap-picture`;
+- `listen`, `say`, `tap-picture`; `read`, `spell` (Starters, tự thêm);
 - `do-it` (làm theo lệnh, không cần micro);
 - `chant` (vè theo nhịp trống, vòng 2 bé đọc theo);
 - **ôn bài cách quãng**: học xong một bài thì các từ vào hộp 1, hẹn ôn sau 1, 2, 4, 7, 14 ngày. Trả lời đúng ngay lần đầu thì lên hộp, sai thì về hộp 1. Khi có từ 3 từ đến hạn, màn hình chính hiện đảo **Review**.
@@ -310,6 +310,12 @@ Tổng: **42 Unit**, **195 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 9 Unit "phần 2" cho Starters và 2 Unit vị trí (L2 Where Is It?, L1 In, On, Under);
   - hình cảnh vị trí vẽ bằng SVG (`image.scene`): hộp và quả bóng, riêng "under" dùng cái bàn để thấy rõ;
   - duyệt chéo Gemini: bỏ thêm các từ chấp nhận có nghĩa riêng (có "glock", tên một loại súng), sửa "I can see my face!", "Where is the boy?".
+
+- **Đợt 5: đọc và đánh vần (Starters)**, ứng với phần *Reading & Writing* của bài thi:
+  - bước **read**: hình và chữ viết, bé tự đọc. Nút 🔊 giúp khi bí, nhưng lượt đó không tính là "tự đọc";
+  - bước **spell**: chạm chữ cái vào ô (thêm 1–2 chữ thừa). Bix đọc tên từng chữ cái. Nhầm thì chữ chỉ rung, nhầm 2 lần thì chữ đúng sáng lên. Đánh vần không nhầm lần nào thì sticker có dấu ✏️;
+  - màn **ABC** (bậc 1–2): 26 chữ, chạm vào nghe "bee. bee is for ball."; trò "Find the letter …", tìm đúng ngay lần đầu thì chữ được ⭐;
+  - chữ cái được đọc bằng tên viết theo âm ("ay, bee, see…"), vì giọng máy đọc một chữ đứng riêng hay sai (chữ "a" thành "ơ"). App chưa dạy âm riêng của chữ (phonics /a/, /b/): giọng máy không phát âm được chuẩn.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

@@ -46,6 +46,7 @@ export function bookScreen(ctx: Ctx): HTMLElement {
             wordPicture(w),
             ok && level.showText ? h('span', { class: 'sticker-label' }, w.text) : null,
             ok ? null : h('span', { class: 'sticker-q', 'aria-hidden': 'true' }, '?'),
+            s.words[wordKey(t.id, w.id)]?.spelled ? h('span', { class: 'sticker-pen', title: 'Spelled!', 'aria-hidden': 'true' }, '✏️') : null,
           );
           sticker.addEventListener('click', () => {
             if (!ok) {

@@ -30,12 +30,14 @@ export type Level = {
   choices: number;
   /** Rounds of the tap game. */
   playRounds: number;
+  /** Reading steps added after a unit's own steps (Starters: read the word, spell it). */
+  reading?: StepType[];
 };
 
 export const LEVELS: Level[] = [
   { id: 'L0', name: 'Little Bix', nameVi: 'Bậc 0 · Little Bix (3–4 tuổi)', ages: '3–4', framework: 'Cambridge Early Years', casaLuaTuoi: '3-4', showText: false, choices: 3, playRounds: 4 },
   { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3, playRounds: 5 },
-  { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6 },
+  { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6, reading: ['read', 'spell'] },
   { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
   { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
 ];
@@ -76,8 +78,11 @@ const TOPIC_ANIM: Record<string, Anim> = {
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
 
-export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell'];
+
+/** Words a child can spell with letter tiles: one word, letters only, not too long. */
+export const spellable = (w: Word, maxLen = 6) => /^[a-z]+$/i.test(w.text) && w.text.length >= 2 && w.text.length <= maxLen;
 /** Steps a unit gets when it does not list its own. */
 export const DEFAULT_STEPS: StepType[] = ['listen', 'say', 'tap-picture'];
 
@@ -122,6 +127,8 @@ export type Topic = {
 type BankFile = { topic?: string; words: Word[] };
 type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept' | 'image'>>);
 type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'chant' | 'titleVi' | 'intro' | 'order'> & {
+  /** false = no reading/spelling steps for this unit (e.g. phrases like "How are you?"). */
+  reading?: boolean;
   actions?: Action[];
   chant?: { title: string; lines: (string | ChantLine)[]; tune?: string };
   order?: number;
@@ -183,7 +190,10 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (!u.block || typeof u.block.name !== 'string' || !BLOCK_STYLES.includes(u.block.style)) {
     return problem(where, `block.style phải là một trong ${BLOCK_STYLES.join(', ')}`), null;
   }
-  const steps = u.steps ?? DEFAULT_STEPS;
+  const own = u.steps ?? DEFAULT_STEPS;
+  if (own.some((st) => st === 'read' || st === 'spell')) problem(where, 'không cần ghi "read"/"spell" trong steps: bậc học tự thêm (tắt bằng "reading": false)');
+  const steps = [...own];
+  if (u.reading !== false) for (const r of level.reading ?? []) if (!steps.includes(r)) steps.push(r);
   if (!steps.length || steps.some((s) => !STEP_TYPES.includes(s))) return problem(where, `steps chỉ gồm ${STEP_TYPES.join(', ')}`), null;
   const actions = Array.isArray(u.actions) ? u.actions : [];
   if (actions.some((a) => typeof a?.say !== 'string' || !a.say || typeof a?.emoji !== 'string' || !a.emoji)) {
@@ -227,6 +237,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     words.push(w);
   }
   if (words.length < 3) return problem(where, 'cần ít nhất 3 từ (trò chơi chọn hình cần 3 lựa chọn)'), null;
+  if (steps.includes('spell') && words.filter((w) => spellable(w)).length < 2) steps.splice(steps.indexOf('spell'), 1);
   // An accepted mishearing must not be another word of the same unit, or saying
   // "cat" would also count as "kite".
   for (const w of words) {

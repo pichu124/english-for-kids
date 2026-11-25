@@ -9,6 +9,14 @@ export function markKnown(topicId: string, wordId: string): void {
   });
 }
 
+export function markSpelled(topicId: string, wordId: string): void {
+  update((s) => {
+    const ws = (s.words[wordKey(topicId, wordId)] ??= { said: false, tries: 0 });
+    ws.spelled = true;
+    ws.known = true;
+  });
+}
+
 /** A word becomes a sticker once the child said it or picked it right first time. */
 export const isLearned = (ws?: WordStatus) => !!ws && (ws.said || !!ws.known);
 

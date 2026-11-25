@@ -1,0 +1,30 @@
+{
+  "letters": [
+    { "letter": "A", "word": "apple", "emoji": "🍎" },
+    { "letter": "B", "word": "ball", "emoji": "⚽" },
+    { "letter": "C", "word": "cat", "emoji": "🐱" },
+    { "letter": "D", "word": "dog", "emoji": "🐶" },
+    { "letter": "E", "word": "egg", "emoji": "🥚" },
+    { "letter": "F", "word": "fish", "emoji": "🐟" },
+    { "letter": "G", "word": "giraffe", "emoji": "🦒" },
+    { "letter": "H", "word": "hat", "emoji": "👒" },
+    { "letter": "I", "word": "ice cream", "emoji": "🍦" },
+    { "letter": "J", "word": "juice", "emoji": "🧃" },
+    { "letter": "K", "word": "kite", "emoji": "🪁" },
+    { "letter": "L", "word": "lemon", "emoji": "🍋" },
+    { "letter": "M", "word": "monkey", "emoji": "🐒" },
+    { "letter": "N", "word": "nose", "emoji": "👃" },
+    { "letter": "O", "word": "orange", "emoji": "🍊" },
+    { "letter": "P", "word": "pig", "emoji": "🐷" },
+    { "letter": "Q", "word": "queen", "emoji": "👸" },
+    { "letter": "R", "word": "robot", "emoji": "🤖" },
+    { "letter": "S", "word": "sun", "emoji": "☀️" },
+    { "letter": "T", "word": "tiger", "emoji": "🐯" },
+    { "letter": "U", "word": "umbrella", "emoji": "☂️" },
+    { "letter": "V", "word": "van", "emoji": "🚐" },
+    { "letter": "W", "word": "watch", "emoji": "⌚" },
+    { "letter": "X", "word": "fox", "emoji": "🦊", "note": "X is at the end of fox" },
+    { "letter": "Y", "word": "yo-yo", "emoji": "🪀" },
+    { "letter": "Z", "word": "zebra", "emoji": "🦓" }
+  ]
+}

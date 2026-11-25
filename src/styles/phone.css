@@ -113,3 +113,23 @@
   .lesson-bix .bix-bubble { left: 62%; max-width: 44vw; }
   .reward .tip-card { position: static; order: 9; max-width: 90vw; }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+  .read { gap: 16px; }
+  .read-pic { width: clamp(110px, 44vh, 170px); border-radius: 20px; }
+  .read-pic .pic-emoji { font-size: clamp(56px, 26vh, 100px); }
+  .read-choices { gap: 8px; }
+  .read-choice { min-height: 64px; min-width: 110px; font-size: 22px; border-radius: 14px; padding: 4px 10px; }
+  .read-choice.is-long { font-size: 18px; }
+  .spell { gap: 6px; }
+  .spell-pic { width: clamp(64px, 24vh, 100px); border-radius: 16px; }
+  .spell-pic .pic-emoji { font-size: clamp(40px, 15vh, 64px); }
+  .spell-slot { width: 44px; height: 50px; font-size: 30px; border-radius: 10px; }
+  .spell-tiles { gap: 8px; max-width: 520px; }
+  .spell-tile { width: 64px; height: 64px; font-size: 32px; border-radius: 14px; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .spell { display: grid; grid-template-columns: auto auto; grid-template-areas: 'top slots' 'top tiles'; align-items: center; column-gap: 18px; row-gap: 10px; }
+  .spell-top { grid-area: top; flex-direction: column; gap: 10px; }
+  .spell-slots { grid-area: slots; }
+  .spell-tiles { grid-area: tiles; max-width: 300px; justify-content: flex-start; }
+}

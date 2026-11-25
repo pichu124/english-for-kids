@@ -71,9 +71,10 @@ export async function playLesson(topicIndex, voice = 'match', parentHelps = true
     const count = await cards.count();
     let tapped = false;
     for (let i = 0; i < count; i++) {
-      const label = await cards.nth(i).getAttribute('aria-label');
-      if (label && spoken.toLowerCase().includes(label.toLowerCase()) && !(await cards.nth(i).evaluate((e) => e.classList.contains('is-right')))) {
-        await cards.nth(i).click({ force: true });
+      // The play step can end mid-loop (the reading step replaces it): short timeouts.
+      const label = await cards.nth(i).getAttribute('aria-label', { timeout: 1000 }).catch(() => null);
+      if (label && spoken.toLowerCase().includes(label.toLowerCase()) && !(await cards.nth(i).evaluate((e) => e.classList.contains('is-right'), null, { timeout: 1000 }).catch(() => true))) {
+        await cards.nth(i).click({ force: true, timeout: 1000 }).catch(() => {});
         tapped = true;
         rounds++;
         break;

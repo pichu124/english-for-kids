@@ -14,6 +14,8 @@ export type WordStatus = {
   tries: number;
   /** Picked the right picture first time in a tap game. */
   known?: boolean;
+  /** Spelled it with letter tiles without a slip. */
+  spelled?: boolean;
   /** Last thing the recognizer heard (text only — never audio). */
   heard?: string;
   last?: string; // ISO date
@@ -79,6 +81,8 @@ export type State = {
   celebrated?: string[];
   /** Adaptive difficulty: first-try results of recent picture rounds. */
   adapt?: { recent: boolean[] };
+  /** Letters found right first time in the letter game (⭐ on the ABC board). */
+  letters?: Record<string, boolean>;
   /** Stories read to the end, by story id. */
   storiesRead?: Record<string, number>;
   /** Last day the child looked at the garden (for the "new flower" glow). */

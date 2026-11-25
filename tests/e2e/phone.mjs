@@ -47,10 +47,11 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     };
     await p.goto(base); await check('start');
     await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home'); await check('home');
-    for (const [btn, name] of [['My Words', 'book'], ['Bix', 'wardrobe'], ['Garden', 'garden'], ['Games', 'games'], ['Stories', 'stories'], ['My World', 'world']]) {
+    for (const [btn, name] of [['My Words', 'book'], ['Bix', 'wardrobe'], ['Garden', 'garden'], ['Games', 'games'], ['Stories', 'stories'], ['My World', 'world'], ['ABC', 'abc']]) {
       await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
       await p.locator(`.dock-btn[aria-label="${btn}"]`).click({ force: true }); await check(name);
     }
+    await p.locator('.abc-game-btn').click({ force: true }); await p.waitForSelector('.abc-choice'); await check('letter-game');
     try {
     await p.goto(base + '/'); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.dock-btn[aria-label="Games"]').click({ force: true }); await p.locator('[data-game=memory]').click({ force: true, timeout: 4000 }).catch((e) => report.push(vn + ' memory: CANNOT OPEN ' + e.message.split('\n')[0])); await check('memory');
@@ -66,7 +67,14 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       await p.waitForTimeout(80);
     }
     await check('lesson-chant');
-    for (let i = 0; i < 400 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) { if (await p.locator('.btn-chant-done:not([hidden])').count()) await p.locator('.btn-chant-done').click({ force: true }); await p.waitForTimeout(100); }
+    let sawRead = false, sawSpell = false;
+    for (let i = 0; i < 600 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) {
+      if (await p.locator('.btn-chant-done:not([hidden])').count()) await p.locator('.btn-chant-done').click({ force: true });
+      if (!sawRead && (await p.locator('.read-choice').count())) { sawRead = true; await p.evaluate(() => (window.__manualReading = true)); await check('lesson-read'); await p.evaluate(() => (window.__manualReading = false)); }
+      if (!sawSpell && (await p.locator('.spell-tile').count())) { sawSpell = true; await p.evaluate(() => (window.__manualReading = true)); await check('lesson-spell'); await p.evaluate(() => (window.__manualReading = false)); }
+      await p.waitForTimeout(100);
+    }
+    if (!sawRead || !sawSpell) report.push(vn + ' reading steps: NOT SEEN');
     await check('reward');
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.btn-parent').click({ force: true }); await p.waitForSelector('.gate'); await check('gate');

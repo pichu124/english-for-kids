@@ -70,3 +70,24 @@
   window.webkitSpeechRecognition = FakeRec;
   window.SpeechRecognition = FakeRec;
 })();
+
+// Reading/spelling steps: answer them automatically so the older tests can walk through a
+// whole lesson. Tests that check these steps set window.__manualReading = true.
+setInterval(() => {
+  if (window.__manualReading) return;
+  const read = document.querySelector('.read[data-answer]');
+  if (read) {
+    const want = read.getAttribute('data-answer');
+    const btn = [...document.querySelectorAll('.read-choice:not(.is-faded):not(.is-right)')].find((b) => b.getAttribute('data-word') === want);
+    if (btn && !document.querySelector('.read-choice.is-right')) btn.click();
+    return;
+  }
+  const spell = document.querySelector('.spell[data-word]');
+  if (spell) {
+    const word = spell.getAttribute('data-word');
+    const filled = spell.querySelectorAll('.spell-slot.is-filled').length;
+    if (filled >= word.length) return;
+    const tile = [...spell.querySelectorAll('.spell-tile:not(.is-used)')].find((t) => t.textContent === word[filled]);
+    if (tile) tile.click();
+  }
+}, 120);

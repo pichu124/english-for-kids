@@ -32,7 +32,7 @@ Test e2e dùng giọng đọc và nhận giọng **giả lập** (`tests/e2e/fak
 ## Cấu trúc thư mục
 
 ```
-content/            words/ (ngân hàng từ), units/ (bài), stories/ (truyện)
+content/            words/ (ngân hàng từ), units/ (bài), stories/ (truyện), alphabet.json (bảng chữ cái)
 public/             manifest, icon (icon.svg → PNG bằng `npm run icons`)
 scripts/            make-icons.mjs, cap-nhat-vps.sh (cập nhật trên VPS)
 src/
@@ -93,6 +93,11 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
 **Các trường:**
 - **`level`**: `L0` (3–4 tuổi, không hiện chữ), `L1` (4–5), `L2` (Starters 5–7), `L3` (Movers), `L4` (Flyers). `casa.luaTuoi` phải khớp bậc: `3-4`, `4-5`, `5-6`.
 - **`steps`**: thứ tự hoạt động. `listen` (nghe), `say` (nói), `tap-picture` (chọn hình), `do-it` (làm theo lệnh, cần `actions`), `chant` (vè, cần `chant`).
+- **Đọc và đánh vần** (bậc Starters, tự thêm vào cuối mỗi bài, không cần ghi vào `steps`):
+  - `read`: nhìn hình, chọn đúng chữ viết, 4 lượt;
+  - `spell`: chạm chữ cái để ghép từ, 3 từ ngắn nhất (từ đơn 2–6 chữ cái). Bài có dưới 2 từ như vậy thì bỏ bước này;
+  - tắt cho một bài bằng `"reading": false`.
+- **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).
 - **`accept`**: những cách máy hay nghe nhầm mà vẫn tính là đúng. **Không** đưa từ thông dụng (no, and, here, son…) hay một từ khác trong cùng bài vào đây. Bộ test sẽ chặn.
