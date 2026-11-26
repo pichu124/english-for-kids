@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import alphabet from '../content/alphabet.json';
-import { writable, buildable, firstSentence, hasPart2, partSteps, sentenceCount, sentenceEnd, spellable, topics, topicsOfLevel, yesNoAble } from '../src/content';
+import { gapCount, writable, buildable, firstSentence, hasPart2, partSteps, sentenceCount, sentenceEnd, spellable, topics, topicsOfLevel, yesNoAble } from '../src/content';
 import { letterName, spellOut } from '../src/lib/letters';
 
 describe('reading & spelling', () => {
@@ -34,7 +34,8 @@ describe('reading & spelling', () => {
     }
     // Movers: read, type the word, sentences, and a short text where the unit has one.
     for (const t of topicsOfLevel('L3')) {
-      expect(t.steps, t.id).toContain('read');
+      expect(t.steps.includes('gap'), t.id).toBe(['l3-town', 'l3-house', 'l3-travel'].includes(t.id) && gapCount(t.words) > 0);
+      expect(t.steps.includes('read'), t.id).toBe(false);
       expect(t.steps.includes('write'), t.id).toBe(t.words.filter(writable).length >= 2);
       expect(t.steps.includes('text'), t.id).toBe(!!t.text);
       expect(t.steps.includes('spell'), t.id).toBe(false);

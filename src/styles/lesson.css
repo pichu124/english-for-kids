@@ -349,3 +349,15 @@
 @media (orientation: portrait) { .text-read { flex-direction: column; } }
 .word-card .pic-clock { width: 64%; }
 .word-card-play .pic-clock, .read-pic .pic-clock, .test-card .pic-clock { width: 80%; }
+/* drawn pictures (body parts, household things, landscapes) */
+.pic-drawing { width: 78%; height: 86%; display: grid; place-items: center; }
+.pic-drawing .drawing { width: 100%; height: 100%; }
+.word-card .pic-drawing { width: 72%; height: 80%; }
+
+/* ----- gap: choose the missing word ----- */
+.gap { display: flex; flex-direction: column; align-items: center; gap: 3vmin; }
+.gap-sentence { font-size: clamp(26px, 5vmin, 46px); font-weight: 800; text-align: center; line-height: 1.5; background: #fff; border: 4px solid var(--ink); border-radius: 22px; padding: 1.4vmin 3vmin; margin: 0; max-width: 900px; }
+.gap-blank { display: inline-block; min-width: 4em; margin: 0 .25em; padding: 0 .3em; border-bottom: 5px dashed #ef476f; color: #ef476f; text-align: center; }
+.gap-blank.is-filled { border-bottom-style: solid; color: #2a9d4a; border-color: #2a9d4a; }
+.gap-opts { display: flex; gap: 2vmin; flex-wrap: wrap; justify-content: center; }
+.gap-opt { text-transform: none; }

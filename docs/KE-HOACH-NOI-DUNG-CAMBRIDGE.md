@@ -281,10 +281,10 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
-| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen | 22 |
+| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen · My Body 2 · Around the House · Every Day · Water and Land · Long Ago | 27 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
-Tổng: **74 Unit**, **340 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
+Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
 
 **Phủ chủ đề Starters:**
 - Đủ: animals, the body & the face, clothes, colours, family & friends, food & drink, the home, numbers 1–20, school, toys, transport, the world around us, sports & leisure (actions), **places & directions** (gồm từ chỉ vị trí in / on / under / next to / behind / in front of).
@@ -340,6 +340,13 @@ Tổng: **74 Unit**, **340 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 4 đoạn văn mới và 3 truyện (The Surprise Party, Bix Goes Fishing, The Big Trip).
   - **Thi thử Movers** (đảo 🎓 cuối bản đồ Movers), 14 câu: Nghe 5 · Viết 3 (gõ từ; chỉ tính đúng khi không gõ nhầm) · Đọc 6 (3 câu "hình + câu: đúng hay sai?" lấy từ câu mẫu, và 1 đoạn văn với 3 câu hỏi). Kết quả ghi riêng theo bậc trong khu bố mẹ.
   - Duyệt chéo Gemini: nhận cả 3 góp ý ("biscuits" thay "cookies", "when you ride your bike", "Which picture shows …?").
+
+- **Đợt M3 (Movers)**:
+  - **hình vẽ SVG** cho từ không có emoji cũ (`src/art/drawings.ts`): `image.body` (bạn nhỏ có khoanh đỏ bộ phận: head, neck, shoulder, stomach, knee, teeth) và `image.icon` (stairs, roof, towel, blanket, toothbrush, toothpaste, river, lake, waterfall, rock);
+  - **bước Điền từ** (🧩, `gap`): câu mẫu của từ có một chỗ trống, chọn 1 trong 3 từ của bài, không có hình. Bước này chỉ bật khi bài ghi `"gap": true`, sau khi đã kiểm tra từng câu chỉ hợp với đúng một từ (hiện có In Town, Around the House, Going Places). Câu tự sinh ở các bài khác thường có nhiều đáp án hợp lý ("I've got a cold/cough…"). Bước nhìn hình chọn chữ (`read`) không còn dùng ở Movers;
+  - 5 bài mới: My Body 2, Around the House, Every Day (always / sometimes / never), Water and Land, Long Ago (quá khứ đơn: ran, sang, drove, flew, rode, came);
+  - 2 đoạn văn (Bedtime, Sophie's Day) và 2 truyện (Grandpa's Story, Bix's Morning);
+  - Gemini không kết nối được, nên Claude tự duyệt. Đã sửa vài câu cho rõ nghĩa ("I go up the stairs to my bedroom.", "The rain falls on the roof.") và bỏ "storm" (có lẽ vượt mức Movers).
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

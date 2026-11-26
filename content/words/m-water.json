@@ -1,0 +1,70 @@
+{
+  "topic": "water",
+  "words": [
+    {
+      "id": "river",
+      "text": "river",
+      "topic": "water",
+      "image": {
+        "icon": "river"
+      },
+      "sentence": "Ducks swim in the river.",
+      "accept": [
+        "rivers",
+        "rever"
+      ]
+    },
+    {
+      "id": "lake",
+      "text": "lake",
+      "topic": "water",
+      "image": {
+        "icon": "lake"
+      },
+      "sentence": "We went fishing on the lake.",
+      "accept": [
+        "lakes",
+        "laik"
+      ]
+    },
+    {
+      "id": "waterfall",
+      "text": "waterfall",
+      "topic": "water",
+      "image": {
+        "icon": "waterfall"
+      },
+      "sentence": "The waterfall is very loud.",
+      "accept": [
+        "water fall",
+        "waterfalls"
+      ]
+    },
+    {
+      "id": "rock",
+      "text": "rock",
+      "topic": "water",
+      "image": {
+        "icon": "rock"
+      },
+      "sentence": "The frog is sitting on a rock.",
+      "accept": [
+        "rocks",
+        "rok"
+      ]
+    },
+    {
+      "id": "wave",
+      "text": "wave",
+      "topic": "water",
+      "image": {
+        "emoji": "🌊"
+      },
+      "sentence": "Look at that big wave!",
+      "accept": [
+        "waves",
+        "wayv"
+      ]
+    }
+  ]
+}

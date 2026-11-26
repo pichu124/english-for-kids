@@ -1,0 +1,39 @@
+{
+  "id": "story-l3-past3",
+  "unit": "l3-past3",
+  "title": "Grandpa's Story",
+  "icon": "👴",
+  "pages": [
+    {
+      "text": "Long ago, Grandpa lived on a farm.",
+      "scene": "🏡🌾"
+    },
+    {
+      "text": "Every day, he rode a horse to school.",
+      "scene": "🐎🏫"
+    },
+    {
+      "text": "One day, it started to rain.",
+      "scene": "🌧️"
+    },
+    {
+      "text": "Grandpa ran home very fast!",
+      "scene": "🏃💨"
+    },
+    {
+      "text": "Then the family sang songs by the fire. Bix loves this story!",
+      "scene": "🔥🎶",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "How did Grandpa go to school?",
+      "answer": "rode"
+    },
+    {
+      "ask": "How did Grandpa go home in the rain?",
+      "answer": "ran"
+    }
+  ]
+}

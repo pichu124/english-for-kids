@@ -1,0 +1,82 @@
+{
+  "topic": "house",
+  "words": [
+    {
+      "id": "stairs",
+      "text": "stairs",
+      "topic": "house",
+      "image": {
+        "icon": "stairs"
+      },
+      "sentence": "I go up the stairs to my bedroom.",
+      "accept": [
+        "stair",
+        "stares"
+      ]
+    },
+    {
+      "id": "roof",
+      "text": "roof",
+      "topic": "house",
+      "image": {
+        "icon": "roof"
+      },
+      "sentence": "The rain falls on the roof.",
+      "accept": [
+        "roofs",
+        "ruf"
+      ]
+    },
+    {
+      "id": "towel",
+      "text": "towel",
+      "topic": "house",
+      "image": {
+        "icon": "towel"
+      },
+      "sentence": "Here is a towel for your bath.",
+      "accept": [
+        "towels",
+        "tawel"
+      ]
+    },
+    {
+      "id": "blanket",
+      "text": "blanket",
+      "topic": "house",
+      "image": {
+        "icon": "blanket"
+      },
+      "sentence": "It is cold. I need a blanket.",
+      "accept": [
+        "blankets",
+        "blankit"
+      ]
+    },
+    {
+      "id": "toothbrush",
+      "text": "toothbrush",
+      "topic": "house",
+      "image": {
+        "icon": "toothbrush"
+      },
+      "sentence": "I brush my teeth with my toothbrush.",
+      "accept": [
+        "tooth brush",
+        "toothbrushes"
+      ]
+    },
+    {
+      "id": "toothpaste",
+      "text": "toothpaste",
+      "topic": "house",
+      "image": {
+        "icon": "toothpaste"
+      },
+      "sentence": "Put some toothpaste on your toothbrush.",
+      "accept": [
+        "tooth paste"
+      ]
+    }
+  ]
+}

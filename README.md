@@ -104,6 +104,8 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
             "questions": [{ "q": "Who was ill?", "options": ["Tom", "the doctor"], "answer": 0 }] }
   ```
   `answer` là số thứ tự đáp án đúng (bắt đầu từ 0). Hình đồng hồ: `"image": { "clock": "7:00" }`.
+  Hình vẽ khi không có emoji: `"image": { "body": "knee" }` (bạn nhỏ có khoanh bộ phận) hoặc `"image": { "icon": "towel" }`, danh sách trong `src/art/drawings.ts`.
+  Điền từ (🧩): thêm `"gap": true` vào bài, chỉ khi mỗi câu mẫu chỉ hợp với đúng một từ của bài.
 - **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).

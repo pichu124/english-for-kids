@@ -1,0 +1,34 @@
+{
+  "id": "l3-past3",
+  "level": "L3",
+  "topic": "past3",
+  "order": 27,
+  "title": "Long Ago",
+  "titleVi": "Ngày xưa (quá khứ đơn 3)",
+  "icon": "🐎",
+  "color": "#ffd6a5",
+  "intro": "What did they do long ago?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Story block",
+    "style": "wood",
+    "color": "#ffd6a5"
+  },
+  "words": [
+    "ran",
+    "sang",
+    "drove",
+    "flew",
+    "rode",
+    "came"
+  ],
+  "parentTip": {
+    "vi": "Kể chuyện ngày xưa của ông bà: \"Grandpa rode a bike to school.\" Hỏi con \"What did you do yesterday?\"",
+    "say": "What did you do yesterday?"
+  },
+  "chat": {
+    "ask": "Did you sing a song today?",
+    "yes": "La, la, la! Great!",
+    "no": "Let's sing one now!"
+  }
+}

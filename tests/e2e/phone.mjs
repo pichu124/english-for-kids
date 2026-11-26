@@ -83,15 +83,15 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     }
     if (seen.size < 4) report.push(vn + ' reading screens seen: ' + [...seen].join(',') + ' (missing some)');
     // Movers part 2: typing on the a–z keyboard and the short text.
-    await p.goto(base + '/?unit=l3-health&part=2'); await p.locator('.btn-play').click({ force: true });
+    await p.goto(base + '/?unit=l3-town&part=2'); await p.locator('.btn-play').click({ force: true });
     const seen3 = new Set();
-    for (let i = 0; i < 900 && seen3.size < 2 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) {
-      for (const [sel, name] of [['.wr-key', 'movers-write'], ['.tx-opt', 'movers-text']]) {
+    for (let i = 0; i < 900 && seen3.size < 3 && !(await p.locator('.reward-actions:not([hidden])').count()); i++) {
+      for (const [sel, name] of [['.gap-opt', 'movers-gap'], ['.wr-key', 'movers-write'], ['.tx-opt', 'movers-text']]) {
         if (!seen3.has(name) && (await p.locator(sel).count())) { seen3.add(name); await p.evaluate(() => (window.__manualReading = true)); await check(name); await p.evaluate(() => (window.__manualReading = false)); }
       }
       await p.waitForTimeout(100);
     }
-    if (seen3.size < 2) report.push(vn + ' Movers screens seen: ' + [...seen3].join(',') + ' (missing some)');
+    if (seen3.size < 3) report.push(vn + ' Movers screens seen: ' + [...seen3].join(',') + ' (missing some)');
     // Movers practice test: the typed word and the text question.
     await p.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.settings.level = 'L3'; localStorage.setItem('efk.v1', JSON.stringify(st)); window.__manualReading = true; window.__manualWrite = true; window.__manualText = true; });
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');

@@ -1,0 +1,43 @@
+{
+  "id": "story-l3-routine",
+  "unit": "l3-routine",
+  "title": "Bix's Morning",
+  "icon": "⏰",
+  "pages": [
+    {
+      "text": "Bix always gets up at seven o'clock.",
+      "scene": "⏰",
+      "bix": true
+    },
+    {
+      "text": "Bix has a shower.",
+      "scene": "🚿",
+      "bix": true
+    },
+    {
+      "text": "Then Bix gets dressed.",
+      "scene": "👕",
+      "bix": true
+    },
+    {
+      "text": "Bix has breakfast: milk and bread.",
+      "scene": "🥣🥛",
+      "bix": true
+    },
+    {
+      "text": "Now Bix is ready to go to school!",
+      "scene": "🏫😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix do at seven o'clock?",
+      "answer": "get-up"
+    },
+    {
+      "ask": "What does Bix have after getting dressed?",
+      "answer": "have-breakfast"
+    }
+  ]
+}

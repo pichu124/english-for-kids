@@ -1,0 +1,83 @@
+{
+  "topic": "body2",
+  "words": [
+    {
+      "id": "head",
+      "text": "head",
+      "topic": "body2",
+      "image": {
+        "body": "head"
+      },
+      "sentence": "Put your hat on your head.",
+      "accept": [
+        "heads",
+        "hed"
+      ]
+    },
+    {
+      "id": "neck",
+      "text": "neck",
+      "topic": "body2",
+      "image": {
+        "body": "neck"
+      },
+      "sentence": "The giraffe has got a long neck.",
+      "accept": [
+        "necks",
+        "nek"
+      ]
+    },
+    {
+      "id": "shoulder",
+      "text": "shoulder",
+      "topic": "body2",
+      "image": {
+        "body": "shoulder"
+      },
+      "sentence": "The bird is on my shoulder.",
+      "accept": [
+        "shoulders",
+        "sholder"
+      ]
+    },
+    {
+      "id": "stomach",
+      "text": "stomach",
+      "topic": "body2",
+      "image": {
+        "body": "stomach"
+      },
+      "sentence": "I ate too much. My stomach hurts!",
+      "accept": [
+        "tummy",
+        "stomack"
+      ]
+    },
+    {
+      "id": "knee",
+      "text": "knee",
+      "topic": "body2",
+      "image": {
+        "body": "knee"
+      },
+      "sentence": "I fell over and hurt my knee.",
+      "accept": [
+        "knees",
+        "nee"
+      ]
+    },
+    {
+      "id": "teeth",
+      "text": "teeth",
+      "topic": "body2",
+      "image": {
+        "body": "teeth"
+      },
+      "sentence": "I brush my teeth every morning.",
+      "accept": [
+        "tooth",
+        "teef"
+      ]
+    }
+  ]
+}

@@ -9,6 +9,7 @@
  */
 import { BLOCK_STYLES, type BlockDef, type BlockStyle } from './art/blocks';
 import { SCENES } from './art/positions';
+import { BODY_PARTS, ICONS } from './art/drawings';
 import { TUNE_IDS } from './lib/tunes';
 import { fixEmoji } from './lib/emoji';
 
@@ -39,7 +40,7 @@ export const LEVELS: Level[] = [
   { id: 'L0', name: 'Little Bix', nameVi: 'Bậc 0 · Little Bix (3–4 tuổi)', ages: '3–4', framework: 'Cambridge Early Years', casaLuaTuoi: '3-4', showText: false, choices: 3, playRounds: 4 },
   { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3, playRounds: 5 },
   { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6, reading: ['read', 'spell', 'sentence'] },
-  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6, reading: ['read', 'write', 'sentence', 'text'] },
+  { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6, reading: ['gap', 'write', 'sentence', 'text'] },
   { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
 ];
 
@@ -53,7 +54,7 @@ export type Word = {
   /** What the child should say (and what is shown). */
   text: string;
   /** Picture: an emoji, or a color swatch (for color words). */
-  image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string };
+  image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string; /** a child with this part circled */ body?: string; /** a small drawing (stairs, towel…) */ icon?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
@@ -77,14 +78,19 @@ const TOPIC_ANIM: Record<string, Anim> = {
   places: 'pulse', hello: 'wave', positions: 'pulse', adjectives: 'pulse', sports: 'bounce', rooms: 'pulse', food3: 'bounce',
   health: 'wiggle', town: 'pulse', jobs: 'wave', time: 'pulse', days: 'pulse', nature: 'sway', sea: 'swim', compare: 'bounce', food4: 'bounce', feelings2: 'pulse', past: 'bounce',
   hobbies: 'bounce', animals3: 'wiggle', travel: 'drive', directions: 'pulse', superlatives: 'bounce', adverbs: 'pulse', past2: 'bounce', clothes3: 'sway', fun: 'spin', kitchen: 'pulse',
+  body2: 'pulse', house: 'pulse', routine: 'bounce', water: 'sway', past3: 'bounce',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
 
-export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence' | 'write' | 'text';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence', 'write', 'text'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence' | 'write' | 'text' | 'gap';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence', 'write', 'text', 'gap'];
 /** Part 2 of a unit ("Read & Write"); everything else is part 1 ("Listen & Say"). */
-export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 'text'];
+export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 'text', 'gap'];
+
+/** A word whose example sentence can have it blanked out: "Mum is in the ____." (Movers gap fill). */
+export const gappable = (w: Word) => w.sentence.split(/\s+/).length >= 3 && new RegExp(`\\b${w.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(w.sentence);
+export const gapCount = (words: Word[]) => (new Set(words.map((w) => w.text)).size >= 3 ? Math.min(3, words.filter(gappable).length) : 0);
 
 /** A short text to read (Movers): a few sentences and questions about it. */
 export type ReadingText = { title: string; lines: string[]; questions: { q: string; options: string[]; answer: number }[] };
@@ -160,6 +166,8 @@ type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'a
 type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'chant' | 'titleVi' | 'intro' | 'order'> & {
   /** false = no reading/spelling steps for this unit (e.g. phrases like "How are you?"). */
   reading?: boolean;
+  /** true = this unit's sentences work as gap fill (each fits only one of its words). */
+  gap?: boolean;
   actions?: Action[];
   chant?: { title: string; lines: (string | ChantLine)[]; tune?: string };
   order?: number;
@@ -193,8 +201,16 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ sai cấu trúc: ${JSON.stringify(w)}`);
       continue;
     }
-    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string' && typeof w.image.clock !== 'string')) {
+    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string' && typeof w.image.clock !== 'string' && typeof w.image.body !== 'string' && typeof w.image.icon !== 'string')) {
       problem(file, `từ "${w.id}" cần image.emoji, image.color, image.text hoặc image.scene`);
+      continue;
+    }
+    if (w.image.body && !(BODY_PARTS as readonly string[]).includes(w.image.body)) {
+      problem(file, `từ "${w.id}": image.body phải là một trong ${BODY_PARTS.join(', ')}`);
+      continue;
+    }
+    if (w.image.icon && !(ICONS as readonly string[]).includes(w.image.icon)) {
+      problem(file, `từ "${w.id}": image.icon phải là một trong ${ICONS.join(', ')}`);
       continue;
     }
     if (w.image.clock && !/^([1-9]|1[0-2]):(00|15|30|45)$/.test(w.image.clock)) {
@@ -275,6 +291,8 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (steps.includes('spell') && words.filter((w) => spellable(w)).length < 2) steps.splice(steps.indexOf('spell'), 1);
   if (steps.includes('sentence') && sentenceCount(words) === 0) steps.splice(steps.indexOf('sentence'), 1);
   if (steps.includes('write') && words.filter(writable).length < 2) steps.splice(steps.indexOf('write'), 1);
+  // Gap fill only where each sentence fits just one word of the unit (checked by hand): "gap": true.
+  if (steps.includes('gap') && (!u.gap || gapCount(words) === 0)) steps.splice(steps.indexOf('gap'), 1);
   if (u.text) {
     const tx = u.text;
     const bad = typeof tx.title !== 'string' || !Array.isArray(tx.lines) || tx.lines.length < 2 || !Array.isArray(tx.questions) || !tx.questions.length ||

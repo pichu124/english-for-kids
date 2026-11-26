@@ -1,0 +1,72 @@
+{
+  "id": "l3-routine",
+  "level": "L3",
+  "topic": "routine",
+  "order": 25,
+  "title": "Every Day",
+  "titleVi": "Sinh hoạt hằng ngày",
+  "icon": "⏰",
+  "color": "#caffbf",
+  "intro": "What do you do every day?",
+  "playPrompt": "Find \"{word}\"!",
+  "block": {
+    "name": "Day block",
+    "style": "window",
+    "color": "#caffbf"
+  },
+  "words": [
+    "get-up",
+    "have-a-shower",
+    "get-dressed",
+    "have-breakfast",
+    "go-to-school",
+    "go-to-bed"
+  ],
+  "parentTip": {
+    "vi": "Cùng con kể một ngày: \"I always get up at…, I sometimes…, I never…\". Dán lịch sinh hoạt lên tủ lạnh.",
+    "say": "What time do you get up?"
+  },
+  "chat": {
+    "ask": "Do you always have breakfast?",
+    "yes": "Great! Breakfast is important!",
+    "no": "Let's have breakfast tomorrow!"
+  },
+  "text": {
+    "title": "Sophie's Day",
+    "lines": [
+      "Sophie always gets up at seven o'clock.",
+      "She has breakfast with her mum and goes to school by bike.",
+      "After school, she sometimes plays in the park.",
+      "She never goes to bed after nine o'clock."
+    ],
+    "questions": [
+      {
+        "q": "When does Sophie get up?",
+        "options": [
+          "at six o'clock",
+          "at seven o'clock",
+          "at nine o'clock"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How does she go to school?",
+        "options": [
+          "by bus",
+          "by car",
+          "by bike"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What does she sometimes do after school?",
+        "options": [
+          "She plays in the park.",
+          "She goes swimming.",
+          "She goes to bed."
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

@@ -13,7 +13,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 await page.addInitScript(readFileSync(new URL('./fakes.js', import.meta.url), 'utf8'));
-await page.addInitScript(() => (window.__manualReading = true));
+await page.addInitScript(() => { window.__manualReading = true; window.__manualSentence = true; });
 const state = () => page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1') || '{}'));
 const spoken = () => page.evaluate(() => window.__spoken);
 
@@ -122,6 +122,7 @@ await page.locator(truth === 'true' ? '.yn-yes' : '.yn-no').click({ force: true 
 await page.waitForSelector('.yn-btn.is-right');
 if (shots) await page.screenshot({ path: `${shots}/yesno.png` });
 step(`sentence: listen and build "${sentence}" from word tiles; "${text}" → yes/no (${truth})`);
+await page.evaluate(() => (window.__manualSentence = false));
 await page.evaluate(() => (window.__manualReading = false));
 await page.waitForSelector('.reward-actions:not([hidden])', { timeout: 60000 });
 let s = await state();

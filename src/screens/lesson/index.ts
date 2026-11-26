@@ -1,5 +1,5 @@
 import { Bix } from '../../art/bix';
-import { hasPart2, levelById, partSteps, sentenceCount, topicById, type StepType } from '../../content';
+import { gapCount, hasPart2, levelById, partSteps, sentenceCount, topicById, type StepType } from '../../content';
 import { h } from '../../lib/dom';
 import { limitReached } from '../../lib/usage';
 import { currentLevel } from '../../lib/level';
@@ -18,6 +18,7 @@ import { runSpell, spellWords } from './spell';
 import { runSentence } from './sentence';
 import { runWrite, writeWords } from './write';
 import { runText } from './text';
+import { runGap } from './gap';
 import { runReward } from './reward';
 import { Aborted, makeUI } from './shared';
 import { runSpeak } from './speak';
@@ -34,8 +35,8 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   // Starters units come in two parts: 1 = Listen & Say, 2 = Read & Write.
   const part: 1 | 2 = !review && ctx.params.part === '2' && hasPart2(topic) ? 2 : 1;
   const steps = review ? topic.steps : partSteps(topic, part);
-  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸', chant: '🥁', read: '📖', spell: '🔤', sentence: '✍️', write: '⌨️', text: '📃' };
-  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': topic.playRounds ?? level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2, read: readRounds(topic.words), spell: spellWords(topic.words).length, sentence: sentenceCount(topic.words), write: writeWords(topic.words).length, text: topic.text?.questions.length ?? 0 };
+  const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸', chant: '🥁', read: '📖', spell: '🔤', sentence: '✍️', write: '⌨️', text: '📃', gap: '🧩' };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': topic.playRounds ?? level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2, read: readRounds(topic.words), spell: spellWords(topic.words).length, sentence: sentenceCount(topic.words), write: writeWords(topic.words).length, text: topic.text?.questions.length ?? 0, gap: gapCount(topic.words) };
   const total = steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });
@@ -82,7 +83,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   (async () => {
     try {
       await ui.pause(300);
-      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay, 'do-it': runDoIt, chant: runChant, read: runRead, spell: runSpell, sentence: runSentence, write: runWrite, text: runText };
+      const RUN: Record<StepType, (u: typeof ui) => Promise<void>> = { listen: runListen, say: runSpeak, 'tap-picture': runPlay, 'do-it': runDoIt, chant: runChant, read: runRead, spell: runSpell, sentence: runSentence, write: runWrite, text: runText, gap: runGap };
       for (const [i, step] of steps.entries()) {
         ui.setStep(i);
         await RUN[step](ui);

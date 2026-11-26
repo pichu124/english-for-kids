@@ -176,3 +176,8 @@
   .lesson-body:has(.text-read) .lesson-bix { width: 16%; }
   .lesson-body:has(.text-read) .lesson-bix .bix-bubble { display: none; }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+  .gap { gap: 10px; }
+  .gap-sentence { font-size: 20px; padding: 6px 14px; border-radius: 14px; }
+  .gap-opts { gap: 8px; }
+}

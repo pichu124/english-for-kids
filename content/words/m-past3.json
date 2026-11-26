@@ -1,0 +1,83 @@
+{
+  "topic": "past3",
+  "words": [
+    {
+      "id": "ran",
+      "text": "ran",
+      "topic": "past3",
+      "image": {
+        "emoji": "🏃"
+      },
+      "sentence": "I ran to the park.",
+      "accept": [
+        "run",
+        "rann"
+      ]
+    },
+    {
+      "id": "sang",
+      "text": "sang",
+      "topic": "past3",
+      "image": {
+        "emoji": "🎤"
+      },
+      "sentence": "We sang a song at the party.",
+      "accept": [
+        "sing",
+        "sung"
+      ]
+    },
+    {
+      "id": "drove",
+      "text": "drove",
+      "topic": "past3",
+      "image": {
+        "emoji": "🚗"
+      },
+      "sentence": "Dad drove us to the beach.",
+      "accept": [
+        "drive",
+        "droove"
+      ]
+    },
+    {
+      "id": "flew",
+      "text": "flew",
+      "topic": "past3",
+      "image": {
+        "emoji": "✈️"
+      },
+      "sentence": "We flew to London in a plane.",
+      "accept": [
+        "fly",
+        "flu"
+      ]
+    },
+    {
+      "id": "rode",
+      "text": "rode",
+      "topic": "past3",
+      "image": {
+        "emoji": "🐎"
+      },
+      "sentence": "I rode a horse on the farm.",
+      "accept": [
+        "ride",
+        "road"
+      ]
+    },
+    {
+      "id": "came",
+      "text": "came",
+      "topic": "past3",
+      "image": {
+        "emoji": "👋"
+      },
+      "sentence": "My friends came to my house.",
+      "accept": [
+        "come",
+        "kame"
+      ]
+    }
+  ]
+}

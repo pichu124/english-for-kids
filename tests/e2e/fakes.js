@@ -95,7 +95,7 @@ setInterval(() => {
 // Sentence step: build the sentence word by word; answer yes/no.
 setInterval(() => {
   if (window.__manualReading) return;
-  const b = document.querySelector('.sentence-build[data-sentence]');
+  const b = window.__manualSentence ? null : document.querySelector('.sentence-build[data-sentence]');
   if (b) {
     const words = b.getAttribute('data-sentence').split(/\s+/);
     const n = b.querySelectorAll('.sb-gap.is-filled').length;
@@ -120,4 +120,11 @@ setInterval(() => {
   }
   const q = window.__manualText ? null : document.querySelector('.tx-ask[data-answer]');
   if (q && !document.querySelector('.tx-opt.is-right')) document.querySelector(`.tx-opt[data-k="${q.getAttribute('data-answer')}"]`)?.click();
+}, 150);
+
+// Gap fill: choose the missing word.
+setInterval(() => {
+  if (window.__manualReading || window.__manualGap) return;
+  const g = document.querySelector('.gap[data-answer]');
+  if (g && !g.querySelector('.gap-opt.is-right')) [...g.querySelectorAll('.gap-opt')].find((b) => b.getAttribute('data-word') === g.getAttribute('data-answer'))?.click();
 }, 150);

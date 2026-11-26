@@ -1,0 +1,73 @@
+{
+  "id": "l3-house",
+  "level": "L3",
+  "topic": "house",
+  "order": 24,
+  "title": "Around the House",
+  "titleVi": "Đồ trong nhà",
+  "icon": "🏠",
+  "color": "#bde0fe",
+  "intro": "What can we find around the house?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "House block",
+    "style": "brick",
+    "color": "#e9c46a"
+  },
+  "words": [
+    "stairs",
+    "roof",
+    "towel",
+    "blanket",
+    "toothbrush",
+    "toothpaste"
+  ],
+  "parentTip": {
+    "vi": "Lúc đánh răng, hỏi con \"Where is your toothbrush? Where is the toothpaste?\"",
+    "say": "Where is your toothbrush?"
+  },
+  "chat": {
+    "ask": "Do you brush your teeth every day?",
+    "yes": "Great! Clean teeth are happy teeth!",
+    "no": "Let's brush them now! Brush, brush!"
+  },
+  "text": {
+    "title": "Bedtime",
+    "lines": [
+      "At eight o'clock, Max goes up the stairs.",
+      "He has a bath and uses a big towel.",
+      "Then he brushes his teeth with his blue toothbrush.",
+      "He gets into bed under his warm blanket. Good night, Max!"
+    ],
+    "questions": [
+      {
+        "q": "What does Max do first?",
+        "options": [
+          "He goes up the stairs.",
+          "He reads a book.",
+          "He eats dinner."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What colour is his toothbrush?",
+        "options": [
+          "red",
+          "blue",
+          "green"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where does Max sleep?",
+        "options": [
+          "under his blanket",
+          "on the roof",
+          "in the bath"
+        ],
+        "answer": 0
+      }
+    ]
+  },
+  "gap": true
+}

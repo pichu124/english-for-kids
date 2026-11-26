@@ -32,5 +32,6 @@
     "ask": "Do you like trains?",
     "yes": "Choo, choo! Me too!",
     "no": "Okay! Taxis are fast!"
-  }
+  },
+  "gap": true
 }

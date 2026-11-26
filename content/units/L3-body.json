@@ -1,0 +1,34 @@
+{
+  "id": "l3-body",
+  "level": "L3",
+  "topic": "body",
+  "order": 23,
+  "title": "My Body 2",
+  "titleVi": "Cơ thể (2)",
+  "icon": "💪",
+  "color": "#ffc8dd",
+  "intro": "Let's learn more about our bodies!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Body block",
+    "style": "plain",
+    "color": "#ffc8dd"
+  },
+  "words": [
+    "head",
+    "neck",
+    "shoulder",
+    "stomach",
+    "knee",
+    "teeth"
+  ],
+  "parentTip": {
+    "vi": "Chơi \"Simon says\": \"Touch your knee! Touch your shoulder!\". Cho con làm người ra lệnh.",
+    "say": "Touch your knee!"
+  },
+  "chat": {
+    "ask": "Can you touch your knees?",
+    "yes": "Great! Now touch your head!",
+    "no": "Let's try! Bend down!"
+  }
+}

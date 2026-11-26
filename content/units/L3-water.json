@@ -1,0 +1,33 @@
+{
+  "id": "l3-water",
+  "level": "L3",
+  "topic": "water",
+  "order": 26,
+  "title": "Water and Land",
+  "titleVi": "Sông, hồ, thác",
+  "icon": "🌊",
+  "color": "#48cae4",
+  "intro": "Let's go to the river!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "River block",
+    "style": "gold",
+    "color": "#48cae4"
+  },
+  "words": [
+    "river",
+    "lake",
+    "waterfall",
+    "rock",
+    "wave"
+  ],
+  "parentTip": {
+    "vi": "Xem tranh phong cảnh cùng con và hỏi \"Is this a river or a lake?\"",
+    "say": "Is this a river or a lake?"
+  },
+  "chat": {
+    "ask": "Do you like swimming in a lake?",
+    "yes": "Splash! Me too!",
+    "no": "Okay! The sea is fun too!"
+  }
+}

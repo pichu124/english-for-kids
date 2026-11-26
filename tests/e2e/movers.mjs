@@ -43,7 +43,7 @@ await page.goto(`${base}/?unit=l3-health&part=2`);
 await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.progress-step');
 const icons = (await page.locator('.progress-step').allTextContents()).join(' ');
-if (icons !== '📖 ⌨️ ✍️ 📃 🎁') fail('Movers part 2 = read, write, sentence, text: ' + icons);
+if (icons !== '⌨️ ✍️ 📃 🎁') fail('Movers part 2 = write, sentence, text: ' + icons);
 await page.evaluate(() => { window.__manualWrite = true; window.__manualText = true; window.__manualReading = false; });
 await page.waitForSelector('.write[data-word]', { timeout: 60000 });
 await page.waitForTimeout(400);
@@ -85,6 +85,35 @@ if (shots) await page.screenshot({ path: `${shots}/movers-text.png` });
 await page.evaluate(() => { window.__manualReading = false; window.__manualText = false; });
 await page.waitForSelector('.reward-actions:not([hidden])', { timeout: 60000 });
 step('text: "Tom Is Ill" + questions; 🔊 reads it; a slip wiggles; then the reward');
+
+// Gap fill (only in units checked by hand, e.g. In Town): no picture, choose the missing word.
+await page.addInitScript(() => (window.__manualGap = true)); // survives the reload below
+await page.goto(`${base}/?unit=l3-town&part=2`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.progress-step');
+if ((await page.locator('.progress-step').allTextContents())[0] !== '🧩') fail('In Town part 2 starts with the gap fill');
+await page.waitForSelector('.gap[data-answer]', { timeout: 30000 });
+await page.waitForTimeout(300);
+const gapAns = await page.locator('.gap').getAttribute('data-answer');
+if (await page.locator('.gap .pic').count()) fail('gap fill shows no picture');
+if ((await page.locator('.gap-opt').count()) !== 3) fail('three words to choose from');
+await page.locator(`.gap-opt:not([data-word="${gapAns}"])`).first().click({ force: true });
+await page.waitForTimeout(300);
+if (await page.locator('.gap-blank.is-filled').count()) fail('a wrong word does not fill the gap');
+await page.locator(`.gap-opt[data-word="${gapAns}"]`).click({ force: true });
+await page.waitForSelector('.gap-blank.is-filled');
+if ((await page.locator('.gap-blank').textContent()) !== gapAns) fail('the gap shows the word');
+if (shots) await page.screenshot({ path: `${shots}/movers-gap.png` });
+await page.evaluate(() => (window.__manualGap = false));
+step(`gap fill: "${await page.locator('.gap-sentence').textContent()}"`);
+await page.waitForSelector('.reward-actions:not([hidden])', { timeout: 90000 });
+
+// Drawn pictures for words without an old emoji (body parts, household things)
+await page.goto(`${base}/?unit=l3-body`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.listen .pic-drawing svg');
+if (shots) await page.screenshot({ path: `${shots}/movers-body.png` });
+step('drawn pictures: a child with the body part circled');
 
 // Movers stories open after their unit
 await page.evaluate(() => { const s = JSON.parse(localStorage.getItem('efk.v1')); s.topics['l3-weather'] = { completed: 1, lastDone: '2026-11-20' }; localStorage.setItem('efk.v1', JSON.stringify(s)); });

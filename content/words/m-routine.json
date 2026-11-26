@@ -1,0 +1,84 @@
+{
+  "topic": "routine",
+  "words": [
+    {
+      "id": "get-up",
+      "text": "get up",
+      "topic": "routine",
+      "image": {
+        "emoji": "⏰"
+      },
+      "sentence": "I always get up at seven o'clock.",
+      "accept": [
+        "getup",
+        "get-up",
+        "wake up"
+      ]
+    },
+    {
+      "id": "have-a-shower",
+      "text": "have a shower",
+      "topic": "routine",
+      "image": {
+        "emoji": "🚿"
+      },
+      "sentence": "I sometimes have a shower in the morning.",
+      "accept": [
+        "shower",
+        "take a shower"
+      ]
+    },
+    {
+      "id": "get-dressed",
+      "text": "get dressed",
+      "topic": "routine",
+      "image": {
+        "emoji": "👕"
+      },
+      "sentence": "I get dressed for school.",
+      "accept": [
+        "dressed",
+        "get dress"
+      ]
+    },
+    {
+      "id": "have-breakfast",
+      "text": "have breakfast",
+      "topic": "routine",
+      "image": {
+        "emoji": "🥣"
+      },
+      "sentence": "I always have breakfast with my family.",
+      "accept": [
+        "breakfast",
+        "eat breakfast"
+      ]
+    },
+    {
+      "id": "go-to-school",
+      "text": "go to school",
+      "topic": "routine",
+      "image": {
+        "emoji": "🏫"
+      },
+      "sentence": "I go to school by bus.",
+      "accept": [
+        "school",
+        "go school"
+      ]
+    },
+    {
+      "id": "go-to-bed",
+      "text": "go to bed",
+      "topic": "routine",
+      "image": {
+        "emoji": "🛏️"
+      },
+      "sentence": "I never go to bed late.",
+      "accept": [
+        "bed",
+        "go bed"
+      ]
+    }
+  ]
+}
