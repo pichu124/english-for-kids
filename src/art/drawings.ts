@@ -7,7 +7,7 @@ const INK = '#1d2440';
 const S = `stroke="${INK}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
 
 export const BODY_PARTS = ['head', 'neck', 'shoulder', 'stomach', 'knee', 'teeth'] as const;
-export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock', 'above', 'below', 'near', 'opposite', 'inside', 'outside', 'climb', 'hop', 'skip', 'kick', 'catch', 'throw', 'planet'] as const;
+export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock', 'above', 'below', 'near', 'opposite', 'inside', 'outside', 'climb', 'hop', 'skip', 'kick', 'catch', 'throw', 'planet', 'cup'] as const;
 
 const child = `
   <rect x="38" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/><rect x="52" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/>
@@ -77,6 +77,7 @@ const ball = (x: number, y: number, r = 6) => `<circle cx="${x}" cy="${y}" r="${
 const whoosh = (pts: string) => `<path d="${pts}" stroke="#4cc9f0" stroke-width="3" fill="none" stroke-linecap="round"/>`;
 
 const ICON_SVG: Record<string, string> = {
+  cup: `<path d="M22 34 H70 V62 Q70 82 46 82 Q22 82 22 62 Z" fill="#4cc9f0" ${S}/><path d="M70 42 Q88 42 88 54 Q88 66 70 66" fill="none" stroke="${INK}" stroke-width="7"/><path d="M70 42 Q84 42 84 54 Q84 64 70 64" fill="none" stroke="#4cc9f0" stroke-width="3"/><path d="M14 88 H82" stroke="${INK}" stroke-width="4" stroke-linecap="round"/><path d="M30 44 V58" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".7"/>`,
   planet: `<circle cx="50" cy="50" r="26" fill="#ff9f1c" ${S}/><path d="M28 40 Q50 34 72 42 M26 54 Q50 50 74 58" stroke="#e76f51" stroke-width="4" fill="none" opacity=".7"/><ellipse cx="50" cy="52" rx="44" ry="11" fill="none" stroke="${INK}" stroke-width="7" transform="rotate(-14 50 52)"/><ellipse cx="50" cy="52" rx="44" ry="11" fill="none" stroke="#ffd166" stroke-width="3.5" transform="rotate(-14 50 52)"/><path d="M27 63 Q50 76 74 60" stroke="#ff9f1c" stroke-width="9" fill="none" transform="rotate(-6 50 60)" opacity="0"/><circle cx="14" cy="18" r="2.5" fill="#ffd166"/><circle cx="86" cy="82" r="2" fill="#ffd166"/><circle cx="84" cy="16" r="1.8" fill="#ffd166"/>`,
   climb: `<path d="M30 4 V98 M70 4 V98" stroke="#8d5a2b" stroke-width="5" stroke-linecap="round"/>${[14, 30, 46, 62, 78, 94].map((y) => `<path d="M30 ${y} H70" stroke="#bc8a5f" stroke-width="4" stroke-linecap="round"/>`).join('')}${kidPose({ armL: [[42, 40], [36, 28], [34, 14]], armR: [[58, 40], [64, 34], [66, 30]], legL: [[45, 63], [38, 72], [36, 78]], legR: [[55, 63], [60, 78], [62, 94]], dy: 0 })}`,
   hop: `${ground}${kidPose({ armL: [[42, 40], [32, 46], [26, 40]], armR: [[58, 40], [68, 46], [74, 40]], legL: [[46, 63], [46, 76], [46, 84]], legR: [[54, 63], [62, 72], [68, 66]], dy: -2 })}${whoosh('M38 92 Q46 86 54 92')}`,

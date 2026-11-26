@@ -36,7 +36,6 @@
       },
       "sentence": "Wow! I'm surprised!",
       "accept": [
-        "surprise",
         "suprised"
       ]
     },
@@ -49,8 +48,7 @@
       },
       "sentence": "I'm bored. Let's play a game!",
       "accept": [
-        "board",
-        "boring"
+        "board"
       ]
     }
   ]

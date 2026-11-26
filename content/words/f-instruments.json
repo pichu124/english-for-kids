@@ -26,7 +26,7 @@
         "violins",
         "fiddle"
       ],
-      "def": "You play this wooden instrument with a bow under your chin."
+      "def": "You hold this under your chin and play it with a bow."
     },
     {
       "id": "trumpet",
@@ -39,7 +39,7 @@
       "accept": [
         "trumpets"
       ],
-      "def": "You blow into this loud metal instrument."
+      "def": "This small metal instrument has got three buttons. You blow into it."
     },
     {
       "id": "saxophone",

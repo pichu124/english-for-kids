@@ -37,7 +37,6 @@
       "sentence": "This is number three.",
       "accept": [
         "3",
-        "tree",
         "free"
       ]
     },

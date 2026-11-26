@@ -15,7 +15,10 @@
     "color": "#e9c46a"
   },
   "words": [
-    "stairs",
+    {
+      "id": "stairs",
+      "play": "Where are the stairs?"
+    },
     "roof",
     "towel",
     "blanket",

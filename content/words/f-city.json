@@ -75,8 +75,7 @@
       },
       "sentence": "My sister studies science at university.",
       "accept": [
-        "universities",
-        "college"
+        "universities"
       ],
       "def": "Students go here to study after they finish school."
     }

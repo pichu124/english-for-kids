@@ -24,8 +24,7 @@
       },
       "sentence": "If it's sunny, I'll wear my sunglasses.",
       "accept": [
-        "sun glasses",
-        "glasses"
+        "sun glasses"
       ],
       "def": "You wear these over your eyes when the sun is very bright."
     }

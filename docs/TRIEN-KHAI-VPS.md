@@ -1,6 +1,6 @@
 # Cài Bix English lên VPS InterData
 
-Máy: VPS InterData đặt tại Việt Nam, IP `103.195.238.114`, Ubuntu 24.04, Node 22, giờ máy +07, người dùng `casa`. Trên máy đã có hai app: CASA Mầm non (`casa-school.duckdns.org`) và Chăm sóc lead (`casa-lead.duckdns.org`). Caddy lo HTTPS cho cả hai. Thông tin máy lấy từ `pichu124/casa-mamnon` (`docs/MAY-CHU-THU-INTERDATA.md`) và `pichu124/pichu124-casa-lead` (`docs/TRIEN-KHAI.md`).
+Máy: VPS InterData đặt tại Việt Nam, IP `<IP máy chủ>`, Ubuntu 24.04, Node 22, giờ máy +07, người dùng riêng của máy. Trên máy đã có hai app: CASA Mầm non (`casa-school.duckdns.org`) và Chăm sóc lead (`casa-lead.duckdns.org`). Caddy lo HTTPS cho cả hai. Thông tin máy lấy từ `pichu124/casa-mamnon` (`docs/MAY-CHU-THU-INTERDATA.md`) và `pichu124/pichu124-casa-lead` (`docs/TRIEN-KHAI.md`).
 
 Bix English chạy **bên cạnh**, không đụng gì của hai app kia:
 
@@ -15,14 +15,14 @@ Bix English chạy **bên cạnh**, không đụng gì của hai app kia:
 
 Chỗ chung duy nhất là Caddy. Tệp `/etc/caddy/Caddyfile` đã có dòng `import /etc/caddy/sites/*.caddy`, nên app này dùng **tệp riêng**. Không sửa tệp chính, không đụng tệp của app khác.
 
-**Cách làm:** đăng nhập bằng `ssh casa@103.195.238.114`, rồi **dán từng dòng một**. Chờ dấu nhắc hiện lại rồi mới dán dòng tiếp: dán cả khối một lúc dễ hỏng mà không báo lỗi.
+**Cách làm:** đăng nhập bằng `ssh <người dùng>@<IP máy chủ>`, rồi **dán từng dòng một**. Chờ dấu nhắc hiện lại rồi mới dán dòng tiếp: dán cả khối một lúc dễ hỏng mà không báo lỗi.
 
 > **Lưu ý:** tài liệu của casa-mamnon ghi máy này sẽ chuyển sang **đứng tên trường** và sắp chứa dữ liệu thật của trẻ. Bix English là trang tĩnh, không chạy dịch vụ, không mở cổng mới, không giữ dữ liệu, nên gần như không thêm rủi ro cho hai app kia. Nhưng khi máy chính thức thuộc về trường, nên chuyển Bix English sang chỗ khác (Vercel hoặc VPS riêng). Gỡ ra mất 1 phút, xem mục cuối.
 
 ## 0. Chuẩn bị (không cần vào VPS)
 
 1. **Đưa mã vào `main`.** Máy chủ chỉ lấy nhánh `main`, giống luật của hai app kia. Việc làm xong được gộp từ nhánh làm việc vào `main` bằng pull request.
-2. **Tên miền tạm:** vào https://www.duckdns.org bằng tài khoản đã tạo `casa-school`, thêm tên `bix-english`. Ô "current ip" điền `103.195.238.114`, bấm **update ip**.
+2. **Tên miền tạm:** vào https://www.duckdns.org bằng tài khoản đã tạo `casa-school`, thêm tên `bix-english`. Ô "current ip" điền `<IP máy chủ>`, bấm **update ip**.
    Nếu tên `bix-english` đã có người lấy, chọn tên khác, rồi thay ở ba chỗ: tệp Caddy (mục 3), các lệnh `curl` bên dưới, và biến `TEN_MIEN` trong `scripts/cap-nhat-vps.sh`.
 
 ## 1. Lấy mã và build
@@ -58,7 +58,7 @@ Vì sao build ra `dist/` rồi mới chép sang `/var/www/bix-english`: lúc bui
 getent hosts bix-english.duckdns.org
 ```
 
-Phải in `103.195.238.114  bix-english.duckdns.org`. Chưa ra thì chờ vài phút sau khi bấm update ip trên duckdns.
+Phải in `<IP máy chủ>  bix-english.duckdns.org`. Chưa ra thì chờ vài phút sau khi bấm update ip trên duckdns.
 
 ## 3. HTTPS qua Caddy
 

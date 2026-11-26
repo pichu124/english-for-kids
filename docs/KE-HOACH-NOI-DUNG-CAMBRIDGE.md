@@ -387,6 +387,12 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 4 truyện mới: Bix at the Museum, Bix Goes Skiing, The Noisy Band, Grandpa's Adventures (Flyers có 10 truyện);
   - trò chơi **Riddles** trong Games (chỉ hiện ở bậc có định nghĩa, tức Flyers): Bix đọc một định nghĩa ("This slow animal has got a hard shell on its back."), bé chạm vào 1 trong 4 hình. 5 lượt, chọn nhầm thì hình lắc nhẹ và Bix đọc lại. Nút "Hôm nay" ở bậc Flyers luân phiên thêm trò này;
   - trên điện thoại, menu Games có 5 trò vẫn vừa một hàng (thẻ tự co lại, ẩn bóng nói của Bix).
+- **Đợt sửa lỗi sau review 4 vai** (lập trình viên, giáo viên tiếng Anh, phụ huynh và bé dùng thử, quyền riêng tư và offline):
+  - code: học từ "Hôm nay" mà bấm xem áo mới vẫn tính là xong bài; nút Back của Android về màn hình chính thay vì thoát app; dữ liệu và file sao lưu hỏng được làm sạch, app không bao giờ trắng màn hình (có màn dự phòng dẫn vào khu bố mẹ); ôn tập không còn 2 hình cùng tên (orange màu/quả); thử micro rồi quay ra thì micro dừng hẳn; đọc đoạn văn không chen nhau; lật thẻ chỉ kết thúc một lần; câu "No" trong thi thử không còn đúng với hình; link `?unit=` đặt bậc cho đúng bé đang chơi; "Tải bản mới nhất" không xoá bản offline khi mất mạng; app đang mở lâu vẫn tự kiểm tra bản mới; chữ "máy nghe" tối đa 40 ký tự;
+  - nội dung: bỏ các từ "chấp nhận gần đúng" chấp nhận đúng lỗi bài đang dạy (run cho ran…) hoặc một từ khác (ten cho tent…), bỏ chuỗi không hợp với trẻ; sửa câu hỏi truyện, lời nhắc sai ngữ pháp ("Who has got a cold?", "Where are the stairs?"), định nghĩa trùng nhau hoặc lộ đáp án, câu điền từ có 2 đáp án, "Colors" → "Colours", bỏ chữ "wrong" trong một câu hỏi; hình cái cốc vẽ riêng (trước trùng ☕ với coffee), 🌡️ cho temperature trong bài thời tiết;
+  - giao diện: bản đồ trên tablet dựng đứng cuộn dọc, thấy đủ đảo; màn kết quả bài thi vừa điện thoại; bóng nói của Bix không che nút trên điện thoại; nút loa không đè chữ/bạn nhỏ; bàn phím khu bố mẹ hiện đủ; ABC trên tablet dựng đứng xếp nhiều cột; khu bố mẹ gập theo bậc (bài chưa học một dòng); nút "📖 Read & Write" ngay sau phần 1; nút cuối trò chơi không che kết quả; thêm bé phải có tên;
+  - kiểm thử: thêm kiểm thử làm sạch dữ liệu và file sao lưu, nút Back, mọi đảo trên bản đồ chạm tới được, màn kết quả bài thi trên điện thoại;
+  - để sau: phím chữ Movers/Flyers trên điện thoại còn 42 px; tablet dựng đứng vẫn là bố cục ngang kéo dài; chưa thêm Content-Security-Policy cho máy chủ.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

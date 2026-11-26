@@ -16,14 +16,23 @@ export async function runText(ui: LessonUI): Promise<void> {
   const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Read to me' }, h('span', { class: 'icon-speaker' }));
   const qbox = h('div', { class: 'tx-q' });
   ui.stage.replaceChildren(h('div', { class: 'text-read' }, h('article', { class: 'tx-card' }, h('h3', { class: 'tx-title' }, t.title), lines, hear), qbox));
+  // One reading at a time: a second tap is ignored, and an answer tap stops the reading
+  // (both share the one speech voice, so they would cut each other off).
+  let reading = 0;
+  const stopReading = () => {
+    reading = 0;
+    lines.forEach((p) => p.classList.remove('is-now'));
+  };
   hear.addEventListener('click', async () => {
+    if (reading) return;
     sfx.tap();
+    const me = (reading = Date.now());
     for (const [i, l] of t.lines.entries()) {
-      if (!ui.ctx.alive()) return;
+      if (!ui.ctx.alive() || reading !== me) return;
       lines.forEach((p, j) => p.classList.toggle('is-now', j === i));
       await say(l);
     }
-    lines.forEach((p) => p.classList.remove('is-now'));
+    if (reading === me) stopReading();
   });
   await ui.talk("Let's read a story. Then answer the questions!", 'happy', 'Read and answer! 📃');
   for (const q of t.questions) {
@@ -33,6 +42,7 @@ export async function runText(ui: LessonUI): Promise<void> {
     let misses = 0;
     for (;;) {
       const tapped = await ui.tapAny<HTMLElement>(opts);
+      stopReading();
       if (Number(tapped.dataset.k) === q.answer) {
         sfx.success();
         tapped.classList.add('is-right');

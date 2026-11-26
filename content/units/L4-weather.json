@@ -22,7 +22,10 @@
     {
       "id": "temperature",
       "sentence": "The temperature today is thirty degrees.",
-      "def": "This tells you how hot or cold it is."
+      "def": "This number tells you how hot or cold it is.",
+      "image": {
+        "emoji": "🌡️"
+      }
     }
   ],
   "parentTip": {

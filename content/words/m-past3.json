@@ -10,7 +10,6 @@
       },
       "sentence": "I ran to the park.",
       "accept": [
-        "run",
         "rann"
       ]
     },
@@ -22,10 +21,7 @@
         "emoji": "🎤"
       },
       "sentence": "We sang a song at the party.",
-      "accept": [
-        "sing",
-        "sung"
-      ]
+      "accept": []
     },
     {
       "id": "drove",
@@ -36,7 +32,6 @@
       },
       "sentence": "Dad drove us to the beach.",
       "accept": [
-        "drive",
         "droove"
       ]
     },
@@ -49,7 +44,6 @@
       },
       "sentence": "We flew to London in a plane.",
       "accept": [
-        "fly",
         "flu"
       ]
     },
@@ -62,7 +56,6 @@
       },
       "sentence": "I rode a horse on the farm.",
       "accept": [
-        "ride",
         "road"
       ]
     },
@@ -75,7 +68,6 @@
       },
       "sentence": "My friends came to my house.",
       "accept": [
-        "come",
         "kame"
       ]
     }

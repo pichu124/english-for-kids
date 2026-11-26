@@ -18,7 +18,10 @@
     "coat",
     "scarf",
     "helmet",
-    "gloves"
+    {
+      "id": "gloves",
+      "play": "Where are the gloves?"
+    }
   ],
   "parentTip": {
     "vi": "Trước khi ra ngoài, hỏi con \"What do you need? Your coat? Your helmet?\"",

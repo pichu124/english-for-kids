@@ -11,7 +11,6 @@
       "topic": "colors",
       "accept": [
         "read",
-        "bread",
         "rad",
         "rid",
         "wed"
@@ -57,9 +56,7 @@
       "topic": "colors",
       "accept": [
         "yello",
-        "jello",
-        "hello",
-        "yolo"
+        "jello"
       ]
     },
     {
@@ -88,8 +85,6 @@
       "accept": [
         "pin",
         "ping",
-        "pig",
-        "think",
         "pinky"
       ]
     }

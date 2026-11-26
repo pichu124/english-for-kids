@@ -5,22 +5,22 @@
   "icon": "👀",
   "pages": [
     {
-      "text": "Good morning! Bix opens two eyes.",
+      "text": "Good morning! Bix wakes up and opens both eyes.",
       "scene": "☀️👀",
       "bix": true
     },
     {
-      "text": "Bix washes two hands.",
+      "text": "Splash! Bix washes both hands.",
       "scene": "👐💧",
       "bix": true
     },
     {
-      "text": "Bix smells breakfast with a nose. Mmm!",
+      "text": "Sniff, sniff! Bix's nose smells breakfast. Mmm!",
       "scene": "👃🍳",
       "bix": true
     },
     {
-      "text": "Bix eats with a mouth. Yum!",
+      "text": "Open your mouth, Bix! Yum, yum!",
       "scene": "👄🍞",
       "bix": true
     },

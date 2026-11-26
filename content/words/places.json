@@ -23,8 +23,7 @@
       },
       "sentence": "This is a shop. I can buy apples.",
       "accept": [
-        "shops",
-        "shopping"
+        "shops"
       ]
     },
     {

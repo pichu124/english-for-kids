@@ -151,7 +151,7 @@ export function profiles(): Profile[] {
     if (id === index.active) return { id, name: state.childName, active: true };
     let name = '';
     try {
-      name = (JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}') as Partial<State>).childName ?? '';
+      name = sanitizeState(JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}')).childName;
     } catch {
       /* unreadable — show as unnamed */
     }
@@ -203,17 +203,69 @@ function load(): State {
   try {
     const raw = localStorage.getItem(keyFor(index.active));
     if (!raw) return base;
-    const parsed = JSON.parse(raw) as Partial<State>;
-    return {
-      ...base,
-      ...parsed,
-      settings: { ...base.settings, ...(parsed.settings ?? {}) },
-      blocks: { ...base.blocks, ...(parsed.blocks ?? {}) },
-      review: parsed.review ?? {},
-    };
+    return sanitizeState(JSON.parse(raw));
   } catch {
     return base;
   }
+}
+
+// function declarations (hoisted): load() runs while this module is still initialising
+function isObj(v: unknown): v is Record<string, any> {
+  return !!v && typeof v === 'object' && !Array.isArray(v);
+}
+function num(v: unknown, d = 0): number {
+  return typeof v === 'number' && Number.isFinite(v) ? v : d;
+}
+/** Entries of an object that pass a check (anything else, e.g. null, is dropped). */
+function entries<T>(v: unknown, ok: (x: any) => boolean): Record<string, T> {
+  const out: Record<string, T> = {};
+  if (isObj(v)) for (const [k, x] of Object.entries(v)) if (ok(x)) out[k] = x as T;
+  return out;
+}
+
+/**
+ * Keep only well-formed parts of saved progress — data from an older version or a
+ * damaged backup file must never stop the app from opening.
+ */
+export function sanitizeState(raw: unknown): State {
+  const base = defaultState();
+  if (!isObj(raw)) return base;
+  const p = raw as Partial<State> & Record<string, unknown>;
+  const settings: Record<string, any> = isObj(p.settings) ? p.settings : {};
+  const blocks: Record<string, any> = isObj(p.blocks) ? p.blocks : {};
+  const s: State = {
+    ...base,
+    childName: typeof p.childName === 'string' ? p.childName.slice(0, 40) : '',
+    settings: { ...base.settings, ...settings, dailyLimitMin: num(settings.dailyLimitMin, 0), rate: num(settings.rate, base.settings.rate) },
+    topics: entries(p.topics, (x) => isObj(x) && (x.completed === undefined || typeof x.completed === 'number')),
+    words: entries(p.words, isObj),
+    blocks: {
+      inventory: entries(blocks.inventory, (x) => typeof x === 'number'),
+      placed: Array.isArray(blocks.placed) ? blocks.placed.filter((b: unknown) => isObj(b) && typeof b.type === 'string' && typeof b.x === 'number' && typeof b.y === 'number') : [],
+      totalEarned: num(blocks.totalEarned),
+    },
+    days: entries(p.days, isObj),
+    bonus: entries(p.bonus, (x) => typeof x === 'number'),
+    review: entries(p.review, (x) => isObj(x) && typeof x.box === 'number' && typeof x.due === 'string'),
+  };
+  for (const t of Object.values(s.topics)) t.completed = num(t.completed);
+  // Optional parts: keep them only when they have the right shape.
+  const keep = (k: keyof State, ok: (x: any) => boolean) => {
+    if (p[k] !== undefined && ok(p[k])) (s as Record<string, unknown>)[k] = p[k];
+  };
+  keep('outfit', isObj);
+  keep('outfitSeen', (x) => typeof x === 'number');
+  keep('chats', isObj);
+  keep('chatAnswers', isObj);
+  keep('celebrated', Array.isArray);
+  keep('adapt', (x) => isObj(x) && Array.isArray(x.recent));
+  keep('today', (x) => isObj(x) && typeof x.day === 'string' && Array.isArray(x.steps) && x.steps.every(isObj));
+  keep('todayDays', (x) => typeof x === 'number');
+  keep('tests', (x) => Array.isArray(x) && x.every((t: unknown) => isObj(t) && typeof t.day === 'string' && isObj(t.score)));
+  keep('letters', isObj);
+  keep('storiesRead', isObj);
+  keep('gardenSeen', (x) => typeof x === 'string');
+  return s;
 }
 
 export function getState(): State {
@@ -290,7 +342,7 @@ export function exportBackup(): Backup {
     if (id === index.active) profiles[id] = state;
     else {
       try {
-        profiles[id] = { ...defaultState(), ...(JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}') as Partial<State>) };
+        profiles[id] = sanitizeState(JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}'));
       } catch {
         profiles[id] = defaultState();
       }
@@ -309,7 +361,7 @@ export function checkBackup(b: unknown): string | null {
   if (!x.index || !ids.includes(x.index.active)) return 'File sao lưu bị hỏng (bé đang dùng).';
   for (const id of ids) {
     const p = x.profiles?.[id] as Partial<State> | undefined;
-    if (!p || typeof p !== 'object' || typeof p.topics !== 'object' || typeof p.words !== 'object' || typeof p.settings !== 'object') return `File sao lưu bị hỏng (dữ liệu của bé ${id}).`;
+    if (!isObj(p) || !isObj(p.topics) || !isObj(p.words) || !isObj(p.settings) || (p.childName !== undefined && typeof p.childName !== 'string')) return `File sao lưu bị hỏng (dữ liệu của bé ${id}).`;
   }
   return null;
 }

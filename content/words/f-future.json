@@ -11,10 +11,9 @@
       "sentence": "One day, people will travel to Mars in a spaceship.",
       "accept": [
         "space ship",
-        "spaceships",
-        "rocket"
+        "spaceships"
       ],
-      "def": "In the future, people will travel to other planets in this."
+      "def": "In stories about the future, people and aliens fly to faraway planets in this."
     },
     {
       "id": "machine",
@@ -27,7 +26,7 @@
       "accept": [
         "machines"
       ],
-      "def": "This has got parts that move. It does a job for people."
+      "def": "People use this to do work, like washing clothes. It has got parts that move."
     }
   ]
 }

@@ -10,8 +10,7 @@
       },
       "sentence": "I can't see the bridge because of the fog.",
       "accept": [
-        "foggy",
-        "frog"
+        "foggy"
       ],
       "def": "This is like a cloud near the ground. You cannot see far."
     },

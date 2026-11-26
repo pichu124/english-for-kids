@@ -62,6 +62,7 @@ function shell(ctx: Ctx, cls: string, title: string, body: HTMLElement, bix: Bix
 }
 
 function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string): void {
+  host.classList.add('is-finished');
   sfx.reward();
   confetti(document.body, 40);
   bix.setMood('happy');
@@ -82,6 +83,7 @@ function memory(ctx: Ctx): HTMLElement {
   let open: HTMLElement[] = [];
   let found = 0;
   let busy = false;
+  let finished = false;
 
   for (const w of shuffle([...words, ...words])) {
     const c = h(
@@ -111,7 +113,10 @@ function memory(ctx: Ctx): HTMLElement {
         bix.setMood('happy');
         await say(`${pick(PRAISE)} ${w.text}!`);
         bix.setMood('idle');
-        if (found === words.length && ctx.alive()) finish(ctx, host, bix, 'memory');
+        if (found === words.length && ctx.alive() && !finished) {
+          finished = true;
+          finish(ctx, host, bix, 'memory');
+        }
       } else {
         busy = true;
         await wait(1100);

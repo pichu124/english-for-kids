@@ -12,7 +12,7 @@
       "accept": [
         "butterflies"
       ],
-      "def": "This insect has got big, beautiful wings."
+      "def": "This insect has got four big, colourful wings. It flies from flower to flower."
     },
     {
       "id": "eagle",
@@ -53,7 +53,7 @@
       "accept": [
         "insects"
       ],
-      "def": "This small animal has got six legs. Ants and bees are these."
+      "def": "A ladybird or an ant is this. It is a small animal with six legs."
     },
     {
       "id": "octopus",
@@ -64,8 +64,7 @@
       },
       "sentence": "An octopus has got eight legs.",
       "accept": [
-        "octopuses",
-        "octopussy"
+        "octopuses"
       ],
       "def": "This sea animal has got eight long legs."
     },
@@ -78,8 +77,7 @@
       },
       "sentence": "The tortoise is old and very slow.",
       "accept": [
-        "tortoises",
-        "turtle"
+        "tortoises"
       ],
       "def": "This slow animal has got a hard shell on its back."
     }

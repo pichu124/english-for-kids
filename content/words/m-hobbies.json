@@ -23,8 +23,7 @@
       },
       "sentence": "I ride my bike in the park.",
       "accept": [
-        "rides",
-        "right"
+        "rides"
       ]
     },
     {

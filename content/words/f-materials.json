@@ -49,8 +49,7 @@
       },
       "sentence": "Cars are made of metal.",
       "accept": [
-        "metals",
-        "medal"
+        "metals"
       ],
       "def": "Spoons, cars and keys are often made of this. It is hard and strong."
     },
@@ -75,9 +74,7 @@
         "emoji": "🥛"
       },
       "sentence": "Be careful! The glass can break.",
-      "accept": [
-        "glasses"
-      ],
+      "accept": [],
       "def": "You can see through this. Windows are made of it."
     }
   ]

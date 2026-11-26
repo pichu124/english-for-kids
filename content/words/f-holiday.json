@@ -10,8 +10,7 @@
       },
       "sentence": "We're going to sleep in a tent.",
       "accept": [
-        "tents",
-        "ten"
+        "tents"
       ],
       "def": "You sleep in this when you go camping."
     },
@@ -39,10 +38,9 @@
       "sentence": "I'm going to put my water in my backpack.",
       "accept": [
         "backpacks",
-        "rucksack",
-        "school bag"
+        "rucksack"
       ],
-      "def": "You carry this bag on your back."
+      "def": "You carry your books and water in this bag when you go walking."
     },
     {
       "id": "torch",

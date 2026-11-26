@@ -18,21 +18,25 @@
     {
       "id": "a-cold",
       "sentence": "You've got a cold. You should stay in bed.",
-      "def": "When you have got this, you sneeze and your nose runs."
+      "def": "When you have got this, you sneeze and your nose runs.",
+      "play": "Which picture shows \"a cold\"?"
     },
     {
       "id": "cough",
       "sentence": "You've got a cough. You should drink some warm water.",
-      "def": "When you have got this, you make a loud noise from your throat."
+      "def": "When you have got this, you make a loud noise from your throat.",
+      "play": "Which picture shows \"a cough\"?"
     },
     {
       "id": "headache",
       "sentence": "You've got a headache. You shouldn't watch TV.",
-      "def": "When your head hurts, you have got this."
+      "def": "When your head hurts, you have got this.",
+      "play": "Which picture shows \"a headache\"?"
     },
     {
       "id": "stomach-ache",
-      "sentence": "You've got a stomach-ache. You shouldn't eat sweets."
+      "sentence": "You've got a stomach-ache. You shouldn't eat sweets.",
+      "play": "Which picture shows \"a stomach-ache\"?"
     },
     "earache"
   ],
@@ -81,7 +85,7 @@
     ],
     "questions": [
       {
-        "q": "What was wrong with Lucy?",
+        "q": "What was the matter with Lucy?",
         "options": [
           "a cough and a headache",
           "earache",

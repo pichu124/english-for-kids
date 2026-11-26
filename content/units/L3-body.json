@@ -20,7 +20,10 @@
     "shoulder",
     "stomach",
     "knee",
-    "teeth"
+    {
+      "id": "teeth",
+      "play": "Where are the teeth?"
+    }
   ],
   "parentTip": {
     "vi": "Chơi \"Simon says\": \"Touch your knee! Touch your shoulder!\". Cho con làm người ra lệnh.",

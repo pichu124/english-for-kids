@@ -243,7 +243,7 @@ for (const [file, mod] of Object.entries(bankFiles)) {
   }
 }
 
-const mentions = (sentence: string, text: string) =>
+export const mentions = (sentence: string, text: string) =>
   sentence.toLowerCase().replace(/[’']/g, "'").includes(text.toLowerCase().replace(/[’']/g, "'"));
 
 function buildUnit(file: string, u: UnitFile): Topic | null {

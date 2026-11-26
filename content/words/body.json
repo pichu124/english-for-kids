@@ -133,7 +133,6 @@
       "sentence": "This is my hand. I can wave.",
       "accept": [
         "hands",
-        "hen",
         "hant"
       ]
     },
@@ -147,8 +146,7 @@
       "sentence": "This is my leg. I can kick.",
       "accept": [
         "legs",
-        "lag",
-        "lake"
+        "lag"
       ]
     },
     {

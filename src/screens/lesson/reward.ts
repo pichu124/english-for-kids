@@ -8,9 +8,10 @@ import { ITEMS } from '../../art/outfit';
 import { confetti } from '../widgets';
 import { fixEmoji } from '../../lib/emoji';
 import { tipCard } from '../tip';
-import { todayRunning } from '../../lib/today';
+import { completeTodayStep, todayRunning } from '../../lib/today';
 import { todayNextButton } from '../today';
 import type { LessonUI } from './shared';
+import { hasPart2 } from '../../content';
 
 /** Step 4 — Reward: one building block for "My World". */
 export async function runReward(ui: LessonUI, part: 1 | 2 = 1): Promise<void> {
@@ -34,7 +35,9 @@ export async function runReward(ui: LessonUI, part: 1 | 2 = 1): Promise<void> {
   const clothes = newItem ? h('button', { class: 'btn btn-sun', 'aria-label': 'Bix' }, `${newItem.icon} New for Bix!`) : null;
   // Started from Today: one big "Next" instead of World/Home.
   const next = todayRunning() ? todayNextButton(ui.ctx) : null;
-  const actions = h('div', { class: 'reward-actions', hidden: true }, clothes, ...(next ? [next] : [world, home]));
+  // Part 1 done and the unit has Read & Write: offer it right here (no trip back to the map).
+  const part2 = !next && part === 1 && hasPart2(t) ? h('button', { class: 'btn btn-accent btn-part2', 'aria-label': 'Read and Write' }, '📖 Read & Write') : null;
+  const actions = h('div', { class: 'reward-actions', hidden: true }, clothes, ...(next ? [next] : [part2, world, home].filter((b): b is HTMLButtonElement => !!b)));
   ui.stage.replaceChildren(h('div', { class: 'reward' }, h('div', { class: 'reward-stage' }, chest, block), h('div', { class: 'reward-name' }, t.block.name), actions));
 
   sfx.reward();
@@ -54,13 +57,15 @@ export async function runReward(ui: LessonUI, part: 1 | 2 = 1): Promise<void> {
     if (clothes) {
       await ui.tap(clothes);
       sfx.tap();
+      completeTodayStep(); // the lesson is done even if the child goes to see the new clothes
       ui.ctx.go('wardrobe');
     }
     return;
   }
-  const tapped = await ui.tapAny(clothes ? [clothes, world, home] : [world, home]);
+  const tapped = await ui.tapAny([clothes, part2, world, home].filter((b): b is HTMLButtonElement => !!b));
   sfx.tap();
   if (tapped === clothes) ui.ctx.go('wardrobe');
+  else if (tapped === part2) ui.ctx.go('lesson', { topic: t.id, part: '2', t: String(Date.now()) });
   else ui.ctx.go(tapped === world ? 'world' : 'home', tapped === world ? { fresh: t.id } : {});
 }
 

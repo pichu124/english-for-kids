@@ -10,7 +10,6 @@
       },
       "sentence": "These are my glasses.",
       "accept": [
-        "glass",
         "glases"
       ]
     },

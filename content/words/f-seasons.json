@@ -63,8 +63,7 @@
       },
       "sentence": "December is the last month of the year.",
       "accept": [
-        "months",
-        "mouth"
+        "months"
       ],
       "def": "There are twelve of these in a year. January is one of them."
     }

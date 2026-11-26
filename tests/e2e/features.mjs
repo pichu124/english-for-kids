@@ -232,6 +232,15 @@ if (!(await page.locator('.game-done').count())) fail('naming 4 children should 
 if ((await page.locator('.kid.is-named').count()) !== 4) fail('4 children named, one left over');
 step('who is who: "Find Tom. He\'s got a blue T-shirt and he\'s reading a book." — 4 of 5 named');
 
+// Android back button: back from a game returns to the home map instead of leaving the app.
+await home();
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.waitForSelector('.games');
+await page.goBack();
+await page.waitForSelector('.home', { timeout: 5000 }).catch(() => fail('back from Games should show the home map'));
+if (!page.url().startsWith(base)) fail('back must not leave the app');
+step('Android back: from a game back to the home map (the app does not close)');
+
 // ---------- B7: stories ----------
 await home();
 if (!(await page.locator('.dock-btn[aria-label="Stories"].is-new').count())) fail('finishing Animals should open its story (dock glows)');

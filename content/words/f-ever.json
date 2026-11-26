@@ -9,9 +9,7 @@
         "emoji": "✈️"
       },
       "sentence": "Have you ever flown in a plane? Yes, I have!",
-      "accept": [
-        "flowed"
-      ]
+      "accept": []
     },
     {
       "id": "ridden",
@@ -22,7 +20,6 @@
       },
       "sentence": "I have ridden a camel in the desert.",
       "accept": [
-        "rode",
         "riden"
       ]
     },
@@ -34,10 +31,7 @@
         "emoji": "🍣"
       },
       "sentence": "Have you ever eaten sushi?",
-      "accept": [
-        "ate",
-        "eating"
-      ]
+      "accept": []
     },
     {
       "id": "seen",
@@ -48,7 +42,6 @@
       },
       "sentence": "I have seen a whale in the sea.",
       "accept": [
-        "saw",
         "scene"
       ]
     },
@@ -60,9 +53,7 @@
         "emoji": "⛰️"
       },
       "sentence": "My dad has climbed a mountain.",
-      "accept": [
-        "climb"
-      ]
+      "accept": []
     },
     {
       "id": "been",
@@ -73,8 +64,7 @@
       },
       "sentence": "Have you ever been to Paris?",
       "accept": [
-        "bean",
-        "gone"
+        "bean"
       ]
     }
   ]

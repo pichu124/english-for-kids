@@ -39,8 +39,7 @@
       },
       "sentence": "This is the wind. Whoosh!",
       "accept": [
-        "winds",
-        "windy"
+        "winds"
       ],
       "anim": "sway"
     }

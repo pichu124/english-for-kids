@@ -22,7 +22,10 @@
     "seventy",
     "eighty",
     "ninety",
-    "hundred"
+    {
+      "id": "hundred",
+      "play": "Where is a hundred?"
+    }
   ],
   "parentTip": {
     "vi": "Đếm theo chục khi leo cầu thang hay xếp đồ chơi: \"ten, twenty, thirty…\". Hỏi con tuổi của ông bà: \"How old is Grandpa?\"",

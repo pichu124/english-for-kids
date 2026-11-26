@@ -19,7 +19,10 @@
     "cup",
     "plate",
     "bottle",
-    "noodles",
+    {
+      "id": "noodles",
+      "play": "Where are the noodles?"
+    },
     "tea"
   ],
   "parentTip": {

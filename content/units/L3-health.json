@@ -15,12 +15,30 @@
     "color": "#ffc8dd"
   },
   "words": [
-    "a-cold",
-    "cough",
-    "headache",
-    "stomach-ache",
-    "temperature",
-    "medicine"
+    {
+      "id": "a-cold",
+      "play": "Who has got a cold?"
+    },
+    {
+      "id": "cough",
+      "play": "Who has got a cough?"
+    },
+    {
+      "id": "headache",
+      "play": "Who has got a headache?"
+    },
+    {
+      "id": "stomach-ache",
+      "play": "Who has got a stomach-ache?"
+    },
+    {
+      "id": "temperature",
+      "play": "Who has got a temperature?"
+    },
+    {
+      "id": "medicine",
+      "play": "Where is the medicine?"
+    }
   ],
   "parentTip": {
     "vi": "Chơi \"bác sĩ\": bố mẹ giả bị ốm, con hỏi \"What's the matter?\" rồi cho uống \"medicine\".",

@@ -3,11 +3,11 @@
   "level": "L2",
   "topic": "colors",
   "order": 1,
-  "title": "Colors",
+  "title": "Colours",
   "titleVi": "Màu sắc",
   "icon": "🎨",
   "color": "#9be06a",
-  "intro": "Let's learn colors!",
+  "intro": "Let's learn colours!",
   "playPrompt": "Touch {word}!",
   "block": {
     "name": "Rainbow block",
@@ -16,7 +16,7 @@
   },
   "casa": {
     "luaTuoi": "5-6",
-    "chuDe": "Colors",
+    "chuDe": "Colours",
     "monHoc": "Communication and Language"
   },
   "words": [

@@ -49,7 +49,7 @@
       ]
     },
     {
-      "s": "In the story, a little green ___ came from Mars.",
+      "s": "In the story, a little green ___ came from Mars. He said hello!",
       "answer": "alien",
       "options": [
         "rocket",

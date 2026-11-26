@@ -19,7 +19,7 @@ export async function runPlay(ui: LessonUI): Promise<void> {
   for (let round = 0; round < PLAY_ROUNDS; round++) {
     const nOptions = choicesFor(ui.level, words.length);
     const target = order[round];
-    const others = shuffle(words.filter((w) => w.id !== target.id)).slice(0, nOptions - 1);
+    const others = shuffle(words.filter((w) => w.id !== target.id && w.text !== target.text)).slice(0, nOptions - 1);
     const options = shuffle([target, ...others]);
     const cards = options.map((w) => {
       const c = wordCard(w, { label: false, cls: 'word-card-play pop' });

@@ -36,8 +36,7 @@
       },
       "sentence": "The king put on his gold crown.",
       "accept": [
-        "crowns",
-        "clown"
+        "crowns"
       ],
       "def": "Kings and queens wear this on their heads."
     },
@@ -61,10 +60,9 @@
       "image": {
         "emoji": "🧙"
       },
-      "sentence": "The wizard waved his magic stick.",
+      "sentence": "The wizard waved his magic wand.",
       "accept": [
-        "wizards",
-        "witch"
+        "wizards"
       ],
       "def": "In stories, this old man can do magic."
     }

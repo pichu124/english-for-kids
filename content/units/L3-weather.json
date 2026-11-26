@@ -15,10 +15,22 @@
     "color": "#8ecae6"
   },
   "words": [
-    "sunny",
-    "cloudy",
-    "windy",
-    "rainbow",
+    {
+      "id": "sunny",
+      "play": "Which picture is sunny?"
+    },
+    {
+      "id": "cloudy",
+      "play": "Which picture is cloudy?"
+    },
+    {
+      "id": "windy",
+      "play": "Which picture is windy?"
+    },
+    {
+      "id": "rainbow",
+      "play": "Where is the rainbow?"
+    },
     {
       "id": "rain",
       "sentence": "It's raining. Take your umbrella!",

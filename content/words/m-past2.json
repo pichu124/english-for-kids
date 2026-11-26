@@ -9,10 +9,7 @@
         "emoji": "🎉"
       },
       "sentence": "I had a party on my birthday.",
-      "accept": [
-        "head",
-        "hand"
-      ]
+      "accept": []
     },
     {
       "id": "made",
@@ -36,8 +33,7 @@
       },
       "sentence": "Dad took a photo of me.",
       "accept": [
-        "tuk",
-        "toke"
+        "tuk"
       ]
     },
     {
@@ -62,8 +58,7 @@
       },
       "sentence": "I wrote a letter to my friend.",
       "accept": [
-        "rote",
-        "road"
+        "rote"
       ]
     },
     {
@@ -75,8 +70,7 @@
       },
       "sentence": "Mum bought me a new coat.",
       "accept": [
-        "bot",
-        "boat"
+        "bot"
       ]
     }
   ]

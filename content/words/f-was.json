@@ -10,7 +10,6 @@
       },
       "sentence": "I was reading a book when the phone rang.",
       "accept": [
-        "read",
         "readin"
       ]
     },
@@ -22,9 +21,7 @@
         "emoji": "🍳"
       },
       "sentence": "Dad was cooking dinner when I got home.",
-      "accept": [
-        "cook"
-      ]
+      "accept": []
     },
     {
       "id": "sleeping",
@@ -34,9 +31,7 @@
         "emoji": "🛌"
       },
       "sentence": "The baby was sleeping, so we were very quiet.",
-      "accept": [
-        "sleep"
-      ]
+      "accept": []
     },
     {
       "id": "swimming",
@@ -46,9 +41,7 @@
         "emoji": "🏊"
       },
       "sentence": "We were swimming in the sea when it started to rain.",
-      "accept": [
-        "swim"
-      ]
+      "accept": []
     },
     {
       "id": "painting",
@@ -58,9 +51,7 @@
         "emoji": "🖌️"
       },
       "sentence": "Sara was painting a picture of her cat.",
-      "accept": [
-        "paint"
-      ]
+      "accept": []
     },
     {
       "id": "singing",
@@ -70,9 +61,7 @@
         "emoji": "🎤"
       },
       "sentence": "They were singing a song when the teacher came in.",
-      "accept": [
-        "sing"
-      ]
+      "accept": []
     }
   ]
 }

@@ -13,7 +13,7 @@
         "rockets",
         "racket"
       ],
-      "def": "People travel into space in this."
+      "def": "Today, astronauts fly up into space in this. It is long and it has got fire at the bottom."
     },
     {
       "id": "astronaut",
@@ -52,10 +52,9 @@
       },
       "sentence": "We live on the Earth.",
       "accept": [
-        "the earth",
-        "world"
+        "the earth"
       ],
-      "def": "This is the planet where we live."
+      "def": "This is our planet. It is the third planet from the sun."
     },
     {
       "id": "space",

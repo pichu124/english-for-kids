@@ -38,8 +38,7 @@
       },
       "sentence": "I ate a burger for lunch.",
       "accept": [
-        "eight",
-        "eat"
+        "eight"
       ],
       "play": "I ate a burger for lunch. Which picture?"
     },
@@ -52,7 +51,6 @@
       },
       "sentence": "I drank some milk.",
       "accept": [
-        "drunk",
         "drenk"
       ],
       "play": "I drank some milk. Which picture?"
@@ -66,7 +64,6 @@
       },
       "sentence": "I played football with my friends.",
       "accept": [
-        "play",
         "plaid"
       ],
       "play": "I played football with my friends. Which picture?"
@@ -79,10 +76,7 @@
         "emoji": "🏊"
       },
       "sentence": "Then I swam in the pool.",
-      "accept": [
-        "swim",
-        "swum"
-      ],
+      "accept": [],
       "play": "Then I swam in the pool. Which picture?"
     }
   ]

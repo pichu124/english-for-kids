@@ -47,6 +47,24 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     };
     await p.goto(base); await check('start');
     await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home'); await check('home');
+    {
+      // every island must be reachable: either inside the visible map or by scrolling the map
+      const m = await p.evaluate(() => {
+        const map = document.querySelector('.map');
+        const box = map.getBoundingClientRect();
+        const cs = getComputedStyle(map);
+        const canX = /(auto|scroll)/.test(cs.overflowX), canY = /(auto|scroll)/.test(cs.overflowY);
+        const lost = [...map.querySelectorAll('.island .island-name')].filter((el) => {
+          const r = el.getBoundingClientRect();
+          // position inside the map's scrollable content: nothing may sit above/left of where scrolling starts
+          const relTop = r.top - box.top + map.scrollTop, relLeft = r.left - box.left + map.scrollLeft;
+          if (relTop < -2 || relLeft < -2) return true;
+          return (!canY && (r.bottom > box.bottom + 2 || r.top < box.top - 2)) || (!canX && (r.right > box.right + 2 || r.left < box.left - 2));
+        });
+        return lost.map((el) => el.textContent);
+      });
+      if (m.length) report.push(`${vn} home map: ${m.length} islands cannot be reached (${m.slice(0, 3).join(', ')}…)`);
+    }
     for (const [btn, name] of [['My Words', 'book'], ['Bix', 'wardrobe'], ['Garden', 'garden'], ['Games', 'games'], ['Stories', 'stories'], ['My World', 'world'], ['Today', 'today'], ['Test', 'test'], ['ABC', 'abc']]) {
       await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
       await p.locator(btn === 'Today' ? '.home-today' : btn === 'Test' ? '.island-test' : `.dock-btn[aria-label="${btn}"]`).click({ force: true }); if (btn === 'Test') await p.waitForSelector('.test-q', { timeout: 15000 }); await check(name);
@@ -99,7 +117,7 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.island-test').click({ force: true }); await p.waitForSelector('.test');
     const seenT = new Set();
-    for (let i = 0; i < 600 && seenT.size < 3 && !(await p.locator('.test-result').count()); i++) {
+    for (let i = 0; i < 900 && !(await p.locator('.test-result').count()); i++) {
       const q = p.locator('.test-q[data-answer]');
       if (await q.count()) {
         const ans = await q.getAttribute('data-answer');
@@ -113,6 +131,7 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       await p.waitForTimeout(100);
     }
     if (seenT.size < 3) report.push(vn + ' Movers test screens seen: ' + [...seenT].join(',') + ' (missing some)');
+    if (await p.locator('.test-result').count()) { await p.waitForTimeout(800); await check('test-result'); } else report.push(vn + ' test-result: NOT REACHED');
     // Flyers: read a definition, type the word (the longest definitions).
     await p.goto(base + '/?unit=l4-subjects&part=2'); await p.evaluate(() => { window.__manualWrite = true; });
     await p.locator('.btn-play').click({ force: true });

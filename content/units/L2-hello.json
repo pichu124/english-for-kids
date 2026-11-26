@@ -20,14 +20,29 @@
     "monHoc": "Communication and Language"
   },
   "words": [
-    "hello",
-    "goodbye",
-    "thank-you",
-    "good-morning",
-    "how-are-you",
+    {
+      "id": "hello",
+      "play": "Which one says \"Hello\"?"
+    },
+    {
+      "id": "goodbye",
+      "play": "Which one says \"Goodbye\"?"
+    },
+    {
+      "id": "thank-you",
+      "play": "Which one says \"Thank you\"?"
+    },
+    {
+      "id": "good-morning",
+      "play": "Which one says \"Good morning\"?"
+    },
+    {
+      "id": "how-are-you",
+      "play": "Which one says \"How are you?\""
+    },
     {
       "id": "im-fine",
-      "play": "Which one is: I'm fine?"
+      "play": "Which one says \"I'm fine\"?"
     }
   ],
   "parentTip": {

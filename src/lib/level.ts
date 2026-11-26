@@ -20,6 +20,7 @@ export function setLevel(id: string): void {
  */
 let pendingUnit: string | null = null;
 let pendingPart: string | null = null;
+let pendingLevel: string | null = null;
 
 export function readDeepLink(): void {
   try {
@@ -29,14 +30,23 @@ export function readDeepLink(): void {
     if (unit && topicById(unit)) {
       pendingUnit = unit;
       pendingPart = q.get('part') === '2' ? '2' : null;
-      setLevel(topicById(unit)!.level);
+      pendingLevel = topicById(unit)!.level;
     } else if (level && levelById(level)) {
-      setLevel(level);
+      pendingLevel = level;
     }
     if (unit || level) history.replaceState(null, '', location.pathname);
   } catch {
     /* ignore malformed links */
   }
+}
+
+/**
+ * The level a link asked for, applied when a child taps Play — on several-children
+ * devices that is after they picked their animal, so it lands on the right child.
+ */
+export function applyPendingLevel(): void {
+  if (pendingLevel) setLevel(pendingLevel);
+  pendingLevel = null;
 }
 
 /** The unit (and part, for ?part=2) a link asked for (once). */

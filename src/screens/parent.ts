@@ -402,7 +402,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       const b = data as Backup;
       const kids = b.index.ids.map((id, i) => {
         const p = b.profiles[id];
-        const lessons = Object.values(p.topics).reduce((n, t) => n + (t?.completed ?? 0), 0);
+        const lessons = Object.values(p.topics).reduce((n, t) => n + (typeof t?.completed === 'number' ? t.completed : 0), 0);
         return `${p.childName || `Bé ${i + 1}`} (${lessons} lượt học)`;
       });
       let armed = false;
@@ -423,7 +423,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       });
       preview.hidden = false;
       preview.replaceChildren(
-        h('p', {}, `File sao lưu ngày ${new Date(b.exportedAt).toLocaleDateString('vi-VN')}: ${kids.join(', ')}.`),
+        h('p', {}, `File sao lưu${Number.isNaN(new Date(b.exportedAt).getTime()) ? '' : ` ngày ${new Date(b.exportedAt).toLocaleDateString('vi-VN')}`}: ${kids.join(', ')}.`),
         h('p', { class: 'p-muted' }, 'Khôi phục sẽ thay toàn bộ tiến độ hiện có trên máy này (mọi bé) bằng nội dung trong file.'),
         h('div', { class: 'p-row' }, go, h('button', { class: 'p-btn', onclick: () => (preview.hidden = true) }, 'Huỷ')),
       );
@@ -432,7 +432,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     return h(
       'div',
       {},
-      h('p', { class: 'p-muted' }, 'Tiến độ chỉ lưu trên máy này. Thỉnh thoảng hãy sao lưu ra file để không mất khi xoá dữ liệu trình duyệt hay đổi máy. File có tên bé và tiến độ học, không có giọng nói; hãy giữ nó như ảnh của gia đình.'),
+      h('p', { class: 'p-muted' }, 'Tiến độ chỉ lưu trên máy này. Thỉnh thoảng hãy sao lưu ra file để không mất khi xoá dữ liệu trình duyệt hay đổi máy. File có tên bé, tiến độ học và vài chữ ngắn máy nghe được khi bé nói (dòng "máy nghe"), không có giọng nói; hãy giữ nó như ảnh của gia đình.'),
       status,
       h('div', { class: 'p-row' }, download, share, pick, input),
       preview,
@@ -470,6 +470,11 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const input = h('input', { class: 'p-input p-new-kid', type: 'text', maxlength: 20, placeholder: 'Tên bé mới' }) as HTMLInputElement;
     const add = h('button', { class: 'p-btn', 'aria-label': 'Thêm bé' }, '+ Thêm bé');
     add.addEventListener('click', () => {
+      if (!input.value.trim()) {
+        input.placeholder = 'Nhập tên bé trước';
+        input.focus();
+        return;
+      }
       const id = addProfile(input.value);
       if (!id) return;
       switchProfile(id);
@@ -602,20 +607,26 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
   }
 
   function wordsList() {
+    // One fold per level (the child's level open); units not started yet take one line,
+    // so the page stays short even with 100+ units.
+    const cur = currentLevel().id;
     return h(
       'div',
       { class: 'p-topics' },
-      LEVELS.filter((l) => topicsOfLevel(l.id).length).map((l) =>
-        h(
-          'div',
-          { class: 'p-level' },
-          h('h3', { class: 'p-level-title' }, l.nameVi),
-          topicsOfLevel(l.id).map((t) => {
+      LEVELS.filter((l) => topicsOfLevel(l.id).length).map((l) => {
+        const units = topicsOfLevel(l.id);
+        const started = units.filter((t) => (s.topics[t.id]?.completed ?? 0) > 0 || t.words.some((w) => s.words[wordKey(t.id, w.id)]?.tries));
+        const fold = h(
+          'details',
+          { class: 'p-level', 'data-level': l.id },
+          h('summary', { class: 'p-level-title' }, `${l.nameVi} · đã học ${started.length}/${units.length} bài`),
+          units.map((t) => {
             const done = s.topics[t.id]?.completed ?? 0;
+            if (!started.includes(t)) return h('p', { class: 'p-topic-none' }, `${t.icon} ${t.title} — ${t.titleVi} · chưa học`);
             return h(
               'div',
               { class: 'p-topic' },
-              h('h3', {}, `${t.icon} ${t.title} — ${t.titleVi}`, h('small', {}, done ? ` · đã học ${done} lần` : ' · chưa học')),
+              h('h3', {}, `${t.icon} ${t.title} — ${t.titleVi}`, h('small', {}, done ? ` · đã học ${done} lần` : ' · đang học')),
               h(
                 'ul',
                 { class: 'p-words' },
@@ -631,8 +642,10 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
               ),
             );
           }),
-        ),
-      ),
+        ) as HTMLDetailsElement;
+        fold.open = l.id === cur;
+        return fold;
+      }),
     );
   }
 
@@ -713,7 +726,9 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
         const live = h('div', { class: 'p-trace' });
         micOut.replaceChildren(line(i === 0 ? 'Lần 1: đang nghe… hãy nói “dog”.' : `Lần ${i + 1} (chế độ ${SR_MODE_LABEL[mode]}): hãy nói lại “dog”.`), live);
         if (i > 0) await new Promise((r) => setTimeout(r, 400));
+        if (!ctx.alive()) return;
         out = await listenOnce({ timeoutMs: 8000, mode, onEvent: (l) => live.append(h('div', {}, l)) });
+        if (!ctx.alive()) return; // the parent left: never keep listening on the child's screens
         first ??= out;
         traces.push(h('div', {}, `Lần ${i + 1} (${SR_MODE_LABEL[mode]}):`), ...out.trace.events.map((l) => h('div', {}, l)));
         if (out.status === 'heard') {
@@ -790,6 +805,12 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
 
     const refreshBtn = h('button', { class: 'p-btn' }, '🔄 Tải bản mới nhất');
     refreshBtn.addEventListener('click', async () => {
+      // Offline the reload would fail and the installed app would not open until back online.
+      const online = navigator.onLine && (await fetch('/', { cache: 'no-store' }).then((r) => r.ok, () => false));
+      if (!online) {
+        refreshBtn.textContent = 'Chưa có mạng — thử lại khi có Internet';
+        return;
+      }
       refreshBtn.setAttribute('disabled', '');
       refreshBtn.textContent = 'Đang tải…';
       // Drop the offline copy so the next load comes straight from the server.
@@ -821,7 +842,9 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       for (const [i, [lang, label, say]] of plan.entries()) {
         advOut.replaceChildren(...rows, line(`Lần ${i + 1}/4 (${label}): hãy nói “${say}”…`));
         if (i > 0) await new Promise((r) => setTimeout(r, 500));
+        if (!ctx.alive()) return;
         const o = await listenOnce({ timeoutMs: 7000, mode: 'alts', lang });
+        if (!ctx.alive()) return;
         const result =
           o.status === 'heard'
             ? `✓ ra chữ: ${o.alternatives.slice(0, 5).join(' · ')}`

@@ -11,9 +11,7 @@
       "sentence": "I can run. Run, run, run!",
       "accept": [
         "runs",
-        "ran",
-        "running",
-        "rum"
+        "running"
       ],
       "anim": "drive"
     },

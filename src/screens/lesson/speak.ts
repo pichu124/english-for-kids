@@ -204,7 +204,7 @@ function record(topicId: string, w: Word, a: Attempt, judge: Judge): void {
     const key = wordKey(topicId, w.id);
     const ws = (s.words[key] ??= { said: false, tries: 0 });
     if (judge !== 'parent') ws.tries++; // a parent "correct" confirms the attempt already counted
-    if ('heard' in a && a.heard) ws.heard = a.heard;
+    if ('heard' in a && a.heard) ws.heard = a.heard?.slice(0, 40);
     ws.last = today();
     if (a.kind === 'pass') {
       ws.said = true;

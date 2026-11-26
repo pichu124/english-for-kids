@@ -24,7 +24,10 @@
     "meat",
     "coconut",
     "kiwi",
-    "sweets",
+    {
+      "id": "sweets",
+      "play": "Where are the sweets?"
+    },
     "lemonade"
   ],
   "parentTip": {

@@ -345,7 +345,7 @@
   .abc-choice .abc-low { font-size: clamp(26px, 10vh, 42px); }
   .abc-play-bix .bix-svg { height: clamp(90px, 30vh, 130px); }
 }
-@media (orientation: portrait) { .abc-body { flex-direction: column-reverse; } .abc-big { position: static; align-self: center; } }
+@media (orientation: portrait) { .abc-body { flex-direction: column-reverse; align-items: stretch; } .abc-grid { flex: none; width: 100%; } .abc-big { position: static; align-self: center; } }
 .abc-big[hidden] { display: none; }
 
 /* ---------- Today ---------- */
@@ -448,7 +448,9 @@
   .test-intro span { font-size: 54px; }
   .test-intro { font-size: 26px; }
   .test-result { gap: 6px; }
-  .test-medal { font-size: 44px; }
+  .test-medal { display: none; } /* Bix's bubble shows 🏆/🌟; the buttons must fit */
+  .test-result .reward-actions { flex-direction: row; gap: 12px; margin-top: 4px; }
+  .test-result .reward-actions .btn { min-height: 64px; padding-top: 4px; padding-bottom: 4px; }
   .test-row { padding: 2px 10px; }
   .test-row-name { font-size: 15px; }
   .test-shields span { font-size: 20px; }
@@ -461,3 +463,6 @@
   .test-bix { width: 100%; align-self: center; }
   .test-q { flex-direction: column; }
 }
+
+/* A finished game: the board steps up so the end buttons don't cover the result */
+.game-body.is-finished > :not(.game-done):not(.balloon-stars):not(.balloon-ear) { transform: translateY(-9vh) scale(.82); transition: transform .4s ease; }

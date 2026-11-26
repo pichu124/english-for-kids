@@ -3,7 +3,7 @@
  * Listening (pictures + "who is who": find the child in the picture), Spelling (letters said one by one → the written word),
  * Reading (yes/no sentences, picture → word). First answer counts, no hints.
  */
-import { buildable, definable, firstSentence, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
+import { buildable, definable, firstSentence, mentions, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
 import { describeKid, makeKids, type Kid } from '../art/kids';
 import { shuffle } from './dom';
 import { isLearned } from './progress';
@@ -90,7 +90,8 @@ export function buildTest(level = 'L2'): Question[] {
   if (movers) {
     // Movers: a picture and a whole sentence — its own (yes) or another word's (no).
     for (const it of take((x) => buildable(x.word), 3)) {
-      const other = distractors(it, all, 1, buildable)[0];
+      // the other word's sentence must not also describe this picture ("Grandma drinks a cup of tea." under tea)
+      const other = distractors(it, all, 1, (w) => buildable(w) && !mentions(firstSentence(w), it.word.text))[0];
       const truth = !other || Math.random() < 0.5;
       const w = truth ? it.word : other;
       qs.push({ part: 'reading', kind: 'yes-no', shown: it.word, sentence: `${firstSentence(w)}${sentenceEnd(w)}`, truth });

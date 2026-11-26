@@ -144,7 +144,7 @@ await page.goto(base);
 await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.home');
 if (!(await page.locator('.island[aria-label="Animals"] .island-pen').count())) fail('✏️ on the Animals island');
-await page.locator('.island[aria-label="Colors"]').click({ force: true });
+await page.locator('.island[aria-label="Colours"]').click({ force: true });
 await page.waitForSelector('.part-pick');
 if (!(await page.locator('.part-btn.is-next[data-part="2"]').count())) fail('Read & Write should glow for a unit only heard');
 if (shots) await page.screenshot({ path: `${shots}/part-pick.png` });

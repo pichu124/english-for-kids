@@ -10,8 +10,7 @@
       },
       "sentence": "The rabbit runs quickly.",
       "accept": [
-        "quickley",
-        "quick"
+        "quickley"
       ]
     },
     {
@@ -36,8 +35,7 @@
       },
       "sentence": "Tom plays the drums loudly.",
       "accept": [
-        "loudley",
-        "loud"
+        "loudley"
       ]
     },
     {
@@ -49,8 +47,7 @@
       },
       "sentence": "The baby is sleeping. Talk quietly!",
       "accept": [
-        "quietley",
-        "quiet"
+        "quietley"
       ]
     },
     {

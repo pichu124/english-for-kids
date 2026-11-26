@@ -23,8 +23,7 @@
       },
       "sentence": "Ben kicked the ball into the goal!",
       "accept": [
-        "goals",
-        "gold"
+        "goals"
       ],
       "def": "In football, you try to kick the ball into this."
     },
@@ -51,8 +50,7 @@
       },
       "sentence": "I came second in the running race.",
       "accept": [
-        "races",
-        "rice"
+        "races"
       ],
       "def": "People run, swim or drive to see who is the fastest in this."
     },
@@ -65,8 +63,7 @@
       },
       "sentence": "She won a prize for her painting.",
       "accept": [
-        "prizes",
-        "price"
+        "prizes"
       ],
       "def": "You get this when you win a competition."
     }

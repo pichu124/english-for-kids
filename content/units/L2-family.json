@@ -20,14 +20,26 @@
     "monHoc": "Communication and Language"
   },
   "words": [
-    "mum",
-    "dad",
+    {
+      "id": "mum",
+      "play": "Where is Mum?"
+    },
+    {
+      "id": "dad",
+      "play": "Where is Dad?"
+    },
     {
       "id": "baby",
       "play": "Where is the baby?"
     },
-    "grandma",
-    "grandpa",
+    {
+      "id": "grandma",
+      "play": "Where is Grandma?"
+    },
+    {
+      "id": "grandpa",
+      "play": "Where is Grandpa?"
+    },
     {
       "id": "brother",
       "play": "Where is my brother?"

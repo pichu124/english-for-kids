@@ -10,8 +10,7 @@
       },
       "sentence": "It is very hot and dry in the desert.",
       "accept": [
-        "deserts",
-        "dessert"
+        "deserts"
       ],
       "def": "This place is very hot and dry. There is lots of sand."
     },
@@ -69,7 +68,7 @@
         "worlds",
         "word"
       ],
-      "def": "All the countries are in this."
+      "def": "A map of this shows all the countries and all the oceans."
     }
   ]
 }

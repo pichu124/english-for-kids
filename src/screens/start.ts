@@ -1,7 +1,7 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
-import { takePendingPart, takePendingUnit } from '../lib/level';
+import { applyPendingLevel, takePendingPart, takePendingUnit } from '../lib/level';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
 import { primeSpeech } from '../lib/tts';
@@ -15,6 +15,7 @@ export function startScreen(ctx: Ctx): HTMLElement {
     sfx.unlock();
     sfx.tap();
     setCounting(true);
+    applyPendingLevel();
     if (limitReached()) return ctx.go('rest');
     const unit = takePendingUnit();
     const part = takePendingPart();

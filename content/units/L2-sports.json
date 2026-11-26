@@ -8,7 +8,7 @@
   "icon": "⚽",
   "color": "#90be6d",
   "intro": "Let's play sports!",
-  "playPrompt": "Where is the {word}?",
+  "playPrompt": "Let's play {word}! Which picture?",
   "block": {
     "name": "Pitch block",
     "style": "grass",

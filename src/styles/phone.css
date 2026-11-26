@@ -126,6 +126,10 @@
 
 /* ---------- tablets held upright (phones get the "turn me" screen) ---------- */
 @media (orientation: portrait) and (min-width: 601px) {
+  .games-bix .bix-bubble { display: none; }
+  /* the island map scrolls up and down here (sideways would cut off the top and bottom rows) */
+  .home .map.map-many { flex-wrap: wrap; justify-content: center; align-content: flex-start; overflow-x: hidden; overflow-y: auto; touch-action: pan-y; scroll-snap-type: none; min-height: 0; padding: 12px 3vw 150px; gap: 3vw; }
+  .home .map.map-many .island { width: clamp(150px, 21vw, 200px); }
   .home-top { flex-wrap: wrap; }
   .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: nowrap; }
   .chat-box { top: auto; bottom: -96px; left: 50%; transform: translateX(-50%); }
@@ -210,4 +214,34 @@
   .lesson-body:has(.gap) .lesson-bix { width: 16%; }
   .lesson-body:has(.gap) .lesson-bix .bix-bubble { display: none; }
   .gap-opts { gap: 8px; }
+}
+
+/* ---------- review fixes (phones held sideways) ---------- */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Bix's speech bubble must never cover a button or the picture: on small screens he just talks */
+  .ward-bix .bix-bubble, .abc-play-bix .bix-bubble { display: none; }
+  .lesson-body:has(.sentence-build) .lesson-bix .bix-bubble { display: none; }
+  .lesson-bix .bix-bubble { max-width: 24vw; font-size: 14px; line-height: 1.25; }
+  /* island labels: at most two lines, nothing hidden behind the Today button or the level tag */
+  .map-many .island-name { font-size: 15px; padding: 2px 10px; line-height: 1.2; }
+  .home .map-many { padding-left: 8px; padding-top: 22px; padding-bottom: 26px; }
+  .home .map-many .island-icon { font-size: 40px; }
+  .home-level { bottom: 4px; font-size: 12px; }
+  .dock-btn { font-size: 12px; }
+  .btn-parent { font-size: 14px; }
+  /* Who Is Who?: the replay button sits above the children, not on the fifth one */
+  .who-body { padding-top: 66px; }
+  .kid-svg { max-height: 38vh; }
+  /* text step: speaker in the card corner, words flow around it */
+  .tx-card .btn-ear { right: -6px; top: -12px; }
+  .tx-card::before { width: 54px; height: 48px; }
+  /* speaking step with the parent help bar showing: the lesson shrinks so nothing covers the bar */
+  #app:has(.parent-bar) .speak { transform: scale(.74); transform-origin: center top; margin-bottom: -14vh; }
+  /* parent gate: question on the left, the whole keypad on the right */
+  .gate { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: center; column-gap: 28px; row-gap: 4px; padding: 8px 16px; }
+  .gate > :not(.keypad):not(.p-back) { grid-column: 1; justify-self: center; }
+  .gate .keypad { grid-column: 2; grid-row: 1 / span 3; grid-template-columns: repeat(3, 64px); gap: 8px; }
+  .gate .key { height: 54px; font-size: 24px; }
+  .gate-q { font-size: 34px; }
+  .gate-hint { font-size: 15px; margin: 40px 0 0; }
 }

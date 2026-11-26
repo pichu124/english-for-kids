@@ -11,8 +11,7 @@
       "sentence": "I always get up at seven o'clock.",
       "accept": [
         "getup",
-        "get-up",
-        "wake up"
+        "get-up"
       ]
     },
     {
@@ -24,7 +23,6 @@
       },
       "sentence": "I sometimes have a shower in the morning.",
       "accept": [
-        "shower",
         "take a shower"
       ]
     },
@@ -36,10 +34,7 @@
         "emoji": "👕"
       },
       "sentence": "I get dressed for school.",
-      "accept": [
-        "dressed",
-        "get dress"
-      ]
+      "accept": []
     },
     {
       "id": "have-breakfast",
@@ -50,7 +45,6 @@
       },
       "sentence": "I always have breakfast with my family.",
       "accept": [
-        "breakfast",
         "eat breakfast"
       ]
     },
@@ -62,10 +56,7 @@
         "emoji": "🏫"
       },
       "sentence": "I go to school by bus.",
-      "accept": [
-        "school",
-        "go school"
-      ]
+      "accept": []
     },
     {
       "id": "go-to-bed",
@@ -75,10 +66,7 @@
         "emoji": "🛏️"
       },
       "sentence": "I never go to bed late.",
-      "accept": [
-        "bed",
-        "go bed"
-      ]
+      "accept": []
     }
   ]
 }

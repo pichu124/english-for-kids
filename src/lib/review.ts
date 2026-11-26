@@ -61,9 +61,10 @@ export function dueWords(level: LevelId): Due[] {
  */
 export function buildReview(level: LevelId): { topic: Topic; keys: Map<string, string> } | null {
   const due = dueWords(level);
-  // one entry per word id (the same word can be due from two units)
+  // one entry per spelling: the same word can be due from two units, and two words can
+  // share a spelling (orange the colour / the fruit) — both pictures would then be right
   const seen = new Set<string>();
-  const pickd = due.filter((d) => (seen.has(d.word.id) ? false : (seen.add(d.word.id), true))).slice(0, MAX_WORDS);
+  const pickd = due.filter((d) => (seen.has(d.word.text) ? false : (seen.add(d.word.text), true))).slice(0, MAX_WORDS);
   if (pickd.length < MIN_WORDS) return null;
   const keys = new Map(pickd.map((d) => [d.word.id, d.key]));
   const topic: Topic = {

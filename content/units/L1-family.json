@@ -28,11 +28,13 @@
   "words": [
     {
       "id": "mum",
-      "sentence": "Hello, Mum! I love you, Mum."
+      "sentence": "Hello, Mum! I love you, Mum.",
+      "play": "Where's Mum?"
     },
     {
       "id": "dad",
-      "sentence": "Hello, Dad! I love you, Dad."
+      "sentence": "Hello, Dad! I love you, Dad.",
+      "play": "Where's Dad?"
     },
     {
       "id": "baby",
@@ -46,11 +48,13 @@
     },
     {
       "id": "grandma",
-      "sentence": "Hello, Grandma! Big hug!"
+      "sentence": "Hello, Grandma! Big hug!",
+      "play": "Where's Grandma?"
     },
     {
       "id": "grandpa",
-      "sentence": "Hello, Grandpa! Big hug!"
+      "sentence": "Hello, Grandpa! Big hug!",
+      "play": "Where's Grandpa?"
     }
   ],
   "actions": [

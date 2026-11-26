@@ -19,7 +19,7 @@
       "text": "cup",
       "topic": "kitchen",
       "image": {
-        "emoji": "☕"
+        "icon": "cup"
       },
       "sentence": "Grandma drinks a cup of tea.",
       "accept": [

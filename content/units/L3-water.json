@@ -43,16 +43,16 @@
       "s": "The water falls down from the top of the ___.",
       "answer": "waterfall",
       "options": [
-        "rock",
-        "lake"
+        "lake",
+        "river"
       ]
     },
     {
-      "s": "We're at the beach. Look at that big ___!",
+      "s": "Splash! Look at that big ___ in the sea!",
       "answer": "wave",
       "options": [
-        "rock",
-        "lake"
+        "lake",
+        "river"
       ]
     }
   ],

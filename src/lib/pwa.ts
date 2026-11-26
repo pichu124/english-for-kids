@@ -17,7 +17,15 @@ export function initPWA(): void {
   });
   if (import.meta.env.PROD && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch((err) => console.warn('SW register failed', err));
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((reg) => {
+          // An app left open for days still picks up updates: check when it comes back to the front.
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && navigator.onLine) reg.update().catch(() => {});
+          });
+        })
+        .catch((err) => console.warn('SW register failed', err));
     });
   }
 }
