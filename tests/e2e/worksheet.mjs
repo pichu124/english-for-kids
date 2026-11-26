@@ -126,7 +126,7 @@ step(`Movers "What's the Matter?": ${kinds.join(', ')} · ${pdf.n} pages`);
 // ---- pre-readers
 kinds = await openSheet('L0', 'l0-animals');
 if (kinds.join() !== 'colour,same,circle') fail('Little Bix sheet: ' + kinds);
-if (!(await page.locator('.ws-key').innerText()).includes('Circle the')) fail('the key tells the parent what to read aloud');
+if (!(await page.locator('.ws-key').innerText()).includes('Number 1. ')) fail('the key tells the parent what to read aloud');
 if (shots) await page.screenshot({ path: `${shots}/worksheet-l0.png`, fullPage: true });
 pdf = await pdfPages(shots && `${shots}/worksheet-l0.pdf`);
 if (pdf.n > 3) fail(`Little Bix sheet ≤ 3 pages (got ${pdf.n})`);

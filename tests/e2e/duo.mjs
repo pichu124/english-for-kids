@@ -71,7 +71,7 @@ async function playTap(page, { miss = false, onRound } = {}) {
       await page.locator(`.duo-pic[data-word="${target}"]`).click({ force: true });
       await page.waitForTimeout(150);
       if (await page.locator('.duo-pic.is-right').count()) fail('quick tap: a picture before "I know!" does nothing');
-      if (!(await spoken(page)).includes('Press I know!')) fail('quick tap: tapping early: Bix says "Press I know!"');
+      if (!(await spoken(page)).includes('Who knows? Press the bell!')) fail('quick tap: tapping early: Bix says "Who knows? Press the bell!"');
     }
     await page.locator(`.duo-buzz[data-player="${n}"]`).click({ force: true });
     if (!(await page.locator(`.duo-side[data-player="${n}"].is-turn`).count())) fail('quick tap: the buzzer gives that player the turn');
@@ -100,7 +100,7 @@ async function playDescribe(page, { miss = false, onPhase } = {}) {
       const to = await page.locator('.duo-hand').getAttribute('data-to');
       hands.push(Number(to));
       if (await page.locator('.duo-pic, .duo-secret').count()) fail('you be bix: the hand-over screen hides everything');
-      if (!/^Turn the tablet to (Shin|Mum)!$/.test(await page.locator('.duo-hand-title').textContent())) fail('you be bix: "Turn the tablet to …!"');
+      if (!/^Pass it to (Shin|Mum)!$/.test(await page.locator('.duo-hand-title').textContent())) fail('you be bix: "Pass it to …!"');
       if (onPhase) await onPhase('hand', hands.length);
       await page.waitForTimeout(400); // let the pop-in finish (the button moves while it grows)
       await page.locator('.duo-ready').click({ force: true });
@@ -177,12 +177,12 @@ if (!process.env.DUO_VIEW) {
   await page.waitForSelector('.duo-pic');
   if ((await page.locator('.duo-pic').count()) !== 4) fail('quick tap: 4 pictures');
   if ((await page.locator('.duo-buzz').count()) !== 2) fail('quick tap: a buzzer on each side');
-  await page.waitForFunction(() => /^Find the .+!$/.test(window.__spoken.at(-1) || ''));
+  await page.waitForFunction(() => /[?!]$/.test(window.__spoken.at(-1) || '') && !/^Find the (happy|sad|big|small)/.test(window.__spoken.at(-1)));
   await playTap(page, { miss: true, onRound: async (r) => { if (r === 1) await shot(page, `duo-tap-1280`); } });
   const tapStars = await checkEnd(page, 'quick tap');
   if (tapStars[0] + tapStars[1] !== 6 + 2) fail(`quick tap: 6 stars + a team star each, got ${tapStars}`);
   await shot(page, `duo-end-1280`);
-  step('quick tap: "Find the …!", early tap → "Press I know!", buzz → pick, a miss passes the turn, 6 rounds → Great team!');
+  step('quick tap: the unit\'s question ("Where is the …?"), early tap → "Who knows? Press the bell!", buzz → pick, a miss passes the turn, 6 rounds → Great team!');
 
   // Again restarts the same mode
   await page.locator('.duo-done button[aria-label="Play again"]').click({ force: true });

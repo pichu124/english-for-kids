@@ -1,5 +1,5 @@
 import { Bix } from '../art/bix';
-import type { Level, Word } from '../content';
+import { playPromptFor, topicsOfLevel, type Level, type Word } from '../content';
 import { h, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { practicePool } from '../lib/progress';
@@ -40,7 +40,7 @@ type Player = {
 const P2_KINDS = [
   { id: 'mum', name: 'Mum', icon: '👩' },
   { id: 'dad', name: 'Dad', icon: '👨' },
-  { id: 'friend', name: 'Friend', icon: '🧒' },
+  { id: 'friend', name: 'Friend', icon: '🧑' },
 ] as const;
 const P2_KEY = 'efk.duo.p2';
 function p2Kind(): (typeof P2_KINDS)[number] {
@@ -118,6 +118,11 @@ function roundWords(level: Level, from?: Word[]): { pool: Word[]; order: Word[] 
   }
   return { pool, order: order.slice(0, ROUNDS) };
 }
+/** The unit's own way of asking for a word ("Where is the cat?", "Which picture shows \"happy\"?") — never "Find the happy". */
+const askFor = (level: Level, w: Word) => {
+  const t = topicsOfLevel(level.id).find((x) => x.words.some((y) => y.text === w.text));
+  return t ? playPromptFor(t, w) : `Find "${w.text}"!`;
+};
 const choicesFor = (pool: Word[], target: Word) => shuffle([target, ...shuffle(pool.filter((w) => w.text !== target.text)).slice(0, 3)]);
 
 const picButton = (w: Word) => h('button', { class: 'duo-pic pop', 'data-word': w.text, 'aria-label': w.text }, wordPicture(w));
@@ -262,7 +267,7 @@ function quickTap(ctx: Ctx): HTMLElement {
       grid.classList.remove('is-locked');
       setTurn(players, p);
       banner.replaceChildren(turnBanner(p));
-      void talk(`${p.name}! Find the ${order[r].text}!`);
+      void talk(`${p.name}! ${askFor(level, order[r])}`);
     });
     p.slot.appendChild(b);
     return b;
@@ -290,7 +295,7 @@ function quickTap(ctx: Ctx): HTMLElement {
           // Pictures wait for a buzzer: the buzzers wiggle to show what to press.
           sfx.soft();
           buzzers.forEach(wiggle);
-          void talk('Press I know!');
+          void talk('Who knows? Press the bell!');
           return;
         }
         if (w.text !== target.text) {
@@ -300,7 +305,7 @@ function quickTap(ctx: Ctx): HTMLElement {
           picker = other(picker);
           setTurn(players, picker);
           banner.replaceChildren(turnBanner(picker));
-          void talk(`Try again! ${picker.name}'s turn! Find the ${target.text}!`);
+          void talk(`Try again! ${picker.name}'s turn! ${askFor(level, target)}`);
           return;
         }
         done = true;
@@ -308,7 +313,7 @@ function quickTap(ctx: Ctx): HTMLElement {
         b.classList.add('is-right');
         actOut(b, w);
         addStar(picker);
-        await talk(`${pick(PRAISE)} The ${target.text}!`, 'happy');
+        await talk(`${pick(PRAISE)} ${target.text}!`, 'happy');
         if (!ctx.alive()) return;
         await wait(300);
         r++;
@@ -317,9 +322,9 @@ function quickTap(ctx: Ctx): HTMLElement {
       return b;
     });
     grid.replaceChildren(...items);
-    void talk(`Find the ${target.text}!`);
+    void talk(askFor(level, target));
   };
-  ear.onclick = () => (sfx.tap(), r < ROUNDS && void talk(`Find the ${order[r].text}!`));
+  ear.onclick = () => (sfx.tap(), r < ROUNDS && void talk(askFor(level, order[r])));
   setTimeout(round, 400);
   return duoShell(ctx, 'duo-game', 'Quick Tap', body, bix, 'duo');
 }
@@ -362,7 +367,7 @@ function youBeBix(ctx: Ctx): HTMLElement {
           h('span', { class: 'duo-hand-avatar' }, to.icon),
           to.n === 2 ? h('span', { class: 'duo-arrow' }, '👉') : null,
         ),
-        h('p', { class: 'duo-hand-title' }, `Turn the tablet to ${to.name}!`),
+        h('p', { class: 'duo-hand-title' }, `Pass it to ${to.name}!`),
         h('p', { class: 'duo-hand-sub' }, h('span', { 'aria-hidden': 'true' }, `🙈 ${away.icon} `), sub),
         ready,
       ),
@@ -434,7 +439,7 @@ function youBeBix(ctx: Ctx): HTMLElement {
         // A good clue and a good guess: a star for both.
         addStar(describer);
         addStar(guesser);
-        await talk(`${pick(PRAISE)} It's the ${target.text}! Great clues, ${describer.name}!`, 'happy');
+        await talk(`${pick(PRAISE)} ${target.text}! Great clues, ${describer.name}!`, 'happy');
         if (!ctx.alive()) return;
         await wait(300);
         r++;

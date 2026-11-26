@@ -1,5 +1,5 @@
 import { Bix } from '../art/bix';
-import { topicById, type Word } from '../content';
+import { playPromptFor, topicById, type Topic, type Word } from '../content';
 import { h } from '../lib/dom';
 import { buildWorksheet, type Section } from '../lib/worksheet';
 import type { Ctx } from '../router';
@@ -127,7 +127,13 @@ function sectionBody(s: Section): HTMLElement {
 }
 
 /** What the parent checks (Vietnamese labels, English answers). */
-function keyBody(s: Section): HTMLElement | null {
+/** "Where is the {word}?" with the word in bold, for the parent to read out. */
+const promptParts = (line: string, word: string): (string | HTMLElement)[] => {
+  const at = line.toLowerCase().indexOf(word.toLowerCase());
+  return at < 0 ? [line] : [line.slice(0, at), h('b', {}, line.slice(at, at + word.length)), line.slice(at + word.length)];
+};
+
+function keyBody(s: Section, topic: Topic): HTMLElement | null {
   const list = (items: (string | HTMLElement)[]) => h('ol', { class: 'ws-key-list' }, items.map((x) => h('li', { lang: 'en' }, x)));
   switch (s.kind) {
     case 'colour':
@@ -135,7 +141,7 @@ function keyBody(s: Section): HTMLElement | null {
     case 'same':
       return h('p', { lang: 'en' }, s.left.map((w, i) => `${i + 1}–${ABC[s.right.indexOf(w)]} (${w.text})`).join(' · '));
     case 'circle':
-      return h('div', {}, h('p', {}, 'Bố mẹ đọc to từng dòng:'), list(s.rows.map((r) => h('span', {}, `Number ${s.rows.indexOf(r) + 1}. Circle the `, h('b', {}, r.answer.text), '!'))));
+      return h('div', {}, h('p', {}, 'Bố mẹ đọc to từng dòng:'), list(s.rows.map((r, i) => h('span', {}, `Number ${i + 1}. `, ...promptParts(playPromptFor(topic, r.answer), r.answer.text)))));
     case 'match':
       return h('p', { lang: 'en' }, s.pictures.map((w, i) => `${i + 1}–${ABC[s.words.indexOf(w)]} (${w.text})`).join(' · '));
     case 'trace':
@@ -202,7 +208,7 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
     { class: 'ws-sheet ws-key', lang: 'vi', 'aria-label': 'Đáp án cho bố mẹ' },
     h('header', { class: 'ws-key-head' }, h('h2', {}, '🔑 Đáp án cho bố mẹ'), h('p', {}, `Answer key · ${topic.title} (${topic.titleVi}) · ${ws.level.name} · phiếu ngày ${vn(ws.day)}`)),
     ws.sections.map((s, i) => {
-      const body = keyBody(s);
+      const body = keyBody(s, topic);
       return body ? h('section', { class: 'ws-key-sec', 'data-kind': s.kind }, h('h3', {}, `${i + 1}. `, h('span', { lang: 'en' }, TITLES[s.kind][0])), body) : null;
     }),
     h(
