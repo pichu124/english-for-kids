@@ -7,9 +7,9 @@
       "level": "L1",
       "turns": [
         {
-          "bix": "Hi! I'm Bix. What's your name?",
+          "bix": "Hi! I'm Bix. Can you say hello?",
           "type": "any",
-          "reply": "Nice to meet you!"
+          "reply": "Hello! Nice to meet you!"
         },
         {
           "bix": "How old are you?",
@@ -1134,7 +1134,7 @@
       "questions": [
         "What do you do after school?",
         "What's your favourite sport?",
-        "Tell me about your best friend.",
+        "What's your favourite animal? Why?",
         "What did you do last weekend?"
       ]
     },
@@ -1228,7 +1228,7 @@
         "What did you do last weekend?",
         "What are you going to do in the summer holidays?",
         "What would you like to be when you grow up?",
-        "Tell me about your school."
+        "What's your favourite subject at school?"
       ]
     }
   }

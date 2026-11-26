@@ -259,6 +259,11 @@ export function sanitizeState(raw: unknown): State {
     review: entries(p.review, (x) => isObj(x) && typeof x.box === 'number' && typeof x.due === 'string'),
   };
   for (const t of Object.values(s.topics)) t.completed = num(t.completed);
+  // day logs: every counter a number (a damaged file must not print "NaN minutes")
+  for (const d of Object.values(s.days) as unknown as Record<string, unknown>[]) {
+    for (const k of ['seconds', 'lessons', 'auto', 'parent', 'miss', 'noVoice'] as const) d[k] = num(d[k]);
+    for (const k of ['sounds', 'read', 'talk'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
+  }
   // Optional parts: keep them only when they have the right shape.
   const keep = (k: keyof State, ok: (x: any) => boolean) => {
     if (p[k] !== undefined && ok(p[k])) (s as Record<string, unknown>)[k] = p[k];
@@ -390,7 +395,8 @@ export function restoreBackup(b: Backup): void {
   }
   for (const id of b.index.ids) {
     try {
-      localStorage.setItem(keyFor(id), JSON.stringify(b.profiles[id]));
+      // cleaned before it is written: a damaged or hand-edited file keeps only well-formed progress
+      localStorage.setItem(keyFor(id), JSON.stringify(sanitizeState(b.profiles[id])));
     } catch {
       /* storage full — the reload below shows what was written */
     }

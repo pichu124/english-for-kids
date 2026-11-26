@@ -159,6 +159,28 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] **Thi thử Starters**: đảo 🎓 Test, 15 câu, 3 phần, khiên 1–5, kết quả và lời khuyên trong khu bố mẹ.
 - [x] **Thi thử Movers** (đợt M2): 14 câu, Nghe · Viết (gõ từ) · Đọc (câu đúng/sai + đoạn văn).
 
+### Đợt G (review lần 2 + nối vào Hôm nay)
+- [x] Review 4 vai (code, nội dung, trải nghiệm, quyền riêng tư) cho các tính năng mới, sửa hết lỗi tìm được:
+  - lượt nói (micro) dừng được từ ngoài: bé chạm đáp án, lật trang hay bấm "Read to me" thì micro tắt ngay, không nghe nhầm tiếng Bix;
+  - 2 lần máy không nghe thấy gì → hiện nút cho bố mẹ ("✓ Bé đã nói" / "Bỏ qua"), bé không bị kẹt;
+  - từ đọc to chuyển xanh đúng chữ, kể cả "It's", "don't";
+  - bảng tìm chữ trên phiếu in: mỗi từ chỉ có một chỗ, chữ ngẫu nhiên không vô tình tạo thêm từ;
+  - Chơi cùng nhau: Bix hỏi theo câu của bài ("Where is the cat?", "Which picture shows \"happy\"?"), không còn "Find the happy".
+- [x] Hôm nay có thêm bước **nói**: 🔊 âm (Starters trở xuống, bộ âm tiếp theo), luyện Nói Cambridge (ngày chẵn) hoặc trò chuyện với Bix.
+- [x] Báo cáo tuần và khu bố mẹ có mục "Âm, đọc to & trò chuyện". Giấy khen **Sounds Star** khi xong cả 8 bộ âm.
+- [x] Phonics giai đoạn 2: bộ 6–7 (ai oa ie ar or, ng ow oi er ur) và bộ 8 **Tricky Words** (the, I, go, said…: từ phải nhớ nguyên mặt chữ).
+
+#### Trò chuyện bằng AI thật: bố mẹ quyết định
+Bản hiện tại chạy hoàn toàn trên máy, theo kịch bản. Muốn Bix trả lời tự do bằng AI thì phải chọn một trong ba cách:
+
+| Cách | Cần gì | Quyền riêng tư |
+|---|---|---|
+| A. Giữ như hiện tại (kịch bản) | Không cần gì | Giữ nguyên cam kết: không gửi gì đi |
+| B. AI qua máy chủ riêng (VPS của gia đình) | Máy chủ + khoá API trả phí (khoảng vài trăm nghìn đồng/tháng nếu dùng ít), lọc nội dung cho trẻ | **Chữ bé nói** (không phải tiếng) được gửi tới máy chủ và nhà cung cấp AI. Phải sửa câu cam kết và có nút bật/tắt trong khu bố mẹ |
+| C. AI chạy ngay trên máy (mô hình nhỏ trong trình duyệt) | Máy tính bảng mạnh, tải mô hình vài trăm MB đến 1–2 GB | Không gửi gì đi, nhưng chậm và câu trả lời kém hơn trên máy yếu |
+
+Đề xuất: giữ **A** cho tới khi bé dùng Talk thường xuyên; nếu cần thì làm **B** với nút bật/tắt mặc định tắt.
+
 ### Không làm
 Quảng cáo, mua trong app, hộp quà ngẫu nhiên, thông báo đẩy, bảng xếp hạng giữa các bé, chuỗi ngày học có hình phạt, chặn thoát.
 

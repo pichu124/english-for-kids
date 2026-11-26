@@ -66,6 +66,7 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+  if (url.searchParams.has('probe')) return; // "are we online?" checks go to the network, never cached
 
   // App shell: serve the cached page instantly (works offline).
   if (req.mode === 'navigate') {

@@ -24,6 +24,8 @@ import { PART_LABEL, passed, shields, testResults, TEST_NAME, TEST_PARTS, type P
 import { defaultUnit } from '../lib/worksheet';
 
 let unlockedAt = 0;
+/** Leaving the parent area for the child's side locks it again. */
+export const lockParent = () => (unlockedAt = 0);
 
 export function parentScreen(ctx: Ctx): HTMLElement {
   const root = h('main', { class: 'parent' });
@@ -31,8 +33,9 @@ export function parentScreen(ctx: Ctx): HTMLElement {
     unlockedAt = Date.now();
     root.replaceChildren(panel(ctx, show));
   };
-  // Coming back from the weekly report or a worksheet shortly after unlocking: no second question.
-  if ((ctx.params.back === 'report' || ctx.params.back === 'worksheet') && Date.now() - unlockedAt < 10 * 60 * 1000) show();
+  // Coming back from the weekly report or a worksheet shortly after unlocking: no second question
+  // (a short window, and only once: a report left open on the tablet must not open the parent area to a child).
+  if ((ctx.params.back === 'report' || ctx.params.back === 'worksheet') && Date.now() - unlockedAt < 3 * 60 * 1000) show();
   else root.appendChild(gate(ctx, show));
   return root;
 }
@@ -856,7 +859,8 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const refreshBtn = h('button', { class: 'p-btn' }, '🔄 Tải bản mới nhất');
     refreshBtn.addEventListener('click', async () => {
       // Offline the reload would fail and the installed app would not open until back online.
-      const online = navigator.onLine && (await fetch('/', { cache: 'no-store' }).then((r) => r.ok, () => false));
+      // The offline copy answers '/', so ask for a URL it never holds (Wi-Fi without Internet looks "online").
+      const online = navigator.onLine && (await fetch(`/sw.js?probe=${Date.now()}`, { cache: 'no-store' }).then((r) => r.ok, () => false));
       if (!online) {
         refreshBtn.textContent = 'Chưa có mạng — thử lại khi có Internet';
         return;
@@ -957,6 +961,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('li', {}, 'Không có tài khoản, không quảng cáo, không công cụ thống kê bên thứ ba.'),
       h('li', {}, 'Tiến độ, tên bé và nhật ký chỉ lưu trong trình duyệt của máy này (localStorage).'),
       h('li', {}, 'App không ghi âm và không lưu âm thanh. Khi bé bấm micro, Chrome tự gửi âm thanh tới dịch vụ nhận dạng giọng nói của Google để chuyển thành chữ; app chỉ giữ lại chữ (ví dụ “dog”) để bố mẹ xem.'),
+      h('li', {}, 'Khi đọc to (🎤 My turn) và trò chuyện với Bix (💬 Talk), chữ máy nghe được chỉ dùng để chấm ngay rồi bỏ; app chỉ đếm số lần. Bix không hỏi tên, trường hay bạn của bé.'),
     );
   }
 
