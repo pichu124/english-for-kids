@@ -102,7 +102,10 @@
   .mem-grid.mem-12 .mem-card { width: clamp(64px, 26vh, 100px); }
   .game-pick { width: min(19vw, 40vh); font-size: 16px; border-radius: 20px; }
   .game-pick .game-pick-icon { font-size: min(10vw, 20vh); }
-  .games-list { flex-wrap: nowrap; gap: 10px; }
+  .games-list { flex-wrap: nowrap; gap: 10px; min-width: 0; }
+  .games-list .game-pick { flex: 0 1 auto; min-width: 0; }
+  .games-bix { flex-shrink: 0; }
+  .games-bix .bix-bubble { display: none; }
   .games-body { gap: 10px; }
   .balloon { width: clamp(80px, 26vh, 120px); }
   .paint-tile { width: clamp(76px, 30vh, 130px); border-radius: 18px; }
@@ -114,6 +117,10 @@
   .kid { border-radius: 14px; border-width: 3px; }
   .kid-name { font-size: 16px; margin: 2px 0 4px; }
   .who-body { padding-top: 34px; }
+  .riddle-stage { gap: 8px; }
+  .riddle-card { width: min(19vw, 34vh); border-radius: 14px; border-width: 3px; }
+  .riddle-card .pic-emoji { font-size: min(10vw, 18vh); }
+  .riddle-body { padding-top: 30px; }
   .start-wrap .bix-svg { height: clamp(150px, 62vh, 260px); }
 }
 

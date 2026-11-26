@@ -68,5 +68,43 @@
         "taxi"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "Getting to School",
+    "lines": [
+      "Children in our city go to school in different ways.",
+      "Ben takes the underground because he lives far away.",
+      "Sophie's mum takes her to school on her motorbike.",
+      "When it rains, Tom's dad drives him there in a taxi."
+    ],
+    "questions": [
+      {
+        "q": "Why does Ben take the underground?",
+        "options": [
+          "He lives far away.",
+          "He likes trains.",
+          "It is cheap."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "How does Sophie go to school?",
+        "options": [
+          "by motorbike",
+          "by taxi",
+          "on foot"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "When does Tom go by taxi?",
+        "options": [
+          "every day",
+          "when it rains",
+          "on Fridays"
+        ],
+        "answer": 1
+      }
+    ]
+  }
 }

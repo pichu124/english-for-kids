@@ -55,5 +55,43 @@
         "volcano"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "Our Amazing World",
+    "lines": [
+      "The Sahara is the biggest hot desert in the world.",
+      "The Pacific is the biggest ocean on Earth.",
+      "There are about 1,500 volcanoes on land.",
+      "Some volcanoes are quiet, but some still have fire inside them."
+    ],
+    "questions": [
+      {
+        "q": "What is the Sahara?",
+        "options": [
+          "an ocean",
+          "a desert",
+          "a volcano"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Which is the biggest ocean?",
+        "options": [
+          "the Atlantic",
+          "the Pacific",
+          "the Indian Ocean"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How many volcanoes are there on land?",
+        "options": [
+          "about 15",
+          "about 150",
+          "about 1,500"
+        ],
+        "answer": 2
+      }
+    ]
+  }
 }

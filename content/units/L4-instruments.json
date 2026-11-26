@@ -64,5 +64,43 @@
         "violin"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "The School Concert",
+    "lines": [
+      "Last week, our school had a concert for our parents.",
+      "Anna played the violin, and Sam played the trumpet.",
+      "I played the drum. It was very loud!",
+      "At the end, our teacher played the piano and everybody sang a song."
+    ],
+    "questions": [
+      {
+        "q": "Who played the trumpet?",
+        "options": [
+          "Anna",
+          "Sam",
+          "the teacher"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did the writer play?",
+        "options": [
+          "the drum",
+          "the guitar",
+          "the piano"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What happened at the end?",
+        "options": [
+          "Everybody sang a song.",
+          "The parents went home.",
+          "Anna played the piano."
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

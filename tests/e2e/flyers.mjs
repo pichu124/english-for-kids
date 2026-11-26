@@ -60,6 +60,33 @@ await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.listen .pic');
 step('Into Space opens');
 
+// Riddles (Flyers only): hear a definition, touch the picture.
+await page.goto(base);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.locator('.game-pick[data-game="riddle"]').click({ force: true });
+await page.waitForSelector('.riddle-def[data-answer]');
+await page.waitForTimeout(300);
+{
+  const def = await page.locator('.riddle-def').textContent();
+  const ans = await page.locator('.riddle-def').getAttribute('data-answer');
+  if ((await page.evaluate(() => window.__spoken.at(-1))) !== def) fail('Bix reads the riddle aloud');
+  if ((await page.locator('.riddle-card').count()) !== 4) fail('4 pictures to choose from');
+  await page.locator(`.riddle-card:not([data-word="${ans}"])`).first().click({ force: true });
+  await page.waitForTimeout(300);
+  if (await page.locator('.riddle-card.is-right').count()) fail('a wrong picture is not marked right');
+  if (shots) await page.screenshot({ path: `${shots}/flyers-riddle.png` });
+}
+for (let i = 0; i < 100 && !(await page.locator('.game-done').count()); i++) {
+  const ans = await page.locator('.riddle-def[data-answer]').getAttribute('data-answer').catch(() => null);
+  if (ans) await page.locator(`.riddle-card[data-word="${ans}"]:not(.is-right)`).click({ force: true, timeout: 500 }).catch(() => {});
+  await page.waitForTimeout(200);
+}
+if (!(await page.locator('.game-done').count())) fail('5 riddles end the game');
+if ((await page.locator('.balloon-stars .on').count()) !== 5) fail('5 stars after 5 riddles');
+step('riddles: "This person repairs cars." → touch the picture, 5 rounds');
+
 // Flyers practice test: listening 5 (3 pictures + 2 who is who), writing 3 (read a definition, type the word), reading 6.
 await page.evaluate(() => { window.__manualReading = true; window.__manualWrite = true; window.__manualText = true; });
 await page.goto(base);

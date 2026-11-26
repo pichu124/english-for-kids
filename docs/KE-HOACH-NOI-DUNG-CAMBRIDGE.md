@@ -382,9 +382,14 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - ngữ pháp: What Were You Doing? (quá khứ tiếp diễn: reading, cooking, sleeping, swimming, painting, singing), If It Rains… (câu điều kiện "If it rains, I'll take my umbrella."), In the Future (tương lai "will": robot, spaceship, computer, machine, phone), At the Doctor's (lời khuyên "should/shouldn't": cold, cough, headache, stomach-ache, earache);
   - chủ đề: Winning the Race (team, goal, winner, race, prize), In the Countryside (village, cottage, countryside, tractor, field), How Do You Feel? 2 (worried, excited, afraid, upset, angry), People at Work (artist, scientist, businessman, firefighter, waiter), Once Upon a Time (king, queen, crown, dragon, wizard), In the Wild (gorilla, wolf, fox, owl, bee);
   - 4 đoạn văn (When the Lights Went Out, The Big Match, My Life in 2050, A Visit to the Doctor) và 2 truyện (The Dragon and the Crown, The Clever Fox). Bài thi thử Flyers có nhiều đoạn văn và định nghĩa hơn để luân phiên.
+- **Đợt F4 (Flyers, lấp chỗ trống)**:
+  - 10 đoạn văn mới: My School Day, My Family's Jobs, A Winter Holiday, Amazing Animal Facts, Getting to School, Our Amazing World, The School Concert, A Day in the City, The First Day, A Night in the Forest. Flyers có 20 đoạn văn;
+  - 4 truyện mới: Bix at the Museum, Bix Goes Skiing, The Noisy Band, Grandpa's Adventures (Flyers có 10 truyện);
+  - trò chơi **Riddles** trong Games (chỉ hiện ở bậc có định nghĩa, tức Flyers): Bix đọc một định nghĩa ("This slow animal has got a hard shell on its back."), bé chạm vào 1 trong 4 hình. 5 lượt, chọn nhầm thì hình lắc nhẹ và Bix đọc lại. Nút "Hôm nay" ở bậc Flyers luân phiên thêm trò này;
+  - trên điện thoại, menu Games có 5 trò vẫn vừa một hàng (thẻ tự co lại, ẩn bóng nói của Bix).
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);
 - duyệt lại toàn bộ khi bé và các lớp dùng thật, dựa trên dòng *"máy nghe: …"*.
 
-Bậc 3 Movers đã đủ (33 bài, thi thử). Bậc 4 Flyers đang làm (đợt F1–F3: 30 bài, thi thử).
+Bậc 3 Movers đã đủ (33 bài, thi thử). Bậc 4 Flyers có 30 bài, 20 đoạn văn, 10 truyện và thi thử (đợt F1–F4).

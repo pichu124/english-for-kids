@@ -82,6 +82,7 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
    - **Bắn bóng bay**: nghe từ, chạm vào bóng có hình đúng.
    - **Tô màu** (thêm ở đợt M4): nghe "Colour the dog blue!", chọn bút màu rồi chạm vào hình.
    - **Who Is Who?** (thêm ở đợt M5): nghe tả một bạn nhỏ (màu áo, việc đang làm), chạm đúng bạn đó để hiện tên.
+   - **Riddles** (thêm ở đợt F4, bậc Flyers): nghe định nghĩa, chạm vào hình đúng.
 6. **Thẻ "Chơi cùng con"** (trụ cột xã hội + ý nghĩa): hết bài hiện một gợi ý ngắn bằng tiếng Việt cho bố mẹ, ví dụ *"Chỉ đồ vật trong nhà và hỏi: What colour is it?"*. Nội dung lấy từ trường mới `parentTip` của Unit.
 
 **Tiến độ Đợt A (đã xong):**

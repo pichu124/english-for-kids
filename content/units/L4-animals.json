@@ -56,5 +56,43 @@
         "tortoise"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "Amazing Animal Facts",
+    "lines": [
+      "Dinosaurs lived on Earth millions of years ago.",
+      "An octopus has got eight legs and three hearts!",
+      "Some tortoises live for more than one hundred years.",
+      "A butterfly tastes its food with its feet."
+    ],
+    "questions": [
+      {
+        "q": "How many hearts has an octopus got?",
+        "options": [
+          "one",
+          "two",
+          "three"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "Which animal can live for more than a hundred years?",
+        "options": [
+          "a butterfly",
+          "a tortoise",
+          "an octopus"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What does a butterfly taste with?",
+        "options": [
+          "its feet",
+          "its wings",
+          "its eyes"
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

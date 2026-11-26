@@ -56,5 +56,43 @@
         "music"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "My School Day",
+    "lines": [
+      "On Mondays, we have maths first. It's my favourite subject.",
+      "After break, we have science. Today we looked at insects.",
+      "In history, Mr Green told us about a famous queen.",
+      "On Fridays, we have art and music, so Friday is a fun day!"
+    ],
+    "questions": [
+      {
+        "q": "What is the writer's favourite subject?",
+        "options": [
+          "science",
+          "maths",
+          "art"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did they look at in science?",
+        "options": [
+          "insects",
+          "maps",
+          "paintings"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Why is Friday a fun day?",
+        "options": [
+          "They have art and music.",
+          "There is no school.",
+          "They have maths."
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

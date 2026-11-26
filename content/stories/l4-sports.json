@@ -1,0 +1,41 @@
+{
+  "id": "story-l4-sports",
+  "unit": "l4-sports",
+  "title": "Bix Goes Skiing",
+  "icon": "⛷️",
+  "pages": [
+    {
+      "text": "It is winter, and Bix is in the mountains.",
+      "scene": "🏔️❄️",
+      "bix": true
+    },
+    {
+      "text": "Bix goes skiing down a big white hill.",
+      "scene": "⛷️"
+    },
+    {
+      "text": "Oh no! Bix falls over in the snow!",
+      "scene": "❄️",
+      "bix": true
+    },
+    {
+      "text": "A friend shows Bix how to go snowboarding.",
+      "scene": "🏂"
+    },
+    {
+      "text": "\"I love winter sports!\" says Bix.",
+      "scene": "😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix do first?",
+      "answer": "skiing"
+    },
+    {
+      "ask": "What does the friend show Bix?",
+      "answer": "snowboarding"
+    }
+  ]
+}

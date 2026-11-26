@@ -55,5 +55,43 @@
         "bee"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "A Night in the Forest",
+    "lines": [
+      "Last summer, we went camping in a forest.",
+      "At night, we heard an owl in the trees.",
+      "In the morning, Dad saw a fox near our tent.",
+      "There aren't any wolves in this forest, so we weren't afraid!"
+    ],
+    "questions": [
+      {
+        "q": "What did they hear at night?",
+        "options": [
+          "a wolf",
+          "an owl",
+          "a bee"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Dad see in the morning?",
+        "options": [
+          "a fox",
+          "a gorilla",
+          "a wolf"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Why weren't they afraid?",
+        "options": [
+          "There aren't any wolves.",
+          "Dad had a torch.",
+          "It was daytime."
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

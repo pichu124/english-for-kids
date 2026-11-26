@@ -1,0 +1,41 @@
+{
+  "id": "story-l4-instruments",
+  "unit": "l4-instruments",
+  "title": "The Noisy Band",
+  "icon": "🎺",
+  "pages": [
+    {
+      "text": "Bix wants to start a band.",
+      "scene": "🎵",
+      "bix": true
+    },
+    {
+      "text": "Mouse plays the violin.",
+      "scene": "🐭🎻"
+    },
+    {
+      "text": "Bear plays the drum. Boom, boom!",
+      "scene": "🐻🥁"
+    },
+    {
+      "text": "Bix plays the trumpet. It is very loud!",
+      "scene": "🎺",
+      "bix": true
+    },
+    {
+      "text": "Everybody claps. What a great band!",
+      "scene": "👏😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Mouse play?",
+      "answer": "violin"
+    },
+    {
+      "ask": "What does Bix play?",
+      "answer": "trumpet"
+    }
+  ]
+}

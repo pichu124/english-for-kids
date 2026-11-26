@@ -56,5 +56,43 @@
         "chemist"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "A Day in the City",
+    "lines": [
+      "Yesterday, Grandpa and I went into the city by bus.",
+      "First, we bought some stamps at the post office.",
+      "Then we walked across the old bridge and looked at the boats on the river.",
+      "Before we went home, we bought some medicine for Grandma at the chemist."
+    ],
+    "questions": [
+      {
+        "q": "How did they go into the city?",
+        "options": [
+          "by car",
+          "by bus",
+          "by train"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did they buy at the post office?",
+        "options": [
+          "stamps",
+          "medicine",
+          "a newspaper"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who was the medicine for?",
+        "options": [
+          "Grandpa",
+          "Grandma",
+          "the writer"
+        ],
+        "answer": 1
+      }
+    ]
+  }
 }

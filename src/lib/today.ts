@@ -50,6 +50,7 @@ export function resolveFun(p: TodayPlan): string {
   if (story) return `story:${story.id}`;
   const games = ['game:memory', 'game:balloons', 'game:colour'];
   if (!['L0', 'L1'].includes(currentLevel().id)) games.push('game:who');
+  if (currentLevel().id === 'L4') games.push('game:riddle'); // Flyers words have definitions
   return games[Number(today().slice(-2)) % games.length];
 }
 

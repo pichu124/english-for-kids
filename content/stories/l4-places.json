@@ -1,0 +1,41 @@
+{
+  "id": "story-l4-places",
+  "unit": "l4-places",
+  "title": "Bix at the Museum",
+  "icon": "🏛️",
+  "pages": [
+    {
+      "text": "Today Bix and the class are going to the museum.",
+      "scene": "🏛️",
+      "bix": true
+    },
+    {
+      "text": "At the museum, there is a huge dinosaur and an old gold crown.",
+      "scene": "🦖👑"
+    },
+    {
+      "text": "Next, they visit a castle on a hill.",
+      "scene": "🏰"
+    },
+    {
+      "text": "For lunch, they eat pizza in a restaurant.",
+      "scene": "🍕🍽️",
+      "bix": true
+    },
+    {
+      "text": "Then they go to the airport to meet Grandma. What a busy day!",
+      "scene": "🛫😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where does the class see a dinosaur?",
+      "answer": "museum"
+    },
+    {
+      "ask": "Where do they eat pizza?",
+      "answer": "restaurant"
+    }
+  ]
+}

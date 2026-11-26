@@ -59,5 +59,43 @@
         "angry"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "The First Day",
+    "lines": [
+      "Yesterday was Mia's first day at her new school.",
+      "In the morning, she was worried because she didn't know anybody.",
+      "Then a girl called Lily said hello, and they played together at break.",
+      "When Mia got home, she was very excited and told her mum everything."
+    ],
+    "questions": [
+      {
+        "q": "Why was Mia worried?",
+        "options": [
+          "She didn't know anybody.",
+          "She was late.",
+          "She lost her bag."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who said hello to Mia?",
+        "options": [
+          "Lily",
+          "Anna",
+          "her teacher"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "How did Mia feel when she got home?",
+        "options": [
+          "upset",
+          "excited",
+          "afraid"
+        ],
+        "answer": 1
+      }
+    ]
+  }
 }

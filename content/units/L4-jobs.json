@@ -56,5 +56,43 @@
         "mechanic"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "My Family's Jobs",
+    "lines": [
+      "My dad is an engineer. He builds bridges.",
+      "My aunt is a journalist. She writes for a newspaper in London.",
+      "My uncle is a photographer. He takes photos of famous people.",
+      "I want to be a dentist because I like helping people."
+    ],
+    "questions": [
+      {
+        "q": "What does the dad build?",
+        "options": [
+          "cars",
+          "bridges",
+          "houses"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who writes for a newspaper?",
+        "options": [
+          "the aunt",
+          "the uncle",
+          "the dad"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What does the writer want to be?",
+        "options": [
+          "a photographer",
+          "an engineer",
+          "a dentist"
+        ],
+        "answer": 2
+      }
+    ]
+  }
 }

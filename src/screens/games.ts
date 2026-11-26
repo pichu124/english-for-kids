@@ -18,7 +18,8 @@ import { todayNextButton } from './today';
  * Mini-games that replay words the child already learned:
  * Memory (find the pairs, every flip says the word), Balloons (pop the one Bix names)
  * Colour (Cambridge-style "listen and colour": colour the dog blue)
- * and Who Is Who? ("listen and draw lines": find Tom, he's got a blue T-shirt).
+ * Who Is Who? ("listen and draw lines": find Tom, he's got a blue T-shirt)
+ * and Riddles (Flyers: hear a definition, touch the picture).
  * No time pressure, no "wrong" — they give practice, not blocks.
  */
 export function gamesScreen(ctx: Ctx): HTMLElement {
@@ -31,6 +32,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
   if (game === 'balloons') return balloons(ctx);
   if (game === 'colour') return colour(ctx);
   if (game === 'who') return whoIsWho(ctx);
+  if (game === 'riddle') return riddles(ctx);
 
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const card = (id: string, icon: string, label: string) =>
@@ -45,7 +47,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'games' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Games')),
-    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'))),
+    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'), riddlePool(currentLevel().id).length >= 4 ? card('riddle', '🤔', 'Riddles') : null)),
   );
 }
 
@@ -338,4 +340,68 @@ function whoIsWho(ctx: Ctx): HTMLElement {
   again.onclick = () => (sfx.tap(), r < ROUNDS && void say(describe(order[r])));
   setTimeout(() => ctx.alive() && void say(describe(order[0])), 400);
   return shell(ctx, 'whois', 'Who Is Who?', host, bix);
+}
+
+/* ---------- Riddles (Flyers): "This person repairs cars." → touch the mechanic ---------- */
+/** Words of the level that have a definition (Flyers), learned ones first. */
+export const riddlePool = (level: string): Word[] => practicePool(level, 60).filter((w) => !!w.def);
+
+function riddles(ctx: Ctx): HTMLElement {
+  const level = currentLevel();
+  const pool = riddlePool(level.id);
+  const ROUNDS = Math.min(5, pool.length);
+  const order = shuffle(pool).slice(0, ROUNDS);
+  const bix = new Bix({ size: 'sm', bubble: false }).setMood('idle');
+  const stars = h('div', { class: 'play-stars balloon-stars', 'aria-hidden': 'true' }, Array.from({ length: ROUNDS }, () => h('span', {}, '★')));
+  const again = h('button', { class: 'btn btn-round btn-sun btn-ear balloon-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
+  const riddle = h('p', { class: 'def-card riddle-def', lang: 'en' });
+  const cards = h('div', { class: 'riddle-cards' });
+  const host = h('div', { class: 'game-body riddle-body' }, stars, again, h('div', { class: 'riddle-stage' }, riddle, cards));
+  let r = 0;
+
+  const round = () => {
+    if (!ctx.alive()) return;
+    if (r >= ROUNDS) {
+      again.hidden = true;
+      riddle.hidden = true;
+      cards.replaceChildren();
+      finish(ctx, host, bix, 'riddle');
+      return;
+    }
+    const target = order[r];
+    const others = shuffle(pool.filter((w) => w.text !== target.text)).slice(0, 3);
+    let done = false;
+    riddle.textContent = target.def!;
+    riddle.dataset.answer = target.text;
+    const items = shuffle([target, ...others]).map((w) => {
+      const b = h('button', { class: 'riddle-card pop', 'data-word': w.text, 'aria-label': w.text }, wordPicture(w));
+      b.addEventListener('click', async () => {
+        if (done || !ctx.alive()) return;
+        if (w.text !== target.text) {
+          sfx.soft();
+          b.classList.remove('shake');
+          void b.offsetWidth;
+          b.classList.add('shake');
+          void say(`Try again! ${target.def}`);
+          return;
+        }
+        done = true;
+        sfx.pop();
+        b.classList.add('is-right');
+        stars.children[r]?.classList.add('on');
+        bix.setMood('happy');
+        await say(`${pick(PRAISE)} ${target.text}!`);
+        if (!ctx.alive()) return;
+        bix.setMood('idle');
+        r++;
+        round();
+      });
+      return b;
+    });
+    cards.replaceChildren(...items);
+    again.onclick = () => (sfx.tap(), void say(target.def!));
+    void say(target.def!);
+  };
+  setTimeout(round, 400);
+  return shell(ctx, 'riddle', 'Riddles', host, bix);
 }

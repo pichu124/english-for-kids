@@ -56,5 +56,43 @@
         "climbing"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "A Winter Holiday",
+    "lines": [
+      "Last February, we went to the mountains for a week.",
+      "Every morning, my brother and I went skiing.",
+      "My sister doesn't like skiing, so she went ice skating with Mum.",
+      "On the last day, I tried snowboarding. I fell over lots of times, but it was fun!"
+    ],
+    "questions": [
+      {
+        "q": "When did they go to the mountains?",
+        "options": [
+          "last February",
+          "last summer",
+          "last October"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did the sister do?",
+        "options": [
+          "skiing",
+          "ice skating",
+          "snowboarding"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What happened when the writer tried snowboarding?",
+        "options": [
+          "They fell over lots of times.",
+          "They won a race.",
+          "They didn't like it."
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

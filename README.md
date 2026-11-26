@@ -53,7 +53,7 @@ src/
     sfx.ts          hiệu ứng âm thanh tổng hợp (không cần file)
     pwa.ts          đăng ký service worker, nút cài app
   screens/          start (chọn bé), home, lesson/ (listen, speak, play, do-it, chant, reward), world,
-                    book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay, tô màu, Who Is Who?),
+                    book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay, tô màu, Who Is Who?, Riddles cho Flyers),
                     stories (truyện), parent, rest
   styles/
 tests/              match.test.ts + e2e/

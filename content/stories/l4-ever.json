@@ -1,0 +1,39 @@
+{
+  "id": "story-l4-ever",
+  "unit": "l4-ever",
+  "title": "Grandpa's Adventures",
+  "icon": "🐪",
+  "pages": [
+    {
+      "text": "Grandpa has had lots of adventures.",
+      "scene": "👴"
+    },
+    {
+      "text": "He has been to Paris and has seen the Eiffel Tower.",
+      "scene": "🗼"
+    },
+    {
+      "text": "He has ridden a camel in the desert.",
+      "scene": "🐪"
+    },
+    {
+      "text": "He has flown in a small plane over the sea.",
+      "scene": "✈️🌊"
+    },
+    {
+      "text": "\"Have you ever seen a whale, Grandpa?\" asks Bix. \"Yes, I have!\"",
+      "scene": "🐋",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What has Grandpa done in the desert?",
+      "answer": "ridden"
+    },
+    {
+      "ask": "What has he done over the sea?",
+      "answer": "flown"
+    }
+  ]
+}
