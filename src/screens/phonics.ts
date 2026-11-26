@@ -82,13 +82,16 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     stage,
   );
   const step = (n: number) => [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
+  const firstSeen = new WeakMap<HTMLElement, number>();
   const tap = <T extends HTMLElement>(els: T[]) =>
     new Promise<T>((resolve) => {
-      // a quick double tap must not also press the button that appears in the same place next
-      const born = Date.now();
+      // a quick double tap must not also press a button that has just appeared in the same place
+      // (buttons already on screen, like the letter tiles, answer fast taps as usual)
+      const now = Date.now();
+      els.forEach((e) => firstSeen.has(e) || firstSeen.set(e, now));
       const off = () => els.forEach((e) => e.removeEventListener('click', on));
       const on = (e: Event) => {
-        if (Date.now() - born < 400) return;
+        if (Date.now() - (firstSeen.get(e.currentTarget as HTMLElement) ?? 0) < 400) return;
         off();
         resolve(e.currentTarget as T);
       };
