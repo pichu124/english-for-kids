@@ -153,9 +153,9 @@ Câu ngắn, thì hiện tại, gọi nhân vật là "Bix" (không dùng he/she
 
 ## Phonics, tự đọc to, trò chuyện với Bix, chơi cùng bố mẹ
 
-- **Phonics** (ABC → 🔊 Sounds, `src/screens/phonics.ts`, nội dung `content/phonics.json`): 5 nhóm âm (s a t p i n · c k e h r m d · g o u l f b · j v w x y z · sh ch th ee oo). Mỗi nhóm: làm quen âm → tìm âm → ghép âm (nghe c-a-t, chọn hình) → ghép chữ từ thẻ âm → đọc truyện nhỏ chỉ dùng âm đã học (+ vài từ "tricky" như the, is). Kiểm thử `tests/phonics.test.ts` bảo đảm mọi từ đều ghép được từ âm đã dạy.
-- **Bé tự đọc to**: truyện từ Starters có nút 🎤 **My turn**; truyện phonics cũng vậy. Từ nào máy nghe thấy chuyển xanh (`src/lib/readcheck.ts`, dễ tính). Không có micro thì bố mẹ bấm "✓ Bé đã nói".
-- **Talk with Bix** (nút 💬 Talk ở màn chính, `src/screens/talk.ts`, `content/talk.json`): trò chuyện theo kịch bản (bé nói hoặc chạm hình trả lời, Bix đáp theo câu bé chọn) và **luyện phần Nói Cambridge** theo bậc (chỉ và gọi tên trong tranh; tìm điểm khác; kể chuyện theo tranh; câu hỏi về bé). Mọi thứ chạy trên máy, không dùng AI hay máy chủ.
+- **Phonics** (ABC → 🔊 Sounds, `src/screens/phonics.ts`, nội dung `content/phonics.json`): 8 nhóm âm (s a t p i n · c k e h r m d · g o u l f b · j v w x y z qu · sh ch th ee oo · ai oa ie ar or · ng ow oi er ur · Tricky Words: the, I, go, said…). Xong cả 8 nhóm có giấy khen **Sounds Star**. Mỗi nhóm: làm quen âm → tìm âm → ghép âm (nghe c-a-t, chọn hình) → ghép chữ từ thẻ âm → đọc truyện nhỏ chỉ dùng âm đã học (+ vài từ "tricky" như the, is). Kiểm thử `tests/phonics.test.ts` bảo đảm mọi từ đều ghép được từ âm đã dạy.
+- **Bé tự đọc to**: truyện từ Starters có nút 🎤 **My turn**; truyện phonics cũng vậy. Từ nào máy nghe thấy chuyển xanh (`src/lib/readcheck.ts`, dễ tính). Không có micro, hoặc máy 2 lần không nghe thấy gì, thì bố mẹ bấm "✓ Bé đã nói". Chạm đáp án, lật trang hay bấm "Read to me" là micro tắt ngay.
+- **Talk with Bix** (nút 💬 Talk ở màn chính, `src/screens/talk.ts`, `content/talk.json`): trò chuyện theo kịch bản (bé nói hoặc chạm hình trả lời, Bix đáp theo câu bé chọn) và **luyện phần Nói Cambridge** theo bậc (chỉ và gọi tên trong tranh; tìm điểm khác; kể chuyện theo tranh; câu hỏi về bé). Mọi thứ chạy trên máy, không dùng AI hay máy chủ; Bix không hỏi tên, trường hay bạn của bé. **Hôm nay** có một bước nói mỗi ngày (bộ âm tiếp theo, luyện Nói hoặc trò chuyện). Lựa chọn AI thật: xem `docs/NGHIEN-CUU-TINH-NANG.md`, Đợt G.
 - **Play Together** (Games → 🧒👩 Play Together, `src/screens/duo.ts`): 2 người trên một máy — Quick Tap (bấm chuông trả lời), You Be Bix (một người tả, người kia đoán), Say It! (một người nói, người kia chấm 👍). Cả hai luôn được khen, không có người thua.
 - Lượt nói dùng chung: `src/screens/mic.ts` (micro → kiểm tra → "Try again!" → "Good try!"; không có nhận dạng giọng nói thì hiện nút cho bố mẹ).
 
@@ -200,6 +200,8 @@ Mở địa chỉ `https://….trycloudflare.com` bằng Chrome trên tablet. C�
 **Chọn: VPS InterData** (máy chung với CASA Mầm non và Chăm sóc lead). Xem **`docs/TRIEN-KHAI-VPS.md`**: lấy mã, build, thêm một tệp Caddy riêng, kiểm, cập nhật bằng `~/cap-nhat-bix.sh`, quay lui, gỡ. App là trang tĩnh: không chạy dịch vụ, không mở cổng, không có dữ liệu trên máy chủ.
 
 Cách khác: Vercel. `vercel.json` đã có sẵn. Vào vercel.com → Add New… → Project → chọn repo, dùng tên miền Production `*.vercel.app` (bản Preview có thể bắt đăng nhập).
+
+Cả hai cách gửi kèm header bảo mật, trong đó có **Content-Security-Policy**: trang chỉ chạy mã, kiểu chữ và hình của chính nó, không gọi tới máy chủ nào khác, không cho trang khác nhúng vào. Bản cài sẵn trên tablet nhận header mới ở lần cập nhật mã kế tiếp.
 
 ## Checklist thử thật trên tablet (Chrome Android)
 
