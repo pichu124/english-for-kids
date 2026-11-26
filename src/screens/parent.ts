@@ -18,6 +18,7 @@ import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '.
 import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
 import { PART_LABEL, passed, shields, testResults, TEST_NAME, TEST_PARTS, type Part } from '../lib/mocktest';
+import { defaultUnit } from '../lib/worksheet';
 
 let unlockedAt = 0;
 
@@ -27,8 +28,8 @@ export function parentScreen(ctx: Ctx): HTMLElement {
     unlockedAt = Date.now();
     root.replaceChildren(panel(ctx, show));
   };
-  // Coming back from the weekly report shortly after unlocking: no second question.
-  if (ctx.params.back === 'report' && Date.now() - unlockedAt < 10 * 60 * 1000) show();
+  // Coming back from the weekly report or a worksheet shortly after unlocking: no second question.
+  if ((ctx.params.back === 'report' || ctx.params.back === 'worksheet') && Date.now() - unlockedAt < 10 * 60 * 1000) show();
   else root.appendChild(gate(ctx, show));
   return root;
 }
@@ -95,6 +96,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Tên bé', nameField(), h('p', { class: 'p-muted' }, 'Bix sẽ chào bé bằng tên này (“Hi, …!”). Nên dùng tên ngắn, không dấu để giọng đọc tiếng Anh đọc dễ nghe.')),
     card('Bậc học của bé', levelField()),
     card('Huy hiệu & giấy chứng nhận', certField()),
+    card('Phiếu bài tập in', worksheetField()),
     card('Thi thử', testField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
@@ -172,6 +174,30 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       {},
       h('ul', { class: 'p-kids' }, rows),
       h('p', { class: 'p-muted' }, 'Huy hiệu mỗi bài: đồng khi học xong, bạc khi mọi từ thành sticker, vàng khi đủ sticker và học 3 lần. Giấy chứng nhận in khổ A4 ngang (hoặc lưu PDF), là kỷ niệm của gia đình/lớp học, không phải chứng chỉ Cambridge.'),
+    );
+  }
+
+  /** Printable worksheet for one unit: pick the level and the unit, then open the A4 page. */
+  function worksheetField() {
+    const levels = levelsWithContent();
+    const cur = currentLevel().id;
+    const lvSel = h('select', { class: 'p-input p-ws-level', 'aria-label': 'Bậc' }, levels.map((l) => h('option', { value: l.id, selected: l.id === cur }, l.nameVi))) as HTMLSelectElement;
+    const unitSel = h('select', { class: 'p-input p-ws-unit', 'aria-label': 'Bài' }) as HTMLSelectElement;
+    const fill = () => {
+      const pick = defaultUnit(lvSel.value)?.id;
+      unitSel.replaceChildren(...topicsOfLevel(lvSel.value).map((t) => h('option', { value: t.id, selected: t.id === pick }, `${t.icon} ${t.title} · ${t.titleVi}`)));
+    };
+    lvSel.addEventListener('change', fill);
+    fill();
+    return h(
+      'div',
+      {},
+      h('div', { class: 'p-row' }, lvSel, unitSel, h('button', { class: 'p-btn p-btn-main', 'data-ws': 'open', onclick: () => unitSel.value && ctx.go('worksheet', { unit: unitSel.value }) }, '📄 Mở phiếu')),
+      h(
+        'p',
+        { class: 'p-muted' },
+        'Phiếu A4 dọc tạo từ các từ của bài, có trang đáp án riêng cho bố mẹ. Bậc 0–1: tô màu, nối hình, nghe và khoanh. Starters: nối hình với chữ, tô chữ, nhìn hình viết từ, tìm chữ. Movers/Flyers: viết từ, điền từ vào câu, đọc định nghĩa, đọc đoạn văn. Mặc định là bài bé học gần nhất.',
+      ),
     );
   }
 

@@ -54,7 +54,7 @@ src/
     pwa.ts          đăng ký service worker, nút cài app
   screens/          start (chọn bé), home, lesson/ (listen, speak, play, do-it, chant, reward), world,
                     book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay, tô màu, Who Is Who?, Riddles cho Flyers),
-                    stories (truyện), parent, rest
+                    stories (truyện), parent, rest, report (báo cáo tuần), worksheet (phiếu bài tập in), certificate
   styles/
 tests/              match.test.ts + e2e/
 vite.config.ts      có plugin sinh dist/sw.js (precache toàn bộ app)
@@ -144,6 +144,12 @@ Câu ngắn, thì hiện tại, gọi nhân vật là "Bix" (không dùng he/she
 **Kiểm tra:** `npm test` báo lỗi nếu thiếu từ, câu mẫu không chứa từ cần học, lứa không khớp casa, hoặc từ chấp nhận dễ nhầm.
 
 **Link mở thẳng một bài** (dùng trong casa-mamnon): `https://<tên-miền>/?unit=<id>`. Danh mục mọi bài: `https://<tên-miền>/catalog.json`.
+
+## Phiếu bài tập in & giấy chứng nhận
+
+- **Khu bố mẹ → Phiếu bài tập in**: chọn bậc và bài (mặc định bài bé học gần nhất), bấm **📄 Mở phiếu**, rồi **🖨️ In phiếu** (A4 dọc, 1–2 trang bài tập + 1 trang "Đáp án cho bố mẹ"). Phiếu tự tạo từ các từ của bài (`src/lib/worksheet.ts`, màn `src/screens/worksheet.ts`), không cần soạn thêm dữ liệu:
+  bậc 0–1 tô màu, nối hình giống nhau, nghe và khoanh; Starters nối hình–chữ, tô chữ, nhìn hình viết từ (có chữ đầu), tìm chữ 8×8; Movers/Flyers viết từ, điền từ (`gaps`), đọc định nghĩa (`def`, Flyers), đoạn văn (`text`). In lại trong cùng ngày ra đúng phiếu đó.
+- **Giấy chứng nhận**: mỗi bậc học xong mọi bài có một giấy (khổ A4 ngang), màu và câu khen riêng theo bậc (`src/styles/printables.css`), mở ở **Khu bố mẹ → Huy hiệu & giấy chứng nhận**.
 
 ## Cách chấm điểm phần Nói
 

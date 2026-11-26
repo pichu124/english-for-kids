@@ -10,6 +10,7 @@ import './styles/parent.css';
 import './styles/extras.css';
 import './styles/learn.css';
 import './styles/phone.css';
+import './styles/printables.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
@@ -37,6 +38,7 @@ import { reportScreen } from './screens/report';
 import { testScreen } from './screens/test';
 import { phonicsScreen } from './screens/phonics';
 import { talkScreen } from './screens/talk';
+import { worksheetScreen } from './screens/worksheet';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -59,6 +61,7 @@ register('report', reportScreen);
 register('test', testScreen);
 register('phonics', phonicsScreen);
 register('talk', talkScreen);
+register('worksheet', worksheetScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 mount(document.getElementById('app')!);
@@ -86,6 +89,6 @@ document.addEventListener('visibilitychange', () => setBackground(!document.hidd
       h('p', { class: 'rotate-vi', lang: 'vi' }, 'Xoay ngang điện thoại để bé học nhé'),
     ),
   );
-  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report'));
+  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report' || name === 'worksheet'));
 }
 go('start');
