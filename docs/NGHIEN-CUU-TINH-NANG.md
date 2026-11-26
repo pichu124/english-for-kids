@@ -134,7 +134,14 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
   - mỗi bậc có một cúp; xong cả bậc thì có giấy chứng nhận ghi tên bé và ngày, in khổ A4 ngang hoặc lưu PDF;
   - Bix chúc mừng kèm nút 🏆 ở màn hình chính; khu bố mẹ có bảng huy hiệu theo bậc;
   - lời trên giấy ghi rõ "topics based on…": đây là kỷ niệm của gia đình/lớp, không phải chứng chỉ Cambridge.
-- [ ] 13. Trò chuyện bằng AI: để lại cho tới khi giải quyết xong micro.
+- [~] 13. Trò chuyện với Bix: đã làm bản **theo kịch bản, chạy trên máy** (màn Talk: 6 cuộc trò chuyện + luyện phần Nói Cambridge). Bản dùng AI thật để sau: cần máy chủ, khoá API trả phí, và gửi chữ bé nói ra ngoài (trái cam kết quyền riêng tư hiện tại) — bố mẹ quyết định.
+
+### Đợt E (tính năng lớn)
+- [x] **Phonics**: âm của chữ, ghép âm thành từ, ghép chữ từ thẻ âm, 5 truyện đọc được (ABC → Sounds).
+- [x] **Bé tự đọc to**: nút 🎤 My turn trong truyện và truyện phonics; từ đọc được chuyển xanh.
+- [x] **Luyện phần Nói Cambridge** + **trò chuyện theo kịch bản** (màn Talk with Bix).
+- [x] **Phiếu bài tập in** (khu bố mẹ) và giấy chứng nhận riêng cho từng bậc.
+- [x] **Chơi cùng bố mẹ** (Play Together): 3 trò cho 2 người trên một máy.
 
 ### Đợt D (đề xuất sau khi dùng thật)
 - [x] **Sao lưu và khôi phục**: khu bố mẹ tải file sao lưu (mọi bé trên máy), gửi qua menu chia sẻ của máy (Zalo, Drive…). Khôi phục: chọn file, xem trước tên các bé, bấm 2 lần. Quá 7 ngày chưa sao lưu thì có dòng nhắc ở đầu khu bố mẹ. File nằm trong tay bố mẹ, không gửi đi đâu.

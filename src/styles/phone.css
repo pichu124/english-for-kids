@@ -131,7 +131,7 @@
   .home .map.map-many { flex-wrap: wrap; justify-content: center; align-content: flex-start; overflow-x: hidden; overflow-y: auto; touch-action: pan-y; scroll-snap-type: none; min-height: 0; padding: 12px 3vw 150px; gap: 3vw; }
   .home .map.map-many .island { width: clamp(150px, 21vw, 200px); }
   .home-top { flex-wrap: wrap; }
-  .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: nowrap; }
+  .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: wrap; gap: 8px; }
   .chat-box { top: auto; bottom: -96px; left: 50%; transform: translateX(-50%); }
   .lesson-bix .bix-bubble { left: 62%; max-width: 44vw; }
   .reward .tip-card { position: static; order: 9; max-width: 90vw; }

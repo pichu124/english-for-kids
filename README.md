@@ -151,6 +151,14 @@ Câu ngắn, thì hiện tại, gọi nhân vật là "Bix" (không dùng he/she
   bậc 0–1 tô màu, nối hình giống nhau, nghe và khoanh; Starters nối hình–chữ, tô chữ, nhìn hình viết từ (có chữ đầu), tìm chữ 8×8; Movers/Flyers viết từ, điền từ (`gaps`), đọc định nghĩa (`def`, Flyers), đoạn văn (`text`). In lại trong cùng ngày ra đúng phiếu đó.
 - **Giấy chứng nhận**: mỗi bậc học xong mọi bài có một giấy (khổ A4 ngang), màu và câu khen riêng theo bậc (`src/styles/printables.css`), mở ở **Khu bố mẹ → Huy hiệu & giấy chứng nhận**.
 
+## Phonics, tự đọc to, trò chuyện với Bix, chơi cùng bố mẹ
+
+- **Phonics** (ABC → 🔊 Sounds, `src/screens/phonics.ts`, nội dung `content/phonics.json`): 5 nhóm âm (s a t p i n · c k e h r m d · g o u l f b · j v w x y z · sh ch th ee oo). Mỗi nhóm: làm quen âm → tìm âm → ghép âm (nghe c-a-t, chọn hình) → ghép chữ từ thẻ âm → đọc truyện nhỏ chỉ dùng âm đã học (+ vài từ "tricky" như the, is). Kiểm thử `tests/phonics.test.ts` bảo đảm mọi từ đều ghép được từ âm đã dạy.
+- **Bé tự đọc to**: truyện từ Starters có nút 🎤 **My turn**; truyện phonics cũng vậy. Từ nào máy nghe thấy chuyển xanh (`src/lib/readcheck.ts`, dễ tính). Không có micro thì bố mẹ bấm "✓ Bé đã nói".
+- **Talk with Bix** (nút 💬 Talk ở màn chính, `src/screens/talk.ts`, `content/talk.json`): trò chuyện theo kịch bản (bé nói hoặc chạm hình trả lời, Bix đáp theo câu bé chọn) và **luyện phần Nói Cambridge** theo bậc (chỉ và gọi tên trong tranh; tìm điểm khác; kể chuyện theo tranh; câu hỏi về bé). Mọi thứ chạy trên máy, không dùng AI hay máy chủ.
+- **Play Together** (Games → 🧒👩 Play Together, `src/screens/duo.ts`): 2 người trên một máy — Quick Tap (bấm chuông trả lời), You Be Bix (một người tả, người kia đoán), Say It! (một người nói, người kia chấm 👍). Cả hai luôn được khen, không có người thua.
+- Lượt nói dùng chung: `src/screens/mic.ts` (micro → kiểm tra → "Try again!" → "Good try!"; không có nhận dạng giọng nói thì hiện nút cho bố mẹ).
+
 ## Cách chấm điểm phần Nói
 
 - Chấm **dễ**: đúng nếu **bất kỳ** phương án nhận dạng nào (cả kết quả tạm thời) chứa từ mục tiêu, hoặc gần giống (sai 1–2 chữ cái tuỳ độ dài từ), hoặc có “khung phụ âm” giống nhau.
