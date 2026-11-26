@@ -34,13 +34,15 @@ describe('reading & spelling', () => {
     }
     // Movers: read, type the word, sentences, and a short text where the unit has one.
     for (const t of topicsOfLevel('L3')) {
-      expect(t.steps.includes('gap'), t.id).toBe(['l3-town', 'l3-house', 'l3-travel'].includes(t.id) && gapCount(t.words) > 0);
+      expect(t.steps.includes('gap'), t.id).toBe(!!t.gaps?.length || (['l3-town', 'l3-house', 'l3-travel'].includes(t.id) && gapCount(t.words) > 0));
+      for (const g of t.gaps ?? []) expect(t.words.some((w) => w.text === g.answer), `${t.id}: ${g.answer}`).toBe(true);
       expect(t.steps.includes('read'), t.id).toBe(false);
       expect(t.steps.includes('write'), t.id).toBe(t.words.filter(writable).length >= 2);
       expect(t.steps.includes('text'), t.id).toBe(!!t.text);
       expect(t.steps.includes('spell'), t.id).toBe(false);
     }
     expect(topicsOfLevel('L3').filter((t) => t.text).length).toBeGreaterThanOrEqual(4);
+    expect(topicsOfLevel('L3').filter((t) => t.steps.includes('gap')).length).toBeGreaterThanOrEqual(14);
   });
 
   it('spellable: single words of 2–6 letters', () => {

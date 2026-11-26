@@ -1,0 +1,45 @@
+{
+  "topic": "offers",
+  "words": [
+    {
+      "id": "coffee",
+      "text": "coffee",
+      "topic": "offers",
+      "image": {
+        "emoji": "☕"
+      },
+      "sentence": "Would you like some coffee? No, thank you.",
+      "accept": [
+        "cofee",
+        "coffees"
+      ]
+    },
+    {
+      "id": "milkshake",
+      "text": "milkshake",
+      "topic": "offers",
+      "image": {
+        "emoji": "🥤"
+      },
+      "sentence": "Would you like a milkshake? Yes, please!",
+      "accept": [
+        "milk shake",
+        "milkshakes"
+      ]
+    },
+    {
+      "id": "biscuit",
+      "text": "biscuit",
+      "topic": "offers",
+      "image": {
+        "emoji": "🍪"
+      },
+      "sentence": "Would you like a biscuit? Yes, please!",
+      "accept": [
+        "biscuits",
+        "biskit",
+        "cookie"
+      ]
+    }
+  ]
+}

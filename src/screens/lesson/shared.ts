@@ -2,7 +2,7 @@ import type { Bix } from '../../art/bix';
 import { isoCube } from '../../art/cube';
 import { sceneSVG } from '../../art/positions';
 import { clockSVG } from '../../art/clock';
-import { bodySVG, iconSVG } from '../../art/drawings';
+import { bodySVG, familySVG, iconSVG } from '../../art/drawings';
 import { animFor, type Level, type Topic, type Word } from '../../content';
 import { fromHTML, h, wait } from '../../lib/dom';
 import type { Ctx } from '../../router';
@@ -80,6 +80,7 @@ export function makeUI(base: Omit<LessonUI, 'guard' | 'tap' | 'tapAny' | 'pause'
 export function wordPicture(w: Word, cls = ''): HTMLElement {
   if (w.image.body) return h('div', { class: `pic pic-drawing ${cls}` }, fromHTML(bodySVG(w.image.body)));
   if (w.image.icon) return h('div', { class: `pic pic-drawing ${cls}` }, fromHTML(iconSVG(w.image.icon)));
+  if (w.image.family) return h('div', { class: `pic pic-drawing ${cls}` }, fromHTML(familySVG(w.image.family)));
   if (w.image.clock) {
     return h('div', { class: `pic pic-clock ${cls}` }, fromHTML(clockSVG(w.image.clock)));
   }

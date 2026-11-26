@@ -1,0 +1,67 @@
+{
+  "id": "l3-family",
+  "level": "L3",
+  "topic": "family",
+  "order": 28,
+  "title": "My Family 2",
+  "titleVi": "Họ hàng",
+  "icon": "👪",
+  "color": "#a2d2ff",
+  "intro": "Let's meet my whole family!",
+  "playPrompt": "Find my {word}!",
+  "block": {
+    "name": "Family tree block",
+    "style": "wood",
+    "color": "#bc8a5f"
+  },
+  "words": [
+    "aunt",
+    "uncle",
+    "cousin",
+    "parents",
+    "grandparents"
+  ],
+  "parentTip": {
+    "vi": "Vẽ cây gia đình cùng con, chỉ từng người: \"Who is she? She's my aunt.\"",
+    "say": "Who is your aunt?"
+  },
+  "chat": {
+    "ask": "Have you got a cousin?",
+    "yes": "Great! Cousins are fun!",
+    "no": "That's okay! Friends are fun too!"
+  },
+  "gaps": [
+    {
+      "s": "My mum's sister is my ___.",
+      "answer": "aunt",
+      "options": [
+        "cousin",
+        "parents"
+      ]
+    },
+    {
+      "s": "My aunt's daughter is my ___.",
+      "answer": "cousin",
+      "options": [
+        "uncle",
+        "grandparents"
+      ]
+    },
+    {
+      "s": "My mum and dad are my ___.",
+      "answer": "parents",
+      "options": [
+        "aunt",
+        "cousin"
+      ]
+    },
+    {
+      "s": "My mum's mum and dad are my ___.",
+      "answer": "grandparents",
+      "options": [
+        "cousin",
+        "uncle"
+      ]
+    }
+  ]
+}

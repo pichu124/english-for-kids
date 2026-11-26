@@ -72,6 +72,13 @@ const playUntilNext = async () => {
         await page.locator('.mem-card').nth(j).click({ force: true });
         await page.waitForTimeout(500);
       }
+    } else if (await page.locator('.paint-tile').count()) {
+      const said = await page.evaluate(() => window.__spoken.at(-1) || '');
+      const m = said.match(/colour the (.+) (\w+)!$/i);
+      if (m) {
+        await page.locator(`.crayon[data-colour="${m[2]}"]`).click({ force: true, timeout: 500 }).catch(() => {});
+        await page.locator(`.paint-tile:not(.is-painted)[aria-label="${m[1]}" i]`).first().click({ force: true, timeout: 500 }).catch(() => {});
+      }
     } else if (await page.locator('.balloon').count()) {
       const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
       const m = said.match(/pop the (.+)!$/);

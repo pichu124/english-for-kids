@@ -71,5 +71,31 @@
         "answer": 1
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "I ___ my bike to school.",
+      "answer": "ride",
+      "options": [
+        "paint",
+        "sail"
+      ]
+    },
+    {
+      "s": "Grandpa sits by the lake and goes ___.",
+      "answer": "fishing",
+      "options": [
+        "paint",
+        "ride"
+      ]
+    },
+    {
+      "s": "You need ice to ___.",
+      "answer": "skate",
+      "options": [
+        "sail",
+        "paint"
+      ]
+    }
+  ]
 }

@@ -53,7 +53,7 @@ src/
     sfx.ts          hiệu ứng âm thanh tổng hợp (không cần file)
     pwa.ts          đăng ký service worker, nút cài app
   screens/          start (chọn bé), home, lesson/ (listen, speak, play, do-it, chant, reward), world,
-                    book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay),
+                    book (My Words), wardrobe (tủ đồ Bix), garden, games (lật thẻ, bóng bay, tô màu),
                     stories (truyện), parent, rest
   styles/
 tests/              match.test.ts + e2e/
@@ -105,7 +105,9 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
   ```
   `answer` là số thứ tự đáp án đúng (bắt đầu từ 0). Hình đồng hồ: `"image": { "clock": "7:00" }`.
   Hình vẽ khi không có emoji: `"image": { "body": "knee" }` (bạn nhỏ có khoanh bộ phận) hoặc `"image": { "icon": "towel" }`, danh sách trong `src/art/drawings.ts`.
-  Điền từ (🧩): thêm `"gap": true` vào bài, chỉ khi mỗi câu mẫu chỉ hợp với đúng một từ của bài.
+  Hình cây gia đình: `"image": { "family": "aunt" }` (aunt, uncle, cousin, parents, grandparents).
+  Điền từ (🧩): thêm `"gap": true` vào bài, chỉ khi mỗi câu mẫu chỉ hợp với đúng một từ của bài. Hoặc soạn tay
+  `"gaps": [{ "s": "Mice love ___!", "answer": "cheese", "options": ["soup", "pasta"] }]` (đáp án là chữ của một từ trong bài).
 - **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).

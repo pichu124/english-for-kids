@@ -60,3 +60,29 @@ const ICON_SVG: Record<string, string> = {
 export function iconSVG(name: string): string {
   return `<svg class="drawing" viewBox="0 0 100 100" role="img" aria-label="${name}">${ICON_SVG[name] ?? ''}</svg>`;
 }
+
+/** A small family tree; the person (or people) to learn is circled, "me" has a star. */
+export const FAMILY = ['aunt', 'uncle', 'cousin', 'parents', 'grandparents'] as const;
+export function familySVG(who: string): string {
+  const T = `stroke="${INK}" stroke-width="1.8" stroke-linejoin="round"`;
+  const person = (x: number, y: number, shirt: string, hair: string, long = false, grey = false) => `
+    <path d="M${x - 9} ${y + 20} Q${x - 9} ${y + 8} ${x} ${y + 8} Q${x + 9} ${y + 8} ${x + 9} ${y + 20} Z" fill="${shirt}" ${T}/>
+    ${long ? `<path d="M${x - 8} ${y + 7} Q${x - 9.5} ${y - 8} ${x} ${y - 8} Q${x + 9.5} ${y - 8} ${x + 8} ${y + 7} Z" fill="${hair}" ${T}/>` : ''}
+    <circle cx="${x}" cy="${y}" r="7" fill="#f6c89f" ${T}/>
+    <circle cx="${x - 2.4}" cy="${y}" r="0.9" fill="${INK}"/><circle cx="${x + 2.4}" cy="${y}" r="0.9" fill="${INK}"/>
+    ${long ? `<path d="M${x - 7} ${y - 2} Q${x} ${y - 9} ${x + 7} ${y - 2}" fill="${hair}" ${T}/>` : `<path d="M${x - 7} ${y - 1.5} Q${x} ${y - 10.5} ${x + 7} ${y - 1.5}" fill="${grey ? '#e3e6ee' : hair}" ${T}/>`}`;
+  const P: Record<string, [number, number]> = { grandpa: [48, 14], grandma: [72, 14], dad: [18, 52], mum: [42, 52], aunt: [78, 52], uncle: [102, 52], me: [30, 90], cousin: [90, 90] };
+  const ring: Record<string, string> = {
+    aunt: `<circle cx="78" cy="60" r="15"/>`, uncle: `<circle cx="102" cy="60" r="15"/>`, cousin: `<circle cx="90" cy="98" r="15"/>`,
+    parents: `<ellipse cx="30" cy="60" rx="27" ry="16"/>`, grandparents: `<ellipse cx="60" cy="22" rx="27" ry="16"/>`,
+  };
+  return `<svg class="drawing" viewBox="0 0 120 118" role="img" aria-label="${who}">
+    <path d="M60 30 V40 M42 40 H78 M42 40 V44 M78 40 V44 M30 62 V82 M18 66 H42 M90 62 V82 M78 66 H102" stroke="#8d99ae" stroke-width="2.5" fill="none"/>
+    ${person(...P.grandpa, '#8d99ae', '', false, true)}${person(...P.grandma, '#c77dff', '#e3e6ee', true)}
+    ${person(...P.dad, '#4361ee', '#8d5a2b')}${person(...P.mum, '#ef476f', '#a0522d', true)}
+    ${person(...P.aunt, '#ff9f1c', '#f4c95d', true)}${person(...P.uncle, '#2a9d8f', '#5c4033')}
+    ${person(...P.me, '#ffd166', '#8d5a2b')}${person(...P.cousin, '#90be6d', '#f4c95d', true)}
+    <text x="30" y="117" font-size="9" font-weight="800" text-anchor="middle" fill="${INK}">me ⭐</text>
+    <g fill="rgba(255,214,10,.3)" stroke="#ef476f" stroke-width="3" stroke-dasharray="5 3">${ring[who] ?? ''}</g>
+  </svg>`;
+}

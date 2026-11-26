@@ -80,6 +80,7 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 5. **Thêm hai trò chơi nhỏ** xen vào bước chọn hình, chọn ngẫu nhiên mỗi bài:
    - **Lật thẻ tìm cặp**: hình với hình, hoặc hình với chữ ở bậc Starters;
    - **Bắn bóng bay**: nghe từ, chạm vào bóng có hình đúng.
+   - **Tô màu** (thêm ở đợt M4): nghe "Colour the dog blue!", chọn bút màu rồi chạm vào hình.
 6. **Thẻ "Chơi cùng con"** (trụ cột xã hội + ý nghĩa): hết bài hiện một gợi ý ngắn bằng tiếng Việt cho bố mẹ, ví dụ *"Chỉ đồ vật trong nhà và hỏi: What colour is it?"*. Nội dung lấy từ trường mới `parentTip` của Unit.
 
 **Tiến độ Đợt A (đã xong):**

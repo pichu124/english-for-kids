@@ -56,6 +56,7 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     await p.goto(base + '/'); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.dock-btn[aria-label="Games"]').click({ force: true }); await p.locator('[data-game=memory]').click({ force: true, timeout: 4000 }).catch((e) => report.push(vn + ' memory: CANNOT OPEN ' + e.message.split('\n')[0])); await check('memory');
     await p.locator('.btn-home').first().click({ force: true }); await p.locator('.dock-btn[aria-label="Games"]').click({ force: true }); await p.locator('[data-game=balloons]').click({ force: true }); await check('balloons');
+    await p.locator('.btn-home').first().click({ force: true }); await p.locator('.dock-btn[aria-label="Games"]').click({ force: true }); await p.locator('[data-game=colour]').click({ force: true }); await check('colour');
     await p.locator('.btn-home').first().click({ force: true }); await p.locator('.dock-btn[aria-label="Stories"]').click({ force: true }); await p.locator('.story-book[data-story="story-animals"]').click({ force: true }); await check('story');
     await p.goto(base + '/?unit=l2-zoo'); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.listen'); await check('lesson-listen');
     for (let i = 0; i < 300 && !(await p.locator('.speak').count()); i++) { if (await p.locator('.btn-next:not([hidden])').count()) await p.locator('.btn-next:not([hidden])').click({ force: true }); await p.waitForTimeout(80); }

@@ -1,0 +1,71 @@
+{
+  "topic": "family2",
+  "words": [
+    {
+      "id": "aunt",
+      "text": "aunt",
+      "topic": "family2",
+      "image": {
+        "family": "aunt"
+      },
+      "sentence": "My aunt is my mum's sister.",
+      "accept": [
+        "aunts",
+        "ant",
+        "auntie"
+      ]
+    },
+    {
+      "id": "uncle",
+      "text": "uncle",
+      "topic": "family2",
+      "image": {
+        "family": "uncle"
+      },
+      "sentence": "My uncle is my cousin's dad.",
+      "accept": [
+        "uncles",
+        "unkle"
+      ]
+    },
+    {
+      "id": "cousin",
+      "text": "cousin",
+      "topic": "family2",
+      "image": {
+        "family": "cousin"
+      },
+      "sentence": "My cousin is my aunt's daughter.",
+      "accept": [
+        "cousins",
+        "cuzin"
+      ]
+    },
+    {
+      "id": "parents",
+      "text": "parents",
+      "topic": "family2",
+      "image": {
+        "family": "parents"
+      },
+      "sentence": "My parents are my mum and dad.",
+      "accept": [
+        "parent",
+        "parrents"
+      ]
+    },
+    {
+      "id": "grandparents",
+      "text": "grandparents",
+      "topic": "family2",
+      "image": {
+        "family": "grandparents"
+      },
+      "sentence": "My grandparents are my mum's mum and dad.",
+      "accept": [
+        "grandparent",
+        "grand parents"
+      ]
+    }
+  ]
+}

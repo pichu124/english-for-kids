@@ -67,5 +67,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "It's my birthday. Let's have a ___!",
+      "answer": "party",
+      "options": [
+        "email",
+        "video"
+      ]
+    },
+    {
+      "s": "Thank you for the ___! I love my new bike.",
+      "answer": "present",
+      "options": [
+        "band",
+        "email"
+      ]
+    },
+    {
+      "s": "My brother plays the guitar in a ___.",
+      "answer": "band",
+      "options": [
+        "present",
+        "email"
+      ]
+    }
+  ]
 }

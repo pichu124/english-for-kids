@@ -68,5 +68,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "She works in a hospital and helps the doctor. She's a ___.",
+      "answer": "nurse",
+      "options": [
+        "farmer",
+        "clown"
+      ]
+    },
+    {
+      "s": "He has got lots of cows and sheep. He's a ___.",
+      "answer": "farmer",
+      "options": [
+        "nurse",
+        "pop star"
+      ]
+    },
+    {
+      "s": "He makes pizza and soup in the kitchen. He's a ___.",
+      "answer": "cook",
+      "options": [
+        "doctor",
+        "clown"
+      ]
+    }
+  ]
 }

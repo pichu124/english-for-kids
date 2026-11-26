@@ -76,5 +76,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "My hat is flying away! It's very ___.",
+      "answer": "windy",
+      "options": [
+        "sunny",
+        "cloudy"
+      ]
+    },
+    {
+      "s": "I can't see the sun. It's ___.",
+      "answer": "cloudy",
+      "options": [
+        "sunny",
+        "windy"
+      ]
+    },
+    {
+      "s": "After the rain, we saw a beautiful ___ in the sky.",
+      "answer": "rainbow",
+      "options": [
+        "snow",
+        "rain"
+      ]
+    }
+  ]
 }

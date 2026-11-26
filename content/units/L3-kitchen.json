@@ -30,5 +30,31 @@
     "ask": "Would you like some noodles?",
     "yes": "Yum! Noodles are great!",
     "no": "Okay! Maybe some soup?"
-  }
+  },
+  "gaps": [
+    {
+      "s": "I drink my tea from a ___.",
+      "answer": "cup",
+      "options": [
+        "plate",
+        "noodles"
+      ]
+    },
+    {
+      "s": "Put the cake on a ___, please.",
+      "answer": "plate",
+      "options": [
+        "tea",
+        "bottle"
+      ]
+    },
+    {
+      "s": "The baby drinks milk from a ___.",
+      "answer": "bottle",
+      "options": [
+        "plate",
+        "noodles"
+      ]
+    }
+  ]
 }

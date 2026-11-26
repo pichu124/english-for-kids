@@ -28,5 +28,31 @@
     "ask": "Do you like cold days?",
     "yes": "Me too! Warm scarves are nice!",
     "no": "Okay! Sunny days are nice!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "Wear a ___ on your head when you ride your bike.",
+      "answer": "helmet",
+      "options": [
+        "scarf",
+        "gloves"
+      ]
+    },
+    {
+      "s": "My hands are cold. I need my ___.",
+      "answer": "gloves",
+      "options": [
+        "helmet",
+        "scarf"
+      ]
+    },
+    {
+      "s": "I wear a ___ around my neck.",
+      "answer": "scarf",
+      "options": [
+        "helmet",
+        "gloves"
+      ]
+    }
+  ]
 }

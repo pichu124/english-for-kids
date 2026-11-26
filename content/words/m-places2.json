@@ -1,0 +1,86 @@
+{
+  "topic": "town2",
+  "words": [
+    {
+      "id": "bank",
+      "text": "bank",
+      "topic": "town2",
+      "image": {
+        "emoji": "🏦"
+      },
+      "sentence": "Dad gets money at the bank.",
+      "accept": [
+        "banks",
+        "bang"
+      ]
+    },
+    {
+      "id": "cafe",
+      "text": "café",
+      "topic": "town2",
+      "image": {
+        "emoji": "☕"
+      },
+      "sentence": "We had milkshakes at the café.",
+      "accept": [
+        "cafe",
+        "caffe",
+        "cafes"
+      ]
+    },
+    {
+      "id": "car-park",
+      "text": "car park",
+      "topic": "town2",
+      "image": {
+        "emoji": "🅿️"
+      },
+      "sentence": "Mum left the car in the car park.",
+      "accept": [
+        "carpark",
+        "car-park",
+        "parking"
+      ]
+    },
+    {
+      "id": "circus",
+      "text": "circus",
+      "topic": "town2",
+      "image": {
+        "emoji": "🎪"
+      },
+      "sentence": "We saw funny clowns at the circus.",
+      "accept": [
+        "circuses",
+        "sircus"
+      ]
+    },
+    {
+      "id": "funfair",
+      "text": "funfair",
+      "topic": "town2",
+      "image": {
+        "emoji": "🎡"
+      },
+      "sentence": "I went on the big wheel at the funfair.",
+      "accept": [
+        "fun fair",
+        "funfairs"
+      ]
+    },
+    {
+      "id": "sports-centre",
+      "text": "sports centre",
+      "topic": "town2",
+      "image": {
+        "emoji": "🏟️"
+      },
+      "sentence": "I play basketball at the sports centre.",
+      "accept": [
+        "sports center",
+        "sport centre",
+        "sports-centre"
+      ]
+    }
+  ]
+}

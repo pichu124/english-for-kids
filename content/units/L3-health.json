@@ -68,5 +68,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "I've got a ___. I need a tissue. Atishoo!",
+      "answer": "cold",
+      "options": [
+        "headache",
+        "stomach-ache"
+      ]
+    },
+    {
+      "s": "I ate too many sweets. Now I've got a ___.",
+      "answer": "stomach-ache",
+      "options": [
+        "cough",
+        "cold"
+      ]
+    },
+    {
+      "s": "The doctor gave me some ___. Now I feel better.",
+      "answer": "medicine",
+      "options": [
+        "temperature",
+        "headache"
+      ]
+    }
+  ]
 }

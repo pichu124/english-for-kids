@@ -43,7 +43,7 @@ await page.goto(`${base}/?unit=l3-health&part=2`);
 await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.progress-step');
 const icons = (await page.locator('.progress-step').allTextContents()).join(' ');
-if (icons !== '⌨️ ✍️ 📃 🎁') fail('Movers part 2 = write, sentence, text: ' + icons);
+if (icons !== '🧩 ⌨️ ✍️ 📃 🎁') fail('Movers part 2 = gap, write, sentence, text: ' + icons);
 await page.evaluate(() => { window.__manualWrite = true; window.__manualText = true; window.__manualReading = false; });
 await page.waitForSelector('.write[data-word]', { timeout: 60000 });
 await page.waitForTimeout(400);
@@ -107,6 +107,30 @@ if (shots) await page.screenshot({ path: `${shots}/movers-gap.png` });
 await page.evaluate(() => (window.__manualGap = false));
 step(`gap fill: "${await page.locator('.gap-sentence').textContent()}"`);
 await page.waitForSelector('.reward-actions:not([hidden])', { timeout: 90000 });
+
+// Hand-written gap sentences (unit "gaps"): Food part 2 uses them, not auto-made ones.
+await page.goto(`${base}/?unit=l3-food&part=2`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.gap[data-answer]', { timeout: 30000 });
+await page.waitForTimeout(300);
+{
+  const sent = (await page.locator('.gap-sentence').textContent()).replace(/\s+/g, ' ').trim();
+  const hand = ['I eat my', 'Mice love', 'On Sunday mornings'];
+  if (!hand.some((x) => sent.startsWith(x))) fail('Food gap should be a hand-written sentence: ' + sent);
+  const ans = await page.locator('.gap').getAttribute('data-answer');
+  const opts = await page.locator('.gap-opt').evaluateAll((els) => els.map((e) => e.dataset.word));
+  if (opts.length !== 3 || !opts.includes(ans)) fail('3 options incl. the answer: ' + opts);
+  await page.locator(`.gap-opt[data-word="${ans}"]`).click({ force: true });
+  await page.waitForSelector('.gap-blank.is-filled');
+  step(`hand-written gap: "${sent}" → ${ans} (${opts.join(' / ')})`);
+}
+
+// Family tree drawing: the asked-for relative is circled.
+await page.goto(`${base}/?unit=l3-family`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.listen .pic-drawing svg');
+if (shots) await page.screenshot({ path: `${shots}/movers-family.png` });
+step('family tree pictures for aunt, uncle, cousin…');
 
 // Drawn pictures for words without an old emoji (body parts, household things)
 await page.goto(`${base}/?unit=l3-body`);

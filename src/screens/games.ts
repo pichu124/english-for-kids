@@ -15,7 +15,8 @@ import { todayNextButton } from './today';
 
 /**
  * Mini-games that replay words the child already learned:
- * Memory (find the pairs, every flip says the word) and Balloons (pop the one Bix names).
+ * Memory (find the pairs, every flip says the word), Balloons (pop the one Bix names)
+ * and Colour (Cambridge-style "listen and colour": colour the dog blue).
  * No time pressure, no "wrong" — they give practice, not blocks.
  */
 export function gamesScreen(ctx: Ctx): HTMLElement {
@@ -26,6 +27,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
   const game = ctx.params.game;
   if (game === 'memory') return memory(ctx);
   if (game === 'balloons') return balloons(ctx);
+  if (game === 'colour') return colour(ctx);
 
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const card = (id: string, icon: string, label: string) =>
@@ -40,7 +42,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'games' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Games')),
-    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'))),
+    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'))),
   );
 }
 
@@ -188,4 +190,96 @@ function balloons(ctx: Ctx): HTMLElement {
   };
   setTimeout(() => round(0), 400);
   return shell(ctx, 'balloons', 'Balloons', host, bix);
+}
+
+/* ---------- Colour: "Colour the dog blue!" — pick the crayon, then tap the thing ---------- */
+const PAINTS = [
+  { name: 'red', c: '#ef476f' },
+  { name: 'blue', c: '#4cc9f0' },
+  { name: 'green', c: '#06d6a0' },
+  { name: 'yellow', c: '#ffd166' },
+  { name: 'purple', c: '#9b5de5' },
+];
+
+function colour(ctx: Ctx): HTMLElement {
+  const level = currentLevel();
+  const names = PAINTS.map((p) => p.name);
+  // Things to colour: never a colour word or a colour block (that would give the answer away).
+  const things = shuffle(practicePool(level.id, 10).filter((w) => !w.image.color && !names.includes(w.text.toLowerCase()))).slice(0, 4);
+  const paints = shuffle(PAINTS).slice(0, things.length);
+  const ROUNDS = things.length;
+  const bix = new Bix({ size: 'sm', bubble: false }).setMood('idle');
+  const stars = h('div', { class: 'play-stars balloon-stars', 'aria-hidden': 'true' }, Array.from({ length: ROUNDS }, () => h('span', {}, '★')));
+  const again = h('button', { class: 'btn btn-round btn-sun btn-ear balloon-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
+  let brush: (typeof PAINTS)[number] | null = null;
+  let r = 0;
+  let busy = false;
+
+  const prompt = () => `Colour the ${things[r].text} ${paints[r].name}!`;
+  const wiggle = (el: HTMLElement) => {
+    el.classList.remove('shake');
+    void el.offsetWidth;
+    el.classList.add('shake');
+  };
+
+  const crayons = PAINTS.map((p) => {
+    const b = h('button', { class: 'crayon', 'aria-label': p.name, 'data-colour': p.name, style: `--c:${p.c}` }, h('span', { class: 'crayon-tip', 'aria-hidden': 'true' }));
+    b.addEventListener('click', () => {
+      if (busy || !ctx.alive()) return;
+      sfx.tap();
+      brush = p;
+      for (const c of crayons) c.classList.toggle('is-on', c === b);
+      void say(p.name);
+    });
+    return b;
+  });
+
+  const tiles = things.map((w) => {
+    const t = h('button', { class: 'paint-tile', 'aria-label': w.text }, h('span', { class: 'paint-pic' }, wordPicture(w)));
+    t.addEventListener('click', async () => {
+      if (busy || !ctx.alive() || r >= ROUNDS || t.classList.contains('is-painted')) return;
+      if (!brush) {
+        sfx.soft();
+        for (const c of crayons) wiggle(c);
+        void say(`Pick a colour! ${prompt()}`);
+        return;
+      }
+      if (w !== things[r] || brush !== paints[r]) {
+        sfx.soft();
+        wiggle(t);
+        void say(`Try again! ${prompt()}`);
+        return;
+      }
+      busy = true;
+      sfx.pop();
+      t.style.setProperty('--paint', brush.c);
+      t.classList.add('is-painted');
+      stars.children[r]?.classList.add('on');
+      bix.setMood('happy');
+      await say(`${pick(PRAISE)} A ${brush.name} ${w.text}!`);
+      if (!ctx.alive()) return;
+      bix.setMood('idle');
+      r++;
+      brush = null;
+      for (const c of crayons) c.classList.remove('is-on');
+      busy = false;
+      if (r >= ROUNDS) {
+        again.hidden = true;
+        finish(ctx, host, bix, 'colour');
+      } else void say(prompt());
+    });
+    return t;
+  });
+
+  const host = h(
+    'div',
+    { class: 'game-body colour-body' },
+    stars,
+    again,
+    h('div', { class: 'paint-grid' }, tiles),
+    h('div', { class: 'crayon-box', role: 'group', 'aria-label': 'Colours' }, crayons),
+  );
+  again.onclick = () => (sfx.tap(), r < ROUNDS && void say(prompt()));
+  setTimeout(() => ctx.alive() && ROUNDS && void say(prompt()), 400);
+  return shell(ctx, 'colour', 'Colour', host, bix);
 }

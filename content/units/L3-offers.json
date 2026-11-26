@@ -1,0 +1,43 @@
+{
+  "id": "l3-offers",
+  "level": "L3",
+  "topic": "offers",
+  "order": 30,
+  "title": "Would You Like…?",
+  "titleVi": "Mời và trả lời",
+  "icon": "🍪",
+  "color": "#ffd6a5",
+  "intro": "Would you like something to eat?",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Snack block",
+    "style": "cake",
+    "color": "#ffd6a5"
+  },
+  "words": [
+    "coffee",
+    "milkshake",
+    "biscuit",
+    {
+      "id": "juice",
+      "sentence": "Would you like some juice? Yes, please!"
+    },
+    {
+      "id": "soup",
+      "sentence": "Would you like some soup? No, thank you."
+    },
+    {
+      "id": "sandwich",
+      "sentence": "Would you like a sandwich? Yes, please!"
+    }
+  ],
+  "parentTip": {
+    "vi": "Lúc ăn vặt, hỏi con \"Would you like a biscuit?\" và chờ con đáp \"Yes, please!\" hoặc \"No, thank you.\"",
+    "say": "Would you like a biscuit?"
+  },
+  "chat": {
+    "ask": "Would you like a milkshake?",
+    "yes": "Here you are! Yum!",
+    "no": "Okay! Maybe some water?"
+  }
+}

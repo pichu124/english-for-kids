@@ -1,0 +1,68 @@
+{
+  "id": "l3-places2",
+  "level": "L3",
+  "topic": "places2",
+  "order": 29,
+  "title": "Around Town 2",
+  "titleVi": "Thêm nơi chốn",
+  "icon": "🎡",
+  "color": "#ffc6ff",
+  "intro": "There are lots of places in town!",
+  "playPrompt": "Where is the {word}?",
+  "block": {
+    "name": "Funfair block",
+    "style": "rainbow",
+    "color": "#ffc6ff"
+  },
+  "words": [
+    "bank",
+    "cafe",
+    "car-park",
+    "circus",
+    "funfair",
+    "sports-centre"
+  ],
+  "parentTip": {
+    "vi": "Đi qua thị trấn, hỏi con \"Where is the bank? Where can we park the car?\"",
+    "say": "Where is the bank?"
+  },
+  "chat": {
+    "ask": "Do you like the funfair?",
+    "yes": "Me too! The big wheel is fun!",
+    "no": "Okay! The circus is fun too!"
+  },
+  "gaps": [
+    {
+      "s": "Dad gets money at the ___.",
+      "answer": "bank",
+      "options": [
+        "circus",
+        "funfair"
+      ]
+    },
+    {
+      "s": "Mum left the car in the ___.",
+      "answer": "car park",
+      "options": [
+        "café",
+        "circus"
+      ]
+    },
+    {
+      "s": "We saw funny clowns at the ___.",
+      "answer": "circus",
+      "options": [
+        "bank",
+        "car park"
+      ]
+    },
+    {
+      "s": "I play basketball at the ___.",
+      "answer": "sports centre",
+      "options": [
+        "bank",
+        "café"
+      ]
+    }
+  ]
+}

@@ -36,7 +36,7 @@ export function lessonScreen(ctx: Ctx): HTMLElement {
   const part: 1 | 2 = !review && ctx.params.part === '2' && hasPart2(topic) ? 2 : 1;
   const steps = review ? topic.steps : partSteps(topic, part);
   const STEP_ICON: Record<StepType, string> = { listen: '👂', say: '🎤', 'tap-picture': '🎯', 'do-it': '🤸', chant: '🥁', read: '📖', spell: '🔤', sentence: '✍️', write: '⌨️', text: '📃', gap: '🧩' };
-  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': topic.playRounds ?? level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2, read: readRounds(topic.words), spell: spellWords(topic.words).length, sentence: sentenceCount(topic.words), write: writeWords(topic.words).length, text: topic.text?.questions.length ?? 0, gap: gapCount(topic.words) };
+  const STEP_UNITS: Record<StepType, number> = { listen: topic.words.length, say: topic.words.length, 'tap-picture': topic.playRounds ?? level.playRounds, 'do-it': topic.actions.length, chant: (topic.chant?.lines.length ?? 0) * 2, read: readRounds(topic.words), spell: spellWords(topic.words).length, sentence: sentenceCount(topic.words), write: writeWords(topic.words).length, text: topic.text?.questions.length ?? 0, gap: topic.gaps?.length ? Math.min(3, topic.gaps.length) : gapCount(topic.words) };
   const total = steps.reduce((n, s) => n + STEP_UNITS[s], 0);
   let done = 0;
   const fill = h('div', { class: 'progress-fill' });

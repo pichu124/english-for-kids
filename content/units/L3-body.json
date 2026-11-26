@@ -30,5 +30,31 @@
     "ask": "Can you touch your knees?",
     "yes": "Great! Now touch your head!",
     "no": "Let's try! Bend down!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "Put your hat on your ___.",
+      "answer": "head",
+      "options": [
+        "knee",
+        "stomach"
+      ]
+    },
+    {
+      "s": "The giraffe has got a very long ___.",
+      "answer": "neck",
+      "options": [
+        "knee",
+        "teeth"
+      ]
+    },
+    {
+      "s": "I brush my ___ every morning and every night.",
+      "answer": "teeth",
+      "options": [
+        "shoulder",
+        "knee"
+      ]
+    }
+  ]
 }

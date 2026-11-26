@@ -30,5 +30,31 @@
     "ask": "Do you like pasta?",
     "yes": "Me too! Pasta is yummy!",
     "no": "Okay! Soup is good too!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "I eat my ___ with a spoon. It is hot.",
+      "answer": "soup",
+      "options": [
+        "sandwich",
+        "cheese"
+      ]
+    },
+    {
+      "s": "Mice love ___!",
+      "answer": "cheese",
+      "options": [
+        "soup",
+        "pasta"
+      ]
+    },
+    {
+      "s": "On Sunday mornings, we make a ___ in a pan.",
+      "answer": "pancake",
+      "options": [
+        "salad",
+        "cheese"
+      ]
+    }
+  ]
 }

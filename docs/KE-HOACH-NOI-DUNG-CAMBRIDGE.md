@@ -347,6 +347,11 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 5 bài mới: My Body 2, Around the House, Every Day (always / sometimes / never), Water and Land, Long Ago (quá khứ đơn: ran, sang, drove, flew, rode, came);
   - 2 đoạn văn (Bedtime, Sophie's Day) và 2 truyện (Grandpa's Story, Bix's Morning);
   - Gemini không kết nối được, nên Claude tự duyệt. Đã sửa vài câu cho rõ nghĩa ("I go up the stairs to my bedroom.", "The rain falls on the roof.") và bỏ "storm" (có lẽ vượt mức Movers).
+- **Đợt M4 (Movers)**:
+  - **câu Điền từ soạn tay** (`"gaps"` trong file bài): mỗi câu có đúng một `___`, một đáp án là từ của bài và 2 phương án nhiễu. Có `gaps` thì bước Điền từ dùng các câu này thay cho câu tự sinh. Đã soạn cho 11 bài: Weather, Health, Jobs, Nature, Sea Animals, Food, Hobbies, Fun Time, In the Kitchen, Clothes, My Body 2, cộng 2 bài mới. Mỗi câu chỉ có một đáp án hợp lý ("I ate too many sweets. Now I've got a ___." → stomach-ache). Bậc Movers giờ có 16 bài có bước Điền từ;
+  - **hình cây gia đình** (`image.family`: aunt, uncle, cousin, parents, grandparents): cây 3 đời, người cần tìm được khoanh vòng, có nhãn "me ⭐" để bé biết mình đứng đâu;
+  - 3 bài mới: My Family 2 (họ hàng), Around Town 2 (bank, café, car park, circus, funfair, sports centre), Would You Like…? (mời và đáp "Yes, please!" / "No, thank you." với coffee, milkshake, biscuit, juice, soup, sandwich);
+  - trò chơi **Colour** trong Games (giống phần "Listen and colour" của đề Cambridge): Bix nói "Colour the dog blue!", bé chọn bút màu rồi chạm vào hình. Chọn nhầm thì hình lắc nhẹ và Bix nhắc lại câu, không có chữ "sai". 4 lượt mỗi ván. Nút "Hôm nay" luân phiên 3 trò chơi.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

@@ -9,7 +9,7 @@
  */
 import { BLOCK_STYLES, type BlockDef, type BlockStyle } from './art/blocks';
 import { SCENES } from './art/positions';
-import { BODY_PARTS, ICONS } from './art/drawings';
+import { BODY_PARTS, FAMILY, ICONS } from './art/drawings';
 import { TUNE_IDS } from './lib/tunes';
 import { fixEmoji } from './lib/emoji';
 
@@ -54,7 +54,7 @@ export type Word = {
   /** What the child should say (and what is shown). */
   text: string;
   /** Picture: an emoji, or a color swatch (for color words). */
-  image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string; /** a child with this part circled */ body?: string; /** a small drawing (stairs, towel…) */ icon?: string };
+  image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string; /** a child with this part circled */ body?: string; /** a small drawing (stairs, towel…) */ icon?: string; /** family tree with this person circled */ family?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
@@ -79,6 +79,7 @@ const TOPIC_ANIM: Record<string, Anim> = {
   health: 'wiggle', town: 'pulse', jobs: 'wave', time: 'pulse', days: 'pulse', nature: 'sway', sea: 'swim', compare: 'bounce', food4: 'bounce', feelings2: 'pulse', past: 'bounce',
   hobbies: 'bounce', animals3: 'wiggle', travel: 'drive', directions: 'pulse', superlatives: 'bounce', adverbs: 'pulse', past2: 'bounce', clothes3: 'sway', fun: 'spin', kitchen: 'pulse',
   body2: 'pulse', house: 'pulse', routine: 'bounce', water: 'sway', past3: 'bounce',
+  family2: 'wave', town2: 'pulse', offers: 'bounce',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
@@ -92,6 +93,8 @@ export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 
 export const gappable = (w: Word) => w.sentence.split(/\s+/).length >= 3 && new RegExp(`\\b${w.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(w.sentence);
 export const gapCount = (words: Word[]) => (new Set(words.map((w) => w.text)).size >= 3 ? Math.min(3, words.filter(gappable).length) : 0);
 
+/** A gap-fill sentence written by hand: "___" is the gap; options = the two wrong words. */
+export type GapItem = { s: string; answer: string; options: string[] };
 /** A short text to read (Movers): a few sentences and questions about it. */
 export type ReadingText = { title: string; lines: string[]; questions: { q: string; options: string[]; answer: number }[] };
 /** Words to type on the letter keyboard (Movers writing): one word, letters only, 3–8 letters. */
@@ -154,6 +157,8 @@ export type Topic = {
   casa?: CasaLink;
   /** Movers: a short text to read in part 2 (the "text" step). */
   text?: ReadingText;
+  /** Hand-written gap-fill sentences ("___" = the gap), each with one sensible answer. */
+  gaps?: GapItem[];
   /** "Play together" card for parents: what to do at home (Vietnamese) and the English line to say. */
   parentTip?: { vi: string; say: string };
   /** A yes/no question Bix asks the child about the topic, with its two replies. */
@@ -201,12 +206,16 @@ for (const [file, mod] of Object.entries(bankFiles)) {
       problem(file, `từ sai cấu trúc: ${JSON.stringify(w)}`);
       continue;
     }
-    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string' && typeof w.image.clock !== 'string' && typeof w.image.body !== 'string' && typeof w.image.icon !== 'string')) {
+    if (!w.image || (typeof w.image.emoji !== 'string' && typeof w.image.color !== 'string' && typeof w.image.text !== 'string' && typeof w.image.scene !== 'string' && typeof w.image.clock !== 'string' && typeof w.image.body !== 'string' && typeof w.image.icon !== 'string' && typeof w.image.family !== 'string')) {
       problem(file, `từ "${w.id}" cần image.emoji, image.color, image.text hoặc image.scene`);
       continue;
     }
     if (w.image.body && !(BODY_PARTS as readonly string[]).includes(w.image.body)) {
       problem(file, `từ "${w.id}": image.body phải là một trong ${BODY_PARTS.join(', ')}`);
+      continue;
+    }
+    if (w.image.family && !(FAMILY as readonly string[]).includes(w.image.family)) {
+      problem(file, `từ "${w.id}": image.family phải là một trong ${FAMILY.join(', ')}`);
       continue;
     }
     if (w.image.icon && !(ICONS as readonly string[]).includes(w.image.icon)) {
@@ -292,7 +301,14 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (steps.includes('sentence') && sentenceCount(words) === 0) steps.splice(steps.indexOf('sentence'), 1);
   if (steps.includes('write') && words.filter(writable).length < 2) steps.splice(steps.indexOf('write'), 1);
   // Gap fill only where each sentence fits just one word of the unit (checked by hand): "gap": true.
-  if (steps.includes('gap') && (!u.gap || gapCount(words) === 0)) steps.splice(steps.indexOf('gap'), 1);
+  if (u.gaps) {
+    for (const g of u.gaps) {
+      if (typeof g?.s !== 'string' || (g.s.match(/___/g) ?? []).length !== 1 || typeof g.answer !== 'string' || !Array.isArray(g.options) || g.options.length !== 2 || g.options.includes(g.answer)) {
+        problem(where, `câu điền từ sai dạng (cần đúng một "___", "answer" và 2 "options" khác đáp án): ${JSON.stringify(g)}`);
+      }
+    }
+  }
+  if (steps.includes('gap') && !(u.gaps?.length || (u.gap && gapCount(words) > 0))) steps.splice(steps.indexOf('gap'), 1);
   if (u.text) {
     const tx = u.text;
     const bad = typeof tx.title !== 'string' || !Array.isArray(tx.lines) || tx.lines.length < 2 || !Array.isArray(tx.questions) || !tx.questions.length ||
@@ -328,6 +344,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     parentTip: u.parentTip,
     chat: u.chat,
     text: u.text,
+    gaps: u.gaps,
     words,
   };
 }

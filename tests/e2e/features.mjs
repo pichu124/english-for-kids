@@ -165,6 +165,42 @@ if (!(await page.locator('.game-done').count())) fail('popping 5 named balloons 
 if ((await page.locator('.balloon-stars .on').count()) !== 5) fail('5 stars after 5 rounds');
 step('balloons: pop the balloon Bix names, 5 rounds then done');
 
+await page.locator('.btn-home').first().click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.locator('.game-pick[data-game="colour"]').click({ force: true });
+await page.waitForSelector('.paint-tile');
+if ((await page.locator('.paint-tile').count()) !== 4) fail('colour game shows 4 things');
+await page.waitForFunction(() => /colour the .+ \w+!$/i.test(window.__spoken.at(-1) || ''));
+{
+  // Wrong colour first: nothing gets painted, Bix says "Try again".
+  const said = await page.evaluate(() => window.__spoken.at(-1));
+  const [, thing, col] = said.match(/colour the (.+) (\w+)!$/i);
+  const wrong = ['red', 'blue', 'green', 'yellow', 'purple'].find((c) => c !== col);
+  await page.locator(`.crayon[data-colour="${wrong}"]`).click({ force: true });
+  await page.locator(`.paint-tile[aria-label="${thing}" i]`).click({ force: true });
+  await page.waitForTimeout(300);
+  if (await page.locator('.paint-tile.is-painted').count()) fail('a wrong colour should not paint');
+  if (!/try again/i.test(await page.evaluate(() => window.__spoken.at(-1)))) fail('wrong colour: Bix says try again');
+}
+let cshot = false;
+for (let i = 0; i < 120 && !(await page.locator('.game-done').count()); i++) {
+  const said = (await page.evaluate(() => window.__spoken.at(-1) || ''));
+  const m = said.match(/colour the (.+) (\w+)!$/i);
+  if (m) {
+    const t = page.locator(`.paint-tile:not(.is-painted)[aria-label="${m[1]}" i]`);
+    if (await t.count()) {
+      await page.locator(`.crayon[data-colour="${m[2]}"]`).click({ force: true });
+      await t.first().click({ force: true });
+      if (shots && !cshot && (await page.locator('.paint-tile.is-painted').count()) >= 2) { await page.screenshot({ path: `${shots}/colour.png` }); cshot = true; }
+    }
+  }
+  await page.waitForTimeout(150);
+}
+if (!(await page.locator('.game-done').count())) fail('colouring 4 things should end the game');
+if ((await page.locator('.paint-tile.is-painted').count()) !== 4) fail('all 4 things painted');
+step('colour: "Colour the dog blue!" — wrong colour gently retried, 4 things coloured then done');
+
 // ---------- B7: stories ----------
 await home();
 if (!(await page.locator('.dock-btn[aria-label="Stories"].is-new').count())) fail('finishing Animals should open its story (dock glows)');

@@ -30,5 +30,31 @@
     "ask": "Do you like dolphins?",
     "yes": "Me too! Dolphins are clever!",
     "no": "Okay! Pandas are lovely!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "The ___ sleeps in the day and flies at night.",
+      "answer": "bat",
+      "options": [
+        "whale",
+        "penguin"
+      ]
+    },
+    {
+      "s": "The ___ can swim, but it cannot fly. It lives in a cold place.",
+      "answer": "penguin",
+      "options": [
+        "bat",
+        "panda"
+      ]
+    },
+    {
+      "s": "The ___ is the biggest animal in the sea.",
+      "answer": "whale",
+      "options": [
+        "bat",
+        "panda"
+      ]
+    }
+  ]
 }
