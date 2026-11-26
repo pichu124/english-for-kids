@@ -1,0 +1,47 @@
+{
+  "topic": "country",
+  "words": [
+    {
+      "id": "village",
+      "text": "village",
+      "topic": "country",
+      "image": {
+        "emoji": "🏘️"
+      },
+      "sentence": "My grandparents live in a small village.",
+      "accept": [
+        "villages",
+        "villige"
+      ],
+      "def": "This place is smaller than a town. It has got a few houses and a shop."
+    },
+    {
+      "id": "cottage",
+      "text": "cottage",
+      "topic": "country",
+      "image": {
+        "emoji": "🏡"
+      },
+      "sentence": "We stayed in a little cottage with a garden.",
+      "accept": [
+        "cottages",
+        "cotage"
+      ],
+      "def": "This is a small, old house in the countryside."
+    },
+    {
+      "id": "countryside",
+      "text": "countryside",
+      "topic": "country",
+      "image": {
+        "emoji": "🏞️"
+      },
+      "sentence": "We went for a long walk in the countryside.",
+      "accept": [
+        "country",
+        "country side"
+      ],
+      "def": "Fields, hills and farms are in this place, far from the city."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "topic": "feelings3",
+  "words": [
+    {
+      "id": "worried",
+      "text": "worried",
+      "topic": "feelings3",
+      "image": {
+        "emoji": "😟"
+      },
+      "sentence": "I'm worried about my test tomorrow.",
+      "accept": [
+        "worry"
+      ],
+      "def": "You feel this when you think something bad might happen."
+    },
+    {
+      "id": "excited",
+      "text": "excited",
+      "topic": "feelings3",
+      "image": {
+        "emoji": "🤩"
+      },
+      "sentence": "We're going to the zoo tomorrow. I'm so excited!",
+      "accept": [
+        "exciting"
+      ],
+      "def": "You feel this when something fun is going to happen soon."
+    },
+    {
+      "id": "afraid",
+      "text": "afraid",
+      "topic": "feelings3",
+      "image": {
+        "emoji": "😨"
+      },
+      "sentence": "My little brother is afraid of the dark.",
+      "accept": [
+        "scared",
+        "frightened"
+      ],
+      "def": "You feel this when you think something will hurt you."
+    },
+    {
+      "id": "upset",
+      "text": "upset",
+      "topic": "feelings3",
+      "image": {
+        "emoji": "😢"
+      },
+      "sentence": "She was upset because she lost her toy.",
+      "accept": [
+        "sad"
+      ],
+      "def": "You feel sad and unhappy, and you might cry."
+    }
+  ]
+}

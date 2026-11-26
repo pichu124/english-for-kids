@@ -1,0 +1,63 @@
+{
+  "id": "l4-feelings",
+  "level": "L4",
+  "topic": "feelings",
+  "order": 26,
+  "title": "How Do You Feel? 2",
+  "titleVi": "Cảm xúc 2",
+  "icon": "🤩",
+  "color": "#ffc8dd",
+  "intro": "How are you feeling today?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Heart block",
+    "style": "cake",
+    "color": "#ffc8dd"
+  },
+  "words": [
+    "worried",
+    "excited",
+    "afraid",
+    "upset",
+    {
+      "id": "angry",
+      "sentence": "He was angry because his brother broke his toy.",
+      "def": "You feel this when someone does something bad to you."
+    }
+  ],
+  "parentTip": {
+    "vi": "Khi con buồn hay lo, giúp con gọi tên cảm xúc bằng tiếng Anh: \"Are you worried? Why?\"",
+    "say": "How are you feeling today?"
+  },
+  "chat": {
+    "ask": "Are you excited about the weekend?",
+    "yes": "Me too! Weekends are great!",
+    "no": "That's okay! Maybe something fun will happen."
+  },
+  "gaps": [
+    {
+      "s": "Tomorrow is my birthday party. I'm so ___!",
+      "answer": "excited",
+      "options": [
+        "worried",
+        "upset"
+      ]
+    },
+    {
+      "s": "My cat is lost. I am very ___ about her.",
+      "answer": "worried",
+      "options": [
+        "excited",
+        "angry"
+      ]
+    },
+    {
+      "s": "My little brother is ___ of spiders.",
+      "answer": "afraid",
+      "options": [
+        "excited",
+        "angry"
+      ]
+    }
+  ]
+}

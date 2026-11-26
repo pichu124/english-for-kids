@@ -1,0 +1,33 @@
+{
+  "topic": "weather3",
+  "words": [
+    {
+      "id": "umbrella",
+      "text": "umbrella",
+      "topic": "weather3",
+      "image": {
+        "emoji": "☂️"
+      },
+      "sentence": "If it rains, I'll take my umbrella.",
+      "accept": [
+        "umbrellas",
+        "brolly"
+      ],
+      "def": "You hold this over your head when it rains."
+    },
+    {
+      "id": "sunglasses",
+      "text": "sunglasses",
+      "topic": "weather3",
+      "image": {
+        "emoji": "🕶️"
+      },
+      "sentence": "If it's sunny, I'll wear my sunglasses.",
+      "accept": [
+        "sun glasses",
+        "glasses"
+      ],
+      "def": "You wear these over your eyes when the sun is very bright."
+    }
+  ]
+}

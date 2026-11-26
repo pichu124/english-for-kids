@@ -1,0 +1,66 @@
+{
+  "id": "l4-country",
+  "level": "L4",
+  "topic": "country",
+  "order": 24,
+  "title": "In the Countryside",
+  "titleVi": "Vùng quê",
+  "icon": "🏡",
+  "color": "#b5e48c",
+  "intro": "Let's visit the countryside!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Grass block",
+    "style": "grass",
+    "color": "#b5e48c"
+  },
+  "words": [
+    "village",
+    "cottage",
+    "countryside",
+    {
+      "id": "tractor",
+      "sentence": "The farmer is driving a tractor across the field.",
+      "def": "Farmers drive this in the fields."
+    },
+    {
+      "id": "field",
+      "sentence": "There are lots of cows in the field."
+    }
+  ],
+  "parentTip": {
+    "vi": "Khi về quê, hỏi con \"Do you like the city or the countryside? Why?\"",
+    "say": "Do you like the countryside?"
+  },
+  "chat": {
+    "ask": "Would you like to live in a village?",
+    "yes": "Lovely! Villages are quiet and pretty.",
+    "no": "Okay! Cities are exciting too."
+  },
+  "gaps": [
+    {
+      "s": "My grandma lives in a small ___ with only one shop.",
+      "answer": "village",
+      "options": [
+        "tractor",
+        "field"
+      ]
+    },
+    {
+      "s": "The farmer drove his ___ across the field.",
+      "answer": "tractor",
+      "options": [
+        "cottage",
+        "village"
+      ]
+    },
+    {
+      "s": "We rented a little ___ with a pretty garden.",
+      "answer": "cottage",
+      "options": [
+        "tractor",
+        "field"
+      ]
+    }
+  ]
+}

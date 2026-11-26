@@ -282,7 +282,7 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
 | **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen · My Body 2 · Around the House · Every Day · Water and Land · Long Ago · My Family 2 · Around Town 2 · Would You Like…? · Numbers to 100 · Where Is It? 2 · Let's Move! | 33 |
-| **L4 Flyers (9–10)** | The Four Seasons · School Subjects · Into Space · When I Grow Up · Places to Visit · Snow and Waves · Wild World · Getting Around · Our World · Have You Ever…? · January to June · July to December · What's It Made Of? · Going on Holiday · Music Time · In the City · Exciting or Boring? · Wild Weather · What Time Is It? 2 · Let's Go Shopping | 20 |
+| **L4 Flyers (9–10)** | The Four Seasons · School Subjects · Into Space · When I Grow Up · Places to Visit · Snow and Waves · Wild World · Getting Around · Our World · Have You Ever…? · January to June · July to December · What's It Made Of? · Going on Holiday · Music Time · In the City · Exciting or Boring? · Wild Weather · What Time Is It? 2 · Let's Go Shopping · What Were You Doing? · If It Rains… · Winning the Race · In the Countryside · In the Future · How Do You Feel? 2 · People at Work · Once Upon a Time · In the Wild · At the Doctor's | 30 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
 Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
@@ -378,9 +378,13 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 4 đoạn văn (A Year at School, Our Camping Trip, The Big Storm, A Present for Dad) và 2 truyện (Bix's Camping Trip, The Noisy Night);
   - **Thi thử Flyers** (đảo 🎓 cuối bản đồ Flyers), 14 câu: Nghe 5 (3 chọn hình + 2 "who is who") · Viết 3 (đọc định nghĩa, gõ từ; chỉ tính đúng khi không gõ nhầm) · Đọc 6 (3 câu đúng/sai + 1 đoạn văn với 3 câu hỏi). Khu bố mẹ hiện kết quả Flyers riêng;
   - trên điện thoại, phần Viết của bài thi nhường chỗ cho định nghĩa (Bix thu nhỏ), ô chữ thu nhỏ khi từ dài.
+- **Đợt F3 (Flyers)**: thêm 10 bài (Flyers có 30 bài):
+  - ngữ pháp: What Were You Doing? (quá khứ tiếp diễn: reading, cooking, sleeping, swimming, painting, singing), If It Rains… (câu điều kiện "If it rains, I'll take my umbrella."), In the Future (tương lai "will": robot, spaceship, computer, machine, phone), At the Doctor's (lời khuyên "should/shouldn't": cold, cough, headache, stomach-ache, earache);
+  - chủ đề: Winning the Race (team, goal, winner, race, prize), In the Countryside (village, cottage, countryside, tractor, field), How Do You Feel? 2 (worried, excited, afraid, upset, angry), People at Work (artist, scientist, businessman, firefighter, waiter), Once Upon a Time (king, queen, crown, dragon, wizard), In the Wild (gorilla, wolf, fox, owl, bee);
+  - 4 đoạn văn (When the Lights Went Out, The Big Match, My Life in 2050, A Visit to the Doctor) và 2 truyện (The Dragon and the Crown, The Clever Fox). Bài thi thử Flyers có nhiều đoạn văn và định nghĩa hơn để luân phiên.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);
 - duyệt lại toàn bộ khi bé và các lớp dùng thật, dựa trên dòng *"máy nghe: …"*.
 
-Bậc 3 Movers đã đủ (33 bài, thi thử). Bậc 4 Flyers đang làm (đợt F1–F2: 20 bài, thi thử).
+Bậc 3 Movers đã đủ (33 bài, thi thử). Bậc 4 Flyers đang làm (đợt F1–F3: 30 bài, thi thử).

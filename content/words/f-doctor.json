@@ -1,0 +1,19 @@
+{
+  "topic": "doctor",
+  "words": [
+    {
+      "id": "earache",
+      "text": "earache",
+      "topic": "doctor",
+      "image": {
+        "emoji": "👂"
+      },
+      "sentence": "I've got earache. I should see a doctor.",
+      "accept": [
+        "ear ache",
+        "earaches"
+      ],
+      "def": "When your ear hurts, you have got this."
+    }
+  ]
+}

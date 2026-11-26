@@ -1,0 +1,78 @@
+{
+  "topic": "was",
+  "words": [
+    {
+      "id": "reading",
+      "text": "reading",
+      "topic": "was",
+      "image": {
+        "emoji": "📖"
+      },
+      "sentence": "I was reading a book when the phone rang.",
+      "accept": [
+        "read",
+        "readin"
+      ]
+    },
+    {
+      "id": "cooking",
+      "text": "cooking",
+      "topic": "was",
+      "image": {
+        "emoji": "🍳"
+      },
+      "sentence": "Dad was cooking dinner when I got home.",
+      "accept": [
+        "cook"
+      ]
+    },
+    {
+      "id": "sleeping",
+      "text": "sleeping",
+      "topic": "was",
+      "image": {
+        "emoji": "🛌"
+      },
+      "sentence": "The baby was sleeping, so we were very quiet.",
+      "accept": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "swimming",
+      "text": "swimming",
+      "topic": "was",
+      "image": {
+        "emoji": "🏊"
+      },
+      "sentence": "We were swimming in the sea when it started to rain.",
+      "accept": [
+        "swim"
+      ]
+    },
+    {
+      "id": "painting",
+      "text": "painting",
+      "topic": "was",
+      "image": {
+        "emoji": "🖌️"
+      },
+      "sentence": "Sara was painting a picture of her cat.",
+      "accept": [
+        "paint"
+      ]
+    },
+    {
+      "id": "singing",
+      "text": "singing",
+      "topic": "was",
+      "image": {
+        "emoji": "🎤"
+      },
+      "sentence": "They were singing a song when the teacher came in.",
+      "accept": [
+        "sing"
+      ]
+    }
+  ]
+}

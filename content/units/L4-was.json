@@ -1,0 +1,98 @@
+{
+  "id": "l4-was",
+  "level": "L4",
+  "topic": "was",
+  "order": 21,
+  "title": "What Were You Doing?",
+  "titleVi": "Quá khứ tiếp diễn",
+  "icon": "📖",
+  "color": "#bde0fe",
+  "intro": "What were you doing yesterday at six o'clock?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Clock block",
+    "style": "window",
+    "color": "#bde0fe"
+  },
+  "words": [
+    "reading",
+    "cooking",
+    "sleeping",
+    "swimming",
+    "painting",
+    "singing"
+  ],
+  "parentTip": {
+    "vi": "Buổi tối hỏi con: \"What were you doing at five o'clock?\" và gợi ý trả lời \"I was playing…\".",
+    "say": "What were you doing at five o'clock?"
+  },
+  "chat": {
+    "ask": "Were you sleeping at eleven o'clock last night?",
+    "yes": "Of course! Sleep is important!",
+    "no": "Wow! That was very late!"
+  },
+  "gaps": [
+    {
+      "s": "I was ___ a book when Mum called me.",
+      "answer": "reading",
+      "options": [
+        "cooking",
+        "sleeping"
+      ]
+    },
+    {
+      "s": "Dad was ___ dinner in the kitchen.",
+      "answer": "cooking",
+      "options": [
+        "reading",
+        "swimming"
+      ]
+    },
+    {
+      "s": "At midnight, everybody was ___ in bed.",
+      "answer": "sleeping",
+      "options": [
+        "painting",
+        "cooking"
+      ]
+    }
+  ],
+  "text": {
+    "title": "When the Lights Went Out",
+    "lines": [
+      "Last night, at eight o'clock, all the lights in our house went out.",
+      "Mum was cooking dinner, and Dad was reading the newspaper.",
+      "My little sister was painting a picture, and I was singing in the bath!",
+      "Then Dad found a torch, and we ate dinner in the dark."
+    ],
+    "questions": [
+      {
+        "q": "What was Mum doing?",
+        "options": [
+          "reading",
+          "cooking dinner",
+          "painting"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who was singing?",
+        "options": [
+          "the little sister",
+          "Dad",
+          "the child who tells the story"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What did Dad find?",
+        "options": [
+          "a torch",
+          "a candle",
+          "a phone"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

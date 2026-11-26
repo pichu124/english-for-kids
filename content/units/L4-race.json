@@ -1,0 +1,97 @@
+{
+  "id": "l4-race",
+  "level": "L4",
+  "topic": "race",
+  "order": 23,
+  "title": "Winning the Race",
+  "titleVi": "Thi đấu thể thao",
+  "icon": "🏆",
+  "color": "#ffd166",
+  "intro": "Ready, steady, go!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Trophy block",
+    "style": "gold",
+    "color": "#ffd166"
+  },
+  "words": [
+    "team",
+    "goal",
+    "winner",
+    "race",
+    "prize"
+  ],
+  "parentTip": {
+    "vi": "Xem một trận đấu cùng con: \"Which team is winning? Who scored the goal?\"",
+    "say": "Which team do you like?"
+  },
+  "chat": {
+    "ask": "Have you ever won a race?",
+    "yes": "Wow! You are a winner!",
+    "no": "That's okay! Running is fun anyway!"
+  },
+  "gaps": [
+    {
+      "s": "Our football ___ has got eleven players.",
+      "answer": "team",
+      "options": [
+        "prize",
+        "race"
+      ]
+    },
+    {
+      "s": "He kicked the ball into the ___!",
+      "answer": "goal",
+      "options": [
+        "prize",
+        "winner"
+      ]
+    },
+    {
+      "s": "The ___ of the race gets a gold medal.",
+      "answer": "winner",
+      "options": [
+        "goal",
+        "team"
+      ]
+    }
+  ],
+  "text": {
+    "title": "The Big Match",
+    "lines": [
+      "Last Saturday, Tom's school team played a football match against another school.",
+      "At half time, the other team was winning one–nil.",
+      "Then Tom kicked the ball into the goal, and it was one–one!",
+      "In the end, Tom's team won two–one, and everybody got a prize."
+    ],
+    "questions": [
+      {
+        "q": "When was the match?",
+        "options": [
+          "last Saturday",
+          "last Sunday",
+          "yesterday"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who scored the first goal for Tom's team?",
+        "options": [
+          "Tom",
+          "his teacher",
+          "his friend"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What was the final score?",
+        "options": [
+          "one–nil",
+          "one–one",
+          "two–one"
+        ],
+        "answer": 2
+      }
+    ]
+  }
+}

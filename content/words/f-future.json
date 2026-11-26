@@ -1,0 +1,33 @@
+{
+  "topic": "future",
+  "words": [
+    {
+      "id": "spaceship",
+      "text": "spaceship",
+      "topic": "future",
+      "image": {
+        "emoji": "🛸"
+      },
+      "sentence": "One day, people will travel to Mars in a spaceship.",
+      "accept": [
+        "space ship",
+        "spaceships",
+        "rocket"
+      ],
+      "def": "In the future, people will travel to other planets in this."
+    },
+    {
+      "id": "machine",
+      "text": "machine",
+      "topic": "future",
+      "image": {
+        "emoji": "⚙️"
+      },
+      "sentence": "This machine will make our breakfast.",
+      "accept": [
+        "machines"
+      ],
+      "def": "This has got parts that move. It does a job for people."
+    }
+  ]
+}

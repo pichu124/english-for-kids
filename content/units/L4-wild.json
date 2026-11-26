@@ -1,0 +1,59 @@
+{
+  "id": "l4-wild",
+  "level": "L4",
+  "topic": "wild",
+  "order": 29,
+  "title": "In the Wild",
+  "titleVi": "Động vật hoang dã",
+  "icon": "🦊",
+  "color": "#b9fbc0",
+  "intro": "Wild animals live in forests and jungles!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Leaf block",
+    "style": "grass",
+    "color": "#52b788"
+  },
+  "words": [
+    "gorilla",
+    "wolf",
+    "fox",
+    "owl",
+    "bee"
+  ],
+  "parentTip": {
+    "vi": "Đố con bằng định nghĩa rồi đổi vai: \"This bird has got big eyes and flies at night. What is it?\"",
+    "say": "Which wild animal do you like?"
+  },
+  "chat": {
+    "ask": "Have you ever seen a fox?",
+    "yes": "Wow! Foxes are beautiful!",
+    "no": "Maybe one day in the countryside!"
+  },
+  "gaps": [
+    {
+      "s": "A ___ makes honey.",
+      "answer": "bee",
+      "options": [
+        "wolf",
+        "owl"
+      ]
+    },
+    {
+      "s": "The ___ has got big eyes and flies at night.",
+      "answer": "owl",
+      "options": [
+        "bee",
+        "wolf"
+      ]
+    },
+    {
+      "s": "The ___ is the biggest, strongest animal in the jungle.",
+      "answer": "gorilla",
+      "options": [
+        "fox",
+        "bee"
+      ]
+    }
+  ]
+}

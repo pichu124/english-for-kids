@@ -84,6 +84,7 @@ const TOPIC_ANIM: Record<string, Anim> = {
   family2: 'wave', town2: 'pulse', offers: 'bounce', numbers3: 'pulse', where2: 'bounce', move: 'bounce',
   seasons: 'sway', subjects: 'wiggle', space: 'fly', jobs3: 'bounce', places3: 'pulse', sports3: 'sway', transport3: 'drive', world2: 'pulse', ever: 'bounce',
   months: 'pulse', materials: 'shine', holiday: 'bounce', instruments: 'wiggle', city: 'pulse', weather2: 'sway', time2: 'pulse', shopping: 'bounce',
+  was: 'pulse', weather3: 'sway', sports4: 'bounce', country: 'sway', future: 'fly', feelings3: 'pulse', workers: 'bounce', tales: 'wave', wild: 'wave', doctor: 'pulse',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';

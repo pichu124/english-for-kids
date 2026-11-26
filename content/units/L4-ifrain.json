@@ -1,0 +1,71 @@
+{
+  "id": "l4-ifrain",
+  "level": "L4",
+  "topic": "ifrain",
+  "order": 22,
+  "title": "If It Rains…",
+  "titleVi": "Câu điều kiện (If…)",
+  "icon": "☂️",
+  "color": "#90e0ef",
+  "intro": "If it rains, what will you take?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Rain block",
+    "style": "window",
+    "color": "#90e0ef"
+  },
+  "words": [
+    "umbrella",
+    "sunglasses",
+    {
+      "id": "boots",
+      "sentence": "If it's muddy, I'll wear my boots.",
+      "def": "You wear these tall shoes when it is wet or muddy."
+    },
+    {
+      "id": "coat",
+      "sentence": "If it's cold, I'll put on my coat.",
+      "def": "You wear this over your clothes when it is cold."
+    },
+    {
+      "id": "gloves",
+      "sentence": "If it snows, I'll wear my gloves.",
+      "def": "You wear these on your hands when it is cold."
+    }
+  ],
+  "parentTip": {
+    "vi": "Trước khi ra ngoài, hỏi con \"If it rains, what will you take?\" và chờ con trả lời \"I'll take my umbrella.\"",
+    "say": "If it rains, what will you take?"
+  },
+  "chat": {
+    "ask": "If it snows tomorrow, will you build a snowman?",
+    "yes": "Great! I'll help you!",
+    "no": "Okay! Maybe you will have a snowball fight?"
+  },
+  "gaps": [
+    {
+      "s": "If it rains, I'll take my ___.",
+      "answer": "umbrella",
+      "options": [
+        "sunglasses",
+        "gloves"
+      ]
+    },
+    {
+      "s": "If it's very sunny, I'll wear my ___.",
+      "answer": "sunglasses",
+      "options": [
+        "umbrella",
+        "boots"
+      ]
+    },
+    {
+      "s": "If my hands are cold, I'll put on my ___.",
+      "answer": "gloves",
+      "options": [
+        "sunglasses",
+        "boots"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "story-l4-tales",
+  "unit": "l4-tales",
+  "title": "The Dragon and the Crown",
+  "icon": "👑",
+  "pages": [
+    {
+      "text": "Once upon a time, a king and a queen lived in a castle.",
+      "scene": "🤴👸🏰"
+    },
+    {
+      "text": "One night, a dragon flew over the castle and took the king's crown!",
+      "scene": "🐉👑"
+    },
+    {
+      "text": "The king was very upset. \"Who can help me?\" he asked.",
+      "scene": "🤴😢"
+    },
+    {
+      "text": "A clever wizard went to the dragon's cave and did some magic.",
+      "scene": "🧙✨"
+    },
+    {
+      "text": "The dragon gave back the crown, and everybody had a big party!",
+      "scene": "👑🎉",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who took the king's crown?",
+      "answer": "dragon"
+    },
+    {
+      "ask": "Who did some magic?",
+      "answer": "wizard"
+    }
+  ]
+}

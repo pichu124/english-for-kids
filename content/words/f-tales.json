@@ -1,0 +1,72 @@
+{
+  "topic": "tales",
+  "words": [
+    {
+      "id": "king",
+      "text": "king",
+      "topic": "tales",
+      "image": {
+        "emoji": "🤴"
+      },
+      "sentence": "The king lived in a big castle.",
+      "accept": [
+        "kings"
+      ],
+      "def": "This man is the most important person in a country. He wears a crown."
+    },
+    {
+      "id": "queen",
+      "text": "queen",
+      "topic": "tales",
+      "image": {
+        "emoji": "👸"
+      },
+      "sentence": "The queen has got a beautiful gold crown.",
+      "accept": [
+        "queens"
+      ],
+      "def": "This woman rules a country. She is married to the king."
+    },
+    {
+      "id": "crown",
+      "text": "crown",
+      "topic": "tales",
+      "image": {
+        "emoji": "👑"
+      },
+      "sentence": "The king put on his gold crown.",
+      "accept": [
+        "crowns",
+        "clown"
+      ],
+      "def": "Kings and queens wear this on their heads."
+    },
+    {
+      "id": "dragon",
+      "text": "dragon",
+      "topic": "tales",
+      "image": {
+        "emoji": "🐉"
+      },
+      "sentence": "The dragon breathed fire!",
+      "accept": [
+        "dragons"
+      ],
+      "def": "In stories, this big animal can fly and breathe fire."
+    },
+    {
+      "id": "wizard",
+      "text": "wizard",
+      "topic": "tales",
+      "image": {
+        "emoji": "🧙"
+      },
+      "sentence": "The wizard waved his magic stick.",
+      "accept": [
+        "wizards",
+        "witch"
+      ],
+      "def": "In stories, this old man can do magic."
+    }
+  ]
+}

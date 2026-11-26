@@ -1,0 +1,74 @@
+{
+  "topic": "sports4",
+  "words": [
+    {
+      "id": "team",
+      "text": "team",
+      "topic": "sports4",
+      "image": {
+        "emoji": "👥"
+      },
+      "sentence": "There are eleven players in a football team.",
+      "accept": [
+        "teams"
+      ],
+      "def": "A group of people who play a sport together."
+    },
+    {
+      "id": "goal",
+      "text": "goal",
+      "topic": "sports4",
+      "image": {
+        "emoji": "🥅"
+      },
+      "sentence": "Ben kicked the ball into the goal!",
+      "accept": [
+        "goals",
+        "gold"
+      ],
+      "def": "In football, you try to kick the ball into this."
+    },
+    {
+      "id": "winner",
+      "text": "winner",
+      "topic": "sports4",
+      "image": {
+        "emoji": "🏆"
+      },
+      "sentence": "The winner of the race got a cup.",
+      "accept": [
+        "winners",
+        "winer"
+      ],
+      "def": "This person comes first in a race or game."
+    },
+    {
+      "id": "race",
+      "text": "race",
+      "topic": "sports4",
+      "image": {
+        "emoji": "🏁"
+      },
+      "sentence": "I came second in the running race.",
+      "accept": [
+        "races",
+        "rice"
+      ],
+      "def": "People run, swim or drive to see who is the fastest in this."
+    },
+    {
+      "id": "prize",
+      "text": "prize",
+      "topic": "sports4",
+      "image": {
+        "emoji": "🏅"
+      },
+      "sentence": "She won a prize for her painting.",
+      "accept": [
+        "prizes",
+        "price"
+      ],
+      "def": "You get this when you win a competition."
+    }
+  ]
+}

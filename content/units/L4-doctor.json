@@ -1,0 +1,112 @@
+{
+  "id": "l4-doctor",
+  "level": "L4",
+  "topic": "doctor",
+  "order": 30,
+  "title": "At the Doctor's",
+  "titleVi": "Đi khám bệnh (should)",
+  "icon": "🤧",
+  "color": "#ffadad",
+  "intro": "What's the matter? You should see a doctor.",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Health block",
+    "style": "plain",
+    "color": "#ffadad"
+  },
+  "words": [
+    {
+      "id": "a-cold",
+      "sentence": "You've got a cold. You should stay in bed.",
+      "def": "When you have got this, you sneeze and your nose runs."
+    },
+    {
+      "id": "cough",
+      "sentence": "You've got a cough. You should drink some warm water.",
+      "def": "When you have got this, you make a loud noise from your throat."
+    },
+    {
+      "id": "headache",
+      "sentence": "You've got a headache. You shouldn't watch TV.",
+      "def": "When your head hurts, you have got this."
+    },
+    {
+      "id": "stomach-ache",
+      "sentence": "You've got a stomach-ache. You shouldn't eat sweets."
+    },
+    "earache"
+  ],
+  "parentTip": {
+    "vi": "Khi con mệt, hỏi \"What's the matter?\" và gợi ý lời khuyên \"You should drink some water.\"",
+    "say": "What's the matter?"
+  },
+  "chat": {
+    "ask": "Do you go to bed early when you are ill?",
+    "yes": "Good! You should rest when you are ill.",
+    "no": "You should! Rest helps you get better."
+  },
+  "gaps": [
+    {
+      "s": "You've got a ___. You should go to bed and sneeze into a tissue.",
+      "answer": "cold",
+      "options": [
+        "earache",
+        "headache"
+      ]
+    },
+    {
+      "s": "My ear hurts. I've got ___.",
+      "answer": "earache",
+      "options": [
+        "cough",
+        "headache"
+      ]
+    },
+    {
+      "s": "You've got a ___. You shouldn't look at your computer.",
+      "answer": "headache",
+      "options": [
+        "earache",
+        "cold"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Visit to the Doctor",
+    "lines": [
+      "On Monday, Lucy felt ill. She had a cough and a headache.",
+      "Her mum took her to the doctor.",
+      "The doctor said, \"You should stay at home for two days and drink lots of water.\"",
+      "On Thursday, Lucy felt better and went back to school."
+    ],
+    "questions": [
+      {
+        "q": "What was wrong with Lucy?",
+        "options": [
+          "a cough and a headache",
+          "earache",
+          "a stomach-ache"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What should she drink?",
+        "options": [
+          "milk",
+          "juice",
+          "water"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "When did she go back to school?",
+        "options": [
+          "on Tuesday",
+          "on Wednesday",
+          "on Thursday"
+        ],
+        "answer": 2
+      }
+    ]
+  }
+}

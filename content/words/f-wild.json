@@ -1,0 +1,72 @@
+{
+  "topic": "wild",
+  "words": [
+    {
+      "id": "gorilla",
+      "text": "gorilla",
+      "topic": "wild",
+      "image": {
+        "emoji": "🦍"
+      },
+      "sentence": "The gorilla is big and strong.",
+      "accept": [
+        "gorillas",
+        "gorila"
+      ],
+      "def": "This big, strong animal lives in the jungle and looks a bit like a person."
+    },
+    {
+      "id": "wolf",
+      "text": "wolf",
+      "topic": "wild",
+      "image": {
+        "emoji": "🐺"
+      },
+      "sentence": "The wolf lives in the forest.",
+      "accept": [
+        "wolves"
+      ],
+      "def": "This wild animal looks like a big dog."
+    },
+    {
+      "id": "fox",
+      "text": "fox",
+      "topic": "wild",
+      "image": {
+        "emoji": "🦊"
+      },
+      "sentence": "A red fox ran across the field.",
+      "accept": [
+        "foxes"
+      ],
+      "def": "This wild animal is red and has got a long tail."
+    },
+    {
+      "id": "owl",
+      "text": "owl",
+      "topic": "wild",
+      "image": {
+        "emoji": "🦉"
+      },
+      "sentence": "The owl sleeps in the day and hunts at night.",
+      "accept": [
+        "owls"
+      ],
+      "def": "This bird has got big eyes and flies at night."
+    },
+    {
+      "id": "bee",
+      "text": "bee",
+      "topic": "wild",
+      "image": {
+        "emoji": "🐝"
+      },
+      "sentence": "A bee is flying from flower to flower.",
+      "accept": [
+        "bees",
+        "be"
+      ],
+      "def": "This yellow and black insect makes honey."
+    }
+  ]
+}

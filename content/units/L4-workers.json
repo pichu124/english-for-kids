@@ -1,0 +1,59 @@
+{
+  "id": "l4-workers",
+  "level": "L4",
+  "topic": "workers",
+  "order": 27,
+  "title": "People at Work",
+  "titleVi": "Nghề nghiệp 3",
+  "icon": "👩‍🔬",
+  "color": "#a2d2ff",
+  "intro": "What do these people do?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Work block",
+    "style": "brick",
+    "color": "#e07a5f"
+  },
+  "words": [
+    "artist",
+    "scientist",
+    "businessman",
+    "firefighter",
+    "waiter"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con về nghề của người quen: \"What does Uncle do? He's a businessman.\"",
+    "say": "What does your mum do?"
+  },
+  "chat": {
+    "ask": "Would you like to be a scientist?",
+    "yes": "Cool! You can do experiments!",
+    "no": "Okay! Maybe an artist?"
+  },
+  "gaps": [
+    {
+      "s": "The ___ brought us our drinks in the restaurant.",
+      "answer": "waiter",
+      "options": [
+        "artist",
+        "scientist"
+      ]
+    },
+    {
+      "s": "The ___ put out the fire in the house.",
+      "answer": "firefighter",
+      "options": [
+        "waiter",
+        "artist"
+      ]
+    },
+    {
+      "s": "The ___ painted a picture of the mountains.",
+      "answer": "artist",
+      "options": [
+        "firefighter",
+        "waiter"
+      ]
+    }
+  ]
+}

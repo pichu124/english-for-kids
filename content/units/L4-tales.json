@@ -1,0 +1,59 @@
+{
+  "id": "l4-tales",
+  "level": "L4",
+  "topic": "tales",
+  "order": 28,
+  "title": "Once Upon a Time",
+  "titleVi": "Truyện cổ tích",
+  "icon": "🐉",
+  "color": "#e9c46a",
+  "intro": "Once upon a time, in a land far away…",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Castle block",
+    "style": "stone",
+    "color": "#adb5bd"
+  },
+  "words": [
+    "king",
+    "queen",
+    "crown",
+    "dragon",
+    "wizard"
+  ],
+  "parentTip": {
+    "vi": "Kể truyện cổ tích quen thuộc bằng vài câu tiếng Anh: \"Once upon a time, there was a king…\"",
+    "say": "Who is your favourite person in stories?"
+  },
+  "chat": {
+    "ask": "Do you like stories about dragons?",
+    "yes": "Me too! Dragons are amazing!",
+    "no": "Okay! Maybe stories about wizards?"
+  },
+  "gaps": [
+    {
+      "s": "The ___ breathed fire and flew over the castle.",
+      "answer": "dragon",
+      "options": [
+        "crown",
+        "queen"
+      ]
+    },
+    {
+      "s": "The king wore a gold ___ on his head.",
+      "answer": "crown",
+      "options": [
+        "dragon",
+        "wizard"
+      ]
+    },
+    {
+      "s": "The ___ did some magic with his magic stick.",
+      "answer": "wizard",
+      "options": [
+        "crown",
+        "queen"
+      ]
+    }
+  ]
+}

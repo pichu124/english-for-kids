@@ -1,0 +1,75 @@
+{
+  "topic": "workers",
+  "words": [
+    {
+      "id": "artist",
+      "text": "artist",
+      "topic": "workers",
+      "image": {
+        "emoji": "👩‍🎨"
+      },
+      "sentence": "The artist painted a beautiful picture of the sea.",
+      "accept": [
+        "artists",
+        "painter"
+      ],
+      "def": "This person paints or draws pictures for a job."
+    },
+    {
+      "id": "scientist",
+      "text": "scientist",
+      "topic": "workers",
+      "image": {
+        "emoji": "👨‍🔬"
+      },
+      "sentence": "The scientist is working in a laboratory.",
+      "accept": [
+        "scientists",
+        "sientist"
+      ],
+      "def": "This person does experiments to learn how things work."
+    },
+    {
+      "id": "businessman",
+      "text": "businessman",
+      "topic": "workers",
+      "image": {
+        "emoji": "👨‍💼"
+      },
+      "sentence": "The businessman flew to Paris for a meeting.",
+      "accept": [
+        "business man",
+        "businesswoman"
+      ],
+      "def": "This man works in an office and goes to lots of meetings."
+    },
+    {
+      "id": "firefighter",
+      "text": "firefighter",
+      "topic": "workers",
+      "image": {
+        "emoji": "👩‍🚒"
+      },
+      "sentence": "The firefighter climbed the ladder to help the cat.",
+      "accept": [
+        "fireman",
+        "fire fighter"
+      ],
+      "def": "This person puts out fires."
+    },
+    {
+      "id": "waiter",
+      "text": "waiter",
+      "topic": "workers",
+      "image": {
+        "emoji": "🤵"
+      },
+      "sentence": "The waiter brought us our pizza.",
+      "accept": [
+        "waiters",
+        "waitress"
+      ],
+      "def": "This person brings your food in a restaurant."
+    }
+  ]
+}

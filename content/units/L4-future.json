@@ -1,0 +1,109 @@
+{
+  "id": "l4-future",
+  "level": "L4",
+  "topic": "future",
+  "order": 25,
+  "title": "In the Future",
+  "titleVi": "Tương lai (will)",
+  "icon": "🤖",
+  "color": "#cdb4db",
+  "intro": "What will the world be like in the future?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Robot block",
+    "style": "plain",
+    "color": "#cdb4db"
+  },
+  "words": [
+    {
+      "id": "robot",
+      "sentence": "In the future, robots will clean our houses.",
+      "def": "This machine can move and do jobs like a person."
+    },
+    "spaceship",
+    {
+      "id": "computer",
+      "sentence": "Computers will be very small in the future.",
+      "def": "You use this machine to write emails and play games."
+    },
+    "machine",
+    {
+      "id": "phone",
+      "sentence": "Phones will be in our glasses one day.",
+      "def": "You use this to talk to people who are far away."
+    }
+  ],
+  "parentTip": {
+    "vi": "Cùng con tưởng tượng: \"What will we have in the future? Will cars fly?\" và khuyến khích con dùng \"will\".",
+    "say": "Will cars fly in the future?"
+  },
+  "chat": {
+    "ask": "Would you like a robot at home?",
+    "yes": "Me too! It will tidy my room!",
+    "no": "Okay! You can tidy your room yourself!"
+  },
+  "gaps": [
+    {
+      "s": "One day, people will travel to Mars in a ___.",
+      "answer": "spaceship",
+      "options": [
+        "phone",
+        "machine"
+      ]
+    },
+    {
+      "s": "In the future, a ___ will clean my room. It will move like a person!",
+      "answer": "robot",
+      "options": [
+        "phone",
+        "spaceship"
+      ]
+    },
+    {
+      "s": "I will call you on my ___ tonight.",
+      "answer": "phone",
+      "options": [
+        "spaceship",
+        "robot"
+      ]
+    }
+  ],
+  "text": {
+    "title": "My Life in 2050",
+    "lines": [
+      "In 2050, I will be a scientist.",
+      "I will live in a house with a robot. It will cook all my meals!",
+      "I will go to work in a flying car.",
+      "On holiday, I will travel to the moon in a spaceship."
+    ],
+    "questions": [
+      {
+        "q": "What job will the writer have?",
+        "options": [
+          "doctor",
+          "scientist",
+          "pilot"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What will the robot do?",
+        "options": [
+          "drive the car",
+          "cook meals",
+          "clean the windows"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where will the writer go on holiday?",
+        "options": [
+          "to the moon",
+          "to the beach",
+          "to the mountains"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "story-l4-wild",
+  "unit": "l4-wild",
+  "title": "The Clever Fox",
+  "icon": "🦊",
+  "pages": [
+    {
+      "text": "A hungry fox was walking through the forest.",
+      "scene": "🦊🌲"
+    },
+    {
+      "text": "It saw some honey in a tree, but there were lots of bees!",
+      "scene": "🍯🐝"
+    },
+    {
+      "text": "\"Don't take our honey!\" said the bees.",
+      "scene": "🐝🐝"
+    },
+    {
+      "text": "A wise owl said, \"Wait until night. The bees will be asleep.\"",
+      "scene": "🦉🌙"
+    },
+    {
+      "text": "At night, the fox ate a little honey and said, \"Thank you, owl!\"",
+      "scene": "🦊😀"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who was hungry?",
+      "answer": "fox"
+    },
+    {
+      "ask": "Who helped the fox?",
+      "answer": "owl"
+    }
+  ]
+}
