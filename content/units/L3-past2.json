@@ -68,5 +68,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "I ___ a letter with my new pen.",
+      "answer": "wrote",
+      "options": [
+        "bought",
+        "gave"
+      ]
+    },
+    {
+      "s": "Mum went to the shop and ___ some milk.",
+      "answer": "bought",
+      "options": [
+        "wrote",
+        "gave"
+      ]
+    },
+    {
+      "s": "Dad ___ a photo of me with his camera.",
+      "answer": "took",
+      "options": [
+        "wrote",
+        "had"
+      ]
+    }
+  ]
 }

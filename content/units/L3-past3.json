@@ -30,5 +30,31 @@
     "ask": "Did you sing a song today?",
     "yes": "La, la, la! Great!",
     "no": "Let's sing one now!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "We ___ to London in a plane.",
+      "answer": "flew",
+      "options": [
+        "drove",
+        "rode"
+      ]
+    },
+    {
+      "s": "I ___ a horse on the farm.",
+      "answer": "rode",
+      "options": [
+        "flew",
+        "sang"
+      ]
+    },
+    {
+      "s": "We ___ 'Happy Birthday' at the party.",
+      "answer": "sang",
+      "options": [
+        "drove",
+        "ran"
+      ]
+    }
+  ]
 }

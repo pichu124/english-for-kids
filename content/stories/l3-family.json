@@ -1,0 +1,40 @@
+{
+  "id": "story-l3-family",
+  "unit": "l3-family",
+  "title": "Grandma's Birthday",
+  "icon": "🎂",
+  "pages": [
+    {
+      "text": "It's Grandma's birthday today!",
+      "scene": "🎂",
+      "bix": true
+    },
+    {
+      "text": "My aunt and uncle come to the party.",
+      "scene": "🎉"
+    },
+    {
+      "text": "My cousin brings a big present.",
+      "scene": "🎁"
+    },
+    {
+      "text": "My parents make a chocolate cake.",
+      "scene": "🍰"
+    },
+    {
+      "text": "Everybody sings \"Happy Birthday\". Grandma is very happy!",
+      "scene": "🎂😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who brings a big present?",
+      "answer": "cousin"
+    },
+    {
+      "ask": "Who makes a cake?",
+      "answer": "parents"
+    }
+  ]
+}

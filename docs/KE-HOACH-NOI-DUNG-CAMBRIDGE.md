@@ -360,6 +360,11 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
 - **Đợt M6**:
   - **bài thi thử** (cả Starters và Movers): phần Nghe có 2 câu "Who is who" giống phần 1 của đề thật. Một hình 5 bạn nhỏ, Bix tả một bạn ("Find Tom. He's got a blue T-shirt and he's reading a book."), bé chạm vào bạn đó. Phần Nghe vẫn 5 câu (3 chọn hình + 2 tìm bạn);
   - bài **Let's Move!** (climb, hop, skip, kick, catch, throw): hình vẽ bạn nhỏ đang làm từng động tác (leo thang, nhảy lò cò, nhảy dây, sút bóng, bắt bóng, ném bóng). Có câu điền từ, đoạn văn "Sports Day" (quá khứ: hopped, threw, caught) và truyện "Bix at the Park".
+- **Đợt M7** (lấp chỗ trống cho Movers):
+  - câu Điền từ soạn tay cho 14 bài còn thiếu (giờ, ngày trong tuần, so sánh, cảm xúc, 3 bài quá khứ, thú cưng, chỉ đường, so sánh nhất, trạng từ, thói quen, sông nước, mời). **Cả 33 bài Movers đều có bước 🧩**, mỗi câu chỉ có một đáp án hợp lý;
+  - 8 đoạn văn mới: Tom's Week, Animal Facts, Lunch at School, A Long Day, Race Day, My Big Family, At the Café, A Day by the River. Movers có 20 đoạn văn, nên bài thi thử có nhiều đoạn để luân phiên hơn;
+  - 4 truyện mới: Bix in Town, The Clever Dolphin, Bix Makes Lunch, Grandma's Birthday (Movers có 14 truyện);
+  - nút loa ở góc đoạn văn không còn che chữ trên điện thoại.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

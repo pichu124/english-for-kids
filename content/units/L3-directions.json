@@ -66,5 +66,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "I don't know the way. Let's look at the ___.",
+      "answer": "map",
+      "options": [
+        "left",
+        "right"
+      ]
+    },
+    {
+      "s": "Don't turn left or right. Go ___!",
+      "answer": "straight on",
+      "options": [
+        "left",
+        "map"
+      ]
+    },
+    {
+      "s": "Not right! Turn ___!",
+      "answer": "left",
+      "options": [
+        "map",
+        "straight on"
+      ]
+    }
+  ]
 }

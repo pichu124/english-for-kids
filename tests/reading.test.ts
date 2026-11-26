@@ -41,8 +41,8 @@ describe('reading & spelling', () => {
       expect(t.steps.includes('text'), t.id).toBe(!!t.text);
       expect(t.steps.includes('spell'), t.id).toBe(false);
     }
-    expect(topicsOfLevel('L3').filter((t) => t.text).length).toBeGreaterThanOrEqual(4);
-    expect(topicsOfLevel('L3').filter((t) => t.steps.includes('gap')).length).toBeGreaterThanOrEqual(19);
+    expect(topicsOfLevel('L3').filter((t) => t.text).length).toBeGreaterThanOrEqual(20);
+    expect(topicsOfLevel('L3').filter((t) => t.steps.includes('gap')).length).toBe(topicsOfLevel('L3').length); // every Movers unit has a gap fill
   });
 
   it('spellable: single words of 2–6 letters', () => {

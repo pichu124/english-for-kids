@@ -29,5 +29,69 @@
     "ask": "Do you like swimming in a lake?",
     "yes": "Splash! Me too!",
     "no": "Okay! The sea is fun too!"
+  },
+  "gaps": [
+    {
+      "s": "The frog is sitting on a ___.",
+      "answer": "rock",
+      "options": [
+        "wave",
+        "waterfall"
+      ]
+    },
+    {
+      "s": "The water falls down from the top of the ___.",
+      "answer": "waterfall",
+      "options": [
+        "rock",
+        "lake"
+      ]
+    },
+    {
+      "s": "We're at the beach. Look at that big ___!",
+      "answer": "wave",
+      "options": [
+        "rock",
+        "lake"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Day by the River",
+    "lines": [
+      "Last Saturday, we went to the river.",
+      "Ducks were swimming in the water, and a frog was sitting on a rock.",
+      "Then we walked to a big waterfall. It was very loud!",
+      "In the afternoon, Dad went fishing on the lake."
+    ],
+    "questions": [
+      {
+        "q": "What was sitting on a rock?",
+        "options": [
+          "a duck",
+          "a frog",
+          "a fish"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What was very loud?",
+        "options": [
+          "the waterfall",
+          "the ducks",
+          "the lake"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Where did Dad go fishing?",
+        "options": [
+          "on the river",
+          "in the sea",
+          "on the lake"
+        ],
+        "answer": 2
+      }
+    ]
   }
 }

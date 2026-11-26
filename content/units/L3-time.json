@@ -30,5 +30,31 @@
     "ask": "Do you go to bed at nine o'clock?",
     "yes": "Good night! Sleep well!",
     "no": "Okay! Sleep is important!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "It's ___. Time for lunch!",
+      "answer": "twelve o'clock",
+      "options": [
+        "seven o'clock",
+        "nine o'clock"
+      ]
+    },
+    {
+      "s": "The clock says 3:00. It's ___.",
+      "answer": "three o'clock",
+      "options": [
+        "five o'clock",
+        "eight o'clock"
+      ]
+    },
+    {
+      "s": "Wake up! It's ___ in the morning. Time to get up!",
+      "answer": "seven o'clock",
+      "options": [
+        "twelve o'clock",
+        "three o'clock"
+      ]
+    }
+  ]
 }

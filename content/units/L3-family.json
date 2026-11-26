@@ -63,5 +63,43 @@
         "uncle"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "My Big Family",
+    "lines": [
+      "My name is Sam. I live with my parents and my little sister.",
+      "My aunt Kate is my mum's sister. She has got a daughter, Lucy.",
+      "Lucy is my cousin. She is seven, like me.",
+      "On Sundays, we visit my grandparents on their farm."
+    ],
+    "questions": [
+      {
+        "q": "Who is Kate?",
+        "options": [
+          "Sam's mum",
+          "Sam's aunt",
+          "Sam's cousin"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How old is Lucy?",
+        "options": [
+          "six",
+          "seven",
+          "eight"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where do Sam's grandparents live?",
+        "options": [
+          "on a farm",
+          "in the town",
+          "near the sea"
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

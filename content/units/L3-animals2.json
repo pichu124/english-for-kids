@@ -29,5 +29,31 @@
     "ask": "Would you like a puppy?",
     "yes": "Woof! Puppies are lovely!",
     "no": "Okay! Kittens are lovely too!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "A baby dog is a ___.",
+      "answer": "puppy",
+      "options": [
+        "kitten",
+        "lion"
+      ]
+    },
+    {
+      "s": "A baby cat is a ___.",
+      "answer": "kitten",
+      "options": [
+        "puppy",
+        "bear"
+      ]
+    },
+    {
+      "s": "The ___ has got long ears and eats carrots.",
+      "answer": "rabbit",
+      "options": [
+        "lion",
+        "bear"
+      ]
+    }
+  ]
 }

@@ -29,5 +29,31 @@
     "ask": "Are you the tallest in your class?",
     "yes": "Wow! You are tall!",
     "no": "Okay! Everyone is different!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "The cheetah can run very fast. It's the ___ animal.",
+      "answer": "fastest",
+      "options": [
+        "smallest",
+        "tallest"
+      ]
+    },
+    {
+      "s": "The whale is the ___ animal in the sea.",
+      "answer": "biggest",
+      "options": [
+        "smallest",
+        "fastest"
+      ]
+    },
+    {
+      "s": "The ant is very small. It's the ___.",
+      "answer": "smallest",
+      "options": [
+        "biggest",
+        "tallest"
+      ]
+    }
+  ]
 }

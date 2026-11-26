@@ -56,5 +56,43 @@
         "cheese"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "Lunch at School",
+    "lines": [
+      "Today, Sophie has got soup and a cheese sandwich for lunch.",
+      "Her friend Ben has got pasta with tomato sauce.",
+      "Sophie doesn't like salad, but Ben loves it.",
+      "After lunch, they both have a pancake."
+    ],
+    "questions": [
+      {
+        "q": "What is in Sophie's sandwich?",
+        "options": [
+          "cheese",
+          "tomato",
+          "salad"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Who loves salad?",
+        "options": [
+          "Sophie",
+          "Ben",
+          "nobody"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What do they have after lunch?",
+        "options": [
+          "soup",
+          "pasta",
+          "a pancake"
+        ],
+        "answer": 2
+      }
+    ]
+  }
 }

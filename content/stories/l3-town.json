@@ -1,0 +1,42 @@
+{
+  "id": "story-l3-town",
+  "unit": "l3-town",
+  "title": "Bix in Town",
+  "icon": "🚌",
+  "pages": [
+    {
+      "text": "Bix waits at the bus stop. Here comes the bus!",
+      "scene": "🚏🚌",
+      "bix": true
+    },
+    {
+      "text": "First, Bix goes to the library and gets two books.",
+      "scene": "📚",
+      "bix": true
+    },
+    {
+      "text": "Then Bix buys apples at the supermarket.",
+      "scene": "🛒🍎"
+    },
+    {
+      "text": "In the afternoon, Bix watches a film at the cinema.",
+      "scene": "🎬🍿",
+      "bix": true
+    },
+    {
+      "text": "What a fun day in town!",
+      "scene": "😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where does Bix get books?",
+      "answer": "library"
+    },
+    {
+      "ask": "Where does Bix watch a film?",
+      "answer": "cinema"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "story-l3-sea",
+  "unit": "l3-sea",
+  "title": "The Clever Dolphin",
+  "icon": "🐬",
+  "pages": [
+    {
+      "text": "Bix is on a boat in the sea.",
+      "scene": "🚤🌊",
+      "bix": true
+    },
+    {
+      "text": "Look! A dolphin is jumping out of the water!",
+      "scene": "🐬"
+    },
+    {
+      "text": "Then Bix sees a very, very big whale.",
+      "scene": "🐋"
+    },
+    {
+      "text": "Oh no! Here comes a shark with big teeth!",
+      "scene": "🦈"
+    },
+    {
+      "text": "The dolphin swims fast, and the shark goes away. Thank you, dolphin!",
+      "scene": "🐬😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What jumps out of the water?",
+      "answer": "dolphin"
+    },
+    {
+      "ask": "What has got big teeth?",
+      "answer": "shark"
+    }
+  ]
+}

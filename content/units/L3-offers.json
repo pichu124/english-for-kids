@@ -39,5 +39,69 @@
     "ask": "Would you like a milkshake?",
     "yes": "Here you are! Yum!",
     "no": "Okay! Maybe some water?"
+  },
+  "gaps": [
+    {
+      "s": "Grown-ups drink ___. Children drink milk.",
+      "answer": "coffee",
+      "options": [
+        "biscuit",
+        "sandwich"
+      ]
+    },
+    {
+      "s": "Would you like some orange ___? Yes, please!",
+      "answer": "juice",
+      "options": [
+        "biscuit",
+        "sandwich"
+      ]
+    },
+    {
+      "s": "This ___ has got cheese and tomato in it.",
+      "answer": "sandwich",
+      "options": [
+        "juice",
+        "coffee"
+      ]
+    }
+  ],
+  "text": {
+    "title": "At the Café",
+    "lines": [
+      "Grandma and I went to the café yesterday.",
+      "The man in the café asked, \"Would you like a milkshake?\"",
+      "I said, \"Yes, please!\" Grandma had a coffee.",
+      "We also had two big biscuits. Yum!"
+    ],
+    "questions": [
+      {
+        "q": "Where did they go?",
+        "options": [
+          "to the park",
+          "to the café",
+          "to the zoo"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did Grandma drink?",
+        "options": [
+          "a milkshake",
+          "juice",
+          "coffee"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What did they eat?",
+        "options": [
+          "biscuits",
+          "sandwiches",
+          "soup"
+        ],
+        "answer": 0
+      }
+    ]
   }
 }

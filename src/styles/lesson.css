@@ -339,6 +339,8 @@
 .text-read { display: flex; align-items: flex-start; gap: 3vmin; width: 100%; max-width: 1100px; }
 .tx-card { position: relative; flex: 1.2; background: #fff; border: 4px solid var(--ink); border-radius: 22px; padding: 2vmin 3vmin 2vmin; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); }
 .tx-card .btn-ear { position: absolute; right: -14px; top: -14px; }
+/* keeps the words clear of the speaker button in the corner */
+.tx-card::before { content: ""; float: right; width: 40px; height: 42px; }
 .tx-title { font-size: clamp(20px, 3.6vmin, 32px); margin: 0 0 1vmin; }
 .tx-line { font-size: clamp(18px, 3.2vmin, 28px); font-weight: 700; line-height: 1.35; margin: .3em 0; border-radius: 8px; }
 .tx-line.is-now { background: #ffe066; }

@@ -31,5 +31,69 @@
     "ask": "Do you like Saturdays?",
     "yes": "Me too! No school!",
     "no": "Okay! Mondays are fun too!"
+  },
+  "gaps": [
+    {
+      "s": "The day after Monday is ___.",
+      "answer": "Tuesday",
+      "options": [
+        "Thursday",
+        "Saturday"
+      ]
+    },
+    {
+      "s": "Saturday and ___ are the weekend.",
+      "answer": "Sunday",
+      "options": [
+        "Monday",
+        "Wednesday"
+      ]
+    },
+    {
+      "s": "The day before Saturday is ___.",
+      "answer": "Friday",
+      "options": [
+        "Tuesday",
+        "Sunday"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Tom's Week",
+    "lines": [
+      "On Mondays, Tom goes to school by bus.",
+      "On Wednesdays, he goes swimming with his sister.",
+      "On Fridays, he sees his grandma. She makes pancakes!",
+      "On Sundays, he sleeps late."
+    ],
+    "questions": [
+      {
+        "q": "When does Tom go swimming?",
+        "options": [
+          "on Mondays",
+          "on Wednesdays",
+          "on Fridays"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who does he see on Fridays?",
+        "options": [
+          "his grandma",
+          "his sister",
+          "his teacher"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What does he do on Sundays?",
+        "options": [
+          "He goes swimming.",
+          "He sleeps late.",
+          "He goes to school."
+        ],
+        "answer": 1
+      }
+    ]
   }
 }

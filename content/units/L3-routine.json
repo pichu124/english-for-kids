@@ -68,5 +68,31 @@
         "answer": 0
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "I'm hungry in the morning, so I ___.",
+      "answer": "have breakfast",
+      "options": [
+        "go to bed",
+        "get dressed"
+      ]
+    },
+    {
+      "s": "It's nine o'clock at night. Time to ___!",
+      "answer": "go to bed",
+      "options": [
+        "get up",
+        "have breakfast"
+      ]
+    },
+    {
+      "s": "I put on my clothes. I ___.",
+      "answer": "get dressed",
+      "options": [
+        "have a shower",
+        "go to bed"
+      ]
+    }
+  ]
 }

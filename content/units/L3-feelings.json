@@ -36,5 +36,69 @@
     "ask": "Are you hungry now?",
     "yes": "Let's have a snack!",
     "no": "Okay! Maybe later!"
+  },
+  "gaps": [
+    {
+      "s": "I want some water. I'm ___.",
+      "answer": "thirsty",
+      "options": [
+        "bored",
+        "surprised"
+      ]
+    },
+    {
+      "s": "It's late and I want to sleep. I'm ___.",
+      "answer": "tired",
+      "options": [
+        "hungry",
+        "thirsty"
+      ]
+    },
+    {
+      "s": "There's nothing to do. I'm ___.",
+      "answer": "bored",
+      "options": [
+        "hungry",
+        "thirsty"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Long Day",
+    "lines": [
+      "Mia played football for two hours after school.",
+      "Then she was very thirsty, so she drank lots of water.",
+      "At dinner she was hungry and ate a big plate of pasta.",
+      "At eight o'clock she was tired and went to bed."
+    ],
+    "questions": [
+      {
+        "q": "Why did Mia drink lots of water?",
+        "options": [
+          "She was thirsty.",
+          "She was bored.",
+          "She was happy."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did she eat at dinner?",
+        "options": [
+          "soup",
+          "pasta",
+          "a sandwich"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How did she feel at eight o'clock?",
+        "options": [
+          "hungry",
+          "surprised",
+          "tired"
+        ],
+        "answer": 2
+      }
+    ]
   }
 }

@@ -30,5 +30,69 @@
     "ask": "Are you taller than your friend?",
     "yes": "Wow! You are tall!",
     "no": "That's okay! You will grow!"
+  },
+  "gaps": [
+    {
+      "s": "The snail is very ___. It can't run.",
+      "answer": "slow",
+      "options": [
+        "fast",
+        "loud"
+      ]
+    },
+    {
+      "s": "Shh! Be ___. The baby is sleeping.",
+      "answer": "quiet",
+      "options": [
+        "loud",
+        "tall"
+      ]
+    },
+    {
+      "s": "The giraffe is very ___. It can eat leaves from the top of the tree.",
+      "answer": "tall",
+      "options": [
+        "slow",
+        "quiet"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Race Day",
+    "lines": [
+      "Lily, her dad and her grandpa had a race in the park.",
+      "Dad is faster than Grandpa, but Lily is the fastest!",
+      "Grandpa is slow, but he is very strong.",
+      "After the race, he carried the big bag home."
+    ],
+    "questions": [
+      {
+        "q": "Who is the fastest?",
+        "options": [
+          "Dad",
+          "Grandpa",
+          "Lily"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "Is Grandpa fast?",
+        "options": [
+          "Yes, he is.",
+          "No, he is slow.",
+          "He didn't run."
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who carried the bag?",
+        "options": [
+          "Lily",
+          "Grandpa",
+          "Dad"
+        ],
+        "answer": 1
+      }
+    ]
   }
 }

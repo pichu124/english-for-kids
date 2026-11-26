@@ -1,0 +1,41 @@
+{
+  "id": "story-l3-food",
+  "unit": "l3-food",
+  "title": "Bix Makes Lunch",
+  "icon": "🧀",
+  "pages": [
+    {
+      "text": "Bix is hungry. Let's make lunch!",
+      "scene": "🍽️",
+      "bix": true
+    },
+    {
+      "text": "Bix makes a cheese sandwich.",
+      "scene": "🥪🧀",
+      "bix": true
+    },
+    {
+      "text": "Then Bix makes some hot soup. Be careful!",
+      "scene": "🍲"
+    },
+    {
+      "text": "A little mouse wants some cheese too!",
+      "scene": "🐭🧀"
+    },
+    {
+      "text": "After lunch, they have pancakes. Yum!",
+      "scene": "🥞😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does the mouse want?",
+      "answer": "cheese"
+    },
+    {
+      "ask": "What do they have after lunch?",
+      "answer": "pancake"
+    }
+  ]
+}

@@ -56,5 +56,43 @@
         "panda"
       ]
     }
-  ]
+  ],
+  "text": {
+    "title": "Animal Facts",
+    "lines": [
+      "Whales are the biggest animals in the sea.",
+      "Dolphins are very clever. They can jump out of the water.",
+      "Penguins can swim, but they cannot fly.",
+      "Bats sleep in the day and fly at night."
+    ],
+    "questions": [
+      {
+        "q": "Which animals can jump out of the water?",
+        "options": [
+          "whales",
+          "dolphins",
+          "penguins"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Can penguins fly?",
+        "options": [
+          "Yes, they can.",
+          "No, they can't.",
+          "Only at night."
+        ],
+        "answer": 1
+      },
+      {
+        "q": "When do bats sleep?",
+        "options": [
+          "in the day",
+          "at night",
+          "in the water"
+        ],
+        "answer": 0
+      }
+    ]
+  }
 }

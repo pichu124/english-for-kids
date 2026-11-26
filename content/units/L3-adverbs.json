@@ -29,5 +29,31 @@
     "ask": "Can you run quickly?",
     "yes": "Zoom! You are fast!",
     "no": "That's okay! Slowly is fine too!"
-  }
+  },
+  "gaps": [
+    {
+      "s": "The tortoise walks very ___.",
+      "answer": "slowly",
+      "options": [
+        "quickly",
+        "loudly"
+      ]
+    },
+    {
+      "s": "Shh! The baby is sleeping. Talk ___.",
+      "answer": "quietly",
+      "options": [
+        "loudly",
+        "quickly"
+      ]
+    },
+    {
+      "s": "Lucy is a great singer. She sings very ___.",
+      "answer": "well",
+      "options": [
+        "slowly",
+        "quietly"
+      ]
+    }
+  ]
 }

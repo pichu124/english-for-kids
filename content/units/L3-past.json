@@ -68,5 +68,31 @@
         "answer": 1
       }
     ]
-  }
+  },
+  "gaps": [
+    {
+      "s": "Yesterday I ___ an apple. It was yummy!",
+      "answer": "ate",
+      "options": [
+        "swam",
+        "went"
+      ]
+    },
+    {
+      "s": "Last summer I ___ in the sea.",
+      "answer": "swam",
+      "options": [
+        "ate",
+        "drank"
+      ]
+    },
+    {
+      "s": "I was thirsty, so I ___ some juice.",
+      "answer": "drank",
+      "options": [
+        "swam",
+        "played"
+      ]
+    }
+  ]
 }
