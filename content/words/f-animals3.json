@@ -1,0 +1,87 @@
+{
+  "topic": "animals3",
+  "words": [
+    {
+      "id": "butterfly",
+      "text": "butterfly",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🦋"
+      },
+      "sentence": "A butterfly has got beautiful wings.",
+      "accept": [
+        "butterflies"
+      ],
+      "def": "This insect has got big, beautiful wings."
+    },
+    {
+      "id": "eagle",
+      "text": "eagle",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🦅"
+      },
+      "sentence": "The eagle is flying high in the sky.",
+      "accept": [
+        "eagles",
+        "eegle"
+      ],
+      "def": "This big bird can see very well and flies high in the sky."
+    },
+    {
+      "id": "dinosaur",
+      "text": "dinosaur",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🦖"
+      },
+      "sentence": "Dinosaurs lived a very long time ago.",
+      "accept": [
+        "dinosaurs",
+        "dinasaur"
+      ],
+      "def": "These very big animals lived a very long time ago."
+    },
+    {
+      "id": "insect",
+      "text": "insect",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐞"
+      },
+      "sentence": "A ladybird is a small insect.",
+      "accept": [
+        "insects"
+      ],
+      "def": "This small animal has got six legs. Ants and bees are these."
+    },
+    {
+      "id": "octopus",
+      "text": "octopus",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐙"
+      },
+      "sentence": "An octopus has got eight legs.",
+      "accept": [
+        "octopuses",
+        "octopussy"
+      ],
+      "def": "This sea animal has got eight long legs."
+    },
+    {
+      "id": "tortoise",
+      "text": "tortoise",
+      "topic": "animals3",
+      "image": {
+        "emoji": "🐢"
+      },
+      "sentence": "The tortoise is old and very slow.",
+      "accept": [
+        "tortoises",
+        "turtle"
+      ],
+      "def": "This slow animal has got a hard shell on its back."
+    }
+  ]
+}

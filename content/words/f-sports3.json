@@ -1,0 +1,86 @@
+{
+  "topic": "sports3",
+  "words": [
+    {
+      "id": "skiing",
+      "text": "skiing",
+      "topic": "sports3",
+      "image": {
+        "emoji": "⛷️"
+      },
+      "sentence": "We went skiing in the mountains.",
+      "accept": [
+        "ski",
+        "skying"
+      ],
+      "def": "You do this sport on snow with two long boards on your feet."
+    },
+    {
+      "id": "snowboarding",
+      "text": "snowboarding",
+      "topic": "sports3",
+      "image": {
+        "emoji": "🏂"
+      },
+      "sentence": "Snowboarding is very exciting!",
+      "accept": [
+        "snowboard",
+        "snow boarding"
+      ],
+      "def": "You do this sport on snow, standing on one board."
+    },
+    {
+      "id": "ice-skating",
+      "text": "ice skating",
+      "topic": "sports3",
+      "image": {
+        "emoji": "⛸️"
+      },
+      "sentence": "We went ice skating at the weekend.",
+      "accept": [
+        "ice-skating",
+        "skating"
+      ]
+    },
+    {
+      "id": "surfing",
+      "text": "surfing",
+      "topic": "sports3",
+      "image": {
+        "emoji": "🏄"
+      },
+      "sentence": "My brother loves surfing on big waves.",
+      "accept": [
+        "surf",
+        "serving"
+      ],
+      "def": "You do this sport on big waves in the sea."
+    },
+    {
+      "id": "sailing",
+      "text": "sailing",
+      "topic": "sports3",
+      "image": {
+        "emoji": "⛵"
+      },
+      "sentence": "We went sailing on the lake.",
+      "accept": [
+        "sail"
+      ],
+      "def": "You do this sport in a boat. The wind moves the boat."
+    },
+    {
+      "id": "climbing",
+      "text": "climbing",
+      "topic": "sports3",
+      "image": {
+        "emoji": "🧗"
+      },
+      "sentence": "Climbing is hard, but it is fun!",
+      "accept": [
+        "climb"
+      ],
+      "def": "You do this sport on rocks or mountains."
+    }
+  ]
+}

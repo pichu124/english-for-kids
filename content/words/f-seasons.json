@@ -1,0 +1,72 @@
+{
+  "topic": "seasons",
+  "words": [
+    {
+      "id": "spring",
+      "text": "spring",
+      "topic": "seasons",
+      "image": {
+        "emoji": "🌸"
+      },
+      "sentence": "In spring, the flowers come out.",
+      "accept": [
+        "springs"
+      ],
+      "def": "This season comes after winter. Flowers start to grow."
+    },
+    {
+      "id": "summer",
+      "text": "summer",
+      "topic": "seasons",
+      "image": {
+        "emoji": "🏖️"
+      },
+      "sentence": "We go to the beach in summer.",
+      "accept": [
+        "summers"
+      ],
+      "def": "This is the hottest season. Lots of people go to the beach."
+    },
+    {
+      "id": "autumn",
+      "text": "autumn",
+      "topic": "seasons",
+      "image": {
+        "emoji": "🍂"
+      },
+      "sentence": "The leaves fall from the trees in autumn.",
+      "accept": [
+        "fall",
+        "autum"
+      ],
+      "def": "In this season, leaves fall from the trees."
+    },
+    {
+      "id": "winter",
+      "text": "winter",
+      "topic": "seasons",
+      "image": {
+        "emoji": "⛄"
+      },
+      "sentence": "It sometimes snows in winter.",
+      "accept": [
+        "winters"
+      ],
+      "def": "This is the coldest season. Sometimes it snows."
+    },
+    {
+      "id": "month",
+      "text": "month",
+      "topic": "seasons",
+      "image": {
+        "emoji": "📅"
+      },
+      "sentence": "December is the last month of the year.",
+      "accept": [
+        "months",
+        "mouth"
+      ],
+      "def": "There are twelve of these in a year. January is one of them."
+    }
+  ]
+}

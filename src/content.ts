@@ -41,7 +41,7 @@ export const LEVELS: Level[] = [
   { id: 'L1', name: 'Bix Explorer', nameVi: 'Bậc 1 · Bix Explorer (4–5 tuổi)', ages: '4–5', framework: 'Cambridge Early Years', casaLuaTuoi: '4-5', showText: true, choices: 3, playRounds: 5 },
   { id: 'L2', name: 'Starters', nameVi: 'Bậc 2 · Starters (5–7 tuổi)', ages: '5–7', framework: 'Pre A1 Starters · Primary ESL Stage 1–2', casaLuaTuoi: '5-6', showText: true, choices: 4, playRounds: 6, reading: ['read', 'spell', 'sentence'] },
   { id: 'L3', name: 'Movers', nameVi: 'Bậc 3 · Movers (7–8 tuổi)', ages: '7–8', framework: 'A1 Movers · Primary ESL Stage 3–4', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6, reading: ['gap', 'write', 'sentence', 'text'] },
-  { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6 },
+  { id: 'L4', name: 'Flyers', nameVi: 'Bậc 4 · Flyers (9–10 tuổi)', ages: '9–10', framework: 'A2 Flyers · Primary ESL Stage 5–6', casaLuaTuoi: '', showText: true, choices: 4, playRounds: 6, reading: ['gap', 'define', 'sentence', 'text'] },
 ];
 
 export const levelById = (id: string): Level | undefined => LEVELS.find((l) => l.id === id);
@@ -57,6 +57,8 @@ export type Word = {
   image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string; /** a child with this part circled */ body?: string; /** a small drawing (stairs, towel…) */ icon?: string; /** family tree with this person circled */ family?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */
   sentence: string;
+  /** Flyers: a short definition ("You can see old things here.") — read it, then type the word. */
+  def?: string;
   /** Prompt in the speaking step. Default: "Can you say {text}?" */
   ask?: string;
   /** Other transcriptions that should count, e.g. "mom" for "mum". */
@@ -80,14 +82,15 @@ const TOPIC_ANIM: Record<string, Anim> = {
   hobbies: 'bounce', animals3: 'wiggle', travel: 'drive', directions: 'pulse', superlatives: 'bounce', adverbs: 'pulse', past2: 'bounce', clothes3: 'sway', fun: 'spin', kitchen: 'pulse',
   body2: 'pulse', house: 'pulse', routine: 'bounce', water: 'sway', past3: 'bounce',
   family2: 'wave', town2: 'pulse', offers: 'bounce', numbers3: 'pulse', where2: 'bounce', move: 'bounce',
+  seasons: 'sway', subjects: 'wiggle', space: 'fly', jobs3: 'bounce', places3: 'pulse', sports3: 'sway', transport3: 'drive', world2: 'pulse', ever: 'bounce',
 };
 /** The animation to play for a word. */
 export const animFor = (w: Word & { topic?: string }): Anim => w.anim ?? TOPIC_ANIM[(w as { topic?: string }).topic ?? ''] ?? 'bounce';
 
-export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence' | 'write' | 'text' | 'gap';
-export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence', 'write', 'text', 'gap'];
+export type StepType = 'listen' | 'say' | 'tap-picture' | 'do-it' | 'chant' | 'read' | 'spell' | 'sentence' | 'write' | 'text' | 'gap' | 'define';
+export const STEP_TYPES: StepType[] = ['listen', 'say', 'tap-picture', 'do-it', 'chant', 'read', 'spell', 'sentence', 'write', 'text', 'gap', 'define'];
 /** Part 2 of a unit ("Read & Write"); everything else is part 1 ("Listen & Say"). */
-export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 'text', 'gap'];
+export const READING_STEPS: StepType[] = ['read', 'spell', 'sentence', 'write', 'text', 'gap', 'define'];
 
 /** A word whose example sentence can have it blanked out: "Mum is in the ____." (Movers gap fill). */
 export const gappable = (w: Word) => w.sentence.split(/\s+/).length >= 3 && new RegExp(`\\b${w.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(w.sentence);
@@ -99,6 +102,8 @@ export type GapItem = { s: string; answer: string; options: string[] };
 export type ReadingText = { title: string; lines: string[]; questions: { q: string; options: string[]; answer: number }[] };
 /** Words to type on the letter keyboard (Movers writing): one word, letters only, 3–8 letters. */
 export const writable = (w: Word) => /^[a-z]+$/i.test(w.text) && w.text.length >= 3 && w.text.length <= 8;
+/** Flyers "read the definition, write the word": one word, letters only, up to 12 letters. */
+export const definable = (w: Word) => !!w.def && /^[a-z]+$/i.test(w.text) && w.text.length >= 3 && w.text.length <= 12;
 
 /** First sentence of a word's example, without the final punctuation: "This is a dog". */
 export const firstSentence = (w: Word) => w.sentence.split(/(?<=[.!?])\s+/)[0].trim().replace(/[.!?]+$/, '');
@@ -167,7 +172,7 @@ export type Topic = {
 };
 
 type BankFile = { topic?: string; words: Word[] };
-type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept' | 'image'>>);
+type UnitWordRef = string | ({ id: string } & Partial<Pick<Word, 'sentence' | 'ask' | 'play' | 'accept' | 'image' | 'def'>>);
 type UnitFile = Omit<Topic, 'words' | 'steps' | 'actions' | 'chant' | 'titleVi' | 'intro' | 'order'> & {
   /** false = no reading/spelling steps for this unit (e.g. phrases like "How are you?"). */
   reading?: boolean;
@@ -293,6 +298,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
     }
     const w: Word = { ...base, ...(typeof ref === 'string' ? {} : ref) };
     if (!mentions(w.sentence, w.text)) problem(where, `câu mẫu của "${w.id}" không chứa chính từ đó: "${w.sentence}"`);
+    if (w.def && w.def.toLowerCase().includes(w.text.toLowerCase())) problem(where, `định nghĩa của "${w.id}" không được chứa chính từ đó: "${w.def}"`);
     if (words.some((x) => x.id === w.id)) problem(where, `từ "${w.id}" lặp lại trong bài`);
     words.push(w);
   }
@@ -300,6 +306,7 @@ function buildUnit(file: string, u: UnitFile): Topic | null {
   if (steps.includes('spell') && words.filter((w) => spellable(w)).length < 2) steps.splice(steps.indexOf('spell'), 1);
   if (steps.includes('sentence') && sentenceCount(words) === 0) steps.splice(steps.indexOf('sentence'), 1);
   if (steps.includes('write') && words.filter(writable).length < 2) steps.splice(steps.indexOf('write'), 1);
+  if (steps.includes('define') && words.filter(definable).length < 2) steps.splice(steps.indexOf('define'), 1);
   // Gap fill only where each sentence fits just one word of the unit (checked by hand): "gap": true.
   if (u.gaps) {
     for (const g of u.gaps) {

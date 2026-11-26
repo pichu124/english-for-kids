@@ -1,0 +1,38 @@
+{
+  "id": "story-l4-animals",
+  "unit": "l4-animals",
+  "title": "The Eagle and the Tortoise",
+  "icon": "🦅",
+  "pages": [
+    {
+      "text": "A tortoise is walking slowly by the river.",
+      "scene": "🐢"
+    },
+    {
+      "text": "\"I have always wanted to fly,\" says the tortoise.",
+      "scene": "🐢"
+    },
+    {
+      "text": "An eagle says, \"Hold on! I can carry you!\"",
+      "scene": "🦅🐢"
+    },
+    {
+      "text": "They fly high over the trees and see a beautiful butterfly.",
+      "scene": "🦅🦋"
+    },
+    {
+      "text": "\"Flying is fun,\" says the tortoise, \"but I love my slow walks too!\"",
+      "scene": "🐢😀"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who wants to fly?",
+      "answer": "tortoise"
+    },
+    {
+      "ask": "What do they see over the trees?",
+      "answer": "butterfly"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "story-l4-space",
+  "unit": "l4-space",
+  "title": "Bix in Space",
+  "icon": "🚀",
+  "pages": [
+    {
+      "text": "Today Bix is an astronaut!",
+      "scene": "👨‍🚀",
+      "bix": true
+    },
+    {
+      "text": "Bix flies into space in a big rocket.",
+      "scene": "🚀"
+    },
+    {
+      "text": "Look! There is the Earth. It is blue and green.",
+      "scene": "🌍"
+    },
+    {
+      "text": "On a strange planet, Bix meets a friendly alien.",
+      "scene": "👽",
+      "bix": true
+    },
+    {
+      "text": "\"Hello!\" says the alien. \"Would you like to be my friend?\"",
+      "scene": "👽😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "How does Bix fly into space?",
+      "answer": "rocket"
+    },
+    {
+      "ask": "Who does Bix meet on the planet?",
+      "answer": "alien"
+    }
+  ]
+}

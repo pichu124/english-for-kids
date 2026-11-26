@@ -1,0 +1,98 @@
+{
+  "id": "l4-places",
+  "level": "L4",
+  "topic": "places",
+  "order": 5,
+  "title": "Places to Visit",
+  "titleVi": "Nơi tham quan",
+  "icon": "🏰",
+  "color": "#a2d2ff",
+  "intro": "Where shall we go today?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Castle block",
+    "style": "stone",
+    "color": "#adb5bd"
+  },
+  "words": [
+    "museum",
+    "airport",
+    "castle",
+    "factory",
+    "hotel",
+    "restaurant"
+  ],
+  "parentTip": {
+    "vi": "Khi đi chơi, nói tên nơi bằng tiếng Anh: \"This is a museum. What can we see here?\"",
+    "say": "Have you ever been to a museum?"
+  },
+  "chat": {
+    "ask": "Have you ever been to a castle?",
+    "yes": "Wow! Was it big?",
+    "no": "Maybe one day! Castles are amazing."
+  },
+  "gaps": [
+    {
+      "s": "We're going to the ___ to catch our plane.",
+      "answer": "airport",
+      "options": [
+        "museum",
+        "factory"
+      ]
+    },
+    {
+      "s": "You can see old dinosaur bones at the ___.",
+      "answer": "museum",
+      "options": [
+        "hotel",
+        "airport"
+      ]
+    },
+    {
+      "s": "We stayed in a big ___ near the beach.",
+      "answer": "hotel",
+      "options": [
+        "factory",
+        "museum"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Our Holiday in Scotland",
+    "lines": [
+      "Last summer, my family went on holiday to Scotland.",
+      "We stayed in a hotel next to an old castle.",
+      "On Tuesday it rained, so we visited a museum about dinosaurs.",
+      "On the last day, we had dinner in a restaurant by the sea."
+    ],
+    "questions": [
+      {
+        "q": "Where did they stay?",
+        "options": [
+          "in a castle",
+          "in a hotel",
+          "in a tent"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Why did they visit a museum?",
+        "options": [
+          "It was raining.",
+          "It was hot.",
+          "It was their birthday."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Where was the restaurant?",
+        "options": [
+          "by the sea",
+          "in the castle",
+          "at the airport"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

@@ -108,6 +108,8 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
   Hình cây gia đình: `"image": { "family": "aunt" }` (aunt, uncle, cousin, parents, grandparents).
   Điền từ (🧩): thêm `"gap": true` vào bài, chỉ khi mỗi câu mẫu chỉ hợp với đúng một từ của bài. Hoặc soạn tay
   `"gaps": [{ "s": "Mice love ___!", "answer": "cheese", "options": ["soup", "pasta"] }]` (đáp án là chữ của một từ trong bài).
+- **Flyers (bậc 4)**: phần 2 gồm `gap`, `define` (đọc định nghĩa, gõ từ; từ đơn 3–12 chữ cái), `sentence`, `text`. Mỗi từ có thể có định nghĩa:
+  `"def": "You can see old and interesting things here."` (không được chứa chính từ đó). Bài cần ít nhất 2 từ có định nghĩa thì mới có bước 📝.
 - **Bảng chữ cái**: `content/alphabet.json`, 26 chữ, mỗi chữ có một từ và một hình ("B is for ball").
 - **Mỗi từ trong bài** có thể ghi đè `sentence`, `play`, `ask`, `image` của ngân hàng. Ví dụ bậc 0 dùng câu ngắn hơn bậc 2.
 - **Hình** (`image`): `{ "emoji": "🐷" }`, `{ "color": "#e63946" }` (khối màu), hoặc `{ "text": "11" }` (chữ số lớn).

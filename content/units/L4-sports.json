@@ -1,0 +1,60 @@
+{
+  "id": "l4-sports",
+  "level": "L4",
+  "topic": "sports",
+  "order": 6,
+  "title": "Snow and Waves",
+  "titleVi": "Thể thao mùa đông & dưới nước",
+  "icon": "🏄",
+  "color": "#90e0ef",
+  "intro": "Snow sports or water sports?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Wave block",
+    "style": "window",
+    "color": "#90e0ef"
+  },
+  "words": [
+    "skiing",
+    "snowboarding",
+    "ice-skating",
+    "surfing",
+    "sailing",
+    "climbing"
+  ],
+  "parentTip": {
+    "vi": "Xem video thể thao cùng con và hỏi \"Which sport would you like to try?\"",
+    "say": "Which sport would you like to try?"
+  },
+  "chat": {
+    "ask": "Would you like to go surfing?",
+    "yes": "Cool! Waves are exciting!",
+    "no": "Okay! Maybe skiing?"
+  },
+  "gaps": [
+    {
+      "s": "You need snow for ___.",
+      "answer": "skiing",
+      "options": [
+        "surfing",
+        "sailing"
+      ]
+    },
+    {
+      "s": "You need big waves for ___.",
+      "answer": "surfing",
+      "options": [
+        "skiing",
+        "climbing"
+      ]
+    },
+    {
+      "s": "You need a boat and some wind for ___.",
+      "answer": "sailing",
+      "options": [
+        "skiing",
+        "climbing"
+      ]
+    }
+  ]
+}

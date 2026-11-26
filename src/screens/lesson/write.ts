@@ -1,4 +1,4 @@
-import { writable, type Word } from '../../content';
+import { definable, writable, type Word } from '../../content';
 import { recordTap } from '../../lib/adapt';
 import { h, shuffle } from '../../lib/dom';
 import { letterName } from '../../lib/letters';
@@ -11,6 +11,7 @@ import { actOut, pick, PRAISE, wordPicture, type LessonUI } from './shared';
 
 export const WRITE_WORDS = 3;
 export const writeWords = (words: Word[]) => shuffle(words.filter(writable)).slice(0, WRITE_WORDS);
+export const defineWords = (words: Word[]) => shuffle(words.filter(definable)).slice(0, WRITE_WORDS);
 const LETTERS = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 /**
@@ -22,22 +23,39 @@ export async function runWrite(ui: LessonUI): Promise<void> {
   const list = writeWords(ui.topic.words);
   if (!list.length) return;
   await ui.talk("Let's write! Look and type the word.", 'happy', 'Write it! ⌨️');
+  await typeWords(ui, list, (w) => ({ shown: h('div', { class: 'read-pic spell-pic' }, wordPicture(w)), hearText: w.text, cls: '' }));
+}
+
+/**
+ * Step "define" (Flyers, "read and write"): read a short definition — "You can see old
+ * and interesting things here." — and type the word (museum). 🔊 reads the definition,
+ * never the word. Same keyboard and gentle hints as "write".
+ */
+export async function runDefine(ui: LessonUI): Promise<void> {
+  const list = defineWords(ui.topic.words);
+  if (!list.length) return;
+  await ui.talk('Read and write! What is it?', 'happy', 'Read and write 📝');
+  await typeWords(ui, list, (w) => ({ shown: h('p', { class: 'def-card', lang: 'en' }, w.def!), hearText: w.def!, cls: 'define' }));
+}
+
+async function typeWords(ui: LessonUI, list: Word[], show: (w: Word) => { shown: HTMLElement; hearText: string; cls: string }): Promise<void> {
   for (const target of list) {
     const word = target.text.toLowerCase();
+    const { shown: pic, hearText, cls } = show(target);
     const boxes = word.split('').map(() => h('span', { class: 'spell-slot wr-box' }));
     const allKeys = LETTERS.map((c) => h('button', { class: 'wr-key', 'data-key': c, 'aria-label': c, lang: 'en' }, c));
-    const pic = h('div', { class: 'read-pic spell-pic' }, wordPicture(target));
     const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen' }, h('span', { class: 'icon-speaker' }));
     ui.stage.replaceChildren(
-      h('div', { class: 'write', 'data-word': word }, h('div', { class: 'spell-top' }, pic, hear), h('div', { class: 'spell-slots' }, boxes), h('div', { class: 'wr-keys' }, allKeys)),
+      h('div', { class: `write ${cls}`, 'data-word': word }, h('div', { class: 'spell-top' }, pic, hear), h('div', { class: `spell-slots ${word.length > 8 ? 'is-long' : ''}` }, boxes), h('div', { class: 'wr-keys' }, allKeys)),
     );
+    if (cls === 'define') void say(hearText);
     let slips = 0;
     let here = 0;
     for (let i = 0; i < word.length; ) {
       const tapped = await ui.tapAny<HTMLElement>([...allKeys, hear]);
       if (tapped === hear) {
         sfx.tap();
-        await say(target.text);
+        await say(hearText);
         continue;
       }
       const c = tapped.dataset.key!;

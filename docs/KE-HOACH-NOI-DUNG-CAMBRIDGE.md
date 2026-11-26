@@ -282,6 +282,7 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
 | **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen · My Body 2 · Around the House · Every Day · Water and Land · Long Ago · My Family 2 · Around Town 2 · Would You Like…? · Numbers to 100 · Where Is It? 2 · Let's Move! | 33 |
+| **L4 Flyers (9–10)** | The Four Seasons · School Subjects · Into Space · When I Grow Up · Places to Visit · Snow and Waves · Wild World · Getting Around · Our World · Have You Ever…? | 10 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
 Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
@@ -365,9 +366,16 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - 8 đoạn văn mới: Tom's Week, Animal Facts, Lunch at School, A Long Day, Race Day, My Big Family, At the Café, A Day by the River. Movers có 20 đoạn văn, nên bài thi thử có nhiều đoạn để luân phiên hơn;
   - 4 truyện mới: Bix in Town, The Clever Dolphin, Bix Makes Lunch, Grandma's Birthday (Movers có 14 truyện);
   - nút loa ở góc đoạn văn không còn che chữ trên điện thoại.
+- **Đợt F1: mở bậc 4 Flyers (9–10 tuổi)**, 10 bài:
+  - phần 2 "Đọc & Viết" của Flyers: điền từ (🧩) → **đọc định nghĩa, viết từ** (📝, giống phần Đọc & Viết của đề Flyers: "You can see old and interesting things here." → museum; Bix đọc định nghĩa, không đọc từ; dùng bàn phím a–z như Movers, từ tới 12 chữ cái) → câu (✍️) → đoạn văn (📃);
+  - 10 bài: The Four Seasons, School Subjects, Into Space, When I Grow Up (dentist, engineer, mechanic, police officer, photographer, journalist), Places to Visit, Snow and Waves, Wild World, Getting Around, Our World, Have You Ever…? (hiện tại hoàn thành: flown, ridden, eaten, seen, climbed, been);
+  - mỗi từ có câu mẫu và định nghĩa riêng (trừ cụm 2 chữ như "police officer"); mỗi bài có câu điền từ soạn tay;
+  - 4 đoạn văn (My Favourite Season, A Trip to the Moon, Our Holiday in Scotland, Have You Ever…?) và 2 truyện (Bix in Space, The Eagle and the Tortoise);
+  - hình vẽ hành tinh (`image.icon: "planet"`) vì emoji 🪐 quá mới cho máy cũ;
+  - danh sách từ soạn theo hiểu biết về A2 Flyers, cần đối chiếu với bản chính thức của Cambridge khi có. Chưa có bài thi thử Flyers (để đợt sau).
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);
 - duyệt lại toàn bộ khi bé và các lớp dùng thật, dựa trên dòng *"máy nghe: …"*.
 
-Sau đó là bậc 3–4 (Movers, Flyers) với các hoạt động đọc và viết.
+Bậc 3 Movers đã đủ (33 bài, thi thử). Bậc 4 Flyers đang làm (đợt F1: 10 bài).

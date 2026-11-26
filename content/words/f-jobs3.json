@@ -1,0 +1,88 @@
+{
+  "topic": "jobs3",
+  "words": [
+    {
+      "id": "dentist",
+      "text": "dentist",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "🦷"
+      },
+      "sentence": "The dentist looked at my teeth.",
+      "accept": [
+        "dentists"
+      ],
+      "def": "This person looks after your teeth."
+    },
+    {
+      "id": "engineer",
+      "text": "engineer",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "👷"
+      },
+      "sentence": "An engineer builds bridges and roads.",
+      "accept": [
+        "engineers",
+        "enginear"
+      ],
+      "def": "This person plans and builds bridges, roads and machines."
+    },
+    {
+      "id": "mechanic",
+      "text": "mechanic",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "🔧"
+      },
+      "sentence": "The mechanic repaired our car.",
+      "accept": [
+        "mechanics",
+        "mecanic"
+      ],
+      "def": "This person repairs cars."
+    },
+    {
+      "id": "police-officer",
+      "text": "police officer",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "👮"
+      },
+      "sentence": "The police officer helped the lost boy.",
+      "accept": [
+        "policeman",
+        "policewoman",
+        "police"
+      ]
+    },
+    {
+      "id": "photographer",
+      "text": "photographer",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "📸"
+      },
+      "sentence": "The photographer took a photo of our class.",
+      "accept": [
+        "photographers",
+        "fotographer"
+      ],
+      "def": "This person takes photos for a job."
+    },
+    {
+      "id": "journalist",
+      "text": "journalist",
+      "topic": "jobs3",
+      "image": {
+        "emoji": "📰"
+      },
+      "sentence": "The journalist writes for a newspaper.",
+      "accept": [
+        "journalists",
+        "jurnalist"
+      ],
+      "def": "This person writes stories for a newspaper."
+    }
+  ]
+}

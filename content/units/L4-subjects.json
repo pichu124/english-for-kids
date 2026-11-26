@@ -1,0 +1,60 @@
+{
+  "id": "l4-subjects",
+  "level": "L4",
+  "topic": "subjects",
+  "order": 2,
+  "title": "School Subjects",
+  "titleVi": "Môn học",
+  "icon": "🔬",
+  "color": "#bde0fe",
+  "intro": "What do you learn at school?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Book block",
+    "style": "window",
+    "color": "#bde0fe"
+  },
+  "words": [
+    "maths",
+    "science",
+    "history",
+    "geography",
+    "art",
+    "music"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con hôm nay học môn gì: \"What did you have at school today? Which subject do you like best?\"",
+    "say": "Which subject do you like best?"
+  },
+  "chat": {
+    "ask": "Do you like maths?",
+    "yes": "Great! Numbers are fun!",
+    "no": "Okay! Maybe you like art?"
+  },
+  "gaps": [
+    {
+      "s": "In ___ we learn about numbers.",
+      "answer": "maths",
+      "options": [
+        "art",
+        "history"
+      ]
+    },
+    {
+      "s": "I love ___. I draw and paint in every lesson.",
+      "answer": "art",
+      "options": [
+        "maths",
+        "science"
+      ]
+    },
+    {
+      "s": "In ___ we learn about kings and queens from long ago.",
+      "answer": "history",
+      "options": [
+        "maths",
+        "music"
+      ]
+    }
+  ]
+}

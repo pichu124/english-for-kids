@@ -1,0 +1,59 @@
+{
+  "id": "l4-world",
+  "level": "L4",
+  "topic": "world",
+  "order": 9,
+  "title": "Our World",
+  "titleVi": "Thế giới quanh ta",
+  "icon": "🌋",
+  "color": "#ffd6a5",
+  "intro": "Let's explore the world!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Rock block",
+    "style": "stone",
+    "color": "#bc6c25"
+  },
+  "words": [
+    "desert",
+    "ocean",
+    "volcano",
+    "hill",
+    "world"
+  ],
+  "parentTip": {
+    "vi": "Mở bản đồ thế giới cùng con, tìm sa mạc, đại dương: \"Where is the biggest ocean?\"",
+    "say": "Where is the biggest desert?"
+  },
+  "chat": {
+    "ask": "Would you like to see a volcano?",
+    "yes": "Wow! Volcanoes are amazing!",
+    "no": "That's okay! They are a bit dangerous."
+  },
+  "gaps": [
+    {
+      "s": "There's lots of sand in the ___.",
+      "answer": "desert",
+      "options": [
+        "ocean",
+        "hill"
+      ]
+    },
+    {
+      "s": "Fire and hot rocks came out of the ___.",
+      "answer": "volcano",
+      "options": [
+        "desert",
+        "ocean"
+      ]
+    },
+    {
+      "s": "The Pacific is the biggest ___ in the world.",
+      "answer": "ocean",
+      "options": [
+        "desert",
+        "volcano"
+      ]
+    }
+  ]
+}

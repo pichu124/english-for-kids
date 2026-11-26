@@ -1,0 +1,72 @@
+{
+  "id": "l4-transport",
+  "level": "L4",
+  "topic": "transport",
+  "order": 8,
+  "title": "Getting Around",
+  "titleVi": "Phương tiện 3",
+  "icon": "🚑",
+  "color": "#ffadad",
+  "intro": "How do people get around the city?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Road block",
+    "style": "plain",
+    "color": "#ffadad"
+  },
+  "words": [
+    "ambulance",
+    "fire-engine",
+    "underground",
+    {
+      "id": "helicopter",
+      "sentence": "The helicopter landed on the roof of the hospital.",
+      "def": "This can fly, but it has not got wings like a plane."
+    },
+    {
+      "id": "motorbike",
+      "sentence": "My uncle rides his motorbike to work.",
+      "def": "This has got two wheels and an engine."
+    },
+    {
+      "id": "taxi",
+      "sentence": "We took a taxi to the station.",
+      "def": "You pay the driver of this car to take you somewhere."
+    }
+  ],
+  "parentTip": {
+    "vi": "Khi ra đường, chỉ cho con các xe: \"Look! An ambulance. Where is it going?\"",
+    "say": "How do you get to school?"
+  },
+  "chat": {
+    "ask": "Have you ever been in a taxi?",
+    "yes": "Cool! Where did you go?",
+    "no": "Maybe one day!"
+  },
+  "gaps": [
+    {
+      "s": "Someone is hurt! Call an ___!",
+      "answer": "ambulance",
+      "options": [
+        "underground",
+        "taxi"
+      ]
+    },
+    {
+      "s": "In London, you can take the ___ under the streets.",
+      "answer": "underground",
+      "options": [
+        "helicopter",
+        "taxi"
+      ]
+    },
+    {
+      "s": "The ___ landed on the roof of the hospital.",
+      "answer": "helicopter",
+      "options": [
+        "motorbike",
+        "taxi"
+      ]
+    }
+  ]
+}

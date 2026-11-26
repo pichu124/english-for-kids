@@ -1,0 +1,97 @@
+{
+  "id": "l4-seasons",
+  "level": "L4",
+  "topic": "seasons",
+  "order": 1,
+  "title": "The Four Seasons",
+  "titleVi": "Bốn mùa",
+  "icon": "🍂",
+  "color": "#ffd6a5",
+  "intro": "What is your favourite season?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Season block",
+    "style": "grass",
+    "color": "#95d5b2"
+  },
+  "words": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter",
+    "month"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con về mùa yêu thích và lý do: \"What's your favourite season? Why?\" Gợi ý trả lời bằng câu \"because…\".",
+    "say": "What's your favourite season?"
+  },
+  "chat": {
+    "ask": "Do you like winter?",
+    "yes": "Me too! Snow is fun!",
+    "no": "Okay! Summer is great too!"
+  },
+  "gaps": [
+    {
+      "s": "Leaves fall from the trees in ___.",
+      "answer": "autumn",
+      "options": [
+        "spring",
+        "summer"
+      ]
+    },
+    {
+      "s": "It's ___, so we're going to build a snowman.",
+      "answer": "winter",
+      "options": [
+        "summer",
+        "spring"
+      ]
+    },
+    {
+      "s": "Flowers start to grow in ___.",
+      "answer": "spring",
+      "options": [
+        "autumn",
+        "winter"
+      ]
+    }
+  ],
+  "text": {
+    "title": "My Favourite Season",
+    "lines": [
+      "My favourite season is winter.",
+      "In December, it is very cold and it sometimes snows.",
+      "My brother likes summer best because he can go surfing.",
+      "Mum loves autumn, when the leaves are red and yellow."
+    ],
+    "questions": [
+      {
+        "q": "Why does the brother like summer?",
+        "options": [
+          "He can go surfing.",
+          "It snows.",
+          "He can go skiing."
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What is the weather like in December?",
+        "options": [
+          "hot",
+          "very cold",
+          "windy"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "When are the leaves red and yellow?",
+        "options": [
+          "in spring",
+          "in summer",
+          "in autumn"
+        ],
+        "answer": 2
+      }
+    ]
+  }
+}

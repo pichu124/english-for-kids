@@ -1,0 +1,46 @@
+{
+  "topic": "transport3",
+  "words": [
+    {
+      "id": "ambulance",
+      "text": "ambulance",
+      "topic": "transport3",
+      "image": {
+        "emoji": "🚑"
+      },
+      "sentence": "The ambulance took her to hospital.",
+      "accept": [
+        "ambulances",
+        "ambulence"
+      ],
+      "def": "This takes people who are ill or hurt to hospital."
+    },
+    {
+      "id": "fire-engine",
+      "text": "fire engine",
+      "topic": "transport3",
+      "image": {
+        "emoji": "🚒"
+      },
+      "sentence": "The fire engine is big and red.",
+      "accept": [
+        "fire truck",
+        "fire-engine"
+      ]
+    },
+    {
+      "id": "underground",
+      "text": "underground",
+      "topic": "transport3",
+      "image": {
+        "emoji": "🚇"
+      },
+      "sentence": "We went across London on the underground.",
+      "accept": [
+        "subway",
+        "metro"
+      ],
+      "def": "This train goes under the streets of a big city."
+    }
+  ]
+}

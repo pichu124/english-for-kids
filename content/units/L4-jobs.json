@@ -1,0 +1,60 @@
+{
+  "id": "l4-jobs",
+  "level": "L4",
+  "topic": "jobs",
+  "order": 4,
+  "title": "When I Grow Up",
+  "titleVi": "Nghề nghiệp 2",
+  "icon": "👷",
+  "color": "#ffc8dd",
+  "intro": "What do you want to be?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Work block",
+    "style": "brick",
+    "color": "#e07a5f"
+  },
+  "words": [
+    "dentist",
+    "engineer",
+    "mechanic",
+    "police-officer",
+    "photographer",
+    "journalist"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con \"What do you want to be when you grow up? Why?\" và kể về nghề của bố mẹ bằng tiếng Anh.",
+    "say": "What do you want to be?"
+  },
+  "chat": {
+    "ask": "Do you want to be a photographer?",
+    "yes": "Cool! You can take great photos!",
+    "no": "Okay! There are lots of other jobs!"
+  },
+  "gaps": [
+    {
+      "s": "I've got toothache. I need to see the ___.",
+      "answer": "dentist",
+      "options": [
+        "mechanic",
+        "journalist"
+      ]
+    },
+    {
+      "s": "Our car is broken. Let's take it to the ___.",
+      "answer": "mechanic",
+      "options": [
+        "dentist",
+        "photographer"
+      ]
+    },
+    {
+      "s": "The ___ wrote a story about our school in the newspaper.",
+      "answer": "journalist",
+      "options": [
+        "dentist",
+        "mechanic"
+      ]
+    }
+  ]
+}

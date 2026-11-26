@@ -136,6 +136,8 @@
   .spell-pic { width: clamp(64px, 24vh, 100px); border-radius: 16px; }
   .spell-pic .pic-emoji { font-size: clamp(40px, 15vh, 64px); }
   .spell-slot { width: 44px; height: 50px; font-size: 30px; border-radius: 10px; }
+  .spell-slots.is-long { gap: 3px; }
+  .spell-slots.is-long .spell-slot { width: 23px; height: 40px; font-size: 20px; border-radius: 7px; border-width: 2px; }
   .spell-tiles { gap: 8px; max-width: 520px; }
   .spell-tile { width: 64px; height: 64px; font-size: 32px; border-radius: 14px; }
 }
@@ -171,6 +173,8 @@
 @media (orientation: landscape) and (max-height: 500px) {
   .write { display: grid; grid-template-columns: auto auto; grid-template-areas: 'top slots' 'top keys'; column-gap: 14px; row-gap: 6px; align-items: center; }
   .write .spell-top { grid-area: top; flex-direction: column; gap: 8px; }
+  .write.define .spell-top { flex-direction: row; align-items: center; }
+  .def-card { font-size: 15px; padding: 6px 10px; border-radius: 14px; border-width: 3px; max-width: none; }
   .write .spell-slots { grid-area: slots; }
   .wr-keys { grid-area: keys; gap: 5px; grid-template-columns: repeat(7, auto); }
   .wr-key { width: 42px; height: 42px; font-size: 21px; border-radius: 10px; }

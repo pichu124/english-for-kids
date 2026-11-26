@@ -1,0 +1,84 @@
+{
+  "topic": "subjects",
+  "words": [
+    {
+      "id": "maths",
+      "text": "maths",
+      "topic": "subjects",
+      "image": {
+        "emoji": "➗"
+      },
+      "sentence": "In maths, we add and take away numbers.",
+      "accept": [
+        "math",
+        "mats"
+      ],
+      "def": "In this school subject, you learn about numbers."
+    },
+    {
+      "id": "science",
+      "text": "science",
+      "topic": "subjects",
+      "image": {
+        "emoji": "🔬"
+      },
+      "sentence": "We look at tiny animals in science.",
+      "accept": [
+        "sciences"
+      ],
+      "def": "In this subject, you learn about plants, animals and how things work."
+    },
+    {
+      "id": "history",
+      "text": "history",
+      "topic": "subjects",
+      "image": {
+        "emoji": "📜"
+      },
+      "sentence": "In history, we learn about kings and queens.",
+      "accept": [
+        "histories"
+      ],
+      "def": "In this subject, you learn about people who lived a long time ago."
+    },
+    {
+      "id": "geography",
+      "text": "geography",
+      "topic": "subjects",
+      "image": {
+        "emoji": "🗺️"
+      },
+      "sentence": "In geography, we look at maps of the world.",
+      "accept": [
+        "geografy"
+      ],
+      "def": "In this subject, you learn about countries, rivers and mountains."
+    },
+    {
+      "id": "art",
+      "text": "art",
+      "topic": "subjects",
+      "image": {
+        "emoji": "🎨"
+      },
+      "sentence": "I painted a picture of my cat in art.",
+      "accept": [
+        "arts"
+      ],
+      "def": "In this subject, you draw and paint pictures."
+    },
+    {
+      "id": "music",
+      "text": "music",
+      "topic": "subjects",
+      "image": {
+        "emoji": "🎵"
+      },
+      "sentence": "We sing songs in music.",
+      "accept": [
+        "musik"
+      ],
+      "def": "In this subject, you sing songs and play instruments."
+    }
+  ]
+}

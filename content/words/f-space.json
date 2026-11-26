@@ -1,0 +1,88 @@
+{
+  "topic": "space",
+  "words": [
+    {
+      "id": "rocket",
+      "text": "rocket",
+      "topic": "space",
+      "image": {
+        "emoji": "🚀"
+      },
+      "sentence": "The rocket is flying into space.",
+      "accept": [
+        "rockets",
+        "racket"
+      ],
+      "def": "People travel into space in this."
+    },
+    {
+      "id": "astronaut",
+      "text": "astronaut",
+      "topic": "space",
+      "image": {
+        "emoji": "👨‍🚀"
+      },
+      "sentence": "The astronaut walked on the moon.",
+      "accept": [
+        "astronauts",
+        "astronought"
+      ],
+      "def": "This person travels into space."
+    },
+    {
+      "id": "planet",
+      "text": "planet",
+      "topic": "space",
+      "image": {
+        "icon": "planet"
+      },
+      "sentence": "Mars is a red planet.",
+      "accept": [
+        "planets",
+        "plannet"
+      ],
+      "def": "Earth and Mars are these. They go around the sun."
+    },
+    {
+      "id": "earth",
+      "text": "Earth",
+      "topic": "space",
+      "image": {
+        "emoji": "🌍"
+      },
+      "sentence": "We live on the Earth.",
+      "accept": [
+        "the earth",
+        "world"
+      ],
+      "def": "This is the planet where we live."
+    },
+    {
+      "id": "space",
+      "text": "space",
+      "topic": "space",
+      "image": {
+        "emoji": "🌌"
+      },
+      "sentence": "There is no air in space.",
+      "accept": [
+        "spaces"
+      ],
+      "def": "Rockets fly up here. You can see stars, but there is no air."
+    },
+    {
+      "id": "alien",
+      "text": "alien",
+      "topic": "space",
+      "image": {
+        "emoji": "👽"
+      },
+      "sentence": "In the film, a green alien came to Earth.",
+      "accept": [
+        "aliens",
+        "ailien"
+      ],
+      "def": "In stories, this strange person comes from another planet."
+    }
+  ]
+}

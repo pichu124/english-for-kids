@@ -1,0 +1,98 @@
+{
+  "id": "l4-space",
+  "level": "L4",
+  "topic": "space",
+  "order": 3,
+  "title": "Into Space",
+  "titleVi": "Vũ trụ",
+  "icon": "🚀",
+  "color": "#cdb4db",
+  "intro": "Let's fly into space!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Star block",
+    "style": "gold",
+    "color": "#ffd166"
+  },
+  "words": [
+    "rocket",
+    "astronaut",
+    "planet",
+    "earth",
+    "space",
+    "alien"
+  ],
+  "parentTip": {
+    "vi": "Buổi tối cùng con ngắm trăng sao, hỏi \"Would you like to be an astronaut? Where would you go?\"",
+    "say": "Would you like to be an astronaut?"
+  },
+  "chat": {
+    "ask": "Would you like to fly in a rocket?",
+    "yes": "Me too! Let's go to the moon!",
+    "no": "That's okay! We can look at the stars from here."
+  },
+  "gaps": [
+    {
+      "s": "The astronaut flew to the moon in a ___.",
+      "answer": "rocket",
+      "options": [
+        "planet",
+        "alien"
+      ]
+    },
+    {
+      "s": "We live on the planet ___.",
+      "answer": "Earth",
+      "options": [
+        "space",
+        "rocket"
+      ]
+    },
+    {
+      "s": "In the story, a little green ___ came from Mars.",
+      "answer": "alien",
+      "options": [
+        "rocket",
+        "planet"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Trip to the Moon",
+    "lines": [
+      "In 1969, two astronauts walked on the moon for the first time.",
+      "They flew there in a big rocket.",
+      "From the moon, they could see the Earth. It looked blue and white.",
+      "They brought some moon rocks back with them."
+    ],
+    "questions": [
+      {
+        "q": "How did the astronauts get to the moon?",
+        "options": [
+          "by plane",
+          "in a rocket",
+          "by helicopter"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What colour was the Earth?",
+        "options": [
+          "red and yellow",
+          "green and black",
+          "blue and white"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What did they bring back?",
+        "options": [
+          "moon rocks",
+          "aliens",
+          "stars"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

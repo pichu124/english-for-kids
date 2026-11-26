@@ -1,0 +1,106 @@
+{
+  "id": "l4-ever",
+  "level": "L4",
+  "topic": "ever",
+  "order": 10,
+  "title": "Have You Ever…?",
+  "titleVi": "Bạn đã từng…? (hiện tại hoàn thành)",
+  "icon": "🐪",
+  "color": "#e9c46a",
+  "intro": "Have you ever done something amazing?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Adventure block",
+    "style": "gold",
+    "color": "#e9c46a"
+  },
+  "words": [
+    "flown",
+    "ridden",
+    "eaten",
+    "seen",
+    "climbed",
+    "been"
+  ],
+  "parentTip": {
+    "vi": "Chơi \"Have you ever…?\": lần lượt hỏi nhau \"Have you ever eaten sushi?\" và trả lời \"Yes, I have.\" / \"No, I haven't.\"",
+    "say": "Have you ever ridden a horse?"
+  },
+  "chat": {
+    "ask": "Have you ever flown in a plane?",
+    "yes": "Wow! Where did you go?",
+    "no": "Maybe one day! It's exciting."
+  },
+  "gaps": [
+    {
+      "s": "Have you ever ___ in a plane?",
+      "answer": "flown",
+      "options": [
+        "eaten",
+        "ridden"
+      ]
+    },
+    {
+      "s": "I've never ___ a camel.",
+      "answer": "ridden",
+      "options": [
+        "flown",
+        "been"
+      ]
+    },
+    {
+      "s": "Have you ever ___ a whale? Yes, I saw one in the sea.",
+      "answer": "seen",
+      "options": [
+        "eaten",
+        "ridden"
+      ]
+    },
+    {
+      "s": "I have ___ to Paris two times.",
+      "answer": "been",
+      "options": [
+        "eaten",
+        "seen"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Have You Ever…?",
+    "lines": [
+      "Emma has been to lots of countries.",
+      "She has flown in a helicopter and she has ridden a camel in the desert.",
+      "She has never seen a volcano, but she wants to.",
+      "Next year, she is going to visit Italy."
+    ],
+    "questions": [
+      {
+        "q": "What has Emma ridden?",
+        "options": [
+          "a horse",
+          "a camel",
+          "a motorbike"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What has she never seen?",
+        "options": [
+          "a volcano",
+          "a desert",
+          "a helicopter"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Where is she going to go next year?",
+        "options": [
+          "Spain",
+          "Italy",
+          "France"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

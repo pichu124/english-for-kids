@@ -1,0 +1,88 @@
+{
+  "topic": "places3",
+  "words": [
+    {
+      "id": "museum",
+      "text": "museum",
+      "topic": "places3",
+      "image": {
+        "emoji": "🏛️"
+      },
+      "sentence": "We saw dinosaur bones at the museum.",
+      "accept": [
+        "museums",
+        "musium"
+      ],
+      "def": "You can see old and interesting things here."
+    },
+    {
+      "id": "airport",
+      "text": "airport",
+      "topic": "places3",
+      "image": {
+        "emoji": "🛫"
+      },
+      "sentence": "We took a taxi to the airport.",
+      "accept": [
+        "airports",
+        "air port"
+      ],
+      "def": "You go here to get on a plane."
+    },
+    {
+      "id": "castle",
+      "text": "castle",
+      "topic": "places3",
+      "image": {
+        "emoji": "🏰"
+      },
+      "sentence": "A king lived in this castle.",
+      "accept": [
+        "castles",
+        "cassel"
+      ],
+      "def": "Kings and queens lived in this big old building."
+    },
+    {
+      "id": "factory",
+      "text": "factory",
+      "topic": "places3",
+      "image": {
+        "emoji": "🏭"
+      },
+      "sentence": "They make cars in this factory.",
+      "accept": [
+        "factories",
+        "factori"
+      ],
+      "def": "People make things like cars or toys here."
+    },
+    {
+      "id": "hotel",
+      "text": "hotel",
+      "topic": "places3",
+      "image": {
+        "emoji": "🏨"
+      },
+      "sentence": "We stayed in a hotel by the sea.",
+      "accept": [
+        "hotels"
+      ],
+      "def": "You can sleep here when you are on holiday."
+    },
+    {
+      "id": "restaurant",
+      "text": "restaurant",
+      "topic": "places3",
+      "image": {
+        "emoji": "🍽️"
+      },
+      "sentence": "We had pizza at the restaurant.",
+      "accept": [
+        "restaurants",
+        "restaurent"
+      ],
+      "def": "You can go here to eat a meal. You do not cook it!"
+    }
+  ]
+}

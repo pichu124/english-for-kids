@@ -1,0 +1,75 @@
+{
+  "topic": "world2",
+  "words": [
+    {
+      "id": "desert",
+      "text": "desert",
+      "topic": "world2",
+      "image": {
+        "emoji": "🏜️"
+      },
+      "sentence": "It is very hot and dry in the desert.",
+      "accept": [
+        "deserts",
+        "dessert"
+      ],
+      "def": "This place is very hot and dry. There is lots of sand."
+    },
+    {
+      "id": "ocean",
+      "text": "ocean",
+      "topic": "world2",
+      "image": {
+        "emoji": "🌊"
+      },
+      "sentence": "Whales live in the ocean.",
+      "accept": [
+        "oceans",
+        "oshun"
+      ],
+      "def": "This is a very big sea."
+    },
+    {
+      "id": "volcano",
+      "text": "volcano",
+      "topic": "world2",
+      "image": {
+        "emoji": "🌋"
+      },
+      "sentence": "Smoke is coming out of the volcano.",
+      "accept": [
+        "volcanoes",
+        "volcanos"
+      ],
+      "def": "This mountain has got fire and hot rocks inside it."
+    },
+    {
+      "id": "hill",
+      "text": "hill",
+      "topic": "world2",
+      "image": {
+        "emoji": "🌄"
+      },
+      "sentence": "We walked up the hill.",
+      "accept": [
+        "hills",
+        "heel"
+      ],
+      "def": "This is like a small mountain."
+    },
+    {
+      "id": "world",
+      "text": "world",
+      "topic": "world2",
+      "image": {
+        "emoji": "🌐"
+      },
+      "sentence": "There are lots of countries in the world.",
+      "accept": [
+        "worlds",
+        "word"
+      ],
+      "def": "All the countries are in this."
+    }
+  ]
+}

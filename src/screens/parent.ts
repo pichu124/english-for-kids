@@ -118,7 +118,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       const last = results[results.length - 1];
       const parts = TEST_PARTS[lv];
       const weak = parts.filter((p) => shields(last.score[p] ?? [0, 0]) <= 3);
-      const next = lv === 'L2' ? 'bậc Movers' : 'bậc Flyers (khi app có)';
+      const next = lv === 'L2' ? 'bậc Movers' : 'bậc Flyers';
       const tips: Record<Part, string> = { spelling: 'Đánh vần: chơi bảng ABC và phần Đọc & Viết. ', writing: 'Viết: bước gõ từ trong phần Đọc & Viết. ', listening: 'Nghe: học lại phần Nghe & Nói các đảo. ', reading: 'Đọc: phần Đọc & Viết (đọc, câu đúng/sai, đoạn văn). ' };
       const advice = passed(last.score)
         ? `✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu ${next} (vẫn ôn song song).`

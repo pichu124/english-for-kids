@@ -1,0 +1,60 @@
+{
+  "id": "l4-animals",
+  "level": "L4",
+  "topic": "animals",
+  "order": 7,
+  "title": "Wild World",
+  "titleVi": "Động vật kỳ thú",
+  "icon": "🦋",
+  "color": "#b9fbc0",
+  "intro": "Amazing animals are everywhere!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Leaf block",
+    "style": "grass",
+    "color": "#52b788"
+  },
+  "words": [
+    "butterfly",
+    "eagle",
+    "dinosaur",
+    "insect",
+    "octopus",
+    "tortoise"
+  ],
+  "parentTip": {
+    "vi": "Đố con bằng định nghĩa: \"It has got eight legs and lives in the sea. What is it?\" rồi để con đố lại bố mẹ.",
+    "say": "What has got eight legs?"
+  },
+  "chat": {
+    "ask": "Do you like insects?",
+    "yes": "Me too! Butterflies are beautiful!",
+    "no": "That's okay! Some insects are a bit scary."
+  },
+  "gaps": [
+    {
+      "s": "The ___ has got eight long legs.",
+      "answer": "octopus",
+      "options": [
+        "eagle",
+        "butterfly"
+      ]
+    },
+    {
+      "s": "The ___ has got a hard shell and walks very slowly.",
+      "answer": "tortoise",
+      "options": [
+        "eagle",
+        "octopus"
+      ]
+    },
+    {
+      "s": "The ___ lived a very long time ago. There aren't any now.",
+      "answer": "dinosaur",
+      "options": [
+        "butterfly",
+        "tortoise"
+      ]
+    }
+  ]
+}

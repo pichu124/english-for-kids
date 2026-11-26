@@ -113,6 +113,11 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       await p.waitForTimeout(100);
     }
     if (seenT.size < 3) report.push(vn + ' Movers test screens seen: ' + [...seenT].join(',') + ' (missing some)');
+    // Flyers: read a definition, type the word (the longest definitions).
+    await p.goto(base + '/?unit=l4-subjects&part=2'); await p.evaluate(() => { window.__manualWrite = true; });
+    await p.locator('.btn-play').click({ force: true });
+    await p.waitForSelector('.write.define', { timeout: 60000 }).then(() => check('flyers-define')).catch((e) => report.push(vn + ' flyers-define: NOT SEEN ' + e.message.split('\n')[0]));
+    await p.evaluate(() => { window.__manualWrite = false; });
     await p.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.settings.level = 'L2'; localStorage.setItem('efk.v1', JSON.stringify(st)); window.__manualReading = false; window.__manualWrite = false; window.__manualText = false; });
     await check('reward-part2');
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
