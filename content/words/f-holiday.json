@@ -1,0 +1,76 @@
+{
+  "topic": "holiday",
+  "words": [
+    {
+      "id": "tent",
+      "text": "tent",
+      "topic": "holiday",
+      "image": {
+        "emoji": "⛺"
+      },
+      "sentence": "We're going to sleep in a tent.",
+      "accept": [
+        "tents",
+        "ten"
+      ],
+      "def": "You sleep in this when you go camping."
+    },
+    {
+      "id": "passport",
+      "text": "passport",
+      "topic": "holiday",
+      "image": {
+        "emoji": "🛂"
+      },
+      "sentence": "Don't forget your passport!",
+      "accept": [
+        "passports",
+        "pass port"
+      ],
+      "def": "You need this small book to travel to another country."
+    },
+    {
+      "id": "backpack",
+      "text": "backpack",
+      "topic": "holiday",
+      "image": {
+        "emoji": "🎒"
+      },
+      "sentence": "I'm going to put my water in my backpack.",
+      "accept": [
+        "backpacks",
+        "rucksack",
+        "school bag"
+      ],
+      "def": "You carry this bag on your back."
+    },
+    {
+      "id": "torch",
+      "text": "torch",
+      "topic": "holiday",
+      "image": {
+        "emoji": "🔦"
+      },
+      "sentence": "It's dark. Where's my torch?",
+      "accept": [
+        "flashlight",
+        "torches"
+      ],
+      "def": "You use this to see in the dark."
+    },
+    {
+      "id": "suitcase",
+      "text": "suitcase",
+      "topic": "holiday",
+      "image": {
+        "emoji": "🧳"
+      },
+      "sentence": "I'm going to pack my clothes in my suitcase.",
+      "accept": [
+        "suitcases",
+        "suit case"
+      ],
+      "def": "You put your clothes in this when you travel."
+    }
+  ]
+}

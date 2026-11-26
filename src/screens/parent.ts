@@ -111,17 +111,17 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
 
   /** Results of the practice tests (Starters, Movers) and what to do next. */
   function testField() {
-    const blocks = (['L2', 'L3'] as const).map((lv) => {
+    const blocks = (['L2', 'L3', 'L4'] as const).map((lv) => {
       const results = testResults(lv);
       const name = TEST_NAME[lv];
       if (!results.length) return lv === 'L2' ? h('p', { class: 'p-muted' }, `${name}: bé chưa làm. Đảo 🎓 "Test" ở cuối bản đồ có khoảng 15 câu mô phỏng bài thi Cambridge (nghe, đánh vần/viết, đọc). Nên cho bé làm khi đã học gần hết các đảo của bậc.`) : null;
       const last = results[results.length - 1];
       const parts = TEST_PARTS[lv];
       const weak = parts.filter((p) => shields(last.score[p] ?? [0, 0]) <= 3);
-      const next = lv === 'L2' ? 'bậc Movers' : 'bậc Flyers';
+      const next = lv === 'L2' ? 'bậc Movers' : lv === 'L3' ? 'bậc Flyers' : '';
       const tips: Record<Part, string> = { spelling: 'Đánh vần: chơi bảng ABC và phần Đọc & Viết. ', writing: 'Viết: bước gõ từ trong phần Đọc & Viết. ', listening: 'Nghe: học lại phần Nghe & Nói các đảo. ', reading: 'Đọc: phần Đọc & Viết (đọc, câu đúng/sai, đoạn văn). ' };
       const advice = passed(last.score)
-        ? `✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu ${next} (vẫn ôn song song).`
+        ? next ? `✓ Bé làm đúng từ 80% trở lên: có thể bắt đầu ${next} (vẫn ôn song song).` : '✓ Bé làm đúng từ 80% trở lên: đã nắm chắc chương trình Flyers. Có thể cho bé làm đề mẫu Flyers chính thức của Cambridge.'
         : `Nên luyện thêm: ${weak.map((p) => PART_LABEL[p].toLowerCase()).join(', ') || 'mọi phần'}. ${weak.map((p) => tips[p]).join('')}`;
       return h(
         'div',

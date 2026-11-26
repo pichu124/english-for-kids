@@ -1,0 +1,101 @@
+{
+  "id": "l4-weather",
+  "level": "L4",
+  "topic": "weather",
+  "order": 18,
+  "title": "Wild Weather",
+  "titleVi": "Thời tiết dữ dội",
+  "icon": "⛈️",
+  "color": "#adb5bd",
+  "intro": "Look at the sky! What is the weather like?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Storm block",
+    "style": "stone",
+    "color": "#6c757d"
+  },
+  "words": [
+    "fog",
+    "storm",
+    "lightning",
+    "thunder",
+    {
+      "id": "temperature",
+      "sentence": "The temperature today is thirty degrees.",
+      "def": "This tells you how hot or cold it is."
+    }
+  ],
+  "parentTip": {
+    "vi": "Xem dự báo thời tiết cùng con: \"What's the temperature today? Is there going to be a storm?\"",
+    "say": "What's the weather like today?"
+  },
+  "chat": {
+    "ask": "Are you scared of thunder?",
+    "yes": "That's okay! Let's count after the lightning.",
+    "no": "Great! You are very brave!"
+  },
+  "gaps": [
+    {
+      "s": "I can't see the hills. There's a lot of ___.",
+      "answer": "fog",
+      "options": [
+        "thunder",
+        "lightning"
+      ]
+    },
+    {
+      "s": "First you see the ___, then you hear the thunder.",
+      "answer": "lightning",
+      "options": [
+        "fog",
+        "temperature"
+      ]
+    },
+    {
+      "s": "The ___ is very loud. Boom!",
+      "answer": "thunder",
+      "options": [
+        "fog",
+        "lightning"
+      ]
+    }
+  ],
+  "text": {
+    "title": "The Big Storm",
+    "lines": [
+      "Last night there was a big storm.",
+      "The wind was very strong, and it rained all night.",
+      "I saw lightning over the hills and heard loud thunder.",
+      "In the morning, there was fog, and we could not see the bridge."
+    ],
+    "questions": [
+      {
+        "q": "When was the storm?",
+        "options": [
+          "last night",
+          "this morning",
+          "last week"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What did the child hear?",
+        "options": [
+          "music",
+          "thunder",
+          "birds"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Why couldn't they see the bridge?",
+        "options": [
+          "It was dark.",
+          "There was fog.",
+          "It was snowing."
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "topic": "materials",
+  "words": [
+    {
+      "id": "gold",
+      "text": "gold",
+      "topic": "materials",
+      "image": {
+        "emoji": "🥇"
+      },
+      "sentence": "The winner got a gold medal.",
+      "accept": [
+        "golden"
+      ],
+      "def": "This yellow metal is very expensive."
+    },
+    {
+      "id": "silver",
+      "text": "silver",
+      "topic": "materials",
+      "image": {
+        "emoji": "🥈"
+      },
+      "sentence": "Grandma has got a silver ring.",
+      "accept": [
+        "silva"
+      ],
+      "def": "This grey metal is shiny. The second medal is made of it."
+    },
+    {
+      "id": "paper",
+      "text": "paper",
+      "topic": "materials",
+      "image": {
+        "emoji": "📄"
+      },
+      "sentence": "I wrote a letter on a piece of paper.",
+      "accept": [
+        "papers"
+      ],
+      "def": "Books and magazines are made of this. You can write on it."
+    },
+    {
+      "id": "metal",
+      "text": "metal",
+      "topic": "materials",
+      "image": {
+        "emoji": "🔩"
+      },
+      "sentence": "Cars are made of metal.",
+      "accept": [
+        "metals",
+        "medal"
+      ],
+      "def": "Spoons, cars and keys are often made of this. It is hard and strong."
+    },
+    {
+      "id": "plastic",
+      "text": "plastic",
+      "topic": "materials",
+      "image": {
+        "emoji": "🥤"
+      },
+      "sentence": "This cup is made of plastic.",
+      "accept": [
+        "plastics"
+      ],
+      "def": "Lots of toys and bottles are made of this."
+    },
+    {
+      "id": "glass",
+      "text": "glass",
+      "topic": "materials",
+      "image": {
+        "emoji": "🥛"
+      },
+      "sentence": "Be careful! The glass can break.",
+      "accept": [
+        "glasses"
+      ],
+      "def": "You can see through this. Windows are made of it."
+    }
+  ]
+}

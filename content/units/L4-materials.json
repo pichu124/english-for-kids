@@ -1,0 +1,60 @@
+{
+  "id": "l4-materials",
+  "level": "L4",
+  "topic": "materials",
+  "order": 13,
+  "title": "What's It Made Of?",
+  "titleVi": "Chất liệu",
+  "icon": "🥇",
+  "color": "#e9c46a",
+  "intro": "What is it made of?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Gold block",
+    "style": "gold",
+    "color": "#e9c46a"
+  },
+  "words": [
+    "gold",
+    "silver",
+    "paper",
+    "metal",
+    "plastic",
+    "glass"
+  ],
+  "parentTip": {
+    "vi": "Chỉ đồ vật trong nhà và hỏi \"What is this made of? It's made of glass.\"",
+    "say": "What is your cup made of?"
+  },
+  "chat": {
+    "ask": "Have you got a gold medal?",
+    "yes": "Wow! You are a champion!",
+    "no": "Maybe one day!"
+  },
+  "gaps": [
+    {
+      "s": "Be careful! The window is made of ___.",
+      "answer": "glass",
+      "options": [
+        "paper",
+        "gold"
+      ]
+    },
+    {
+      "s": "This book is made of ___.",
+      "answer": "paper",
+      "options": [
+        "glass",
+        "metal"
+      ]
+    },
+    {
+      "s": "The winner got a ___ medal. The second got a silver one.",
+      "answer": "gold",
+      "options": [
+        "paper",
+        "plastic"
+      ]
+    }
+  ]
+}

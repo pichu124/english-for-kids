@@ -1,0 +1,161 @@
+{
+  "topic": "months",
+  "words": [
+    {
+      "id": "january",
+      "text": "January",
+      "topic": "months",
+      "image": {
+        "text": "Jan"
+      },
+      "sentence": "My birthday is in January.",
+      "accept": [
+        "january"
+      ],
+      "def": "This is the first month of the year."
+    },
+    {
+      "id": "february",
+      "text": "February",
+      "topic": "months",
+      "image": {
+        "text": "Feb"
+      },
+      "sentence": "February is the shortest month.",
+      "accept": [
+        "february"
+      ],
+      "def": "This is the second month. It is the shortest month of the year."
+    },
+    {
+      "id": "march",
+      "text": "March",
+      "topic": "months",
+      "image": {
+        "text": "Mar"
+      },
+      "sentence": "In March, the weather starts to get warmer.",
+      "accept": [
+        "march"
+      ],
+      "def": "This is the third month of the year."
+    },
+    {
+      "id": "april",
+      "text": "April",
+      "topic": "months",
+      "image": {
+        "text": "Apr"
+      },
+      "sentence": "It often rains in April.",
+      "accept": [
+        "april"
+      ],
+      "def": "This is the fourth month of the year."
+    },
+    {
+      "id": "may",
+      "text": "May",
+      "topic": "months",
+      "image": {
+        "text": "May"
+      },
+      "sentence": "We have a holiday in May.",
+      "accept": [
+        "may"
+      ],
+      "def": "This month comes after April and before June."
+    },
+    {
+      "id": "june",
+      "text": "June",
+      "topic": "months",
+      "image": {
+        "text": "Jun"
+      },
+      "sentence": "School finishes in June.",
+      "accept": [
+        "june"
+      ],
+      "def": "This is the sixth month of the year."
+    },
+    {
+      "id": "july",
+      "text": "July",
+      "topic": "months",
+      "image": {
+        "text": "Jul"
+      },
+      "sentence": "We go to the beach in July.",
+      "accept": [
+        "july"
+      ],
+      "def": "This is the seventh month of the year."
+    },
+    {
+      "id": "august",
+      "text": "August",
+      "topic": "months",
+      "image": {
+        "text": "Aug"
+      },
+      "sentence": "It is very hot in August.",
+      "accept": [
+        "august"
+      ],
+      "def": "This is the eighth month of the year."
+    },
+    {
+      "id": "september",
+      "text": "September",
+      "topic": "months",
+      "image": {
+        "text": "Sep"
+      },
+      "sentence": "School starts again in September.",
+      "accept": [
+        "september"
+      ],
+      "def": "This is the ninth month of the year."
+    },
+    {
+      "id": "october",
+      "text": "October",
+      "topic": "months",
+      "image": {
+        "text": "Oct"
+      },
+      "sentence": "Halloween is in October.",
+      "accept": [
+        "october"
+      ],
+      "def": "This is the tenth month of the year."
+    },
+    {
+      "id": "november",
+      "text": "November",
+      "topic": "months",
+      "image": {
+        "text": "Nov"
+      },
+      "sentence": "November is cold and windy.",
+      "accept": [
+        "november"
+      ],
+      "def": "This is the eleventh month of the year."
+    },
+    {
+      "id": "december",
+      "text": "December",
+      "topic": "months",
+      "image": {
+        "text": "Dec"
+      },
+      "sentence": "Christmas is in December.",
+      "accept": [
+        "december"
+      ],
+      "def": "This is the last month of the year."
+    }
+  ]
+}

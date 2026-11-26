@@ -1,0 +1,59 @@
+{
+  "id": "l4-adjectives",
+  "level": "L4",
+  "topic": "adjectives",
+  "order": 17,
+  "title": "Exciting or Boring?",
+  "titleVi": "Tính từ",
+  "icon": "🎢",
+  "color": "#ffadad",
+  "intro": "Is it exciting or boring?",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Star block",
+    "style": "gold",
+    "color": "#ffd166"
+  },
+  "words": [
+    "dangerous",
+    "famous",
+    "exciting",
+    "boring",
+    "interesting"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con nhận xét: \"Was the film exciting or boring? Why?\" và khen khi con dùng tính từ mới.",
+    "say": "Was your day exciting or boring?"
+  },
+  "chat": {
+    "ask": "Do you like roller coasters?",
+    "yes": "Wow! They are exciting!",
+    "no": "That's okay! They are a bit scary."
+  },
+  "gaps": [
+    {
+      "s": "Don't climb that tree. It's ___!",
+      "answer": "dangerous",
+      "options": [
+        "boring",
+        "famous"
+      ]
+    },
+    {
+      "s": "Everybody knows that singer. She is very ___.",
+      "answer": "famous",
+      "options": [
+        "boring",
+        "dangerous"
+      ]
+    },
+    {
+      "s": "This film is ___. I'm going to sleep!",
+      "answer": "boring",
+      "options": [
+        "exciting",
+        "famous"
+      ]
+    }
+  ]
+}

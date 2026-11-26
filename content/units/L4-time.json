@@ -1,0 +1,60 @@
+{
+  "id": "l4-time",
+  "level": "L4",
+  "topic": "time",
+  "order": 19,
+  "title": "What Time Is It? 2",
+  "titleVi": "Xem giờ 2",
+  "icon": "🕞",
+  "color": "#ffd6a5",
+  "intro": "What's the time?",
+  "playPrompt": "Which clock shows {word}?",
+  "block": {
+    "name": "Clock block",
+    "style": "plain",
+    "color": "#ffd6a5"
+  },
+  "words": [
+    "half-past-seven",
+    "quarter-past-three",
+    "quarter-to-nine",
+    "half-past-twelve",
+    "quarter-past-six",
+    "quarter-to-four"
+  ],
+  "parentTip": {
+    "vi": "Hỏi giờ con bằng tiếng Anh trong ngày: \"What time is it? It's quarter past three.\"",
+    "say": "What time is it?"
+  },
+  "chat": {
+    "ask": "Do you get up at half past seven?",
+    "yes": "Great! Just in time for school!",
+    "no": "Okay! What time do you get up?"
+  },
+  "gaps": [
+    {
+      "s": "It's 7:30. It's ___.",
+      "answer": "half past seven",
+      "options": [
+        "quarter past six",
+        "quarter to four"
+      ]
+    },
+    {
+      "s": "It's 3:15. It's ___.",
+      "answer": "quarter past three",
+      "options": [
+        "quarter to nine",
+        "half past twelve"
+      ]
+    },
+    {
+      "s": "It's 8:45. It's ___.",
+      "answer": "quarter to nine",
+      "options": [
+        "half past seven",
+        "quarter past six"
+      ]
+    }
+  ]
+}

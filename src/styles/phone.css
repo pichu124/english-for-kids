@@ -175,6 +175,10 @@
   .write .spell-top { grid-area: top; flex-direction: column; gap: 8px; }
   .write.define .spell-top { flex-direction: row; align-items: center; }
   .def-card { font-size: 15px; padding: 6px 10px; border-radius: 14px; border-width: 3px; max-width: none; }
+  /* practice test, writing on a phone: room for the definition (Bix steps aside) */
+  .test-body:has(.test-q.write) .test-bix { width: 12%; }
+  .test-body:has(.test-q.write) .test-bix .bix-bubble { display: none; }
+  .test-q.write .def-card { min-width: 150px; }
   .write .spell-slots { grid-area: slots; }
   .wr-keys { grid-area: keys; gap: 5px; grid-template-columns: repeat(7, auto); }
   .wr-key { width: 42px; height: 42px; font-size: 21px; border-radius: 10px; }

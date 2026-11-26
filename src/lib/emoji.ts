@@ -11,6 +11,7 @@ export const NEWER_EMOJI: Record<string, string> = {
   '🦘': '',
   '🦛': '', // hippo
   '🧸': '🐻', // teddy
+  '🧳': '', // suitcase (shows the word on old phones)
   '🧺': '🌳', // picnic basket (story scene)
   '🦵': '', // leg
   '🦶': '👣', // foot

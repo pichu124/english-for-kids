@@ -3,7 +3,7 @@
  * Listening (pictures + "who is who": find the child in the picture), Spelling (letters said one by one → the written word),
  * Reading (yes/no sentences, picture → word). First answer counts, no hints.
  */
-import { buildable, firstSentence, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
+import { buildable, definable, firstSentence, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
 import { describeKid, makeKids, type Kid } from '../art/kids';
 import { shuffle } from './dom';
 import { isLearned } from './progress';
@@ -14,15 +14,15 @@ export type Question =
   | { part: 'listening'; kind: 'pick-picture'; target: Word; options: Word[]; prompt: string }
   | { part: 'listening'; kind: 'find-kid'; kids: Kid[]; target: Kid; prompt: string }
   | { part: 'spelling'; kind: 'pick-spelled'; target: Word; options: Word[] }
-  | { part: 'writing'; kind: 'type-word'; target: Word }
+  | { part: 'writing'; kind: 'type-word'; target: Word; /** Flyers: read this definition instead of a picture */ def?: string }
   | { part: 'reading'; kind: 'yes-no'; shown: Word; sentence: string; truth: boolean }
   | { part: 'reading'; kind: 'pick-word'; target: Word; options: Word[] }
   | { part: 'reading'; kind: 'text-q'; text: ReadingText; q: ReadingText['questions'][number] };
 
 export const PART_LABEL: Record<Part, string> = { listening: 'Nghe', spelling: 'Đánh vần', writing: 'Viết', reading: 'Đọc' };
 /** Parts of the practice test per level (Starters / Movers), in order. */
-export const TEST_PARTS: Record<string, Part[]> = { L2: ['listening', 'spelling', 'reading'], L3: ['listening', 'writing', 'reading'] };
-export const TEST_NAME: Record<string, string> = { L2: 'Starters Test', L3: 'Movers Test' };
+export const TEST_PARTS: Record<string, Part[]> = { L2: ['listening', 'spelling', 'reading'], L3: ['listening', 'writing', 'reading'], L4: ['listening', 'writing', 'reading'] };
+export const TEST_NAME: Record<string, string> = { L2: 'Starters Test', L3: 'Movers Test', L4: 'Flyers Test' };
 export const hasTest = (level: string) => level in TEST_PARTS;
 export const PASS = 0.8;
 
@@ -74,8 +74,12 @@ export function buildTest(level = 'L2'): Question[] {
   // Part 1 of the real test: one picture of children, find who is who from what you hear.
   const kids = makeKids();
   for (const k of shuffle(kids).slice(0, 2)) qs.push({ part: 'listening', kind: 'find-kid', kids, target: k, prompt: describeKid(k) });
-  const movers = level === 'L3';
-  if (movers) {
+  const flyers = level === 'L4';
+  const movers = level === 'L3' || flyers; // Flyers builds on the Movers test
+  if (flyers) {
+    // Flyers "read and write": a definition, then type the word.
+    for (const it of take((x) => definable(x.word) && x.word.text.length <= 10, 3)) qs.push({ part: 'writing', kind: 'type-word', target: it.word, def: it.word.def });
+  } else if (movers) {
     for (const it of take((x) => writable(x.word) && x.word.text.length <= 7, 3)) qs.push({ part: 'writing', kind: 'type-word', target: it.word });
   } else {
     const short = (w: Word) => spellable(w, 5);

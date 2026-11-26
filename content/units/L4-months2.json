@@ -1,0 +1,98 @@
+{
+  "id": "l4-months2",
+  "level": "L4",
+  "topic": "months",
+  "order": 12,
+  "title": "July to December",
+  "titleVi": "Tháng 7–12",
+  "icon": "🎄",
+  "color": "#ffc8dd",
+  "intro": "More months!",
+  "playPrompt": "Where is {word}?",
+  "block": {
+    "name": "Festival block",
+    "style": "cake",
+    "color": "#ffc8dd"
+  },
+  "words": [
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december"
+  ],
+  "parentTip": {
+    "vi": "Đánh dấu các ngày lễ trên lịch cùng con: \"Halloween is in October. Christmas is in December.\"",
+    "say": "What month is it now?"
+  },
+  "chat": {
+    "ask": "Do you like December?",
+    "yes": "Me too! Christmas is fun!",
+    "no": "Okay! Which month do you like?"
+  },
+  "gaps": [
+    {
+      "s": "Christmas is in ___.",
+      "answer": "December",
+      "options": [
+        "July",
+        "September"
+      ]
+    },
+    {
+      "s": "Halloween is in ___.",
+      "answer": "October",
+      "options": [
+        "August",
+        "December"
+      ]
+    },
+    {
+      "s": "The month before October is ___.",
+      "answer": "September",
+      "options": [
+        "July",
+        "November"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Year at School",
+    "lines": [
+      "Our school year starts in September.",
+      "In October, we have a Halloween party in the classroom.",
+      "Before Christmas, in December, we sing songs for our parents.",
+      "The summer holiday starts in July. Hooray!"
+    ],
+    "questions": [
+      {
+        "q": "When does the school year start?",
+        "options": [
+          "in July",
+          "in September",
+          "in December"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What do they do in October?",
+        "options": [
+          "They sing songs.",
+          "They have a Halloween party.",
+          "They go on holiday."
+        ],
+        "answer": 1
+      },
+      {
+        "q": "When does the summer holiday start?",
+        "options": [
+          "in July",
+          "in August",
+          "in June"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "topic": "weather2",
+  "words": [
+    {
+      "id": "fog",
+      "text": "fog",
+      "topic": "weather2",
+      "image": {
+        "emoji": "🌫️"
+      },
+      "sentence": "I can't see the bridge because of the fog.",
+      "accept": [
+        "foggy",
+        "frog"
+      ],
+      "def": "This is like a cloud near the ground. You cannot see far."
+    },
+    {
+      "id": "storm",
+      "text": "storm",
+      "topic": "weather2",
+      "image": {
+        "emoji": "⛈️"
+      },
+      "sentence": "There was a big storm last night.",
+      "accept": [
+        "storms",
+        "stormy"
+      ],
+      "def": "This weather has strong wind, heavy rain and sometimes thunder."
+    },
+    {
+      "id": "lightning",
+      "text": "lightning",
+      "topic": "weather2",
+      "image": {
+        "emoji": "⚡"
+      },
+      "sentence": "The lightning lit up the sky.",
+      "accept": [
+        "lighting",
+        "lightening"
+      ],
+      "def": "In a storm, this bright light flashes in the sky."
+    },
+    {
+      "id": "thunder",
+      "text": "thunder",
+      "topic": "weather2",
+      "image": {
+        "emoji": "🌩️"
+      },
+      "sentence": "The thunder was very loud!",
+      "accept": [
+        "thunders"
+      ],
+      "def": "You hear this loud noise in a storm."
+    }
+  ]
+}

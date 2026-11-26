@@ -1,0 +1,70 @@
+{
+  "topic": "adjectives",
+  "words": [
+    {
+      "id": "dangerous",
+      "text": "dangerous",
+      "topic": "adjectives",
+      "image": {
+        "emoji": "⚠️"
+      },
+      "sentence": "Don't swim there. It's dangerous!",
+      "accept": [
+        "danger"
+      ],
+      "def": "Something that can hurt you is this."
+    },
+    {
+      "id": "famous",
+      "text": "famous",
+      "topic": "adjectives",
+      "image": {
+        "emoji": "🌟"
+      },
+      "sentence": "She is a famous singer. Everybody knows her.",
+      "accept": [
+        "fame"
+      ],
+      "def": "Lots of people know who this person is."
+    },
+    {
+      "id": "exciting",
+      "text": "exciting",
+      "topic": "adjectives",
+      "image": {
+        "emoji": "🎢"
+      },
+      "sentence": "The big roller coaster was very exciting!",
+      "accept": [
+        "excited"
+      ],
+      "def": "Something that makes you feel very happy and full of energy is this."
+    },
+    {
+      "id": "boring",
+      "text": "boring",
+      "topic": "adjectives",
+      "image": {
+        "emoji": "😴"
+      },
+      "sentence": "This film is boring. Let's go outside.",
+      "accept": [
+        "bored"
+      ],
+      "def": "Something that is not interesting is this."
+    },
+    {
+      "id": "interesting",
+      "text": "interesting",
+      "topic": "adjectives",
+      "image": {
+        "emoji": "🧐"
+      },
+      "sentence": "This book about dinosaurs is very interesting.",
+      "accept": [
+        "interested"
+      ],
+      "def": "You want to know more about something that is this."
+    }
+  ]
+}

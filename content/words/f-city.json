@@ -1,0 +1,84 @@
+{
+  "topic": "city",
+  "words": [
+    {
+      "id": "bridge",
+      "text": "bridge",
+      "topic": "city",
+      "image": {
+        "emoji": "🌉"
+      },
+      "sentence": "We walked across the bridge over the river.",
+      "accept": [
+        "bridges"
+      ],
+      "def": "You can walk or drive across a river on this."
+    },
+    {
+      "id": "office",
+      "text": "office",
+      "topic": "city",
+      "image": {
+        "emoji": "🏢"
+      },
+      "sentence": "My mum works in an office.",
+      "accept": [
+        "offices"
+      ],
+      "def": "Lots of people work at desks with computers in this place."
+    },
+    {
+      "id": "post-office",
+      "text": "post office",
+      "topic": "city",
+      "image": {
+        "emoji": "🏣"
+      },
+      "sentence": "I bought some stamps at the post office.",
+      "accept": [
+        "post-office",
+        "postoffice"
+      ]
+    },
+    {
+      "id": "police-station",
+      "text": "police station",
+      "topic": "city",
+      "image": {
+        "emoji": "🚓"
+      },
+      "sentence": "The police station is next to the bank.",
+      "accept": [
+        "police-station"
+      ]
+    },
+    {
+      "id": "chemist",
+      "text": "chemist",
+      "topic": "city",
+      "image": {
+        "emoji": "💊"
+      },
+      "sentence": "Dad bought some medicine at the chemist.",
+      "accept": [
+        "chemist's",
+        "pharmacy"
+      ],
+      "def": "You can buy medicine in this shop."
+    },
+    {
+      "id": "university",
+      "text": "university",
+      "topic": "city",
+      "image": {
+        "emoji": "🎓"
+      },
+      "sentence": "My sister studies science at university.",
+      "accept": [
+        "universities",
+        "college"
+      ],
+      "def": "Students go here to study after they finish school."
+    }
+  ]
+}

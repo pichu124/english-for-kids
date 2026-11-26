@@ -60,7 +60,7 @@ export function testScreen(ctx: Ctx): HTMLElement {
     partTag.textContent = `${PART_EN[q.part].icon} ${PART_EN[q.part].name}`;
     if (q.part !== lastPart) {
       lastPart = q.part;
-      const intro = { listening: 'Part one. Listen and touch the picture.', spelling: 'Part two. Listen to the letters. Find the word.', writing: 'Part two. Look and write the word.', reading: 'Part three. Look and read.' }[q.part];
+      const intro = q.kind === 'type-word' && q.def ? 'Part two. Read and write the word.' : { listening: 'Part one. Listen and touch the picture.', spelling: 'Part two. Listen to the letters. Find the word.', writing: 'Part two. Look and write the word.', reading: 'Part three. Look and read.' }[q.part];
       stage.replaceChildren(h('div', { class: 'test-intro pop' }, h('span', { 'aria-hidden': 'true' }, PART_EN[q.part].icon), PART_EN[q.part].name));
       await bix.talk(intro, 'happy', PART_EN[q.part].name);
       if (!ctx.alive()) return false;
@@ -89,7 +89,8 @@ export function testScreen(ctx: Ctx): HTMLElement {
       const word = q.target.text.toLowerCase();
       const boxes = word.split('').map(() => h('span', { class: 'spell-slot wr-box' }));
       const keys = 'abcdefghijklmnopqrstuvwxyz'.split('').map((c) => h('button', { class: 'wr-key', 'data-key': c, 'aria-label': c, lang: 'en' }, c));
-      stage.replaceChildren(h('div', { class: 'test-q write', 'data-answer': word }, h('div', { class: 'spell-top' }, h('div', { class: 'read-pic spell-pic' }, wordPicture(q.target))), h('div', { class: 'spell-slots' }, boxes), h('div', { class: 'wr-keys' }, keys)));
+      stage.replaceChildren(h('div', { class: 'test-q write', 'data-answer': word }, h('div', { class: 'spell-top' }, q.def ? h('p', { class: 'def-card', lang: 'en' }, q.def) : h('div', { class: 'read-pic spell-pic' }, wordPicture(q.target))), h('div', { class: `spell-slots ${word.length > 6 ? 'is-long' : ''}` }, boxes), h('div', { class: 'wr-keys' }, keys)));
+      if (q.def) void say(q.def);
       let slips = 0;
       for (let i = 0; i < word.length; ) {
         const k = await choose(keys);

@@ -1,0 +1,68 @@
+{
+  "id": "l4-instruments",
+  "level": "L4",
+  "topic": "instruments",
+  "order": 15,
+  "title": "Music Time",
+  "titleVi": "Nhạc cụ",
+  "icon": "🎻",
+  "color": "#cdb4db",
+  "intro": "Let's make some music!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Music block",
+    "style": "rainbow",
+    "color": "#cdb4db"
+  },
+  "words": [
+    "drum",
+    "violin",
+    "trumpet",
+    "saxophone",
+    {
+      "id": "guitar",
+      "sentence": "My sister is learning to play the guitar.",
+      "def": "This instrument has got six strings. You play it with your fingers."
+    },
+    {
+      "id": "piano",
+      "sentence": "Grandpa plays the piano every evening.",
+      "def": "This big instrument has got black and white keys."
+    }
+  ],
+  "parentTip": {
+    "vi": "Nghe nhạc cùng con và đoán nhạc cụ: \"Listen! Is it a violin or a trumpet?\"",
+    "say": "Which instrument would you like to play?"
+  },
+  "chat": {
+    "ask": "Would you like to play the drum?",
+    "yes": "Bang, bang! That sounds fun!",
+    "no": "Okay! Maybe the piano?"
+  },
+  "gaps": [
+    {
+      "s": "You hit a ___ with two sticks.",
+      "answer": "drum",
+      "options": [
+        "violin",
+        "trumpet"
+      ]
+    },
+    {
+      "s": "You blow into a ___.",
+      "answer": "trumpet",
+      "options": [
+        "drum",
+        "piano"
+      ]
+    },
+    {
+      "s": "A ___ has got black and white keys.",
+      "answer": "piano",
+      "options": [
+        "drum",
+        "violin"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "story-l4-holiday",
+  "unit": "l4-holiday",
+  "title": "Bix's Camping Trip",
+  "icon": "⛺",
+  "pages": [
+    {
+      "text": "Tomorrow, Bix is going to go camping!",
+      "scene": "⛺",
+      "bix": true
+    },
+    {
+      "text": "Bix puts water and sandwiches in a backpack.",
+      "scene": "🎒",
+      "bix": true
+    },
+    {
+      "text": "By the lake, Bix puts up a small tent.",
+      "scene": "⛺🌲"
+    },
+    {
+      "text": "At night it is very dark, so Bix turns on a torch.",
+      "scene": "🔦🌙",
+      "bix": true
+    },
+    {
+      "text": "\"Look at all the stars!\" says Bix. \"This is the best holiday ever!\"",
+      "scene": "✨😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where does Bix put the sandwiches?",
+      "answer": "backpack"
+    },
+    {
+      "ask": "What does Bix use in the dark?",
+      "answer": "torch"
+    }
+  ]
+}

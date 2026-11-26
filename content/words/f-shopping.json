@@ -1,0 +1,73 @@
+{
+  "topic": "shopping",
+  "words": [
+    {
+      "id": "money",
+      "text": "money",
+      "topic": "shopping",
+      "image": {
+        "emoji": "💰"
+      },
+      "sentence": "I haven't got any money. Can I borrow some?",
+      "accept": [
+        "monies"
+      ],
+      "def": "You use this to buy things."
+    },
+    {
+      "id": "purse",
+      "text": "purse",
+      "topic": "shopping",
+      "image": {
+        "emoji": "👛"
+      },
+      "sentence": "Mum keeps her money in her purse.",
+      "accept": [
+        "purses",
+        "wallet"
+      ],
+      "def": "You keep your money in this small bag."
+    },
+    {
+      "id": "price",
+      "text": "price",
+      "topic": "shopping",
+      "image": {
+        "emoji": "🏷️"
+      },
+      "sentence": "What's the price of this T-shirt?",
+      "accept": [
+        "prices",
+        "prize"
+      ],
+      "def": "This tells you how much something costs."
+    },
+    {
+      "id": "shopping",
+      "text": "shopping",
+      "topic": "shopping",
+      "image": {
+        "emoji": "🛍️"
+      },
+      "sentence": "We went shopping for new shoes.",
+      "accept": [
+        "shop",
+        "shopping bags"
+      ],
+      "def": "You do this when you go to the shops to buy things."
+    },
+    {
+      "id": "expensive",
+      "text": "expensive",
+      "topic": "shopping",
+      "image": {
+        "emoji": "💎"
+      },
+      "sentence": "This diamond ring is very expensive.",
+      "accept": [
+        "expansive"
+      ],
+      "def": "Something that costs a lot of money is this."
+    }
+  ]
+}

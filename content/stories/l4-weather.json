@@ -1,0 +1,41 @@
+{
+  "id": "story-l4-weather",
+  "unit": "l4-weather",
+  "title": "The Noisy Night",
+  "icon": "⛈️",
+  "pages": [
+    {
+      "text": "It is night. Bix is in bed, but there is a big storm outside.",
+      "scene": "⛈️🏠",
+      "bix": true
+    },
+    {
+      "text": "Flash! Bix sees lightning in the sky.",
+      "scene": "⚡"
+    },
+    {
+      "text": "Boom! The thunder is very loud.",
+      "scene": "🌩️"
+    },
+    {
+      "text": "Bix is a bit scared, so Bix counts: one, two, three…",
+      "scene": "🛏️",
+      "bix": true
+    },
+    {
+      "text": "In the morning, the storm has gone. There is only fog.",
+      "scene": "🌫️😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix see in the sky?",
+      "answer": "lightning"
+    },
+    {
+      "ask": "What is very loud?",
+      "answer": "thunder"
+    }
+  ]
+}

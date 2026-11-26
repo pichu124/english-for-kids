@@ -1,0 +1,87 @@
+{
+  "topic": "time2",
+  "words": [
+    {
+      "id": "half-past-seven",
+      "text": "half past seven",
+      "topic": "time2",
+      "image": {
+        "clock": "7:30"
+      },
+      "sentence": "It's half past seven. Time for breakfast!",
+      "accept": [
+        "seven thirty",
+        "7:30"
+      ]
+    },
+    {
+      "id": "quarter-past-three",
+      "text": "quarter past three",
+      "topic": "time2",
+      "image": {
+        "clock": "3:15"
+      },
+      "sentence": "It's quarter past three. School is finished!",
+      "accept": [
+        "a quarter past three",
+        "three fifteen",
+        "3:15"
+      ]
+    },
+    {
+      "id": "quarter-to-nine",
+      "text": "quarter to nine",
+      "topic": "time2",
+      "image": {
+        "clock": "8:45"
+      },
+      "sentence": "It's quarter to nine. Hurry up!",
+      "accept": [
+        "a quarter to nine",
+        "eight forty-five",
+        "8:45"
+      ]
+    },
+    {
+      "id": "half-past-twelve",
+      "text": "half past twelve",
+      "topic": "time2",
+      "image": {
+        "clock": "12:30"
+      },
+      "sentence": "We have lunch at half past twelve.",
+      "accept": [
+        "twelve thirty",
+        "12:30"
+      ]
+    },
+    {
+      "id": "quarter-past-six",
+      "text": "quarter past six",
+      "topic": "time2",
+      "image": {
+        "clock": "6:15"
+      },
+      "sentence": "Dinner is at quarter past six.",
+      "accept": [
+        "a quarter past six",
+        "six fifteen",
+        "6:15"
+      ]
+    },
+    {
+      "id": "quarter-to-four",
+      "text": "quarter to four",
+      "topic": "time2",
+      "image": {
+        "clock": "3:45"
+      },
+      "sentence": "The film starts at quarter to four.",
+      "accept": [
+        "a quarter to four",
+        "three forty-five",
+        "3:45"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "l4-months1",
+  "level": "L4",
+  "topic": "months",
+  "order": 11,
+  "title": "January to June",
+  "titleVi": "Tháng 1–6",
+  "icon": "📅",
+  "color": "#bde0fe",
+  "intro": "Let's learn the months!",
+  "playPrompt": "Where is {word}?",
+  "block": {
+    "name": "Calendar block",
+    "style": "window",
+    "color": "#bde0fe"
+  },
+  "words": [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june"
+  ],
+  "parentTip": {
+    "vi": "Hỏi con sinh nhật mọi người trong nhà vào tháng nào: \"When is Grandma's birthday? It's in March.\"",
+    "say": "When is your birthday?"
+  },
+  "chat": {
+    "ask": "Is your birthday in spring?",
+    "yes": "Great! Spring is a lovely time!",
+    "no": "Okay! Every month is a good month for a birthday!"
+  },
+  "gaps": [
+    {
+      "s": "The first month of the year is ___.",
+      "answer": "January",
+      "options": [
+        "March",
+        "June"
+      ]
+    },
+    {
+      "s": "___ is the shortest month of the year.",
+      "answer": "February",
+      "options": [
+        "April",
+        "June"
+      ]
+    },
+    {
+      "s": "The month after May is ___.",
+      "answer": "June",
+      "options": [
+        "March",
+        "January"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "l4-shopping",
+  "level": "L4",
+  "topic": "shopping",
+  "order": 20,
+  "title": "Let's Go Shopping",
+  "titleVi": "Mua sắm",
+  "icon": "🛍️",
+  "color": "#ffc6ff",
+  "intro": "Let's go shopping!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Shop block",
+    "style": "window",
+    "color": "#ffc6ff"
+  },
+  "words": [
+    "money",
+    "purse",
+    "price",
+    "shopping",
+    "expensive"
+  ],
+  "parentTip": {
+    "vi": "Cho con trả tiền khi đi chợ và hỏi \"How much is it? Is it expensive or cheap?\"",
+    "say": "How much is it?"
+  },
+  "chat": {
+    "ask": "Do you like going shopping?",
+    "yes": "Me too! What do you like to buy?",
+    "no": "Okay! Shopping can be boring."
+  },
+  "gaps": [
+    {
+      "s": "Mum keeps her money in her ___.",
+      "answer": "purse",
+      "options": [
+        "price",
+        "shopping"
+      ]
+    },
+    {
+      "s": "What's the ___ of this bike? It's fifty pounds.",
+      "answer": "price",
+      "options": [
+        "purse",
+        "money"
+      ]
+    },
+    {
+      "s": "This watch costs a lot. It's very ___.",
+      "answer": "expensive",
+      "options": [
+        "shopping",
+        "purse"
+      ]
+    }
+  ],
+  "text": {
+    "title": "A Present for Dad",
+    "lines": [
+      "On Saturday, Anna went shopping for her dad's birthday present.",
+      "She took her money in her purple purse.",
+      "She liked a watch, but the price was too high. It was very expensive!",
+      "In the end, she bought him a book about famous footballers."
+    ],
+    "questions": [
+      {
+        "q": "What was Anna shopping for?",
+        "options": [
+          "a present for her dad",
+          "new shoes",
+          "food"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Why didn't she buy the watch?",
+        "options": [
+          "It was boring.",
+          "It was too expensive.",
+          "It was broken."
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What did she buy?",
+        "options": [
+          "a watch",
+          "a football",
+          "a book"
+        ],
+        "answer": 2
+      }
+    ]
+  }
+}

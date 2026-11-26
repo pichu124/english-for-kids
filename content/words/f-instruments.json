@@ -1,0 +1,59 @@
+{
+  "topic": "instruments",
+  "words": [
+    {
+      "id": "drum",
+      "text": "drum",
+      "topic": "instruments",
+      "image": {
+        "emoji": "🥁"
+      },
+      "sentence": "My brother plays the drum very loudly.",
+      "accept": [
+        "drums"
+      ],
+      "def": "You hit this instrument with sticks."
+    },
+    {
+      "id": "violin",
+      "text": "violin",
+      "topic": "instruments",
+      "image": {
+        "emoji": "🎻"
+      },
+      "sentence": "She plays the violin in an orchestra.",
+      "accept": [
+        "violins",
+        "fiddle"
+      ],
+      "def": "You play this wooden instrument with a bow under your chin."
+    },
+    {
+      "id": "trumpet",
+      "text": "trumpet",
+      "topic": "instruments",
+      "image": {
+        "emoji": "🎺"
+      },
+      "sentence": "He played the trumpet in the band.",
+      "accept": [
+        "trumpets"
+      ],
+      "def": "You blow into this loud metal instrument."
+    },
+    {
+      "id": "saxophone",
+      "text": "saxophone",
+      "topic": "instruments",
+      "image": {
+        "emoji": "🎷"
+      },
+      "sentence": "My uncle plays the saxophone.",
+      "accept": [
+        "sax",
+        "saxophones"
+      ],
+      "def": "You often hear this long, gold instrument in jazz music."
+    }
+  ]
+}

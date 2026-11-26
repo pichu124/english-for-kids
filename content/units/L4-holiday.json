@@ -1,0 +1,102 @@
+{
+  "id": "l4-holiday",
+  "level": "L4",
+  "topic": "holiday",
+  "order": 14,
+  "title": "Going on Holiday",
+  "titleVi": "Chuẩn bị đi chơi (going to)",
+  "icon": "⛺",
+  "color": "#95d5b2",
+  "intro": "We're going to go on holiday!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Camp block",
+    "style": "grass",
+    "color": "#95d5b2"
+  },
+  "words": [
+    "tent",
+    "passport",
+    "backpack",
+    "torch",
+    "suitcase",
+    {
+      "id": "ticket",
+      "sentence": "We're going to buy our train tickets today.",
+      "def": "You need this to get on a train or a plane."
+    }
+  ],
+  "parentTip": {
+    "vi": "Trước chuyến đi, cùng con soạn đồ và nói \"We're going to take a torch. What are you going to take?\"",
+    "say": "What are you going to take on holiday?"
+  },
+  "chat": {
+    "ask": "Are you going to go camping?",
+    "yes": "Cool! Sleeping in a tent is fun!",
+    "no": "Okay! A hotel is nice too!"
+  },
+  "gaps": [
+    {
+      "s": "It's dark. I'm going to turn on my ___.",
+      "answer": "torch",
+      "options": [
+        "passport",
+        "tent"
+      ]
+    },
+    {
+      "s": "You need your ___ to fly to another country.",
+      "answer": "passport",
+      "options": [
+        "torch",
+        "tent"
+      ]
+    },
+    {
+      "s": "We're going camping, so we're going to sleep in a ___.",
+      "answer": "tent",
+      "options": [
+        "passport",
+        "suitcase"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Our Camping Trip",
+    "lines": [
+      "Next weekend, my family is going to go camping by a lake.",
+      "We're going to sleep in a big tent.",
+      "I am going to carry the food in my backpack.",
+      "At night, we are going to look at the stars with a torch."
+    ],
+    "questions": [
+      {
+        "q": "Where are they going to go camping?",
+        "options": [
+          "by a lake",
+          "in the desert",
+          "on a mountain"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What is the child going to carry?",
+        "options": [
+          "the tent",
+          "the food",
+          "the torch"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What are they going to do at night?",
+        "options": [
+          "go swimming",
+          "look at the stars",
+          "go to a restaurant"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

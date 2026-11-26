@@ -1,0 +1,60 @@
+{
+  "id": "l4-city",
+  "level": "L4",
+  "topic": "city",
+  "order": 16,
+  "title": "In the City",
+  "titleVi": "Thành phố",
+  "icon": "🌉",
+  "color": "#a2d2ff",
+  "intro": "The city is big and busy!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "City block",
+    "style": "brick",
+    "color": "#8d99ae"
+  },
+  "words": [
+    "bridge",
+    "office",
+    "post-office",
+    "police-station",
+    "chemist",
+    "university"
+  ],
+  "parentTip": {
+    "vi": "Khi đi qua phố, hỏi con \"Where can we buy medicine? Where do people send letters?\"",
+    "say": "Where can we buy medicine?"
+  },
+  "chat": {
+    "ask": "Would you like to live in a big city?",
+    "yes": "Cool! Cities are exciting!",
+    "no": "Okay! The countryside is lovely too."
+  },
+  "gaps": [
+    {
+      "s": "We drove across the ___ over the river.",
+      "answer": "bridge",
+      "options": [
+        "office",
+        "chemist"
+      ]
+    },
+    {
+      "s": "I've got a cold. Let's buy some medicine at the ___.",
+      "answer": "chemist",
+      "options": [
+        "bridge",
+        "university"
+      ]
+    },
+    {
+      "s": "After school, my sister is going to study at ___.",
+      "answer": "university",
+      "options": [
+        "bridge",
+        "chemist"
+      ]
+    }
+  ]
+}
