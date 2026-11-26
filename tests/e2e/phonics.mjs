@@ -99,5 +99,34 @@ for (const [vp, prefix] of [[{ width: 1280, height: 800 }, 'ph'], [{ width: 640,
   if (errors.length) fail('page errors: ' + errors.join(' | '));
   await ctx.close();
 }
+// Stories: the child reads a page aloud ("My turn"); heard words turn green and the page counts.
+{
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  await page.addInitScript(readFileSync(new URL('./fakes.js', import.meta.url), 'utf8'));
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('efk.v1')) localStorage.setItem('efk.v1', JSON.stringify({ childName: 'Shin', settings: { dailyLimitMin: 0, rate: 0.8, level: 'L2' }, topics: { 'l2-home': { completed: 1 } }, words: {}, blocks: { inventory: {}, placed: [], totalEarned: 0 }, days: {}, bonus: {}, review: {} }));
+  });
+  await page.goto(base);
+  await page.locator('.btn-play').click({ force: true });
+  await page.waitForSelector('.home');
+  await page.locator('.dock-btn[aria-label="Stories"]').click({ force: true });
+  await page.locator('.story-book[data-story="story-l2-home"]').click({ force: true });
+  await page.waitForSelector('.story-mine');
+  await page.locator('.story-mine').click({ force: true });
+  await page.locator('.story-controls .mic-btn').click({ force: true });
+  await page.waitForFunction(() => document.querySelectorAll('.story-word.is-read').length === document.querySelectorAll('.story-word').length, null, { timeout: 5000 });
+  if (shots) await page.screenshot({ path: `${shots}/story-myturn.png` });
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')));
+  if (st.readAloud?.['story-l2-home'] !== 1) fail('a page read aloud is counted');
+  // a misheard reading: "Try again!", never "wrong"
+  await page.locator('.story-next').click({ force: true });
+  await page.evaluate(() => (window.__voice = 'miss'));
+  await page.locator('.story-mine').click({ force: true });
+  await page.locator('.story-controls .mic-btn').click({ force: true });
+  await page.waitForFunction(() => /try again/i.test(window.__spoken.at(-1) || ''), null, { timeout: 5000 });
+  if ((await page.evaluate(() => window.__spoken.filter((t) => /wrong/i.test(t)).length))) fail('never say wrong');
+  step('stories: "My turn" — the child reads the page aloud, words turn green; a miss is "Try again!"');
+  await page.close();
+}
 await browser.close();
 console.log('phonics e2e ok');

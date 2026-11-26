@@ -109,3 +109,12 @@
   .ph-menu { flex-direction: column; }
   .ph-row, .ph-find { flex-direction: column; }
 }
+
+/* ---------- stories: the child reads a page aloud ---------- */
+.story-word.is-read { color: #2a9d4a; text-decoration: underline 4px #2a9d4a; text-underline-offset: 6px; }
+.story-controls .mic-turn { flex-direction: row; }
+.story-mine { min-height: 64px; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .story-mine { font-size: 16px; padding: 0 12px; }
+  .story-controls .mic-status { display: none; }
+}
