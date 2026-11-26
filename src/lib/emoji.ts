@@ -21,7 +21,10 @@ export const NEWER_EMOJI: Record<string, string> = {
   '🧑‍🏫': '👩‍🏫', // teacher
   '🧑‍🤝‍🧑': '👫', // friends
   '🧅': '', // onion
-  '🧃': '🥤', // juice
+  '🧃': '🥤',
+  '🦗': '🐜', // cricket (phonics i)
+  '🪙': '💰', // coin
+  '🦷': '😁', // tooth // juice
   '🥱': '😴', // tired
   '🩳': '', // shorts
   '🪀': '', // yo-yo

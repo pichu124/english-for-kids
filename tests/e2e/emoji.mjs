@@ -29,7 +29,7 @@ const parent = async () => {
 await parent();
 const bad0 = await page.locator('.p-emoji.is-bad').count();
 const total = await page.locator('.p-emoji').count();
-if (total !== 23) fail(`23 newer emoji are checked, got ${total}`);
+if (total !== 26) fail(`26 newer emoji are checked, got ${total}`);
 if (bad0 !== 0) fail(`a recent browser should draw all newer emoji, ${bad0} flagged`);
 step(`detector: this browser draws all ${total} newer emoji`);
 
@@ -37,7 +37,7 @@ step(`detector: this browser draws all ${total} newer emoji`);
 await page.evaluate(() => localStorage.setItem('efk.emoji.missing', JSON.stringify(['🪁', '🧸', '🧑‍🏫', '🦛', '🧱'])));
 await parent();
 if ((await page.locator('.p-emoji.is-bad').count()) !== 5) fail('5 flagged on the "old phone"');
-if (!(await page.locator('.p-wrap').textContent()).includes('không vẽ được 5/23')) fail('summary sentence');
+if (!(await page.locator('.p-wrap').textContent()).includes('không vẽ được 5/26')) fail('summary sentence');
 if (shots) await page.screenshot({ path: `${shots}/emoji-check.png` });
 step('old phone (simulated): 5 missing emoji reported in the parent area');
 

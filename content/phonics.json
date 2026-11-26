@@ -5,10 +5,14 @@
     "I",
     "is",
     "has",
-    "on",
-    "in",
-    "up",
-    "and"
+    "go",
+    "to",
+    "he",
+    "she",
+    "we",
+    "was",
+    "said",
+    "my"
   ],
   "sets": [
     {
@@ -24,33 +28,33 @@
         },
         {
           "s": "a",
-          "say": "a",
+          "say": "ah",
           "word": "apple",
           "emoji": "🍎"
         },
         {
           "s": "t",
-          "say": "t",
+          "say": "tuh",
           "word": "tiger",
           "emoji": "🐯"
         },
         {
           "s": "p",
-          "say": "p",
+          "say": "puh",
           "word": "pig",
           "emoji": "🐷"
         },
         {
           "s": "i",
-          "say": "i",
+          "say": "ih",
           "word": "insect",
-          "emoji": "🐞"
+          "emoji": "🦗"
         },
         {
           "s": "n",
           "say": "nnn",
-          "word": "nest",
-          "emoji": "🐦"
+          "word": "nose",
+          "emoji": "👃"
         }
       ],
       "words": [
@@ -91,15 +95,6 @@
           "emoji": "🍳"
         },
         {
-          "w": "sit",
-          "parts": [
-            "s",
-            "i",
-            "t"
-          ],
-          "emoji": "🧒"
-        },
-        {
           "w": "tin",
           "parts": [
             "t",
@@ -107,25 +102,34 @@
             "n"
           ],
           "emoji": "🥫"
+        },
+        {
+          "w": "nap",
+          "parts": [
+            "n",
+            "a",
+            "p"
+          ],
+          "emoji": "😴"
         }
       ],
       "reader": {
         "title": "An Ant",
         "pages": [
           {
-            "text": "an ant",
+            "text": "An ant.",
             "emoji": "🐜"
           },
           {
-            "text": "a pin",
+            "text": "A pin.",
             "emoji": "📌"
           },
           {
-            "text": "tap, tap, tap",
+            "text": "Tap, tap, tap!",
             "emoji": "🚰"
           },
           {
-            "text": "an ant in a pan",
+            "text": "An ant in a pan.",
             "emoji": "🍳"
           }
         ]
@@ -138,25 +142,25 @@
       "sounds": [
         {
           "s": "c",
-          "say": "k",
+          "say": "kuh",
           "word": "cat",
           "emoji": "🐱"
         },
         {
           "s": "k",
-          "say": "k",
+          "say": "kuh",
           "word": "kite",
           "emoji": "🪁"
         },
         {
           "s": "e",
-          "say": "e",
+          "say": "eh",
           "word": "egg",
           "emoji": "🥚"
         },
         {
           "s": "h",
-          "say": "h",
+          "say": "huh",
           "word": "hat",
           "emoji": "🎩"
         },
@@ -169,12 +173,12 @@
         {
           "s": "m",
           "say": "mmm",
-          "word": "moon",
-          "emoji": "🌙"
+          "word": "monkey",
+          "emoji": "🐒"
         },
         {
           "s": "d",
-          "say": "d",
+          "say": "duh",
           "word": "duck",
           "emoji": "🦆"
         }
@@ -251,25 +255,34 @@
             "p"
           ],
           "emoji": "🧢"
+        },
+        {
+          "w": "kid",
+          "parts": [
+            "k",
+            "i",
+            "d"
+          ],
+          "emoji": "🧒"
         }
       ],
       "reader": {
         "title": "The Red Hat",
         "pages": [
           {
-            "text": "a cat",
+            "text": "A cat.",
             "emoji": "🐱"
           },
           {
-            "text": "a red hat",
+            "text": "A red hat.",
             "emoji": "🎩"
           },
           {
-            "text": "a hen and a pen",
+            "text": "A hen and a pen.",
             "emoji": "🐔"
           },
           {
-            "text": "the cat has the red hat",
+            "text": "The cat has the red hat.",
             "emoji": "🐱🎩"
           }
         ]
@@ -282,19 +295,19 @@
       "sounds": [
         {
           "s": "g",
-          "say": "g",
+          "say": "guh",
           "word": "goat",
           "emoji": "🐐"
         },
         {
           "s": "o",
-          "say": "o",
+          "say": "aw",
           "word": "octopus",
           "emoji": "🐙"
         },
         {
           "s": "u",
-          "say": "u",
+          "say": "uh",
           "word": "umbrella",
           "emoji": "☂️"
         },
@@ -312,9 +325,9 @@
         },
         {
           "s": "b",
-          "say": "b",
-          "word": "ball",
-          "emoji": "⚽"
+          "say": "buh",
+          "word": "bear",
+          "emoji": "🐻"
         }
       ],
       "words": [
@@ -389,25 +402,43 @@
             "g"
           ],
           "emoji": "🤗"
+        },
+        {
+          "w": "leg",
+          "parts": [
+            "l",
+            "e",
+            "g"
+          ],
+          "emoji": "🦵"
+        },
+        {
+          "w": "fun",
+          "parts": [
+            "f",
+            "u",
+            "n"
+          ],
+          "emoji": "🎉"
         }
       ],
       "reader": {
         "title": "The Big Bus",
         "pages": [
           {
-            "text": "a big dog",
+            "text": "A big dog.",
             "emoji": "🐶"
           },
           {
-            "text": "the bus is red",
+            "text": "The bus is red.",
             "emoji": "🚌"
           },
           {
-            "text": "a bug in a bag",
+            "text": "A bug in a bag.",
             "emoji": "🐛"
           },
           {
-            "text": "the pig is in bed",
+            "text": "The pig is in bed.",
             "emoji": "🐷🛏️"
           }
         ]
@@ -420,9 +451,9 @@
       "sounds": [
         {
           "s": "j",
-          "say": "j",
-          "word": "jelly",
-          "emoji": "🍮"
+          "say": "juh",
+          "word": "juice",
+          "emoji": "🧃"
         },
         {
           "s": "v",
@@ -432,19 +463,19 @@
         },
         {
           "s": "w",
-          "say": "w",
+          "say": "wuh",
           "word": "web",
           "emoji": "🕸️"
         },
         {
           "s": "x",
-          "say": "ks",
+          "say": "kss",
           "word": "box",
           "emoji": "📦"
         },
         {
           "s": "y",
-          "say": "y",
+          "say": "yuh",
           "word": "yo-yo",
           "emoji": "🪀"
         },
@@ -453,6 +484,12 @@
           "say": "zzz",
           "word": "zebra",
           "emoji": "🦓"
+        },
+        {
+          "s": "qu",
+          "say": "kwuh",
+          "word": "queen",
+          "emoji": "👸"
         }
       ],
       "words": [
@@ -509,25 +546,43 @@
             "t"
           ],
           "emoji": "✈️"
+        },
+        {
+          "w": "zip",
+          "parts": [
+            "z",
+            "i",
+            "p"
+          ],
+          "emoji": "🤐"
+        },
+        {
+          "w": "yes",
+          "parts": [
+            "y",
+            "e",
+            "s"
+          ],
+          "emoji": "👍"
         }
       ],
       "reader": {
         "title": "A Fox in a Box",
         "pages": [
           {
-            "text": "a fox in a box",
+            "text": "A fox in a box.",
             "emoji": "🦊📦"
           },
           {
-            "text": "a big red van",
+            "text": "A big red van.",
             "emoji": "🚐"
           },
           {
-            "text": "six bugs on a web",
+            "text": "Six bugs on a web.",
             "emoji": "🕸️"
           },
           {
-            "text": "the jet is up",
+            "text": "The jet is up!",
             "emoji": "✈️"
           }
         ]
@@ -546,13 +601,13 @@
         },
         {
           "s": "ch",
-          "say": "ch",
-          "word": "chicken",
-          "emoji": "🐔"
+          "say": "chuh",
+          "word": "cheese",
+          "emoji": "🧀"
         },
         {
           "s": "th",
-          "say": "th",
+          "say": "thhh",
           "word": "thumb",
           "emoji": "👍"
         },
@@ -598,15 +653,6 @@
           "emoji": "🍟"
         },
         {
-          "w": "bath",
-          "parts": [
-            "b",
-            "a",
-            "th"
-          ],
-          "emoji": "🛁"
-        },
-        {
           "w": "tree",
           "parts": [
             "t",
@@ -640,21 +686,30 @@
             "d"
           ],
           "emoji": "🍲"
+        },
+        {
+          "w": "teeth",
+          "parts": [
+            "t",
+            "ee",
+            "th"
+          ],
+          "emoji": "🦷"
         }
       ],
       "reader": {
         "title": "A Bee in a Tree",
         "pages": [
           {
-            "text": "a fish and a ship",
+            "text": "A fish and a ship.",
             "emoji": "🐟🚢"
           },
           {
-            "text": "a bee in a tree",
+            "text": "A bee in a tree.",
             "emoji": "🐝🌳"
           },
           {
-            "text": "the moon is up",
+            "text": "The moon is up.",
             "emoji": "🌙"
           },
           {
@@ -689,7 +744,7 @@
         },
         {
           "s": "ar",
-          "say": "ar",
+          "say": "are",
           "word": "car",
           "emoji": "🚗"
         },
@@ -777,19 +832,19 @@
         "title": "A Goat in a Boat",
         "pages": [
           {
-            "text": "a goat in a boat",
+            "text": "A goat in a boat.",
             "emoji": "🐐⛵"
           },
           {
-            "text": "rain, rain, rain",
+            "text": "Rain, rain, rain!",
             "emoji": "🌧️"
           },
           {
-            "text": "a snail on a car",
+            "text": "A snail on a car.",
             "emoji": "🐌🚗"
           },
           {
-            "text": "a star in the dark",
+            "text": "A star in the dark.",
             "emoji": "⭐"
           }
         ]
@@ -802,7 +857,7 @@
       "sounds": [
         {
           "s": "ng",
-          "say": "ng",
+          "say": "ing",
           "word": "ring",
           "emoji": "💍"
         },
@@ -815,14 +870,14 @@
         {
           "s": "oi",
           "say": "oy",
-          "word": "toilet",
-          "emoji": "🚽"
+          "word": "coin",
+          "emoji": "🪙"
         },
         {
           "s": "er",
           "say": "er",
-          "word": "tiger",
-          "emoji": "🐯"
+          "word": "winter",
+          "emoji": "❄️"
         },
         {
           "s": "ur",
@@ -839,7 +894,7 @@
             "i",
             "ng"
           ],
-          "emoji": "🤴"
+          "emoji": "👑"
         },
         {
           "w": "ring",
@@ -867,27 +922,6 @@
           "emoji": "🦉"
         },
         {
-          "w": "toilet",
-          "parts": [
-            "t",
-            "oi",
-            "l",
-            "e",
-            "t"
-          ],
-          "emoji": "🚽"
-        },
-        {
-          "w": "tiger",
-          "parts": [
-            "t",
-            "i",
-            "g",
-            "er"
-          ],
-          "emoji": "🐯"
-        },
-        {
           "w": "burger",
           "parts": [
             "b",
@@ -898,35 +932,64 @@
           "emoji": "🍔"
         },
         {
-          "w": "hammer",
+          "w": "winter",
           "parts": [
-            "h",
-            "a",
-            "m",
-            "m",
+            "w",
+            "i",
+            "n",
+            "t",
             "er"
           ],
-          "emoji": "🔨"
+          "emoji": "❄️"
+        },
+        {
+          "w": "sister",
+          "parts": [
+            "s",
+            "i",
+            "s",
+            "t",
+            "er"
+          ],
+          "emoji": "👧"
+        },
+        {
+          "w": "coin",
+          "parts": [
+            "c",
+            "oi",
+            "n"
+          ],
+          "emoji": "🪙"
+        },
+        {
+          "w": "boil",
+          "parts": [
+            "b",
+            "oi",
+            "l"
+          ],
+          "emoji": "♨️"
         }
       ],
       "reader": {
-        "title": "The King's Burger",
+        "title": "The King and the Owl",
         "pages": [
           {
-            "text": "a king with a ring",
-            "emoji": "🤴💍"
+            "text": "A king with a ring.",
+            "emoji": "👑💍"
           },
           {
-            "text": "a cow and an owl",
+            "text": "A cow and an owl.",
             "emoji": "🐄🦉"
           },
           {
-            "text": "the tiger has a burger",
-            "emoji": "🐯🍔"
+            "text": "My sister has a burger.",
+            "emoji": "👧🍔"
           },
           {
-            "text": "the owl sat on the king!",
-            "emoji": "🦉🤴"
+            "text": "The owl sat on the king!",
+            "emoji": "🦉👑"
           }
         ]
       }
@@ -1003,23 +1066,23 @@
         "title": "Go, Go, Go!",
         "pages": [
           {
-            "text": "I can see the sun",
+            "text": "I can see the sun.",
             "emoji": "☀️"
           },
           {
-            "text": "he said: go, go, go!",
+            "text": "He said, \"Go, go, go!\"",
             "emoji": "👦"
           },
           {
-            "text": "she was in the park",
+            "text": "She was in the park.",
             "emoji": "👧🌳"
           },
           {
-            "text": "we go to the farm",
+            "text": "We go to the farm.",
             "emoji": "🚜"
           },
           {
-            "text": "my dog is big",
+            "text": "My dog is big.",
             "emoji": "🐶"
           }
         ]

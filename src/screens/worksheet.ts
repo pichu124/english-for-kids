@@ -45,7 +45,8 @@ function letterBoxes(text: string, given: number, fill = false): HTMLElement {
     { class: 'ws-boxes', 'aria-label': fill ? text : `${text.length} letters` },
     [...text].map((ch) => {
       if (ch === ' ') return h('span', { class: 'ws-gap' });
-      if (!/[a-z]/i.test(ch)) return h('span', { class: 'ws-box is-mark' }, ch);
+      // accented letters (café) are still letters to write, not marks printed in
+      if (!/[a-z]/i.test(ch.normalize('NFD').charAt(0))) return h('span', { class: 'ws-box is-mark' }, ch);
       const show = fill || letters++ < given;
       return h('span', { class: `ws-box ${show && !fill ? 'is-given' : ''}` }, show ? ch : '');
     }),

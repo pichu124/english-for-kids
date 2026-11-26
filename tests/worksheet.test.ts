@@ -53,3 +53,14 @@ describe('printable worksheets', () => {
     }
   });
 });
+
+describe('word search fairness', () => {
+  it('each listed word appears exactly once, and words inside longer ones are left out', () => {
+    for (const seed of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']) {
+      const { grid, placed } = wordSearch(['cat', 'caterpillar', 'dog', 'frog', 'hen', 'bat', 'ant'], seededRandom(seed), 12);
+      expect(placed.some((p) => p.word === 'CAT')).toBe(false);
+      const lines = [...grid.map((r) => r.join('')), ...grid[0].map((_, c) => grid.map((r) => r[c]).join(''))];
+      for (const p of placed) expect(lines.reduce((n, l) => n + l.split(p.word).length - 1, 0)).toBe(1);
+    }
+  });
+});

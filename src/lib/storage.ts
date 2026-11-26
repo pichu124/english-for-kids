@@ -275,9 +275,9 @@ export function sanitizeState(raw: unknown): State {
   keep('letters', isObj);
   keep('storiesRead', isObj);
   keep('gardenSeen', (x) => typeof x === 'string');
-  keep('phonics', isObj);
-  keep('readAloud', isObj);
-  keep('talk', isObj);
+  if (isObj(p.phonics)) s.phonics = entries<number>(p.phonics, (n) => typeof n === 'number' && n >= 0);
+  if (isObj(p.readAloud)) s.readAloud = entries<number>(p.readAloud, (n) => typeof n === 'number' && n >= 0);
+  if (isObj(p.talk)) s.talk = entries<number>(p.talk, (n) => typeof n === 'number' && n >= 0);
   return s;
 }
 

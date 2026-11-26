@@ -139,7 +139,7 @@
                 "haven't",
                 "can't"
               ],
-              "reply": "Okay! Maybe you like cake?"
+              "reply": "That's okay! Cake is yummy too!"
             }
           ],
           "fallback": "Ice cream is cold and sweet!"
@@ -192,7 +192,7 @@
           "fallback": "Families are great!"
         },
         {
-          "bix": "Who do you love?",
+          "bix": "Who is in your family?",
           "type": "choice",
           "options": [
             {
@@ -202,7 +202,7 @@
                 "mum",
                 "mummy"
               ],
-              "reply": "Aww! You love your mum!"
+              "reply": "Your mum! How lovely!"
             },
             {
               "say": "dad",
@@ -211,7 +211,7 @@
                 "dad",
                 "daddy"
               ],
-              "reply": "Aww! You love your dad!"
+              "reply": "Your dad! How lovely!"
             },
             {
               "say": "grandma",
@@ -220,7 +220,7 @@
                 "grandma",
                 "granny"
               ],
-              "reply": "Aww! You love your grandma!"
+              "reply": "Your grandma! How lovely!"
             },
             {
               "say": "grandpa",
@@ -229,7 +229,7 @@
                 "grandpa",
                 "grandad"
               ],
-              "reply": "Aww! You love your grandpa!"
+              "reply": "Your grandpa! How lovely!"
             }
           ],
           "fallback": "Lovely!"
@@ -242,7 +242,8 @@
               "say": "mum",
               "emoji": "👩",
               "words": [
-                "mum"
+                "mum",
+                "mummy"
               ],
               "reply": "Your mum is a great cook!"
             },
@@ -250,7 +251,8 @@
               "say": "dad",
               "emoji": "👨",
               "words": [
-                "dad"
+                "dad",
+                "daddy"
               ],
               "reply": "Your dad is a great cook!"
             },
@@ -258,7 +260,8 @@
               "say": "grandma",
               "emoji": "👵",
               "words": [
-                "grandma"
+                "grandma",
+                "granny"
               ],
               "reply": "Your grandma is a great cook!"
             },
@@ -266,9 +269,20 @@
               "say": "grandpa",
               "emoji": "👴",
               "words": [
-                "grandpa"
+                "grandpa",
+                "grandad"
               ],
               "reply": "Your grandpa is a great cook!"
+            },
+            {
+              "say": "Me!",
+              "emoji": "🙋",
+              "words": [
+                "me",
+                "i do",
+                "i cook"
+              ],
+              "reply": "You! Wow, you are a great cook!"
             }
           ],
           "fallback": "Yummy dinner!"
@@ -411,7 +425,7 @@
                 "haven't",
                 "can't"
               ],
-              "reply": "Try a carrot! They are crunchy!"
+              "reply": "Try carrots! They're crunchy!"
             }
           ],
           "fallback": "Vegetables are good for you!"
@@ -438,7 +452,7 @@
             },
             {
               "say": "juice",
-              "emoji": "🥤",
+              "emoji": "🧃",
               "words": [
                 "juice"
               ],
@@ -448,7 +462,7 @@
           "fallback": "Drink lots of water!"
         },
         {
-          "bix": "Now I'm hungry too! Bye!",
+          "bix": "Now I'm hungry! Bye!",
           "type": "end"
         }
       ]
@@ -513,9 +527,9 @@
               "emoji": "🐟",
               "words": [
                 "fish",
-                "fishs"
+                "fishes"
               ],
-              "reply": "Fishs are amazing!"
+              "reply": "Fish are amazing!"
             }
           ],
           "fallback": "I love animals too!"
@@ -537,7 +551,7 @@
                 "i can",
                 "sure"
               ],
-              "reply": "Ha ha! No, fish can swim!"
+              "reply": "Ha ha! Fish can't fly. They can swim!"
             },
             {
               "say": "No.",
@@ -550,7 +564,7 @@
                 "haven't",
                 "can't"
               ],
-              "reply": "That's right! Fish can swim!"
+              "reply": "That's right! Fish can't fly. They can swim!"
             }
           ],
           "fallback": "Fish can swim!"
@@ -628,10 +642,10 @@
         {
           "bix": "What time do you get up?",
           "type": "any",
-          "reply": "That is early! Well done!"
+          "reply": "Thank you! I get up at seven o'clock."
         },
         {
-          "bix": "How do you go to school?",
+          "bix": "How do you get to school?",
           "type": "choice",
           "options": [
             {
@@ -679,7 +693,7 @@
         {
           "bix": "What do you do after school?",
           "type": "any",
-          "reply": "Cool! I like playing too!"
+          "reply": "That sounds nice! I play with my friends."
         },
         {
           "bix": "Thanks for telling me about your day!",
@@ -701,33 +715,40 @@
               "say": "Sunny",
               "emoji": "☀️",
               "words": [
-                "sunny"
+                "sunny",
+                "sun",
+                "hot"
               ],
-              "reply": "It's sunny! Thank you!"
+              "reply": "Sunny! Let's play outside!"
             },
             {
               "say": "Rainy",
               "emoji": "🌧️",
               "words": [
-                "rainy"
+                "rainy",
+                "rain",
+                "raining"
               ],
-              "reply": "It's rainy! Thank you!"
+              "reply": "Rainy! Take your umbrella!"
             },
             {
               "say": "Cloudy",
               "emoji": "☁️",
               "words": [
-                "cloudy"
+                "cloudy",
+                "cloud",
+                "clouds"
               ],
-              "reply": "It's cloudy! Thank you!"
+              "reply": "Cloudy! Maybe it will rain."
             },
             {
               "say": "Windy",
               "emoji": "💨",
               "words": [
-                "windy"
+                "windy",
+                "wind"
               ],
-              "reply": "It's windy! Thank you!"
+              "reply": "Windy! Let's fly a kite!"
             }
           ],
           "fallback": "Thank you!"
@@ -735,10 +756,10 @@
         {
           "bix": "What are you going to do this weekend?",
           "type": "any",
-          "reply": "Wow! Have a great weekend!"
+          "reply": "Wow! That sounds fun!"
         },
         {
-          "bix": "Have you ever been to the beach?",
+          "bix": "Do you like the beach?",
           "type": "choice",
           "options": [
             {
@@ -754,7 +775,7 @@
                 "i can",
                 "sure"
               ],
-              "reply": "Lucky you! Did you swim in the sea?"
+              "reply": "Me too! I love swimming in the sea!"
             },
             {
               "say": "No.",
@@ -767,7 +788,7 @@
                 "haven't",
                 "can't"
               ],
-              "reply": "Maybe one day! The beach is fun!"
+              "reply": "That's okay! The park is fun too!"
             }
           ],
           "fallback": "The beach is fun!"
@@ -816,49 +837,56 @@
               "emoji": "☀️",
               "x": 10,
               "y": 12,
-              "size": 1.0
+              "size": 1.0,
+              "say": "the sun"
             },
             {
               "word": "bird",
               "emoji": "🐦",
               "x": 64,
               "y": 14,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a bird"
             },
             {
               "word": "tree",
               "emoji": "🌳",
               "x": 80,
               "y": 40,
-              "size": 1.6
+              "size": 1.6,
+              "say": "a tree"
             },
             {
               "word": "dog",
               "emoji": "🐶",
               "x": 18,
               "y": 66,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a dog"
             },
             {
               "word": "ball",
               "emoji": "⚽",
               "x": 38,
               "y": 80,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a ball"
             },
             {
               "word": "cat",
               "emoji": "🐱",
               "x": 55,
               "y": 66,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a cat"
             },
             {
               "word": "bike",
               "emoji": "🚲",
               "x": 84,
               "y": 78,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a bike"
             }
           ],
           "point": [
@@ -884,56 +912,64 @@
               "emoji": "🕒",
               "x": 12,
               "y": 14,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a clock"
             },
             {
               "word": "picture",
               "emoji": "🖼️",
               "x": 48,
               "y": 16,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a picture"
             },
             {
               "word": "apple",
               "emoji": "🍎",
               "x": 22,
               "y": 60,
-              "size": 1.0
+              "size": 1.0,
+              "say": "an apple"
             },
             {
               "word": "cake",
               "emoji": "🍰",
               "x": 42,
               "y": 62,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a cake"
             },
             {
               "word": "banana",
               "emoji": "🍌",
               "x": 62,
               "y": 60,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a banana"
             },
             {
               "word": "cup",
               "emoji": "☕",
               "x": 80,
               "y": 62,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a cup"
             },
             {
               "word": "chair",
               "emoji": "🪑",
               "x": 30,
               "y": 84,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a chair"
             },
             {
               "word": "cat",
               "emoji": "🐱",
               "x": 70,
               "y": 84,
-              "size": 1.0
+              "size": 1.0,
+              "say": "a cat"
             }
           ],
           "point": [
@@ -1007,7 +1043,7 @@
               "bSay": "In picture two, there is a basketball."
             },
             {
-              "word": "lamp",
+              "word": "light",
               "emoji": "💡",
               "x": 75,
               "y": 20,
@@ -1052,8 +1088,8 @@
               "x": 50,
               "y": 76,
               "b": "🍉",
-              "a": "In picture one, the girl has got an ice cream.",
-              "bSay": "In picture two, she has got a watermelon."
+              "a": "In picture one, there is an ice cream.",
+              "bSay": "In picture two, there is a watermelon."
             },
             {
               "word": "shell",
@@ -1062,7 +1098,7 @@
               "y": 84,
               "b": "⭐",
               "a": "In picture one, there is a shell.",
-              "bSay": "In picture two, there is a starfish."
+              "bSay": "In picture two, there is a star."
             },
             {
               "word": "umbrella",
@@ -1086,12 +1122,12 @@
             "model": "He kicks the ball into a tree."
           },
           {
-            "emoji": "🐕⚽",
-            "model": "A dog gets the ball."
+            "emoji": "⚽⬇️🐕",
+            "model": "The ball falls down, and a dog catches it."
           },
           {
             "emoji": "👦🐕😀",
-            "model": "Tom and the dog are happy now."
+            "model": "The dog gives Tom the ball. They are happy."
           }
         ]
       },

@@ -4,7 +4,6 @@ import { LEVELS } from '../content';
 import { h, shuffle, wait } from '../lib/dom';
 import { fixEmoji } from '../lib/emoji';
 import { currentLevel } from '../lib/level';
-import { cancelListening } from '../lib/listen';
 import { matchSpeech, normalize } from '../lib/match';
 import { sfx } from '../lib/sfx';
 import { dayLog, update } from '../lib/storage';
@@ -27,7 +26,7 @@ import { todayNextButton } from './today';
 type Option = { say: string; emoji: string; words: string[]; reply: string };
 type Turn = { bix: string; type: 'any' | 'choice' | 'end'; reply?: string; options?: Option[]; fallback?: string };
 type Chat = { id: string; title: string; icon: string; level: string; turns: Turn[] };
-type Item = { word: string; emoji: string; x: number; y: number; size?: number; b?: string; a?: string; bSay?: string };
+type Item = { word: string; emoji: string; x: number; y: number; size?: number; b?: string; a?: string; bSay?: string; /** with its article: "the sun", "a cat" */ say?: string };
 type Scene = { id: string; title: string; sky: string; ground: string; items: Item[]; point?: string[]; name?: string[] };
 type Practice = { scenes?: Scene[]; differences?: Scene[]; story?: { title: string; panels: { emoji: string; model: string }[] }; questions: string[] };
 const CHATS = data.chats as Chat[];
@@ -73,15 +72,24 @@ async function answer(ctx: Ctx, host: HTMLElement, opts: { expect: string; optio
   const area = h('div', { class: 'talk-answer' }, chips.length ? row : null);
   host.appendChild(area);
   let matched: Option | undefined;
-  const find = (alts: string[]) => (opts.options ?? []).find((o) => alts.some((a) => o.words.some((w) => ` ${normalize(a)} `.includes(` ${normalize(w)} `))));
+  const has = (o: Option, alts: string[]) => alts.some((a) => o.words.some((w) => ` ${normalize(a)} `.includes(` ${normalize(w)} `)));
+  // "I'm not hungry" contains "i am": a negative answer picks the No option first
+  const negative = (alts: string[]) => alts.some((a) => /\b(no|not|nope|never|dont|don't|haven't|havent|can't|cant)\b/.test(normalize(a)));
+  const find = (alts: string[]) => {
+    const list = opts.options ?? [];
+    const no = list.find((o) => o.words.includes('no'));
+    if (no && negative(alts)) return no;
+    return list.find((o) => has(o, alts));
+  };
   const byTap = new Promise<{ option?: Option; spoke: boolean }>((resolve) => chips.forEach((c, i) => c.addEventListener('click', () => (sfx.tap(), resolve({ option: opts.options![i], spoke: false })))));
-  const byVoice = micTurn(ctx, area, {
+  const voice = micTurn(ctx, area, {
     expect: opts.expect,
     check: (alts) => (opts.options?.length ? !!(matched = find(alts)) : said(alts)),
     tries: opts.options?.length ? 2 : 1,
-  }).then((r) => ({ option: matched, spoke: r.result === 'ok' || r.result === 'tried' }));
+  });
+  const byVoice = voice.then((r) => ({ option: matched, spoke: r.result === 'ok' || r.result === 'tried' }));
   const res = await Promise.race([byTap, byVoice]);
-  cancelListening();
+  voice.cancel(); // a tap ends the listening turn too
   area.remove();
   return res;
 }
@@ -160,7 +168,7 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
     parts.push(async () => {
       const { el: pic, items } = scene(sc);
       stage.replaceChildren(h('div', { class: 'talk-task', 'data-task': 'point' }, pic));
-      await bix.talk(`Look at the picture. It's ${sc.title.toLowerCase()}.`, 'idle');
+      await bix.talk(`Look at this picture. It's ${sc.title.replace(/^(In|At) the /, 'a ').toLowerCase()}.`, 'idle');
       for (const word of sc.point ?? []) {
         if (!ok()) return;
         const q = `Where is the ${word}? Point to the ${word}.`;
@@ -193,7 +201,8 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
         const r = await micTurn(ctx, task, { expect: word, check: (alts) => matchSpeech(word, [], alts).ok });
         if (!ok()) return;
         it.classList.add('is-found');
-        await bix.talk(r.result === 'ok' ? `Yes! It's a ${word}! ${pick(PRAISE)}` : `It's a ${word}. ${word}!`, 'happy');
+        const said = sc.items.find((x) => x.word === word)?.say ?? `a ${word}`;
+        await bix.talk(r.result === 'ok' ? `Yes! It's ${said}! ${pick(PRAISE)}` : `It's ${said}. ${word}!`, 'happy');
       }
       items.forEach((x) => x.classList.remove('is-asked'));
     });
@@ -241,7 +250,8 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
       for (const [i, p] of story.panels.entries()) {
         if (!ok()) return;
         panels.forEach((x, j) => x.classList.toggle('is-now', j === i));
-        await bix.talk(i === 0 ? 'What happens in picture one?' : `And in picture ${['one', 'two', 'three', 'four', 'five'][i]}?`, 'idle', `🗣️ ${i + 1}`);
+        // Flyers tells the story in the past ("What happened…?"), Movers in the present
+        await bix.talk(i === 0 ? (levelId === 'L4' ? 'What happened in picture one?' : 'What happens in picture one?') : `And in picture ${['one', 'two', 'three', 'four', 'five'][i]}?`, 'idle', `🗣️ ${i + 1}`);
         const r = await micTurn(ctx, task, { expect: p.model, check: said, tries: 1 });
         if (!ok()) return;
         await bix.talk(`${r.result === 'skip' ? '' : 'Good! '}${p.model}`, 'happy');
@@ -259,7 +269,7 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
       await bix.talk(q, 'idle', '🗣️');
       await micTurn(ctx, task, { expect: 'yes', check: said, tries: 1 });
       if (!ok()) return;
-      await bix.talk(pick(['Thank you!', 'Great answer!', 'Very good!', 'How interesting!']), 'happy');
+      await bix.talk(pick(levelId === 'L2' ? ['Thank you!', 'Great answer!', 'Very good!'] : ['Thank you!', 'Great answer!', 'Very good!', 'How interesting!']), 'happy');
     }
   });
 

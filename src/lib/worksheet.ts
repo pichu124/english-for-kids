@@ -78,7 +78,10 @@ function forWriting(words: Word[], rnd: () => number, n: number, maxLen: number)
  * other cells filled with random letters. Words that do not fit are left out.
  */
 export function wordSearch(words: string[], rnd: () => number, size = 8): { grid: string[][]; placed: SearchPlacement[] } {
-  const list = [...new Set(words.map((w) => w.toUpperCase()).filter((w) => /^[A-Z]{3,}$/.test(w) && w.length <= size))]
+  const all = [...new Set(words.map((w) => w.toUpperCase()).filter((w) => /^[A-Z]{3,}$/.test(w) && w.length <= size))];
+  // a word inside a longer one (CAT in CATERPILLAR) would be found twice: leave the short one out
+  const list = all
+    .filter((w) => !all.some((o) => o !== w && o.includes(w)))
     .sort((a, b) => b.length - a.length)
     .slice(0, 7);
   const grid: string[][] = Array.from({ length: size }, () => Array<string>(size).fill(''));
@@ -89,7 +92,8 @@ export function wordSearch(words: string[], rnd: () => number, size = 8): { grid
       const row = Math.floor(rnd() * (dir === 'down' ? size - word.length + 1 : size));
       const col = Math.floor(rnd() * (dir === 'across' ? size - word.length + 1 : size));
       const cells = [...word].map((_, i) => (dir === 'across' ? [row, col + i] : [row + i, col]));
-      if (cells.every(([r, c], i) => grid[r][c] === '' || grid[r][c] === word[i])) {
+      // crossing another word is fine; lying fully on top of letters already there is not
+      if (cells.every(([r, c], i) => grid[r][c] === '' || grid[r][c] === word[i]) && cells.some(([r, c]) => grid[r][c] === '')) {
         cells.forEach(([r, c], i) => (grid[r][c] = word[i]));
         placed.push({ word, row, col, dir });
         break;
@@ -97,14 +101,23 @@ export function wordSearch(words: string[], rnd: () => number, size = 8): { grid
     }
   }
   const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for (const r of grid) for (let c = 0; c < size; c++) if (!r[c]) r[c] = ABC[Math.floor(rnd() * 26)];
+  const empty: [number, number][] = [];
+  grid.forEach((r, i) => r.forEach((x, j) => !x && empty.push([i, j])));
+  const lines = () => [...grid.map((r) => r.join('')), ...grid[0].map((_, c) => grid.map((r) => r[c]).join(''))];
+  const count = (word: string) => lines().reduce((n, l) => n + (l.split(word).length - 1), 0);
+  // random letters must not spell a listed word a second time: re-roll them if they do
+  for (let k = 0; k < 50; k++) {
+    for (const [r, c] of empty) grid[r][c] = ABC[Math.floor(rnd() * 26)];
+    if (placed.every((p) => count(p.word) === 1)) break;
+  }
   return { grid, placed };
 }
 
 /** Gap-fill rows: the unit's hand-written gaps, or its example sentences when the unit allows it. */
 function gapRows(t: Topic, rnd: () => number): { rows: GapRow[]; bank: string[] } | null {
   if (t.gaps?.length) {
-    const gaps = seededShuffle(t.gaps, rnd).slice(0, 5);
+    // one row per answer: the same word twice on a page is not much of a puzzle
+    const gaps = seededShuffle(t.gaps, rnd).filter((g, i, a) => a.findIndex((x) => x.answer.toLowerCase() === g.answer.toLowerCase()) === i).slice(0, 5);
     const rows = gaps.map((g) => {
       const [before, after] = g.s.split('___');
       return { before, after, answer: g.answer };
@@ -121,7 +134,10 @@ function gapRows(t: Topic, rnd: () => number): { rows: GapRow[]; bank: string[] 
     const m = first.match(new RegExp(`\\b${esc(w.text)}\\b`, 'i'))!;
     return { before: first.slice(0, m.index), after: first.slice(m.index! + m[0].length), answer: m[0] };
   });
-  return { rows, bank: seededShuffle(rows.map((r) => r.answer), rnd) };
+  // two extra words from the unit so the last gap is not given away
+  const answers = rows.map((r) => r.answer.toLowerCase());
+  const extra = seededShuffle(uniqueWords(t.words).filter((w) => isSingle(w) && !answers.includes(w.text.toLowerCase())), rnd).slice(0, 2).map((w) => w.text);
+  return { rows, bank: seededShuffle([...rows.map((r) => r.answer), ...extra], rnd) };
 }
 
 export function buildWorksheet(t: Topic, day = today()): Worksheet {

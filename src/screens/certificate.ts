@@ -3,7 +3,7 @@ import { levelById, topicsOfLevel, type LevelId } from '../content';
 import { h } from '../lib/dom';
 import { levelDone, levelDoneOn } from '../lib/progress';
 import { sfx } from '../lib/sfx';
-import { getState } from '../lib/storage';
+import { getState, today } from '../lib/storage';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
 import { confetti } from './widgets';
@@ -94,12 +94,12 @@ function phonicsCertificate(ctx: Ctx): HTMLElement {
       h('h1', { class: 'cert-title' }, 'Sounds Star'),
       h('p', { class: 'cert-sub' }, 'This certificate is proudly given to'),
       h('p', { class: 'cert-name' }, name),
-      h('p', { class: 'cert-what' }, `for learning all ${phonics.sets.filter((st) => !('tricky' in st)).reduce((n, st) => n + st.sounds.length, 0)} letter sounds of`),
+      h('p', { class: 'cert-what' }, `for learning ${phonics.sets.filter((st) => !('tricky' in st)).reduce((n, st) => n + st.sounds.length, 0)} letter sounds and ${phonics.sets.filter((st) => 'tricky' in st).reduce((n, st) => n + st.sounds.length, 0)} tricky words in`),
       h('p', { class: 'cert-level' }, 'Bix English · Sounds'),
       h('p', { class: 'cert-motto' }, 'You can blend sounds and read your first little books!'),
       h('div', { class: 'cert-icons', 'aria-hidden': 'true', lang: 'en' }, phonics.sets.filter((st) => !('tricky' in st)).flatMap((st) => st.sounds.map((x) => h('span', { class: 'cert-sound' }, x.s)))),
       h('div', { class: 'cert-foot' },
-        h('div', { class: 'cert-sign' }, h('span', { class: 'cert-line' }), 'Date', h('b', {}, nice(new Date().toISOString().slice(0, 10)))),
+        h('div', { class: 'cert-sign' }, h('span', { class: 'cert-line' }), 'Date', h('b', {}, nice(today()))),
         h('div', { class: 'cert-bix' }, bix.el),
         h('div', { class: 'cert-sign' }, h('span', { class: 'cert-line' }), 'Signed (parent / teacher)'),
       ),

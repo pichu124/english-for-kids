@@ -2,8 +2,7 @@ import { Bix } from '../art/bix';
 import data from '../../content/phonics.json';
 import { h, shuffle } from '../lib/dom';
 import { fixEmoji } from '../lib/emoji';
-import { cancelListening } from '../lib/listen';
-import { readScore, sentenceWords, wordHits } from '../lib/readcheck';
+import { readScore, tokenHits, wordHits } from '../lib/readcheck';
 import { sfx } from '../lib/sfx';
 import { dayLog, getState, update } from '../lib/storage';
 import { say } from '../lib/tts';
@@ -61,11 +60,13 @@ function menu(ctx: Ctx): HTMLElement {
     { class: 'phonics' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤'), h('h1', { class: 'world-title' }, 'Sounds'), cert),
     h('div', { class: 'ph-menu' }, h('div', { class: 'ph-bix' }, bix.el), h('div', { class: 'ph-sets' }, cards)),
+    h('p', { class: 'ph-parent-tip', lang: 'vi' }, 'Bố mẹ: đọc ÂM của chữ, không đọc tên chữ (t là “t” rất ngắn, không phải “tê” hay “tờ”). Giọng máy chỉ đọc gần đúng, nên bố mẹ đọc mẫu cho bé nghe thì tốt nhất.'),
   );
 }
 
 /** A letter sound card: tap it to hear the sound. */
-const soundTile = (s: string, cls = '') => h('button', { class: `ph-tile ${cls}`, 'data-sound': s, 'aria-label': s, lang: 'en', onclick: () => void say(SAY[s] ?? s) }, s);
+/** A letter-sound tile; `silent` tiles are answer choices (the tap is the answer, not a sound). */
+const soundTile = (s: string, cls = '', silent = false) => h('button', { class: `ph-tile ${cls}`, 'data-sound': s, 'aria-label': s, lang: 'en', onclick: silent ? null : () => void say(SAY[s] ?? s) }, s);
 
 function lesson(ctx: Ctx, idx: number): HTMLElement {
   const set = SETS[idx];
@@ -104,7 +105,10 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
       const again = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
       const next = nextBtn();
       stage.replaceChildren(h('div', { class: 'ph-row' }, card, h('div', { class: 'ph-side' }, again, next)));
-      const line = `${snd.say}… ${snd.say}… ${snd.word}!`;
+      // a sound met before that sounds the same (c then k, er then ur): say so
+      const earlier = [...taughtUpTo(idx - 1), ...set.sounds.slice(0, set.sounds.indexOf(snd))];
+      const twin = set.tricky ? undefined : earlier.find((x) => x.say === snd.say);
+      const line = `${snd.say}… ${snd.say}… ${snd.word}!${twin ? ` ${snd.s.toUpperCase()} and ${twin.s.toUpperCase()} make the same sound!` : ''}`;
       void say(line);
       for (;;) {
         const t = await tap([again, next]);
@@ -123,9 +127,9 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     const order = shuffle([...set.sounds, ...shuffle(set.sounds)]).slice(0, 5);
     for (const target of order) {
       if (!alive()) return;
-      const others = shuffle(pool.filter((x) => x.s !== target.s)).slice(0, 2);
-      const tiles = shuffle([target, ...others]).map((x) => soundTile(x.s, 'ph-tile-pick'));
-      tiles.forEach((t) => (t.onclick = null));
+      // never two tiles with the same sound (c/k, er/ur): both would be right
+      const others = shuffle(pool.filter((x) => x.s !== target.s && x.say !== target.say)).slice(0, 2);
+      const tiles = shuffle([target, ...others]).map((x) => soundTile(x.s, 'ph-tile-pick', true));
       const again = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
       stage.replaceChildren(h('div', { class: 'ph-find', 'data-answer': target.s }, h('div', { class: 'ph-tiles' }, tiles), again));
       const prompt = `Find… ${target.say}!`;
@@ -163,7 +167,7 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
         for (const [k, p] of w.parts.entries()) {
           if (!alive()) return;
           tiles.forEach((t, j) => t.classList.toggle('is-now', j === k));
-          await say(SAY[p] ?? p, { rate: 0.7 });
+          await say(SAY[p] ?? p); // normal speed: slowed down, a short sound grows an extra "uh"
         }
         tiles.forEach((t) => t.classList.remove('is-now'));
         if (alive()) await say('What word is it?');
@@ -193,11 +197,10 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     step(3);
     for (const w of set.tricky ? [] : shuffle(set.words).slice(0, 3)) {
       if (!alive()) return;
-      const extra = shuffle(pool.filter((x) => !w.parts.includes(x.s)))[0];
+      const extra = shuffle(pool.filter((x) => !w.parts.includes(x.s) && !w.parts.some((p) => SAY[p] === x.say)))[0];
       const choices = shuffle([...w.parts, ...(extra ? [extra.s] : [])]);
       const slots = w.parts.map(() => h('span', { class: 'ph-slot' }));
-      const tiles = choices.map((p) => soundTile(p, 'ph-tile-pick'));
-      tiles.forEach((t) => (t.onclick = null));
+      const tiles = choices.map((p) => soundTile(p, 'ph-tile-pick', true));
       const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen' }, h('span', { class: 'icon-speaker' }));
       stage.replaceChildren(h('div', { class: 'ph-build', 'data-word': w.w, 'data-parts': w.parts.join(',') }, h('div', { class: 'ph-build-top' }, h('div', { class: 'ph-pic is-big', 'aria-hidden': 'true' }, fixEmoji(w.emoji)), hear), h('div', { class: 'ph-slots' }, slots), h('div', { class: 'ph-tiles' }, tiles)));
       void say(`Make the word… ${w.w}!`);
@@ -238,8 +241,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
       const line = h('p', { class: 'ph-line' }, words);
       const area = h('div', { class: 'ph-read' }, h('div', { class: 'ph-read-pic', 'aria-hidden': 'true' }, fixEmoji(page.emoji)), line, h('div', { class: 'ph-read-btns' }, toMe, next));
       stage.replaceChildren(h('div', { class: 'ph-book' }, h('h2', { class: 'ph-book-title', lang: 'en' }, set.reader.title), area));
-      const keys = sentenceWords(page.text);
-      const mark = (alts: string[]) => wordHits(page.text, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', hit && !!keys[j]));
+      const tokens = page.text.split(/\s+/);
+      const mark = (alts: string[]) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit));
       // the child's turn first; "Read to me" is always there
       const turn = micTurn(ctx, area, { expect: page.text, check: (alts) => readScore(wordHits(page.text, alts)) >= 0.6, onHeard: mark });
       void turn.then((r) => {
@@ -257,6 +260,7 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
         if (!alive()) return;
         if (t === toMe) {
           sfx.tap();
+          turn.pause(); // Bix reads: don't let the mic hear Bix
           const starts: number[] = [];
           let at = 0;
           for (const w of page.text.split(/\s+/)) {
@@ -272,8 +276,7 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
         }
         break;
       }
-      cancelListening(); // the child moved on while the mic was open
-      area.querySelector('.mic-turn')?.remove();
+      turn.cancel(); // the child moved on while the mic was open
       sfx.tap();
     }
 
@@ -294,7 +297,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     const on = nextSet ? h('button', { class: 'btn btn-good', 'aria-label': 'Next sounds', onclick: () => (sfx.tap(), ctx.go('phonics', { set: nextSet.id })) }, `▶ ${nextSet.title}`) : null;
     // started from Today: one big Next back to the day's path
     stage.replaceChildren(h('div', { class: 'ph-done pop' }, h('div', { class: 'ph-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, todayRunning() ? todayNextButton(ctx) : [on, again])));
-    await say(readByChild ? `You read the book by yourself! ${pick(PRAISE)}` : `You know the sounds ${set.sounds.map((x) => x.s).join(', ')}! ${pick(PRAISE)}`);
+    // never list the letters here: a voice would read their NAMES, not their sounds
+    await say(readByChild ? `You read the book by yourself! ${pick(PRAISE)}` : `${set.tricky ? 'You know these tricky words!' : 'You know these sounds!'} ${pick(PRAISE)}`);
   };
   setTimeout(() => void run(), 300);
   return el;

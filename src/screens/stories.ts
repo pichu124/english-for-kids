@@ -7,8 +7,8 @@ import { choicesFor, hintAfter, recordTap } from '../lib/adapt';
 import { sfx } from '../lib/sfx';
 import { dayLog, getState, update } from '../lib/storage';
 import { say, stopSpeaking } from '../lib/tts';
-import { cancelListening } from '../lib/listen';
-import { readScore, sentenceWords, wordHits } from '../lib/readcheck';
+import { readScore, tokenHits, wordHits } from '../lib/readcheck';
+import type { MicTurn } from './mic';
 import { micTurn } from './mic';
 import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
@@ -101,6 +101,7 @@ export function storyScreen(ctx: Ctx): HTMLElement {
     stage.classList.remove('is-reading');
   };
 
+  let turn: MicTurn | null = null;
   const showPage = () => {
     const p = story.pages[page];
     [...dots.children].forEach((d, i) => d.classList.toggle('on', i <= page));
@@ -118,7 +119,7 @@ export function storyScreen(ctx: Ctx): HTMLElement {
       return b;
     });
     const bix = p.bix ? new Bix({ size: 'sm', bubble: false }).setMood(page === story.pages.length - 1 ? 'happy' : 'hello') : null;
-    const again = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Read again', onclick: () => (sfx.tap(), void readPage(words, p.text)) }, h('span', { class: 'icon-speaker' }));
+    const again = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Read again', onclick: () => (sfx.tap(), turn?.pause(), void readPage(words, p.text)) }, h('span', { class: 'icon-speaker' }));
     const prev = h('button', { class: 'btn btn-round story-nav', 'aria-label': 'Back', disabled: page === 0, onclick: () => (sfx.tap(), page--, showPage()) }, '◀');
     const next = h('button', { class: 'btn btn-round btn-good story-nav story-next', 'aria-label': 'Next', onclick: () => (sfx.tap(), page++, page < story.pages.length ? showPage() : void quiz()) }, '▶');
     // Reading aloud by themselves (readers from Starters up): the words they say turn green.
@@ -130,13 +131,14 @@ export function storyScreen(ctx: Ctx): HTMLElement {
       stopSpeaking();
       mine.remove();
       const here = page;
-      const keys = sentenceWords(p.text);
-      const r = await micTurn(ctx, controls, {
+      const tokens = words.map((w) => w.textContent ?? '');
+      turn = micTurn(ctx, controls, {
         expect: p.text,
         check: (alts) => readScore(wordHits(p.text, alts)) >= 0.6,
-        onHeard: (alts) => wordHits(p.text, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', hit && !!keys[j])),
+        onHeard: (alts) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit)),
       });
-      if (!ctx.alive() || page !== here) return;
+      const r = await turn;
+      if (!ctx.alive() || page !== here || r.result === 'skip') return;
       if (r.result === 'ok' || r.result === 'parent') {
         words.forEach((w) => w.classList.add('is-read'));
         update((s) => {
@@ -152,7 +154,8 @@ export function storyScreen(ctx: Ctx): HTMLElement {
       h('div', { class: 'story-page pop' }, h('div', { class: 'story-scene' }, bix ? h('div', { class: 'story-bix' }, bix.el) : null, h('span', { class: 'story-emoji', 'aria-hidden': 'true' }, p.scene)), h('p', { class: 'story-text', lang: 'en' }, words)),
       controls,
     );
-    cancelListening(); // a page turn ends any reading turn on the previous page
+    turn?.cancel(); // a page turn ends any reading turn on the previous page
+    turn = null;
     void readPage(words, p.text);
   };
 
