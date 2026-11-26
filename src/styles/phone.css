@@ -245,3 +245,10 @@
   .gate-q { font-size: 34px; }
   .gate-hint { font-size: 15px; margin: 40px 0 0; }
 }
+
+/* Games menu with 5+ games (Play Together, Riddles): two rows of three instead of one squeezed row */
+@media (orientation: landscape) and (max-height: 500px) {
+  .games-list:has(.game-pick:nth-child(5)) { flex-wrap: wrap; max-width: calc(3 * min(17vw, 34vh) + 20px); gap: 8px 10px; }
+  .games-list:has(.game-pick:nth-child(5)) .game-pick { width: min(17vw, 34vh); flex: 0 0 auto; font-size: 15px; line-height: 1.1; gap: 2px; }
+  .games-list:has(.game-pick:nth-child(5)) .game-pick-icon { font-size: min(8vw, 15vh); }
+}

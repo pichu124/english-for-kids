@@ -11,6 +11,7 @@ import './styles/extras.css';
 import './styles/learn.css';
 import './styles/phone.css';
 import './styles/printables.css';
+import './styles/duo.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';

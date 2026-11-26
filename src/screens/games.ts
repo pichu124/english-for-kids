@@ -13,6 +13,7 @@ import { actOut, pick, PRAISE, wordPicture } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
 import { todayRunning } from '../lib/today';
 import { todayNextButton } from './today';
+import { duoScreen } from './duo';
 
 /**
  * Mini-games that replay words the child already learned:
@@ -20,6 +21,7 @@ import { todayNextButton } from './today';
  * Colour (Cambridge-style "listen and colour": colour the dog blue)
  * Who Is Who? ("listen and draw lines": find Tom, he's got a blue T-shirt)
  * and Riddles (Flyers: hear a definition, touch the picture).
+ * Play Together (duo.ts) is for two players on one device: the child and Mum, Dad or a friend.
  * No time pressure, no "wrong" — they give practice, not blocks.
  */
 export function gamesScreen(ctx: Ctx): HTMLElement {
@@ -33,6 +35,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
   if (game === 'colour') return colour(ctx);
   if (game === 'who') return whoIsWho(ctx);
   if (game === 'riddle') return riddles(ctx);
+  if (game === 'duo') return duoScreen(ctx);
 
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const card = (id: string, icon: string, label: string) =>
@@ -47,7 +50,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'games' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Games')),
-    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'), riddlePool(currentLevel().id).length >= 4 ? card('riddle', '🤔', 'Riddles') : null)),
+    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'), riddlePool(currentLevel().id).length >= 4 ? card('riddle', '🤔', 'Riddles') : null, card('duo', '🧒👩', 'Play Together'))),
   );
 }
 
