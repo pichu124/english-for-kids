@@ -99,11 +99,11 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');
     await p.locator('.island-test').click({ force: true }); await p.waitForSelector('.test');
     const seenT = new Set();
-    for (let i = 0; i < 600 && seenT.size < 2 && !(await p.locator('.test-result').count()); i++) {
+    for (let i = 0; i < 600 && seenT.size < 3 && !(await p.locator('.test-result').count()); i++) {
       const q = p.locator('.test-q[data-answer]');
       if (await q.count()) {
         const ans = await q.getAttribute('data-answer');
-        const kind = (await p.locator('.test-q.write').count()) ? 'test-write' : (await p.locator('.test-q.text-read').count()) ? 'test-text' : '';
+        const kind = (await p.locator('.test-q.write').count()) ? 'test-write' : (await p.locator('.test-q.text-read').count()) ? 'test-text' : (await p.locator('.test-q.test-kids').count()) ? 'test-who' : '';
         if (kind && !seenT.has(kind)) { seenT.add(kind); await check(kind); }
         const n = await p.locator('.test-dots span.now').count();
         if (kind === 'test-write') { for (const c of ans) await p.locator(`.wr-key[data-key="${c}"]`).click({ force: true }); }
@@ -112,7 +112,7 @@ const STATE = { childName: 'Shin', settings: { dailyLimitMin: 0, rate: .8 }, top
       }
       await p.waitForTimeout(100);
     }
-    if (seenT.size < 2) report.push(vn + ' Movers test screens seen: ' + [...seenT].join(',') + ' (missing some)');
+    if (seenT.size < 3) report.push(vn + ' Movers test screens seen: ' + [...seenT].join(',') + ' (missing some)');
     await p.evaluate(() => { const st = JSON.parse(localStorage.getItem('efk.v1')); st.settings.level = 'L2'; localStorage.setItem('efk.v1', JSON.stringify(st)); window.__manualReading = false; window.__manualWrite = false; window.__manualText = false; });
     await check('reward-part2');
     await p.goto(base); await p.locator('.btn-play').click({ force: true }); await p.waitForSelector('.home');

@@ -42,7 +42,7 @@ describe('reading & spelling', () => {
       expect(t.steps.includes('spell'), t.id).toBe(false);
     }
     expect(topicsOfLevel('L3').filter((t) => t.text).length).toBeGreaterThanOrEqual(4);
-    expect(topicsOfLevel('L3').filter((t) => t.steps.includes('gap')).length).toBeGreaterThanOrEqual(18);
+    expect(topicsOfLevel('L3').filter((t) => t.steps.includes('gap')).length).toBeGreaterThanOrEqual(19);
   });
 
   it('spellable: single words of 2–6 letters', () => {

@@ -1,0 +1,106 @@
+{
+  "id": "l3-move",
+  "level": "L3",
+  "topic": "move",
+  "order": 33,
+  "title": "Let's Move!",
+  "titleVi": "Vận động",
+  "icon": "🤸",
+  "color": "#ffadad",
+  "intro": "Let's move our bodies!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Sports block",
+    "style": "rainbow",
+    "color": "#ffadad"
+  },
+  "words": [
+    "climb",
+    "hop",
+    "skip",
+    "kick",
+    "catch",
+    "throw"
+  ],
+  "parentTip": {
+    "vi": "Ra sân chơi cùng con, ra lệnh bằng tiếng Anh: \"Hop on one leg!\", \"Throw the ball!\", \"Catch!\" rồi đổi vai cho con ra lệnh.",
+    "say": "Can you hop on one leg?"
+  },
+  "chat": {
+    "ask": "Can you hop on one leg?",
+    "yes": "Super! Hop, hop, hop!",
+    "no": "That's okay! Let's try together!"
+  },
+  "gaps": [
+    {
+      "s": "I ___ the ball with my foot.",
+      "answer": "kick",
+      "options": [
+        "catch",
+        "throw"
+      ]
+    },
+    {
+      "s": "Put out your hands and ___ the ball!",
+      "answer": "catch",
+      "options": [
+        "kick",
+        "hop"
+      ]
+    },
+    {
+      "s": "The monkey can ___ the tree.",
+      "answer": "climb",
+      "options": [
+        "kick",
+        "catch"
+      ]
+    },
+    {
+      "s": "Stand on one leg and ___!",
+      "answer": "hop",
+      "options": [
+        "throw",
+        "catch"
+      ]
+    }
+  ],
+  "text": {
+    "title": "Sports Day",
+    "lines": [
+      "It was Sports Day at school yesterday.",
+      "Ben won the hopping race. He hopped on one leg!",
+      "Lucy threw the ball very far, and Sam caught it.",
+      "Then everyone skipped with long ropes. It was great fun!"
+    ],
+    "questions": [
+      {
+        "q": "When was Sports Day?",
+        "options": [
+          "today",
+          "yesterday",
+          "on Sunday"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Who won the hopping race?",
+        "options": [
+          "Lucy",
+          "Sam",
+          "Ben"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "Who caught the ball?",
+        "options": [
+          "Sam",
+          "Ben",
+          "Lucy"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+}

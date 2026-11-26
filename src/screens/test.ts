@@ -1,6 +1,7 @@
 import { Bix } from '../art/bix';
+import { kidSVG } from '../art/kids';
 import type { Word } from '../content';
-import { h } from '../lib/dom';
+import { fromHTML, h } from '../lib/dom';
 import { spellOut } from '../lib/letters';
 import { buildTest, passed, saveResult, shields, TEST_NAME, TEST_PARTS, type Part, type Question, type Score } from '../lib/mocktest';
 import { currentLevel } from '../lib/level';
@@ -69,6 +70,12 @@ export function testScreen(ctx: Ctx): HTMLElement {
       stage.replaceChildren(h('div', { class: 'test-q', 'data-answer': q.target.text }, h('div', { class: 'play-cards' }, cards), hear(() => q.prompt)));
       void bix.talk(q.prompt, 'idle', '👂');
       return (await choose(cards)).dataset.word === q.target.text;
+    }
+    if (q.kind === 'find-kid') {
+      const cards = q.kids.map((k) => h('button', { class: 'kid pop', 'data-word': k.name, 'aria-label': `${k.shirt.name} T-shirt, ${k.doing.says}` }, fromHTML(kidSVG(k))));
+      stage.replaceChildren(h('div', { class: 'test-q test-kids', 'data-answer': q.target.name }, h('div', { class: 'kid-row' }, cards), hear(() => q.prompt)));
+      void bix.talk(q.prompt, 'idle', '👂');
+      return (await choose(cards)).dataset.word === q.target.name;
     }
     if (q.kind === 'pick-spelled') {
       const spelled = spellOut(q.target.text);

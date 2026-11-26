@@ -142,6 +142,11 @@ await page.locator('.btn-play').click({ force: true });
 await page.waitForSelector('.listen .pic');
 if (!(await page.locator('.listen .pic').textContent()).includes('30')) fail('Numbers to 100 starts with 30');
 step('position drawings (above, inside…) and numbers to 100');
+await page.goto(`${base}/?unit=l3-move`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.listen .pic-drawing svg[aria-label="climb"]');
+if (shots) await page.screenshot({ path: `${shots}/movers-move.png` });
+step("Let's Move!: a child climbing, hopping, kicking… drawn for each verb");
 
 // Drawn pictures for words without an old emoji (body parts, household things)
 await page.goto(`${base}/?unit=l3-body`);

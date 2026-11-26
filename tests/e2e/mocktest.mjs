@@ -26,11 +26,18 @@ await page.waitForSelector('.test');
 const seen = { listening: 0, spelling: 0, reading: 0 };
 let asked = 0;
 let wrongOnPurpose = 0;
+let kidQs = 0;
 const spokenAll = [];
 for (let i = 0; i < 600 && !(await page.locator('.test-result').count()); i++) {
   const q = page.locator('.test-q[data-answer]');
   if (await q.count()) {
     const answer = await q.getAttribute('data-answer');
+    if (await page.locator('.test-q.test-kids').count()) {
+      if (!kidQs && shots) await page.screenshot({ path: `${shots}/test-who.png` });
+      if ((await q.locator('.kid').count()) !== 5) fail('who is who: 5 children');
+      if (!/^find \w+\. (he|she)'s got a \w+ t-shirt/i.test(await page.evaluate(() => window.__spoken.at(-1) || ''))) fail('who is who: Bix describes the child');
+      kidQs++;
+    }
     const part = ((await page.locator('.test-part').textContent()) || '').includes('Listening') ? 'listening' : ((await page.locator('.test-part').textContent()) || '').includes('Spelling') ? 'spelling' : 'reading';
     if (part === 'spelling') {
       const last = await page.evaluate(() => window.__spoken.at(-1) || '');
@@ -58,8 +65,9 @@ await page.waitForSelector('.test-result');
 if (asked !== 15) fail(`15 questions expected, answered ${asked}`);
 if (seen.listening !== 5 || seen.spelling !== 3 || seen.reading !== 7) fail('parts: ' + JSON.stringify(seen));
 if (!spokenAll.length) fail('spelling questions are spelled out by letter names');
+if (kidQs !== 2) fail(`2 "who is who" listening questions, got ${kidQs}`);
 if ((await page.evaluate(() => window.__spoken.filter((t) => /wrong/i.test(t)).length))) fail('never say wrong');
-step(`15 questions: listening 5, spelling 3 (spelled "${spokenAll[0]}"), reading 7`);
+step(`15 questions: listening 5 (2 × who is who), spelling 3 (spelled "${spokenAll[0]}"), reading 7`);
 
 const s = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')).tests);
 const r = s.at(-1).score;

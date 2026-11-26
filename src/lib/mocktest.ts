@@ -1,9 +1,10 @@
 /**
  * "Starters practice test": 15 questions in the three parts of the real exam —
- * Listening (pictures), Spelling (letters said one by one → the written word),
+ * Listening (pictures + "who is who": find the child in the picture), Spelling (letters said one by one → the written word),
  * Reading (yes/no sentences, picture → word). First answer counts, no hints.
  */
 import { buildable, firstSentence, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
+import { describeKid, makeKids, type Kid } from '../art/kids';
 import { shuffle } from './dom';
 import { isLearned } from './progress';
 import { getState, today, update, wordKey } from './storage';
@@ -11,6 +12,7 @@ import { getState, today, update, wordKey } from './storage';
 export type Part = 'listening' | 'spelling' | 'writing' | 'reading';
 export type Question =
   | { part: 'listening'; kind: 'pick-picture'; target: Word; options: Word[]; prompt: string }
+  | { part: 'listening'; kind: 'find-kid'; kids: Kid[]; target: Kid; prompt: string }
   | { part: 'spelling'; kind: 'pick-spelled'; target: Word; options: Word[] }
   | { part: 'writing'; kind: 'type-word'; target: Word }
   | { part: 'reading'; kind: 'yes-no'; shown: Word; sentence: string; truth: boolean }
@@ -66,9 +68,12 @@ export function buildTest(level = 'L2'): Question[] {
     return out;
   };
   const qs: Question[] = [];
-  for (const it of take(() => true, 5)) {
+  for (const it of take(() => true, 3)) {
     qs.push({ part: 'listening', kind: 'pick-picture', target: it.word, options: shuffle([it.word, ...distractors(it, all, 3)]), prompt: it.word.play ?? `Where is the ${it.word.text}?` });
   }
+  // Part 1 of the real test: one picture of children, find who is who from what you hear.
+  const kids = makeKids();
+  for (const k of shuffle(kids).slice(0, 2)) qs.push({ part: 'listening', kind: 'find-kid', kids, target: k, prompt: describeKid(k) });
   const movers = level === 'L3';
   if (movers) {
     for (const it of take((x) => writable(x.word) && x.word.text.length <= 7, 3)) qs.push({ part: 'writing', kind: 'type-word', target: it.word });

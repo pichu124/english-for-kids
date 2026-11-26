@@ -104,7 +104,7 @@ Nội dung dùng **định dạng v2**. Kế hoạch đầy đủ và tiến đ�
             "questions": [{ "q": "Who was ill?", "options": ["Tom", "the doctor"], "answer": 0 }] }
   ```
   `answer` là số thứ tự đáp án đúng (bắt đầu từ 0). Hình đồng hồ: `"image": { "clock": "7:00" }`.
-  Hình vẽ khi không có emoji: `"image": { "body": "knee" }` (bạn nhỏ có khoanh bộ phận) hoặc `"image": { "icon": "towel" }` (cả vị trí: above, below, near, opposite, inside, outside), danh sách trong `src/art/drawings.ts`.
+  Hình vẽ khi không có emoji: `"image": { "body": "knee" }` (bạn nhỏ có khoanh bộ phận) hoặc `"image": { "icon": "towel" }` (cả vị trí: above, below, near, opposite, inside, outside; và động tác: climb, hop, skip, kick, catch, throw), danh sách trong `src/art/drawings.ts`.
   Hình cây gia đình: `"image": { "family": "aunt" }` (aunt, uncle, cousin, parents, grandparents).
   Điền từ (🧩): thêm `"gap": true` vào bài, chỉ khi mỗi câu mẫu chỉ hợp với đúng một từ của bài. Hoặc soạn tay
   `"gaps": [{ "s": "Mice love ___!", "answer": "cheese", "options": ["soup", "pasta"] }]` (đáp án là chữ của một từ trong bài).

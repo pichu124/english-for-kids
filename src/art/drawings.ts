@@ -7,7 +7,7 @@ const INK = '#1d2440';
 const S = `stroke="${INK}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
 
 export const BODY_PARTS = ['head', 'neck', 'shoulder', 'stomach', 'knee', 'teeth'] as const;
-export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock', 'above', 'below', 'near', 'opposite', 'inside', 'outside'] as const;
+export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock', 'above', 'below', 'near', 'opposite', 'inside', 'outside', 'climb', 'hop', 'skip', 'kick', 'catch', 'throw'] as const;
 
 const child = `
   <rect x="38" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/><rect x="52" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/>
@@ -57,7 +57,32 @@ const tree = (x: number, y: number, k = 1) => `<g transform="translate(${x} ${y}
 const bird = (x: number, y: number) => `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="0" rx="10" ry="7" fill="#4cc9f0" ${S}/><path d="M-2 -2 L-12 -12 L4 -5 Z" fill="#90e0ef" ${S}/><path d="M9 -1 L15 1 L9 3 Z" fill="#ffd166" stroke="${INK}" stroke-width="1.5" stroke-linejoin="round"/><circle cx="4" cy="-2" r="1.3" fill="${INK}"/></g>`;
 const ground = `<path d="M4 90 H96" stroke="#8ed16f" stroke-width="5" stroke-linecap="round"/>`;
 
+// A child in different poses (Movers action verbs). Limbs are [x,y] points from the joint out.
+type Pt = [number, number];
+const limb = (pts: Pt[], skin = '#f6c89f') => {
+  const d = 'M' + pts.map((p) => p.join(' ')).join(' L');
+  return `<path d="${d}" stroke="${INK}" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" stroke="${skin}" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+};
+const kidPose = (o: { armL: Pt[]; armR: Pt[]; legL: Pt[]; legR: Pt[]; dx?: number; dy?: number }) => {
+  const legs = (pts: Pt[]) => limb(pts, '#577590');
+  return `<g transform="translate(${o.dx ?? 0} ${o.dy ?? 0})">
+    ${legs(o.legL)}${legs(o.legR)}${limb(o.armL)}${limb(o.armR)}
+    <path d="M40 40 Q40 35 46 35 H54 Q60 35 60 40 V64 H40 Z" fill="#ef476f" ${S}/>
+    <circle cx="50" cy="24" r="10" fill="#f6c89f" ${S}/>
+    <path d="M40 23 Q40 12 50 12 Q60 12 60 23 Q55 17 50 18 Q45 17 40 23 Z" fill="#8d5a2b" stroke="${INK}" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="46.5" cy="24" r="1.4" fill="${INK}"/><circle cx="53.5" cy="24" r="1.4" fill="${INK}"/><path d="M47 28.5 Q50 31 53 28.5" stroke="${INK}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  </g>`;
+};
+const ball = (x: number, y: number, r = 6) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#ffd166" ${S}/><path d="M${x - r} ${y} Q${x} ${y - r / 2} ${x + r} ${y}" stroke="${INK}" stroke-width="1.5" fill="none"/>`;
+const whoosh = (pts: string) => `<path d="${pts}" stroke="#4cc9f0" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+
 const ICON_SVG: Record<string, string> = {
+  climb: `<path d="M30 4 V98 M70 4 V98" stroke="#8d5a2b" stroke-width="5" stroke-linecap="round"/>${[14, 30, 46, 62, 78, 94].map((y) => `<path d="M30 ${y} H70" stroke="#bc8a5f" stroke-width="4" stroke-linecap="round"/>`).join('')}${kidPose({ armL: [[42, 40], [36, 28], [34, 14]], armR: [[58, 40], [64, 34], [66, 30]], legL: [[45, 63], [38, 72], [36, 78]], legR: [[55, 63], [60, 78], [62, 94]], dy: 0 })}`,
+  hop: `${ground}${kidPose({ armL: [[42, 40], [32, 46], [26, 40]], armR: [[58, 40], [68, 46], [74, 40]], legL: [[46, 63], [46, 76], [46, 84]], legR: [[54, 63], [62, 72], [68, 66]], dy: -2 })}${whoosh('M38 92 Q46 86 54 92')}`,
+  skip: `<path d="M27 58 Q50 116 73 58" stroke="#9b5de5" stroke-width="3" fill="none"/>${kidPose({ armL: [[42, 40], [34, 50], [28, 58]], armR: [[58, 40], [66, 50], [72, 58]], legL: [[46, 63], [42, 74], [45, 84]], legR: [[54, 63], [58, 74], [55, 84]], dy: -2 })}${whoosh('M34 96 L40 92 M66 96 L60 92')}`,
+  kick: `${ground}${kidPose({ armL: [[42, 40], [32, 50], [28, 58]], armR: [[58, 40], [66, 32], [70, 24]], legL: [[46, 63], [42, 76], [40, 88]], legR: [[54, 63], [64, 70], [74, 72]], dx: -10 })}${ball(76, 74, 7)}${whoosh('M86 66 L94 62 M88 74 L96 74 M86 82 L94 86')}`,
+  catch: `${ground}${kidPose({ armL: [[42, 40], [56, 50], [76, 44]], armR: [[58, 40], [70, 40], [78, 34]], legL: [[46, 63], [43, 76], [42, 88]], legR: [[54, 63], [57, 76], [58, 88]], dx: -10 })}${ball(80, 33)}${whoosh('M89 27 L97 23 M89 37 L97 39')}`,
+  throw: `${ground}${kidPose({ armL: [[42, 40], [34, 48], [30, 56]], armR: [[58, 40], [64, 28], [68, 18]], legL: [[46, 63], [40, 76], [36, 88]], legR: [[54, 63], [60, 76], [64, 88]], dx: -10 })}${ball(84, 10)}${whoosh('M64 12 Q70 4 76 8')}`,
   above: `${ground}${house(50, 60, 1.1)}${bird(50, 16)}<path d="M50 28 V34" stroke="#ef476f" stroke-width="3" stroke-dasharray="3 3"/>`,
   below: `${ground}<rect x="14" y="40" width="72" height="8" rx="2" fill="#bc8a5f" ${S}/><path d="M20 48 V90 M80 48 V90" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>${cat(46, 76)}`,
   near: `${ground}${tree(36, 58, 1.3)}${cat(66, 76)}`,

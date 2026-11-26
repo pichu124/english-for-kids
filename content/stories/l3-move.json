@@ -1,0 +1,41 @@
+{
+  "id": "story-l3-move",
+  "unit": "l3-move",
+  "title": "Bix at the Park",
+  "icon": "🌳",
+  "pages": [
+    {
+      "text": "Bix and the monkey are at the park. Let's play!",
+      "scene": "🌳🐒",
+      "bix": true
+    },
+    {
+      "text": "The monkey can climb the tree. Up, up, up!",
+      "scene": "🐒🌳"
+    },
+    {
+      "text": "Bix throws the ball to the monkey.",
+      "scene": "⚽🐒",
+      "bix": true
+    },
+    {
+      "text": "The monkey catches it! Well done, monkey!",
+      "scene": "🐒⚽"
+    },
+    {
+      "text": "Now they hop home on one leg. Hop, hop, hop!",
+      "scene": "🏠😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What can the monkey do in the tree?",
+      "answer": "climb"
+    },
+    {
+      "ask": "What does the monkey do with the ball?",
+      "answer": "catch"
+    }
+  ]
+}
