@@ -52,7 +52,8 @@
         if (mode === 'denied') { fire('onerror', { error: 'not-allowed' }); fire('onend'); return; }
         fire('onaudiostart');
         if (mode === 'silent') { fire('onerror', { error: 'no-speech' }); fire('onend'); return; }
-        const label = document.querySelector('.speak .word-card')?.getAttribute('aria-label') || document.querySelector('.speak .word-label')?.textContent || '';
+        // newer speaking activities put the expected words on the mic button (data-say)
+        const label = window.__say ?? (document.querySelector('[data-say]')?.getAttribute('data-say') || document.querySelector('.speak .word-card')?.getAttribute('aria-label') || document.querySelector('.speak .word-label')?.textContent || '');
         const said = mode === 'match' ? `${label}` : 'zebra on a skateboard';
         fire('onspeechstart');
         const alt = [{ transcript: said }, { transcript: said + 's' }];

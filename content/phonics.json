@@ -1,0 +1,668 @@
+{
+  "tricky": [
+    "the",
+    "a",
+    "I",
+    "is",
+    "has",
+    "on",
+    "in",
+    "up",
+    "and"
+  ],
+  "sets": [
+    {
+      "id": "p1",
+      "title": "Sounds 1",
+      "color": "#ffd6a5",
+      "sounds": [
+        {
+          "s": "s",
+          "say": "sss",
+          "word": "sun",
+          "emoji": "☀️"
+        },
+        {
+          "s": "a",
+          "say": "a",
+          "word": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "s": "t",
+          "say": "t",
+          "word": "tiger",
+          "emoji": "🐯"
+        },
+        {
+          "s": "p",
+          "say": "p",
+          "word": "pig",
+          "emoji": "🐷"
+        },
+        {
+          "s": "i",
+          "say": "i",
+          "word": "insect",
+          "emoji": "🐞"
+        },
+        {
+          "s": "n",
+          "say": "nnn",
+          "word": "nest",
+          "emoji": "🐦"
+        }
+      ],
+      "words": [
+        {
+          "w": "ant",
+          "parts": [
+            "a",
+            "n",
+            "t"
+          ],
+          "emoji": "🐜"
+        },
+        {
+          "w": "pin",
+          "parts": [
+            "p",
+            "i",
+            "n"
+          ],
+          "emoji": "📌"
+        },
+        {
+          "w": "tap",
+          "parts": [
+            "t",
+            "a",
+            "p"
+          ],
+          "emoji": "🚰"
+        },
+        {
+          "w": "pan",
+          "parts": [
+            "p",
+            "a",
+            "n"
+          ],
+          "emoji": "🍳"
+        },
+        {
+          "w": "sit",
+          "parts": [
+            "s",
+            "i",
+            "t"
+          ],
+          "emoji": "🧒"
+        },
+        {
+          "w": "tin",
+          "parts": [
+            "t",
+            "i",
+            "n"
+          ],
+          "emoji": "🥫"
+        }
+      ],
+      "reader": {
+        "title": "An Ant",
+        "pages": [
+          {
+            "text": "an ant",
+            "emoji": "🐜"
+          },
+          {
+            "text": "a pin",
+            "emoji": "📌"
+          },
+          {
+            "text": "tap, tap, tap",
+            "emoji": "🚰"
+          },
+          {
+            "text": "an ant in a pan",
+            "emoji": "🍳"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "title": "Sounds 2",
+      "color": "#caffbf",
+      "sounds": [
+        {
+          "s": "c",
+          "say": "k",
+          "word": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "s": "k",
+          "say": "k",
+          "word": "kite",
+          "emoji": "🪁"
+        },
+        {
+          "s": "e",
+          "say": "e",
+          "word": "egg",
+          "emoji": "🥚"
+        },
+        {
+          "s": "h",
+          "say": "h",
+          "word": "hat",
+          "emoji": "🎩"
+        },
+        {
+          "s": "r",
+          "say": "rrr",
+          "word": "rabbit",
+          "emoji": "🐰"
+        },
+        {
+          "s": "m",
+          "say": "mmm",
+          "word": "moon",
+          "emoji": "🌙"
+        },
+        {
+          "s": "d",
+          "say": "d",
+          "word": "duck",
+          "emoji": "🦆"
+        }
+      ],
+      "words": [
+        {
+          "w": "cat",
+          "parts": [
+            "c",
+            "a",
+            "t"
+          ],
+          "emoji": "🐱"
+        },
+        {
+          "w": "hat",
+          "parts": [
+            "h",
+            "a",
+            "t"
+          ],
+          "emoji": "🎩"
+        },
+        {
+          "w": "map",
+          "parts": [
+            "m",
+            "a",
+            "p"
+          ],
+          "emoji": "🗺️"
+        },
+        {
+          "w": "hen",
+          "parts": [
+            "h",
+            "e",
+            "n"
+          ],
+          "emoji": "🐔"
+        },
+        {
+          "w": "pen",
+          "parts": [
+            "p",
+            "e",
+            "n"
+          ],
+          "emoji": "🖊️"
+        },
+        {
+          "w": "ten",
+          "parts": [
+            "t",
+            "e",
+            "n"
+          ],
+          "emoji": "🔟"
+        },
+        {
+          "w": "red",
+          "parts": [
+            "r",
+            "e",
+            "d"
+          ],
+          "emoji": "🔴"
+        },
+        {
+          "w": "cap",
+          "parts": [
+            "c",
+            "a",
+            "p"
+          ],
+          "emoji": "🧢"
+        }
+      ],
+      "reader": {
+        "title": "The Red Hat",
+        "pages": [
+          {
+            "text": "a cat",
+            "emoji": "🐱"
+          },
+          {
+            "text": "a red hat",
+            "emoji": "🎩"
+          },
+          {
+            "text": "a hen and a pen",
+            "emoji": "🐔"
+          },
+          {
+            "text": "the cat has the red hat",
+            "emoji": "🐱🎩"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "title": "Sounds 3",
+      "color": "#bde0fe",
+      "sounds": [
+        {
+          "s": "g",
+          "say": "g",
+          "word": "goat",
+          "emoji": "🐐"
+        },
+        {
+          "s": "o",
+          "say": "o",
+          "word": "octopus",
+          "emoji": "🐙"
+        },
+        {
+          "s": "u",
+          "say": "u",
+          "word": "umbrella",
+          "emoji": "☂️"
+        },
+        {
+          "s": "l",
+          "say": "lll",
+          "word": "lion",
+          "emoji": "🦁"
+        },
+        {
+          "s": "f",
+          "say": "fff",
+          "word": "fish",
+          "emoji": "🐟"
+        },
+        {
+          "s": "b",
+          "say": "b",
+          "word": "ball",
+          "emoji": "⚽"
+        }
+      ],
+      "words": [
+        {
+          "w": "dog",
+          "parts": [
+            "d",
+            "o",
+            "g"
+          ],
+          "emoji": "🐶"
+        },
+        {
+          "w": "bus",
+          "parts": [
+            "b",
+            "u",
+            "s"
+          ],
+          "emoji": "🚌"
+        },
+        {
+          "w": "sun",
+          "parts": [
+            "s",
+            "u",
+            "n"
+          ],
+          "emoji": "☀️"
+        },
+        {
+          "w": "bug",
+          "parts": [
+            "b",
+            "u",
+            "g"
+          ],
+          "emoji": "🐛"
+        },
+        {
+          "w": "pig",
+          "parts": [
+            "p",
+            "i",
+            "g"
+          ],
+          "emoji": "🐷"
+        },
+        {
+          "w": "bed",
+          "parts": [
+            "b",
+            "e",
+            "d"
+          ],
+          "emoji": "🛏️"
+        },
+        {
+          "w": "bag",
+          "parts": [
+            "b",
+            "a",
+            "g"
+          ],
+          "emoji": "👜"
+        },
+        {
+          "w": "hug",
+          "parts": [
+            "h",
+            "u",
+            "g"
+          ],
+          "emoji": "🤗"
+        }
+      ],
+      "reader": {
+        "title": "The Big Bus",
+        "pages": [
+          {
+            "text": "a big dog",
+            "emoji": "🐶"
+          },
+          {
+            "text": "the bus is red",
+            "emoji": "🚌"
+          },
+          {
+            "text": "a bug in a bag",
+            "emoji": "🐛"
+          },
+          {
+            "text": "the pig is in bed",
+            "emoji": "🐷🛏️"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "title": "Sounds 4",
+      "color": "#ffc8dd",
+      "sounds": [
+        {
+          "s": "j",
+          "say": "j",
+          "word": "jelly",
+          "emoji": "🍮"
+        },
+        {
+          "s": "v",
+          "say": "vvv",
+          "word": "van",
+          "emoji": "🚐"
+        },
+        {
+          "s": "w",
+          "say": "w",
+          "word": "web",
+          "emoji": "🕸️"
+        },
+        {
+          "s": "x",
+          "say": "ks",
+          "word": "box",
+          "emoji": "📦"
+        },
+        {
+          "s": "y",
+          "say": "y",
+          "word": "yo-yo",
+          "emoji": "🪀"
+        },
+        {
+          "s": "z",
+          "say": "zzz",
+          "word": "zebra",
+          "emoji": "🦓"
+        }
+      ],
+      "words": [
+        {
+          "w": "box",
+          "parts": [
+            "b",
+            "o",
+            "x"
+          ],
+          "emoji": "📦"
+        },
+        {
+          "w": "fox",
+          "parts": [
+            "f",
+            "o",
+            "x"
+          ],
+          "emoji": "🦊"
+        },
+        {
+          "w": "six",
+          "parts": [
+            "s",
+            "i",
+            "x"
+          ],
+          "emoji": "6️⃣"
+        },
+        {
+          "w": "web",
+          "parts": [
+            "w",
+            "e",
+            "b"
+          ],
+          "emoji": "🕸️"
+        },
+        {
+          "w": "van",
+          "parts": [
+            "v",
+            "a",
+            "n"
+          ],
+          "emoji": "🚐"
+        },
+        {
+          "w": "jet",
+          "parts": [
+            "j",
+            "e",
+            "t"
+          ],
+          "emoji": "✈️"
+        }
+      ],
+      "reader": {
+        "title": "A Fox in a Box",
+        "pages": [
+          {
+            "text": "a fox in a box",
+            "emoji": "🦊📦"
+          },
+          {
+            "text": "a big red van",
+            "emoji": "🚐"
+          },
+          {
+            "text": "six bugs on a web",
+            "emoji": "🕸️"
+          },
+          {
+            "text": "the jet is up",
+            "emoji": "✈️"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p5",
+      "title": "Sounds 5",
+      "color": "#e9c46a",
+      "sounds": [
+        {
+          "s": "sh",
+          "say": "shh",
+          "word": "ship",
+          "emoji": "🚢"
+        },
+        {
+          "s": "ch",
+          "say": "ch",
+          "word": "chicken",
+          "emoji": "🐔"
+        },
+        {
+          "s": "th",
+          "say": "th",
+          "word": "thumb",
+          "emoji": "👍"
+        },
+        {
+          "s": "ee",
+          "say": "ee",
+          "word": "tree",
+          "emoji": "🌳"
+        },
+        {
+          "s": "oo",
+          "say": "oo",
+          "word": "moon",
+          "emoji": "🌙"
+        }
+      ],
+      "words": [
+        {
+          "w": "fish",
+          "parts": [
+            "f",
+            "i",
+            "sh"
+          ],
+          "emoji": "🐟"
+        },
+        {
+          "w": "ship",
+          "parts": [
+            "sh",
+            "i",
+            "p"
+          ],
+          "emoji": "🚢"
+        },
+        {
+          "w": "chip",
+          "parts": [
+            "ch",
+            "i",
+            "p"
+          ],
+          "emoji": "🍟"
+        },
+        {
+          "w": "bath",
+          "parts": [
+            "b",
+            "a",
+            "th"
+          ],
+          "emoji": "🛁"
+        },
+        {
+          "w": "tree",
+          "parts": [
+            "t",
+            "r",
+            "ee"
+          ],
+          "emoji": "🌳"
+        },
+        {
+          "w": "bee",
+          "parts": [
+            "b",
+            "ee"
+          ],
+          "emoji": "🐝"
+        },
+        {
+          "w": "moon",
+          "parts": [
+            "m",
+            "oo",
+            "n"
+          ],
+          "emoji": "🌙"
+        },
+        {
+          "w": "food",
+          "parts": [
+            "f",
+            "oo",
+            "d"
+          ],
+          "emoji": "🍲"
+        }
+      ],
+      "reader": {
+        "title": "A Bee in a Tree",
+        "pages": [
+          {
+            "text": "a fish and a ship",
+            "emoji": "🐟🚢"
+          },
+          {
+            "text": "a bee in a tree",
+            "emoji": "🐝🌳"
+          },
+          {
+            "text": "the moon is up",
+            "emoji": "🌙"
+          },
+          {
+            "text": "I can see the moon!",
+            "emoji": "🌙😀"
+          }
+        ]
+      }
+    }
+  ]
+}

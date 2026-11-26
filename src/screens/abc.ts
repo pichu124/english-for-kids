@@ -67,11 +67,12 @@ function alphabetBoard(ctx: Ctx): HTMLElement {
     if (l) void say(line(l));
   });
   const game = h('button', { class: 'btn btn-sun abc-game-btn', 'aria-label': 'Letter game', onclick: () => (sfx.tap(), ctx.go('abc', { game: '1' })) }, '🎯 Letter game');
+  const sounds = h('button', { class: 'btn btn-good abc-sounds-btn', 'aria-label': 'Sounds', onclick: () => (sfx.tap(), ctx.go('phonics')) }, '🔊 Sounds');
   setTimeout(() => ctx.alive() && void bix.talk('A, B, C! Tap a letter!', 'happy'), 300);
   return h(
     'main',
     { class: 'abc' },
-    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'ABC'), game, h('div', { class: 'abc-bix' }, bix.el)),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'ABC'), game, sounds, h('div', { class: 'abc-bix' }, bix.el)),
     h('div', { class: 'abc-body' }, h('div', { class: 'abc-grid' }, tiles), big),
   );
 }

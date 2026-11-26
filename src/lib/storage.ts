@@ -97,6 +97,12 @@ export type State = {
   storiesRead?: Record<string, number>;
   /** Last day the child looked at the garden (for the "new flower" glow). */
   gardenSeen?: string;
+  /** Phonics: times each sound set was finished, and readers read aloud. */
+  phonics?: Record<string, number>;
+  /** Pages the child read aloud by themselves (story id or phonics reader → count). */
+  readAloud?: Record<string, number>;
+  /** Talk with Bix: finished chats and speaking practice parts. */
+  talk?: Record<string, number>;
 };
 
 export function defaultState(): State {
@@ -265,6 +271,9 @@ export function sanitizeState(raw: unknown): State {
   keep('letters', isObj);
   keep('storiesRead', isObj);
   keep('gardenSeen', (x) => typeof x === 'string');
+  keep('phonics', isObj);
+  keep('readAloud', isObj);
+  keep('talk', isObj);
   return s;
 }
 
