@@ -396,7 +396,7 @@ function youBeBix(ctx: Ctx): HTMLElement {
     const helper =
       describer.n === 2
         ? h('p', { class: 'duo-vi', lang: 'vi' }, 'Tả bằng tiếng Anh, đừng nói tên từ: "It\'s big. It can…"')
-        : h('p', { class: 'duo-vi', lang: 'vi' }, 'Bố mẹ gợi ý con nói: "It\'s… It has… It can…"');
+        : h('p', { class: 'duo-vi', lang: 'vi' }, target.image.color ? 'Bố mẹ gợi ý con nói: "It\'s a colour. It\'s like the sky / a banana…"' : 'Bố mẹ gợi ý con nói: "It\'s… It has… It can…"');
     stage.replaceChildren(
       h(
         'div',
@@ -407,7 +407,9 @@ function youBeBix(ctx: Ctx): HTMLElement {
           { class: 'duo-secret-info' },
           h('p', { class: 'duo-secret-say' }, h('span', { 'aria-hidden': 'true' }, '🤫 '), "Shh! Don't say it!"),
           readsDef && target.def ? h('p', { class: 'def-card duo-def', lang: 'en' }, target.def) : null,
-          level.showText ? h('div', { class: 'duo-starters', lang: 'en' }, h('span', {}, "It's…"), h('span', {}, 'It has…'), h('span', {}, 'It can…')) : null,
+          level.showText
+            ? h('div', { class: 'duo-starters', lang: 'en' }, (target.image.color ? ["It's a colour.", "It's like…"] : ["It's…", 'It has…', 'It can…']).map((x) => h('span', {}, x)))
+            : null,
           helper,
           got,
         ),

@@ -136,9 +136,18 @@ export function storyScreen(ctx: Ctx): HTMLElement {
         expect: p.text,
         check: (alts) => readScore(wordHits(p.text, alts)) >= 0.6,
         onHeard: (alts) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit)),
+        prompt: 'Your turn! Tap and read.',
       });
+      // the mic sits where "My turn" was, before ▶
+      const box = controls.querySelector('.mic-turn');
+      if (box) controls.insertBefore(box, next);
       const r = await turn;
-      if (!ctx.alive() || page !== here || r.result === 'skip') return;
+      if (!ctx.alive() || page !== here) return;
+      // not read this time ("Good try!", or a parent skipped): "My turn" comes back for another go
+      if (r.result === 'tried' || r.result === 'skip') {
+        controls.insertBefore(mine, next);
+        return;
+      }
       if (r.result === 'ok' || r.result === 'parent') {
         words.forEach((w) => w.classList.add('is-read'));
         update((s) => {

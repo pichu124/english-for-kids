@@ -1,7 +1,7 @@
 import { h } from '../lib/dom';
 import { cancelListening, listenOnce, recognitionSupported } from '../lib/listen';
 import { sfx } from '../lib/sfx';
-import { say } from '../lib/tts';
+import { say, stopSpeaking } from '../lib/tts';
 import type { Ctx } from '../router';
 
 export type MicResult = { result: 'ok' | 'tried' | 'parent' | 'skip'; heard: string[] };
@@ -22,7 +22,7 @@ export type MicTurn = Promise<MicResult> & {
  *   with two buttons → 'parent' / 'skip'.
  * Nothing is recorded or stored: only the recognizer's text reaches `check`.
  */
-export function micTurn(ctx: Ctx, host: HTMLElement, opts: { expect: string; check: (alts: string[]) => boolean; tries?: number; timeoutMs?: number; onHeard?: (alts: string[]) => void }): MicTurn {
+export function micTurn(ctx: Ctx, host: HTMLElement, opts: { expect: string; check: (alts: string[]) => boolean; tries?: number; timeoutMs?: number; onHeard?: (alts: string[]) => void; /** said when the turn opens, e.g. "Your turn! Tap and read." (the mic glows until tapped) */ prompt?: string }): MicTurn {
   const tries = opts.tries ?? 2;
   let finished = false;
   let listening = false;
@@ -65,10 +65,16 @@ export function micTurn(ctx: Ctx, host: HTMLElement, opts: { expect: string; che
     mic.classList.add('shake');
   };
   if (!recognitionSupported()) askParent('Máy này không nghe được giọng nói. Bố mẹ nghe bé nói rồi bấm:');
+  else if (opts.prompt) {
+    mic.classList.add('is-hint');
+    void say(opts.prompt);
+  }
   mic.addEventListener('click', async () => {
     if (busy || finished || !ctx.alive()) return;
     busy = true;
     ignore = false;
+    mic.classList.remove('is-hint');
+    stopSpeaking(); // the mic must not hear Bix
     listening = true;
     mic.classList.add('is-listening');
     status.textContent = '👂';

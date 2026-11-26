@@ -84,8 +84,14 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
   const step = (n: number) => [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
   const tap = <T extends HTMLElement>(els: T[]) =>
     new Promise<T>((resolve) => {
+      // a quick double tap must not also press the button that appears in the same place next
+      const born = Date.now();
       const off = () => els.forEach((e) => e.removeEventListener('click', on));
-      const on = (e: Event) => (off(), resolve(e.currentTarget as T));
+      const on = (e: Event) => {
+        if (Date.now() - born < 400) return;
+        off();
+        resolve(e.currentTarget as T);
+      };
       els.forEach((e) => e.addEventListener('click', on));
     });
   const wiggle = (e: HTMLElement) => {
@@ -244,7 +250,7 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
       const tokens = page.text.split(/\s+/);
       const mark = (alts: string[]) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit));
       // the child's turn first; "Read to me" is always there
-      const turn = micTurn(ctx, area, { expect: page.text, check: (alts) => readScore(wordHits(page.text, alts)) >= 0.6, onHeard: mark });
+      const turn = micTurn(ctx, area, { expect: page.text, check: (alts) => readScore(wordHits(page.text, alts)) >= 0.6, onHeard: mark, prompt: page === set.reader.pages[0] ? 'Can you read it? Tap the microphone!' : undefined });
       void turn.then((r) => {
         if (!alive()) return;
         if (r.result === 'ok' || r.result === 'parent') {

@@ -61,7 +61,7 @@ for (const [vp, prefix] of [[{ width: 1280, height: 800 }, 'ph'], [{ width: 640,
   await page.locator('.dock-btn[aria-label="ABC"]').click({ force: true });
   await page.locator('.abc-sounds-btn').click({ force: true });
   await page.waitForSelector('.ph-set');
-  if ((await page.locator('.ph-set').count()) !== 5) fail('5 sound sets');
+  if ((await page.locator('.ph-set').count()) !== 8) fail('8 sound sets');
   if (!(await page.locator('.ph-set.is-next[data-set="p1"]').count())) fail('the first set is suggested');
   if (shots) await page.screenshot({ path: `${shots}/${prefix}-menu.png` });
   await playSet(page, 'p1', prefix);

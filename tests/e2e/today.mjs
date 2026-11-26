@@ -36,7 +36,7 @@ if (!(await page.locator('.home-today.is-fresh').count())) fail('home should sho
 await page.locator('.home-today').click({ force: true });
 await page.waitForSelector('.today-card');
 const kinds = await page.locator('.today-card[data-kind]').evaluateAll((els) => els.map((e) => e.dataset.kind));
-if (kinds.join(',') !== 'review,lesson,fun') fail('plan should be review → lesson → fun, got ' + kinds.join(','));
+if (kinds.join(',') !== 'review,lesson,talk,fun') fail('plan should be review → lesson → talk → fun, got ' + kinds.join(','));
 if (!(await page.locator('.today-card.is-now[data-kind="review"]').count())) fail('review is first');
 if (!(await page.locator('.today-card[data-kind="lesson"]').textContent()).includes('Animals · Read')) fail('lesson = Read & Write of Animals (heard, not yet read)');
 if (shots) await page.screenshot({ path: `${shots}/today-plan.png` });

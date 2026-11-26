@@ -110,10 +110,12 @@ function chatScreen(ctx: Ctx, chat: Chat): HTMLElement {
       const first = turn.options?.[0];
       const r = await answer(ctx, stage, { expect: first ? first.words[0] : 'yes', options: turn.options, showText: level.showText && level.id !== 'L1' });
       if (!ctx.alive()) return;
-      const reply = turn.type === 'any' ? turn.reply! : (r.option?.reply ?? turn.fallback ?? pick(PRAISE));
+      // no answer understood (misheard twice, or skipped): no praise for an answer Bix did not hear
+      const unheard = turn.type !== 'any' && !r.option;
+      const reply = turn.type === 'any' ? turn.reply! : (r.option?.reply ?? turn.fallback ?? "OK! Let's go on.");
       if (r.option) stage.replaceChildren(h('div', { class: 'talk-picked pop', 'aria-hidden': 'true' }, fixEmoji(r.option.emoji)));
       bix.setMood('happy');
-      sfx.success();
+      if (!unheard) sfx.success();
       await bix.talk(reply, 'happy');
       await wait(250);
     }
