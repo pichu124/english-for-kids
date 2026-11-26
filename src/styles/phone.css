@@ -203,6 +203,11 @@
   .tx-opts { gap: 6px; }
   .tx-opt { font-size: 15px; min-height: 56px; }
 }
+/* the smallest phones (320 px tall): 4 rows of 48 px keys do not fit, a little smaller */
+@media (orientation: landscape) and (max-height: 340px) {
+  .wr-keys { gap: 4px; }
+  .wr-key { width: 42px; height: 42px; font-size: 21px; }
+}
 @media (orientation: landscape) and (max-height: 500px) {
   .lesson-body:has(.text-read) .lesson-bix { width: 16%; }
   .lesson-body:has(.text-read) .lesson-bix .bix-bubble { display: none; }
