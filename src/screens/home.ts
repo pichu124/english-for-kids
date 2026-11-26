@@ -124,6 +124,7 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     level.showText ? dockBtn('🔤', 'ABC', 'abc') : null,
     dockBtn('📚', 'Stories', 'stories', newStories || undefined, newStories > 0),
     dockBtn('🎮', 'Games', 'games'),
+    level.id !== 'L0' ? dockBtn('💬', 'Talk', 'talk') : null,
     dockBtn('🌻', 'Garden', 'garden', learningDays().length || undefined, gardenHasNew()),
   );
 

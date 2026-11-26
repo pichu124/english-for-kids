@@ -118,3 +118,66 @@
   .story-mine { font-size: 16px; padding: 0 12px; }
   .story-controls .mic-status { display: none; }
 }
+
+/* ---------- Talk with Bix ---------- */
+.talk { height: 100%; display: flex; flex-direction: column; }
+.talk-body { flex: 1; min-height: 0; display: flex; align-items: center; gap: 3vmin; padding: 0 3vmin 3vmin; }
+.talk-bix { width: 22%; display: flex; justify-content: center; align-self: stretch; align-items: flex-end; padding-bottom: 2vmin; }
+.talk-bix .bix-bubble { left: 40%; top: -14%; max-width: 40vw; white-space: normal; width: max-content; }
+.talk-menu { flex: 1; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 2.4vmin; }
+.talk-card {
+  font: inherit; font-weight: 800; color: var(--ink); cursor: pointer; width: clamp(130px, 21vmin, 200px); aspect-ratio: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: clamp(16px, 2.6vmin, 22px);
+  background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 7px 0 rgba(29, 36, 64, .25);
+}
+.talk-card[data-talk="practice"] { background: #ffd166; }
+.talk-card-icon { font-size: clamp(48px, 9vmin, 84px); line-height: 1; }
+.talk-stage { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vmin; }
+.talk-line { margin: 0; max-width: 760px; text-align: center; font-size: clamp(22px, 4.4vmin, 40px); font-weight: 800; background: #fff; border: 4px solid var(--ink); border-radius: 22px; padding: 1.4vmin 3vmin; }
+.talk-answer { display: flex; flex-direction: column; align-items: center; gap: 2vmin; }
+.talk-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.8vmin; }
+.talk-chip { font: inherit; font-weight: 800; color: var(--ink); cursor: pointer; min-width: clamp(84px, 14vmin, 130px); min-height: 64px; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 12px; font-size: clamp(15px, 2.4vmin, 20px); background: #fff; border: 3px solid var(--ink); border-radius: 18px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); }
+.talk-chip-emoji { font-size: clamp(34px, 8vmin, 72px); line-height: 1; }
+.talk-picked { font-size: clamp(80px, 18vmin, 150px); line-height: 1; }
+.talk-done { display: flex; flex-direction: column; align-items: center; gap: 3vmin; }
+.talk-done-star { font-size: clamp(90px, 20vmin, 160px); line-height: 1; }
+.talk-task { display: flex; flex-direction: column; align-items: center; gap: 1.6vmin; width: 100%; }
+.talk-scene { position: relative; width: min(100%, 720px); aspect-ratio: 16 / 9; border: 4px solid var(--ink); border-radius: 22px; overflow: hidden; background: linear-gradient(var(--sky) 0 55%, var(--ground) 55% 100%); }
+.talk-item { position: absolute; transform: translate(-50%, -50%) scale(var(--s, 1)); font: inherit; font-size: clamp(30px, 6.4vmin, 58px); line-height: 1; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 50%; min-width: 48px; min-height: 48px; }
+.talk-item.is-found { background: rgba(185, 251, 192, .85); box-shadow: 0 0 0 4px #2a9d4a; }
+.talk-item.is-asked { animation: pulse 1s ease-in-out infinite; box-shadow: 0 0 0 5px #ffd166; background: rgba(255, 255, 255, .7); }
+.talk-two { flex-direction: row; gap: 2vmin; }
+.talk-pic { position: relative; flex: 1; min-width: 0; }
+.talk-pic .talk-scene { width: 100%; }
+.talk-pic-n { position: absolute; top: 6px; left: 8px; z-index: 2; width: 34px; height: 34px; display: grid; place-items: center; font-weight: 800; background: #fff; border: 3px solid var(--ink); border-radius: 50%; }
+.talk-panels { display: flex; gap: 1.6vmin; flex-wrap: wrap; justify-content: center; }
+.talk-panel { position: relative; width: clamp(110px, 18vmin, 170px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 18px; }
+.talk-panel.is-now { background: #fff3c4; box-shadow: 0 0 0 5px #ffd166; }
+.talk-panel-n { position: absolute; top: 4px; left: 8px; font-weight: 800; }
+.talk-panel-pic { font-size: clamp(36px, 7vmin, 64px); line-height: 1; text-align: center; }
+.talk-q-icon { font-size: clamp(70px, 14vmin, 120px); }
+.talk-dots { margin-left: auto; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .talk-bix { width: 16%; }
+  .talk-bix .bix-bubble { display: none; }
+  .talk-menu { flex-wrap: nowrap; gap: 8px; }
+  .talk-card { width: auto; flex: 1 1 0; max-width: 140px; aspect-ratio: auto; padding: 10px 4px; border-radius: 16px; border-width: 3px; font-size: 13px; }
+  .talk-card-icon { font-size: 38px; }
+  .talk-line { font-size: 18px; padding: 6px 14px; border-radius: 14px; }
+  .talk-chip { min-height: 56px; min-width: 64px; padding: 4px 8px; font-size: 13px; }
+  .talk-chip-emoji { font-size: 26px; }
+  .talk-answer { flex-direction: row; gap: 10px; }
+  .talk-scene { width: auto; height: 60vh; max-width: 100%; }
+  .talk-pic .talk-scene { height: auto; }
+  .talk-item { font-size: 26px; min-width: 40px; min-height: 40px; }
+  .talk-panel { width: min(17vw, 30vh); }
+  .talk-panel-pic { font-size: 28px; }
+  .talk-task .mic-turn { flex-direction: row; }
+  .talk-task[data-task='name'], .talk-task[data-task='story'] { flex-direction: row; justify-content: center; }
+  .talk-task[data-task='story'] .talk-panels { flex-wrap: nowrap; }
+  .talk-picked { font-size: 70px; }
+}
+@media (orientation: portrait) {
+  .talk-body { flex-direction: column-reverse; }
+  .talk-bix { width: 100%; align-self: center; }
+}

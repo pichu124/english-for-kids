@@ -1,0 +1,1199 @@
+{
+  "chats": [
+    {
+      "id": "hello",
+      "title": "Hello!",
+      "icon": "👋",
+      "level": "L1",
+      "turns": [
+        {
+          "bix": "Hi! I'm Bix. What's your name?",
+          "type": "any",
+          "reply": "Nice to meet you!"
+        },
+        {
+          "bix": "How old are you?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "five",
+              "emoji": "5️⃣",
+              "words": [
+                "five",
+                "5"
+              ],
+              "reply": "Five! Wow!"
+            },
+            {
+              "say": "six",
+              "emoji": "6️⃣",
+              "words": [
+                "six",
+                "6"
+              ],
+              "reply": "Six! Wow!"
+            },
+            {
+              "say": "seven",
+              "emoji": "7️⃣",
+              "words": [
+                "seven",
+                "7"
+              ],
+              "reply": "Seven! Wow!"
+            },
+            {
+              "say": "eight",
+              "emoji": "8️⃣",
+              "words": [
+                "eight",
+                "8"
+              ],
+              "reply": "Eight! Wow!"
+            }
+          ],
+          "fallback": "Great!"
+        },
+        {
+          "bix": "What's your favourite colour?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "red",
+              "emoji": "🔴",
+              "words": [
+                "red"
+              ],
+              "reply": "Red! I like red too!"
+            },
+            {
+              "say": "blue",
+              "emoji": "🔵",
+              "words": [
+                "blue"
+              ],
+              "reply": "Blue! I like blue too!"
+            },
+            {
+              "say": "green",
+              "emoji": "🟢",
+              "words": [
+                "green"
+              ],
+              "reply": "Green! I like green too!"
+            },
+            {
+              "say": "yellow",
+              "emoji": "🟡",
+              "words": [
+                "yellow"
+              ],
+              "reply": "Yellow! I like yellow too!"
+            },
+            {
+              "say": "pink",
+              "emoji": "🌸",
+              "words": [
+                "pink"
+              ],
+              "reply": "Pink! I like pink too!"
+            },
+            {
+              "say": "purple",
+              "emoji": "🟣",
+              "words": [
+                "purple"
+              ],
+              "reply": "Purple! I like purple too!"
+            }
+          ],
+          "fallback": "What a lovely colour!"
+        },
+        {
+          "bix": "Do you like ice cream?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Me too! Yummy!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Okay! Maybe you like cake?"
+            }
+          ],
+          "fallback": "Ice cream is cold and sweet!"
+        },
+        {
+          "bix": "Bye-bye! See you soon!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "title": "My Family",
+      "icon": "👪",
+      "level": "L1",
+      "turns": [
+        {
+          "bix": "Have you got a brother or a sister?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "How nice! You can play together!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's okay! You've got me!"
+            }
+          ],
+          "fallback": "Families are great!"
+        },
+        {
+          "bix": "Who do you love?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "mum",
+              "emoji": "👩",
+              "words": [
+                "mum",
+                "mummy"
+              ],
+              "reply": "Aww! You love your mum!"
+            },
+            {
+              "say": "dad",
+              "emoji": "👨",
+              "words": [
+                "dad",
+                "daddy"
+              ],
+              "reply": "Aww! You love your dad!"
+            },
+            {
+              "say": "grandma",
+              "emoji": "👵",
+              "words": [
+                "grandma",
+                "granny"
+              ],
+              "reply": "Aww! You love your grandma!"
+            },
+            {
+              "say": "grandpa",
+              "emoji": "👴",
+              "words": [
+                "grandpa",
+                "grandad"
+              ],
+              "reply": "Aww! You love your grandpa!"
+            }
+          ],
+          "fallback": "Lovely!"
+        },
+        {
+          "bix": "Who cooks dinner in your house?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "mum",
+              "emoji": "👩",
+              "words": [
+                "mum"
+              ],
+              "reply": "Your mum is a great cook!"
+            },
+            {
+              "say": "dad",
+              "emoji": "👨",
+              "words": [
+                "dad"
+              ],
+              "reply": "Your dad is a great cook!"
+            },
+            {
+              "say": "grandma",
+              "emoji": "👵",
+              "words": [
+                "grandma"
+              ],
+              "reply": "Your grandma is a great cook!"
+            },
+            {
+              "say": "grandpa",
+              "emoji": "👴",
+              "words": [
+                "grandpa"
+              ],
+              "reply": "Your grandpa is a great cook!"
+            }
+          ],
+          "fallback": "Yummy dinner!"
+        },
+        {
+          "bix": "Thank you for telling me about your family!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "title": "Food I Like",
+      "icon": "🍎",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "Are you hungry?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Let's find something to eat!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Okay! Maybe later."
+            }
+          ],
+          "fallback": "Okay!"
+        },
+        {
+          "bix": "What do you like to eat?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "rice",
+              "emoji": "🍚",
+              "words": [
+                "rice",
+                "rice"
+              ],
+              "reply": "Rice! Mmm, delicious!"
+            },
+            {
+              "say": "noodles",
+              "emoji": "🍜",
+              "words": [
+                "noodles",
+                "noodle"
+              ],
+              "reply": "Noodles! Mmm, delicious!"
+            },
+            {
+              "say": "chicken",
+              "emoji": "🍗",
+              "words": [
+                "chicken",
+                "chicken"
+              ],
+              "reply": "Chicken! Mmm, delicious!"
+            },
+            {
+              "say": "fish",
+              "emoji": "🐟",
+              "words": [
+                "fish",
+                "fish"
+              ],
+              "reply": "Fish! Mmm, delicious!"
+            },
+            {
+              "say": "apples",
+              "emoji": "🍎",
+              "words": [
+                "apples",
+                "apple"
+              ],
+              "reply": "Apples! Mmm, delicious!"
+            },
+            {
+              "say": "cake",
+              "emoji": "🍰",
+              "words": [
+                "cake",
+                "cakes"
+              ],
+              "reply": "Cake! Mmm, delicious!"
+            }
+          ],
+          "fallback": "That sounds good!"
+        },
+        {
+          "bix": "Do you like vegetables?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Great! Vegetables make you strong!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Try a carrot! They are crunchy!"
+            }
+          ],
+          "fallback": "Vegetables are good for you!"
+        },
+        {
+          "bix": "What do you like to drink?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "milk",
+              "emoji": "🥛",
+              "words": [
+                "milk"
+              ],
+              "reply": "Milk! Good choice!"
+            },
+            {
+              "say": "water",
+              "emoji": "💧",
+              "words": [
+                "water"
+              ],
+              "reply": "Water! Good choice!"
+            },
+            {
+              "say": "juice",
+              "emoji": "🥤",
+              "words": [
+                "juice"
+              ],
+              "reply": "Juice! Good choice!"
+            }
+          ],
+          "fallback": "Drink lots of water!"
+        },
+        {
+          "bix": "Now I'm hungry too! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "title": "Animals",
+      "icon": "🐶",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "What's your favourite animal?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "dog",
+              "emoji": "🐶",
+              "words": [
+                "dog",
+                "dogs"
+              ],
+              "reply": "Dogs are amazing!"
+            },
+            {
+              "say": "cat",
+              "emoji": "🐱",
+              "words": [
+                "cat",
+                "cats"
+              ],
+              "reply": "Cats are amazing!"
+            },
+            {
+              "say": "elephant",
+              "emoji": "🐘",
+              "words": [
+                "elephant",
+                "elephants"
+              ],
+              "reply": "Elephants are amazing!"
+            },
+            {
+              "say": "monkey",
+              "emoji": "🐵",
+              "words": [
+                "monkey",
+                "monkeys"
+              ],
+              "reply": "Monkeys are amazing!"
+            },
+            {
+              "say": "lion",
+              "emoji": "🦁",
+              "words": [
+                "lion",
+                "lions"
+              ],
+              "reply": "Lions are amazing!"
+            },
+            {
+              "say": "fish",
+              "emoji": "🐟",
+              "words": [
+                "fish",
+                "fishs"
+              ],
+              "reply": "Fishs are amazing!"
+            }
+          ],
+          "fallback": "I love animals too!"
+        },
+        {
+          "bix": "Can a fish fly?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Ha ha! No, fish can swim!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's right! Fish can swim!"
+            }
+          ],
+          "fallback": "Fish can swim!"
+        },
+        {
+          "bix": "What does a cow say?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Moo!",
+              "emoji": "🐮",
+              "words": [
+                "moo"
+              ],
+              "reply": "Yes! Moo! Moo!"
+            },
+            {
+              "say": "Woof!",
+              "emoji": "🐶",
+              "words": [
+                "woof"
+              ],
+              "reply": "Ha ha! Dogs say woof. Cows say moo!"
+            }
+          ],
+          "fallback": "Cows say moo!"
+        },
+        {
+          "bix": "Have you got a pet?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Lucky you! Pets are great friends!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's okay! You can visit animals at the zoo!"
+            }
+          ],
+          "fallback": "Pets are fun!"
+        },
+        {
+          "bix": "Thank you! That was fun!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "day",
+      "title": "My Day",
+      "icon": "⏰",
+      "level": "L3",
+      "turns": [
+        {
+          "bix": "What time do you get up?",
+          "type": "any",
+          "reply": "That is early! Well done!"
+        },
+        {
+          "bix": "How do you go to school?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "By bus",
+              "emoji": "🚌",
+              "words": [
+                "bus"
+              ],
+              "reply": "The bus is fun!"
+            },
+            {
+              "say": "By car",
+              "emoji": "🚗",
+              "words": [
+                "car"
+              ],
+              "reply": "Vroom, vroom!"
+            },
+            {
+              "say": "By bike",
+              "emoji": "🚲",
+              "words": [
+                "bike",
+                "bicycle"
+              ],
+              "reply": "Cycling is great exercise!"
+            },
+            {
+              "say": "I walk",
+              "emoji": "🚶",
+              "words": [
+                "walk",
+                "foot"
+              ],
+              "reply": "Walking is good for you!"
+            }
+          ],
+          "fallback": "Great!"
+        },
+        {
+          "bix": "What did you do yesterday?",
+          "type": "any",
+          "reply": "That sounds fun!"
+        },
+        {
+          "bix": "What do you do after school?",
+          "type": "any",
+          "reply": "Cool! I like playing too!"
+        },
+        {
+          "bix": "Thanks for telling me about your day!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "weekend",
+      "title": "The Weekend",
+      "icon": "🌈",
+      "level": "L3",
+      "turns": [
+        {
+          "bix": "What's the weather like today?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Sunny",
+              "emoji": "☀️",
+              "words": [
+                "sunny"
+              ],
+              "reply": "It's sunny! Thank you!"
+            },
+            {
+              "say": "Rainy",
+              "emoji": "🌧️",
+              "words": [
+                "rainy"
+              ],
+              "reply": "It's rainy! Thank you!"
+            },
+            {
+              "say": "Cloudy",
+              "emoji": "☁️",
+              "words": [
+                "cloudy"
+              ],
+              "reply": "It's cloudy! Thank you!"
+            },
+            {
+              "say": "Windy",
+              "emoji": "💨",
+              "words": [
+                "windy"
+              ],
+              "reply": "It's windy! Thank you!"
+            }
+          ],
+          "fallback": "Thank you!"
+        },
+        {
+          "bix": "What are you going to do this weekend?",
+          "type": "any",
+          "reply": "Wow! Have a great weekend!"
+        },
+        {
+          "bix": "Have you ever been to the beach?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Lucky you! Did you swim in the sea?"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Maybe one day! The beach is fun!"
+            }
+          ],
+          "fallback": "The beach is fun!"
+        },
+        {
+          "bix": "Would you like to go to the zoo or the park?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "The zoo",
+              "emoji": "🦁",
+              "words": [
+                "zoo"
+              ],
+              "reply": "The zoo! Let's see the lions!"
+            },
+            {
+              "say": "The park",
+              "emoji": "🌳",
+              "words": [
+                "park"
+              ],
+              "reply": "The park! Let's play football!"
+            }
+          ],
+          "fallback": "Both are fun!"
+        },
+        {
+          "bix": "Bye! Have a lovely weekend!",
+          "type": "end"
+        }
+      ]
+    }
+  ],
+  "practice": {
+    "L2": {
+      "scenes": [
+        {
+          "id": "park",
+          "title": "In the Park",
+          "sky": "#bde0fe",
+          "ground": "#b5e48c",
+          "items": [
+            {
+              "word": "sun",
+              "emoji": "☀️",
+              "x": 10,
+              "y": 12,
+              "size": 1.0
+            },
+            {
+              "word": "bird",
+              "emoji": "🐦",
+              "x": 64,
+              "y": 14,
+              "size": 1.0
+            },
+            {
+              "word": "tree",
+              "emoji": "🌳",
+              "x": 80,
+              "y": 40,
+              "size": 1.6
+            },
+            {
+              "word": "dog",
+              "emoji": "🐶",
+              "x": 18,
+              "y": 66,
+              "size": 1.0
+            },
+            {
+              "word": "ball",
+              "emoji": "⚽",
+              "x": 38,
+              "y": 80,
+              "size": 1.0
+            },
+            {
+              "word": "cat",
+              "emoji": "🐱",
+              "x": 55,
+              "y": 66,
+              "size": 1.0
+            },
+            {
+              "word": "bike",
+              "emoji": "🚲",
+              "x": 84,
+              "y": 78,
+              "size": 1.0
+            }
+          ],
+          "point": [
+            "dog",
+            "ball",
+            "bird",
+            "bike"
+          ],
+          "name": [
+            "cat",
+            "tree",
+            "sun"
+          ]
+        },
+        {
+          "id": "kitchen",
+          "title": "In the Kitchen",
+          "sky": "#ffe5d9",
+          "ground": "#ffd6a5",
+          "items": [
+            {
+              "word": "clock",
+              "emoji": "🕒",
+              "x": 12,
+              "y": 14,
+              "size": 1.0
+            },
+            {
+              "word": "picture",
+              "emoji": "🖼️",
+              "x": 48,
+              "y": 16,
+              "size": 1.0
+            },
+            {
+              "word": "apple",
+              "emoji": "🍎",
+              "x": 22,
+              "y": 60,
+              "size": 1.0
+            },
+            {
+              "word": "cake",
+              "emoji": "🍰",
+              "x": 42,
+              "y": 62,
+              "size": 1.0
+            },
+            {
+              "word": "banana",
+              "emoji": "🍌",
+              "x": 62,
+              "y": 60,
+              "size": 1.0
+            },
+            {
+              "word": "cup",
+              "emoji": "☕",
+              "x": 80,
+              "y": 62,
+              "size": 1.0
+            },
+            {
+              "word": "chair",
+              "emoji": "🪑",
+              "x": 30,
+              "y": 84,
+              "size": 1.0
+            },
+            {
+              "word": "cat",
+              "emoji": "🐱",
+              "x": 70,
+              "y": 84,
+              "size": 1.0
+            }
+          ],
+          "point": [
+            "apple",
+            "cake",
+            "cup",
+            "cat"
+          ],
+          "name": [
+            "banana",
+            "clock"
+          ]
+        }
+      ],
+      "questions": [
+        "How old are you?",
+        "What's your favourite colour?",
+        "Have you got a pet?",
+        "What's your favourite food?"
+      ]
+    },
+    "L3": {
+      "differences": [
+        {
+          "id": "bedroom",
+          "title": "My Bedroom",
+          "sky": "#e2eafc",
+          "ground": "#cdb4db",
+          "items": [
+            {
+              "word": "bed",
+              "emoji": "🛏️",
+              "x": 25,
+              "y": 70,
+              "size": 1.6
+            },
+            {
+              "word": "book",
+              "emoji": "📕",
+              "x": 60,
+              "y": 70,
+              "b": "📗",
+              "a": "In picture one, the book is red.",
+              "bSay": "In picture two, the book is green."
+            },
+            {
+              "word": "cat",
+              "emoji": "🐱",
+              "x": 80,
+              "y": 80,
+              "b": "🐶",
+              "a": "In picture one, there is a cat.",
+              "bSay": "In picture two, there is a dog."
+            },
+            {
+              "word": "clock",
+              "emoji": "🕐",
+              "x": 15,
+              "y": 18,
+              "b": "🕒",
+              "a": "In picture one, it's one o'clock.",
+              "bSay": "In picture two, it's three o'clock."
+            },
+            {
+              "word": "ball",
+              "emoji": "⚽",
+              "x": 45,
+              "y": 86,
+              "b": "🏀",
+              "a": "In picture one, there is a football.",
+              "bSay": "In picture two, there is a basketball."
+            },
+            {
+              "word": "lamp",
+              "emoji": "💡",
+              "x": 75,
+              "y": 20,
+              "size": 1.0
+            }
+          ]
+        },
+        {
+          "id": "beach",
+          "title": "At the Beach",
+          "sky": "#a2d2ff",
+          "ground": "#ffe8a3",
+          "items": [
+            {
+              "word": "sun",
+              "emoji": "☀️",
+              "x": 12,
+              "y": 14,
+              "b": "☁️",
+              "a": "In picture one, it's sunny.",
+              "bSay": "In picture two, it's cloudy."
+            },
+            {
+              "word": "boat",
+              "emoji": "⛵",
+              "x": 60,
+              "y": 30,
+              "size": 1.0
+            },
+            {
+              "word": "crab",
+              "emoji": "🦀",
+              "x": 25,
+              "y": 78,
+              "b": "🐢",
+              "a": "In picture one, there is a crab.",
+              "bSay": "In picture two, there is a turtle."
+            },
+            {
+              "word": "ice cream",
+              "emoji": "🍦",
+              "x": 50,
+              "y": 76,
+              "b": "🍉",
+              "a": "In picture one, the girl has got an ice cream.",
+              "bSay": "In picture two, she has got a watermelon."
+            },
+            {
+              "word": "shell",
+              "emoji": "🐚",
+              "x": 82,
+              "y": 84,
+              "b": "⭐",
+              "a": "In picture one, there is a shell.",
+              "bSay": "In picture two, there is a starfish."
+            },
+            {
+              "word": "umbrella",
+              "emoji": "⛱️",
+              "x": 80,
+              "y": 55,
+              "size": 1.4
+            }
+          ]
+        }
+      ],
+      "story": {
+        "title": "The Lost Ball",
+        "panels": [
+          {
+            "emoji": "👦⚽",
+            "model": "Tom is playing football in the park."
+          },
+          {
+            "emoji": "⚽🌳",
+            "model": "He kicks the ball into a tree."
+          },
+          {
+            "emoji": "🐕⚽",
+            "model": "A dog gets the ball."
+          },
+          {
+            "emoji": "👦🐕😀",
+            "model": "Tom and the dog are happy now."
+          }
+        ]
+      },
+      "questions": [
+        "What do you do after school?",
+        "What's your favourite sport?",
+        "Tell me about your best friend.",
+        "What did you do last weekend?"
+      ]
+    },
+    "L4": {
+      "differences": [
+        {
+          "id": "street",
+          "title": "In the Street",
+          "sky": "#cddafd",
+          "ground": "#d8e2dc",
+          "items": [
+            {
+              "word": "bus",
+              "emoji": "🚌",
+              "x": 25,
+              "y": 70,
+              "b": "🚕",
+              "a": "In picture one, there is a bus.",
+              "bSay": "In picture two, there is a taxi."
+            },
+            {
+              "word": "weather",
+              "emoji": "🌧️",
+              "x": 15,
+              "y": 14,
+              "b": "☀️",
+              "a": "In picture one, it's raining.",
+              "bSay": "In picture two, it's sunny."
+            },
+            {
+              "word": "shop",
+              "emoji": "🏪",
+              "x": 70,
+              "y": 40,
+              "size": 1.6
+            },
+            {
+              "word": "man",
+              "emoji": "🚶",
+              "x": 55,
+              "y": 80,
+              "b": "🏃",
+              "a": "In picture one, the man is walking.",
+              "bSay": "In picture two, he is running."
+            },
+            {
+              "word": "dog",
+              "emoji": "🐕",
+              "x": 85,
+              "y": 82,
+              "b": "🐈",
+              "a": "In picture one, there is a dog.",
+              "bSay": "In picture two, there is a cat."
+            },
+            {
+              "word": "tree",
+              "emoji": "🌳",
+              "x": 40,
+              "y": 42,
+              "size": 1.4
+            }
+          ]
+        }
+      ],
+      "story": {
+        "title": "The Picnic",
+        "panels": [
+          {
+            "emoji": "👨‍👩‍👧☀️",
+            "model": "One sunny morning, the family went for a picnic."
+          },
+          {
+            "emoji": "🍰🥪",
+            "model": "They took sandwiches and a big cake."
+          },
+          {
+            "emoji": "🌧️😮",
+            "model": "Suddenly, it started to rain."
+          },
+          {
+            "emoji": "⛺👨‍👩‍👧",
+            "model": "They ran into a tent and waited."
+          },
+          {
+            "emoji": "🌈😀",
+            "model": "Then the sun came out, and they saw a rainbow!"
+          }
+        ]
+      },
+      "questions": [
+        "What did you do last weekend?",
+        "What are you going to do in the summer holidays?",
+        "What would you like to be when you grow up?",
+        "Tell me about your school."
+      ]
+    }
+  }
+}
