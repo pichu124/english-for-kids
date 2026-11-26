@@ -1,0 +1,41 @@
+{
+  "id": "story-l3-where",
+  "unit": "l3-where",
+  "title": "Where Is Bix's Ball?",
+  "icon": "⚽",
+  "pages": [
+    {
+      "text": "Bix can't find the red ball. Is it inside the box?",
+      "scene": "📦",
+      "bix": true
+    },
+    {
+      "text": "No! The cat is inside the box. Meow!",
+      "scene": "📦🐱"
+    },
+    {
+      "text": "Is the ball near the tree? No, it isn't.",
+      "scene": "🌳",
+      "bix": true
+    },
+    {
+      "text": "Look up! A bird is above the tree. It has got the ball!",
+      "scene": "🐦⚽🌳"
+    },
+    {
+      "text": "The bird drops the ball. Thank you, bird!",
+      "scene": "⚽😀",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where is the cat?",
+      "answer": "inside"
+    },
+    {
+      "ask": "Where is the bird?",
+      "answer": "above"
+    }
+  ]
+}

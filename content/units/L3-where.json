@@ -1,0 +1,106 @@
+{
+  "id": "l3-where",
+  "level": "L3",
+  "topic": "where2",
+  "order": 32,
+  "title": "Where Is It? 2",
+  "titleVi": "Ở đâu? (vị trí 2)",
+  "icon": "📦",
+  "color": "#caffbf",
+  "intro": "Where is the cat? Look carefully!",
+  "playPrompt": "Which picture shows \"{word}\"?",
+  "block": {
+    "name": "Box block",
+    "style": "wood",
+    "color": "#c9a26b"
+  },
+  "words": [
+    "above",
+    "below",
+    "near",
+    "opposite",
+    "inside",
+    "outside"
+  ],
+  "parentTip": {
+    "vi": "Giấu một món đồ chơi rồi gợi ý bằng tiếng Anh: \"It's inside the box. It's near the window.\" Đổi vai cho con giấu và gợi ý.",
+    "say": "Where is your teddy?"
+  },
+  "chat": {
+    "ask": "Do you like playing outside?",
+    "yes": "Me too! Outside is fun!",
+    "no": "Okay! Inside is cosy too!"
+  },
+  "gaps": [
+    {
+      "s": "It's raining, so we can't play ___.",
+      "answer": "outside",
+      "options": [
+        "above",
+        "opposite"
+      ]
+    },
+    {
+      "s": "The bird is flying ___ the house.",
+      "answer": "above",
+      "options": [
+        "inside",
+        "below"
+      ]
+    },
+    {
+      "s": "The bank is across the road, ___ the park.",
+      "answer": "opposite",
+      "options": [
+        "inside",
+        "below"
+      ]
+    },
+    {
+      "s": "Where's my cat? She's ___ the box. I can see her ears!",
+      "answer": "inside",
+      "options": [
+        "above",
+        "opposite"
+      ]
+    }
+  ],
+  "text": {
+    "title": "My Street",
+    "lines": [
+      "I live in a small house near the park.",
+      "There is a café opposite my house.",
+      "My cat sleeps inside the house, but my dog sleeps outside.",
+      "In the morning, birds fly above our garden."
+    ],
+    "questions": [
+      {
+        "q": "Where is the café?",
+        "options": [
+          "near the park",
+          "opposite my house",
+          "inside my house"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Where does the dog sleep?",
+        "options": [
+          "inside the house",
+          "in the café",
+          "outside"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What flies above the garden?",
+        "options": [
+          "cats",
+          "birds",
+          "dogs"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+}

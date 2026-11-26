@@ -281,7 +281,7 @@ Cụ thể sẽ tính lại sau khi làm xong Unit đầu tiên theo định d�
 |---|---|---|
 | **L0 Little Bix (3–4)** | Animal Friends 🥁 · Colour Fun · Yummy Food · Toy Box · Sunny & Rainy · Go, Go, Go! | 6 |
 | **L1 Bix Explorer (4–5)** | My Body 🥁 · My Family · Get Dressed · Count to Five 🥁 · Shapes · Feelings · On the Farm 🥁 · In, On, Under | 8 |
-| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen · My Body 2 · Around the House · Every Day · Water and Land · Long Ago | 27 |
+| **L3 Movers (7–8)** | What's the Weather? · What's the Matter? · In Town · Jobs · What Time Is It? · Days of the Week · The World Around Us · Amazing Animals · Taller, Faster · Lunch Time · How Do You Feel? · Yesterday · Free Time · Pets and Wild Animals · Going Places · Left and Right · The Biggest! · Quickly and Slowly · Last Weekend · Warm Clothes · Fun Things · In the Kitchen · My Body 2 · Around the House · Every Day · Water and Land · Long Ago · My Family 2 · Around Town 2 · Would You Like…? · Numbers to 100 · Where Is It? 2 | 32 |
 | **L2 Starters (5–7)** | Colors · Animals · Food · Family · Hello · My Body · Clothes · Toys · School 🥁 · Numbers 1–10 · My Home · Transport · Zoo Animals 🥁 · Outdoors · Actions · Numbers 11–20 · More Colours · Food & Drink · Animals 2 🥁 · Fruit · Snacks & Meals · My Home 2 · Clothes 2 · Toys 2 · My Face · People · Places · Where Is It? · Big and Small · I Like It! · I've Got… · Sports · How Many? · Who Is It? · My Rooms · More Food · Big Vehicles · Farm Animals | 38 |
 
 Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè. Bậc 0–1 đều có `do-it`. Ở bậc Starters, Actions và My Face cũng có `do-it`.
@@ -352,6 +352,11 @@ Tổng: **79 Unit**, **369 từ** trong ngân hàng từ. 🥁 là bài có vè.
   - **hình cây gia đình** (`image.family`: aunt, uncle, cousin, parents, grandparents): cây 3 đời, người cần tìm được khoanh vòng, có nhãn "me ⭐" để bé biết mình đứng đâu;
   - 3 bài mới: My Family 2 (họ hàng), Around Town 2 (bank, café, car park, circus, funfair, sports centre), Would You Like…? (mời và đáp "Yes, please!" / "No, thank you." với coffee, milkshake, biscuit, juice, soup, sandwich);
   - trò chơi **Colour** trong Games (giống phần "Listen and colour" của đề Cambridge): Bix nói "Colour the dog blue!", bé chọn bút màu rồi chạm vào hình. Chọn nhầm thì hình lắc nhẹ và Bix nhắc lại câu, không có chữ "sai". 4 lượt mỗi ván. Nút "Hôm nay" luân phiên 3 trò chơi.
+- **Đợt M5 (Movers)**:
+  - **Numbers to 100** (thirty … ninety, a hundred). Câu điền từ đếm theo chục ("Seventy, eighty, ___, a hundred!"). Không nhận "thirteen" thay cho "thirty": phân biệt hai số này là một kỹ năng nghe của Movers;
+  - **Where Is It? 2** (above, below, near, opposite, inside, outside), mỗi từ có hình vẽ riêng (`image.icon`: chim bay trên nóc nhà, mèo dưới gầm bàn, mèo trong hộp hoặc ngoài hộp…). Có đoạn văn "My Street" và truyện "Where Is Bix's Ball?";
+  - trò chơi **Who Is Who?** trong Games (giống phần Nghe "Listen and draw lines"): 5 bạn nhỏ, mỗi bạn mặc áo một màu và đang làm một việc khác nhau. Bix nói "Find Tom. He's got a blue T-shirt and he's reading a book."; bé chạm đúng bạn thì tên hiện ra dưới hình. 4 lượt, còn 1 bạn thừa như trong đề. Bậc 0–1 chỉ nghe màu áo ("Where is Tom? He's got a blue T-shirt.");
+  - nút "Hôm nay" luân phiên thêm trò Who Is Who? từ bậc Starters.
 
 **Việc còn lại cho bậc 0–2:**
 - thu âm vè bằng giọng người thật (hiện giọng máy chỉ đọc theo nhịp, chưa hát);

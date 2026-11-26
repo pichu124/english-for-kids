@@ -7,7 +7,7 @@ const INK = '#1d2440';
 const S = `stroke="${INK}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
 
 export const BODY_PARTS = ['head', 'neck', 'shoulder', 'stomach', 'knee', 'teeth'] as const;
-export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock'] as const;
+export const ICONS = ['stairs', 'roof', 'towel', 'blanket', 'toothbrush', 'toothpaste', 'river', 'lake', 'waterfall', 'rock', 'above', 'below', 'near', 'opposite', 'inside', 'outside'] as const;
 
 const child = `
   <rect x="38" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/><rect x="52" y="122" width="10" height="12" rx="3" fill="#3d4a8a" ${S}/>
@@ -44,7 +44,26 @@ export function bodySVG(part: string): string {
   </svg>`;
 }
 
+// Little pieces for the "where is it?" pictures (Movers prepositions).
+const cat = (x: number, y: number, k = 1) => `<g transform="translate(${x} ${y}) scale(${k})">
+  <path d="M10 2 Q22 0 20 14 Q12 18 0 14 Q-2 4 10 2 Z" fill="#ff9f1c" ${S}/>
+  <path d="M18 8 Q28 4 26 -4" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M-8 -6 L-9 -16 L-3 -10 M3 -10 L8 -16 L8 -6" fill="#ff9f1c" ${S}/>
+  <circle cx="0" cy="-3" r="9" fill="#ff9f1c" ${S}/>
+  <circle cx="-3.5" cy="-4" r="1.4" fill="${INK}"/><circle cx="3.5" cy="-4" r="1.4" fill="${INK}"/><path d="M-2 0 Q0 2 2 0" stroke="${INK}" stroke-width="1.5" fill="none"/></g>`;
+const box = (front = true) => `<path d="M24 56 L76 56 L76 90 L24 90 Z" fill="#c9a26b" ${S}/>${front ? `<path d="M24 56 L14 44 M76 56 L86 44" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>` : ''}<path d="M24 70 H76" stroke="${INK}" stroke-width="2" opacity=".25"/>`;
+const house = (x: number, y: number, k = 1) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-18" y="0" width="36" height="28" fill="#f1f3f8" ${S}/><path d="M-24 2 L0 -20 L24 2 Z" fill="#e2553f" ${S}/><rect x="-5" y="12" width="10" height="16" fill="#8d5a2b" ${S}/></g>`;
+const tree = (x: number, y: number, k = 1) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-4" y="6" width="8" height="22" fill="#8d5a2b" ${S}/><circle cx="0" cy="-4" r="16" fill="#52b788" ${S}/></g>`;
+const bird = (x: number, y: number) => `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="0" rx="10" ry="7" fill="#4cc9f0" ${S}/><path d="M-2 -2 L-12 -12 L4 -5 Z" fill="#90e0ef" ${S}/><path d="M9 -1 L15 1 L9 3 Z" fill="#ffd166" stroke="${INK}" stroke-width="1.5" stroke-linejoin="round"/><circle cx="4" cy="-2" r="1.3" fill="${INK}"/></g>`;
+const ground = `<path d="M4 90 H96" stroke="#8ed16f" stroke-width="5" stroke-linecap="round"/>`;
+
 const ICON_SVG: Record<string, string> = {
+  above: `${ground}${house(50, 60, 1.1)}${bird(50, 16)}<path d="M50 28 V34" stroke="#ef476f" stroke-width="3" stroke-dasharray="3 3"/>`,
+  below: `${ground}<rect x="14" y="40" width="72" height="8" rx="2" fill="#bc8a5f" ${S}/><path d="M20 48 V90 M80 48 V90" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>${cat(46, 76)}`,
+  near: `${ground}${tree(36, 58, 1.3)}${cat(66, 76)}`,
+  opposite: `<rect x="4" y="42" width="92" height="20" fill="#adb5bd" ${S}/><path d="M10 52 H90" stroke="#fff" stroke-width="3" stroke-dasharray="7 6"/>${house(50, 18, 0.8)}${tree(50, 76, 0.75)}<path d="M50 40 V64" stroke="#ef476f" stroke-width="2.5" stroke-dasharray="3 3" opacity=".8"/>`,
+  inside: `${ground}<path d="M30 56 L30 40 L70 40 L70 56" fill="#a47148" ${S}/>${cat(48, 54, 1.1)}${box()}`,
+  outside: `${ground}<g transform="translate(-4 13) scale(.85)">${box()}<path d="M24 56 L76 56" stroke="${INK}" stroke-width="3"/></g>${cat(78, 78, 0.78)}`,
   stairs: `<path d="M10 90 H30 V72 H48 V54 H66 V36 H84 V18 H92 V90 Z" fill="#c9a26b" ${S}/><path d="M30 90 V72 M48 90 V54 M66 90 V36 M84 90 V18" stroke="${INK}" stroke-width="2" opacity=".35"/>`,
   roof: `<rect x="22" y="48" width="56" height="42" fill="#f1f3f8" ${S}/><rect x="44" y="64" width="12" height="26" fill="#8d5a2b" ${S}/><path d="M10 52 L50 14 L90 52 Z" fill="#e2553f" ${S}/><path d="M24 40 H76" stroke="${INK}" stroke-width="2" opacity=".4"/>`,
   towel: `<path d="M12 18 H88" stroke="${INK}" stroke-width="5" stroke-linecap="round"/><rect x="24" y="18" width="52" height="66" rx="4" fill="#4cc9f0" ${S}/><path d="M24 68 H76 M24 74 H76" stroke="#fff" stroke-width="3"/>`,

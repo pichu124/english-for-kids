@@ -132,6 +132,17 @@ await page.waitForSelector('.listen .pic-drawing svg');
 if (shots) await page.screenshot({ path: `${shots}/movers-family.png` });
 step('family tree pictures for aunt, uncle, cousin…');
 
+// Where Is It? 2: drawn position pictures; Numbers to 100: big numbers.
+await page.goto(`${base}/?unit=l3-where`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.listen .pic-drawing svg[aria-label="above"]');
+if (shots) await page.screenshot({ path: `${shots}/movers-where.png` });
+await page.goto(`${base}/?unit=l3-numbers`);
+await page.locator('.btn-play').click({ force: true });
+await page.waitForSelector('.listen .pic');
+if (!(await page.locator('.listen .pic').textContent()).includes('30')) fail('Numbers to 100 starts with 30');
+step('position drawings (above, inside…) and numbers to 100');
+
 // Drawn pictures for words without an old emoji (body parts, household things)
 await page.goto(`${base}/?unit=l3-body`);
 await page.locator('.btn-play').click({ force: true });

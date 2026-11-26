@@ -100,12 +100,20 @@
   .mem-grid { gap: 8px; }
   .mem-grid.mem-12 { grid-template-columns: repeat(6, auto); }
   .mem-grid.mem-12 .mem-card { width: clamp(64px, 26vh, 100px); }
-  .game-pick { width: clamp(130px, 42vh, 190px); }
+  .game-pick { width: min(19vw, 40vh); font-size: 16px; border-radius: 20px; }
+  .game-pick .game-pick-icon { font-size: min(10vw, 20vh); }
+  .games-list { flex-wrap: nowrap; gap: 10px; }
+  .games-body { gap: 10px; }
   .balloon { width: clamp(80px, 26vh, 120px); }
   .paint-tile { width: clamp(76px, 30vh, 130px); border-radius: 18px; }
   .paint-grid { gap: 8px; }
   .crayon { height: clamp(44px, 13vh, 60px); min-height: 44px; width: clamp(70px, 18vh, 100px); }
   .crayon-box { gap: 6px; display: grid; grid-template-columns: repeat(2, auto); }
+  .kid-svg { max-height: 46vh; }
+  .kid-row { gap: 6px; }
+  .kid { border-radius: 14px; border-width: 3px; }
+  .kid-name { font-size: 16px; margin: 2px 0 4px; }
+  .who-body { padding-top: 34px; }
   .start-wrap .bix-svg { height: clamp(150px, 62vh, 260px); }
 }
 

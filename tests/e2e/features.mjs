@@ -201,6 +201,37 @@ if (!(await page.locator('.game-done').count())) fail('colouring 4 things should
 if ((await page.locator('.paint-tile.is-painted').count()) !== 4) fail('all 4 things painted');
 step('colour: "Colour the dog blue!" — wrong colour gently retried, 4 things coloured then done');
 
+await page.locator('.btn-home').first().click({ force: true });
+await page.waitForSelector('.home');
+await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+await page.locator('.game-pick[data-game="who"]').click({ force: true });
+await page.waitForSelector('.kid');
+if ((await page.locator('.kid').count()) !== 5) fail('Who Is Who shows 5 children');
+await page.waitForFunction(() => /^find \w+\. (he|she)'s got a \w+ t-shirt and (he|she)'s .+\.$/i.test(window.__spoken.at(-1) || ''));
+{
+  const said = await page.evaluate(() => window.__spoken.at(-1));
+  const name = said.match(/^find (\w+)\./i)[1];
+  await page.locator(`.kid:not([data-name="${name}"])`).first().click({ force: true });
+  await page.waitForTimeout(300);
+  if (await page.locator('.kid.is-named').count()) fail('tapping the wrong child names nobody');
+  if (!/try again/i.test(await page.evaluate(() => window.__spoken.at(-1)))) fail('wrong child: Bix says try again');
+}
+let wshot = false;
+for (let i = 0; i < 120 && !(await page.locator('.game-done').count()); i++) {
+  const m = (await page.evaluate(() => window.__spoken.at(-1) || '')).match(/^(?:try again! )?find (\w+)\./i);
+  if (m) {
+    const k = page.locator(`.kid:not(.is-named)[data-name="${m[1]}"]`);
+    if (await k.count()) {
+      await k.click({ force: true });
+      if (shots && !wshot && (await page.locator('.kid.is-named').count()) >= 2) { await page.screenshot({ path: `${shots}/whoiswho.png` }); wshot = true; }
+    }
+  }
+  await page.waitForTimeout(150);
+}
+if (!(await page.locator('.game-done').count())) fail('naming 4 children should end the game');
+if ((await page.locator('.kid.is-named').count()) !== 4) fail('4 children named, one left over');
+step('who is who: "Find Tom. He\'s got a blue T-shirt and he\'s reading a book." — 4 of 5 named');
+
 // ---------- B7: stories ----------
 await home();
 if (!(await page.locator('.dock-btn[aria-label="Stories"].is-new').count())) fail('finishing Animals should open its story (dock glows)');

@@ -1,0 +1,77 @@
+{
+  "topic": "where2",
+  "words": [
+    {
+      "id": "above",
+      "text": "above",
+      "topic": "where2",
+      "image": {
+        "icon": "above"
+      },
+      "sentence": "The bird is above the house.",
+      "accept": []
+    },
+    {
+      "id": "below",
+      "text": "below",
+      "topic": "where2",
+      "image": {
+        "icon": "below"
+      },
+      "sentence": "The cat is below the table.",
+      "accept": [
+        "bellow"
+      ]
+    },
+    {
+      "id": "near",
+      "text": "near",
+      "topic": "where2",
+      "image": {
+        "icon": "near"
+      },
+      "sentence": "The cat is near the tree.",
+      "accept": [
+        "nearby",
+        "neer"
+      ]
+    },
+    {
+      "id": "opposite",
+      "text": "opposite",
+      "topic": "where2",
+      "image": {
+        "icon": "opposite"
+      },
+      "sentence": "The house is opposite the tree.",
+      "accept": [
+        "oposite",
+        "opposit"
+      ]
+    },
+    {
+      "id": "inside",
+      "text": "inside",
+      "topic": "where2",
+      "image": {
+        "icon": "inside"
+      },
+      "sentence": "The cat is inside the box.",
+      "accept": [
+        "in side"
+      ]
+    },
+    {
+      "id": "outside",
+      "text": "outside",
+      "topic": "where2",
+      "image": {
+        "icon": "outside"
+      },
+      "sentence": "The cat is outside the box.",
+      "accept": [
+        "out side"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "topic": "numbers3",
+  "words": [
+    {
+      "id": "thirty",
+      "text": "thirty",
+      "topic": "numbers3",
+      "image": {
+        "text": "30"
+      },
+      "sentence": "There are thirty children in my class.",
+      "accept": [
+        "30"
+      ]
+    },
+    {
+      "id": "forty",
+      "text": "forty",
+      "topic": "numbers3",
+      "image": {
+        "text": "40"
+      },
+      "sentence": "My dad is forty years old.",
+      "accept": [
+        "40",
+        "fourty"
+      ]
+    },
+    {
+      "id": "fifty",
+      "text": "fifty",
+      "topic": "numbers3",
+      "image": {
+        "text": "50"
+      },
+      "sentence": "Grandma has got fifty books.",
+      "accept": [
+        "50"
+      ]
+    },
+    {
+      "id": "sixty",
+      "text": "sixty",
+      "topic": "numbers3",
+      "image": {
+        "text": "60"
+      },
+      "sentence": "There are sixty minutes in an hour.",
+      "accept": [
+        "60"
+      ]
+    },
+    {
+      "id": "seventy",
+      "text": "seventy",
+      "topic": "numbers3",
+      "image": {
+        "text": "70"
+      },
+      "sentence": "My grandpa is seventy years old.",
+      "accept": [
+        "70"
+      ]
+    },
+    {
+      "id": "eighty",
+      "text": "eighty",
+      "topic": "numbers3",
+      "image": {
+        "text": "80"
+      },
+      "sentence": "There are eighty pages in this book.",
+      "accept": [
+        "80"
+      ]
+    },
+    {
+      "id": "ninety",
+      "text": "ninety",
+      "topic": "numbers3",
+      "image": {
+        "text": "90"
+      },
+      "sentence": "The old tree is ninety years old.",
+      "accept": [
+        "90"
+      ]
+    },
+    {
+      "id": "hundred",
+      "text": "a hundred",
+      "topic": "numbers3",
+      "image": {
+        "text": "100"
+      },
+      "sentence": "I can count to a hundred!",
+      "accept": [
+        "hundred",
+        "one hundred",
+        "100"
+      ]
+    }
+  ]
+}

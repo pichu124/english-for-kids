@@ -1,0 +1,70 @@
+{
+  "id": "l3-numbers",
+  "level": "L3",
+  "topic": "numbers3",
+  "order": 31,
+  "title": "Numbers to 100",
+  "titleVi": "Số đến 100",
+  "icon": "💯",
+  "color": "#bde0fe",
+  "intro": "Let's count to a hundred!",
+  "playPrompt": "Where is number {word}?",
+  "block": {
+    "name": "Hundred block",
+    "style": "gold",
+    "color": "#ffd166"
+  },
+  "words": [
+    "thirty",
+    "forty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety",
+    "hundred"
+  ],
+  "parentTip": {
+    "vi": "Đếm theo chục khi leo cầu thang hay xếp đồ chơi: \"ten, twenty, thirty…\". Hỏi con tuổi của ông bà: \"How old is Grandpa?\"",
+    "say": "How old is Grandpa?"
+  },
+  "chat": {
+    "ask": "Can you count to a hundred?",
+    "yes": "Wow! You are a counting star!",
+    "no": "That's okay! Let's count together: ten, twenty, thirty!"
+  },
+  "gaps": [
+    {
+      "s": "Ten, twenty, ___, forty, fifty!",
+      "answer": "thirty",
+      "options": [
+        "sixty",
+        "ninety"
+      ]
+    },
+    {
+      "s": "There are ___ minutes in an hour.",
+      "answer": "sixty",
+      "options": [
+        "forty",
+        "eighty"
+      ]
+    },
+    {
+      "s": "Seventy, eighty, ___, a hundred!",
+      "answer": "ninety",
+      "options": [
+        "forty",
+        "sixty"
+      ]
+    },
+    {
+      "s": "Fifty and fifty make ___.",
+      "answer": "a hundred",
+      "options": [
+        "seventy",
+        "thirty"
+      ]
+    }
+  ]
+}

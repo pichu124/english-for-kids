@@ -48,7 +48,9 @@ export function resolveFun(p: TodayPlan): string {
   const open = storiesOfLevel(currentLevel().id).filter((st) => (s.topics[st.unit]?.completed ?? 0) > 0 && !s.storiesRead?.[st.id]);
   const story = open.find((st) => st.unit === lesson) ?? open[0];
   if (story) return `story:${story.id}`;
-  return ['game:memory', 'game:balloons', 'game:colour'][Number(today().slice(-2)) % 3];
+  const games = ['game:memory', 'game:balloons', 'game:colour'];
+  if (!['L0', 'L1'].includes(currentLevel().id)) games.push('game:who');
+  return games[Number(today().slice(-2)) % games.length];
 }
 
 // The step being played right now (only while the child came from the Today screen).
