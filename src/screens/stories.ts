@@ -5,7 +5,7 @@ import { currentLevel } from '../lib/level';
 import { markKnown } from '../lib/progress';
 import { choicesFor, hintAfter, recordTap } from '../lib/adapt';
 import { sfx } from '../lib/sfx';
-import { getState, update } from '../lib/storage';
+import { dayLog, getState, update } from '../lib/storage';
 import { say, stopSpeaking } from '../lib/tts';
 import { cancelListening } from '../lib/listen';
 import { readScore, sentenceWords, wordHits } from '../lib/readcheck';
@@ -139,7 +139,11 @@ export function storyScreen(ctx: Ctx): HTMLElement {
       if (!ctx.alive() || page !== here) return;
       if (r.result === 'ok' || r.result === 'parent') {
         words.forEach((w) => w.classList.add('is-read'));
-        update((s) => (s.readAloud = { ...(s.readAloud ?? {}), [story.id]: (s.readAloud?.[story.id] ?? 0) + 1 }));
+        update((s) => {
+          s.readAloud = { ...(s.readAloud ?? {}), [story.id]: (s.readAloud?.[story.id] ?? 0) + 1 };
+          const d = dayLog();
+          d.read = (d.read ?? 0) + 1;
+        });
         sfx.success();
         await say(`${pick(PRAISE)} You can read!`);
       }

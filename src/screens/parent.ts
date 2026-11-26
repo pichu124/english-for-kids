@@ -1,7 +1,10 @@
 /** Parent area (Vietnamese). Gated behind a multiplication question. */
-import { LEVELS, levelsWithContent, topics, topicsOfLevel } from '../content';
+import { LEVELS, levelById, levelsWithContent, topics, topicsOfLevel } from '../content';
 import { levelDone, levelProgress, unitBadge, weekReport } from '../lib/progress';
 import { currentLevel, setLevel } from '../lib/level';
+import phonicsData from '../../content/phonics.json';
+import talkData from '../../content/talk.json';
+import { phonicsAllDone } from './certificate';
 import { h } from '../lib/dom';
 import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
@@ -97,6 +100,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Bậc học của bé', levelField()),
     card('Huy hiệu & giấy chứng nhận', certField()),
     card('Phiếu bài tập in', worksheetField()),
+    card('Âm, đọc to & trò chuyện', speakingField()),
     card('Thi thử', testField()),
     card('Chơi cùng con', tipsList()),
     card('Giọng đọc & micro', voiceTools()),
@@ -174,6 +178,26 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       {},
       h('ul', { class: 'p-kids' }, rows),
       h('p', { class: 'p-muted' }, 'Huy hiệu mỗi bài: đồng khi học xong, bạc khi mọi từ thành sticker, vàng khi đủ sticker và học 3 lần. Giấy chứng nhận in khổ A4 ngang (hoặc lưu PDF), là kỷ niệm của gia đình/lớp học, không phải chứng chỉ Cambridge.'),
+    );
+  }
+
+  /** Phonics sets, pages read aloud, chats and speaking practice (all on this device). */
+  function speakingField() {
+    const st = getState();
+    const sets = phonicsData.sets.map((x) => h('span', { class: `chip ${st.phonics?.[x.id] ? 'chip-ok' : ''}`, 'data-set': x.id }, `${st.phonics?.[x.id] ? '✓' : '·'} ${x.sounds.map((y) => y.s).join(' ')}`));
+    const pages = Object.values(st.readAloud ?? {}).reduce((n, v) => n + (typeof v === 'number' ? v : 0), 0);
+    const chats = talkData.chats.filter((c) => st.talk?.[`chat-${c.id}`]).map((c) => `${c.icon} ${c.title}`);
+    const practice = Object.keys(talkData.practice).filter((l) => st.talk?.[`practice-${l}`]).map((l) => `${levelById(l)?.name} (${st.talk?.[`practice-${l}`]} lần)`);
+    return h(
+      'div',
+      { class: 'p-speaking' },
+      h('p', {}, h('b', {}, 'Âm chữ cái (phonics): '), `${phonicsData.sets.filter((x) => st.phonics?.[x.id]).length}/${phonicsData.sets.length} nhóm`),
+      h('div', { class: 'p-words p-sets' }, sets),
+      phonicsAllDone() ? h('button', { class: 'p-btn p-btn-sm', 'data-cert': 'phonics', onclick: () => ctx.go('certificate', { kind: 'phonics', from: 'parent' }) }, '🔊 Xem & in giấy "Sounds Star"') : h('p', { class: 'p-muted' }, 'Xong cả các nhóm âm sẽ có giấy "Sounds Star". Vào ABC → 🔊 Sounds.'),
+      h('p', {}, h('b', {}, 'Bé tự đọc to: '), pages ? `${pages} trang (truyện và truyện phonics)` : 'chưa có trang nào. Trong truyện, bấm 🎤 My turn để bé tự đọc.'),
+      h('p', {}, h('b', {}, 'Trò chuyện với Bix: '), chats.length ? chats.join(' · ') : 'chưa trò chuyện. Nút 💬 Talk ở màn hình chính.'),
+      h('p', {}, h('b', {}, 'Luyện phần Nói: '), practice.length ? practice.join(' · ') : 'chưa luyện.'),
+      h('p', { class: 'p-muted' }, 'Máy chỉ lưu số lần, không lưu giọng nói.'),
     );
   }
 

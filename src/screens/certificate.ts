@@ -7,6 +7,7 @@ import { getState } from '../lib/storage';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
 import { confetti } from './widgets';
+import phonics from '../../content/phonics.json';
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const nice = (iso: string) => {
@@ -28,6 +29,7 @@ const LEVEL_LOOK: Record<LevelId, { badge: string; motto: string }> = {
  * It is a family/school keepsake, not an official Cambridge certificate — the wording says so.
  */
 export function certificateScreen(ctx: Ctx): HTMLElement {
+  if (ctx.params.kind === 'phonics') return phonicsCertificate(ctx);
   const level = levelById(ctx.params.level ?? '');
   const back = () => ctx.go((ctx.params.from as 'parent' | 'book') || 'book');
   if (!level || !levelDone(level.id)) {
@@ -69,6 +71,50 @@ export function certificateScreen(ctx: Ctx): HTMLElement {
     if (!ctx.alive()) return;
     confetti(document.body, 50);
     void say(`Congratulations, ${name}! You finished ${level.name}!`);
+  }, 300);
+  return h('main', { class: 'cert-page' }, actions, cert);
+}
+
+/** All letter-sound sets finished: a "Sounds Star" certificate (same look, its own badge). */
+export const phonicsAllDone = () => phonics.sets.every((st) => (getState().phonics?.[st.id] ?? 0) > 0);
+
+function phonicsCertificate(ctx: Ctx): HTMLElement {
+  const back = () => ctx.go((ctx.params.from as 'parent' | 'phonics') || 'phonics');
+  if (!phonicsAllDone()) {
+    queueMicrotask(back);
+    return h('main');
+  }
+  const name = getState().childName.trim() || 'Our Super Learner';
+  const bix = new Bix({ size: 'md', bubble: false }).setMood('happy');
+  const cert = h(
+    'article',
+    { class: 'cert', 'aria-label': 'Certificate', 'data-level': 'phonics' },
+    h('div', { class: 'cert-inner' },
+      h('div', { class: 'cert-top', 'aria-hidden': 'true' }, '⭐ ', h('span', { class: 'cert-badge' }, '🔊'), ' ⭐'),
+      h('h1', { class: 'cert-title' }, 'Sounds Star'),
+      h('p', { class: 'cert-sub' }, 'This certificate is proudly given to'),
+      h('p', { class: 'cert-name' }, name),
+      h('p', { class: 'cert-what' }, `for learning all ${phonics.sets.filter((st) => !('tricky' in st)).reduce((n, st) => n + st.sounds.length, 0)} letter sounds of`),
+      h('p', { class: 'cert-level' }, 'Bix English · Sounds'),
+      h('p', { class: 'cert-motto' }, 'You can blend sounds and read your first little books!'),
+      h('div', { class: 'cert-icons', 'aria-hidden': 'true', lang: 'en' }, phonics.sets.filter((st) => !('tricky' in st)).flatMap((st) => st.sounds.map((x) => h('span', { class: 'cert-sound' }, x.s)))),
+      h('div', { class: 'cert-foot' },
+        h('div', { class: 'cert-sign' }, h('span', { class: 'cert-line' }), 'Date', h('b', {}, nice(new Date().toISOString().slice(0, 10)))),
+        h('div', { class: 'cert-bix' }, bix.el),
+        h('div', { class: 'cert-sign' }, h('span', { class: 'cert-line' }), 'Signed (parent / teacher)'),
+      ),
+    ),
+  );
+  const actions = h(
+    'div',
+    { class: 'cert-actions' },
+    h('button', { class: 'btn btn-round btn-home', 'aria-label': 'Back', onclick: () => (sfx.tap(), back()) }, '◀'),
+    h('button', { class: 'p-btn cert-print', lang: 'vi', onclick: () => window.print() }, '🖨️ In hoặc lưu PDF'),
+  );
+  setTimeout(() => {
+    if (!ctx.alive()) return;
+    confetti(document.body, 50);
+    void say(`Congratulations, ${name}! You know all the letter sounds!`);
   }, 300);
   return h('main', { class: 'cert-page' }, actions, cert);
 }

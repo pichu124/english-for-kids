@@ -3,12 +3,14 @@
  * to start — review (if words are due) → the next lesson → a story or a game → a
  * prize for the day. The plan is kept per child and per day.
  */
-import { hasPart2, storiesOfLevel, topicsOfLevel, type Topic } from '../content';
+import phonics from '../../content/phonics.json';
+import talk from '../../content/talk.json';
+import { hasPart2, LEVELS, levelById, storiesOfLevel, topicsOfLevel, type Topic } from '../content';
 import { currentLevel } from './level';
 import { buildReview } from './review';
 import { getState, today, update } from './storage';
 
-export type TodayStep = { kind: 'review' | 'lesson' | 'fun'; id?: string; part?: 1 | 2; done?: boolean };
+export type TodayStep = { kind: 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean };
 export type TodayPlan = { day: string; steps: TodayStep[]; finished?: boolean };
 
 /** First unit not done yet, else the one practised least. */
@@ -32,10 +34,35 @@ export function todayPlan(): TodayPlan {
   const t = suggestedTopic(level);
   if (toRead) steps.push({ kind: 'lesson', id: toRead.id, part: 2 });
   else if (t) steps.push({ kind: 'lesson', id: t.id });
+  const speak = speakingStep(level);
+  if (speak) steps.push({ kind: 'talk', id: speak });
   steps.push({ kind: 'fun' });
   const plan = { day: today(), steps };
   update((st) => (st.today = plan));
   return plan;
+}
+
+/**
+ * A speaking/reading moment for the day: the next phonics set for young readers (until all
+ * sets are done), otherwise a chat with Bix not yet done, or the level's speaking practice.
+ * Returns 'phonics:p2', 'chat:food' or 'practice'; nothing for pre-readers (level 0).
+ */
+export function speakingStep(levelId: string): string | undefined {
+  const level = levelById(levelId);
+  if (!level || levelId === 'L0') return undefined;
+  const s = getState();
+  const idx = LEVELS.findIndex((l) => l.id === levelId);
+  if (levelId === 'L1' || levelId === 'L2') {
+    const next = phonics.sets.find((st) => !s.phonics?.[st.id]);
+    if (next) return `phonics:${next.id}`;
+  }
+  const chats = talk.chats.filter((c) => LEVELS.findIndex((l) => l.id === c.level) <= idx);
+  const practice = levelId in talk.practice;
+  // alternate by day between a chat and the speaking test practice (when the level has one)
+  if (practice && (Number(today().slice(-2)) % 2 === 0 || !chats.length)) return 'practice';
+  const fresh = chats.find((c) => !s.talk?.[`chat-${c.id}`]);
+  const pick = fresh ?? chats[Number(today().slice(-2)) % Math.max(1, chats.length)];
+  return pick ? `chat:${pick.id}` : practice ? 'practice' : undefined;
 }
 
 export const currentStep = (p: TodayPlan) => p.steps.findIndex((x) => !x.done);

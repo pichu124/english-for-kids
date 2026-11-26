@@ -96,8 +96,8 @@
   .ph-book { gap: 4px; }
   .ph-read .mic-turn { flex-direction: row; }
   .mic-status { font-size: 16px; }
-  .ph-sets { flex-wrap: nowrap; gap: 8px; }
-  .ph-set { min-height: 0; width: auto; flex: 1 1 0; padding: 12px 6px; border-radius: 16px; border-width: 3px; }
+  .ph-sets { flex-wrap: wrap; gap: 8px; }
+  .ph-set { min-height: 0; width: calc(25% - 8px); flex: none; padding: 8px 6px; border-radius: 16px; border-width: 3px; }
   .ph-set-letters { font-size: 17px; white-space: normal; text-align: center; }
   .ph-set-title { font-size: 13px; }
   .ph-set-star { font-size: 22px; top: -8px; right: -6px; }
@@ -181,3 +181,6 @@
   .talk-body { flex-direction: column-reverse; }
   .talk-bix { width: 100%; align-self: center; }
 }
+
+.cert-sound { font-weight: 800; font-family: inherit; }
+.ph-cert { margin-left: auto; }

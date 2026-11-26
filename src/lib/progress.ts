@@ -126,6 +126,8 @@ export type WeekReport = {
   practise: { topic: Topic; word: Word; slips: number }[];
   recentTopics: Topic[];
   spoken: { auto: number; parent: number; miss: number };
+  /** This week: phonics sets finished, pages the child read aloud, chats/speaking practice done. */
+  extra: { sounds: number; read: number; talk: number };
 };
 
 const isoDay = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -169,5 +171,6 @@ export function weekReport(): WeekReport {
     practise: uniqPractise,
     recentTopics,
     spoken,
+    extra: list.reduce((acc, d) => ({ sounds: acc.sounds + (s.days[d]?.sounds ?? 0), read: acc.read + (s.days[d]?.read ?? 0), talk: acc.talk + (s.days[d]?.talk ?? 0) }), { sounds: 0, read: 0, talk: 0 }),
   };
 }

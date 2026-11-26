@@ -7,12 +7,14 @@ import { currentLevel } from '../lib/level';
 import { cancelListening } from '../lib/listen';
 import { matchSpeech, normalize } from '../lib/match';
 import { sfx } from '../lib/sfx';
-import { update } from '../lib/storage';
+import { dayLog, update } from '../lib/storage';
 import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
 import { pick, PRAISE } from './lesson/shared';
 import { micTurn } from './mic';
 import { confetti, homeButton } from './widgets';
+import { todayRunning } from '../lib/today';
+import { todayNextButton } from './today';
 
 /**
  * Talk with Bix — everything runs on the device (no AI service, nothing sent anywhere):
@@ -108,7 +110,11 @@ function chatScreen(ctx: Ctx, chat: Chat): HTMLElement {
       await wait(250);
     }
     if (!ctx.alive()) return;
-    update((s) => (s.talk = { ...(s.talk ?? {}), [`chat-${chat.id}`]: (s.talk?.[`chat-${chat.id}`] ?? 0) + 1 }));
+    update((s) => {
+      s.talk = { ...(s.talk ?? {}), [`chat-${chat.id}`]: (s.talk?.[`chat-${chat.id}`] ?? 0) + 1 };
+      const d = dayLog();
+      d.talk = (d.talk ?? 0) + 1;
+    });
     done(ctx, stage, bix);
   };
   setTimeout(() => void run(), 300);
@@ -121,7 +127,7 @@ function done(ctx: Ctx, stage: HTMLElement, bix: Bix): void {
   bix.setMood('happy');
   const again = h('button', { class: 'btn btn-sun', 'aria-label': 'Talk', onclick: () => (sfx.tap(), ctx.go('talk')) }, '💬 Talk');
   const home = h('button', { class: 'btn btn-good', 'aria-label': 'Home', onclick: () => (sfx.tap(), ctx.go('home')) }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
-  stage.replaceChildren(h('div', { class: 'talk-done pop' }, h('div', { class: 'talk-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, again, home)));
+  stage.replaceChildren(h('div', { class: 'talk-done pop' }, h('div', { class: 'talk-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, todayRunning() ? todayNextButton(ctx) : [again, home])));
   void bix.talk(`${pick(PRAISE)} You are a great talker!`, 'happy');
 }
 
@@ -268,7 +274,11 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
     }
     if (!ok()) return;
     mark(parts.length);
-    update((s) => (s.talk = { ...(s.talk ?? {}), [`practice-${levelId}`]: (s.talk?.[`practice-${levelId}`] ?? 0) + 1 }));
+    update((s) => {
+      s.talk = { ...(s.talk ?? {}), [`practice-${levelId}`]: (s.talk?.[`practice-${levelId}`] ?? 0) + 1 };
+      const d = dayLog();
+      d.talk = (d.talk ?? 0) + 1;
+    });
     done(ctx, stage, bix);
   };
   setTimeout(() => void run(), 300);

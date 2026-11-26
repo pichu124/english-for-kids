@@ -47,6 +47,10 @@ export type DayLog = {
   parent: number;
   miss: number;
   noVoice: number;
+  /** Phonics sets finished, pages read aloud by the child, chats / speaking practice finished. */
+  sounds?: number;
+  read?: number;
+  talk?: number;
 };
 
 export type State = {
@@ -87,7 +91,7 @@ export type State = {
   /** Adaptive difficulty: first-try results of recent picture rounds. */
   adapt?: { recent: boolean[] };
   /** Today's guided plan, and how many days it was finished. */
-  today?: { day: string; steps: { kind: 'review' | 'lesson' | 'fun'; id?: string; done?: boolean }[]; finished?: boolean };
+  today?: { day: string; steps: { kind: 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean }[]; finished?: boolean };
   todayDays?: number;
   /** Starters practice tests: day and [right, asked] per part. */
   tests?: { day: string; level?: string; score: Partial<Record<'listening' | 'spelling' | 'writing' | 'reading', [number, number]>> }[];

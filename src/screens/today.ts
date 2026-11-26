@@ -8,9 +8,11 @@ import { getState, update } from '../lib/storage';
 import { completeTodayStep, currentStep, finishToday, resolveFun, startTodayStep, todayPlan, type TodayStep } from '../lib/today';
 import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
+import phonics from '../../content/phonics.json';
+import talk from '../../content/talk.json';
 import { confetti, homeButton } from './widgets';
 
-const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons' };
+const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons', colour: 'Colour', who: 'Who Is Who?', riddle: 'Riddles' };
 
 function label(st: TodayStep): { icon: string; text: string; say: string } {
   if (st.kind === 'review') return { icon: '🔁', text: 'Review', say: 'review your words' };
@@ -18,6 +20,15 @@ function label(st: TodayStep): { icon: string; text: string; say: string } {
     const t = topicById(st.id ?? '');
     if (st.part === 2) return { icon: '📖', text: `${t?.title ?? 'Lesson'} · Read`, say: `read and write ${t?.title ?? ''}` };
     return { icon: t?.icon ?? '⭐', text: t?.title ?? 'Lesson', say: `learn ${t?.title ?? 'a new lesson'}` };
+  }
+  if (st.kind === 'talk') {
+    const [k, id] = (st.id ?? '').split(':');
+    if (k === 'phonics') return { icon: '🔊', text: phonics.sets.find((x) => x.id === id)?.title ?? 'Sounds', say: 'learn some letter sounds' };
+    if (k === 'chat') {
+      const c = talk.chats.find((x) => x.id === id);
+      return { icon: c?.icon ?? '💬', text: c?.title ?? 'Talk', say: 'talk with me' };
+    }
+    return { icon: '🎓', text: 'Speaking practice', say: 'practise speaking' };
   }
   const [kind, id] = (st.id ?? '').split(':');
   if (kind === 'story') return { icon: '📚', text: storyById(id)?.title ?? 'Story', say: 'read a story' };
@@ -61,6 +72,11 @@ export function todayScreen(ctx: Ctx): HTMLElement {
       return ctx.go('lesson', { topic: REVIEW_ID });
     }
     if (st.kind === 'lesson') return ctx.go('lesson', st.part === 2 ? { topic: st.id!, part: '2' } : { topic: st.id! });
+    if (st.kind === 'talk') {
+      const [k, id] = (st.id ?? '').split(':');
+      if (k === 'phonics') return ctx.go('phonics', { set: id });
+      return ctx.go('talk', k === 'chat' ? { chat: id } : { mode: 'practice' });
+    }
     const fun = st.id ?? resolveFun(plan);
     update((s) => (s.today!.steps[i].id = fun));
     const [kind, id] = fun.split(':');

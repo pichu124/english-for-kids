@@ -5,13 +5,16 @@ import { fixEmoji } from '../lib/emoji';
 import { cancelListening } from '../lib/listen';
 import { readScore, sentenceWords, wordHits } from '../lib/readcheck';
 import { sfx } from '../lib/sfx';
-import { getState, update } from '../lib/storage';
+import { dayLog, getState, update } from '../lib/storage';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
 import { pick, PRAISE } from './lesson/shared';
 import { micTurn } from './mic';
 import { confetti, homeButton } from './widgets';
+import { todayRunning } from '../lib/today';
+import { todayNextButton } from './today';
+import { phonicsAllDone } from './certificate';
 
 /**
  * Phonics: letter SOUNDS (not names) and blending them into words — how children learn to
@@ -21,11 +24,11 @@ import { confetti, homeButton } from './widgets';
  */
 type Sound = { s: string; say: string; word: string; emoji: string };
 type BlendWord = { w: string; parts: string[]; emoji: string };
-type PhonicsSet = { id: string; title: string; color: string; sounds: Sound[]; words: BlendWord[]; reader: { title: string; pages: { text: string; emoji: string }[] } };
+type PhonicsSet = { id: string; title: string; color: string; sounds: Sound[]; words: BlendWord[]; reader: { title: string; pages: { text: string; emoji: string }[] }; /** tricky words to know by sight (no blending) */ tricky?: boolean };
 const SETS = data.sets as PhonicsSet[];
 const TRICKY = new Set(data.tricky);
 const SAY: Record<string, string> = Object.fromEntries(SETS.flatMap((st) => st.sounds.map((x) => [x.s, x.say])));
-const taughtUpTo = (i: number) => SETS.slice(0, i + 1).flatMap((st) => st.sounds);
+const taughtUpTo = (i: number) => SETS.slice(0, i + 1).filter((st) => !st.tricky).flatMap((st) => st.sounds);
 const wordsUpTo = (i: number) => SETS.slice(0, i + 1).flatMap((st) => st.words);
 
 export function phonicsScreen(ctx: Ctx): HTMLElement {
@@ -50,11 +53,13 @@ function menu(ctx: Ctx): HTMLElement {
       done[st.id] ? h('span', { class: 'ph-set-star', 'aria-hidden': 'true' }, '⭐') : null,
     ),
   );
+  // every set done: the "Sounds Star" certificate
+  const cert = phonicsAllDone() ? h('button', { class: 'btn btn-sun ph-cert', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { kind: 'phonics', from: 'phonics' })) }, '🏆') : null;
   setTimeout(() => ctx.alive() && void bix.talk("Let's learn the sounds of the letters!", 'happy', 'Sounds! 🔊'), 300);
   return h(
     'main',
     { class: 'phonics' },
-    h('header', { class: 'book-top' }, homeButton(ctx), h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤'), h('h1', { class: 'world-title' }, 'Sounds')),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤'), h('h1', { class: 'world-title' }, 'Sounds'), cert),
     h('div', { class: 'ph-menu' }, h('div', { class: 'ph-bix' }, bix.el), h('div', { class: 'ph-sets' }, cards)),
   );
 }
@@ -113,7 +118,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
 
     // 2. Find the sound
     step(1);
-    const pool = taughtUpTo(idx);
+    // a tricky-word set finds among its own words; sound sets among all sounds taught so far
+    const pool = set.tricky ? set.sounds : taughtUpTo(idx);
     const order = shuffle([...set.sounds, ...shuffle(set.sounds)]).slice(0, 5);
     for (const target of order) {
       if (!alive()) return;
@@ -143,10 +149,10 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
       }
     }
 
-    // 3. Blend: hear the sounds, pick the picture
+    // 3. Blend: hear the sounds, pick the picture (tricky words skip blending and building)
     step(2);
     const allWords = wordsUpTo(idx);
-    for (const w of shuffle(set.words).slice(0, 4)) {
+    for (const w of set.tricky ? [] : shuffle(set.words).slice(0, 4)) {
       if (!alive()) return;
       const tiles = w.parts.map((p) => soundTile(p, 'ph-tile-word'));
       const others = shuffle(allWords.filter((x) => x.w !== w.w)).slice(0, 2);
@@ -185,7 +191,7 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
 
     // 4. Build the word from sound tiles
     step(3);
-    for (const w of shuffle(set.words).slice(0, 3)) {
+    for (const w of set.tricky ? [] : shuffle(set.words).slice(0, 3)) {
       if (!alive()) return;
       const extra = shuffle(pool.filter((x) => !w.parts.includes(x.s)))[0];
       const choices = shuffle([...w.parts, ...(extra ? [extra.s] : [])]);
@@ -275,6 +281,9 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     update((s) => {
       s.phonics = { ...(s.phonics ?? {}), [set.id]: (s.phonics?.[set.id] ?? 0) + 1 };
       if (readByChild) s.readAloud = { ...(s.readAloud ?? {}), [`phonics-${set.id}`]: (s.readAloud?.[`phonics-${set.id}`] ?? 0) + readByChild };
+      const d = dayLog();
+      d.sounds = (d.sounds ?? 0) + 1;
+      d.read = (d.read ?? 0) + readByChild;
     });
     [...dots.children].forEach((d) => d.classList.add('on'));
     sfx.reward();
@@ -283,7 +292,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     const nextSet = SETS[idx + 1];
     const again = h('button', { class: 'btn btn-sun', 'aria-label': 'Sounds', onclick: () => (sfx.tap(), ctx.go('phonics')) }, '🔊 Sounds');
     const on = nextSet ? h('button', { class: 'btn btn-good', 'aria-label': 'Next sounds', onclick: () => (sfx.tap(), ctx.go('phonics', { set: nextSet.id })) }, `▶ ${nextSet.title}`) : null;
-    stage.replaceChildren(h('div', { class: 'ph-done pop' }, h('div', { class: 'ph-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, on, again)));
+    // started from Today: one big Next back to the day's path
+    stage.replaceChildren(h('div', { class: 'ph-done pop' }, h('div', { class: 'ph-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, todayRunning() ? todayNextButton(ctx) : [on, again])));
     await say(readByChild ? `You read the book by yourself! ${pick(PRAISE)}` : `You know the sounds ${set.sounds.map((x) => x.s).join(', ')}! ${pick(PRAISE)}`);
   };
   setTimeout(() => void run(), 300);

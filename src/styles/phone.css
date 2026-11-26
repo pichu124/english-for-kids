@@ -192,7 +192,7 @@
   .test-q.write .def-card { min-width: 150px; }
   .write .spell-slots { grid-area: slots; }
   .wr-keys { grid-area: keys; gap: 5px; grid-template-columns: repeat(7, auto); }
-  .wr-key { width: 42px; height: 42px; font-size: 21px; border-radius: 10px; }
+  .wr-key { width: 48px; height: 48px; font-size: 23px; border-radius: 11px; } /* as big as the short screen allows (a 6-year-old finger) */
   .lesson-body:has(.write) .lesson-bix { width: 16%; }
   .lesson-body:has(.write) .lesson-bix .bix-bubble { display: none; }
   .text-read { gap: 12px; }

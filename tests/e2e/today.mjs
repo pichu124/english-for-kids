@@ -40,7 +40,7 @@ if (kinds.join(',') !== 'review,lesson,fun') fail('plan should be review → les
 if (!(await page.locator('.today-card.is-now[data-kind="review"]').count())) fail('review is first');
 if (!(await page.locator('.today-card[data-kind="lesson"]').textContent()).includes('Animals · Read')) fail('lesson = Read & Write of Animals (heard, not yet read)');
 if (shots) await page.screenshot({ path: `${shots}/today-plan.png` });
-step('Today plan: review (words due) → Read & Write of Animals (heard before) → story or game → prize');
+step('Today plan: review (words due) → Read & Write of Animals (heard before) → sounds/talk → story or game → prize');
 
 // helper: answer whatever the lesson asks until the Next button appears
 const playUntilNext = async () => {
@@ -82,6 +82,21 @@ const playUntilNext = async () => {
         await page.locator(`.crayon[data-colour="${m[2]}"]`).click({ force: true, timeout: 500 }).catch(() => {});
         await page.locator(`.paint-tile:not(.is-painted)[aria-label="${m[1]}" i]`).first().click({ force: true, timeout: 500 }).catch(() => {});
       }
+    } else if (await page.locator('.ph-meet').count()) await page.locator('.ph-next').click({ force: true });
+    else if (await page.locator('.ph-find[data-answer]').count()) {
+      const a = await page.locator('.ph-find').getAttribute('data-answer');
+      await page.locator(`.ph-find .ph-tile[data-sound="${a}"]`).click({ force: true, timeout: 500 }).catch(() => {});
+    } else if (await page.locator('.ph-blend[data-answer]').count()) {
+      const a = await page.locator('.ph-blend').getAttribute('data-answer');
+      await page.locator(`.ph-pic[data-word="${a}"]`).click({ force: true, timeout: 500 }).catch(() => {});
+    } else if (await page.locator('.ph-build[data-parts]').count()) {
+      for (const p of (await page.locator('.ph-build').getAttribute('data-parts')).split(',')) await page.locator(`.ph-build .ph-tile[data-sound="${p}"]:not(.is-used)`).first().click({ force: true, timeout: 500 }).catch(() => {});
+    } else if (await page.locator('.ph-read').count()) {
+      if (await page.locator('.ph-read .mic-btn').count()) { await page.locator('.ph-read .mic-btn').click({ force: true }); await page.waitForTimeout(400); }
+      await page.locator('.ph-next').click({ force: true, timeout: 500 }).catch(() => {});
+    } else if (await page.locator('.talk .mic-btn').count()) {
+      await page.locator('.talk .mic-btn').click({ force: true, timeout: 500 }).catch(() => {});
+      await page.waitForTimeout(300);
     } else if (await page.locator('.balloon').count()) {
       const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
       const m = said.match(/pop the (.+)!$/);
@@ -111,6 +126,16 @@ await page.waitForSelector('.today-card[data-kind="lesson"].is-done');
 let s = await state();
 if (s.topics.animals?.readDone !== 1) fail('the Read & Write part counts');
 step('Read & Write of Animals done → block etc. as usual, then ▶ Next');
+
+// 3) speaking moment: a Starters child gets the next phonics set
+if (!(await page.locator('.today-card[data-kind="talk"]').textContent()).includes('Sounds 1')) fail('Today suggests the next phonics set (Sounds 1)');
+await page.locator('.today-go').click({ force: true });
+await page.waitForSelector('.phonics');
+await playUntilNext();
+await page.locator('.today-next').click({ force: true });
+await page.waitForSelector('.today-card[data-kind="talk"].is-done');
+if ((await state()).phonics?.p1 !== 1) fail('the phonics set from Today counts');
+step('speaking moment: Sounds 1 (phonics) → ▶ Next');
 
 // 3) fun: the Animals story is open and unread → story
 const funLabel = await page.locator('.today-card[data-kind="fun"]').textContent();

@@ -663,6 +663,367 @@
           }
         ]
       }
+    },
+    {
+      "id": "p6",
+      "title": "Sounds 6",
+      "color": "#a2d2ff",
+      "sounds": [
+        {
+          "s": "ai",
+          "say": "ay",
+          "word": "rain",
+          "emoji": "🌧️"
+        },
+        {
+          "s": "oa",
+          "say": "oh",
+          "word": "boat",
+          "emoji": "⛵"
+        },
+        {
+          "s": "ie",
+          "say": "eye",
+          "word": "pie",
+          "emoji": "🥧"
+        },
+        {
+          "s": "ar",
+          "say": "ar",
+          "word": "car",
+          "emoji": "🚗"
+        },
+        {
+          "s": "or",
+          "say": "or",
+          "word": "fork",
+          "emoji": "🍴"
+        }
+      ],
+      "words": [
+        {
+          "w": "rain",
+          "parts": [
+            "r",
+            "ai",
+            "n"
+          ],
+          "emoji": "🌧️"
+        },
+        {
+          "w": "snail",
+          "parts": [
+            "s",
+            "n",
+            "ai",
+            "l"
+          ],
+          "emoji": "🐌"
+        },
+        {
+          "w": "boat",
+          "parts": [
+            "b",
+            "oa",
+            "t"
+          ],
+          "emoji": "⛵"
+        },
+        {
+          "w": "goat",
+          "parts": [
+            "g",
+            "oa",
+            "t"
+          ],
+          "emoji": "🐐"
+        },
+        {
+          "w": "pie",
+          "parts": [
+            "p",
+            "ie"
+          ],
+          "emoji": "🥧"
+        },
+        {
+          "w": "car",
+          "parts": [
+            "c",
+            "ar"
+          ],
+          "emoji": "🚗"
+        },
+        {
+          "w": "star",
+          "parts": [
+            "s",
+            "t",
+            "ar"
+          ],
+          "emoji": "⭐"
+        },
+        {
+          "w": "fork",
+          "parts": [
+            "f",
+            "or",
+            "k"
+          ],
+          "emoji": "🍴"
+        }
+      ],
+      "reader": {
+        "title": "A Goat in a Boat",
+        "pages": [
+          {
+            "text": "a goat in a boat",
+            "emoji": "🐐⛵"
+          },
+          {
+            "text": "rain, rain, rain",
+            "emoji": "🌧️"
+          },
+          {
+            "text": "a snail on a car",
+            "emoji": "🐌🚗"
+          },
+          {
+            "text": "a star in the dark",
+            "emoji": "⭐"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p7",
+      "title": "Sounds 7",
+      "color": "#ffadad",
+      "sounds": [
+        {
+          "s": "ng",
+          "say": "ng",
+          "word": "ring",
+          "emoji": "💍"
+        },
+        {
+          "s": "ow",
+          "say": "ow",
+          "word": "cow",
+          "emoji": "🐄"
+        },
+        {
+          "s": "oi",
+          "say": "oy",
+          "word": "toilet",
+          "emoji": "🚽"
+        },
+        {
+          "s": "er",
+          "say": "er",
+          "word": "tiger",
+          "emoji": "🐯"
+        },
+        {
+          "s": "ur",
+          "say": "er",
+          "word": "burger",
+          "emoji": "🍔"
+        }
+      ],
+      "words": [
+        {
+          "w": "king",
+          "parts": [
+            "k",
+            "i",
+            "ng"
+          ],
+          "emoji": "🤴"
+        },
+        {
+          "w": "ring",
+          "parts": [
+            "r",
+            "i",
+            "ng"
+          ],
+          "emoji": "💍"
+        },
+        {
+          "w": "cow",
+          "parts": [
+            "c",
+            "ow"
+          ],
+          "emoji": "🐄"
+        },
+        {
+          "w": "owl",
+          "parts": [
+            "ow",
+            "l"
+          ],
+          "emoji": "🦉"
+        },
+        {
+          "w": "toilet",
+          "parts": [
+            "t",
+            "oi",
+            "l",
+            "e",
+            "t"
+          ],
+          "emoji": "🚽"
+        },
+        {
+          "w": "tiger",
+          "parts": [
+            "t",
+            "i",
+            "g",
+            "er"
+          ],
+          "emoji": "🐯"
+        },
+        {
+          "w": "burger",
+          "parts": [
+            "b",
+            "ur",
+            "g",
+            "er"
+          ],
+          "emoji": "🍔"
+        },
+        {
+          "w": "hammer",
+          "parts": [
+            "h",
+            "a",
+            "m",
+            "m",
+            "er"
+          ],
+          "emoji": "🔨"
+        }
+      ],
+      "reader": {
+        "title": "The King's Burger",
+        "pages": [
+          {
+            "text": "a king with a ring",
+            "emoji": "🤴💍"
+          },
+          {
+            "text": "a cow and an owl",
+            "emoji": "🐄🦉"
+          },
+          {
+            "text": "the tiger has a burger",
+            "emoji": "🐯🍔"
+          },
+          {
+            "text": "the owl sat on the king!",
+            "emoji": "🦉🤴"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p8",
+      "title": "Tricky Words",
+      "color": "#cdb4db",
+      "tricky": true,
+      "sounds": [
+        {
+          "s": "the",
+          "say": "the",
+          "word": "the cat",
+          "emoji": "🐱"
+        },
+        {
+          "s": "I",
+          "say": "I",
+          "word": "I can see",
+          "emoji": "👀"
+        },
+        {
+          "s": "go",
+          "say": "go",
+          "word": "go home",
+          "emoji": "🏠"
+        },
+        {
+          "s": "to",
+          "say": "to",
+          "word": "to the park",
+          "emoji": "🌳"
+        },
+        {
+          "s": "he",
+          "say": "he",
+          "word": "he is big",
+          "emoji": "👦"
+        },
+        {
+          "s": "she",
+          "say": "she",
+          "word": "she is six",
+          "emoji": "👧"
+        },
+        {
+          "s": "we",
+          "say": "we",
+          "word": "we can run",
+          "emoji": "🏃"
+        },
+        {
+          "s": "was",
+          "say": "was",
+          "word": "it was hot",
+          "emoji": "☀️"
+        },
+        {
+          "s": "said",
+          "say": "said",
+          "word": "Bix said hi",
+          "emoji": "🤖"
+        },
+        {
+          "s": "my",
+          "say": "my",
+          "word": "my dog",
+          "emoji": "🐶"
+        }
+      ],
+      "words": [],
+      "reader": {
+        "title": "Go, Go, Go!",
+        "pages": [
+          {
+            "text": "I can see the sun",
+            "emoji": "☀️"
+          },
+          {
+            "text": "he said: go, go, go!",
+            "emoji": "👦"
+          },
+          {
+            "text": "she was in the park",
+            "emoji": "👧🌳"
+          },
+          {
+            "text": "we go to the farm",
+            "emoji": "🚜"
+          },
+          {
+            "text": "my dog is big",
+            "emoji": "🐶"
+          }
+        ]
+      }
     }
   ]
 }
