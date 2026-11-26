@@ -118,6 +118,7 @@ step('garden: one plant per learning day (gaps cost nothing), new plant glows on
 await home();
 await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
 await page.waitForSelector('.games');
+if (!(await page.locator('.game-pick[data-game="duo"]').count())) fail('Games menu has the Play Together card (tests/e2e/duo.mjs plays it)');
 await page.locator('.game-pick[data-game="memory"]').click({ force: true });
 await page.waitForSelector('.mem-card');
 const ids = await page.locator('.mem-card').evaluateAll((els) => els.map((e) => e.dataset.id));

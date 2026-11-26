@@ -1,0 +1,213 @@
+/* ---------- Play Together (two players on one device, src/screens/duo.ts) ---------- */
+.duo [hidden] { display: none !important; }
+
+/* menu: who plays + the three modes */
+.duo-menu { flex-direction: column; gap: 3vmin; padding: 2vmin; }
+.duo-team { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2vmin; }
+.duo-p1-card, .duo-p2-pick {
+  font: inherit; font-weight: 800; font-size: clamp(18px, 3vmin, 26px); color: var(--ink);
+  display: inline-flex; align-items: center; gap: .35em; min-height: 64px; padding: 0 .8em;
+  background: #fff; border: 3px solid var(--ink); border-radius: 18px;
+}
+.duo-p1-card .duo-avatar, .duo-p2-pick .duo-avatar { font-size: 1.6em; line-height: 1; }
+.duo-p1-card { background: #fff1d6; }
+.duo-p2-row { display: flex; gap: 1.4vmin; }
+.duo-p2-pick { cursor: pointer; opacity: .7; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); }
+.duo-p2-pick.is-on { opacity: 1; background: #dff1ff; box-shadow: 0 0 0 3px var(--sun), 0 5px 0 rgba(29, 36, 64, .2); }
+.duo-plus { font-size: clamp(28px, 5vmin, 44px); font-weight: 800; }
+.duo-modes { display: flex; flex-wrap: wrap; justify-content: center; gap: 4vmin; }
+.duo-mode { width: clamp(170px, 28vmin, 250px); }
+.duo-mode-vi { font-size: clamp(12px, 1.9vmin, 17px); font-weight: 600; color: var(--ink-soft); line-height: 1.2; text-align: center; padding: 0 .5em; }
+.duo-vi { margin: 0; font-size: clamp(13px, 2vmin, 18px); font-weight: 600; color: var(--ink-soft); line-height: 1.25; }
+.duo-menu > .duo-vi { text-align: center; }
+
+/* the board: player 1 | the middle | player 2 */
+.duo-body { align-items: stretch; justify-content: space-between; gap: 2vmin; padding: 1.5vmin 2vmin 2vmin; }
+.duo-side {
+  flex: 0 0 clamp(150px, 19vw, 240px); min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6vmin;
+  padding: 1.6vmin; border: 4px solid transparent; border-radius: 26px; transition: background .2s, border-color .2s;
+}
+.duo-side.duo-p1 { background: rgba(255, 241, 214, .75); }
+.duo-side.duo-p2 { background: rgba(223, 241, 255, .75); }
+.duo-side.is-turn { background: #fff; border-color: var(--ink); box-shadow: 0 0 0 5px var(--sun); }
+.duo-side.is-turn .duo-avatar { animation: bounce-soft .9s ease-in-out infinite; }
+.duo-who { display: flex; flex-direction: column; align-items: center; min-width: 0; max-width: 100%; }
+.duo-avatar { font-size: clamp(48px, 9vmin, 84px); line-height: 1.05; }
+.duo-name { font-weight: 800; font-size: clamp(18px, 3vmin, 28px); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.duo-score {
+  display: inline-flex; align-items: center; gap: .25em; font-weight: 800; font-size: clamp(24px, 4.4vmin, 40px); line-height: 1.2;
+  background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 0 .55em;
+}
+.duo-star { color: var(--sun); -webkit-text-stroke: 2px var(--ink); }
+.duo-slot { display: flex; flex-direction: column; align-items: stretch; gap: 1.6vmin; width: 100%; }
+.duo-slot .btn { padding: 0 10px; gap: 6px; }
+.duo-buzz { flex-direction: column; min-height: clamp(110px, 20vmin, 170px); font-size: clamp(20px, 3.4vmin, 32px); }
+.duo-buzz-icon { font-size: 1.6em; line-height: 1; }
+.duo-buzz[disabled] { opacity: .45; }
+.duo-buzz.is-on { opacity: 1; background: var(--good); box-shadow: 0 7px 0 var(--good-dark), 0 7px 0 3px var(--ink); }
+.duo-judge { display: flex; flex-direction: column; gap: 1.6vmin; }
+.duo-judge .btn { min-height: clamp(64px, 12vmin, 100px); }
+.duo-judge-icon { font-size: 1.3em; line-height: 1; }
+.duo-say-tag { display: flex; flex-direction: column; align-items: center; font-weight: 800; font-size: clamp(20px, 3.4vmin, 30px); }
+.duo-say-tag .duo-judge-icon { font-size: 2em; }
+
+/* the middle */
+.duo-stage { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2vmin; }
+.duo-bar { display: flex; align-items: center; justify-content: center; gap: 2vmin; width: 100%; }
+.duo-ear { flex-shrink: 0; }
+.duo-turn {
+  display: inline-flex; align-items: center; gap: .3em; font-weight: 800; font-size: clamp(20px, 3.6vmin, 34px); line-height: 1.3;
+  background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: .05em .7em; max-width: 100%; white-space: nowrap;
+}
+.duo-turn-name { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.duo-turn-icon, .duo-arrow { font-size: 1.2em; }
+.duo-turn.is-p1 .duo-arrow { animation: duo-nudge-l .9s ease-in-out infinite; }
+.duo-turn.is-p2 .duo-arrow { animation: duo-nudge-r .9s ease-in-out infinite; }
+@keyframes duo-nudge-l { 50% { transform: translateX(-6px); } }
+@keyframes duo-nudge-r { 50% { transform: translateX(6px); } }
+.duo-grid { display: grid; grid-template-columns: repeat(2, auto); gap: 2vmin; }
+.duo-pic {
+  font: inherit; width: clamp(100px, min(17vw, 25vh), 210px); aspect-ratio: 1; padding: 1vmin; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; background: #fff; border: 4px solid var(--ink); border-radius: 22px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2);
+  transition: opacity .2s;
+}
+.duo-pic .pic { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.duo-pic .pic-emoji { font-size: clamp(50px, min(10vw, 15vh), 130px); }
+.duo-pic .pic-color { width: 72%; height: auto; aspect-ratio: 1; }
+.duo-pic .pic-text span, .duo-pic .pic-word span { font-size: clamp(26px, min(5vw, 7vh), 60px); }
+.duo-pic .pic-multi { font-size: clamp(24px, min(4.5vw, 6.5vh), 50px) !important; }
+.duo-pic.is-faded { opacity: .3; cursor: default; }
+.duo-pic.is-right { border-color: #2a9d4a; background: #e9f9ee; }
+.duo-grid.is-locked .duo-pic { cursor: default; }
+
+/* "Turn the tablet to Mum!" */
+.duo-hand {
+  display: flex; flex-direction: column; align-items: center; gap: 2vmin; text-align: center; max-width: 100%;
+  background: #fff; border: 4px solid var(--ink); border-radius: 28px; padding: 3vmin 4vmin; box-shadow: 0 8px 0 rgba(29, 36, 64, .2);
+}
+.duo-hand-big { display: flex; align-items: center; gap: .2em; font-size: clamp(54px, 11vmin, 110px); line-height: 1.05; }
+.duo-hand-big .duo-arrow { font-size: .8em; }
+.duo-hand-to1 .duo-arrow { animation: duo-nudge-l .9s ease-in-out infinite; }
+.duo-hand-to2 .duo-arrow { animation: duo-nudge-r .9s ease-in-out infinite; }
+.duo-hand-title { font-size: clamp(24px, 4.6vmin, 44px); font-weight: 800; line-height: 1.15; }
+.duo-hand-sub { font-size: clamp(18px, 3vmin, 28px); font-weight: 600; color: var(--ink-soft); }
+
+/* the secret picture (only the describer looks) */
+.duo-secret {
+  display: flex; align-items: center; gap: 3vmin; max-width: 100%;
+  background: #fff8e1; border: 4px dashed var(--ink); border-radius: 28px; padding: 2.4vmin 3vmin;
+}
+.duo-secret-pic, .duo-say-pic { display: flex; flex-direction: column; align-items: center; }
+.duo-secret-pic .pic, .duo-say-pic .pic { width: clamp(120px, 26vmin, 260px); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+.duo-secret-pic .pic-emoji, .duo-say-pic .pic-emoji { font-size: clamp(90px, 20vmin, 200px); }
+.duo-secret-pic .pic-color, .duo-say-pic .pic-color { width: 70%; height: auto; }
+.duo-secret-pic .pic-text span, .duo-say-pic .pic-text span, .duo-secret-pic .pic-word span, .duo-say-pic .pic-word span { font-size: clamp(40px, 9vmin, 90px); }
+.duo-secret-pic .pic-multi, .duo-say-pic .pic-multi { font-size: clamp(40px, 8vmin, 80px) !important; }
+.duo-secret-word { margin: 0; font-size: clamp(26px, 5vmin, 48px); font-weight: 800; line-height: 1.1; text-align: center; }
+.duo-secret-info { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6vmin; min-width: 0; }
+.duo-secret-say { margin: 0; font-size: clamp(20px, 3.4vmin, 30px); font-weight: 800; }
+.duo-def { font-size: clamp(16px, 2.8vmin, 26px); max-width: 100%; padding: 1vmin 2vmin; }
+.duo-starters { display: flex; flex-wrap: wrap; gap: 1vmin; }
+.duo-starters span { background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 0 .6em; font-weight: 800; font-size: clamp(16px, 2.8vmin, 26px); }
+.duo-got { align-self: stretch; }
+
+/* Say It! */
+.duo-say-pic { background: #fff; border: 4px solid var(--ink); border-radius: 28px; padding: 2vmin 4vmin; box-shadow: 0 8px 0 rgba(29, 36, 64, .2); }
+
+/* the happy end: both players praised */
+.duo-end { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3vmin; }
+.duo-end-title { font-size: clamp(36px, 8vmin, 76px); font-weight: 800; color: #fff; text-shadow: 0 4px 0 var(--ink), 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 -3px 0 var(--ink); }
+.duo-end-players { display: flex; align-items: center; gap: 4vmin; }
+.duo-end-mid { font-size: clamp(40px, 8vmin, 80px); }
+.duo-end-card {
+  display: flex; flex-direction: column; align-items: center; min-width: clamp(140px, 24vmin, 230px); max-width: 38vw; padding: 2vmin 4vmin;
+  background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2);
+}
+.duo-end-card.duo-p1 { background: #fff1d6; }
+.duo-end-card.duo-p2 { background: #dff1ff; }
+.duo-end-stars { font-size: clamp(30px, 6vmin, 56px); font-weight: 800; display: inline-flex; align-items: center; gap: .2em; }
+.duo-done { position: static; inset: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .duo-side.is-turn .duo-avatar, .duo-turn .duo-arrow, .duo-hand .duo-arrow { animation: none; }
+}
+
+/* tablets held upright: bigger pictures, the secret card stacks */
+@media (orientation: portrait) and (min-width: 601px) {
+  .duo-pic { width: min(24vw, 220px); }
+  .duo-pic .pic-emoji { font-size: min(13vw, 130px); }
+  .duo-secret { flex-direction: column; }
+  .duo-secret-info { align-items: center; text-align: center; }
+  .duo-side { flex-basis: 20vw; }
+  .duo-slot .btn { flex-direction: column; font-size: 22px; gap: 2px; }
+  .duo-judge .btn { min-height: 96px; }
+  .duo-end-players { flex-wrap: wrap; justify-content: center; }
+}
+
+/* phones held sideways */
+@media (orientation: landscape) and (max-height: 500px) {
+  .duo-menu { gap: 8px; padding: 4px 10px; }
+  .duo-team { gap: 8px; flex-wrap: nowrap; }
+  .duo-p1-card, .duo-p2-pick { font-size: 16px; padding: 0 10px; border-radius: 14px; }
+  .duo-p2-row { gap: 6px; }
+  .duo-plus { font-size: 24px; }
+  .duo-modes { gap: 10px; flex-wrap: nowrap; }
+  .duo .duo-mode { width: min(22vw, 40vh); border-radius: 20px; gap: 0; }
+  .duo-mode .game-pick-icon { font-size: min(9vw, 17vh); }
+  .duo-mode-vi { font-size: 11px; }
+  .duo-vi { font-size: 12px; }
+
+  .duo-body { gap: 6px; padding: 4px 8px 6px; }
+  .duo-side { flex-basis: 112px; padding: 4px; gap: 4px; border-width: 3px; border-radius: 16px; }
+  .duo-side.is-turn { box-shadow: 0 0 0 3px var(--sun); }
+  .duo-who { flex-direction: row; gap: 4px; }
+  .duo-avatar { font-size: 30px; }
+  .duo-name { font-size: 15px; max-width: 68px; }
+  .duo-score { font-size: 20px; border-width: 2px; }
+  .duo-slot { gap: 6px; }
+  .duo-slot .btn { font-size: 17px; gap: 4px; padding: 0 6px; }
+  .duo-buzz { min-height: 104px; }
+  .duo-judge { gap: 8px; }
+  .duo-judge .btn { min-height: 64px; }
+  .duo-say-tag { font-size: 17px; }
+
+  .duo-stage { gap: 6px; }
+  .duo-bar { gap: 8px; }
+  .duo-turn { font-size: 17px; border-width: 2px; }
+  .duo-grid { grid-template-columns: repeat(4, auto); gap: 8px; }
+  .duo-pic { width: min(13.5vw, 34vh); border-width: 3px; border-radius: 14px; padding: 4px; }
+  .duo-pic .pic-emoji { font-size: min(8vw, 20vh); }
+  .duo-pic .pic-text span, .duo-pic .pic-word span { font-size: min(4vw, 9vh); }
+
+  .duo-hand { gap: 4px; padding: 8px 18px; border-radius: 20px; border-width: 3px; }
+  .duo-hand-big { font-size: 44px; }
+  .duo-hand-title { font-size: 22px; }
+  .duo-hand-sub { font-size: 15px; }
+
+  .duo-secret { gap: 12px; padding: 8px 12px; border-radius: 20px; border-width: 3px; }
+  .duo-secret-pic .pic, .duo-say-pic .pic { width: min(36vh, 22vw); }
+  .duo-secret-pic .pic-emoji, .duo-say-pic .pic-emoji { font-size: min(28vh, 17vw); }
+  .duo-secret-word { font-size: 22px; }
+  .duo-secret-info { gap: 5px; }
+  .duo-secret-say { font-size: 16px; }
+  .duo-def { font-size: 14px; padding: 4px 8px; border-width: 3px; border-radius: 14px; }
+  .duo-starters span { font-size: 14px; border-width: 2px; }
+  .duo-say-pic { padding: 6px 18px; border-width: 3px; border-radius: 20px; }
+
+  .duo-end { gap: 8px; }
+  .duo-end-title { font-size: 34px; }
+  .duo-end-players { gap: 14px; }
+  .duo-end-mid { font-size: 34px; }
+  .duo-end-card { flex-direction: row; gap: 8px; padding: 4px 14px; border-width: 3px; border-radius: 18px; min-width: 0; }
+  .duo-end-card .duo-avatar { font-size: 34px; }
+  .duo-end-card .duo-name { max-width: 90px; }
+  .duo-end-stars { font-size: 26px; }
+}
+
+/* the Games menu card and the back button: two faces (the ZWJ "family" emoji is a grey silhouette on new Android) */
+.game-pick[data-game="duo"] .game-pick-icon { font-size: clamp(44px, 8.5vmin, 76px); white-space: nowrap; letter-spacing: -.08em; }
+.duo-back-icon { font-size: clamp(22px, 3.6vmin, 32px); white-space: nowrap; letter-spacing: -.12em; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .games .games-list .game-pick[data-game="duo"] .game-pick-icon { font-size: min(5.2vw, 10.5vh); }
+  .duo-back-icon { font-size: 24px; }
+}

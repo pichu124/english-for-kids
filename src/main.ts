@@ -9,6 +9,7 @@ import './styles/world.css';
 import './styles/parent.css';
 import './styles/extras.css';
 import './styles/phone.css';
+import './styles/duo.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
