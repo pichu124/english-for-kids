@@ -289,6 +289,7 @@ fe0f
 1f4c4
 1f4c5
 1f4c6
+1f4ca
 1f4cc
 1f4cf
 1f4d5
