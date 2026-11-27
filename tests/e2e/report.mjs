@@ -64,6 +64,7 @@ const newWords = await page.locator('.rp-words').first().locator('.rp-word').cou
 if (newWords < 5) fail(`new words this week should list the stickers (got ${newWords})`);
 if (!(await page.locator('.rp-words').nth(1).textContent()).includes(missed)) fail('words to practise in the report');
 if (!rp.includes('Chơi cùng con tuần tới')) fail('tips for next week');
+if (!rp.includes('Cùng bố mẹ')) fail('Play Together / worksheets section');
 if (shots) await page.screenshot({ path: `${shots}/report.png`, fullPage: true });
 await page.evaluate(() => (window.print = () => (window.__printed = true)));
 await page.locator('.rp-print').click();

@@ -154,7 +154,7 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const stage = h('section', { class: 'talk-stage' });
   const steps = h('div', { class: 'ph-dots talk-dots', 'aria-hidden': 'true' });
-  const el = shell(ctx, 'Speaking practice', stage, bix);
+  const el = shell(ctx, 'Speaking', stage, bix);
   el.querySelector('.book-top')?.appendChild(steps);
   const parts: (() => Promise<void>)[] = [];
   const ok = () => ctx.alive();

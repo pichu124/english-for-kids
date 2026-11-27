@@ -128,5 +128,35 @@ for (const [vp, prefix] of [[{ width: 1280, height: 800 }, 'ph'], [{ width: 640,
   step('stories: "My turn" — the child reads the page aloud, words turn green; a miss is "Try again!"');
   await page.close();
 }
+// A set left halfway: the menu shows how far, and the set starts again at that step.
+{
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  await page.addInitScript(readFileSync(new URL('./fakes.js', import.meta.url), 'utf8'));
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('efk.v1')) localStorage.setItem('efk.v1', JSON.stringify({ childName: 'Shin', settings: { dailyLimitMin: 0, rate: 0.8, level: 'L2' }, topics: {}, words: {}, blocks: { inventory: {}, placed: [], totalEarned: 0 }, days: {}, bonus: {}, review: {}, phonics: { p1: 1 } }));
+  });
+  await page.goto(base);
+  await page.locator('.btn-play').click({ force: true });
+  await page.waitForSelector('.home');
+  await page.locator('.dock-btn[aria-label="ABC"]').click({ force: true });
+  await page.locator('[aria-label="Sounds"]').first().click({ force: true });
+  await page.locator('[data-set="p2"]').click({ force: true });
+  // go through meeting the sounds, then leave during "find the sound"
+  await page.waitForSelector('.ph-meet');
+  for (let i = 0; i < 20 && !(await page.locator('.ph-find').count()); i++) {
+    await page.locator('.ph-next').click({ force: true, timeout: 1000 }).catch(() => {});
+    await page.waitForTimeout(450);
+  }
+  await page.waitForSelector('.ph-find');
+  let st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')));
+  if (st.phonicsStep?.p2 !== 1) fail('the step reached is saved: ' + JSON.stringify(st.phonicsStep));
+  await page.locator('.book-top [aria-label="Sounds"]').click({ force: true });
+  await page.waitForSelector('[data-set="p2"] .ph-set-prog');
+  await page.locator('[data-set="p2"]').click({ force: true });
+  await page.waitForSelector('.ph-find', { timeout: 6000 });
+  if (await page.locator('.ph-meet').count()) fail('resumes after meeting the sounds');
+  if (!(await page.evaluate(() => window.__spoken.some((t) => /welcome back/i.test(t))))) fail('Bix says welcome back');
+  step('a set left halfway shows its progress and starts again at the step reached');
+  await page.close();
+}
 await browser.close();
-console.log('phonics e2e ok');

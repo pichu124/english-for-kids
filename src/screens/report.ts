@@ -45,6 +45,12 @@ export function reportScreen(ctx: Ctx): HTMLElement {
       h('h2', {}, '🔊 Âm, đọc to & trò chuyện'),
       h('p', {}, r.extra.sounds || r.extra.read || r.extra.talk ? `Tuần này bé học ${r.extra.sounds} nhóm âm, tự đọc to ${r.extra.read} trang, trò chuyện / luyện nói với Bix ${r.extra.talk} lần.` : 'Tuần này bé chưa luyện âm, đọc to hay trò chuyện. Thử ABC → 🔊 Sounds, nút 🎤 My turn trong truyện, hoặc 💬 Talk.'),
     ),
+    h(
+      'section',
+      { class: 'rp-extra' },
+      h('h2', {}, '🧒👩 Cùng bố mẹ'),
+      h('p', {}, r.extra.duo || r.extra.sheets ? `Tuần này cả nhà chơi cùng nhau ${r.extra.duo} lượt, in ${r.extra.sheets} phiếu bài tập.` : 'Tuần này chưa chơi cùng nhau. Thử Games → 🧒👩 Play Together (2 người trên một máy), hoặc in một phiếu bài tập ở khu bố mẹ.'),
+    ),
     h('section', {}, h('h2', {}, '⭐ Từ mới tuần này'), r.newWords.length ? h('div', { class: 'rp-words' }, r.newWords.slice(0, 24).map(chip)) : h('p', { class: 'rp-muted' }, 'Tuần này chưa có từ mới. Mỗi ngày một bài ngắn là đủ.')),
     h(
       'section',

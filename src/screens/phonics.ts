@@ -41,15 +41,19 @@ export function phonicsScreen(ctx: Ctx): HTMLElement {
 
 function menu(ctx: Ctx): HTMLElement {
   const done = getState().phonics ?? {};
+  const halfway = getState().phonicsStep ?? {};
   const next = SETS.findIndex((st) => !done[st.id]);
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const cards = SETS.map((st, i) =>
     h(
       'button',
       { class: `ph-set ${i === next ? 'is-next' : ''}`, 'data-set': st.id, 'aria-label': st.title, style: `--c:${st.color}`, onclick: () => (sfx.tap(), ctx.go('phonics', { set: st.id })) },
-      h('span', { class: 'ph-set-letters', lang: 'en' }, st.sounds.map((x) => x.s).join(' ')),
+      // tricky words: the first few only (the whole list does not fit on a card)
+      h('span', { class: 'ph-set-letters', lang: 'en' }, st.tricky ? `${st.sounds.slice(0, 3).map((x) => x.s).join(' ')}…` : st.sounds.map((x) => x.s).join(' ')),
       h('span', { class: 'ph-set-title' }, st.title),
       done[st.id] ? h('span', { class: 'ph-set-star', 'aria-hidden': 'true' }, '⭐') : null,
+      // left halfway: how far the child got (4 steps after meeting the sounds)
+      halfway[st.id] ? h('span', { class: 'ph-set-prog', 'aria-hidden': 'true', style: `--p:${halfway[st.id] / 5}` }) : null,
     ),
   );
   // every set done: the "Sounds Star" certificate
@@ -81,7 +85,12 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, set.title), dots, h('div', { class: 'game-bix' }, bix.el)),
     stage,
   );
-  const step = (n: number) => [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
+  // a set left halfway starts again at the step the child had reached (1 find … 4 read)
+  const from = getState().phonicsStep?.[set.id] ?? 0;
+  const step = (n: number) => {
+    [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
+    if (n > 0 && n !== (getState().phonicsStep?.[set.id] ?? 0)) update((s) => void (s.phonicsStep = { ...(s.phonicsStep ?? {}), [set.id]: n }));
+  };
   const firstSeen = new WeakMap<HTMLElement, number>();
   const tap = <T extends HTMLElement>(els: T[]) =>
     new Promise<T>((resolve) => {
@@ -106,9 +115,11 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
   const alive = () => ctx.alive();
 
   const run = async () => {
+    if (from > 0) await say("Welcome back! Let's go on.");
+    if (!alive()) return;
     // 1. Meet the sounds
     step(0);
-    for (const snd of set.sounds) {
+    for (const snd of from > 0 ? [] : set.sounds) {
       if (!alive()) return;
       const card = h('div', { class: 'ph-meet pop' }, soundTile(snd.s, 'ph-tile-big'), h('div', { class: 'ph-meet-pic', 'aria-hidden': 'true' }, fixEmoji(snd.emoji)), h('div', { class: 'ph-meet-word', lang: 'en' }, snd.word));
       const again = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
@@ -130,11 +141,11 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     }
 
     // 2. Find the sound
-    step(1);
+    if (from <= 1) step(1);
     // a tricky-word set finds among its own words; sound sets among all sounds taught so far
     const pool = set.tricky ? set.sounds : taughtUpTo(idx);
     const order = shuffle([...set.sounds, ...shuffle(set.sounds)]).slice(0, 5);
-    for (const target of order) {
+    for (const target of from > 1 ? [] : order) {
       if (!alive()) return;
       // never two tiles with the same sound (c/k, er/ur): both would be right
       const others = shuffle(pool.filter((x) => x.s !== target.s && x.say !== target.say)).slice(0, 2);
@@ -163,9 +174,9 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     }
 
     // 3. Blend: hear the sounds, pick the picture (tricky words skip blending and building)
-    step(2);
+    if (from <= 2) step(2);
     const allWords = wordsUpTo(idx);
-    for (const w of set.tricky ? [] : shuffle(set.words).slice(0, 4)) {
+    for (const w of set.tricky || from > 2 ? [] : shuffle(set.words).slice(0, 4)) {
       if (!alive()) return;
       const tiles = w.parts.map((p) => soundTile(p, 'ph-tile-word'));
       const others = shuffle(allWords.filter((x) => x.w !== w.w)).slice(0, 2);
@@ -203,8 +214,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     }
 
     // 4. Build the word from sound tiles
-    step(3);
-    for (const w of set.tricky ? [] : shuffle(set.words).slice(0, 3)) {
+    if (from <= 3) step(3);
+    for (const w of set.tricky || from > 3 ? [] : shuffle(set.words).slice(0, 3)) {
       if (!alive()) return;
       const extra = shuffle(pool.filter((x) => !w.parts.includes(x.s) && !w.parts.some((p) => SAY[p] === x.say)))[0];
       const choices = shuffle([...w.parts, ...(extra ? [extra.s] : [])]);
@@ -292,6 +303,10 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
     // Done!
     update((s) => {
       s.phonics = { ...(s.phonics ?? {}), [set.id]: (s.phonics?.[set.id] ?? 0) + 1 };
+      if (s.phonicsStep?.[set.id]) {
+        const { [set.id]: _, ...rest } = s.phonicsStep;
+        s.phonicsStep = rest;
+      }
       if (readByChild) s.readAloud = { ...(s.readAloud ?? {}), [`phonics-${set.id}`]: (s.readAloud?.[`phonics-${set.id}`] ?? 0) + readByChild };
       const d = dayLog();
       d.sounds = (d.sounds ?? 0) + 1;

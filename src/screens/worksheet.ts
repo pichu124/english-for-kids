@@ -1,6 +1,7 @@
 import { Bix } from '../art/bix';
 import { playPromptFor, topicById, type Topic, type Word } from '../content';
 import { h } from '../lib/dom';
+import { dayLog, update } from '../lib/storage';
 import { buildWorksheet, type Section } from '../lib/worksheet';
 import type { Ctx } from '../router';
 import { wordPicture } from './lesson/shared';
@@ -217,6 +218,18 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
       'Gợi ý: làm cùng con 10–15 phút, đọc to từng từ tiếng Anh trước khi bé viết. Chỗ nào bé chưa làm được, bố mẹ làm mẫu rồi để bé thử lại, khen khi bé cố gắng. In lại trong cùng ngày sẽ ra đúng phiếu này; ngày khác thứ tự bài sẽ đổi.',
     ),
   );
+  // counted once per sheet in the weekly report, however many copies are printed
+  let counted = false;
+  const print = () => {
+    if (!counted) {
+      counted = true;
+      update(() => {
+        const d = dayLog();
+        d.sheets = (d.sheets ?? 0) + 1;
+      });
+    }
+    window.print();
+  };
   return h(
     'main',
     { class: 'ws-page', lang: 'vi' },
@@ -225,7 +238,7 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
       { class: 'ws-actions' },
       h('button', { class: 'p-btn ws-back', onclick: back }, '← Khu bố mẹ'),
       h('span', { class: 'ws-actions-note' }, `${ws.sections.length} bài tập + 1 trang đáp án · khổ A4 dọc`),
-      h('button', { class: 'p-btn p-btn-main ws-print', onclick: () => window.print() }, '🖨️ In phiếu'),
+      h('button', { class: 'p-btn p-btn-main ws-print', onclick: print }, '🖨️ In phiếu'),
     ),
     sheet,
     key,

@@ -51,6 +51,9 @@ export type DayLog = {
   sounds?: number;
   read?: number;
   talk?: number;
+  /** Play Together games finished (two players on one device), worksheets printed. */
+  duo?: number;
+  sheets?: number;
 };
 
 export type State = {
@@ -103,6 +106,8 @@ export type State = {
   gardenSeen?: string;
   /** Phonics: times each sound set was finished, and readers read aloud. */
   phonics?: Record<string, number>;
+  /** Phonics set left halfway: the step to come back to (1 find … 4 read). */
+  phonicsStep?: Record<string, number>;
   /** Pages the child read aloud by themselves (story id or phonics reader → count). */
   readAloud?: Record<string, number>;
   /** Talk with Bix: finished chats and speaking practice parts. */
@@ -262,7 +267,7 @@ export function sanitizeState(raw: unknown): State {
   // day logs: every counter a number (a damaged file must not print "NaN minutes")
   for (const d of Object.values(s.days) as unknown as Record<string, unknown>[]) {
     for (const k of ['seconds', 'lessons', 'auto', 'parent', 'miss', 'noVoice'] as const) d[k] = num(d[k]);
-    for (const k of ['sounds', 'read', 'talk'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
+    for (const k of ['sounds', 'read', 'talk', 'duo', 'sheets'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
   }
   // Optional parts: keep them only when they have the right shape.
   const keep = (k: keyof State, ok: (x: any) => boolean) => {
@@ -281,6 +286,7 @@ export function sanitizeState(raw: unknown): State {
   keep('storiesRead', isObj);
   keep('gardenSeen', (x) => typeof x === 'string');
   if (isObj(p.phonics)) s.phonics = entries<number>(p.phonics, (n) => typeof n === 'number' && n >= 0);
+  if (isObj(p.phonicsStep)) s.phonicsStep = entries<number>(p.phonicsStep, (n) => typeof n === 'number' && n >= 1 && n <= 4 && Number.isInteger(n));
   if (isObj(p.readAloud)) s.readAloud = entries<number>(p.readAloud, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.talk)) s.talk = entries<number>(p.talk, (n) => typeof n === 'number' && n >= 0);
   return s;

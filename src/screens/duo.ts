@@ -4,7 +4,7 @@ import { h, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { practicePool } from '../lib/progress';
 import { sfx } from '../lib/sfx';
-import { getState, profileAnimal, profiles } from '../lib/storage';
+import { dayLog, getState, profileAnimal, profiles, update } from '../lib/storage';
 import { todayRunning } from '../lib/today';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
@@ -153,6 +153,10 @@ function host(ctx: Ctx, bix: Bix) {
 /** The happy end: both players praised, a team star for each, then Again / Home (or Today ▶ Next). */
 function duoEnd(ctx: Ctx, body: HTMLElement, bix: Bix, players: [Player, Player], mode: DuoMode): void {
   if (!ctx.alive()) return;
+  update(() => {
+    const d = dayLog();
+    d.duo = (d.duo ?? 0) + 1;
+  });
   sfx.reward();
   confetti(document.body, 40);
   bix.setMood('happy');
