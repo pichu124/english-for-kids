@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "thu": "npm run build && vite preview --host --port 4173",
     "test": "vitest run",
-    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/levels.mjs && node tests/e2e/review.mjs && node tests/e2e/offline.mjs && node tests/e2e/features.mjs && node tests/e2e/phone.mjs && node tests/e2e/speech.mjs && node tests/e2e/reading.mjs && node tests/e2e/today.mjs && node tests/e2e/backup.mjs && node tests/e2e/report.mjs && node tests/e2e/emoji.mjs && node tests/e2e/mocktest.mjs && node tests/e2e/movers.mjs && node tests/e2e/flyers.mjs && node tests/e2e/phonics.mjs && node tests/e2e/talk.mjs && node tests/e2e/worksheet.mjs && node tests/e2e/duo.mjs && node tests/e2e/welcome.mjs && node tests/e2e/trace.mjs && node tests/e2e/voice.mjs",
+    "e2e": "node tests/e2e/run.mjs && node tests/e2e/world.mjs && node tests/e2e/parent.mjs && node tests/e2e/levels.mjs && node tests/e2e/review.mjs && node tests/e2e/offline.mjs && node tests/e2e/features.mjs && node tests/e2e/phone.mjs && node tests/e2e/speech.mjs && node tests/e2e/reading.mjs && node tests/e2e/today.mjs && node tests/e2e/backup.mjs && node tests/e2e/report.mjs && node tests/e2e/emoji.mjs && node tests/e2e/mocktest.mjs && node tests/e2e/movers.mjs && node tests/e2e/flyers.mjs && node tests/e2e/phonics.mjs && node tests/e2e/talk.mjs && node tests/e2e/worksheet.mjs && node tests/e2e/duo.mjs && node tests/e2e/welcome.mjs && node tests/e2e/trace.mjs && node tests/e2e/voice.mjs && node tests/e2e/legal.mjs",
     "typecheck": "tsc --noEmit",
     "icons": "node scripts/make-icons.mjs"
   },

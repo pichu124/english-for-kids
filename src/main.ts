@@ -43,6 +43,7 @@ import { phonicsScreen } from './screens/phonics';
 import { talkScreen } from './screens/talk';
 import { worksheetScreen } from './screens/worksheet';
 import { welcomeScreen } from './screens/welcome';
+import { legalFromLink, legalScreen } from './screens/legal';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -67,6 +68,7 @@ register('phonics', phonicsScreen);
 register('talk', talkScreen);
 register('worksheet', worksheetScreen);
 register('welcome', welcomeScreen);
+register('legal', legalScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 void loadVoice(); // recorded lines, if the app ships any (public/audio)
@@ -82,7 +84,7 @@ startUsageClock(() => {
 // Bix teaches, reads a story or listens to the microphone.
 const MUSIC_SCREENS = ['home', 'world', 'book', 'wardrobe', 'garden', 'stories', 'games', 'certificate'];
 // any child screen locks the parent area again (the gate asks next time)
-onNavigate((name) => name !== 'parent' && name !== 'report' && name !== 'worksheet' && lockParent());
+onNavigate((name) => name !== 'parent' && name !== 'report' && name !== 'worksheet' && name !== 'legal' && lockParent());
 onNavigate((name) => setBackground(MUSIC_SCREENS.includes(name) && !document.hidden));
 document.addEventListener('visibilitychange', () => setBackground(!document.hidden && MUSIC_SCREENS.includes(currentScreen() ?? '')));
 // Phones held upright: kid screens ask to turn the phone (they are made for landscape);
@@ -97,6 +99,9 @@ document.addEventListener('visibilitychange', () => setBackground(!document.hidd
       h('p', { class: 'rotate-vi', lang: 'vi' }, 'Xoay ngang điện thoại để bé học nhé'),
     ),
   );
-  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report' || name === 'worksheet' || name === 'welcome'));
+  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report' || name === 'worksheet' || name === 'welcome' || name === 'legal'));
 }
-go('start');
+// a link to the privacy policy or terms (app store listing) opens that page first
+const legal = legalFromLink();
+if (legal) go('legal', { doc: legal });
+else go('start');

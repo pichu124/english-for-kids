@@ -237,6 +237,9 @@ Cả hai cách gửi kèm header bảo mật, trong đó có **Content-Security-
 
 ## Quyền riêng tư
 
+Trang **Chính sách quyền riêng tư** và **Điều khoản sử dụng** (tiếng Việt) nằm ngay trong app (`src/screens/legal.ts`): mở ở Khu bố mẹ → Quyền riêng tư, ở màn chào lần đầu, hoặc bằng đường link `https://<tên miền>/?legal=privacy` và `?legal=terms` (dán vào trang Google Play / App Store). Trước khi phát hành: điền email liên hệ vào `CONTACT_EMAIL` trong file đó, và nên nhờ luật sư xem bản cuối. Nội dung phải luôn đúng với những gì app làm; sửa text thì đổi ngày `UPDATED`.
+
+
 - Không tài khoản, không backend, không quảng cáo, không công cụ thống kê bên thứ ba.
 - Tiến độ, tên bé, nhật ký chỉ lưu trong `localStorage` của máy.
 - App không ghi âm. Khi bé bấm micro, **Chrome** gửi âm thanh tới dịch vụ nhận dạng giọng nói của Google để chuyển thành chữ (đây là cách Web Speech API hoạt động trên Chrome). App chỉ giữ lại phần chữ (ví dụ “dog”) để bố mẹ xem.

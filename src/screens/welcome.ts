@@ -96,6 +96,14 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
         h('li', {}, '🔒 Không quảng cáo. App không thu thập dữ liệu: tiến độ của bé chỉ lưu trên máy này.'),
       ),
       h('p', { class: 'p-muted' }, 'Cài đặt mất khoảng 1 phút. Mọi thứ đều đổi lại được trong khu bố mẹ.'),
+      h(
+        'p',
+        { class: 'p-muted wl-legal' },
+        'Đọc thêm: ',
+        h('button', { class: 'wl-link', 'data-legal': 'privacy', onclick: () => ctx.go('legal', { doc: 'privacy', from: 'welcome' }) }, 'Chính sách quyền riêng tư'),
+        ' · ',
+        h('button', { class: 'wl-link', 'data-legal': 'terms', onclick: () => ctx.go('legal', { doc: 'terms', from: 'welcome' }) }, 'Điều khoản sử dụng'),
+      ),
       nav(child, 'Bắt đầu ▶'),
     );
 

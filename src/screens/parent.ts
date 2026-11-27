@@ -37,7 +37,7 @@ export function parentScreen(ctx: Ctx): HTMLElement {
   };
   // Coming back from the weekly report or a worksheet shortly after unlocking: no second question
   // (a short window, and only once: a report left open on the tablet must not open the parent area to a child).
-  if ((ctx.params.back === 'report' || ctx.params.back === 'worksheet') && Date.now() - unlockedAt < 3 * 60 * 1000) show();
+  if ((ctx.params.back === 'report' || ctx.params.back === 'worksheet' || ctx.params.back === 'legal') && Date.now() - unlockedAt < 3 * 60 * 1000) show();
   else root.appendChild(gate(ctx, show));
   return root;
 }
@@ -973,6 +973,12 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('li', {}, 'Tiến độ, tên bé và nhật ký chỉ lưu trong trình duyệt của máy này (localStorage).'),
       h('li', {}, 'App không ghi âm và không lưu âm thanh. Khi bé bấm micro, Chrome tự gửi âm thanh tới dịch vụ nhận dạng giọng nói của Google để chuyển thành chữ; app chỉ giữ lại chữ (ví dụ “dog”) để bố mẹ xem.'),
       h('li', {}, 'Khi đọc to (🎤 My turn) và trò chuyện với Bix (💬 Talk), chữ máy nghe được chỉ dùng để chấm ngay rồi bỏ; app chỉ đếm số lần. Bix không hỏi tên, trường hay bạn của bé.'),
+      h(
+        'li',
+        { class: 'p-row' },
+        h('button', { class: 'p-btn', 'data-legal': 'privacy', onclick: () => ctx.go('legal', { doc: 'privacy', from: 'parent' }) }, '📄 Chính sách quyền riêng tư'),
+        h('button', { class: 'p-btn', 'data-legal': 'terms', onclick: () => ctx.go('legal', { doc: 'terms', from: 'parent' }) }, '📄 Điều khoản sử dụng'),
+      ),
     );
   }
 
