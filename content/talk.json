@@ -634,6 +634,725 @@
       ]
     },
     {
+      "id": "school",
+      "title": "At School",
+      "icon": "🏫",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "Do you like school?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Great! School is fun!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's okay! Playtime is fun!"
+            }
+          ],
+          "fallback": "School is fun!"
+        },
+        {
+          "bix": "What's in your school bag?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a book",
+              "emoji": "📕",
+              "words": [
+                "book",
+                "books"
+              ],
+              "reply": "A book! I like reading!"
+            },
+            {
+              "say": "a pencil",
+              "emoji": "✏️",
+              "words": [
+                "pencil",
+                "pencils"
+              ],
+              "reply": "A pencil! Let's draw!"
+            },
+            {
+              "say": "a pen",
+              "emoji": "🖊️",
+              "words": [
+                "pen",
+                "pens"
+              ],
+              "reply": "A pen! Let's write!"
+            },
+            {
+              "say": "a ruler",
+              "emoji": "📏",
+              "words": [
+                "ruler",
+                "rulers",
+                "ruller"
+              ],
+              "reply": "A ruler! Long and straight!"
+            }
+          ],
+          "fallback": "Your bag is a busy bag!"
+        },
+        {
+          "bix": "What colour is your school bag?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "red",
+              "emoji": "🔴",
+              "words": [
+                "red"
+              ],
+              "reply": "Red! What a nice bag!"
+            },
+            {
+              "say": "blue",
+              "emoji": "🔵",
+              "words": [
+                "blue"
+              ],
+              "reply": "Blue! What a nice bag!"
+            },
+            {
+              "say": "pink",
+              "emoji": "🌸",
+              "words": [
+                "pink"
+              ],
+              "reply": "Pink! What a nice bag!"
+            },
+            {
+              "say": "green",
+              "emoji": "🟢",
+              "words": [
+                "green"
+              ],
+              "reply": "Green! What a nice bag!"
+            }
+          ],
+          "fallback": "What a nice bag!"
+        },
+        {
+          "bix": "What do you like doing at school?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "reading",
+              "emoji": "📖",
+              "words": [
+                "reading",
+                "read",
+                "reed"
+              ],
+              "reply": "Reading! Books are great!"
+            },
+            {
+              "say": "drawing",
+              "emoji": "🎨",
+              "words": [
+                "drawing",
+                "draw",
+                "pictures",
+                "picture"
+              ],
+              "reply": "Drawing! You can draw a picture for me!"
+            },
+            {
+              "say": "singing",
+              "emoji": "🎵",
+              "words": [
+                "singing",
+                "sing",
+                "songs",
+                "song",
+                "music"
+              ],
+              "reply": "Singing! La la la! I like singing too!"
+            },
+            {
+              "say": "playing",
+              "emoji": "⚽",
+              "words": [
+                "playing",
+                "play",
+                "playground",
+                "games"
+              ],
+              "reply": "Playing! Playtime is the best!"
+            }
+          ],
+          "fallback": "School is fun!"
+        },
+        {
+          "bix": "Have a happy day at school! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "birthday",
+      "title": "Birthday Party",
+      "icon": "🎂",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "It's my birthday today! Can you say \"Happy birthday, Bix\"?",
+          "type": "any",
+          "reply": "Thank you! You are so kind!"
+        },
+        {
+          "bix": "Look at the party food! Do you want cake or ice cream?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "cake",
+              "emoji": "🍰",
+              "words": [
+                "cake",
+                "cakes",
+                "birthday cake"
+              ],
+              "reply": "Cake! Here you are! Yummy!"
+            },
+            {
+              "say": "ice cream",
+              "emoji": "🍦",
+              "words": [
+                "ice cream",
+                "icecream",
+                "ice creams",
+                "ice",
+                "cream"
+              ],
+              "reply": "Ice cream! Here you are! Yummy!"
+            }
+          ],
+          "fallback": "Party food is yummy!"
+        },
+        {
+          "bix": "Here are my balloons! What colour do you want?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "red",
+              "emoji": "🔴",
+              "words": [
+                "red"
+              ],
+              "reply": "A red balloon for you!"
+            },
+            {
+              "say": "blue",
+              "emoji": "🔵",
+              "words": [
+                "blue"
+              ],
+              "reply": "A blue balloon for you!"
+            },
+            {
+              "say": "yellow",
+              "emoji": "🟡",
+              "words": [
+                "yellow"
+              ],
+              "reply": "A yellow balloon for you!"
+            },
+            {
+              "say": "purple",
+              "emoji": "🟣",
+              "words": [
+                "purple"
+              ],
+              "reply": "A purple balloon for you!"
+            }
+          ],
+          "fallback": "A balloon for you!"
+        },
+        {
+          "bix": "Let's play! Do you want to sing a song or play a game?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "sing a song",
+              "emoji": "🎤",
+              "words": [
+                "sing",
+                "singing",
+                "song",
+                "songs"
+              ],
+              "reply": "Happy birthday to me! La la la! Thank you!"
+            },
+            {
+              "say": "play a game",
+              "emoji": "🎲",
+              "words": [
+                "game",
+                "games",
+                "play",
+                "playing"
+              ],
+              "reply": "Hooray! Games are fun!"
+            }
+          ],
+          "fallback": "Parties are fun!"
+        },
+        {
+          "bix": "I love my birthday! Do you like parties?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Me too! Parties are great!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's okay! Cake is still yummy!"
+            }
+          ],
+          "fallback": "Parties are fun!"
+        },
+        {
+          "bix": "Thank you for coming to my party! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "toys",
+      "title": "My Toys",
+      "icon": "🧸",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "What's your favourite toy?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a teddy",
+              "emoji": "🧸",
+              "words": [
+                "teddy",
+                "teddy bear",
+                "teddies",
+                "bear",
+                "ted"
+              ],
+              "reply": "A teddy! Teddies are soft and nice!"
+            },
+            {
+              "say": "a ball",
+              "emoji": "⚽",
+              "words": [
+                "ball",
+                "balls",
+                "football"
+              ],
+              "reply": "A ball! Let's play ball!"
+            },
+            {
+              "say": "a robot",
+              "emoji": "🤖",
+              "words": [
+                "robot",
+                "robots"
+              ],
+              "reply": "A robot! Like me! Beep beep!"
+            },
+            {
+              "say": "a car",
+              "emoji": "🚗",
+              "words": [
+                "car",
+                "cars",
+                "toy car"
+              ],
+              "reply": "A car! Vroom, vroom!"
+            },
+            {
+              "say": "a kite",
+              "emoji": "🪁",
+              "words": [
+                "kite",
+                "kites"
+              ],
+              "reply": "A kite! Up in the sky!"
+            }
+          ],
+          "fallback": "Toys are fun!"
+        },
+        {
+          "bix": "Is it big or small?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "big",
+              "emoji": "🐘",
+              "words": [
+                "big",
+                "very big",
+                "huge",
+                "large"
+              ],
+              "reply": "Big! Wow!"
+            },
+            {
+              "say": "small",
+              "emoji": "🐭",
+              "words": [
+                "small",
+                "little",
+                "tiny",
+                "very small"
+              ],
+              "reply": "Small! So cute!"
+            }
+          ],
+          "fallback": "I like it!"
+        },
+        {
+          "bix": "Do you play with your toys every day?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Me too! Playing is fun!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's okay! Books are fun too!"
+            }
+          ],
+          "fallback": "Toys are fun!"
+        },
+        {
+          "bix": "I'm a robot toy! Can you say \"beep beep\"?",
+          "type": "any",
+          "reply": "Beep beep! You are a great robot!"
+        },
+        {
+          "bix": "Thank you! Toys are fun! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "zoo",
+      "title": "At the Zoo",
+      "icon": "🦒",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "We're at the zoo! What can you see?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a giraffe",
+              "emoji": "🦒",
+              "words": [
+                "giraffe",
+                "giraffes",
+                "jiraf"
+              ],
+              "reply": "A giraffe! It's very tall!"
+            },
+            {
+              "say": "a crocodile",
+              "emoji": "🐊",
+              "words": [
+                "crocodile",
+                "crocodiles",
+                "croc"
+              ],
+              "reply": "A crocodile! It's long and green!"
+            },
+            {
+              "say": "a hippo",
+              "emoji": "🦛",
+              "words": [
+                "hippo",
+                "hippos",
+                "hippopotamus"
+              ],
+              "reply": "A hippo! It likes the water!"
+            },
+            {
+              "say": "a tiger",
+              "emoji": "🐯",
+              "words": [
+                "tiger",
+                "tigers"
+              ],
+              "reply": "A tiger! It's orange and black!"
+            }
+          ],
+          "fallback": "The zoo is fun!"
+        },
+        {
+          "bix": "Look at the monkey! What does it like to eat?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "bananas",
+              "emoji": "🍌",
+              "words": [
+                "bananas",
+                "banana"
+              ],
+              "reply": "Yes! Monkeys love bananas!"
+            },
+            {
+              "say": "apples",
+              "emoji": "🍎",
+              "words": [
+                "apples",
+                "apple"
+              ],
+              "reply": "Yes! Monkeys like apples too!"
+            }
+          ],
+          "fallback": "Monkeys like fruit!"
+        },
+        {
+          "bix": "Can an elephant fly?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Ha ha! Elephants can't fly. They're very big!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "That's right! Elephants can't fly. They can walk!"
+            }
+          ],
+          "fallback": "Elephants can walk!"
+        },
+        {
+          "bix": "Can you be a lion? Say \"roar\"!",
+          "type": "any",
+          "reply": "Roar! Wow! You are a great lion!"
+        },
+        {
+          "bix": "What a fun day at the zoo! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "clothes",
+      "title": "My Clothes",
+      "icon": "👕",
+      "level": "L2",
+      "turns": [
+        {
+          "bix": "Good morning! Can you say \"good morning\"?",
+          "type": "any",
+          "reply": "Good morning! Let's get dressed!"
+        },
+        {
+          "bix": "What do you want to wear today?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a T-shirt",
+              "emoji": "👕",
+              "words": [
+                "t-shirt",
+                "t shirt",
+                "tshirt",
+                "tee shirt",
+                "shirt",
+                "shirts"
+              ],
+              "reply": "A T-shirt! Cool!"
+            },
+            {
+              "say": "a dress",
+              "emoji": "👗",
+              "words": [
+                "dress",
+                "dresses"
+              ],
+              "reply": "A dress! Lovely!"
+            },
+            {
+              "say": "jeans",
+              "emoji": "👖",
+              "words": [
+                "jeans",
+                "jean",
+                "trousers"
+              ],
+              "reply": "Jeans! Cool!"
+            },
+            {
+              "say": "shoes",
+              "emoji": "👟",
+              "words": [
+                "shoes",
+                "shoe",
+                "trainers"
+              ],
+              "reply": "Shoes! Cool!"
+            }
+          ],
+          "fallback": "You look great!"
+        },
+        {
+          "bix": "It's sunny and hot! Do you want a hat?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Good idea! Here's your hat!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Okay! Let's drink lots of water then!"
+            }
+          ],
+          "fallback": "Hats are good in the sun!"
+        },
+        {
+          "bix": "Oh no! Where's my sock? Is it under the bed or in the box?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "under the bed",
+              "emoji": "🛏️",
+              "words": [
+                "bed",
+                "under",
+                "under the bed"
+              ],
+              "reply": "Under the bed! Yes, here it is! Thank you!"
+            },
+            {
+              "say": "in the box",
+              "emoji": "📦",
+              "words": [
+                "box",
+                "boxes",
+                "in the box"
+              ],
+              "reply": "In the box! Yes, here it is! Thank you!"
+            }
+          ],
+          "fallback": "Here it is! Thank you!"
+        },
+        {
+          "bix": "Now we look great! Bye-bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
       "id": "day",
       "title": "My Day",
       "icon": "⏰",
@@ -818,6 +1537,487 @@
         },
         {
           "bix": "Bye! Have a lovely weekend!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "title": "Sports",
+      "icon": "🏅",
+      "level": "L3",
+      "turns": [
+        {
+          "bix": "Let's talk about sports! What sport do you like?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "football",
+              "emoji": "⚽",
+              "words": [
+                "football",
+                "foot ball",
+                "soccer"
+              ],
+              "reply": "Football! Kick the ball!"
+            },
+            {
+              "say": "basketball",
+              "emoji": "🏀",
+              "words": [
+                "basketball",
+                "basket ball",
+                "basket"
+              ],
+              "reply": "Basketball! Bounce, bounce!"
+            },
+            {
+              "say": "swimming",
+              "emoji": "🏊",
+              "words": [
+                "swimming",
+                "swim",
+                "swimming pool"
+              ],
+              "reply": "Swimming! Splash, splash!"
+            },
+            {
+              "say": "tennis",
+              "emoji": "🎾",
+              "words": [
+                "tennis",
+                "tenis"
+              ],
+              "reply": "Tennis! Hit the ball!"
+            }
+          ],
+          "fallback": "Sport is great!"
+        },
+        {
+          "bix": "Can you run faster than a dog?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "Wow! You are very fast!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Dogs are very fast! But you are fast too!"
+            }
+          ],
+          "fallback": "Running is fun!"
+        },
+        {
+          "bix": "Did you play outside yesterday?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure",
+                "i did"
+              ],
+              "reply": "Great! Playing outside is fun!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't",
+                "didn't"
+              ],
+              "reply": "That's okay! Maybe you can play today!"
+            }
+          ],
+          "fallback": "Playing outside is fun!"
+        },
+        {
+          "bix": "Which is bigger, a football or a tennis ball?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a football",
+              "emoji": "⚽",
+              "words": [
+                "football",
+                "foot ball",
+                "soccer"
+              ],
+              "reply": "Yes! A football is bigger!"
+            },
+            {
+              "say": "a tennis ball",
+              "emoji": "🎾",
+              "words": [
+                "tennis",
+                "tennis ball",
+                "tenis"
+              ],
+              "reply": "A tennis ball is small! A football is bigger!"
+            }
+          ],
+          "fallback": "A football is bigger!"
+        },
+        {
+          "bix": "You are a sports star! Bye!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "doctor",
+      "title": "Play Doctors",
+      "icon": "🏥",
+      "level": "L3",
+      "turns": [
+        {
+          "bix": "Let's play doctors! You are the doctor. Can you say \"Hello, I'm the doctor\"?",
+          "type": "any",
+          "reply": "Hello, doctor! Thank you for helping me!"
+        },
+        {
+          "bix": "Atchoo! I don't feel well. What's the matter with me, doctor?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "a cold",
+              "emoji": "🤧",
+              "words": [
+                "cold",
+                "colds",
+                "a cold"
+              ],
+              "reply": "A cold! Atchoo! Oh dear!"
+            },
+            {
+              "say": "a headache",
+              "emoji": "🤕",
+              "words": [
+                "headache",
+                "head ache",
+                "head"
+              ],
+              "reply": "A headache! Oh dear!"
+            },
+            {
+              "say": "a temperature",
+              "emoji": "🤒",
+              "words": [
+                "temperature",
+                "temperatures",
+                "fever",
+                "hot"
+              ],
+              "reply": "A temperature! I am very hot! Oh dear!"
+            },
+            {
+              "say": "toothache",
+              "emoji": "🦷",
+              "words": [
+                "toothache",
+                "tooth ache",
+                "tooth",
+                "teeth"
+              ],
+              "reply": "Toothache! Oh dear!"
+            }
+          ],
+          "fallback": "Oh dear!"
+        },
+        {
+          "bix": "What can I do, doctor?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "go to bed",
+              "emoji": "🛏️",
+              "words": [
+                "bed",
+                "sleep",
+                "rest"
+              ],
+              "reply": "Good idea! I can sleep in my bed."
+            },
+            {
+              "say": "drink water",
+              "emoji": "💧",
+              "words": [
+                "water",
+                "drink"
+              ],
+              "reply": "Good idea! Water is good for me."
+            },
+            {
+              "say": "eat soup",
+              "emoji": "🍲",
+              "words": [
+                "soup",
+                "eat"
+              ],
+              "reply": "Good idea! Hot soup is yummy!"
+            }
+          ],
+          "fallback": "Good idea! Thank you, doctor!"
+        },
+        {
+          "bix": "Now I feel better! Can you say \"Get well soon\"?",
+          "type": "any",
+          "reply": "Thank you, doctor! I feel much better now!"
+        },
+        {
+          "bix": "Did you like being a doctor?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure",
+                "i did"
+              ],
+              "reply": "You are a great doctor!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't",
+                "didn't"
+              ],
+              "reply": "That's okay! You helped me a lot!"
+            }
+          ],
+          "fallback": "You are a great doctor!"
+        },
+        {
+          "bix": "Goodbye, doctor! I feel happy and well!",
+          "type": "end"
+        }
+      ]
+    },
+    {
+      "id": "holidays",
+      "title": "Holidays",
+      "icon": "✈️",
+      "level": "L3",
+      "turns": [
+        {
+          "bix": "Where do you like going on holiday?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "the beach",
+              "emoji": "🏖️",
+              "words": [
+                "beach",
+                "beaches",
+                "sea",
+                "seaside"
+              ],
+              "reply": "The beach! Sand and sea! Lovely!"
+            },
+            {
+              "say": "the mountains",
+              "emoji": "⛰️",
+              "words": [
+                "mountain",
+                "mountains"
+              ],
+              "reply": "The mountains! Big and high! Lovely!"
+            },
+            {
+              "say": "the city",
+              "emoji": "🏙️",
+              "words": [
+                "city",
+                "cities",
+                "town"
+              ],
+              "reply": "The city! Lots of shops! Lovely!"
+            }
+          ],
+          "fallback": "Holidays are lovely!"
+        },
+        {
+          "bix": "How do you like to travel?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "by plane",
+              "emoji": "✈️",
+              "words": [
+                "plane",
+                "planes",
+                "aeroplane",
+                "airplane",
+                "fly"
+              ],
+              "reply": "By plane! Up in the sky!"
+            },
+            {
+              "say": "by train",
+              "emoji": "🚂",
+              "words": [
+                "train",
+                "trains"
+              ],
+              "reply": "By train! Choo choo!"
+            },
+            {
+              "say": "by boat",
+              "emoji": "⛵",
+              "words": [
+                "boat",
+                "boats",
+                "ship"
+              ],
+              "reply": "By boat! Splash!"
+            },
+            {
+              "say": "by car",
+              "emoji": "🚗",
+              "words": [
+                "car",
+                "cars"
+              ],
+              "reply": "By car! Vroom, vroom!"
+            }
+          ],
+          "fallback": "Travelling is fun!"
+        },
+        {
+          "bix": "Is a plane faster than a car?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "Yes!",
+              "emoji": "👍",
+              "words": [
+                "yes",
+                "yeah",
+                "yep",
+                "i do",
+                "i have",
+                "i am",
+                "i can",
+                "sure"
+              ],
+              "reply": "That's right! Planes are very, very fast!"
+            },
+            {
+              "say": "No.",
+              "emoji": "👎",
+              "words": [
+                "no",
+                "nope",
+                "don't",
+                "not",
+                "haven't",
+                "can't"
+              ],
+              "reply": "Hmm, planes are faster! Zoom!"
+            }
+          ],
+          "fallback": "Planes are fast!"
+        },
+        {
+          "bix": "On my holiday, I swam in the sea! What did you do on your holiday?",
+          "type": "choice",
+          "options": [
+            {
+              "say": "I swam",
+              "emoji": "🏊",
+              "words": [
+                "swam",
+                "swim",
+                "swimming"
+              ],
+              "reply": "You swam! Splash! Great!"
+            },
+            {
+              "say": "I ate ice cream",
+              "emoji": "🍦",
+              "words": [
+                "ice cream",
+                "icecream",
+                "ate",
+                "ice",
+                "cream"
+              ],
+              "reply": "Ice cream! Yummy! Great!"
+            },
+            {
+              "say": "I saw animals",
+              "emoji": "🐘",
+              "words": [
+                "animals",
+                "animal",
+                "saw",
+                "zoo"
+              ],
+              "reply": "Animals! How exciting! Great!"
+            },
+            {
+              "say": "I played",
+              "emoji": "⚽",
+              "words": [
+                "played",
+                "play",
+                "playing"
+              ],
+              "reply": "You played! What fun! Great!"
+            }
+          ],
+          "fallback": "That sounds fun!"
+        },
+        {
+          "bix": "Have a happy holiday! Bye!",
           "type": "end"
         }
       ]
