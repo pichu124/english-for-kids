@@ -27,6 +27,34 @@
     "cow",
     "duck"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Cluck and Moo",
+    "lines": [
+      {
+        "text": "Chicken, chicken, cluck, cluck, cluck!",
+        "emoji": "🐔"
+      },
+      {
+        "text": "Duck, duck, quack, quack, quack!",
+        "emoji": "🦆"
+      },
+      {
+        "text": "The cow says moo, the sheep says baa,",
+        "emoji": "🐮"
+      },
+      {
+        "text": "The horse says neigh, the goat says maa!",
+        "emoji": "🐴"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Bố mẹ giả tiếng con vật (\"cluck, cluck!\") và hỏi con: \"Is it a chicken?\"",
     "say": "Is it a chicken?"

@@ -27,6 +27,34 @@
     "piano",
     "camera"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Strum and Smile",
+    "lines": [
+      {
+        "text": "Play the guitar, strum, strum, strum!",
+        "emoji": "🎸"
+      },
+      {
+        "text": "Play the piano, la, la, la!",
+        "emoji": "🎹"
+      },
+      {
+        "text": "Hold the camera, smile, smile, smile!",
+        "emoji": "📷"
+      },
+      {
+        "text": "A doll, a game, a funny monster too!",
+        "emoji": "👾"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Giả vờ chơi đàn, chụp ảnh và hỏi con có biết chơi không.",
     "say": "Can you play the guitar?"

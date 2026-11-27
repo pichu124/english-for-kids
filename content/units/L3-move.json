@@ -22,6 +22,38 @@
     "catch",
     "throw"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Climb and Catch",
+    "lines": [
+      {
+        "text": "Climb, climb, climb up high!",
+        "emoji": "🧗"
+      },
+      {
+        "text": "Hop on one leg, hop, hop, hop!",
+        "emoji": "🦘"
+      },
+      {
+        "text": "Skip with a rope, skip, skip, skip!",
+        "emoji": "🤸"
+      },
+      {
+        "text": "Kick the ball and throw it to me!",
+        "emoji": "⚽"
+      },
+      {
+        "text": "Catch it with two hands, one, two, three!",
+        "emoji": "👐"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Ra sân chơi cùng con, ra lệnh bằng tiếng Anh: \"Hop on one leg!\", \"Throw the ball!\", \"Catch!\" rồi đổi vai cho con ra lệnh.",
     "say": "Can you hop on one leg?"

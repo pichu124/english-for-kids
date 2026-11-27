@@ -30,6 +30,38 @@
     "young",
     "beautiful"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Big Elephant, Small Mouse",
+    "lines": [
+      {
+        "text": "Big, big elephant, stamp, stamp, stamp!",
+        "emoji": "🐘"
+      },
+      {
+        "text": "Small, small mouse, squeak, squeak, squeak!",
+        "emoji": "🐭"
+      },
+      {
+        "text": "Long, long snake, hiss, hiss, hiss!",
+        "emoji": "🐍"
+      },
+      {
+        "text": "Old grandpa, young baby, hug, hug, hug!",
+        "emoji": "👴"
+      },
+      {
+        "text": "A beautiful flower for you and me!",
+        "emoji": "🌸"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Đặt hai đồ vật to và nhỏ cạnh nhau rồi hỏi con. Đổi sang dài/ngắn, cũ/mới.",
     "say": "Which one is big?"

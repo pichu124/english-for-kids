@@ -30,6 +30,34 @@
     },
     "lemonade"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Coconut Chant",
+    "lines": [
+      {
+        "text": "Coconut, coconut, big and round,",
+        "emoji": "🥥"
+      },
+      {
+        "text": "Kiwi, kiwi, green and brown,",
+        "emoji": "🥝"
+      },
+      {
+        "text": "Meat for the dog, an orange for me,",
+        "emoji": "🍊"
+      },
+      {
+        "text": "Sweets and lemonade, yummy, yummy!",
+        "emoji": "🍬"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Đi chợ hay mở tủ lạnh, cầm quả cam, quả kiwi và hỏi con.",
     "say": "Is this an orange?"

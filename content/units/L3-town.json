@@ -22,6 +22,38 @@
     "bus-stop",
     "swimming-pool"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Round the Town",
+    "lines": [
+      {
+        "text": "Books at the library, read, read, read!",
+        "emoji": "📚"
+      },
+      {
+        "text": "Food at the supermarket, buy, buy, buy!",
+        "emoji": "🛒"
+      },
+      {
+        "text": "Films at the cinema, watch, watch, watch!",
+        "emoji": "🎬"
+      },
+      {
+        "text": "Splash in the swimming pool, swim, swim, swim!",
+        "emoji": "🏊"
+      },
+      {
+        "text": "Wait at the bus stop. Here's the bus!",
+        "emoji": "🚏"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Đi qua thị trấn cùng con, chỉ bệnh viện, siêu thị và hỏi \"Where is the library?\".",
     "say": "Where is the supermarket?"

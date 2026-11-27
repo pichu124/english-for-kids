@@ -33,6 +33,34 @@
       "sentence": "This is a helicopter. Look! It can fly!"
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Choo Choo, Beep Beep",
+    "lines": [
+      {
+        "text": "Train, train, choo, choo, choo!",
+        "emoji": "🚂"
+      },
+      {
+        "text": "Car, car, beep, beep, beep!",
+        "emoji": "🚗"
+      },
+      {
+        "text": "Big truck, big bus, here we go!",
+        "emoji": "🚚"
+      },
+      {
+        "text": "Ship on the sea, helicopter in the sky!",
+        "emoji": "🚁"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Ra đường hay xem tranh, chỉ xe tải, tàu thuỷ và hỏi con.",
     "say": "Look! Is that a truck?"

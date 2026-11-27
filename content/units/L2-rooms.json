@@ -27,6 +27,42 @@
     "dining-room",
     "hall"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Room to Room",
+    "lines": [
+      {
+        "text": "Mum is in the kitchen, yum, yum, yum!",
+        "emoji": "🍳"
+      },
+      {
+        "text": "Wash in the bathroom, splash, splash, splash!",
+        "emoji": "🚿"
+      },
+      {
+        "text": "Sleep in the bedroom, shh, shh, shh!",
+        "emoji": "🛏️"
+      },
+      {
+        "text": "Eat in the dining room, munch, munch, munch!",
+        "emoji": "🍽️"
+      },
+      {
+        "text": "Watch TV in the living room!",
+        "emoji": "🛋️"
+      },
+      {
+        "text": "Shoes in the hall. Let's go, go, go!",
+        "emoji": "🚪"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Đi quanh nhà cùng con: \"Where is Dad?\" – \"He's in the kitchen.\" Cho con dẫn đường.",
     "say": "Where is Dad?"

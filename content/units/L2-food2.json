@@ -27,6 +27,34 @@
     "carrot",
     "tomato"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Bread and Rice",
+    "lines": [
+      {
+        "text": "Bread and rice, bread and rice,",
+        "emoji": "🍞"
+      },
+      {
+        "text": "Chicken too, chicken too!",
+        "emoji": "🍗"
+      },
+      {
+        "text": "Carrots and tomatoes, yummy, yummy, yummy,",
+        "emoji": "🥕"
+      },
+      {
+        "text": "Orange juice for you, juice for you!",
+        "emoji": "🧃"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Bữa sáng, hỏi con có thích bánh mì, cơm không.",
     "say": "Do you like bread?"

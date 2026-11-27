@@ -39,6 +39,34 @@
     },
     "watch"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Boots and Glasses",
+    "lines": [
+      {
+        "text": "Boots on my feet, stamp, stamp, stamp!",
+        "emoji": "👢"
+      },
+      {
+        "text": "Jeans and shorts, jump, jump, jump!",
+        "emoji": "👖"
+      },
+      {
+        "text": "Glasses on, now I can see!",
+        "emoji": "👓"
+      },
+      {
+        "text": "A watch, a handbag, one, two, three!",
+        "emoji": "⌚"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Chỉ đồng hồ, kính của bố mẹ và hỏi con đó là gì.",
     "say": "Is this a watch?"

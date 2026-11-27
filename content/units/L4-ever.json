@@ -22,6 +22,42 @@
     "climbed",
     "been"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Yes, I Have!",
+    "lines": [
+      {
+        "text": "Have you ever flown in a plane?",
+        "emoji": "✈️"
+      },
+      {
+        "text": "Yes, I have! Let's fly again!",
+        "emoji": "👍"
+      },
+      {
+        "text": "Have you ever seen a whale?",
+        "emoji": "🐋"
+      },
+      {
+        "text": "Yes, I have! It waved its tail!",
+        "emoji": "🐳"
+      },
+      {
+        "text": "Have you ever climbed a mountain high?",
+        "emoji": "⛰️"
+      },
+      {
+        "text": "Not yet, but one day I will try!",
+        "emoji": "🧗"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Chơi \"Have you ever…?\": lần lượt hỏi nhau \"Have you ever eaten sushi?\" và trả lời \"Yes, I have.\" / \"No, I haven't.\"",
     "say": "Have you ever ridden a horse?"

@@ -23,6 +23,34 @@
     "saturday",
     "sunday"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Seven Days",
+    "lines": [
+      {
+        "text": "Monday, Tuesday, school, school, school!",
+        "emoji": "🏫"
+      },
+      {
+        "text": "Wednesday, I go swimming in the pool!",
+        "emoji": "🏊"
+      },
+      {
+        "text": "Thursday, Friday, read and play,",
+        "emoji": "📚"
+      },
+      {
+        "text": "Saturday, Sunday, hip, hip, hooray!",
+        "emoji": "🎉"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Mỗi sáng hỏi \"What day is it today?\". Cùng hát tên 7 ngày trong tuần.",
     "say": "What day is it today?"

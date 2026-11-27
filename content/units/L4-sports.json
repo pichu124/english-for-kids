@@ -22,6 +22,34 @@
     "sailing",
     "climbing"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Down We Go!",
+    "lines": [
+      {
+        "text": "Skiing, snowboarding, down we go!",
+        "emoji": "⛷️"
+      },
+      {
+        "text": "Ice skating round and round, whoa!",
+        "emoji": "⛸️"
+      },
+      {
+        "text": "Surfing and sailing on the waves,",
+        "emoji": "🏄"
+      },
+      {
+        "text": "Climbing up, up, up! So brave!",
+        "emoji": "🧗"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Xem video thể thao cùng con và hỏi \"Which sport would you like to try?\"",
     "say": "Which sport would you like to try?"

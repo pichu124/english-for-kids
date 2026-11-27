@@ -34,6 +34,34 @@
       "def": "You pay the driver of this car to take you somewhere."
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Getting Around Town",
+    "lines": [
+      {
+        "text": "Ambulance, fire engine, nee-naw, nee-naw!",
+        "emoji": "🚑"
+      },
+      {
+        "text": "Motorbike, taxi, here we go!",
+        "emoji": "🚕"
+      },
+      {
+        "text": "Take the underground, deep below,",
+        "emoji": "🚇"
+      },
+      {
+        "text": "Or fly in a helicopter, high, not low!",
+        "emoji": "🚁"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Khi ra đường, chỉ cho con các xe: \"Look! An ambulance. Where is it going?\"",
     "say": "How do you get to school?"

@@ -30,6 +30,34 @@
     "potato",
     "onion"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Dinner Time Chant",
+    "lines": [
+      {
+        "text": "Burger and chips, yum, yum, yum!",
+        "emoji": "🍔"
+      },
+      {
+        "text": "Sausage and potato, here they come!",
+        "emoji": "🌭"
+      },
+      {
+        "text": "Chocolate, chocolate, sweet, sweet, sweet!",
+        "emoji": "🍫"
+      },
+      {
+        "text": "An onion makes me cry, boo hoo!",
+        "emoji": "🧅"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Khi ăn vặt, hỏi con có thích sô-cô-la, khoai tây chiên không.",
     "say": "Do you like chocolate?"

@@ -22,6 +22,34 @@
     "space",
     "alien"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Rocket to Space",
+    "lines": [
+      {
+        "text": "Get in the rocket, three, two, one!",
+        "emoji": "🚀"
+      },
+      {
+        "text": "We'll fly into space. It will be fun!",
+        "emoji": "🌌"
+      },
+      {
+        "text": "The astronaut waves goodbye to Earth,",
+        "emoji": "🌍"
+      },
+      {
+        "text": "Hello, alien! Will you be my friend?",
+        "emoji": "👽"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Buổi tối cùng con ngắm trăng sao, hỏi \"Would you like to be an astronaut? Where would you go?\"",
     "say": "Would you like to be an astronaut?"

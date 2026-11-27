@@ -25,6 +25,38 @@
       "play": "Where are the teeth?"
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Touch Your Head",
+    "lines": [
+      {
+        "text": "Touch your head and touch your neck,",
+        "emoji": "🙆"
+      },
+      {
+        "text": "Shake your shoulders, check, check, check!",
+        "emoji": "💪"
+      },
+      {
+        "text": "Bend your knees, down, down, down,",
+        "emoji": "🦵"
+      },
+      {
+        "text": "Rub your stomach round and round!",
+        "emoji": "😋"
+      },
+      {
+        "text": "Brush your teeth, shiny and white!",
+        "emoji": "🪥"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Chơi \"Simon says\": \"Touch your knee! Touch your shoulder!\". Cho con làm người ra lệnh.",
     "say": "Touch your knee!"

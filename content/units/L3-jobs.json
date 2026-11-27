@@ -22,6 +22,34 @@
     "clown",
     "pop-star"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "What Do They Do?",
+    "lines": [
+      {
+        "text": "The doctor helps, the nurse helps too,",
+        "emoji": "👨‍⚕️"
+      },
+      {
+        "text": "The farmer works with a big cow, moo!",
+        "emoji": "👨‍🌾"
+      },
+      {
+        "text": "The cook makes pizza, yum, yum, yum!",
+        "emoji": "👨‍🍳"
+      },
+      {
+        "text": "The clown and the pop star sing for fun!",
+        "emoji": "🤡"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Hỏi con về nghề của người trong nhà: \"What does Dad do? He's a…\". Con muốn làm nghề gì?",
     "say": "What does Grandpa do?"

@@ -21,6 +21,34 @@
     "puppy",
     "bear"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Pets and Lions",
+    "lines": [
+      {
+        "text": "Puppy, kitten, rabbit too,",
+        "emoji": "🐕"
+      },
+      {
+        "text": "Lovely pets for me and you!",
+        "emoji": "🐰"
+      },
+      {
+        "text": "Lions and bears are bigger than me,",
+        "emoji": "🦁"
+      },
+      {
+        "text": "They live in the wild, wild and free!",
+        "emoji": "🐻"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Hỏi con \"Would you like a pet? A kitten or a puppy?\"",
     "say": "Would you like a pet?"

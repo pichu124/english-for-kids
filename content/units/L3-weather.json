@@ -42,6 +42,34 @@
       "play": "Where is the snow?"
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Rainbow, Hooray!",
+    "lines": [
+      {
+        "text": "It's sunny today, let's go and play!",
+        "emoji": "☀️"
+      },
+      {
+        "text": "It's windy! Oh no, my hat flew away!",
+        "emoji": "🌬️"
+      },
+      {
+        "text": "Now it's raining, it's cloudy and grey,",
+        "emoji": "🌧️"
+      },
+      {
+        "text": "Look, a rainbow! Hip, hip, hooray!",
+        "emoji": "🌈"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Mỗi sáng mở cửa sổ, hỏi con thời tiết hôm nay. Con trả lời \"It's sunny / cloudy / windy\".",
     "say": "What's the weather like today?"

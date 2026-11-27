@@ -22,6 +22,38 @@
     "octopus",
     "tortoise"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Wings and Legs",
+    "lines": [
+      {
+        "text": "The eagle flies high in the sky,",
+        "emoji": "🦅"
+      },
+      {
+        "text": "The butterfly is flying by!",
+        "emoji": "🦋"
+      },
+      {
+        "text": "The tortoise is old and very slow,",
+        "emoji": "🐢"
+      },
+      {
+        "text": "Dinosaurs lived long, long ago!",
+        "emoji": "🦖"
+      },
+      {
+        "text": "The octopus has got eight legs. Wow!",
+        "emoji": "🐙"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Đố con bằng định nghĩa: \"It has got eight legs and lives in the sea. What is it?\" rồi để con đố lại bố mẹ.",
     "say": "What has got eight legs?"

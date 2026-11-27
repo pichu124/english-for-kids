@@ -33,6 +33,34 @@
       "def": "This big instrument has got black and white keys."
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Our Little Band",
+    "lines": [
+      {
+        "text": "Bang the drum, boom, boom, boom!",
+        "emoji": "🥁"
+      },
+      {
+        "text": "Play the trumpet, toot, toot, toot!",
+        "emoji": "🎺"
+      },
+      {
+        "text": "Violin, guitar and piano too,",
+        "emoji": "🎻"
+      },
+      {
+        "text": "And the saxophone goes doo-be-doo!",
+        "emoji": "🎷"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Nghe nhạc cùng con và đoán nhạc cụ: \"Listen! Is it a violin or a trumpet?\"",
     "say": "Which instrument would you like to play?"

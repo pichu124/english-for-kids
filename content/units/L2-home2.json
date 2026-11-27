@@ -30,6 +30,34 @@
       "sentence": "I like this picture. It is beautiful."
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Tick Tock, Hello!",
+    "lines": [
+      {
+        "text": "Tick, tock, goes the clock!",
+        "emoji": "🕰️"
+      },
+      {
+        "text": "Ring, ring! Hello, phone!",
+        "emoji": "📱"
+      },
+      {
+        "text": "Look in the mirror, I can see my face!",
+        "emoji": "🪞"
+      },
+      {
+        "text": "Television, computer, a picture on the wall!",
+        "emoji": "📺"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Hỏi con đồng hồ, gương, điện thoại ở đâu trong nhà.",
     "say": "Where is the clock?"

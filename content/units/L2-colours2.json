@@ -26,6 +26,34 @@
     "grey",
     "purple"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Black Cat, White Cat",
+    "lines": [
+      {
+        "text": "Black cat, white cat, on the mat!",
+        "emoji": "🐱"
+      },
+      {
+        "text": "Brown dog, grey mouse, look at that!",
+        "emoji": "🐭"
+      },
+      {
+        "text": "Purple, purple, grapes for me,",
+        "emoji": "🍇"
+      },
+      {
+        "text": "Colours, colours, one, two, three!",
+        "emoji": "🎨"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Chỉ đồ vật màu đen, trắng, nâu quanh nhà và hỏi màu gì.",
     "say": "What colour is it?"

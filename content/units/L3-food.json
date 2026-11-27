@@ -22,6 +22,34 @@
     "cheese",
     "pancake"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "What's for Lunch?",
+    "lines": [
+      {
+        "text": "Sandwich, sandwich, cheese inside!",
+        "emoji": "🥪"
+      },
+      {
+        "text": "Hot soup, hot soup, blow, blow, blow!",
+        "emoji": "🍲"
+      },
+      {
+        "text": "Pasta and salad are good for you,",
+        "emoji": "🥗"
+      },
+      {
+        "text": "Pancakes for breakfast, yummy, yum!",
+        "emoji": "🥞"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Bữa trưa, hỏi \"What would you like?\" và để con trả lời \"I'd like some soup, please.\"",
     "say": "What would you like?"

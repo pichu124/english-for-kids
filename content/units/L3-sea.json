@@ -22,6 +22,34 @@
     "panda",
     "bat"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Dolphin Splash",
+    "lines": [
+      {
+        "text": "Dolphin, dolphin, jump and splash!",
+        "emoji": "🐬"
+      },
+      {
+        "text": "The whale is bigger than a bus!",
+        "emoji": "🐳"
+      },
+      {
+        "text": "The penguin swims but cannot fly,",
+        "emoji": "🐧"
+      },
+      {
+        "text": "The bat flies in the night sky!",
+        "emoji": "🦇"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Xem phim hoặc sách về động vật, hỏi con: \"Can a penguin fly? No, it can't!\"",
     "say": "Can a penguin fly?"

@@ -21,6 +21,38 @@
     "winter",
     "month"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Spring, Summer, Autumn, Winter",
+    "lines": [
+      {
+        "text": "In spring, the flowers come out to play,",
+        "emoji": "🌸"
+      },
+      {
+        "text": "In summer, we swim at the beach all day,",
+        "emoji": "🏖️"
+      },
+      {
+        "text": "In autumn, the leaves fall down, down, down,",
+        "emoji": "🍂"
+      },
+      {
+        "text": "In winter, there's snow all around!",
+        "emoji": "⛄"
+      },
+      {
+        "text": "Twelve months and four seasons every year!",
+        "emoji": "📅"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Hỏi con về mùa yêu thích và lý do: \"What's your favourite season? Why?\" Gợi ý trả lời bằng câu \"because…\".",
     "say": "What's your favourite season?"

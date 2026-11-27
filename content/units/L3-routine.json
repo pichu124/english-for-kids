@@ -22,6 +22,38 @@
     "go-to-school",
     "go-to-bed"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "My Busy Day",
+    "lines": [
+      {
+        "text": "I always get up at seven o'clock,",
+        "emoji": "⏰"
+      },
+      {
+        "text": "I get dressed and put on my socks!",
+        "emoji": "👕"
+      },
+      {
+        "text": "I sometimes have a shower, splash, splash, splash!",
+        "emoji": "🚿"
+      },
+      {
+        "text": "I have breakfast, then go to school by bus!",
+        "emoji": "🏫"
+      },
+      {
+        "text": "I never go to bed late. Shh, goodnight!",
+        "emoji": "🛏️"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Cùng con kể một ngày: \"I always get up at…, I sometimes…, I never…\". Dán lịch sinh hoạt lên tủ lạnh.",
     "say": "What time do you get up?"
