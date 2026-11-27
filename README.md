@@ -153,11 +153,21 @@ Câu ngắn, thì hiện tại, gọi nhân vật là "Bix" (không dùng he/she
 
 ## Phonics, tự đọc to, trò chuyện với Bix, chơi cùng bố mẹ
 
-- **Phonics** (ABC → 🔊 Sounds, `src/screens/phonics.ts`, nội dung `content/phonics.json`): 8 nhóm âm (s a t p i n · c k e h r m d · g o u l f b · j v w x y z qu · sh ch th ee oo · ai oa ie ar or · ng ow oi er ur · Tricky Words: the, I, go, said…). Xong cả 8 nhóm có giấy khen **Sounds Star**. Mỗi nhóm: làm quen âm → tìm âm → ghép âm (nghe c-a-t, chọn hình) → ghép chữ từ thẻ âm → đọc truyện nhỏ chỉ dùng âm đã học (+ vài từ "tricky" như the, is). Kiểm thử `tests/phonics.test.ts` bảo đảm mọi từ đều ghép được từ âm đã dạy.
+- **Phonics** (ABC → 🔊 Sounds, `src/screens/phonics.ts`, nội dung `content/phonics.json`): 8 nhóm âm (s a t p i n · c k e h r m d · g o u l f b · j v w x y z qu · sh ch th ee oo · ai oa ie ar or · ng ow oi er ur · Tricky Words: the, I, go, said…). Xong cả 8 nhóm có giấy khen **Sounds Star**. Làm dở một nhóm thì lần sau mở lại đúng bước bé đang làm (thẻ nhóm có vạch tiến độ). Mỗi nhóm: làm quen âm → tìm âm → ghép âm (nghe c-a-t, chọn hình) → ghép chữ từ thẻ âm → đọc truyện nhỏ chỉ dùng âm đã học (+ vài từ "tricky" như the, is). Kiểm thử `tests/phonics.test.ts` bảo đảm mọi từ đều ghép được từ âm đã dạy.
 - **Bé tự đọc to**: truyện từ Starters có nút 🎤 **My turn**; truyện phonics cũng vậy. Từ nào máy nghe thấy chuyển xanh (`src/lib/readcheck.ts`, dễ tính). Không có micro, hoặc máy 2 lần không nghe thấy gì, thì bố mẹ bấm "✓ Bé đã nói". Chạm đáp án, lật trang hay bấm "Read to me" là micro tắt ngay.
 - **Talk with Bix** (nút 💬 Talk ở màn chính, `src/screens/talk.ts`, `content/talk.json`): trò chuyện theo kịch bản (bé nói hoặc chạm hình trả lời, Bix đáp theo câu bé chọn) và **luyện phần Nói Cambridge** theo bậc (chỉ và gọi tên trong tranh; tìm điểm khác; kể chuyện theo tranh; câu hỏi về bé). Mọi thứ chạy trên máy, không dùng AI hay máy chủ; Bix không hỏi tên, trường hay bạn của bé. **Hôm nay** có một bước nói mỗi ngày (bộ âm tiếp theo, luyện Nói hoặc trò chuyện). Lựa chọn AI thật: xem `docs/NGHIEN-CUU-TINH-NANG.md`, Đợt G.
 - **Play Together** (Games → 🧒👩 Play Together, `src/screens/duo.ts`): 2 người trên một máy — Quick Tap (bấm chuông trả lời), You Be Bix (một người tả, người kia đoán), Say It! (một người nói, người kia chấm 👍). Cả hai luôn được khen, không có người thua.
+- **✏️ Write** (ABC → ✏️ Write, hoặc chạm một chữ rồi ✏️; `src/screens/trace.ts`, nét chữ `src/lib/strokes.ts`): bé tô chữ bằng ngón tay, từng nét theo thứ tự. Chấm xanh có số là chỗ bắt đầu, quả bóng vàng chạy trước chỉ đường, nét tô đến đâu tô màu đến đó. Nhấc tay giữa chừng vẫn giữ phần đã tô; vẽ lung tung hay ngược chiều thì không tô màu, không bao giờ báo "sai". Đủ 26 chữ thường và 26 chữ hoa (nút **A/a** đổi kiểu chữ). Nét chữ là chữ in đơn giản trên 4 đường kẻ.
+- Báo cáo tuần có mục **Cùng bố mẹ**: số lượt Chơi cùng nhau và số phiếu bài tập đã in.
 - Lượt nói dùng chung: `src/screens/mic.ts` (micro → kiểm tra → "Try again!" → "Good try!"; không có nhận dạng giọng nói thì hiện nút cho bố mẹ).
+
+## Lần đầu mở app
+
+Máy chưa có tiến độ nào thì app mở **màn chào cho bố mẹ** (`src/screens/welcome.ts`) thay cho nút ▶: giới thiệu ngắn → tên và tuổi của bé (tuổi gợi ý bậc: 3 → bậc 0, 4 → bậc 1, 5–6 → Starters, 7–8 → Movers, 9+ → Flyers) → thời gian học mỗi ngày (mặc định 15 phút) → thử loa và micro → xong. Bước nào cũng bỏ qua được và đổi lại trong khu bố mẹ. Máy đã có tiến độ, hoặc mở bằng đường link bài học của cô giáo (`?unit=…`), thì không hiện màn này.
+
+## Hình emoji giống nhau trên mọi máy
+
+App kèm sẵn tệp `public/fonts/bix-emoji.woff2` (440 KB, chỉ các emoji app dùng, lấy từ **Noto Color Emoji** của Google, giấy phép SIL OFL 1.1 cho phép dùng thương mại, bản giấy phép kèm ở `public/fonts/LICENSE-bix-emoji.txt`), nên Samsung, Xiaomi hay máy Android cũ đều hiện cùng một hình, kể cả khi offline. Chrome 108+ và Firefox dùng tệp này; Safari (iPad/iPhone) vẫn dùng emoji của Apple. Thêm emoji mới vào nội dung thì tạo lại tệp: xem đầu `scripts/emoji-font.py` (bộ test `tests/emoji-font.test.ts` báo nếu quên).
 
 ## Cách chấm điểm phần Nói
 
