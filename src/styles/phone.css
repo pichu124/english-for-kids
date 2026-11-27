@@ -256,4 +256,8 @@
   .games-list:has(.game-pick:nth-child(5)) { flex-wrap: wrap; max-width: calc(3 * min(17vw, 34vh) + 20px); gap: 8px 10px; }
   .games-list:has(.game-pick:nth-child(5)) .game-pick { width: min(17vw, 34vh); flex: 0 0 auto; font-size: 15px; line-height: 1.1; gap: 2px; }
   .games-list:has(.game-pick:nth-child(5)) .game-pick-icon { font-size: min(8vw, 15vh); }
+  /* 7+ games: two rows of five, Bix steps aside */
+  .games-list:has(.game-pick:nth-child(7)) { max-width: calc(5 * min(15vw, 31vh) + 40px); }
+  .games-list:has(.game-pick:nth-child(7)) .game-pick { width: min(15vw, 31vh); font-size: 12px; }
+  .games-list:has(.game-pick:nth-child(7)) .game-pick-icon { font-size: min(7vw, 14vh); }
 }

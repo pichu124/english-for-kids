@@ -528,3 +528,49 @@
   .tr-count { font-size: 18px; }
   .tr-paper { max-width: 55vw; }
 }
+
+/* ---------- Bix's Tower, What time is it?, Which one? (src/screens/games2.ts) ---------- */
+.tw-body { display: flex; align-items: center; justify-content: center; gap: 3vmin; flex: 1; min-height: 0; padding: 0 2vmin 2vmin; }
+.tw-side { align-self: stretch; display: flex; align-items: flex-end; width: clamp(60px, 10vmin, 110px); border-bottom: 6px solid #8bc34a; border-radius: 0 0 6px 6px; padding-bottom: 2px; }
+.tw-tower { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 2px; max-height: 100%; overflow: hidden; justify-content: flex-start; flex-direction: column-reverse; }
+.tw-block { display: block; width: 80%; height: clamp(14px, 3vmin, 26px); background: var(--c); border: 3px solid var(--ink); border-radius: 6px; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .15); flex: none; }
+.tw-stage { flex: 0 1 auto; min-width: 0; display: flex; justify-content: center; }
+.tw-key.is-in { background: #b9fbc0; border-color: #2a9d4a; }
+.tw-key.is-out { opacity: .35; }
+.tw-key[disabled] { cursor: default; }
+.ck-body, .wp-body { display: flex; align-items: center; justify-content: center; gap: 3vmin; flex: 1; min-height: 0; padding: 0 2vmin 2vmin; }
+.ck-bix, .wp-bix { flex: none; }
+.ck-stage, .wp-stage { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.ck-round, .wp-round { display: flex; flex-direction: column; align-items: center; gap: 2.5vmin; }
+.ck-clocks, .wp-cards { display: flex; gap: 3vmin; flex-wrap: wrap; justify-content: center; }
+.ck-clock { width: clamp(120px, 26vmin, 230px); aspect-ratio: 1; padding: 6px; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.ck-clock .clock-svg { width: 100%; height: 100%; display: block; }
+.wp-card { width: clamp(130px, 28vmin, 250px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 28px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.wp-emoji { font-size: clamp(70px, 16vmin, 150px); line-height: 1; }
+.wp-num { font-size: clamp(80px, 18vmin, 170px); font-weight: 800; color: #3a86ff; line-height: 1; }
+.ck-clock.is-right, .wp-card.is-right { background: #b9fbc0; box-shadow: 0 0 0 6px #2a9d4a; }
+.ck-clock.is-faded { opacity: .4; }
+.ck-stars, .wp-stars { position: static; margin-left: auto; display: flex; gap: 2px; font-size: clamp(22px, 4vmin, 36px); }
+.ck-clock, .wp-card { font: inherit; }
+@media (max-height: 500px) {
+  .tw-side { width: 44px; }
+  .tw-block { height: 10px; border-width: 2px; }
+  .ck-stars, .wp-stars { font-size: 18px; }
+  .ck-round, .wp-round { flex-direction: row; }
+  .ck-clock { width: min(26vw, 50vh); border-width: 3px; border-radius: 16px; }
+  .wp-card { width: min(28vw, 54vh); border-width: 3px; border-radius: 20px; }
+}
+
+/* the games menu holds up to 9 games: smaller cards, so they fit without scrolling */
+.games-list:has(> :nth-child(7)) { gap: 2.5vmin; max-width: 92vw; }
+.games-list:has(> :nth-child(7)) .game-pick { width: clamp(130px, 21vmin, 200px); font-size: clamp(18px, 3vmin, 26px); }
+.games-list:has(> :nth-child(7)) .game-pick-icon { font-size: clamp(44px, 8vmin, 80px); }
+@media (max-height: 500px) {
+  .games-list:has(> :nth-child(7)) { gap: 8px; max-width: none; }
+  .games-body:has(.games-list > :nth-child(7)) .games-bix { display: none; }
+  .games-list:has(> :nth-child(7)) .game-pick { width: min(15vw, 31vh); font-size: 13px; border-radius: 16px; border-width: 3px; }
+  .games-list:has(> :nth-child(7)) .game-pick .game-pick-icon { font-size: min(7vw, 14vh); }
+}
+@media (orientation: portrait) {
+  .ck-body, .wp-body { flex-direction: column; }
+}

@@ -14,6 +14,7 @@ import { confetti, homeButton } from './widgets';
 import { todayRunning } from '../lib/today';
 import { todayNextButton } from './today';
 import { duoScreen } from './duo';
+import { clockGame, pairsGame, tower, towerWords } from './games2';
 
 /**
  * Mini-games that replay words the child already learned:
@@ -36,6 +37,9 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
   if (game === 'who') return whoIsWho(ctx);
   if (game === 'riddle') return riddles(ctx);
   if (game === 'duo') return duoScreen(ctx);
+  if (game === 'tower') return tower(ctx);
+  if (game === 'clock') return clockGame(ctx);
+  if (game === 'pairs') return pairsGame(ctx);
 
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const card = (id: string, icon: string, label: string) =>
@@ -45,12 +49,19 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
       h('span', { class: 'game-pick-icon', 'aria-hidden': 'true' }, icon),
       h('span', {}, label),
     );
+  // newer games, by level: Which one? (from 4–5 years), What time is it? and Bix's Tower (from Starters)
+  const lvl = currentLevel().id;
+  const extraGames = () => [
+    lvl !== 'L0' ? card('pairs', '👂', 'Which one?') : null,
+    ['L2', 'L3', 'L4'].includes(lvl) ? card('clock', '🕐', 'What time?') : null,
+    ['L2', 'L3', 'L4'].includes(lvl) && towerWords(lvl).length >= 4 ? card('tower', '🧱', "Bix's Tower") : null,
+  ];
   setTimeout(() => ctx.alive() && void bix.talk('Pick a game!', 'happy'), 300);
   return h(
     'main',
     { class: 'games' },
     h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Games')),
-    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'), riddlePool(currentLevel().id).length >= 4 ? card('riddle', '🤔', 'Riddles') : null, card('duo', '🧒👩', 'Play Together'))),
+    h('div', { class: 'games-body' }, h('div', { class: 'games-bix' }, bix.el), h('div', { class: 'games-list' }, card('memory', '🃏', 'Memory'), card('balloons', '🎈', 'Balloons'), card('colour', '🖍️', 'Colour'), card('who', '🧒', 'Who Is Who?'), riddlePool(currentLevel().id).length >= 4 ? card('riddle', '🤔', 'Riddles') : null, ...extraGames(), card('duo', '🧒👩', 'Play Together'))),
   );
 }
 
