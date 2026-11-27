@@ -174,7 +174,7 @@
 .bg-board { border: 3px solid var(--ink); border-radius: 14px; padding: 10px; break-inside: avoid; }
 .bg-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; font-size: 16px; font-weight: 700; }
 .bg-head b { font-size: 30px; letter-spacing: .12em; color: #e2553f; }
-.bg-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; border: 2px solid var(--ink); }
+.bg-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 132px; border: 2px solid var(--ink); }
 .bg-cell { border: 1px solid #9aa3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; }
 .bg-pic { width: 92px; height: 92px; display: grid; place-items: center; }
 .bg-pic .pic { width: 100%; height: 100%; font-size: 72px; line-height: 1; display: grid; place-items: center; }
@@ -190,5 +190,6 @@
   .pc-sheet { page: worksheet; width: 100%; padding: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
   .pc-sheet:last-child { break-after: auto; page-break-after: auto; }
   .pc-grid { grid-auto-rows: 88mm; }
-  .bg-grid { grid-auto-rows: 38mm; }
+  .bg-grid { grid-auto-rows: 34mm; }
+  .bg-head { line-height: 1; }
 }

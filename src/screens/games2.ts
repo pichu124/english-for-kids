@@ -17,7 +17,7 @@ import { todayNextButton } from './today';
  * More games (Games screen):
  *  - Bix's Tower: guess the word letter by letter (each right letter adds a block; a letter not in
  *    the word is just "not in this word" — nobody loses). Starters on.
- *  - What time is it?: hear a time, find the clock (o'clock; half past and quarter from Movers).
+ *  - What time is it?: hear a time, find the clock (o'clock; half past from Movers, quarters from Flyers).
  *  - Which one?: hear one of two words that sound alike (ship / sheep), touch its picture —
  *    the sounds Vietnamese children most often mix up (long/short vowels, last sounds, l/n, th).
  */
@@ -100,7 +100,7 @@ export function tower(ctx: Ctx): HTMLElement {
         h('div', { class: 'wr-keys' }, keys),
       ),
     );
-    await bix.talk(`What's the word? ${w.text}! Find the letters!`, 'idle');
+    void bix.talk(`What's the word? ${w.text}! Find the letters!`, 'idle'); // the keys work while Bix talks
     let misses = 0;
     for (;;) {
       if (!ctx.alive()) return;
@@ -214,7 +214,7 @@ export function clockGame(ctx: Ctx): HTMLElement {
       t.classList.add('shake');
       // say what that clock shows, so the child hears the difference
       const [a, b] = t.dataset.time!.split(':').map(Number);
-      await bix.talk(`That's ${timeWords(a, b)}. Try again! ${prompt}`, 'encourage', 'Try again!');
+      void bix.talk(`That's ${timeWords(a, b)}. Try again!`, 'encourage', 'Try again!'); // 🔊 says the time again
     }
     void round(r + 1);
   };
@@ -284,7 +284,7 @@ export function pairsGame(ctx: Ctx): HTMLElement {
       t.classList.remove('shake');
       void t.offsetWidth;
       t.classList.add('shake');
-      await bix.talk(`That's ${other.text}. Listen again… ${target.text}!`, 'encourage', 'Try again!');
+      void bix.talk(`That's ${other.text}. Listen… ${target.text}!`, 'encourage', 'Try again!');
     }
     void round(r + 1);
   };
