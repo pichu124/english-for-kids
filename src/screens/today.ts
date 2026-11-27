@@ -58,7 +58,7 @@ export function todayScreen(ctx: Ctx): HTMLElement {
       st.done ? h('span', { class: 'today-check', 'aria-label': 'done' }, '✓') : null,
     );
   });
-  const prize = h('div', { class: `today-card today-prize ${finished ? 'is-done' : 'is-later'}` }, h('span', { class: 'today-icon', 'aria-hidden': 'true' }, finished ? '🌟' : '🎁'), h('span', { class: 'today-label' }, 'Prize'));
+  const prize = h('div', { class: `today-card today-prize ${finished ? 'is-done' : 'is-later'}` }, h('span', { class: 'today-icon', 'aria-hidden': 'true' }, '🌟'), h('span', { class: 'today-label' }, 'Star'));
 
   const start = () => {
     const st = plan.steps[i];

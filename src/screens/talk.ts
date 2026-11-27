@@ -169,11 +169,16 @@ function practiceScreen(ctx: Ctx, levelId: string): HTMLElement {
     const sc = shuffle(P.scenes)[0];
     parts.push(async () => {
       const { el: pic, items } = scene(sc);
-      stage.replaceChildren(h('div', { class: 'talk-task', 'data-task': 'point' }, pic));
+      // what to find stays on screen (and says it again when tapped), not only in Bix's bubble
+      let q = '';
+      const chip = h('button', { class: 'talk-find', 'aria-label': 'Listen again', hidden: true, onclick: () => (sfx.tap(), void bix.talk(q, 'idle')) });
+      stage.replaceChildren(h('div', { class: 'talk-task talk-task-find', 'data-task': 'point' }, chip, pic));
       await bix.talk(`Look at this picture. It's ${sc.title.replace(/^(In|At) the /, 'a ').toLowerCase()}.`, 'idle');
       for (const word of sc.point ?? []) {
         if (!ok()) return;
-        const q = `Where is the ${word}? Point to the ${word}.`;
+        q = `Where is the ${word}? Point to the ${word}.`;
+        chip.hidden = false;
+        chip.replaceChildren(h('span', { 'aria-hidden': 'true' }, '👆 '), h('b', { lang: 'en' }, word), h('span', { class: 'icon-speaker talk-find-ear', 'aria-hidden': 'true' }));
         stage.firstElementChild?.setAttribute('data-answer', word);
         void bix.talk(q, 'idle', `👆 ${word}`);
         for (;;) {

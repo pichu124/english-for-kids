@@ -1,5 +1,5 @@
 /* ---------- home dock (My World, My Words, Bix, Garden, Stories) ---------- */
-.home-dock { margin-left: auto; margin-right: 12vmin; margin-bottom: 3vmin; display: flex; gap: 2vmin; flex-wrap: wrap; justify-content: flex-end; max-width: 60vw; }
+.home-dock { margin-left: auto; margin-right: 12vmin; margin-bottom: 3vmin; display: flex; gap: 1.5vmin; flex-wrap: wrap; justify-content: flex-end; max-width: 70vw; } /* 8 buttons in one row on a tablet */
 .dock-btn {
   position: relative; font: inherit; font-weight: 800; color: var(--ink);
   display: flex; flex-direction: column; align-items: center; gap: 2px;
@@ -218,7 +218,7 @@
 .story-emoji { font-size: clamp(80px, 22vmin, 190px); line-height: 1; letter-spacing: .05em; }
 .story-bix .bix-svg { height: clamp(100px, 24vmin, 200px); }
 .story-text { display: flex; flex-wrap: wrap; justify-content: center; gap: .2em .35em; font-size: clamp(28px, 5.6vmin, 52px); font-weight: 800; line-height: 1.25; }
-.story-word { font: inherit; color: var(--ink); background: none; border: 0; border-radius: 10px; padding: 0 .08em; cursor: pointer; }
+.story-word { font: inherit; color: var(--ink); background: none; border: 0; border-radius: 10px; padding: 0 .08em; cursor: pointer; min-height: 40px; } /* easy to tap on a phone too */
 .story-word.is-now { background: #ffe066; }
 .story-word.is-tapped { animation: pulse .4s; background: #c9f2ff; }
 .story-controls { display: flex; gap: 4vmin; align-items: center; }

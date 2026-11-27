@@ -208,3 +208,15 @@
 
 /* upright tablets and narrow screens: the Talk title stays on one line above the pictures */
 .talk .world-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-size: clamp(26px, 5.5vmin, 56px); }
+
+/* speaking practice "point to …": bigger things to touch, and what to find always on screen */
+.talk-task[data-task="point"], .talk-task[data-task="name"] { position: relative; }
+.talk-task[data-task="point"] .talk-item, .talk-task[data-task="name"] .talk-item { font-size: clamp(40px, 9vmin, 84px); min-width: 64px; min-height: 64px; }
+.talk-task-find { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.talk-find { align-self: center; display: flex; align-items: center; gap: 6px; font: inherit; font-size: clamp(20px, 3.6vmin, 30px); font-weight: 800; color: var(--ink); background: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 4px 16px; min-height: 64px; box-shadow: 0 4px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.talk-find-ear { width: 26px; height: 26px; display: inline-block; background: var(--ink); }
+@media (max-height: 500px) {
+  .talk-task[data-task="point"] .talk-item, .talk-task[data-task="name"] .talk-item { font-size: 40px; min-width: 56px; min-height: 56px; }
+  .talk-find { font-size: 18px; min-height: 40px; padding: 2px 12px; }
+  .talk-task-find { gap: 2px; }
+}

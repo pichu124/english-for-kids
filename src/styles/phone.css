@@ -131,7 +131,8 @@
   .home .map.map-many { flex-wrap: wrap; justify-content: center; align-content: flex-start; overflow-x: hidden; overflow-y: auto; touch-action: pan-y; scroll-snap-type: none; min-height: 0; padding: 12px 3vw 150px; gap: 3vw; }
   .home .map.map-many { --isl: clamp(150px, 21vw, 200px); }
   .home-top { flex-wrap: wrap; }
-  .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: wrap; gap: 8px; }
+  .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: wrap; gap: 6px; }
+  .home-dock .dock-btn { min-width: 0; padding-left: 6px; padding-right: 6px; }
   .chat-box { top: auto; bottom: -96px; left: 50%; transform: translateX(-50%); }
   .lesson-bix .bix-bubble { left: 62%; max-width: 44vw; }
   .reward .tip-card { position: static; order: 9; max-width: 90vw; }
@@ -277,4 +278,15 @@
 @media (orientation: portrait) and (min-width: 601px) {
   .home .map.map-many { margin-bottom: calc(2.4vmin + 150px); padding-bottom: 20px; }
   .home-cert { bottom: calc(2.4vmin + 150px); }
+}
+
+/* lesson on a phone: the listen card fits the short screen (picture above the word), and the
+   speaker button of the tap game sits clear of the stars */
+@media (orientation: landscape) and (max-height: 500px) {
+  .word-card-xl { width: auto; height: calc(100vh - 100px); max-height: 260px; aspect-ratio: 1 / 1.05; }
+  .word-card-xl .pic-color { width: 46%; }
+  .word-card-xl .pic-emoji { font-size: min(110px, 30vh); }
+  .word-card-xl .pic-text span { font-size: min(80px, 22vh); }
+  .play-side { gap: 14px; }
+  .play-stars { font-size: 24px; }
 }
