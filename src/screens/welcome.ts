@@ -142,6 +142,8 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
               ages.querySelectorAll('.p-seg-btn').forEach((b) => b.classList.toggle('is-on', b === e.currentTarget));
               setLevel(levelForAge(a));
               showLevel();
+              // on a short screen the suggested level is below: bring it into view
+              levelBox.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
             },
           },
           a === 10 ? '10+ tuổi' : `${a} tuổi`,

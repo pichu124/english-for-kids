@@ -108,6 +108,9 @@
 /* ---------- rest ---------- */
 .rest { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3vmin; }
 .rest-wrap { margin-right: 30vmin; }
+/* the bubble stays on the screen (it ran off the right edge on phones and upright tablets) */
+.rest { overflow-x: hidden; }
+.rest .bix-bubble { max-width: min(44vw, 360px); white-space: normal; }
 .parent-note { font-size: 16px; color: var(--ink-soft); background: rgba(255, 255, 255, .7); padding: 6px 14px; border-radius: 10px; }
 
 /* portrait: stack things so nothing gets cut off */
@@ -127,7 +130,9 @@
 /* Many units: the map scrolls sideways, islands keep a child-friendly size. */
 .map-many { justify-content: flex-start; overflow-x: auto; overflow-y: hidden; gap: 3vmin; padding-left: 4vmin; padding-right: 4vmin; touch-action: pan-x; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .map-many::-webkit-scrollbar { display: none; }
-.map-many .island { flex: 0 0 auto; width: clamp(150px, 20vw, 220px); scroll-snap-align: center; }
-.map-many .map-path { left: 0; right: auto; width: calc(var(--n, 10) * 26vw); }
+.map-many { --isl: clamp(150px, 20vw, 220px); }
+.map-many .island { flex: 0 0 auto; width: var(--isl); scroll-snap-align: center; }
+/* the dashed path ends at the last island (no empty sky to scroll into) */
+.map-many .map-path { left: 0; right: auto; width: calc(var(--n, 10) * (var(--isl) + 3vmin) + 4vmin); }
 .island-review .island-name { background: var(--sun); }
 .island-review .island-icon { animation: pulse 1.4s ease-in-out infinite; }

@@ -35,7 +35,7 @@
   .chat-box { left: 100px; top: auto; bottom: -70px; gap: 10px; }
   .chat-btn { width: 64px; font-size: 34px; border-radius: 18px; }
   .cert-btn { width: 72px; font-size: 40px; }
-  .map-many .island { width: clamp(120px, 18vw, 170px); }
+  .map-many { --isl: clamp(120px, 18vw, 170px); }
 
   /* My World: one scrolling row of blocks so the building area keeps its space */
   .world-top { min-height: 0; padding: 4px 12px 0; }
@@ -129,7 +129,7 @@
   .games-bix .bix-bubble { display: none; }
   /* the island map scrolls up and down here (sideways would cut off the top and bottom rows) */
   .home .map.map-many { flex-wrap: wrap; justify-content: center; align-content: flex-start; overflow-x: hidden; overflow-y: auto; touch-action: pan-y; scroll-snap-type: none; min-height: 0; padding: 12px 3vw 150px; gap: 3vw; }
-  .home .map.map-many .island { width: clamp(150px, 21vw, 200px); }
+  .home .map.map-many { --isl: clamp(150px, 21vw, 200px); }
   .home-top { flex-wrap: wrap; }
   .home-dock { order: 3; width: 100%; max-width: none; margin: 0 0 8px; justify-content: center; flex-wrap: wrap; gap: 8px; }
   .chat-box { top: auto; bottom: -96px; left: 50%; transform: translateX(-50%); }
@@ -260,4 +260,21 @@
   .games-list:has(.game-pick:nth-child(7)) { max-width: calc(5 * min(15vw, 31vh) + 40px); }
   .games-list:has(.game-pick:nth-child(7)) .game-pick { width: min(15vw, 31vh); font-size: 12px; }
   .games-list:has(.game-pick:nth-child(7)) .game-pick-icon { font-size: min(7vw, 14vh); }
+}
+
+/* home on a phone: Bix talks without a bubble over the dock; the island map stops before the Today button */
+@media (orientation: landscape) and (max-height: 500px) {
+  .home-bix .bix-bubble { display: none; }
+  .home .map-many { margin-right: calc(2.4vmin + 104px); }
+  .home-cert { bottom: auto; top: 50%; transform: translateY(-50%); right: 2.4vmin; }
+  .reward-actions:has(> :nth-child(4)) { gap: 8px; }
+  .reward-actions:has(> :nth-child(4)) .btn { min-height: 56px; font-size: 15px; padding: 0 10px; }
+  /* Bix's Tower: smaller keys, so the word and four rows of keys fit under the header */
+  .tower .wr-key { width: 40px; height: 40px; font-size: 20px; }
+  .tower .spell-slot { width: 34px; height: 40px; font-size: 22px; }
+  .tower .wr-keys { gap: 4px; }
+}
+@media (orientation: portrait) and (min-width: 601px) {
+  .home .map.map-many { margin-bottom: calc(2.4vmin + 150px); padding-bottom: 20px; }
+  .home-cert { bottom: calc(2.4vmin + 150px); }
 }

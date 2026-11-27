@@ -193,3 +193,8 @@
   .bg-grid { grid-auto-rows: 34mm; }
   .bg-head { line-height: 1; }
 }
+/* numbers and short words drawn as text: smaller in the small bingo and list cells */
+.bg-pic .pic-text { font-size: 40px; }
+.bg-pic .pic-text span { font-size: inherit; }
+.bg-list-pic .pic-text { font-size: 16px; }
+.pc-pic .pic-text { font-size: 110px; }

@@ -78,7 +78,9 @@ export function resolveFun(p: TodayPlan): string {
   const lv = currentLevel().id;
   const games = ['game:memory', 'game:balloons', 'game:colour'];
   if (lv !== 'L0') games.push('game:pairs'); // words that sound alike (ship / sheep)
-  if (!['L0', 'L1'].includes(lv)) games.push('game:who', 'game:clock', 'game:tower');
+  if (!['L0', 'L1'].includes(lv)) games.push('game:who', 'game:clock');
+  // the spelling game only once the child has done some Read & Write (not on day 1)
+  if (!['L0', 'L1'].includes(lv) && (lv !== 'L2' || Object.values(s.topics).some((t) => (t.readDone ?? 0) > 0))) games.push('game:tower');
   if (lv === 'L4') games.push('game:riddle'); // Flyers words have definitions
   return games[Number(today().slice(-2)) % games.length];
 }

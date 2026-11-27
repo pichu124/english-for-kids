@@ -222,7 +222,11 @@ function colour(ctx: Ctx): HTMLElement {
   const level = currentLevel();
   const names = PAINTS.map((p) => p.name);
   // Things to colour: never a colour word or a colour block (that would give the answer away).
-  const things = shuffle(practicePool(level.id, 10).filter((w) => !w.image.color && !names.includes(w.text.toLowerCase()))).slice(0, 4);
+  // Only things you can colour in: a picture of an object or animal, not a month, season, time or feeling.
+  const ABSTRACT = /^(months|seasons|time|time2|days|weather|weather2|weather3|feelings|feelings3|actions|adjectives|numbers|numbers2|positions|directions|where|routine|adverbs|compare|superlatives|past|past2|past3|was|ever|future|offers|move|hello|subjects)$/;
+  const colourable = (w: Word) => !!w.image.emoji && !w.image.color && !names.includes(w.text.toLowerCase()) && !/\s/.test(w.text) && !ABSTRACT.test((w as Word & { topic?: string }).topic ?? '');
+  const learned = practicePool(level.id, 10).filter(colourable);
+  const things = shuffle(learned.length >= 4 ? learned : practicePool(level.id, 60).filter(colourable)).slice(0, 4);
   const paints = shuffle(PAINTS).slice(0, things.length);
   const ROUNDS = things.length;
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('idle');

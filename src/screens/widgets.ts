@@ -22,7 +22,7 @@ export function homeButton(ctx: Ctx, onLeave?: () => void): HTMLElement {
 export function parentButton(ctx: Ctx): HTMLElement {
   return h(
     'button',
-    { class: 'btn-parent', 'aria-label': 'Khu vực bố mẹ', onclick: () => ctx.go('parent') },
+    { class: 'btn-parent', 'aria-label': 'Khu bố mẹ', onclick: () => ctx.go('parent') },
     '🔒 Bố mẹ',
   );
 }

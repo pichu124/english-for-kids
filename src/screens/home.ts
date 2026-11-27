@@ -155,11 +155,12 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     { class: 'home' },
     todayBtn,
     h('header', { class: 'home-top' }, h('div', { class: 'home-bix', onclick: () => void say(hi) }, bix.el), dock, parentButton(ctx)),
-    h('section', { class: `map map-n${Math.min(topics.length, 6)} ${islands.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${topics.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
+    h('section', { class: `map map-n${Math.min(topics.length, 6)} ${islands.length >= 8 ? 'map-many' : ''}`, 'aria-label': 'Topics', style: `--n:${islands.length}` }, h('div', { class: 'map-path', 'aria-hidden': 'true' }), islands),
     h('div', { class: 'home-level', 'aria-label': 'Level' }, level.name),
   );
 
-  requestAnimationFrame(() => el.querySelector('.island.is-next')?.scrollIntoView({ inline: 'center', block: 'nearest' }));
+  // words due for review: show that island first; otherwise the next unit
+  requestAnimationFrame(() => (el.querySelector('.island-review') ?? el.querySelector('.island.is-next'))?.scrollIntoView({ inline: 'center', block: 'nearest' }));
   setTimeout(async () => {
     if (!ctx.alive()) return;
     if (levelToCelebrate(level)) {
@@ -168,8 +169,9 @@ export function homeScreen(ctx: Ctx): HTMLElement {
       sfx.reward();
       await bix.talk(`Wow! You finished all the ${level.name} islands! You are a star!`, 'happy', '🌟 You are a star!');
       if (!ctx.alive()) return;
-      const cert = h('button', { class: 'chat-box cert-btn pop', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { level: level.id, from: 'home' })) }, '🏆');
-      el.querySelector('.home-top')?.appendChild(cert);
+      // the cup sits just above the Today button (never on top of the islands)
+      const cert = h('button', { class: 'cert-btn home-cert pop', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { level: level.id, from: 'home' })) }, '🏆');
+      el.appendChild(cert);
       await bix.talk('Here is your certificate! Tap the cup!', 'happy', 'Tap the cup!');
       return;
     }

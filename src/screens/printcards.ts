@@ -10,14 +10,20 @@ import { wordPicture } from './lesson/shared';
  *  - Bingo: 4 different 3×3 boards (2 per page) and a caller list for the parent.
  * The same unit on the same day prints the same cards (seeded by unit + day).
  */
-const uniq = (ws: Word[]) => ws.filter((w, i) => ws.findIndex((x) => x.text.toLowerCase() === w.text.toLowerCase()) === i);
+/** One card per word and per picture (bed and bedroom both show 🛏️: only one of them). */
+const pictureOf = (w: Word) => JSON.stringify(w.image);
+const uniq = (ws: Word[]) => ws.filter((w, i) => ws.findIndex((x) => x.text.toLowerCase() === w.text.toLowerCase() || pictureOf(x) === pictureOf(w)) === i);
 
 /** The unit's words; bingo needs 9+, so it borrows words from the same level when a unit is small. */
 function wordsFor(topic: Topic, min = 0): Word[] {
   const own = uniq(topic.words);
   if (own.length >= min) return own;
-  const more = uniq(topicsOfLevel(topic.level).filter((t) => t.id !== topic.id).flatMap((t) => t.words)).filter((w) => !own.some((o) => o.text.toLowerCase() === w.text.toLowerCase()));
-  return [...own, ...seededShuffle(more, seededRandom(topic.id)).slice(0, min - own.length)];
+  // borrow from the units next to this one first (nearest in the level's order)
+  const units = topicsOfLevel(topic.level);
+  const at = units.findIndex((t) => t.id === topic.id);
+  const near = units.filter((t) => t.id !== topic.id).sort((a, b) => Math.abs(units.indexOf(a) - at) - Math.abs(units.indexOf(b) - at));
+  const more = uniq([...own, ...near.flatMap((t) => t.words)]).filter((w) => !own.includes(w));
+  return [...own, ...more.slice(0, min - own.length)];
 }
 
 function countSheet(key: string): void {

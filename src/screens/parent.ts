@@ -91,11 +91,11 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     h(
       'header',
       { class: 'p-head' },
-      h('h1', {}, 'Khu vực bố mẹ'),
+      h('h1', {}, 'Khu bố mẹ'),
       h('button', { class: 'p-btn p-btn-main', onclick: () => ctx.go(limitReached() ? 'rest' : 'home') }, 'Xong, quay lại cho bé →'),
     ),
     backupDue()
-      ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).')
+      ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, lastBackup() ? '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).' : '💾 Chưa sao lưu tiến độ của bé lần nào. Bấm để sao lưu (chỉ mất vài giây).')
       : null,
     summaryCard(),
     card('4 kỹ năng: nghe, nói, đọc, viết', skillsCard(currentLevel())),
@@ -320,15 +320,17 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     );
     const attempts = all.auto + all.parent + all.miss + all.noVoice;
     const pct = attempts ? Math.round((all.auto / attempts) * 100) : null;
-    const said = Object.values(s.words).filter((w) => w.said).length;
-    const totalWords = topics.reduce((n, t) => n + t.words.length, 0);
+    // words of the level the child is on (the same count as the four-skills card)
+    const lvWords = topicsOfLevel(currentLevel().id).flatMap((t) => t.words.map((w) => wordKey(t.id, w.id)));
+    const said = lvWords.filter((k) => s.words[k]?.said).length;
+    const totalWords = lvWords.length;
     const stat = (big: string, label: string) => h('div', { class: 'p-stat' }, h('b', {}, big), h('span', {}, label));
     return h(
       'section',
       { class: 'p-card p-summary' },
       stat(`${active}/7`, 'ngày có nói tiếng Anh (7 ngày qua)'),
       stat(pct === null ? '—' : `${pct}%`, 'lượt nói máy tự nhận đúng'),
-      stat(`${said}/${totalWords}`, 'từ bé đã nói được'),
+      stat(`${said}/${totalWords}`, 'từ của bậc này bé đã nói được'),
       stat(`${minutesToday()} phút`, 'đã học hôm nay'),
     );
   }

@@ -15,7 +15,7 @@ export type Ctx = {
 export type ScreenFn = (ctx: Ctx) => HTMLElement;
 
 const registry = new Map<ScreenName, ScreenFn>();
-let current: { name: ScreenName; cleanups: (() => void)[]; alive: boolean } | null = null;
+let current: { name: ScreenName; params: Record<string, string>; cleanups: (() => void)[]; alive: boolean } | null = null;
 let root: HTMLElement;
 const listeners: ((name: ScreenName) => void)[] = [];
 
@@ -48,7 +48,7 @@ export function go(name: ScreenName, params: Record<string, string> = {}): void 
   }
   stopSpeaking();
   cancelListening();
-  const state = { name, cleanups: [] as (() => void)[], alive: true };
+  const state = { name, params, cleanups: [] as (() => void)[], alive: true };
   current = state;
   const ctx: Ctx = {
     alive: () => state.alive,
@@ -84,7 +84,11 @@ export function go(name: ScreenName, params: Record<string, string> = {}): void 
 
 window.addEventListener('popstate', () => {
   // (the parents' first-run welcome stays put: it must end on the Play screen, which starts the day)
-  if (current && current.name !== 'home' && current.name !== 'start' && current.name !== 'welcome') go('home');
+  if (!current || current.name === 'home' || current.name === 'start' || current.name === 'welcome') return;
+  // pages opened from the parent area go back there (without the maths question again)
+  if (current.name === 'report' || current.name === 'worksheet' || (current.name === 'legal' && current.params.from === 'parent')) return go('parent', { back: current.name });
+  if (current.name === 'legal') return go(current.params.from === 'welcome' ? 'welcome' : 'start');
+  go('home');
 });
 
 /** Shown only if a screen fails to draw (e.g. damaged saved data): a way to the parent area. */
