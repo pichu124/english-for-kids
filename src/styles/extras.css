@@ -466,3 +466,47 @@
 
 /* A finished game: the board steps up so the end buttons don't cover the result */
 .game-body.is-finished > :not(.game-done):not(.balloon-stars):not(.balloon-ear) { transform: translateY(-9vh) scale(.82); transition: transform .4s ease; }
+
+/* ---------- ✏️ Write: finger tracing (src/screens/trace.ts) ---------- */
+.abc-write { position: absolute; right: 8px; bottom: 8px; width: 56px; height: 56px; font-size: 26px; }
+.trace { height: 100%; display: flex; flex-direction: column; }
+.trace .btn.tr-case { font-size: 34px; font-weight: 800; margin-left: auto; font-family: var(--font); }
+.tr-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2.5vmin, 28px); padding: 0 2vmin 2vmin; }
+.tr-paper { height: min(100%, 78vh); aspect-ratio: 100 / 120; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 8px 0 rgba(29, 36, 64, .2); padding: 1.5vmin; position: relative; }
+.tr-paper.was-done::after { content: '⭐'; position: absolute; top: -14px; right: -12px; font-size: 32px; }
+.tr-board { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair; }
+.tr-guide { stroke: #c9d1e3; stroke-width: .6; }
+.tr-guide-mid { stroke-dasharray: 3 2.5; }
+.tr-guide-base { stroke: #8fa0c6; stroke-width: .9; }
+.tr-guide-tail { stroke-dasharray: 1.5 2.5; }
+.tr-ghost { fill: none; stroke: #e3e8f3; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+.tr-ink { fill: none; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+.tr-ink.is-dot { stroke-width: 12; }
+.tr-start { fill: #2a9d4a; stroke: #fff; stroke-width: 1.4; animation: tr-pulse 1.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.tr-start-n { fill: #fff; font-size: 7px; font-weight: 800; pointer-events: none; }
+.tr-ball { fill: #ffd166; stroke: var(--ink); stroke-width: 1; pointer-events: none; }
+.tr-finger { fill: rgba(255, 209, 102, .55); pointer-events: none; }
+.tr-board.is-done .tr-ink { animation: tr-glow .9s ease-out; }
+@keyframes tr-pulse { 50% { transform: scale(1.25); } }
+@keyframes tr-glow { 40% { stroke-width: 13; } }
+.tr-side { display: flex; flex-direction: column; align-items: center; gap: 1.5vmin; min-width: 0; }
+.tr-pic { font-size: clamp(56px, 13vmin, 120px); line-height: 1; }
+.tr-word { font-size: clamp(28px, 5.5vmin, 48px); font-weight: 800; }
+.tr-btns { display: flex; gap: 10px; }
+.tr-prev, .tr-next { flex: none; }
+.tr-next { width: 76px; height: 76px; font-size: 30px; border-radius: 50%; padding: 0; }
+.tr-next.is-ready { animation: pulse 1.2s ease-in-out infinite; }
+@media (orientation: portrait) {
+  .tr-body { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: 'paper paper paper' 'prev side next'; align-content: center; justify-items: center; row-gap: 3vmin; }
+  .tr-paper { grid-area: paper; height: auto; width: min(84vw, 58vh); }
+  .tr-side { grid-area: side; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .tr-prev { grid-area: prev; } .tr-next { grid-area: next; }
+}
+@media (max-height: 500px) {
+  .tr-paper { border-width: 3px; border-radius: 16px; padding: 4px; }
+  .tr-side { gap: 4px; }
+  .tr-pic { font-size: 44px; }
+  .tr-word { font-size: 24px; }
+  .tr-next { width: 64px; height: 64px; }
+  .abc-write { width: 48px; height: 48px; font-size: 22px; right: 4px; bottom: 4px; }
+}

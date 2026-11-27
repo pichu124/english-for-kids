@@ -110,6 +110,8 @@ export type State = {
   phonicsStep?: Record<string, number>;
   /** Pages the child read aloud by themselves (story id or phonics reader → count). */
   readAloud?: Record<string, number>;
+  /** ✏️ Write: times each letter was traced ('a' small, 'A' big). */
+  traced?: Record<string, number>;
   /** Talk with Bix: finished chats and speaking practice parts. */
   talk?: Record<string, number>;
 };
@@ -308,6 +310,7 @@ export function sanitizeState(raw: unknown): State {
   if (isObj(p.phonics)) s.phonics = entries<number>(p.phonics, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.phonicsStep)) s.phonicsStep = entries<number>(p.phonicsStep, (n) => typeof n === 'number' && n >= 1 && n <= 4 && Number.isInteger(n));
   if (isObj(p.readAloud)) s.readAloud = entries<number>(p.readAloud, (n) => typeof n === 'number' && n >= 0);
+  if (isObj(p.traced)) s.traced = entries<number>(p.traced, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.talk)) s.talk = entries<number>(p.talk, (n) => typeof n === 'number' && n >= 0);
   return s;
 }

@@ -12,6 +12,7 @@ import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
 import { pick, PRAISE } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
+import { nextToTrace, traceScreen } from './trace';
 
 export type Letter = { letter: string; word: string; emoji: string; note?: string };
 export const LETTERS: Letter[] = (alphabet as { letters: Letter[] }).letters;
@@ -28,6 +29,7 @@ export function abcScreen(ctx: Ctx): HTMLElement {
     queueMicrotask(() => ctx.go('rest'));
     return h('main');
   }
+  if (ctx.params.trace) return traceScreen(ctx);
   return ctx.params.game ? letterGame(ctx) : alphabetBoard(ctx);
 }
 
@@ -45,6 +47,8 @@ function alphabetBoard(ctx: Ctx): HTMLElement {
       h('div', { class: 'abc-big-letter' }, `${l.letter} ${l.letter.toLowerCase()}`),
       h('div', { class: 'abc-big-pic', 'aria-hidden': 'true' }, pic(l)),
       h('div', { class: 'abc-big-word', lang: 'en' }, l.word),
+      // write this letter with a finger
+      h('button', { class: 'btn btn-round btn-sun abc-write', 'aria-label': `Write ${l.letter.toLowerCase()}`, onclick: (e: Event) => (e.stopPropagation(), sfx.tap(), ctx.go('abc', { trace: l.letter.toLowerCase() })) }, '✏️'),
     );
     big.classList.remove('pop');
     void big.offsetWidth;
@@ -67,12 +71,13 @@ function alphabetBoard(ctx: Ctx): HTMLElement {
     if (l) void say(line(l));
   });
   const game = h('button', { class: 'btn btn-sun abc-game-btn', 'aria-label': 'Letter game', onclick: () => (sfx.tap(), ctx.go('abc', { game: '1' })) }, '🎯 Letter game');
+  const write = h('button', { class: 'btn btn-sun abc-game-btn abc-write-btn', 'aria-label': 'Write', onclick: () => (sfx.tap(), ctx.go('abc', { trace: nextToTrace() })) }, '✏️ Write');
   const sounds = h('button', { class: 'btn btn-good abc-sounds-btn', 'aria-label': 'Sounds', onclick: () => (sfx.tap(), ctx.go('phonics')) }, '🔊 Sounds');
   setTimeout(() => ctx.alive() && void bix.talk('A, B, C! Tap a letter!', 'happy'), 300);
   return h(
     'main',
     { class: 'abc' },
-    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'ABC'), game, sounds, h('div', { class: 'abc-bix' }, bix.el)),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'ABC'), game, write, sounds, h('div', { class: 'abc-bix' }, bix.el)),
     h('div', { class: 'abc-body' }, h('div', { class: 'abc-grid' }, tiles), big),
   );
 }
