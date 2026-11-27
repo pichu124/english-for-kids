@@ -262,6 +262,31 @@ for (const level of ['L0', 'L2']) {
   await page.close();
 }
 
+// Little Books: the books of finished sound sets, to read again
+{
+  const page = await open('L2', { games: false, state: { phonics: { p1: 1, p2: 1 } } });
+  await page.locator('.dock-btn[aria-label="ABC"]').click({ force: true });
+  await page.locator('.abc-sounds-btn').click({ force: true });
+  await page.locator('.ph-books-btn').click({ force: true });
+  await page.waitForSelector('.ph-shelf-book');
+  await shot(page, 'little-books');
+  const open1 = await page.locator('.ph-shelf-book:not(.is-locked)').count();
+  const locked = await page.locator('.ph-shelf-book.is-locked').count();
+  if (open1 < 2 || !locked) fail(`books of sets 1–2 open, the rest locked: ${open1} open, ${locked} locked`);
+  await page.locator('.ph-shelf-book:not(.is-locked)').last().click({ force: true });
+  await page.waitForSelector('.ph-read');
+  for (let i = 0; i < 40 && !(await page.locator('.ph-done').count()); i++) {
+    if (await page.locator('.pbtn-ok').count()) await page.locator('.pbtn-ok').click({ force: true }).catch(() => {});
+    else if (await page.locator('.ph-next').count()) await page.locator('.ph-next').click({ force: true }).catch(() => {});
+    await page.waitForTimeout(500);
+  }
+  await page.waitForSelector('.ph-done');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')).storiesRead || {});
+  if (!Object.keys(st).some((k) => k.startsWith('book-p'))) fail('the book counts as read');
+  step('Little Books: books of finished sound sets open (others locked), read one to the end, it counts');
+  await page.close();
+}
+
 if (errors.length) fail('page errors: ' + errors.join(' | '));
 await browser.close();
 console.log('games3 e2e ok');

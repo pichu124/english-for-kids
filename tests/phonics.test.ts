@@ -16,7 +16,10 @@ describe('phonics sets', () => {
         if (!word) return true;
         return sounds.some((s) => word.startsWith(s) && decodable(word.slice(s.length)));
       };
-      for (const p of set.reader.pages) {
+      // the set's own little book and its extra books ("more", Little Books shelf)
+      const books = [set.reader, ...((set as { more?: (typeof set.reader)[] }).more ?? [])];
+      expect(books.length).toBeGreaterThan(0);
+      for (const p of books.flatMap((b) => b.pages)) {
         for (const raw of p.text.split(/\s+/)) {
           const word = raw.replace(/[^a-zA-Z]/g, '');
           if (!word || phonics.tricky.includes(word)) continue;

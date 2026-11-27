@@ -9,7 +9,7 @@ import { sfx } from '../lib/sfx';
 import { say } from '../lib/tts';
 import { limitReached } from '../lib/usage';
 import type { Ctx } from '../router';
-import { actOut, pick, PRAISE, wordPicture } from './lesson/shared';
+import { actOut, graphemes, pick, PRAISE, wordPicture } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
 import { todayRunning } from '../lib/today';
 import { todayNextButton } from './today';
@@ -52,7 +52,7 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
     h(
       'button',
       { class: 'game-pick', 'aria-label': label, 'data-game': id, onclick: () => (sfx.tap(), ctx.go('games', { game: id })) },
-      h('span', { class: 'game-pick-icon', 'aria-hidden': 'true' }, icon),
+      h('span', { class: `game-pick-icon ${graphemes(icon) > 1 ? 'is-two' : ''}`, 'aria-hidden': 'true' }, icon),
       h('span', {}, label),
     );
   // newer games, by level: Which one? (from 4–5 years), What time is it? and Bix's Tower (from Starters)

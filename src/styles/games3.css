@@ -149,3 +149,21 @@
   .cc-week { grid-template-columns: repeat(4, auto); }
   .cc-body { flex-direction: column; }
 }
+
+/* two-emoji game icons (Play Together) stay inside the card */
+.game-pick-icon.is-two { white-space: nowrap; transform: scale(.62); margin: -.12em 0; }
+
+/* ---------- Little Books (phonics shelf) ---------- */
+.ph-books-btn { min-height: 64px; padding: 0 18px; font-size: 24px; margin-left: auto; }
+.ph-shelf { display: flex; flex-direction: column; height: 100%; }
+.ph-shelf-grid { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(170px, 42vw), 1fr)); gap: 14px; padding: 4px 3vmin 3vmin; align-content: start; }
+.ph-shelf-book { font: inherit; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 120px; padding: 12px 10px; background: #fff; border: 4px solid var(--ink); border-left: 14px solid var(--c, #ffd166); border-radius: 12px 20px 20px 12px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.ph-shelf-book.is-locked { background: #edf1f8; border-color: #8a93a8; border-left-color: #b8c0d0; box-shadow: none; }
+.ph-shelf-book.is-locked .ph-shelf-title { color: #6b7489; }
+.ph-shelf-pic { font-size: clamp(38px, 7vmin, 60px); line-height: 1; }
+.ph-shelf-title { font-size: clamp(16px, 2.6vmin, 22px); font-weight: 800; line-height: 1.15; text-align: center; color: var(--ink); }
+.ph-shelf-book .ph-set-star { position: absolute; top: 6px; right: 8px; }
+@media (max-height: 500px) {
+  .ph-shelf-book { min-height: 96px; padding: 8px; }
+  .ph-books-btn { min-height: 56px; font-size: 20px; }
+}

@@ -23,7 +23,8 @@ import { phonicsAllDone } from './certificate';
  */
 type Sound = { s: string; say: string; word: string; emoji: string };
 type BlendWord = { w: string; parts: string[]; emoji: string };
-type PhonicsSet = { id: string; title: string; color: string; sounds: Sound[]; words: BlendWord[]; reader: { title: string; pages: { text: string; emoji: string }[] }; /** tricky words to know by sight (no blending) */ tricky?: boolean };
+type Book = { title: string; pages: { text: string; emoji: string }[] };
+type PhonicsSet = { id: string; title: string; color: string; sounds: Sound[]; words: BlendWord[]; reader: Book; /** more little books for the Little Books shelf */ more?: Book[]; /** tricky words to know by sight (no blending) */ tricky?: boolean };
 const SETS = data.sets as PhonicsSet[];
 const TRICKY = new Set(data.tricky);
 const SAY: Record<string, string> = Object.fromEntries(SETS.flatMap((st) => st.sounds.map((x) => [x.s, x.say])));
@@ -35,6 +36,8 @@ export function phonicsScreen(ctx: Ctx): HTMLElement {
     queueMicrotask(() => ctx.go('rest'));
     return h('main');
   }
+  if (ctx.params.book) return bookScreen(ctx, ctx.params.book);
+  if (ctx.params.books) return shelf(ctx);
   const i = SETS.findIndex((st) => st.id === ctx.params.set);
   return i >= 0 ? lesson(ctx, i) : menu(ctx);
 }
@@ -56,13 +59,16 @@ function menu(ctx: Ctx): HTMLElement {
       halfway[st.id] ? h('span', { class: 'ph-set-prog', 'aria-hidden': 'true', style: `--p:${halfway[st.id] / 5}` }) : null,
     ),
   );
+  // little books of the sets done so far (each set's book and its extra ones)
+  const nBooks = SETS.filter((st) => done[st.id]).reduce((n, st) => n + 1 + (st.more?.length ?? 0), 0);
+  const books = nBooks ? h('button', { class: 'btn btn-sun ph-books-btn', 'aria-label': 'Little Books', onclick: () => (sfx.tap(), ctx.go('phonics', { books: '1' })) }, `📚 ${nBooks}`) : null;
   // every set done: the "Sounds Star" certificate
   const cert = phonicsAllDone() ? h('button', { class: 'btn btn-sun ph-cert', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { kind: 'phonics', from: 'phonics' })) }, '🏆') : null;
   setTimeout(() => ctx.alive() && void bix.talk("Let's learn the sounds of the letters!", 'happy', 'Sounds! 🔊'), 300);
   return h(
     'main',
     { class: 'phonics' },
-    h('header', { class: 'book-top' }, homeButton(ctx), h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤'), h('h1', { class: 'world-title' }, 'Sounds'), cert),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤'), h('h1', { class: 'world-title' }, 'Sounds'), books, cert),
     h('div', { class: 'ph-menu' }, h('div', { class: 'ph-bix' }, bix.el), h('div', { class: 'ph-sets' }, cards)),
     h('p', { class: 'ph-parent-tip', lang: 'vi' }, 'Bố mẹ: đọc ÂM của chữ, không đọc tên chữ (t là “t” rất ngắn, không phải “tê” hay “tờ”). Giọng máy chỉ đọc gần đúng, nên bố mẹ đọc mẫu cho bé nghe thì tốt nhất.'),
   );
@@ -249,56 +255,8 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
 
     // 5. Read the little book (Bix reads it, or the child reads it aloud)
     step(4);
-    let readByChild = 0;
-    for (const page of set.reader.pages) {
-      if (!alive()) return;
-      const words = page.text.split(/\s+/).map((t) => {
-        const plain = t.replace(/[^A-Za-z]/g, '');
-        return h('button', { class: `ph-rword ${TRICKY.has(plain) ? 'is-tricky' : ''}`, lang: 'en', onclick: () => void say(plain || t) }, t);
-      });
-      const toMe = h('button', { class: 'btn btn-sun ph-read-me', 'aria-label': 'Read to me' }, '🔊 Read to me');
-      const next = nextBtn();
-      const line = h('p', { class: 'ph-line' }, words);
-      const area = h('div', { class: 'ph-read' }, h('div', { class: 'ph-read-pic', 'aria-hidden': 'true' }, fixEmoji(page.emoji)), line, h('div', { class: 'ph-read-btns' }, toMe, next));
-      stage.replaceChildren(h('div', { class: 'ph-book' }, h('h2', { class: 'ph-book-title', lang: 'en' }, set.reader.title), area));
-      const tokens = page.text.split(/\s+/);
-      const mark = (alts: string[]) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit));
-      // the child's turn first; "Read to me" is always there
-      const turn = micTurn(ctx, area, { expect: page.text, check: (alts) => readScore(wordHits(page.text, alts)) >= 0.6, onHeard: mark, prompt: page === set.reader.pages[0] ? 'Can you read it? Tap the microphone!' : undefined });
-      void turn.then((r) => {
-        if (!alive()) return;
-        if (r.result === 'ok' || r.result === 'parent') {
-          readByChild++;
-          words.forEach((w) => w.classList.add('is-read'));
-          sfx.success();
-          void say(pick(PRAISE));
-        }
-        next.classList.add('pop');
-      });
-      for (;;) {
-        const t = await tap([toMe, next]);
-        if (!alive()) return;
-        if (t === toMe) {
-          sfx.tap();
-          turn.pause(); // Bix reads: don't let the mic hear Bix
-          const starts: number[] = [];
-          let at = 0;
-          for (const w of page.text.split(/\s+/)) {
-            starts.push(page.text.indexOf(w, at));
-            at = starts[starts.length - 1] + w.length;
-          }
-          await say(page.text, {
-            rate: 0.75,
-            onWord: (ci) => words.forEach((w, j) => w.classList.toggle('is-now', starts[j] <= ci && (j + 1 >= starts.length || ci < starts[j + 1]))),
-          });
-          words.forEach((w) => w.classList.remove('is-now'));
-          continue;
-        }
-        break;
-      }
-      turn.cancel(); // the child moved on while the mic was open
-      sfx.tap();
-    }
+    const readByChild = await readBook(ctx, stage, set.reader, tap, alive);
+    if (!alive()) return;
 
     // Done!
     update((s) => {
@@ -326,4 +284,141 @@ function lesson(ctx: Ctx, idx: number): HTMLElement {
   };
   setTimeout(() => void run(), 300);
   return el;
+}
+
+/** Read one little book page by page: the child reads aloud (🎤), or Bix reads it ("Read to me"). Returns pages read by the child. */
+async function readBook(ctx: Ctx, stage: HTMLElement, book: Book, tap: <T extends HTMLElement>(els: T[]) => Promise<T>, alive: () => boolean): Promise<number> {
+  const nextBtn = () => h('button', { class: 'btn btn-good ph-next', 'aria-label': 'Next' }, '▶');
+  let readByChild = 0;
+    for (const page of book.pages) {
+      if (!alive()) return readByChild;
+      const words = page.text.split(/\s+/).map((t) => {
+        const plain = t.replace(/[^A-Za-z]/g, '');
+        return h('button', { class: `ph-rword ${TRICKY.has(plain) ? 'is-tricky' : ''}`, lang: 'en', onclick: () => void say(plain || t) }, t);
+      });
+      const toMe = h('button', { class: 'btn btn-sun ph-read-me', 'aria-label': 'Read to me' }, '🔊 Read to me');
+      const next = nextBtn();
+      const line = h('p', { class: 'ph-line' }, words);
+      const area = h('div', { class: 'ph-read' }, h('div', { class: 'ph-read-pic', 'aria-hidden': 'true' }, fixEmoji(page.emoji)), line, h('div', { class: 'ph-read-btns' }, toMe, next));
+      stage.replaceChildren(h('div', { class: 'ph-book' }, h('h2', { class: 'ph-book-title', lang: 'en' }, book.title), area));
+      const tokens = page.text.split(/\s+/);
+      const mark = (alts: string[]) => tokenHits(tokens, alts).forEach((hit, j) => words[j]?.classList.toggle('is-read', !!hit));
+      // the child's turn first; "Read to me" is always there
+      const turn = micTurn(ctx, area, { expect: page.text, check: (alts) => readScore(wordHits(page.text, alts)) >= 0.6, onHeard: mark, prompt: page === book.pages[0] ? 'Can you read it? Tap the microphone!' : undefined });
+      void turn.then((r) => {
+        if (!alive()) return;
+        if (r.result === 'ok' || r.result === 'parent') {
+          readByChild++;
+          words.forEach((w) => w.classList.add('is-read'));
+          sfx.success();
+          void say(pick(PRAISE));
+        }
+        next.classList.add('pop');
+      });
+      for (;;) {
+        const t = await tap([toMe, next]);
+        if (!alive()) return readByChild;
+        if (t === toMe) {
+          sfx.tap();
+          turn.pause(); // Bix reads: don't let the mic hear Bix
+          const starts: number[] = [];
+          let at = 0;
+          for (const w of page.text.split(/\s+/)) {
+            starts.push(page.text.indexOf(w, at));
+            at = starts[starts.length - 1] + w.length;
+          }
+          await say(page.text, {
+            rate: 0.75,
+            onWord: (ci) => words.forEach((w, j) => w.classList.toggle('is-now', starts[j] <= ci && (j + 1 >= starts.length || ci < starts[j + 1]))),
+          });
+          words.forEach((w) => w.classList.remove('is-now'));
+          continue;
+        }
+        break;
+      }
+      turn.cancel(); // the child moved on while the mic was open
+      sfx.tap();
+    }
+
+  return readByChild;
+}
+
+/** Little Books: every little book of the sets the child has finished, to read again (or read alone). */
+function shelf(ctx: Ctx): HTMLElement {
+  const done = getState().phonics ?? {};
+  const read = getState().storiesRead ?? {};
+  const bix = new Bix({ size: 'sm', bubble: false }).setMood('happy');
+  const tiles = SETS.flatMap((st) =>
+    [st.reader, ...(st.more ?? [])].map((b, k) => {
+      const open = !!done[st.id];
+      const id = `${st.id}:${k}`;
+      return h(
+        'button',
+        {
+          class: `ph-shelf-book ${open ? '' : 'is-locked'} ${read[`book-${id}`] ? 'is-read' : ''}`,
+          'data-book': id,
+          style: `--c:${st.color}`,
+          'aria-label': b.title,
+          onclick: () => {
+            sfx.tap();
+            if (open) return ctx.go('phonics', { book: id });
+            void bix.talk(`Learn ${st.title} first!`, 'encourage', `🔒 ${st.title}`);
+          },
+        },
+        h('span', { class: 'ph-shelf-pic', 'aria-hidden': 'true' }, open ? fixEmoji(b.pages[0]?.emoji ?? '📖') : '🔒'),
+        h('span', { class: 'ph-shelf-title', lang: 'en' }, b.title),
+        read[`book-${id}`] ? h('span', { class: 'ph-set-star', 'aria-hidden': 'true' }, '⭐') : null,
+      );
+    }),
+  );
+  setTimeout(() => ctx.alive() && void bix.talk('Pick a book! Can you read it?', 'happy'), 300);
+  const back = h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'Sounds', onclick: () => (sfx.tap(), ctx.go('phonics')) }, '🔊');
+  return h(
+    'main',
+    { class: 'phonics ph-shelf' },
+    h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, 'Little Books'), h('div', { class: 'game-bix' }, bix.el)),
+    h('div', { class: 'ph-shelf-grid' }, tiles),
+  );
+}
+
+/** One little book from the shelf. */
+function bookScreen(ctx: Ctx, id: string): HTMLElement {
+  const [setId, k] = id.split(':');
+  const set = SETS.find((st) => st.id === setId);
+  const book = set ? [set.reader, ...(set.more ?? [])][Number(k)] : undefined;
+  if (!set || !book || !getState().phonics?.[set.id]) {
+    queueMicrotask(() => ctx.go('phonics', { books: '1' }));
+    return h('main');
+  }
+  const stage = h('section', { class: 'ph-stage' });
+  const back = h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'Little Books', onclick: () => (sfx.tap(), ctx.go('phonics', { books: '1' })) }, '📚');
+  const firstSeen = new WeakMap<HTMLElement, number>();
+  const tap = <T extends HTMLElement>(els: T[]) =>
+    new Promise<T>((resolve) => {
+      const now = Date.now();
+      els.forEach((e) => firstSeen.has(e) || firstSeen.set(e, now));
+      const off = () => els.forEach((e) => e.removeEventListener('click', on));
+      const on = (e: Event) => {
+        if (Date.now() - (firstSeen.get(e.currentTarget as HTMLElement) ?? 0) < 400) return;
+        off();
+        resolve(e.currentTarget as T);
+      };
+      els.forEach((e) => e.addEventListener('click', on));
+    });
+  setTimeout(async () => {
+    if (!ctx.alive()) return;
+    const byChild = await readBook(ctx, stage, book, tap, ctx.alive);
+    if (!ctx.alive()) return;
+    update((s) => {
+      s.storiesRead = { ...(s.storiesRead ?? {}), [`book-${id}`]: (s.storiesRead?.[`book-${id}`] ?? 0) + 1 };
+      if (byChild) s.readAloud = { ...(s.readAloud ?? {}), [`book-${id}`]: (s.readAloud?.[`book-${id}`] ?? 0) + byChild };
+      dayLog().read = (dayLog().read ?? 0) + byChild;
+    });
+    sfx.reward();
+    confetti(document.body, 30);
+    const more = h('button', { class: 'btn btn-good', 'aria-label': 'Little Books', onclick: () => (sfx.tap(), ctx.go('phonics', { books: '1' })) }, '📚 Books');
+    stage.replaceChildren(h('div', { class: 'ph-done pop' }, h('div', { class: 'ph-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, more)));
+    await say(byChild ? `You read the book by yourself! ${pick(PRAISE)}` : `The end! ${pick(PRAISE)}`);
+  }, 300);
+  return h('main', { class: 'phonics ph-lesson', style: `--c:${set.color}`, 'data-book': id }, h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title', lang: 'en' }, book.title)), stage);
 }

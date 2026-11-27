@@ -12,7 +12,10 @@
     "we",
     "was",
     "said",
-    "my"
+    "my",
+    "of",
+    "are",
+    "all"
   ],
   "sets": [
     {
@@ -133,7 +136,55 @@
             "emoji": "🍳"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "Nan Naps",
+          "pages": [
+            {
+              "text": "Nan sat.",
+              "emoji": "👵"
+            },
+            {
+              "text": "Nan naps.",
+              "emoji": "👵😴"
+            },
+            {
+              "text": "An ant!",
+              "emoji": "🐜"
+            },
+            {
+              "text": "An ant taps Nan.",
+              "emoji": "🐜👵"
+            },
+            {
+              "text": "Tap, tap, tap!",
+              "emoji": "🐜"
+            }
+          ]
+        },
+        {
+          "title": "A Pin in a Tin",
+          "pages": [
+            {
+              "text": "A tin.",
+              "emoji": "🥫"
+            },
+            {
+              "text": "A pin in a tin.",
+              "emoji": "📌🥫"
+            },
+            {
+              "text": "Tip it.",
+              "emoji": "🥫"
+            },
+            {
+              "text": "Pins, pins, pins!",
+              "emoji": "📌📌📌"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p2",
@@ -286,7 +337,59 @@
             "emoji": "🐱🎩"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "Ten Red Hens",
+          "pages": [
+            {
+              "text": "Dad has ten red hens.",
+              "emoji": "👨🐔"
+            },
+            {
+              "text": "A hen is in a hat.",
+              "emoji": "🐔🎩"
+            },
+            {
+              "text": "A hen is in a pan.",
+              "emoji": "🐔🍳"
+            },
+            {
+              "text": "A hen naps in a cap.",
+              "emoji": "🐔🧢"
+            },
+            {
+              "text": "Dad and the hens nap!",
+              "emoji": "👨🐔😴"
+            }
+          ]
+        },
+        {
+          "title": "A Rat and a Cat",
+          "pages": [
+            {
+              "text": "A rat.",
+              "emoji": "🐭"
+            },
+            {
+              "text": "A rat sat in a hat.",
+              "emoji": "🐭🎩"
+            },
+            {
+              "text": "A cat ran in.",
+              "emoji": "🐱"
+            },
+            {
+              "text": "The rat hid!",
+              "emoji": "🐭🎩"
+            },
+            {
+              "text": "The cat had a nap.",
+              "emoji": "🐱😴"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p3",
@@ -442,7 +545,59 @@
             "emoji": "🐷🛏️"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "The Frog on the Log",
+          "pages": [
+            {
+              "text": "A frog sat on a log.",
+              "emoji": "🐸"
+            },
+            {
+              "text": "The sun is hot.",
+              "emoji": "☀️"
+            },
+            {
+              "text": "Plop! The frog hops in.",
+              "emoji": "🐸💦"
+            },
+            {
+              "text": "The frog is in the pond.",
+              "emoji": "🐸"
+            },
+            {
+              "text": "It is fun!",
+              "emoji": "🐸😀"
+            }
+          ]
+        },
+        {
+          "title": "A Pup in the Mud",
+          "pages": [
+            {
+              "text": "A pup.",
+              "emoji": "🐶"
+            },
+            {
+              "text": "The pup digs in the mud.",
+              "emoji": "🐶"
+            },
+            {
+              "text": "The pup is a mud pup!",
+              "emoji": "🐶😀"
+            },
+            {
+              "text": "Mum and the pup get in the tub.",
+              "emoji": "👩🛁"
+            },
+            {
+              "text": "A big hug!",
+              "emoji": "🤗🐶"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p4",
@@ -586,7 +741,59 @@
             "emoji": "✈️"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "The Duck and the Fox",
+          "pages": [
+            {
+              "text": "A duck is in a box.",
+              "emoji": "🦆📦"
+            },
+            {
+              "text": "Quack, quack!",
+              "emoji": "🦆"
+            },
+            {
+              "text": "A fox is in a van.",
+              "emoji": "🦊🚐"
+            },
+            {
+              "text": "The duck jumps in the van.",
+              "emoji": "🦆🚐"
+            },
+            {
+              "text": "Yes! The fox and the duck go!",
+              "emoji": "🦊🦆🚐"
+            }
+          ]
+        },
+        {
+          "title": "Yum, Yum, Jam!",
+          "pages": [
+            {
+              "text": "Max has a jug of jam.",
+              "emoji": "🧒🍯"
+            },
+            {
+              "text": "Yum, yum, yum!",
+              "emoji": "😋"
+            },
+            {
+              "text": "Buzz! A bug zips in.",
+              "emoji": "🐝"
+            },
+            {
+              "text": "The bug wants jam.",
+              "emoji": "🐝🍯"
+            },
+            {
+              "text": "Max and the bug get jam!",
+              "emoji": "🧒🐝🍯"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p5",
@@ -717,7 +924,59 @@
             "emoji": "🌙😀"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "A Trip to the Zoo",
+          "pages": [
+            {
+              "text": "We went to the zoo.",
+              "emoji": "🦓"
+            },
+            {
+              "text": "Look at the chimp!",
+              "emoji": "🐒"
+            },
+            {
+              "text": "The chimp is in a tree.",
+              "emoji": "🐒🌳"
+            },
+            {
+              "text": "The chimp sees my lunch.",
+              "emoji": "🐒🥪"
+            },
+            {
+              "text": "Munch, munch! No lunch!",
+              "emoji": "🐒😋"
+            }
+          ]
+        },
+        {
+          "title": "The Sheep and the Moon",
+          "pages": [
+            {
+              "text": "Three sheep in a shed.",
+              "emoji": "🐑🐑🐑"
+            },
+            {
+              "text": "The moon is up.",
+              "emoji": "🌙"
+            },
+            {
+              "text": "Shh! The sheep sleep.",
+              "emoji": "🐑😴"
+            },
+            {
+              "text": "This sheep cannot sleep.",
+              "emoji": "🐑👀"
+            },
+            {
+              "text": "It looks at the moon!",
+              "emoji": "🐑🌙"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p6",
@@ -848,7 +1107,59 @@
             "emoji": "⭐"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "The Train to the Farm",
+          "pages": [
+            {
+              "text": "We sit on the train.",
+              "emoji": "🚂"
+            },
+            {
+              "text": "Toot, toot!",
+              "emoji": "🚂"
+            },
+            {
+              "text": "A goat in a coat!",
+              "emoji": "🐐🧥"
+            },
+            {
+              "text": "A pig in the rain.",
+              "emoji": "🐷🌧️"
+            },
+            {
+              "text": "We are at the farm!",
+              "emoji": "🚜"
+            }
+          ]
+        },
+        {
+          "title": "The Toad and the Pie",
+          "pages": [
+            {
+              "text": "A toad sat on a road.",
+              "emoji": "🐸"
+            },
+            {
+              "text": "It is wet with rain.",
+              "emoji": "🐸🌧️"
+            },
+            {
+              "text": "The toad sees a pie.",
+              "emoji": "🐸🥧"
+            },
+            {
+              "text": "A fork and a pie!",
+              "emoji": "🍴🥧"
+            },
+            {
+              "text": "No pie for Bix!",
+              "emoji": "🤖😮"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p7",
@@ -992,7 +1303,59 @@
             "emoji": "🦉👑"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "The Cow Can Sing",
+          "pages": [
+            {
+              "text": "A brown cow.",
+              "emoji": "🐄"
+            },
+            {
+              "text": "The cow can sing.",
+              "emoji": "🐄🎵"
+            },
+            {
+              "text": "Moo! Moo! A long song.",
+              "emoji": "🐄🎶"
+            },
+            {
+              "text": "The owl sings too.",
+              "emoji": "🦉🎵"
+            },
+            {
+              "text": "Wow! Now we sing with them!",
+              "emoji": "🎶😀"
+            }
+          ]
+        },
+        {
+          "title": "A Coin in the Soil",
+          "pages": [
+            {
+              "text": "My sister digs in the soil.",
+              "emoji": "👧"
+            },
+            {
+              "text": "Look! A coin!",
+              "emoji": "🪙"
+            },
+            {
+              "text": "Is it for the king?",
+              "emoji": "👑"
+            },
+            {
+              "text": "No! She runs to the shop.",
+              "emoji": "👧🏃"
+            },
+            {
+              "text": "The coin is for a burger!",
+              "emoji": "🪙🍔"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "p8",
@@ -1086,7 +1449,59 @@
             "emoji": "🐶"
           }
         ]
-      }
+      },
+      "more": [
+        {
+          "title": "My Dog and I",
+          "pages": [
+            {
+              "text": "I go to the park with my dog.",
+              "emoji": "🐶🌳"
+            },
+            {
+              "text": "He runs and runs.",
+              "emoji": "🐶🏃"
+            },
+            {
+              "text": "My sister said, \"Sit!\"",
+              "emoji": "👧"
+            },
+            {
+              "text": "My dog sat.",
+              "emoji": "🐶"
+            },
+            {
+              "text": "Then he was in the pond!",
+              "emoji": "🐶💦"
+            }
+          ]
+        },
+        {
+          "title": "Go to Bed!",
+          "pages": [
+            {
+              "text": "It was dark.",
+              "emoji": "🌙"
+            },
+            {
+              "text": "Mum said, \"Go to bed.\"",
+              "emoji": "👩"
+            },
+            {
+              "text": "We go to bed.",
+              "emoji": "🛏️"
+            },
+            {
+              "text": "I see the moon and the stars.",
+              "emoji": "🌙⭐"
+            },
+            {
+              "text": "Zzz... zzz...",
+              "emoji": "😴"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
