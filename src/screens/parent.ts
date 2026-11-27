@@ -222,11 +222,18 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     return h(
       'div',
       {},
-      h('div', { class: 'p-row' }, lvSel, unitSel, h('button', { class: 'p-btn p-btn-main', 'data-ws': 'open', onclick: () => unitSel.value && ctx.go('worksheet', { unit: unitSel.value }) }, '📄 Mở phiếu')),
+      h('div', { class: 'p-row' }, lvSel, unitSel),
+      h(
+        'div',
+        { class: 'p-row' },
+        h('button', { class: 'p-btn p-btn-main', 'data-ws': 'open', onclick: () => unitSel.value && ctx.go('worksheet', { unit: unitSel.value }) }, '📄 Mở phiếu'),
+        h('button', { class: 'p-btn', 'data-ws': 'cards', onclick: () => unitSel.value && ctx.go('worksheet', { unit: unitSel.value, kind: 'cards' }) }, '🃏 Thẻ từ'),
+        h('button', { class: 'p-btn', 'data-ws': 'bingo', onclick: () => unitSel.value && ctx.go('worksheet', { unit: unitSel.value, kind: 'bingo' }) }, '🎱 Bingo cả nhà'),
+      ),
       h(
         'p',
         { class: 'p-muted' },
-        'Phiếu A4 dọc tạo từ các từ của bài, có trang đáp án riêng cho bố mẹ. Bậc 0–1: tô màu, nối hình, nghe và khoanh. Starters: nối hình với chữ, tô chữ, nhìn hình viết từ, tìm chữ. Movers/Flyers: viết từ, điền từ vào câu, đọc định nghĩa, đọc đoạn văn. Mặc định là bài bé học gần nhất.',
+        'Phiếu A4 dọc tạo từ các từ của bài, có trang đáp án riêng cho bố mẹ. 🃏 Thẻ từ: thẻ hình to để cắt, dán tường, chơi tìm thẻ. 🎱 Bingo: 4 bảng khác nhau và danh sách từ để bố mẹ đọc. Bậc 0–1: tô màu, nối hình, nghe và khoanh. Starters: nối hình với chữ, tô chữ, nhìn hình viết từ, tìm chữ. Movers/Flyers: viết từ, điền từ vào câu, đọc định nghĩa, đọc đoạn văn. Mặc định là bài bé học gần nhất.',
       ),
     );
   }

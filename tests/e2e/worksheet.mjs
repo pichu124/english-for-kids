@@ -166,6 +166,23 @@ for (const [lv, name] of [['L3', 'Movers'], ['L4', 'Flyers']]) {
 if (await page.locator('button[data-level="L2"]').count()) fail('Starters is not finished: no certificate yet');
 step('Starters (not finished) has no certificate button yet');
 
+// word cards and family bingo for the chosen unit
+await page.waitForSelector('.p-wrap');
+await page.locator('[data-ws="cards"]').click();
+await page.waitForSelector('.pc-card');
+const nCards = await page.locator('.pc-card').count();
+if (nCards < 4) fail('word cards for the unit: ' + nCards);
+await page.locator('.ws-back').click();
+await page.waitForSelector('.p-wrap');
+if (await page.locator('.gate').count()) fail('back from the cards should not ask again');
+await page.locator('[data-ws="bingo"]').click();
+await page.waitForSelector('.bg-board');
+const boards = await page.$$eval('.bg-board', (bs) => bs.map((b) => [...b.querySelectorAll('.bg-cell')].map((c) => c.dataset.word).join(',')));
+if (boards.length !== 4 || boards.some((b) => b.split(',').length !== 9)) fail('4 boards of 9');
+if (new Set(boards.map((b) => b.split(',').sort().join())).size < 2) fail('the boards hold different words');
+step(`word cards (${nCards}) and 4 different bingo boards with a caller list`);
+await page.locator('.ws-back').click();
+
 if (errors.length) fail('page errors: ' + errors.join(' | '));
 await browser.close();
 console.log('worksheet e2e ok');

@@ -5,6 +5,7 @@ import { dayLog, update } from '../lib/storage';
 import { buildWorksheet, type Section } from '../lib/worksheet';
 import type { Ctx } from '../router';
 import { wordPicture } from './lesson/shared';
+import { bingoCards, wordCards } from './printcards';
 
 const ABC = 'ABCDEFGHIJ';
 const vn = (iso: string) => {
@@ -175,6 +176,8 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
     queueMicrotask(back);
     return h('main');
   }
+  if (ctx.params.kind === 'cards') return wordCards(topic, back);
+  if (ctx.params.kind === 'bingo') return bingoCards(topic, back);
   const ws = buildWorksheet(topic);
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('happy');
   const sections = ws.sections.map((s, i) =>

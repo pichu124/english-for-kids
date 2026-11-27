@@ -158,3 +158,37 @@
 /* Weekly report: A4 portrait. Without a named page the certificate's global landscape @page (extras.css) wins. */
 @page report { size: A4 portrait; margin: 12mm; }
 @media print { .rp { page: report; } }
+
+/* ---------- word cards & bingo (src/screens/printcards.ts) ---------- */
+.pc-sheet { display: flex; flex-direction: column; gap: 10px; }
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 300px; border-top: 2px dashed #9aa3b8; border-left: 2px dashed #9aa3b8; }
+.pc-card { border-right: 2px dashed #9aa3b8; border-bottom: 2px dashed #9aa3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 10px; break-inside: avoid; }
+.pc-pic { width: 190px; height: 190px; display: grid; place-items: center; }
+.pc-pic .pic { width: 100%; height: 100%; font-size: 150px; line-height: 1; display: grid; place-items: center; }
+.pc-pic svg { width: 100%; height: 100%; }
+.pc-word { font-size: 44px; font-weight: 800; letter-spacing: .02em; }
+.pc-foot { font-size: 12px; color: var(--ink-soft); text-align: right; }
+.pc-tips h2, .bg-caller h2 { font-size: 22px; }
+.pc-tips ul, .bg-caller ol { margin-left: 1.3em; display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+.bg-sheet { gap: 26px; }
+.bg-board { border: 3px solid var(--ink); border-radius: 14px; padding: 10px; break-inside: avoid; }
+.bg-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; font-size: 16px; font-weight: 700; }
+.bg-head b { font-size: 30px; letter-spacing: .12em; color: #e2553f; }
+.bg-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; border: 2px solid var(--ink); }
+.bg-cell { border: 1px solid #9aa3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; }
+.bg-pic { width: 92px; height: 92px; display: grid; place-items: center; }
+.bg-pic .pic { width: 100%; height: 100%; font-size: 72px; line-height: 1; display: grid; place-items: center; }
+.bg-pic svg { width: 100%; height: 100%; }
+.bg-word { font-size: 18px; font-weight: 800; }
+.bg-caller h3 { font-size: 18px; margin-top: 10px; }
+.bg-list { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px dashed #9aa3b8; border-left: 1px dashed #9aa3b8; }
+.bg-list-item { display: flex; align-items: center; gap: 6px; padding: 6px; border-right: 1px dashed #9aa3b8; border-bottom: 1px dashed #9aa3b8; font-weight: 700; }
+.bg-list-pic { width: 34px; height: 34px; display: grid; place-items: center; }
+.bg-list-pic .pic { width: 100%; height: 100%; font-size: 26px; line-height: 1; display: grid; place-items: center; }
+.bg-list-pic svg { width: 100%; height: 100%; }
+@media print {
+  .pc-sheet { page: worksheet; width: 100%; padding: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
+  .pc-sheet:last-child { break-after: auto; page-break-after: auto; }
+  .pc-grid { grid-auto-rows: 88mm; }
+  .bg-grid { grid-auto-rows: 38mm; }
+}
