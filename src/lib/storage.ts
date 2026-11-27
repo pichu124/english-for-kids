@@ -69,6 +69,8 @@ export type State = {
     voiceURI?: string;
     /** Speech-recognizer configuration that works on this device (see SR_MODES). */
     srMode?: SrMode;
+    /** Bix's accent: British ('en-GB', like Cambridge) or American ('en-US', default). */
+    accent?: 'en-GB' | 'en-US';
     /** Use real recordings when the app has them (src/lib/voice.ts); default on. */
     recorded?: boolean;
     /** Level shown on the home map (L0…L4). */
@@ -116,6 +118,8 @@ export type State = {
   phonicsStep?: Record<string, number>;
   /** Pages the child read aloud by themselves (story id or phonics reader → count). */
   readAloud?: Record<string, number>;
+  /** Games finished, by game id (pairs, clock, tower …), for the four skills. */
+  gamesPlayed?: Record<string, number>;
   /** ✏️ Write: times each letter was traced ('a' small, 'A' big). */
   traced?: Record<string, number>;
   /** Talk with Bix: finished chats and speaking practice parts. */
@@ -317,6 +321,7 @@ export function sanitizeState(raw: unknown): State {
   if (isObj(p.phonics)) s.phonics = entries<number>(p.phonics, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.phonicsStep)) s.phonicsStep = entries<number>(p.phonicsStep, (n) => typeof n === 'number' && n >= 1 && n <= 4 && Number.isInteger(n));
   if (isObj(p.readAloud)) s.readAloud = entries<number>(p.readAloud, (n) => typeof n === 'number' && n >= 0);
+  if (isObj(p.gamesPlayed)) s.gamesPlayed = entries<number>(p.gamesPlayed, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.traced)) s.traced = entries<number>(p.traced, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.talk)) s.talk = entries<number>(p.talk, (n) => typeof n === 'number' && n >= 0);
   return s;

@@ -14,6 +14,7 @@
     pending: false,
     speak(u) {
       window.__spoken.push(u.text);
+      (window.__utter ||= []).push({ text: u.text, rate: u.rate, lang: u.lang });
       setTimeout(() => u.onend && u.onend(), 20);
     },
   };

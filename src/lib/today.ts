@@ -75,9 +75,11 @@ export function resolveFun(p: TodayPlan): string {
   const open = storiesOfLevel(currentLevel().id).filter((st) => (s.topics[st.unit]?.completed ?? 0) > 0 && !s.storiesRead?.[st.id]);
   const story = open.find((st) => st.unit === lesson) ?? open[0];
   if (story) return `story:${story.id}`;
+  const lv = currentLevel().id;
   const games = ['game:memory', 'game:balloons', 'game:colour'];
-  if (!['L0', 'L1'].includes(currentLevel().id)) games.push('game:who');
-  if (currentLevel().id === 'L4') games.push('game:riddle'); // Flyers words have definitions
+  if (lv !== 'L0') games.push('game:pairs'); // words that sound alike (ship / sheep)
+  if (!['L0', 'L1'].includes(lv)) games.push('game:who', 'game:clock', 'game:tower');
+  if (lv === 'L4') games.push('game:riddle'); // Flyers words have definitions
   return games[Number(today().slice(-2)) % games.length];
 }
 

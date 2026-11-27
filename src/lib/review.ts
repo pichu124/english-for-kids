@@ -86,3 +86,48 @@ export function buildReview(level: LevelId): { topic: Topic; keys: Map<string, s
   };
   return { topic, keys };
 }
+
+/**
+ * "Practice before the test": the words this child found hardest in the level (rounds that
+ * needed more than one try, most first), then words of finished units not learned yet.
+ * Played like a review: hear the words again, then find each picture.
+ */
+export const PREP_ID = 'prep';
+export function buildPrep(level: LevelId): { topic: Topic; keys: Map<string, string> } | null {
+  const s = getState();
+  const seen = new Set<string>();
+  const items: { key: string; topic: Topic; word: Word; score: number }[] = [];
+  for (const t of topicsOfLevel(level)) {
+    const finished = (s.topics[t.id]?.completed ?? 0) > 0;
+    for (const w of t.words) {
+      const key = wordKey(t.id, w.id);
+      const ws = s.words[key];
+      const slips = ws?.slips ?? 0;
+      const learned = !!ws && (ws.said || !!ws.known);
+      const score = slips > 0 ? 10 + slips : finished && !learned ? 1 : 0;
+      if (score > 0) items.push({ key, topic: t, word: w, score });
+    }
+  }
+  items.sort((a, b) => b.score - a.score);
+  const pickd = items.filter((d) => (seen.has(d.word.text) ? false : (seen.add(d.word.text), true))).slice(0, 8);
+  if (pickd.length < MIN_WORDS) return null;
+  const topic: Topic = {
+    id: PREP_ID,
+    level,
+    topic: 'review',
+    order: 0,
+    title: 'Practice',
+    titleVi: 'Ôn trước khi thi',
+    icon: '🎯',
+    color: '#9bf6ff',
+    intro: "Let's practise the tricky words!",
+    playPrompt: '{word}',
+    block: { name: 'Practice', style: 'gold', color: '#ffc93c' },
+    // listen once more, then find each picture (marks go to each word's own unit, like a review)
+    steps: ['listen', 'tap-picture'],
+    playRounds: pickd.length,
+    actions: [],
+    words: pickd.map((d) => ({ ...d.word, play: playPromptFor(d.topic, d.word) })),
+  };
+  return { topic, keys: new Map(pickd.map((d) => [d.word.id, d.key])) };
+}

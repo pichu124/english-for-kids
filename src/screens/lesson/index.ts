@@ -3,7 +3,7 @@ import { gapCount, hasPart2, levelById, partSteps, sentenceCount, topicById, typ
 import { h } from '../../lib/dom';
 import { limitReached } from '../../lib/usage';
 import { currentLevel } from '../../lib/level';
-import { buildReview, recordReview, REVIEW_ID } from '../../lib/review';
+import { buildPrep, buildReview, PREP_ID, recordReview, REVIEW_ID } from '../../lib/review';
 import { markKnown, noteSlip } from '../../lib/progress';
 import { wordKey } from '../../lib/storage';
 import { runReviewReward } from './reward';
@@ -24,7 +24,8 @@ import { Aborted, makeUI } from './shared';
 import { runSpeak } from './speak';
 
 export function lessonScreen(ctx: Ctx): HTMLElement {
-  const review = ctx.params.topic === REVIEW_ID ? buildReview(currentLevel().id) : null;
+  // review (words due) and practice before the test (hardest words) are both built on the fly
+  const review = ctx.params.topic === REVIEW_ID ? buildReview(currentLevel().id) : ctx.params.topic === PREP_ID ? buildPrep(currentLevel().id) : null;
   const topic = review ? review.topic : topicById(ctx.params.topic ?? '');
   if (!topic || limitReached()) {
     queueMicrotask(() => ctx.go(topic ? 'rest' : 'home'));

@@ -60,14 +60,22 @@ export function pickVoice(): SpeechSynthesisVoice | undefined {
     const v = list.find((x) => x.voiceURI === wanted);
     if (v) return v;
   }
-  const us = list.filter((v) => v.lang.replace('_', '-').toLowerCase() === 'en-us');
+  // the accent the parent chose (British, like Cambridge, or American), else any English voice
+  const want = accent().toLowerCase();
+  const same = list.filter((v) => v.lang.replace('_', '-').toLowerCase() === want);
   return (
-    us.find((v) => v.localService) || // offline-capable first
-    us.find((v) => /google/i.test(v.name)) ||
-    us[0] ||
+    same.find((v) => v.localService) || // offline-capable first
+    same.find((v) => /google/i.test(v.name)) ||
+    same[0] ||
+    list.find((v) => v.lang.replace('_', '-').toLowerCase() === 'en-us') ||
     list[0]
   );
 }
+
+/** 'en-GB' (British) or 'en-US' (American, the default): Khu bố mẹ → Giọng đọc. */
+export const accent = (): 'en-GB' | 'en-US' => (getState().settings.accent === 'en-GB' ? 'en-GB' : 'en-US');
+/** Does this device have a voice for that accent? */
+export const hasAccent = (a: 'en-GB' | 'en-US') => englishVoices().some((v) => v.lang.replace('_', '-').toLowerCase() === a.toLowerCase());
 
 /** Stop anything currently being spoken and invalidate pending sequences. */
 export function stopSpeaking(): void {
@@ -110,8 +118,34 @@ export function primeSpeech(): void {
  * If a line has not started after ~1.5 s (the engine dropped it), it is sent once more.
  */
 type SayOpts = { rate?: number; pitch?: number; onWord?: (charIndex: number) => void };
+
+/**
+ * 🐢 Slow repeat: when the child taps to hear the same thing again (a word, "listen again"),
+ * Bix says it more slowly. Only for taps: lines the app repeats by itself keep their speed.
+ */
+let lastTap = { t: 0, x: 0, y: 0 };
+let lastLine = { text: '', t: 0 };
+if (typeof document !== 'undefined') document.addEventListener('pointerdown', (e) => (lastTap = { t: Date.now(), x: e.clientX, y: e.clientY }), true);
+function slowRepeat(text: string): boolean {
+  const now = Date.now();
+  const again = now - lastTap.t < 700 && text === lastLine.text && now - lastLine.t < 10000;
+  lastLine = { text, t: now };
+  if (again && typeof document !== 'undefined') {
+    const turtle = document.createElement('div');
+    turtle.className = 'slow-turtle';
+    turtle.textContent = '🐢';
+    turtle.setAttribute('aria-hidden', 'true');
+    turtle.style.left = `${lastTap.x}px`;
+    turtle.style.top = `${lastTap.y}px`;
+    document.body.appendChild(turtle);
+    setTimeout(() => turtle.remove(), 1400);
+  }
+  return again;
+}
+
 export function say(text: string, opts: SayOpts = {}): Promise<void> {
   const myGen = ++generation;
+  if (opts.rate === undefined && slowRepeat(text)) opts = { ...opts, rate: Math.max(0.45, (getState().settings.rate ?? 0.8) * 0.65) };
   // a real person's recording of this line, when there is one (src/lib/voice.ts)
   const rec = recordingsFor(text);
   if (rec) {
@@ -156,7 +190,7 @@ function speakEngine(text: string, opts: SayOpts, myGen: number): Promise<void> 
     };
     const make = () => {
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
+      u.lang = accent();
       u.rate = rate;
       u.pitch = opts.pitch ?? 1.1;
       try {

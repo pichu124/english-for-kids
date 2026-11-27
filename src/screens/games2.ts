@@ -7,6 +7,7 @@ import { spellOut } from '../lib/letters';
 import { practicePool } from '../lib/progress';
 import { sfx } from '../lib/sfx';
 import { say } from '../lib/tts';
+import { update } from '../lib/storage';
 import type { Ctx } from '../router';
 import { pick, PRAISE, wordPicture } from './lesson/shared';
 import { confetti, homeButton } from './widgets';
@@ -34,6 +35,7 @@ function shell(ctx: Ctx, cls: string, title: string, body: HTMLElement, bix: Bix
 
 function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string, line = 'You did it! Play again?'): void {
   host.classList.add('is-finished');
+  update((s) => (s.gamesPlayed = { ...(s.gamesPlayed ?? {}), [game]: (s.gamesPlayed?.[game] ?? 0) + 1 }));
   sfx.reward();
   confetti(document.body, 40);
   bix.setMood('happy');

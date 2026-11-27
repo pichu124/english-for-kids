@@ -10,7 +10,7 @@ import { browserAdvice, browserLabel } from '../lib/env';
 import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
 import { addProfile, backupDue, checkBackup, exportBackup, lastBackup, markBackedUp, restoreBackup, type Backup, MAX_PROFILES, profileAnimal, profiles, removeProfile, switchProfile, getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
-import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
+import { allVoices, englishVoices, hasAccent, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
 import { recordedCount } from '../lib/voice';
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
@@ -719,16 +719,52 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       update((st) => (st.settings.rate = Number(rate.value)));
       rateLabel.textContent = Number(rate.value).toFixed(2);
     });
+    // accent: British (like Cambridge) or American; choosing one goes back to the automatic voice
+    const accentBox = h('div', { class: 'p-row' });
+    const renderAccent = () => {
+      const cur = getState().settings.accent === 'en-GB' ? 'en-GB' : 'en-US';
+      accentBox.replaceChildren(
+        h('span', {}, 'Giọng:'),
+        h(
+          'div',
+          { class: 'p-seg' },
+          (
+            [
+              ['en-GB', 'Anh-Anh (như Cambridge)'],
+              ['en-US', 'Anh-Mỹ'],
+            ] as const
+          ).map(([a, label]) =>
+            h(
+              'button',
+              {
+                class: `p-seg-btn ${a === cur ? 'is-on' : ''}`,
+                'data-accent': a,
+                onclick: () => {
+                  update((st) => ((st.settings.accent = a), (st.settings.voiceURI = undefined)));
+                  renderAccent();
+                  fillVoices();
+                  void say('Hello! This is a dog.');
+                },
+              },
+              label,
+            ),
+          ),
+        ),
+        hasAccent(cur) ? '' : h('span', { class: 'p-muted' }, cur === 'en-GB' ? 'Máy chưa có giọng Anh-Anh: đang dùng giọng tiếng Anh khác. Có thể tải thêm giọng trong Cài đặt Android → Chuyển văn bản thành giọng nói.' : 'Máy chưa có giọng Anh-Mỹ: đang dùng giọng tiếng Anh khác.'),
+      );
+    };
     const voiceSel = h('select', { class: 'p-input' }) as HTMLSelectElement;
     const fillVoices = () => {
       const vs = englishVoices();
       voiceSel.replaceChildren(
-        h('option', { value: '' }, 'Tự chọn (ưu tiên en-US)'),
+        h('option', { value: '' }, `Tự chọn (theo giọng ${getState().settings.accent === 'en-GB' ? 'Anh-Anh' : 'Anh-Mỹ'})`),
         ...vs.map((v) => h('option', { value: v.voiceURI, selected: v.voiceURI === getState().settings.voiceURI }, `${v.name} (${v.lang})${v.localService ? '' : ' · cần mạng'}`)),
       );
     };
     fillVoices();
+    renderAccent();
     window.speechSynthesis?.addEventListener?.('voiceschanged', fillVoices);
+    window.speechSynthesis?.addEventListener?.('voiceschanged', renderAccent);
     voiceSel.addEventListener('change', () => update((st) => (st.settings.voiceURI = voiceSel.value || undefined)));
 
     // "No sound?" diagnostics: tells apart a muted tab/speaker from missing voices.
@@ -933,6 +969,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       { class: 'p-stack' },
       h('div', { class: 'p-row' }, h('span', { class: 'p-muted' }, `Phiên bản đang chạy: ${__APP_VERSION__}`), refreshBtn),
       h('label', { class: 'p-row' }, 'Tốc độ đọc', rate, rateLabel),
+      accentBox,
       h('label', { class: 'p-row' }, 'Giọng đọc', voiceSel),
       h('div', { class: 'p-row' }, testBtn, beepBtn),
       recBox,

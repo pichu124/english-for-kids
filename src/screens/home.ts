@@ -2,7 +2,7 @@ import { Bix } from '../art/bix';
 import { islandSVG } from '../art/cube';
 import { hasPart2, topicsOfLevel, type Topic } from '../content';
 import { currentLevel } from '../lib/level';
-import { buildReview, REVIEW_ID } from '../lib/review';
+import { buildPrep, buildReview, PREP_ID, REVIEW_ID } from '../lib/review';
 import { fromHTML, h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
 import { getState, today } from '../lib/storage';
@@ -61,7 +61,19 @@ export function homeScreen(ctx: Ctx): HTMLElement {
     return btn;
   });
 
-  // Starters: a practice-test island at the end of the map.
+  // Starters: a practice-test island at the end of the map, and before it "practice" with the hardest words.
+  const prep = hasTest(level.id) ? buildPrep(level.id) : null;
+  if (prep) {
+    islands.push(
+      h(
+        'button',
+        { class: 'island island-prep', style: `--i:${islands.length}`, 'aria-label': 'Practice', onclick: () => (sfx.tap(), ctx.go('lesson', { topic: PREP_ID })) },
+        fromHTML(islandSVG('#9bf6ff')),
+        h('span', { class: 'island-icon', 'aria-hidden': 'true' }, '🎯'),
+        h('span', { class: 'island-name' }, `Practice · ${prep.topic.words.length}`),
+      ),
+    );
+  }
   if (hasTest(level.id)) {
     islands.push(
       h(

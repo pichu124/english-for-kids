@@ -39,6 +39,7 @@ export function skillSummary(level: Level): Skill[] {
     return r ? ` · Thi thử gần nhất: ${r[0]}/${r[1]}` : '';
   };
   const days = Object.values(s.days);
+  const played = (g: string) => s.gamesPlayed?.[g] ?? 0;
   const sum = (k: 'talk' | 'read' | 'sheets') => days.reduce((n, d) => n + (d[k] ?? 0), 0);
 
   // reading: the Read & Write parts of this level (Starters on), stories, phonics sets
@@ -59,8 +60,11 @@ export function skillSummary(level: Level): Skill[] {
       icon: '👂',
       name: 'Nghe',
       share: pct(known, total),
-      facts: [`Chọn đúng hình ngay lần đầu: ${known}/${total} từ của bậc${score('listening')}`],
-      tip: 'Cho bé chơi Games (bóng bay, Riddles, Listen and Colour) và nghe truyện ở 📚 Stories.',
+      facts: [
+        `Chọn đúng hình ngay lần đầu: ${known}/${total} từ của bậc${score('listening')}`,
+        ...(played('pairs') + played('clock') ? [`Trò nghe: Which one? ${played('pairs')} lượt, What time? ${played('clock')} lượt`] : []),
+      ],
+      tip: 'Cho bé chơi Games (👂 Which one?, 🕐 What time?, bóng bay, Listen and Colour) và nghe truyện ở 📚 Stories.',
     },
     {
       id: 'speak',
@@ -88,9 +92,9 @@ export function skillSummary(level: Level): Skill[] {
       share: writeShare,
       facts: [
         level.reading?.length ? `Đánh vần / viết đúng: ${spelled}/${total} từ${score(writes)}` : 'Bậc này chưa viết từ: bé tập tô chữ trước.',
-        `Tô chữ: ${traced}/52 chữ cái · phiếu đã in: ${sum('sheets')}`,
+        `Tô chữ: ${traced}/52 chữ cái · phiếu đã in: ${sum('sheets')}${played('tower') ? ` · Bix's Tower: ${played('tower')} lượt` : ''}`,
       ],
-      tip: 'Cho bé tập tô ở ABC → ✏️ Write, và in một phiếu bài tập để viết bằng bút chì.',
+      tip: "Cho bé tập tô ở ABC → ✏️ Write, chơi 🧱 Bix's Tower, và in một phiếu bài tập để viết bằng bút chì.",
     },
   ];
 }

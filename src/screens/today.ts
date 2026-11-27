@@ -12,7 +12,7 @@ import phonics from '../../content/phonics.json';
 import talk from '../../content/talk.json';
 import { confetti, homeButton } from './widgets';
 
-const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons', colour: 'Colour', who: 'Who Is Who?', riddle: 'Riddles' };
+const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons', colour: 'Colour', who: 'Who Is Who?', riddle: 'Riddles', pairs: 'Which one?', clock: 'What time?', tower: "Bix's Tower" };
 
 function label(st: TodayStep): { icon: string; text: string; say: string } {
   if (st.kind === 'review') return { icon: '🔁', text: 'Review', say: 'review your words' };
