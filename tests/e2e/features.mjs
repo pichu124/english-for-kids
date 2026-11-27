@@ -261,7 +261,7 @@ for (let i = 0; i < 5; i++) { await page.locator('.story-next').click({ force: t
 await page.waitForSelector('.story-quiz');
 for (let i = 0; i < 100 && !(await page.locator('.story-end').count()); i++) {
   const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
-  const ans = said.includes('sings') ? 'bird' : said.includes('swims') ? 'fish' : '';
+  const ans = said.includes('sings') ? 'bird' : said.includes('quack') ? 'duck' : '';
   const c = page.locator(`.story-quiz .word-card-play[aria-label="${ans}"]:not(.is-right)`);
   if (ans && (await c.count())) await c.click({ force: true });
   await page.waitForTimeout(150);
