@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     "circle",
@@ -46,6 +47,28 @@
       "emoji": "❤️"
     }
   ],
+  "chant": {
+    "title": "Shape Chant",
+    "lines": [
+      {
+        "text": "A circle, a circle, round and round!",
+        "emoji": "🔵"
+      },
+      {
+        "text": "A square has four sides, look what I found!",
+        "emoji": "🟦"
+      },
+      {
+        "text": "A triangle has three, one, two, three!",
+        "emoji": "🔺"
+      },
+      {
+        "text": "A star and a heart for you and me!",
+        "emoji": "⭐"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Tìm hình tròn, hình vuông quanh nhà: đồng hồ, cửa sổ, bánh quy.",
     "say": "Is it a circle?"

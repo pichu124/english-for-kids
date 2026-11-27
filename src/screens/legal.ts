@@ -32,6 +32,8 @@ const PRIVACY: Section[] = [
       'Tiến độ: bài đã học, từ đã nói hoặc chọn đúng, chữ đã tập viết, kết quả thi thử, sticker và đồ của Bix.',
       'Nhật ký học: số phút và số lượt học mỗi ngày, để bố mẹ xem báo cáo.',
       'Câu trả lời có/không của bé trong trò chuyện với Bix, để Bix nhắc lại cho vui.',
+      'Ở bước 👋 Hello! mỗi ngày: thời tiết và cảm xúc bé chọn (vui, mệt, buồn, bực), để bố mẹ xem trong báo cáo tuần.',
+      'Kết quả bài xếp bậc (số câu đúng ở mỗi bậc và bậc gợi ý).',
     ],
     'App không hỏi và không lưu tuổi chính xác, ngày sinh, trường, địa chỉ, ảnh hay số điện thoại. Ở màn chào, tuổi chỉ dùng để gợi ý bậc học; app chỉ lưu bậc học.',
   ],

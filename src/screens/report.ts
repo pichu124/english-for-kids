@@ -19,11 +19,14 @@ function said(parts: [number, string, string][], start: string, none: string): s
   return done.length ? `${start} ${done.join(', ')}.` : none;
 }
 
+const WEEKDAY = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+const FEEL_VI: Record<string, string> = { happy: '😊 vui', tired: '😴 mệt', sad: '😢 buồn', angry: '😠 bực' };
+
 export function reportScreen(ctx: Ctx): HTMLElement {
   const r = weekReport();
   const name = getState().childName.trim() || 'bé';
   const chip = (word: { word: Parameters<typeof wordPicture>[0] }) =>
-    h('span', { class: 'rp-word' }, h('span', { class: 'rp-pic' }, wordPicture(word.word)), h('span', { lang: 'en' }, word.word.text));
+    h('span', { class: 'rp-word' }, h('span', { class: 'rp-pic' }, wordPicture(word.word)), h('span', { lang: 'en' }, word.word.text), word.word.vi ? h('small', { class: 'rp-vi' }, word.word.vi) : null);
   const tips = r.recentTopics.filter((t) => t.parentTip).slice(0, 2);
   const attempts = r.spoken.auto + r.spoken.parent + r.spoken.miss;
 
@@ -60,6 +63,15 @@ export function reportScreen(ctx: Ctx): HTMLElement {
       h('h2', {}, '🧒👩 Cùng bố mẹ'),
       h('p', {}, said([[r.extra.duo, 'chơi cùng nhau', 'lượt'], [r.extra.sheets, 'in', 'phiếu bài tập']], 'Tuần này cả nhà', 'Tuần này chưa chơi cùng nhau. Thử Games → 🧒👩 Play Together (2 người trên một máy), hoặc in một phiếu bài tập ở khu bố mẹ.')),
     ),
+    r.feelings.length
+      ? h(
+          'section',
+          { class: 'rp-feelings' },
+          h('h2', {}, '💛 Bé chào Bix mỗi ngày'),
+          h('p', {}, `${r.feelings.length}/7 ngày bé nói thứ, thời tiết và cảm xúc bằng tiếng Anh: `, r.feelings.map((f, i) => h('span', { class: 'rp-feel' }, i ? ' · ' : '', `${WEEKDAY[new Date(`${f.day}T12:00`).getDay()]} ${FEEL_VI[f.feel ?? ''] ?? ''}`))),
+          r.feelings.some((f) => f.feel === 'sad' || f.feel === 'angry') ? h('p', { class: 'rp-muted' }, 'Có ngày bé chọn buồn hoặc bực. Hỏi nhẹ nhàng "Hôm đó có chuyện gì không con?" — Bix chỉ ôm và hít thở cùng bé, không hỏi thêm.') : null,
+        )
+      : null,
     h('section', {}, h('h2', {}, '⭐ Từ mới tuần này'), r.newWords.length ? h('div', { class: 'rp-words' }, r.newWords.slice(0, 24).map(chip)) : h('p', { class: 'rp-muted' }, 'Tuần này chưa có từ mới. Mỗi ngày một bài ngắn là đủ.')),
     h(
       'section',

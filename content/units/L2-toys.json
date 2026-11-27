@@ -27,6 +27,34 @@
     "train",
     "car"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Toy Song",
+    "lines": [
+      {
+        "text": "I've got a kite, up in the sky,",
+        "emoji": "🪁"
+      },
+      {
+        "text": "I've got a ball, bounce, bounce, so high!",
+        "emoji": "⚽"
+      },
+      {
+        "text": "A robot, a teddy, a car, a train,",
+        "emoji": "🤖"
+      },
+      {
+        "text": "Let's play with toys again and again!",
+        "emoji": "🧸"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Cầm đồ chơi của con và hỏi có phải của con không.",
     "say": "Is this your ball?"

@@ -45,6 +45,34 @@
       "play": "Where is my brother?"
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "I've Got a Family",
+    "lines": [
+      {
+        "text": "I've got a mum, I've got a dad,",
+        "emoji": "👩"
+      },
+      {
+        "text": "I've got a brother, he's not bad!",
+        "emoji": "👦"
+      },
+      {
+        "text": "I've got a grandma and a grandpa too,",
+        "emoji": "👵"
+      },
+      {
+        "text": "And a little baby, goo, goo, goo!",
+        "emoji": "👶"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Xem ảnh ông bà, hỏi con đó là ai.",
     "say": "Who is this?"

@@ -24,6 +24,7 @@ import { TUNES } from '../lib/tunes';
 import { ADJUST_LABEL, adjustment } from '../lib/adapt';
 import { PART_LABEL, passed, shields, testResults, TEST_NAME, TEST_PARTS, type Part } from '../lib/mocktest';
 import { defaultUnit } from '../lib/worksheet';
+import { levelUpReason, placementSummary } from './placement';
 
 let unlockedAt = 0;
 /** Leaving the parent area for the child's side locks it again. */
@@ -278,7 +279,37 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     const wrap = h('div', {});
     const render = () => {
       const cur = currentLevel().id;
+      const nameOf = (id: string) => LEVELS.find((l) => l.id === id)?.nameVi ?? id;
+      const switchTo = (id: string) => () => {
+        setLevel(id);
+        render();
+      };
+      // ready for the next level? (mock test passed, or every unit done)
+      const up = levelUpReason(cur);
+      const hidden = getState().levelHintHidden === `${cur}>${up?.next}`;
+      const upCard =
+        up && !hidden
+          ? h(
+              'div',
+              { class: 'p-hint p-levelup', 'data-next': up.next },
+              h('p', {}, `🎉 ${getState().childName || 'Bé'} ${up.why}. Có thể chuyển lên ${nameOf(up.next)}. Bài cũ, sao và khối vẫn giữ nguyên, ôn tập vẫn có từ của bậc cũ.`),
+              h('div', { class: 'p-row' }, h('button', { class: 'p-btn p-btn-main', onclick: switchTo(up.next) }, `⬆️ Lên ${nameOf(up.next)}`), h('button', { class: 'p-btn', onclick: () => (update((st) => (st.levelHintHidden = `${cur}>${up.next}`)), render()) }, 'Để sau')),
+            )
+          : null;
+      const pl = placementSummary();
+      const plCard = h(
+        'div',
+        { class: 'p-hint p-placement' },
+        h('p', {}, pl ? pl.text : 'Chưa chắc bé hợp bậc nào? Cho bé làm bài xếp bậc khoảng 3 phút: nghe từ chọn hình, từ Starters có thêm đọc chữ. Bé không bị báo đúng/sai, kết quả hiện ở đây.'),
+        h(
+          'div',
+          { class: 'p-row' },
+          pl && pl.level !== cur ? h('button', { class: 'p-btn p-btn-main', 'data-placement': pl.level, onclick: switchTo(pl.level) }, `Chọn ${nameOf(pl.level)}`) : null,
+          h('button', { class: 'p-btn', 'data-go': 'placement', onclick: () => ctx.go('placement') }, pl ? '🧭 Làm lại bài xếp bậc' : '🧭 Cho bé làm bài xếp bậc'),
+        ),
+      );
       wrap.replaceChildren(
+        ...(upCard ? [upCard] : []),
         h(
           'div',
           { class: 'p-seg' },
@@ -305,6 +336,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
             (LEVELS.find((l) => l.id === cur)?.framework ?? '') +
             '. Sao và khối bé đã có ở bậc khác vẫn được giữ.',
         ),
+        plCard,
       );
     };
     render();
@@ -394,7 +426,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       { class: 'p-week' },
       h('div', { class: 'p-week-days', 'aria-label': 'Các ngày trong tuần' }, r.days.map((d) => h('span', { class: d.lessons ? 'is-on' : '' }, WD[new Date(d.day + 'T12:00:00').getDay()]))),
       h('p', {}, `${r.learnedDays}/7 ngày có học · ${r.minutes} phút · ${r.lessons} lượt học xong · ${r.newWords.length} từ mới`),
-      r.practise.length ? h('p', { class: 'p-muted' }, `Từ nên chơi lại: ${r.practise.slice(0, 5).map((x) => x.word.text).join(', ')}`) : null,
+      r.practise.length ? h('p', { class: 'p-muted' }, `Từ nên chơi lại: ${r.practise.slice(0, 5).map((x) => (x.word.vi ? `${x.word.text} (${x.word.vi})` : x.word.text)).join(', ')}`) : null,
       h('div', { class: 'p-row' }, h('button', { class: 'p-btn', 'data-report': 'open', onclick: () => ctx.go('report') }, '📄 Xem báo cáo tuần (in được)')),
     );
   }
@@ -702,7 +734,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
                   else if (st?.said) chip = h('span', { class: 'chip chip-parent' }, '✓ Bố mẹ chấm');
                   else if (st?.tries) chip = h('span', { class: 'chip chip-try' }, `Đã thử ${st.tries} lần`);
                   else chip = h('span', { class: 'chip' }, 'Chưa nói');
-                  return h('li', {}, h('b', {}, w.text), chip, st?.heard ? h('span', { class: 'p-heard' }, `máy nghe: “${st.heard}”`) : null);
+                  return h('li', {}, h('b', {}, w.text), w.vi ? h('span', { class: 'p-vi' }, w.vi) : null, chip, st?.heard ? h('span', { class: 'p-heard' }, `máy nghe: “${st.heard}”`) : null);
                 }),
               ),
             );

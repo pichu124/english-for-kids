@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     {
@@ -63,6 +64,28 @@
       "emoji": "🧥"
     }
   ],
+  "chant": {
+    "title": "Get Dressed Chant",
+    "lines": [
+      {
+        "text": "Put on your T-shirt, one, two, three!",
+        "emoji": "👕"
+      },
+      {
+        "text": "Put on your socks and shoes with me!",
+        "emoji": "🧦"
+      },
+      {
+        "text": "Put on your jacket, zip, zip, zip!",
+        "emoji": "🧥"
+      },
+      {
+        "text": "Put on your hat. Let's go, go, go!",
+        "emoji": "👒"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Lúc thay đồ, cầm đôi giày, đôi tất và hỏi con.",
     "say": "Are these your shoes?"

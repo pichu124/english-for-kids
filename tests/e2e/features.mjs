@@ -41,7 +41,8 @@ step('Word Book opens from the home dock, all stickers locked at first');
 await page.goto(`${base}/?unit=animals`);
 await page.locator('.btn-play').click({ force: true });
 for (let i = 0; i < 800 && !(await page.locator('.reward-actions:not([hidden])').count()); i++) {
-  if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+  if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
   else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
   else if (await page.locator('.play').count()) {
     const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
@@ -276,7 +277,8 @@ const playCards = async (unit) => {
   await page.goto(`${base}/?unit=${unit}`);
   await page.locator('.btn-play').click({ force: true });
   for (let i = 0; i < 400 && !(await page.locator('.play .word-card-play').count()); i++) {
-    if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+    if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
     else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
     else if (await page.locator('.btn-did').count()) await page.locator('.btn-did').click({ force: true });
     else if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
@@ -423,7 +425,8 @@ const toChant = async (unit) => {
   await page.goto(`${base}/?unit=${unit}`);
   await page.locator('.btn-play').click({ force: true });
   for (let i = 0; i < 600 && !(await page.locator('.chant').count()); i++) {
-    if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+    if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
     else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
     else if (await page.locator('.btn-did').count()) await page.locator('.btn-did').click({ force: true });
     else if (await page.locator('.play').count()) {

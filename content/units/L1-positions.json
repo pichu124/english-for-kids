@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     "in",
@@ -47,6 +48,28 @@
       "emoji": "⭕"
     }
   ],
+  "chant": {
+    "title": "In and On Chant",
+    "lines": [
+      {
+        "text": "Hands on your head, on, on, on!",
+        "emoji": "🙆"
+      },
+      {
+        "text": "Hands under your chin, under, under!",
+        "emoji": "🤔"
+      },
+      {
+        "text": "Jump in the circle, in, in, in!",
+        "emoji": "⭕"
+      },
+      {
+        "text": "Jump out and clap, clap, clap!",
+        "emoji": "👏"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Đặt gấu bông lên bàn, vào hộp, xuống gầm bàn rồi hỏi con gấu ở đâu.",
     "say": "Is the teddy on the table?"

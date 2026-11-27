@@ -27,6 +27,34 @@
     "badminton",
     "hockey"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Sports Chant",
+    "lines": [
+      {
+        "text": "Kick, kick, kick the football!",
+        "emoji": "⚽"
+      },
+      {
+        "text": "Bounce, bounce the basketball!",
+        "emoji": "🏀"
+      },
+      {
+        "text": "Tennis, baseball, badminton too,",
+        "emoji": "🎾"
+      },
+      {
+        "text": "I can play, and you can too!",
+        "emoji": "🏸"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Ra sân chơi bóng cùng con, hỏi \"Can you kick the ball?\". Con làm được thì reo \"Yes, I can!\".",
     "say": "Can you play football?"

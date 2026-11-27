@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     {
@@ -57,6 +58,28 @@
       "emoji": "👏"
     }
   ],
+  "chant": {
+    "title": "Rainbow Chant",
+    "lines": [
+      {
+        "text": "Red, red, a red apple!",
+        "emoji": "🍎"
+      },
+      {
+        "text": "Blue, blue, the big blue sea!",
+        "emoji": "🌊"
+      },
+      {
+        "text": "Yellow, yellow, the yellow sun!",
+        "emoji": "☀️"
+      },
+      {
+        "text": "Green, green, a big green tree!",
+        "emoji": "🌳"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Cầm một đồ chơi màu đỏ và hỏi con. Lần sau đổi sang màu khác.",
     "say": "Is it red?"

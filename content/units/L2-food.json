@@ -36,6 +36,34 @@
     },
     "ice-cream"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Food Chant",
+    "lines": [
+      {
+        "text": "An apple, a banana, I like to eat,",
+        "emoji": "🍎"
+      },
+      {
+        "text": "Cake and ice cream, yummy and sweet!",
+        "emoji": "🍦"
+      },
+      {
+        "text": "An egg and milk for you and me,",
+        "emoji": "🥚"
+      },
+      {
+        "text": "Yum, yum, yum, one, two, three!",
+        "emoji": "🥛"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Lúc ăn, đưa quả chuối và hỏi con có muốn không.",
     "say": "Do you want a banana?"

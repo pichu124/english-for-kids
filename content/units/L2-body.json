@@ -30,6 +30,34 @@
       "sentence": "This is my foot. I can walk."
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Move Your Body",
+    "lines": [
+      {
+        "text": "Wave your arm, wave, wave, wave!",
+        "emoji": "👋"
+      },
+      {
+        "text": "Clap your hands, clap, clap, clap!",
+        "emoji": "👏"
+      },
+      {
+        "text": "Stamp your foot, stamp, stamp, stamp!",
+        "emoji": "🦶"
+      },
+      {
+        "text": "Shake your leg and touch your face!",
+        "emoji": "🦵"
+      }
+    ],
+    "tune": "oldmac"
+  },
   "parentTip": {
     "vi": "Đứng trước gương, chỉ vào tóc, tay, chân và hỏi con.",
     "say": "Where is your hair?"

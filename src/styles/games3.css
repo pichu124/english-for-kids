@@ -1,0 +1,151 @@
+/* Grammar, Maths, Sort it!, Songs, Hello! (morning circle), placement quiz; Vietnamese meanings for parents. */
+
+.g3-stars { position: static; margin-left: auto; display: flex; gap: 2px; font-size: clamp(20px, 3.6vmin, 34px); }
+.g3-pic { display: grid; place-items: center; width: clamp(150px, 34vmin, 300px); aspect-ratio: 1; background: #fff; border: 4px solid var(--ink); border-radius: 28px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); flex: none; }
+.g3-emoji { font-size: clamp(64px, 15vmin, 140px); line-height: 1; white-space: nowrap; }
+.g3-emoji.is-two { font-size: clamp(44px, 10vmin, 96px); }
+.g3-pic .pic, .g3-word-pic { width: 86%; height: 86%; }
+
+/* word pictures inside the new games: centred, big emoji, cubes and drawings fill the card */
+:is(.g3-pic, .so-word, .so-odd, .so-mini, .pl-card, .pl-pic) .pic { display: flex; align-items: center; justify-content: center; width: 84%; height: 84%; margin: auto; }
+:is(.g3-pic, .so-word, .so-odd, .pl-card, .pl-pic) .pic-emoji { font-size: clamp(60px, 13vmin, 120px); line-height: 1; }
+:is(.so-odd, .pl-card) .pic-emoji { font-size: clamp(54px, 11vmin, 100px); }
+.so-mini .pic-emoji { font-size: clamp(26px, 5.4vmin, 46px); line-height: 1; }
+:is(.g3-pic, .so-word, .so-odd, .pl-card, .pl-pic) .pic-color { width: 66%; aspect-ratio: 1; height: auto; }
+:is(.g3-pic, .so-word, .so-odd, .pl-card, .pl-pic) .pic-text span { font-size: clamp(56px, 12vmin, 110px); }
+:is(.g3-pic, .so-word, .so-odd, .so-mini, .pl-card, .pl-pic) .pic svg { width: 100%; height: 100%; }
+.mt-group.gr-group { flex: none; }
+
+/* ---------- Grammar ---------- */
+.gr-body, .mt-body, .so-body, .pl-body { display: flex; align-items: center; justify-content: center; flex: 1; min-height: 0; padding: 0 2vmin 2vmin; }
+.gr-stage, .mt-stage, .so-stage, .pl-stage { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.gr-round { display: flex; align-items: center; justify-content: center; gap: 4vmin; flex-wrap: wrap; }
+.gr-side { display: flex; flex-direction: column; align-items: center; gap: 3vmin; max-width: 60vw; }
+.gr-text { margin: 0; font-size: clamp(26px, 5.4vmin, 50px); font-weight: 800; line-height: 1.35; text-align: center; color: var(--ink); }
+.gr-gap { display: inline-block; min-width: 2.6em; padding: 0 .3em; border-bottom: 5px dashed #f4a261; color: #f4a261; text-align: center; }
+.gr-gap.is-filled { border-bottom-style: solid; border-color: #2a9d4a; color: #2a9d4a; }
+.gr-opts { display: flex; gap: 3vmin; flex-wrap: wrap; justify-content: center; }
+.gr-opt { font: inherit; min-width: clamp(96px, 20vmin, 180px); min-height: 72px; padding: 8px 22px; font-size: clamp(28px, 5.6vmin, 52px); font-weight: 800; color: var(--ink); background: #fff; border: 4px solid var(--ink); border-radius: 22px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.gr-opt.is-right { background: #b9fbc0; box-shadow: 0 0 0 6px #2a9d4a; }
+.gr-opt.is-faded, .so-odd.is-faded, .cc-opt.is-faded { opacity: .4; }
+
+/* ---------- Maths ---------- */
+.mt-round { display: flex; align-items: center; justify-content: center; gap: 4vmin; flex-wrap: wrap; }
+.mt-scene { display: flex; justify-content: center; }
+.mt-group { display: grid; grid-template-columns: repeat(var(--cols, 5), auto); gap: 4px 8px; padding: 14px 18px; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); justify-content: center; }
+.mt-item { font-size: clamp(34px, 7.4vmin, 66px); line-height: 1.1; transition: opacity .5s, transform .5s, filter .5s; }
+.mt-group.is-small .mt-item { font-size: clamp(28px, 5.4vmin, 50px); }
+.mt-item.is-gone { opacity: .18; transform: translateY(-14px) scale(.8); filter: grayscale(1); }
+.mt-round.is-counted .mt-item:not(.is-gone) { animation: mt-count .45s ease calc(var(--i) * .38s) both; }
+@keyframes mt-count { 50% { transform: scale(1.25); } }
+.mt-sum { display: flex; align-items: center; gap: 2vmin; flex-wrap: wrap; justify-content: center; }
+.mt-sign { font-size: clamp(40px, 9vmin, 80px); font-weight: 800; color: #e76f51; }
+.mt-side { display: flex; flex-direction: column; align-items: center; gap: 3vmin; }
+.mt-nums { display: flex; gap: 2.5vmin; }
+.mt-num { font: inherit; width: clamp(84px, 16vmin, 140px); aspect-ratio: 1; font-size: clamp(36px, 8vmin, 70px); font-weight: 800; color: #3a86ff; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.mt-num.is-right, .mt-pick.is-right { background: #b9fbc0; box-shadow: 0 0 0 6px #2a9d4a; }
+.mt-picks { display: flex; gap: 4vmin; flex-wrap: wrap; justify-content: center; }
+.mt-pick { font: inherit; padding: 0; background: none; border: 0; border-radius: 26px; cursor: pointer; }
+.mt-pick .mt-group { min-width: 150px; min-height: 120px; align-content: center; }
+.mt-ear { font-size: clamp(90px, 20vmin, 180px); }
+
+/* ---------- Sort it! ---------- */
+.so-round { display: flex; align-items: center; justify-content: center; gap: 3vmin; width: 100%; }
+.so-round[data-phase='odd'] { flex-direction: column; }
+.so-basket { font: inherit; flex: 1; max-width: 300px; min-height: clamp(170px, 46vmin, 380px); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px; background: #fff8e1; border: 4px solid var(--ink); border-radius: 28px 28px 40px 40px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.so-basket-icon { font-size: clamp(40px, 9vmin, 80px); line-height: 1; }
+.so-basket-name { font-size: clamp(20px, 4vmin, 34px); font-weight: 800; color: var(--ink); }
+.so-in { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.so-mini { width: clamp(38px, 8vmin, 64px); height: clamp(38px, 8vmin, 64px); }
+.so-mini .pic { width: 100%; height: 100%; font-size: clamp(28px, 6vmin, 50px); }
+.so-mid { display: flex; flex-direction: column; align-items: center; gap: 2vmin; }
+.so-card { width: clamp(140px, 32vmin, 260px); aspect-ratio: 1; display: grid; place-items: center; }
+.so-word { width: 100%; height: 100%; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); }
+.so-word .pic { width: 84%; height: 84%; }
+.so-odds { display: grid; grid-template-columns: repeat(4, auto); gap: 3vmin; }
+.so-odd { font: inherit; width: clamp(120px, 24vmin, 210px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.so-odd .pic { width: 84%; height: 84%; }
+.so-odd.is-right { background: #b9fbc0; box-shadow: 0 0 0 6px #2a9d4a; }
+
+/* ---------- Songs ---------- */
+.songs-grid { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 44vw), 1fr)); gap: 14px; padding: 4px 3vmin 3vmin; align-content: start; }
+.song-tile { font: inherit; display: flex; align-items: center; gap: 10px; min-height: 76px; padding: 10px 14px; text-align: left; background: #fff; border: 4px solid var(--ink); border-left: 14px solid var(--c, #ffd166); border-radius: 20px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.song-tile.is-locked { background: #edf1f8; border-color: #8a93a8; border-left-color: #b8c0d0; box-shadow: none; }
+.song-tile.is-locked .song-name { color: #6b7489; }
+.song-icon { font-size: 34px; line-height: 1; }
+.song-name { font-size: clamp(16px, 2.6vmin, 22px); font-weight: 800; line-height: 1.15; color: var(--ink); }
+.song-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 3vmin; padding: 0 3vmin 3vmin; }
+.song-bix { flex: none; }
+.song-chant { max-width: 760px; }
+
+/* ---------- Hello! (morning circle) ---------- */
+.circle { display: flex; flex-direction: column; height: 100%; }
+.cc-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 4vmin; padding: 0 3vmin 3vmin; }
+.cc-bix { flex: none; }
+.cc-stage { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.cc-round { display: flex; justify-content: center; margin-top: 16vmin; }
+.cc-week { display: grid; grid-template-columns: repeat(7, auto); gap: 1.6vmin; }
+.cc-day { font: inherit; min-width: clamp(64px, 11vmin, 110px); min-height: clamp(72px, 14vmin, 120px); font-size: clamp(20px, 4vmin, 34px); font-weight: 800; color: var(--ink); background: #fff; border: 4px solid var(--ink); border-radius: 18px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.cc-day.is-weekend { background: #fff3c4; }
+.cc-day.is-hint { animation: cc-glow 1.2s ease-in-out infinite; }
+.cc-day.is-right, .cc-opt.is-right { background: #b9fbc0; box-shadow: 0 0 0 6px #2a9d4a; animation: none; }
+@keyframes cc-glow { 50% { box-shadow: 0 0 0 7px #ffd166, 0 5px 0 rgba(29, 36, 64, .2); transform: scale(1.06); } }
+.cc-opts { display: grid; grid-template-columns: repeat(4, auto); gap: 3vmin; }
+.cc-opt { font: inherit; width: clamp(112px, 22vmin, 200px); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.cc-emoji { font-size: clamp(54px, 12vmin, 110px); line-height: 1; }
+.cc-label { font-size: clamp(18px, 3.4vmin, 30px); font-weight: 800; color: var(--ink); }
+
+/* ---------- Placement quiz ---------- */
+.placement .book-top .pl-dots { position: static; margin-left: auto; display: flex; gap: 2px; font-size: clamp(16px, 3vmin, 26px); }
+.pl-round { display: flex; align-items: center; justify-content: center; gap: 4vmin; flex-wrap: wrap; }
+.pl-cards { display: grid; grid-template-columns: repeat(4, auto); gap: 3vmin; }
+.pl-card { font: inherit; width: clamp(120px, 24vmin, 210px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 26px; box-shadow: 0 6px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.pl-card .pic, .pl-pic .pic { width: 84%; height: 84%; }
+.pl-pic { width: clamp(150px, 34vmin, 300px); aspect-ratio: 1; display: grid; place-items: center; background: #fff; border: 4px solid var(--ink); border-radius: 28px; }
+.pl-words { display: grid; grid-template-columns: repeat(2, auto); gap: 2.5vmin; }
+.pl-word { font: inherit; min-width: clamp(130px, 24vmin, 230px); min-height: 72px; padding: 6px 16px; font-size: clamp(22px, 4.4vmin, 40px); font-weight: 800; color: var(--ink); background: #fff; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 0 5px 0 rgba(29, 36, 64, .2); cursor: pointer; }
+.pl-card.is-picked, .pl-word.is-picked { background: #dbeafe; box-shadow: 0 0 0 6px #3a86ff; }
+.pl-done { flex-direction: column; }
+.pl-parent { font-size: 22px; }
+
+/* ---------- Vietnamese meanings (parents only) ---------- */
+.rp-vi { font-weight: 600; color: var(--ink-soft); }
+.p-vi { color: var(--ink-soft); font-size: 14px; }
+.bg-list-vi { display: block; font-weight: 600; font-size: 11px; color: #555; }
+.ws-key-words p { line-height: 1.7; }
+.p-levelup { border-color: #2a9d4a; background: #eafbea; }
+
+/* ---------- phones (landscape, short screens) ---------- */
+@media (max-height: 500px) {
+  /* 11+ games (Starters on): two rows of seven */
+  .games-list:has(> .game-pick:nth-child(11)) { max-width: calc(7 * min(12vw, 25vh) + 60px); gap: 8px; }
+  .games-list:has(> .game-pick:nth-child(11)) .game-pick { width: min(12vw, 25vh); font-size: 11px; line-height: 1.05; gap: 1px; padding: 4px 2px; }
+  .games-list:has(> .game-pick:nth-child(11)) .game-pick .game-pick-icon { font-size: min(5.6vw, 11vh); }
+  /* Today with Hello!: six cards in one row, Bix steps aside */
+  .today-body:has(.today-path > :nth-child(6)) .today-bix { display: none; }
+  .today-path:has(> :nth-child(5)) { flex-wrap: nowrap; }
+  .today-path:has(> :nth-child(5)) .today-card { width: min(13.5vw, 28vh); }
+  :is(.so-odd, .pl-card) .pic-emoji { font-size: min(11vw, 22vh); }
+  .so-word .pic-emoji, .g3-pic .pic-emoji { font-size: min(12vw, 26vh); }
+  .g3-pic, .pl-pic { width: min(30vw, 52vh); border-width: 3px; border-radius: 20px; }
+  .gr-text { font-size: clamp(20px, 7vh, 34px); }
+  .gr-opt { min-height: 56px; font-size: clamp(22px, 7vh, 34px); }
+  .mt-item { font-size: clamp(24px, 8vh, 40px); }
+  .mt-group.is-small .mt-item { font-size: clamp(20px, 6.5vh, 32px); }
+  .mt-group { padding: 8px 10px; border-width: 3px; }
+  .mt-num { width: min(15vw, 22vh); min-width: 64px; font-size: clamp(28px, 10vh, 46px); }
+  .so-basket { min-height: 58vh; border-width: 3px; }
+  .so-card { width: min(26vw, 44vh); }
+  .so-odd, .pl-card { width: min(19vw, 40vh); border-width: 3px; }
+  .cc-day { min-width: 0; width: 11vw; min-height: 56px; font-size: 18px; }
+  .cc-opt { width: min(19vw, 44vh); border-width: 3px; }
+  .cc-bix, .song-bix { display: none; }
+  .cc-round { margin-top: 0; }
+  .pl-word { min-height: 56px; font-size: clamp(18px, 6vh, 28px); }
+}
+/* tablets held upright, narrow phones */
+@media (orientation: portrait) {
+  .so-odds, .pl-cards, .cc-opts { grid-template-columns: repeat(2, auto); }
+  .cc-week { grid-template-columns: repeat(4, auto); }
+  .cc-body { flex-direction: column; }
+}

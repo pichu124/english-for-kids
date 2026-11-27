@@ -12,9 +12,10 @@ import phonics from '../../content/phonics.json';
 import talk from '../../content/talk.json';
 import { confetti, homeButton } from './widgets';
 
-const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons', colour: 'Colour', who: 'Who Is Who?', riddle: 'Riddles', pairs: 'Which one?', clock: 'What time?', tower: "Bix's Tower" };
+const GAME_NAME: Record<string, string> = { memory: 'Memory', balloons: 'Balloons', colour: 'Colour', who: 'Who Is Who?', riddle: 'Riddles', pairs: 'Which one?', clock: 'What time?', tower: "Bix's Tower", maths: 'Maths', sort: 'Sort it!', grammar: 'Grammar' };
 
 function label(st: TodayStep): { icon: string; text: string; say: string } {
+  if (st.kind === 'hello') return { icon: '👋', text: 'Hello!', say: 'say hello' };
   if (st.kind === 'review') return { icon: '🔁', text: 'Review', say: 'review your words' };
   if (st.kind === 'lesson') {
     const t = topicById(st.id ?? '');
@@ -64,6 +65,7 @@ export function todayScreen(ctx: Ctx): HTMLElement {
     const st = plan.steps[i];
     sfx.tap();
     startTodayStep(i);
+    if (st.kind === 'hello') return ctx.go('circle');
     if (st.kind === 'review') {
       if (!buildReview(currentLevel().id)) {
         completeTodayStep(); // nothing due any more: skip it

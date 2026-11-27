@@ -128,6 +128,8 @@ export type WeekReport = {
   spoken: { auto: number; parent: number; miss: number };
   /** This week: phonics sets finished, pages the child read aloud, chats/speaking practice done. */
   extra: { sounds: number; read: number; talk: number; duo: number; sheets: number; letters: number };
+  /** Hello! (first step of Today): how the child said they felt, by day. */
+  feelings: { day: string; feel?: string; weather?: string }[];
 };
 
 const isoDay = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -168,6 +170,7 @@ export function weekReport(): WeekReport {
     minutes: days.reduce((n, d) => n + d.minutes, 0),
     lessons: days.reduce((n, d) => n + d.lessons, 0),
     newWords,
+    feelings: list.filter((d) => s.days[d]?.circle).map((d) => ({ day: d, feel: s.days[d].circle!.feel, weather: s.days[d].circle!.weather })),
     practise: uniqPractise,
     recentTopics,
     spoken,

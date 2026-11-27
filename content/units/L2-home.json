@@ -27,6 +27,34 @@
     "bath",
     "sofa"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "My House Chant",
+    "lines": [
+      {
+        "text": "Open the door, come in, come in!",
+        "emoji": "🚪"
+      },
+      {
+        "text": "Sit on the sofa, sit, sit, sit!",
+        "emoji": "🛋️"
+      },
+      {
+        "text": "Look out of the window, hello, sun!",
+        "emoji": "🪟"
+      },
+      {
+        "text": "Bath and bed, goodnight, everyone!",
+        "emoji": "🛏️"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Đi quanh nhà, chỉ sofa, ghế, cửa và hỏi con.",
     "say": "What is this?"

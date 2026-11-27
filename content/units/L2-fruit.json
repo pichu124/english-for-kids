@@ -30,6 +30,34 @@
     "pineapple",
     "watermelon"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Fruit Chant",
+    "lines": [
+      {
+        "text": "Grapes and lemons, pears for me,",
+        "emoji": "🍇"
+      },
+      {
+        "text": "Mango, pineapple, one, two, three!",
+        "emoji": "🥭"
+      },
+      {
+        "text": "I like watermelon, yes, I do!",
+        "emoji": "🍉"
+      },
+      {
+        "text": "Yummy fruit for me and you!",
+        "emoji": "🍍"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Đi chợ hay mở tủ lạnh, cầm quả xoài, quả lê và hỏi con.",
     "say": "Is this a mango?"

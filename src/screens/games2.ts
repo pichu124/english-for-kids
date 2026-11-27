@@ -23,7 +23,7 @@ import { todayNextButton } from './today';
  *    the sounds Vietnamese children most often mix up (long/short vowels, last sounds, l/n, th).
  */
 
-function shell(ctx: Ctx, cls: string, title: string, body: HTMLElement, bix: Bix): HTMLElement {
+export function shell(ctx: Ctx, cls: string, title: string, body: HTMLElement, bix: Bix): HTMLElement {
   const back = h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'Games', onclick: () => (sfx.tap(), ctx.go('games')) }, '🎮');
   return h(
     'main',
@@ -33,7 +33,7 @@ function shell(ctx: Ctx, cls: string, title: string, body: HTMLElement, bix: Bix
   );
 }
 
-function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string, line = 'You did it! Play again?'): void {
+export function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string, line = 'You did it! Play again?'): void {
   host.classList.add('is-finished');
   update((s) => (s.gamesPlayed = { ...(s.gamesPlayed ?? {}), [game]: (s.gamesPlayed?.[game] ?? 0) + 1 }));
   sfx.reward();
@@ -50,7 +50,7 @@ function finish(ctx: Ctx, host: HTMLElement, bix: Bix, game: string, line = 'You
  * that tapped the button before it) is ignored, so one tap never counts twice.
  */
 const firstSeen = new WeakMap<HTMLElement, number>();
-const once = <T extends HTMLElement>(els: T[]) =>
+export const once = <T extends HTMLElement>(els: T[]) =>
   new Promise<T>((resolve) => {
     const now = Date.now();
     els.forEach((e) => firstSeen.has(e) || firstSeen.set(e, now));

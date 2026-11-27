@@ -13,6 +13,7 @@ import './styles/learn.css';
 import './styles/phone.css';
 import './styles/printables.css';
 import './styles/duo.css';
+import './styles/games3.css';
 
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
@@ -20,6 +21,8 @@ import { requestPersistence } from './lib/storage';
 import { loadVoice } from './lib/voice';
 import { startUsageClock } from './lib/usage';
 import { currentScreen, go, mount, onNavigate, register } from './router';
+import { circleScreen } from './screens/circle';
+import { placementScreen } from './screens/placement';
 import { setBackground } from './lib/music';
 import { Bix } from './art/bix';
 import { h } from './lib/dom';
@@ -69,6 +72,8 @@ register('talk', talkScreen);
 register('worksheet', worksheetScreen);
 register('welcome', welcomeScreen);
 register('legal', legalScreen);
+register('circle', circleScreen);
+register('placement', placementScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
 void loadVoice(); // recorded lines, if the app ships any (public/audio)

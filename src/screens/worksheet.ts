@@ -216,6 +216,12 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
       return body ? h('section', { class: 'ws-key-sec', 'data-kind': s.kind }, h('h3', {}, `${i + 1}. `, h('span', { lang: 'en' }, TITLES[s.kind][0])), body) : null;
     }),
     h(
+      'section',
+      { class: 'ws-key-sec ws-key-words' },
+      h('h3', {}, '📒 Từ của bài và nghĩa'),
+      h('p', {}, topic.words.map((w, i) => h('span', {}, i ? ' · ' : '', h('b', { lang: 'en' }, w.text), w.vi ? ` = ${w.vi}` : ''))),
+    ),
+    h(
       'p',
       { class: 'ws-key-tip' },
       'Gợi ý: làm cùng con 10–15 phút, đọc to từng từ tiếng Anh trước khi bé viết. Chỗ nào bé chưa làm được, bố mẹ làm mẫu rồi để bé thử lại, khen khi bé cố gắng. In lại trong cùng ngày sẽ ra đúng phiếu này; ngày khác thứ tự bài sẽ đổi.',

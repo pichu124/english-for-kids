@@ -1,6 +1,6 @@
 import { Bix } from '../art/bix';
 import { describeKid, kidSVG, makeKids, PAINTS, type Kid } from '../art/kids';
-import type { Word } from '../content';
+import { LEVELS, type Word } from '../content';
 import { fromHTML, h, reducedMotion, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { practicePool } from '../lib/progress';
@@ -15,6 +15,8 @@ import { todayRunning } from '../lib/today';
 import { todayNextButton } from './today';
 import { duoScreen } from './duo';
 import { clockGame, pairsGame, tower, towerWords } from './games2';
+import { grammarGame, mathsGame, sortGame, sortPool } from './games3';
+import { songsScreen } from './songs';
 
 /**
  * Mini-games that replay words the child already learned:
@@ -40,6 +42,10 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
   if (game === 'tower') return tower(ctx);
   if (game === 'clock') return clockGame(ctx);
   if (game === 'pairs') return pairsGame(ctx);
+  if (game === 'grammar') return grammarGame(ctx);
+  if (game === 'maths') return mathsGame(ctx);
+  if (game === 'sort') return sortGame(ctx);
+  if (game === 'songs') return songsScreen(ctx);
 
   const bix = new Bix({ size: 'md' }).setMood('hello');
   const card = (id: string, icon: string, label: string) =>
@@ -55,6 +61,10 @@ export function gamesScreen(ctx: Ctx): HTMLElement {
     lvl !== 'L0' ? card('pairs', '👂', 'Which one?') : null,
     ['L2', 'L3', 'L4'].includes(lvl) ? card('clock', '🕐', 'What time?') : null,
     ['L2', 'L3', 'L4'].includes(lvl) && towerWords(lvl).length >= 4 ? card('tower', '🧱', "Bix's Tower") : null,
+    card('maths', '🔢', 'Maths'),
+    sortPool(LEVELS.findIndex((l) => l.id === lvl)).size >= 2 ? card('sort', '🧺', 'Sort it!') : null,
+    ['L2', 'L3', 'L4'].includes(lvl) ? card('grammar', '🧩', 'Grammar') : null,
+    card('songs', '🎵', 'Songs'),
   ];
   setTimeout(() => ctx.alive() && void bix.talk('Pick a game!', 'happy'), 300);
   return h(

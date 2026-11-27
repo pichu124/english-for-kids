@@ -53,6 +53,8 @@ export type Word = {
   id: string;
   /** What the child should say (and what is shown). */
   text: string;
+  /** Meaning in Vietnamese, for parents only (parent area, weekly report, worksheet answers). */
+  vi?: string;
   /** Picture: an emoji, or a color swatch (for color words). */
   image: { emoji?: string; color?: string; text?: string; scene?: string; /** analogue clock "3:00", "7:30" */ clock?: string; /** a child with this part circled */ body?: string; /** a small drawing (stairs, towel…) */ icon?: string; /** family tree with this person circled */ family?: string };
   /** Example sentence the character says, e.g. "This is a dog." (unit may override) */

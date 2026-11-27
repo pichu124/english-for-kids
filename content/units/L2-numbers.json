@@ -31,6 +31,34 @@
     "nine",
     "ten"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "One to Ten",
+    "lines": [
+      {
+        "text": "One, two, three, clap with me!",
+        "emoji": "👏"
+      },
+      {
+        "text": "Four, five, six, jump and kick!",
+        "emoji": "🤸"
+      },
+      {
+        "text": "Seven, eight, nine, you're doing fine!",
+        "emoji": "👍"
+      },
+      {
+        "text": "Ten! Ten! Let's count again!",
+        "emoji": "🔟"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Cùng đếm ngón tay từ 1 đến 10 rồi hỏi con.",
     "say": "How many fingers?"

@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     {
@@ -57,6 +58,28 @@
       "emoji": "❄️"
     }
   ],
+  "chant": {
+    "title": "Weather Chant",
+    "lines": [
+      {
+        "text": "Sun, sun, hello, sun!",
+        "emoji": "☀️"
+      },
+      {
+        "text": "Rain, rain, drip, drop, drip!",
+        "emoji": "🌧️"
+      },
+      {
+        "text": "Snow, snow, brr, so cold!",
+        "emoji": "❄️"
+      },
+      {
+        "text": "Wind, wind, whoosh, whoosh, whoosh!",
+        "emoji": "💨"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Buổi sáng mở cửa sổ, cùng con nhìn trời và hỏi.",
     "say": "Is it sunny today?"

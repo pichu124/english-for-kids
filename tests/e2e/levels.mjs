@@ -26,7 +26,8 @@ step('?unit=l0-animals opens the unit; no written words at level 0');
 // play through (listen → do-it → say) to the tap game and count the choices
 let sawDoIt = false;
 for (let i = 0; i < 400 && !(await page.locator('.play').count()); i++) {
-  if (await page.locator('.btn-next:not([hidden])').count()) await tap('.btn-next:not([hidden])');
+  if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await tap('.btn-next:not([hidden])');
   else if (await page.locator('.btn-did:not([hidden])').count()) {
     if (!sawDoIt && shots) await page.screenshot({ path: `${shots}/l0-doit.png` });
     sawDoIt = true;

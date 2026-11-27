@@ -33,6 +33,34 @@
       "play": "I want a drink. Where is the water?"
     }
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Sunny Day Song",
+    "lines": [
+      {
+        "text": "The sun is hot, the sea is blue,",
+        "emoji": "☀️"
+      },
+      {
+        "text": "A tree, a flower, for me and you!",
+        "emoji": "🌳"
+      },
+      {
+        "text": "Let's go to the beach and play, play, play!",
+        "emoji": "🏖️"
+      },
+      {
+        "text": "Splash in the water, what a sunny day!",
+        "emoji": "💧"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Đi dạo, chỉ cây, hoa, mặt trời và hỏi con.",
     "say": "Where is the sun?"

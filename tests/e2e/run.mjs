@@ -84,6 +84,13 @@ export async function playLesson(topicIndex, voice = 'match', parentHelps = true
     if (rounds > 12) throw new Error('play step stuck');
   }
   step(`play (${rounds} taps)`);
+  // a lesson with a chant: Bix chants twice, then ✓
+  await page.waitForSelector('.chant, .reward-actions:not([hidden])');
+  if (await page.locator('.chant').count()) {
+    await page.waitForSelector('.btn-chant-done:not([hidden])', { timeout: 90000 });
+    await page.locator('.btn-chant-done').click({ force: true });
+    step('chant');
+  }
   await page.waitForSelector('.reward-actions:not([hidden])');
   await snap('05-reward', 1200);
   step('reward');

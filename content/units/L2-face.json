@@ -29,7 +29,8 @@
     "listen",
     "say",
     "tap-picture",
-    "do-it"
+    "do-it",
+    "chant"
   ],
   "actions": [
     {
@@ -49,6 +50,28 @@
       "emoji": "👄"
     }
   ],
+  "chant": {
+    "title": "My Face Chant",
+    "lines": [
+      {
+        "text": "Eyes, eyes, I can see!",
+        "emoji": "👁️"
+      },
+      {
+        "text": "Ears, ears, I can hear!",
+        "emoji": "👂"
+      },
+      {
+        "text": "Nose, nose, I can smell!",
+        "emoji": "👃"
+      },
+      {
+        "text": "Mouth, mouth, I can sing! La, la, la!",
+        "emoji": "👄"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Đứng trước gương, chỉ vào mắt, tai, mũi, miệng và hỏi con.",
     "say": "Where is your nose?"

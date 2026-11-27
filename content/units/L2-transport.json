@@ -30,6 +30,34 @@
     },
     "motorbike"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Transport Chant",
+    "lines": [
+      {
+        "text": "Ride a bike, ring, ring, ring!",
+        "emoji": "🚲"
+      },
+      {
+        "text": "Take the bus, beep, beep, beep!",
+        "emoji": "🚌"
+      },
+      {
+        "text": "Fly in a plane, up, up, up!",
+        "emoji": "✈️"
+      },
+      {
+        "text": "Helicopter, whirr, whirr, whirr!",
+        "emoji": "🚁"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Ra đường, chỉ xe buýt, xe máy và hỏi con.",
     "say": "Look! Is that a bus?"

@@ -49,7 +49,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "actions": [
     {
@@ -69,6 +70,32 @@
       "emoji": "💃"
     }
   ],
+  "chant": {
+    "title": "Action Song",
+    "lines": [
+      {
+        "text": "I can run, run, run!",
+        "emoji": "🏃"
+      },
+      {
+        "text": "I can jump, jump, jump!",
+        "emoji": "🤸"
+      },
+      {
+        "text": "I can swim and I can dance,",
+        "emoji": "💃"
+      },
+      {
+        "text": "I can sing, la, la, la!",
+        "emoji": "🎤"
+      },
+      {
+        "text": "Now I sleep. Shh, shh, shh!",
+        "emoji": "😴"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Chơi 'Bix bảo': bố mẹ nói 'Jump!', 'Run!', con làm theo. Đổi vai cho con ra lệnh.",
     "say": "Can you jump high?"

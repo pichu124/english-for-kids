@@ -30,7 +30,8 @@ const icons = await page.locator('.progress-step').allTextContents();
 if (icons.join(' ') !== '📖 🔤 ✍️ 🎁') fail('part 2 should be read 📖, spell 🔤, sentence ✍️: ' + icons.join(' '));
 step('a Starters unit has 2 parts: Listen & Say (👂🎤🎯) and Read & Write (📖🔤✍️)');
 for (let i = 0; i < 800 && !(await page.locator('.read-choice').count()); i++) {
-  if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+  if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
   else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
   else if (await page.locator('.play').count()) {
     const said = ((await spoken()).at(-1) || '').toLowerCase();

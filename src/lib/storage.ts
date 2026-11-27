@@ -58,6 +58,8 @@ export type DayLog = {
   letters?: number;
   /** Units whose worksheet was printed that day (a reprint is the same sheet). */
   sheetUnits?: string[];
+  /** Hello! (first step of Today): the weather and the feeling the child picked. */
+  circle?: { weather?: string; feel?: string };
 };
 
 export type State = {
@@ -102,7 +104,7 @@ export type State = {
   /** Adaptive difficulty: first-try results of recent picture rounds. */
   adapt?: { recent: boolean[] };
   /** Today's guided plan, and how many days it was finished. */
-  today?: { day: string; steps: { kind: 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean }[]; finished?: boolean };
+  today?: { day: string; steps: { kind: 'hello' | 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean }[]; finished?: boolean };
   todayDays?: number;
   /** Starters practice tests: day and [right, asked] per part. */
   tests?: { day: string; level?: string; score: Partial<Record<'listening' | 'spelling' | 'writing' | 'reading', [number, number]>> }[];
@@ -122,6 +124,10 @@ export type State = {
   gamesPlayed?: Record<string, number>;
   /** ✏️ Write: times each letter was traced ('a' small, 'A' big). */
   traced?: Record<string, number>;
+  /** Placement quiz (parent area): the day, the level it suggests and the score per level tried. */
+  /** Parent area: the level-up hint the parent put off ("L2>L3"). */
+  levelHintHidden?: string;
+  placement?: { day: string; level: string; score: Record<string, [number, number]> };
   /** Talk with Bix: finished chats and speaking practice parts. */
   talk?: Record<string, number>;
 };
@@ -300,6 +306,7 @@ export function sanitizeState(raw: unknown): State {
   for (const d of Object.values(s.days) as unknown as Record<string, unknown>[]) {
     for (const k of ['seconds', 'lessons', 'auto', 'parent', 'miss', 'noVoice'] as const) d[k] = num(d[k]);
     for (const k of ['sounds', 'read', 'talk', 'duo', 'sheets', 'letters'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
+    if (d.circle !== undefined) d.circle = isObj(d.circle) ? { weather: typeof d.circle.weather === 'string' ? d.circle.weather : undefined, feel: typeof d.circle.feel === 'string' ? d.circle.feel : undefined } : undefined;
     if (d.sheetUnits !== undefined) d.sheetUnits = Array.isArray(d.sheetUnits) ? d.sheetUnits.filter((x: unknown) => typeof x === 'string') : undefined;
   }
   // Optional parts: keep them only when they have the right shape.
@@ -318,6 +325,8 @@ export function sanitizeState(raw: unknown): State {
   keep('letters', isObj);
   keep('storiesRead', isObj);
   keep('gardenSeen', (x) => typeof x === 'string');
+  keep('levelHintHidden', (x) => typeof x === 'string');
+  keep('placement', (x) => isObj(x) && typeof x.day === 'string' && typeof x.level === 'string' && isObj(x.score));
   if (isObj(p.phonics)) s.phonics = entries<number>(p.phonics, (n) => typeof n === 'number' && n >= 0);
   if (isObj(p.phonicsStep)) s.phonicsStep = entries<number>(p.phonicsStep, (n) => typeof n === 'number' && n >= 1 && n <= 4 && Number.isInteger(n));
   if (isObj(p.readAloud)) s.readAloud = entries<number>(p.readAloud, (n) => typeof n === 'number' && n >= 0);

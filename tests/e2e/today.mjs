@@ -36,16 +36,17 @@ if (!(await page.locator('.home-today.is-fresh').count())) fail('home should sho
 await page.locator('.home-today').click({ force: true });
 await page.waitForSelector('.today-card');
 const kinds = await page.locator('.today-card[data-kind]').evaluateAll((els) => els.map((e) => e.dataset.kind));
-if (kinds.join(',') !== 'review,lesson,talk,fun') fail('plan should be review → lesson → talk → fun, got ' + kinds.join(','));
-if (!(await page.locator('.today-card.is-now[data-kind="review"]').count())) fail('review is first');
+if (kinds.join(',') !== 'hello,review,lesson,talk,fun') fail('plan should be hello → review → lesson → talk → fun, got ' + kinds.join(','));
+if (!(await page.locator('.today-card.is-now[data-kind="hello"]').count())) fail('Hello! is first');
 if (!(await page.locator('.today-card[data-kind="lesson"]').textContent()).includes('Animals · Read')) fail('lesson = Read & Write of Animals (heard, not yet read)');
 if (shots) await page.screenshot({ path: `${shots}/today-plan.png` });
-step('Today plan: review (words due) → Read & Write of Animals (heard before) → sounds/talk → story or game → prize');
+step('Today plan: Hello! → review (words due) → Read & Write of Animals (heard before) → sounds/talk → story or game → prize');
 
 // helper: answer whatever the lesson asks until the Next button appears
 const playUntilNext = async () => {
   for (let i = 0; i < 1500 && !(await page.locator('.today-next').count()); i++) {
-    if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+    if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
     else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
     else if (await page.locator('.play').count()) {
       const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();
@@ -107,6 +108,18 @@ const playUntilNext = async () => {
   if (!(await page.locator('.today-next').count())) fail('activity from Today should end with ▶ Next');
 };
 
+// 0) Hello! (day, weather, how are you)
+await page.locator('.today-go').click({ force: true });
+await page.waitForSelector('.circle');
+for (let i = 0; i < 400 && !(await page.locator('.today-next').count()); i++) {
+  if (await page.locator('.cc-day.is-hint:not(.is-right)').count()) await page.locator('.cc-day.is-hint').click({ force: true, timeout: 500 }).catch(() => {});
+  else if (await page.locator('.cc-opt:not(.is-faded):not(.is-right)').count() === 4) await page.locator('.cc-opt').first().click({ force: true, timeout: 500 }).catch(() => {});
+  await page.waitForTimeout(150);
+}
+await page.locator('.today-next').click({ force: true });
+await page.waitForSelector('.today-card[data-kind="hello"].is-done');
+step('Hello! → ▶ Next → back to the plan with ✓');
+
 // 1) review
 await page.locator('.today-go').click({ force: true });
 await page.waitForSelector('.lesson');
@@ -166,7 +179,8 @@ await home();
 await page.locator('.island[aria-label="Food"]').click({ force: true });
 await page.waitForSelector('.lesson');
 for (let i = 0; i < 1500 && !(await page.locator('.reward-actions:not([hidden])').count()); i++) {
-  if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+  if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
   else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
   else if (await page.locator('.play').count()) {
     const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();

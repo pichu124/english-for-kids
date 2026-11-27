@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     {
@@ -59,6 +60,28 @@
       "emoji": "🥛"
     }
   ],
+  "chant": {
+    "title": "Munch and Crunch",
+    "lines": [
+      {
+        "text": "Apple, apple, crunch, crunch, crunch!",
+        "emoji": "🍎"
+      },
+      {
+        "text": "Banana, banana, munch, munch, munch!",
+        "emoji": "🍌"
+      },
+      {
+        "text": "Milk, milk, glug, glug, glug!",
+        "emoji": "🥛"
+      },
+      {
+        "text": "Cake, cake, yum, yum, yum!",
+        "emoji": "🍰"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Lúc ăn uống, đưa cốc sữa hoặc quả táo và hỏi con có muốn không.",
     "say": "Do you want milk?"

@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     {
@@ -71,6 +72,28 @@
       "emoji": "👶"
     }
   ],
+  "chant": {
+    "title": "Family Chant",
+    "lines": [
+      {
+        "text": "Hello, Mum, and hello, Dad!",
+        "emoji": "👋"
+      },
+      {
+        "text": "Hug my sister, I'm so glad!",
+        "emoji": "👧"
+      },
+      {
+        "text": "Grandma, Grandpa, one, two, three,",
+        "emoji": "👵"
+      },
+      {
+        "text": "Baby too, my family!",
+        "emoji": "👶"
+      }
+    ],
+    "tune": "twinkle"
+  },
   "parentTip": {
     "vi": "Xem ảnh gia đình, chỉ từng người và hỏi con.",
     "say": "Who is this? Is it Dad?"

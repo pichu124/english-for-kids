@@ -63,6 +63,7 @@ export function skillSummary(level: Level): Skill[] {
       facts: [
         `Chọn đúng hình ngay lần đầu: ${known}/${total} từ của bậc${score('listening')}`,
         ...(played('pairs') + played('clock') ? [`Trò nghe: Which one? ${played('pairs')} lượt, What time? ${played('clock')} lượt`] : []),
+        ...(played('maths') + played('sort') ? [`Maths: ${played('maths')} lượt · Sort it!: ${played('sort')} lượt`] : []),
       ],
       tip: 'Cho bé chơi Games (👂 Which one?, 🕐 What time?, bóng bay, Listen and Colour) và nghe truyện ở 📚 Stories.',
     },
@@ -82,8 +83,9 @@ export function skillSummary(level: Level): Skill[] {
       facts: [
         withReading.length ? `Phần "Đọc & Viết" xong: ${readParts}/${withReading.length} bài${score('reading')}` : 'Bậc này chưa có phần đọc chữ: bé làm quen âm trước.',
         `Âm (phonics): ${phonicsDone}/${phonicsData.sets.length} nhóm · truyện đã đọc: ${stories}`,
+        ...(played('grammar') ? [`Grammar (điền từ vào câu): ${played('grammar')} lượt`] : []),
       ],
-      tip: 'Học tiếp nhóm âm ở ABC → 🔊 Sounds, rồi cho bé tự đọc truyện phonics.',
+      tip: 'Học tiếp nhóm âm ở ABC → 🔊 Sounds, cho bé tự đọc truyện phonics, và chơi 🧩 Grammar (từ Starters) ở Games.',
     },
     {
       id: 'write',

@@ -36,6 +36,34 @@
     "dress",
     "jacket"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Clothes Chant",
+    "lines": [
+      {
+        "text": "A hat, a dress, a T-shirt too,",
+        "emoji": "👗"
+      },
+      {
+        "text": "Socks and shoes, red and blue!",
+        "emoji": "👟"
+      },
+      {
+        "text": "Put on your jacket, it's cold today,",
+        "emoji": "🧥"
+      },
+      {
+        "text": "Now we're ready, let's go and play!",
+        "emoji": "👒"
+      }
+    ],
+    "tune": "mary"
+  },
   "parentTip": {
     "vi": "Lúc chọn quần áo, cầm chiếc áo và hỏi con có muốn mặc không.",
     "say": "Do you want this blue T-shirt?"

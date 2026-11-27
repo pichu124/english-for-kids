@@ -27,6 +27,34 @@
     "orange",
     "pink"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Colour Song",
+    "lines": [
+      {
+        "text": "Red like an apple, yellow like the sun,",
+        "emoji": "🍎"
+      },
+      {
+        "text": "Green like a tree, colours are fun!",
+        "emoji": "🌳"
+      },
+      {
+        "text": "Pink like a flower, blue like the sea,",
+        "emoji": "🌸"
+      },
+      {
+        "text": "Orange like an orange, colours for me!",
+        "emoji": "🍊"
+      }
+    ],
+    "tune": "row"
+  },
   "parentTip": {
     "vi": "Khi mặc đồ, hỏi con màu của chiếc váy, chiếc áo.",
     "say": "Is this dress pink?"

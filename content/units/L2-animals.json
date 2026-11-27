@@ -30,6 +30,34 @@
     "duck",
     "cow"
   ],
+  "steps": [
+    "listen",
+    "say",
+    "tap-picture",
+    "chant"
+  ],
+  "chant": {
+    "title": "Pet Chant",
+    "lines": [
+      {
+        "text": "The bird can fly, fly, fly!",
+        "emoji": "🐦"
+      },
+      {
+        "text": "The fish can swim, swim, swim!",
+        "emoji": "🐟"
+      },
+      {
+        "text": "The dog can run, run, run!",
+        "emoji": "🐶"
+      },
+      {
+        "text": "And the cat can sleep in the sun!",
+        "emoji": "🐱"
+      }
+    ],
+    "tune": "london"
+  },
   "parentTip": {
     "vi": "Đi công viên, tìm chim, cá, chó và hỏi con có thấy không.",
     "say": "Can you see a bird?"

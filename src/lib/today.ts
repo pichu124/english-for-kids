@@ -10,7 +10,7 @@ import { currentLevel } from './level';
 import { buildReview } from './review';
 import { getState, today, update } from './storage';
 
-export type TodayStep = { kind: 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean };
+export type TodayStep = { kind: 'hello' | 'review' | 'lesson' | 'talk' | 'fun'; id?: string; part?: 1 | 2; done?: boolean };
 export type TodayPlan = { day: string; steps: TodayStep[]; finished?: boolean };
 
 /** First unit not done yet, else the one practised least. */
@@ -25,7 +25,8 @@ export function todayPlan(): TodayPlan {
   const s = getState();
   if (s.today?.day === today()) return s.today;
   const level = currentLevel().id;
-  const steps: TodayStep[] = [];
+  // Hello! first: day, weather, how are you (about 30 seconds)
+  const steps: TodayStep[] = [{ kind: 'hello' }];
   if (buildReview(level)) steps.push({ kind: 'review' });
   // Starters: a unit already heard but not yet read & written comes first (so days
   // alternate: new unit → its Read & Write → next unit …); otherwise the next unit.
@@ -82,6 +83,8 @@ export function resolveFun(p: TodayPlan): string {
   // the spelling game only once the child has done some Read & Write (not on day 1)
   if (!['L0', 'L1'].includes(lv) && (lv !== 'L2' || Object.values(s.topics).some((t) => (t.readDone ?? 0) > 0))) games.push('game:tower');
   if (lv === 'L4') games.push('game:riddle'); // Flyers words have definitions
+  games.push('game:maths', 'game:sort');
+  if (!['L0', 'L1'].includes(lv)) games.push('game:grammar');
   return games[Number(today().slice(-2)) % games.length];
 }
 

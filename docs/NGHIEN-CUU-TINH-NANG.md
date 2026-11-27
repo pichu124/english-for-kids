@@ -170,6 +170,17 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] Báo cáo tuần và khu bố mẹ có mục "Âm, đọc to & trò chuyện". Giấy khen **Sounds Star** khi xong cả 8 bộ âm.
 - [x] Phonics giai đoạn 2: bộ 6–7 (ai oa ie ar or, ng ow oi er ur) và bộ 8 **Tricky Words** (the, I, go, said…: từ phải nhớ nguyên mặt chữ).
 
+### Đợt L (rà soát tính năng, 27/11/2026)
+- [x] 12 truyện mới cho Starters (trước chỉ có 8 truyện cho 38 bài).
+- [x] 🧩 Grammar: a/an, số nhiều, is/are, he/she, can/can't, in/on/under; Movers và Flyers có thêm mẫu câu.
+- [x] 🔢 Maths bằng tiếng Anh: đếm, cộng, bớt, nhiều hơn, nghe số (13 hay 30?).
+- [x] 👋 Hello! đầu mỗi ngày: thứ, thời tiết, cảm xúc; báo cáo tuần có cảm xúc của bé.
+- [x] Nghĩa tiếng Việt cho 549 từ (chỉ cho bố mẹ).
+- [x] Bài xếp bậc 3 phút và gợi ý lên bậc trong khu bố mẹ.
+- [x] 🎵 Songs: hộp nhạc bài vè; thêm 25 bài vè (L0, L1 và 15 bài Starters), tổng 32.
+- [x] 🧺 Sort it!: xếp vào giỏ và tìm hình khác loại.
+- [ ] Nghe lại giọng mình (bé nói xong được nghe lại): cần thu âm tạm trong máy, phải sửa câu "App không ghi âm" — bố mẹ quyết định.
+
 #### Trò chuyện bằng AI thật: bố mẹ quyết định
 Bản hiện tại chạy hoàn toàn trên máy, theo kịch bản. Muốn Bix trả lời tự do bằng AI thì phải chọn một trong ba cách:
 

@@ -19,7 +19,8 @@ await page.goto(`${base}/?unit=animals`);
 await page.locator('.btn-play').click({ force: true });
 let missed = null;
 for (let i = 0; i < 1200 && !(await page.locator('.reward-actions:not([hidden])').count()); i++) {
-  if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
+  if (await page.locator('.btn-chant-done:not([hidden])').count()) await page.locator('.btn-chant-done').click({ force: true });
+  else if (await page.locator('.btn-next:not([hidden])').count()) await page.locator('.btn-next:not([hidden])').click({ force: true });
   else if (await page.locator('.btn-mic.is-ready').count()) await page.locator('.btn-mic.is-ready').click({ force: true });
   else if (await page.locator('.play').count()) {
     const said = (await page.evaluate(() => window.__spoken.at(-1) || '')).toLowerCase();

@@ -23,7 +23,8 @@
     "listen",
     "do-it",
     "say",
-    "tap-picture"
+    "tap-picture",
+    "chant"
   ],
   "words": [
     "happy",
@@ -50,6 +51,28 @@
       "emoji": "🥱"
     }
   ],
+  "chant": {
+    "title": "Feelings Chant",
+    "lines": [
+      {
+        "text": "I am happy, smile, smile, smile!",
+        "emoji": "😀"
+      },
+      {
+        "text": "I am sad, boo hoo, boo hoo!",
+        "emoji": "😢"
+      },
+      {
+        "text": "I am angry, grr, grr, grr!",
+        "emoji": "😠"
+      },
+      {
+        "text": "I am tired, yawn, yawn, yawn!",
+        "emoji": "🥱"
+      }
+    ],
+    "tune": "frere"
+  },
   "parentTip": {
     "vi": "Buổi tối hỏi con hôm nay vui hay buồn. Bố mẹ làm mặt vui, mặt buồn để con đoán.",
     "say": "Are you happy today?"
