@@ -3,6 +3,8 @@ import { weekReport } from '../lib/progress';
 import { getState } from '../lib/storage';
 import type { Ctx } from '../router';
 import { wordPicture } from './lesson/shared';
+import { currentLevel } from '../lib/level';
+import { skillsCard } from './skills';
 
 const WD = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
 const vn = (iso: string) => {
@@ -45,6 +47,7 @@ export function reportScreen(ctx: Ctx): HTMLElement {
         return h('div', { class: `rp-day ${d.lessons ? 'is-on' : ''}` }, h('span', {}, wd), h('b', {}, d.lessons ? '🌱' : '·'), h('small', {}, d.minutes ? `${d.minutes}′` : ''));
       }),
     ),
+    h('section', { class: 'rp-skills' }, h('h2', {}, '📊 4 kỹ năng'), skillsCard(currentLevel(), true)),
     h(
       'section',
       { class: 'rp-extra' },

@@ -15,6 +15,7 @@ import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 import { tipCard } from './tip';
+import { skillsCard } from './skills';
 import { NEWER_EMOJI, bundledEmoji, emojiOk, recheckEmoji, wordEmoji } from '../lib/emoji';
 import { wordPicture } from './lesson/shared';
 import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '../lib/music';
@@ -96,6 +97,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).')
       : null,
     summaryCard(),
+    card('4 kỹ năng: nghe, nói, đọc, viết', skillsCard(currentLevel())),
     card('Tuần này', weekField()),
     card('Các bé dùng máy này', profilesField()),
     h('div', { id: 'p-backup' }, card('Sao lưu tiến độ', backupField())),
