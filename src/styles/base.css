@@ -16,7 +16,8 @@
   --pink: #ff6b9a;
   --radius: 18px;
   --tap: 64px;
-  --font: 'Baloo 2', 'Nunito', system-ui, sans-serif;
+  /* Bix Emoji: the same emoji pictures on every phone (src/styles/emoji-font.css) */
+  --font: 'Baloo 2', 'Bix Emoji', 'Nunito', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }

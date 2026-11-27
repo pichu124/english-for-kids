@@ -87,9 +87,19 @@ function detect(): Record<string, boolean> {
   return out;
 }
 
-/** Can this device show `e`? (Old emoji always can.) */
+/** The app's own emoji font (src/styles/emoji-font.css) is drawn here: every emoji it uses is in it. */
+const bundled = (() => {
+  try {
+    return typeof CSS !== 'undefined' && CSS.supports('font-tech(color-COLRv1)') && !localStorage.getItem('efk.emoji.missing');
+  } catch {
+    return false;
+  }
+})();
+export const bundledEmoji = (): boolean => bundled;
+
+/** Can this device show `e`? (Old emoji always can, and every emoji with the app's own font.) */
 export function emojiOk(e: string): boolean {
-  if (!(e in NEWER_EMOJI)) return true;
+  if (!(e in NEWER_EMOJI) || bundled) return true;
   if (!results) {
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
     try {

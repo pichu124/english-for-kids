@@ -71,7 +71,7 @@ function alphabetBoard(ctx: Ctx): HTMLElement {
     if (l) void say(line(l));
   });
   const game = h('button', { class: 'btn btn-sun abc-game-btn', 'aria-label': 'Letter game', onclick: () => (sfx.tap(), ctx.go('abc', { game: '1' })) }, '🎯 Letter game');
-  const write = h('button', { class: 'btn btn-sun abc-game-btn abc-write-btn', 'aria-label': 'Write', onclick: () => (sfx.tap(), ctx.go('abc', { trace: nextToTrace() })) }, '✏️ Write');
+  const write = h('button', { class: 'btn btn-sun abc-write-btn', 'aria-label': 'Write', onclick: () => (sfx.tap(), ctx.go('abc', { trace: nextToTrace() })) }, '✏️ Write');
   const sounds = h('button', { class: 'btn btn-good abc-sounds-btn', 'aria-label': 'Sounds', onclick: () => (sfx.tap(), ctx.go('phonics')) }, '🔊 Sounds');
   setTimeout(() => ctx.alive() && void bix.talk('A, B, C! Tap a letter!', 'happy'), 300);
   return h(

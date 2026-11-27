@@ -2,6 +2,7 @@ import '@fontsource/baloo-2/vietnamese-600.css';
 import '@fontsource/baloo-2/vietnamese-800.css';
 import '@fontsource/baloo-2/latin-600.css';
 import '@fontsource/baloo-2/latin-800.css';
+import './styles/emoji-font.css';
 import './styles/base.css';
 import './styles/screens.css';
 import './styles/lesson.css';

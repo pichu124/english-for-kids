@@ -299,7 +299,7 @@
 .abc-bix { margin-left: auto; }
 .abc-bix .bix-svg { height: clamp(70px, 12vmin, 110px); }
 .abc-bix .bix-bubble { right: 100%; left: auto; }
-.abc-game-btn { font-size: clamp(16px, 3vmin, 24px); min-height: 64px; padding: 0 18px; }
+.abc-game-btn, .abc-write-btn { font-size: clamp(16px, 3vmin, 24px); min-height: 64px; padding: 0 18px; }
 .abc-body { display: flex; gap: 3vmin; align-items: flex-start; padding: 1vmin 3vmin 5vmin; }
 .abc-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(64px, 11vmin, 100px), 1fr)); gap: 1.6vmin; }
 .abc-tile {
@@ -468,7 +468,7 @@
 .game-body.is-finished > :not(.game-done):not(.balloon-stars):not(.balloon-ear) { transform: translateY(-9vh) scale(.82); transition: transform .4s ease; }
 
 /* ---------- ✏️ Write: finger tracing (src/screens/trace.ts) ---------- */
-.abc-write { position: absolute; right: 8px; bottom: 8px; width: 56px; height: 56px; font-size: 26px; }
+.abc-write { width: 64px; height: 56px; font-size: 26px; flex: none; }
 .trace { height: 100%; display: flex; flex-direction: column; }
 .trace .btn.tr-case { font-size: 34px; font-weight: 800; margin-left: auto; font-family: var(--font); }
 .tr-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2.5vmin, 28px); padding: 0 2vmin 2vmin; }
@@ -508,5 +508,11 @@
   .tr-pic { font-size: 44px; }
   .tr-word { font-size: 24px; }
   .tr-next { width: 64px; height: 64px; }
-  .abc-write { width: 48px; height: 48px; font-size: 22px; right: 4px; bottom: 4px; }
+  .abc-write { width: 52px; height: 44px; font-size: 20px; }
+}
+/* small phones: three buttons in the ABC header; Bix still talks, without the bubble over them */
+@media (max-height: 500px) {
+  .abc .book-top .abc-bix .bix-bubble { display: none; }
+  .abc-game-btn, .abc-write-btn { padding: 0 10px; font-size: 15px; }
+  .abc .book-top { gap: 6px; }
 }
