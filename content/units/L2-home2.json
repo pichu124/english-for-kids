@@ -25,7 +25,10 @@
     "television",
     "phone",
     "computer",
-    "picture"
+    {
+      "id": "picture",
+      "sentence": "I like this picture. It is beautiful."
+    }
   ],
   "parentTip": {
     "vi": "Hỏi con đồng hồ, gương, điện thoại ở đâu trong nhà.",

@@ -21,11 +21,17 @@
   },
   "words": [
     "sun",
-    "tree",
+    {
+      "id": "tree",
+      "sentence": "This is a tree. It is big and green."
+    },
     "flower",
     "sea",
     "beach",
-    "water"
+    {
+      "id": "water",
+      "play": "I want a drink. Where is the water?"
+    }
   ],
   "parentTip": {
     "vi": "Đi dạo, chỉ cây, hoa, mặt trời và hỏi con.",

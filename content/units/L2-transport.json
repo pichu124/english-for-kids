@@ -24,7 +24,10 @@
     "plane",
     "boat",
     "bike",
-    "helicopter",
+    {
+      "id": "helicopter",
+      "sentence": "This is a helicopter. Look! It can fly!"
+    },
     "motorbike"
   ],
   "parentTip": {

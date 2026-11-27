@@ -7,7 +7,7 @@
   "titleVi": "Xe to, tàu thuyền",
   "icon": "🚚",
   "color": "#9be06a",
-  "intro": "Brrm! Big vehicles!",
+  "intro": "Vroom, vroom! Big vehicles!",
   "playPrompt": "Where is the {word}?",
   "block": {
     "name": "Road block",
@@ -28,7 +28,10 @@
       "id": "train",
       "sentence": "This is a train. Choo, choo!"
     },
-    "helicopter"
+    {
+      "id": "helicopter",
+      "sentence": "This is a helicopter. Look! It can fly!"
+    }
   ],
   "parentTip": {
     "vi": "Ra đường hay xem tranh, chỉ xe tải, tàu thuỷ và hỏi con.",

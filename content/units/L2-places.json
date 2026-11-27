@@ -7,7 +7,7 @@
   "titleVi": "Nơi chốn",
   "icon": "🏞️",
   "color": "#8fd46b",
-  "intro": "Let's go out! Where shall we go?",
+  "intro": "Let's go out! Where can we go?",
   "playPrompt": "Where is the {word}?",
   "block": {
     "name": "Town block",
@@ -21,7 +21,10 @@
   },
   "words": [
     "park",
-    "shop",
+    {
+      "id": "shop",
+      "sentence": "This is a shop. Look at the apples!"
+    },
     "school",
     "garden",
     "zoo",

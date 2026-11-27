@@ -36,7 +36,7 @@
   },
   "chat": {
     "ask": "Is there a toy under your bed?",
-    "yes": "Wow! A secret toy!",
-    "no": "Okay! Under the bed is empty!"
+    "yes": "Wow! Can you find it?",
+    "no": "Okay! Let's look under the table!"
   }
 }

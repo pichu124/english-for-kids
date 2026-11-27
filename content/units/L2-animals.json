@@ -23,7 +23,10 @@
     "dog",
     "cat",
     "fish",
-    "bird",
+    {
+      "id": "bird",
+      "sentence": "The bird can fly. Tweet, tweet!"
+    },
     "duck",
     "cow"
   ],

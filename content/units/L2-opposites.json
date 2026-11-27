@@ -21,7 +21,10 @@
   },
   "words": [
     "big",
-    "small",
+    {
+      "id": "small",
+      "play": "Which animal is small?"
+    },
     "long",
     "old",
     "young",

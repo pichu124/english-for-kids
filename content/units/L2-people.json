@@ -22,7 +22,10 @@
   "words": [
     "boy",
     "girl",
-    "man",
+    {
+      "id": "man",
+      "sentence": "This is a man. He is nice."
+    },
     "woman",
     {
       "id": "friend",
@@ -34,7 +37,7 @@
     }
   ],
   "parentTip": {
-    "vi": "Xem truyện tranh, chỉ bạn trai, bạn gái và hỏi con.",
+    "vi": "Xem truyện tranh, chỉ vào bé trai, bé gái và hỏi con.",
     "say": "Is she a girl?"
   },
   "chat": {

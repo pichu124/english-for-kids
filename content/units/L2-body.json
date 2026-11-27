@@ -25,7 +25,10 @@
     "arm",
     "hand",
     "leg",
-    "foot"
+    {
+      "id": "foot",
+      "sentence": "This is my foot. I can walk."
+    }
   ],
   "parentTip": {
     "vi": "Đứng trước gương, chỉ vào tóc, tay, chân và hỏi con.",
