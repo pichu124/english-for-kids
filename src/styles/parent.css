@@ -143,3 +143,39 @@
 
 .p-level > summary { cursor: pointer; list-style: revert; }
 .p-topic-none { margin: 2px 0; color: var(--ink-soft); font-size: 15px; }
+
+/* ---------- first-run welcome for parents (src/screens/welcome.ts) ---------- */
+.welcome { min-height: 100dvh; display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 40px); padding: 16px; }
+.wl-side { display: flex; flex-direction: column; align-items: center; gap: 14px; flex: none; }
+.wl-dots { display: flex; gap: 8px; }
+.wl-dots span { width: 12px; height: 12px; border-radius: 50%; background: rgba(29, 36, 64, .18); }
+.wl-dots span.on { background: var(--good); }
+.wl-dots span.now { background: var(--primary); transform: scale(1.25); }
+.wl-body { flex: 1 1 auto; max-width: 720px; max-height: calc(100dvh - 32px); overflow-y: auto; }
+.wl-card { background: #fff; border-radius: 20px; padding: clamp(16px, 3vmin, 28px); box-shadow: 0 2px 4px rgba(29, 36, 64, .08), 0 10px 30px rgba(29, 36, 64, .1); display: flex; flex-direction: column; gap: 14px; font-size: 17px; }
+.wl-title { font-size: clamp(24px, 4vmin, 34px); line-height: 1.15; }
+.wl-lead { font-size: 19px; }
+.wl-points { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.wl-points li { background: #f4f7fb; border-radius: 12px; padding: 8px 12px; }
+.wl-field { display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
+.wl-field > span { font-size: 15px; color: var(--ink-soft); font-weight: 600; }
+.wl-name { width: min(100%, 360px); }
+.wl-level p { margin-bottom: 6px; }
+.wl-test-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.wl-test { min-width: 150px; font-size: 18px; }
+.wl-privacy { border-left: 4px solid #c9d1e3; padding-left: 10px; }
+.wl-nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.wl-next { min-width: 150px; font-size: 18px; min-height: 56px; }
+.wl-skip { color: var(--ink-soft); }
+@media (max-width: 760px), (max-height: 500px) {
+  .welcome { align-items: stretch; padding: 8px; gap: 8px; }
+  .wl-side .bix { transform: scale(.6); margin: -30px; }
+  .wl-body { max-height: calc(100dvh - 16px); }
+  .wl-card { gap: 10px; font-size: 15px; padding: 12px 14px; }
+  .wl-lead { font-size: 16px; }
+  .wl-points li { padding: 6px 10px; }
+}
+@media (orientation: portrait) {
+  .welcome { flex-direction: column; justify-content: flex-start; }
+  .wl-body { max-height: none; width: 100%; }
+}

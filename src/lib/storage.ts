@@ -153,6 +153,26 @@ function writeIndex(): void {
   }
 }
 
+// A device that has never saved progress gets the parents' welcome first (src/screens/welcome.ts).
+const WELCOME_KEY = 'efk.welcome';
+let firstRun = (() => {
+  try {
+    return !localStorage.getItem(KEY) && !localStorage.getItem(INDEX_KEY) && !localStorage.getItem(WELCOME_KEY);
+  } catch {
+    return false;
+  }
+})();
+export const needsWelcome = (): boolean => firstRun;
+export function markWelcomed(): void {
+  firstRun = false;
+  try {
+    localStorage.setItem(WELCOME_KEY, '1');
+  } catch {
+    /* keep going */
+  }
+  save();
+}
+
 let index: ProfileIndex = readIndex();
 let state: State = load();
 

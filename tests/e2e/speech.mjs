@@ -14,6 +14,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 await page.addInitScript(() => {
+  localStorage.setItem('efk.welcome', '1'); // skip the parents' first-run welcome
   // A speech engine that drops the first audible line it is given (like some Android phones).
   window.__log = [];
   let dropped = false;

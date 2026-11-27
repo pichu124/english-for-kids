@@ -1,6 +1,8 @@
 // Injected before the app loads: fast fake speech so a whole lesson runs in seconds.
 // window.__voice = 'match' | 'miss' | 'silent' | 'denied' controls the fake recognizer.
 (() => {
+  // the parents' first-run welcome is tested on its own (welcome.mjs clears this)
+  try { localStorage.setItem('efk.welcome', '1'); } catch {}
   window.__voice = 'match';
   window.__spoken = [];
   const fakeSynth = {

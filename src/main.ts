@@ -40,6 +40,7 @@ import { testScreen } from './screens/test';
 import { phonicsScreen } from './screens/phonics';
 import { talkScreen } from './screens/talk';
 import { worksheetScreen } from './screens/worksheet';
+import { welcomeScreen } from './screens/welcome';
 import { setOutfitSource } from './art/bix';
 import { getState } from './lib/storage';
 
@@ -63,12 +64,13 @@ register('test', testScreen);
 register('phonics', phonicsScreen);
 register('talk', talkScreen);
 register('worksheet', worksheetScreen);
+register('welcome', welcomeScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
+readDeepLink(); // before the first screen: a teacher's link skips the parents' welcome
 mount(document.getElementById('app')!);
 requestPersistence();
 initPWA();
-readDeepLink();
 startUsageClock(() => {
   const s = currentScreen();
   return !!s && ['home', 'lesson', 'world', 'book', 'wardrobe', 'garden', 'games', 'stories', 'story', 'abc', 'today', 'test', 'phonics', 'talk'].includes(s);

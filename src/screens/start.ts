@@ -1,14 +1,22 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { sfx } from '../lib/sfx';
-import { applyPendingLevel, takePendingPart, takePendingUnit } from '../lib/level';
+import { applyPendingLevel, hasPendingLink, takePendingPart, takePendingUnit } from '../lib/level';
 import { limitReached, setCounting } from '../lib/usage';
 import type { Ctx } from '../router';
 import { primeSpeech } from '../lib/tts';
-import { getState, profileAnimal, profiles, switchProfile } from '../lib/storage';
+import { getState, markWelcomed, needsWelcome, profileAnimal, profiles, switchProfile } from '../lib/storage';
 
 /** First screen: one big Play button. The tap also unlocks audio + speech on Android. */
 export function startScreen(ctx: Ctx): HTMLElement {
+  // first time on this device: the parents' set-up (a teacher's link goes straight to the lesson)
+  if (needsWelcome()) {
+    if (!hasPendingLink()) {
+      queueMicrotask(() => ctx.go('welcome'));
+      return h('main');
+    }
+    markWelcomed();
+  }
   const bix = new Bix({ size: 'lg', bubble: false }).setMood('hello');
   const start = () => {
     primeSpeech(); // must happen inside the tap (Android drops the first line otherwise)

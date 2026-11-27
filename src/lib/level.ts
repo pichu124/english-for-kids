@@ -40,6 +40,9 @@ export function readDeepLink(): void {
   }
 }
 
+/** A link opened a unit or a level (a teacher's link): skip the parents' welcome. */
+export const hasPendingLink = (): boolean => !!(pendingUnit || pendingLevel);
+
 /**
  * The level a link asked for, applied when a child taps Play — on several-children
  * devices that is after they picked their animal, so it lands on the right child.
