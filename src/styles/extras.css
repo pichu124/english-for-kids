@@ -470,9 +470,13 @@
 /* ---------- ✏️ Write: finger tracing (src/screens/trace.ts) ---------- */
 .abc-write { width: 72px; height: 64px; font-size: 28px; flex: none; }
 .trace { height: 100%; display: flex; flex-direction: column; }
-.trace .btn.tr-case { font-size: 28px; font-weight: 800; margin-left: auto; min-height: 64px; padding: 0 16px; font-family: var(--font); white-space: nowrap; }
+.tr-modes { display: flex; gap: 8px; margin-left: auto; }
+.trace .btn.tr-mode { font-size: 24px; font-weight: 800; min-height: 64px; min-width: 64px; padding: 0 12px; font-family: var(--font); white-space: nowrap; opacity: .75; }
+.trace .btn.tr-mode.is-on { opacity: 1; background: #fff; box-shadow: 0 0 0 4px var(--ink) inset, 0 6px 0 rgba(29, 36, 64, .25); }
+.tr-count { display: grid; grid-template-columns: repeat(5, auto); gap: 2px; font-size: clamp(22px, 4vmin, 34px); line-height: 1; max-width: 9em; }
+.tr-zero { font-size: 1.6em; color: var(--ink-soft); }
 .tr-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2.5vmin, 28px); padding: 0 2vmin 2vmin; }
-.tr-paper { height: min(100%, 78vh); aspect-ratio: 100 / 120; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 8px 0 rgba(29, 36, 64, .2); padding: 1.5vmin; position: relative; }
+.tr-paper { height: min(100%, 78vh); aspect-ratio: var(--w, 100) / 120; max-width: 62vw; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 8px 0 rgba(29, 36, 64, .2); padding: 1.5vmin; position: relative; }
 .tr-paper.was-done::after { content: '⭐'; position: absolute; top: -14px; right: -12px; font-size: 32px; }
 .tr-board { width: 100%; height: 100%; display: block; touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair; }
 .tr-guide { stroke: #c9d1e3; stroke-width: .6; }
@@ -499,7 +503,7 @@
 .tr-next.is-ready { animation: pulse 1.2s ease-in-out infinite; }
 @media (orientation: portrait) {
   .tr-body { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: 'paper paper paper' 'prev side next'; align-content: center; justify-items: center; row-gap: 3vmin; }
-  .tr-paper { grid-area: paper; height: auto; width: min(84vw, 58vh); }
+  .tr-paper { grid-area: paper; height: auto; width: min(84vw, calc(58vh * var(--w, 100) / 120)); max-width: 84vw; }
   .tr-side { grid-area: side; flex-direction: row; flex-wrap: wrap; justify-content: center; }
   .tr-prev { grid-area: prev; } .tr-next { grid-area: next; }
 }
@@ -516,4 +520,11 @@
   .abc .book-top .abc-bix .bix-bubble { display: none; }
   .abc-game-btn, .abc-write-btn { padding: 0 10px; font-size: 15px; }
   .abc .book-top { gap: 6px; }
+}
+@media (max-height: 500px) {
+  .trace .world-title { display: none; }
+  .tr-modes { gap: 6px; }
+  .trace .btn.tr-mode { font-size: 18px; min-height: 52px; min-width: 52px; padding: 0 8px; }
+  .tr-count { font-size: 18px; }
+  .tr-paper { max-width: 55vw; }
 }

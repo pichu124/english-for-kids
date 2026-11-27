@@ -1,6 +1,6 @@
 /**
  * How to write each letter: the strokes in order, as SVG paths, for finger tracing (ABC → ✏️ Write).
- * Simple print letters ("ball and stick"), in a 100 × 120 box with four guide lines:
+ * Simple print letters ("ball and stick") and numbers, in a 100 × 120 box with four guide lines:
  * top 10 (tall letters and capitals), middle 45 (small letters), base 85, tail 115 (g j p q y).
  * Each stroke starts where the child's finger starts. A stroke shorter than 3 is a dot (tap it).
  */
@@ -65,6 +65,18 @@ export const STROKES: Record<string, string[]> = {
   X: ['M28 10 L72 85', 'M72 10 L28 85'],
   Y: ['M28 10 L50 47', 'M72 10 L50 47 L50 85'],
   Z: ['M28 10 L72 10 L28 85 L72 85'],
+
+  // numbers, as tall as capitals
+  '0': ['M50 10 Q25 10 25 47.5 Q25 85 50 85 Q75 85 75 47.5 Q75 10 50 10'],
+  '1': ['M36 24 L52 10 L52 85'],
+  '2': ['M28 27 Q30 10 50 10 Q72 10 72 30 Q72 46 28 85 L74 85'],
+  '3': ['M30 18 Q40 10 51 10 Q70 10 70 28 Q70 46 48 46 Q74 46 74 66 Q74 85 50 85 Q36 85 28 76'],
+  '4': ['M60 10 L24 62 L78 62', 'M60 32 L60 85'],
+  '5': ['M34 10 L31 44 Q42 38 52 38 Q74 38 74 61 Q74 85 50 85 Q35 85 28 77', 'M34 10 L70 10'],
+  '6': ['M67 15 Q59 10 50 10 Q26 10 26 50 Q26 85 50 85 Q74 85 74 63 Q74 42 50 42 Q31 42 27 58'],
+  '7': ['M26 10 L74 10 L42 85'],
+  '8': ['M64 18 Q57 10 50 10 Q30 10 30 28 Q30 44 50 47 Q72 50 72 67 Q72 85 50 85 Q28 85 28 67 Q28 50 50 47 Q70 44 70 28 Q70 14 58 11'],
+  '9': ['M72 30 Q72 10 50 10 Q28 10 28 30 Q28 50 50 50 Q72 50 72 30 L72 85'],
 };
 
 export type Pt = { x: number; y: number };

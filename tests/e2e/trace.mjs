@@ -23,7 +23,7 @@ const strokePoints = (k, n = 30) =>
   page.evaluate(
     ([k, n]) => {
       const path = document.querySelectorAll('.tr-ink')[k];
-      const m = path.ownerSVGElement.getScreenCTM();
+      const m = path.getScreenCTM(); // includes the letter's place in a word
       const len = path.getTotalLength();
       return Array.from({ length: n + 1 }, (_, i) => {
         const q = path.getPointAtLength((len * i) / n);
@@ -97,11 +97,28 @@ for (const upper of [false, true]) {
   }
   if (!upper) {
     await page.waitForSelector('.tr-board[aria-label="Write a"]');
-    await page.locator('.tr-case').click({ force: true });
+    await page.locator('[data-mode="big"]').click({ force: true });
   }
 }
+// numbers 0–10 and short words, several letters side by side
+await page.locator('[data-mode="num"]').click({ force: true });
+for (let n = 0; n <= 10; n++) {
+  await page.waitForSelector(`.tr-board[aria-label="Write ${n}"]`);
+  await trace();
+  if (shots) await page.locator('.tr-paper').screenshot({ path: `${shots}/trace-num-${n}.png` });
+  await page.locator('.tr-next').click({ force: true });
+}
+await page.locator('[data-mode="word"]').click({ force: true });
+for (const w of ['cat', 'dog', 'sun']) {
+  await page.waitForSelector(`.tr-board[aria-label="Write ${w}"]`);
+  await trace();
+  if (shots) await page.locator('.tr-paper').screenshot({ path: `${shots}/trace-word-${w}.png` });
+  await page.locator('.tr-next').click({ force: true });
+}
+if (!(await page.evaluate(() => window.__spoken.some((t) => /see, ay, tee/.test(t))))) fail('a word is spelt when written');
+step('numbers 0–10 and words (cat, dog, sun) trace letter after letter');
 const st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')));
-if (Object.keys(st.traced ?? {}).length !== 52) fail('all 52 letters saved: ' + Object.keys(st.traced ?? {}).length);
+if (Object.keys(st.traced ?? {}).length !== 52 + 11 + 3) fail('all letters, numbers and words saved: ' + Object.keys(st.traced ?? {}).length);
 step('all 26 small and 26 big letters trace stroke by stroke to the end');
 
 // from the ABC board: tap a letter, then ✏️ writes that letter; the board's Write starts at the first not yet written

@@ -10,6 +10,7 @@ describe('letter strokes', () => {
       expect(STROKES[c]?.length, c).toBeGreaterThan(0);
       expect(STROKES[c.toUpperCase()]?.length, c.toUpperCase()).toBeGreaterThan(0);
     }
+    for (let n = 0; n <= 9; n++) expect(STROKES[String(n)]?.length, String(n)).toBeGreaterThan(0);
     for (const d of Object.values(STROKES).flat()) expect(d).toMatch(/^M[\d. ]+[LAQ]/);
   });
   it('moves on when the finger follows the stroke', () => {

@@ -1,7 +1,7 @@
 import { Bix } from '../art/bix';
 import { h } from '../lib/dom';
 import { wordEmoji } from '../lib/emoji';
-import { letterName } from '../lib/letters';
+import { letterName, spellOut } from '../lib/letters';
 import { sfx } from '../lib/sfx';
 import { dayLog, getState, update } from '../lib/storage';
 import { advance, GUIDES, strokeDone, STROKES, type Pt } from '../lib/strokes';
@@ -26,37 +26,105 @@ const svg = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string,
 const LETTERS = (alphabet as { letters: { letter: string; word: string; emoji: string }[] }).letters;
 const ORDER = LETTERS.map((l) => l.letter.toLowerCase());
 const COLORS = ['#ef476f', '#ff924c', '#f4a300', '#4caf50', '#1fa2d6', '#7b6cf6'];
+const NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+/** Short words made only of sounds from the first phonics sets (the child can read them too). */
+const WORDS: [string, string][] = [
+  ['cat', '🐱'], ['dog', '🐶'], ['sun', '☀️'], ['pig', '🐷'], ['hat', '🎩'], ['bus', '🚌'], ['bed', '🛏️'], ['fox', '🦊'], ['hen', '🐔'], ['pen', '🖊️'],
+  ['red', '🔴'], ['cap', '🧢'], ['box', '📦'], ['bag', '👜'], ['bug', '🐛'], ['ant', '🐜'], ['map', '🗺️'], ['van', '🚐'], ['jet', '✈️'], ['web', '🕸️'],
+];
 
-/** The next letter to write: the first one in this case not written yet. */
-export function nextToTrace(upper = false): string {
+/** What can be written: small letters, big letters, numbers 0–10, short words. */
+export type TraceKind = 'small' | 'big' | 'num' | 'word';
+const LISTS: Record<TraceKind, string[]> = {
+  small: ORDER,
+  big: ORDER.map((c) => c.toUpperCase()),
+  num: NUM_WORDS.map((_, n) => String(n)),
+  word: WORDS.map(([w]) => `w:${w}`),
+};
+const kindOf = (key: string): TraceKind => (key.startsWith('w:') ? 'word' : /^\d+$/.test(key) ? 'num' : key === key.toLowerCase() ? 'small' : 'big');
+const isTraceKey = (key: string) => Object.values(LISTS).some((l) => l.includes(key));
+
+/** The next one to write in a kind: the first not written yet. */
+export function nextToTrace(kind: TraceKind = 'small'): string {
   const done = getState().traced ?? {};
-  const pool = ORDER.map((c) => (upper ? c.toUpperCase() : c));
-  return pool.find((c) => !done[c]) ?? pool[0];
+  return LISTS[kind].find((c) => !done[c]) ?? LISTS[kind][0];
+}
+
+type Item = { glyphs: string[]; color: string; intro: string; praise: () => string; listen: string; pic: HTMLElement; word: HTMLElement };
+function itemFor(key: string): Item {
+  const kind = kindOf(key);
+  const idx = LISTS[kind].indexOf(key);
+  const color = COLORS[idx % COLORS.length];
+  if (kind === 'word') {
+    const w = key.slice(2);
+    const emoji = WORDS.find(([x]) => x === w)![1];
+    return {
+      glyphs: w.split(''),
+      color,
+      intro: `Let's write ${w}! Start at the green dot.`,
+      praise: () => `${pick(PRAISE)} ${w}! ${spellOut(w)}. ${w}!`,
+      listen: `${w}. ${spellOut(w)}. ${w}.`,
+      pic: h('div', { class: 'tr-pic', 'aria-hidden': 'true' }, wordEmoji(emoji) ?? ''),
+      word: h('div', { class: 'tr-word', lang: 'en' }, w),
+    };
+  }
+  if (kind === 'num') {
+    const n = Number(key);
+    return {
+      glyphs: key.split(''),
+      color,
+      intro: `Let's write ${NUM_WORDS[n]}! Start at the green dot.`,
+      praise: () => `${pick(PRAISE)} ${NUM_WORDS[n]}!`,
+      listen: `${NUM_WORDS[n]}.`,
+      // count it: n apples (none for zero)
+      pic: h('div', { class: 'tr-count', 'aria-hidden': 'true' }, n ? Array.from({ length: n }, () => h('span', {}, '🍎')) : h('span', { class: 'tr-zero' }, '🍽️')),
+      word: h('div', { class: 'tr-word', lang: 'en' }, NUM_WORDS[n]),
+    };
+  }
+  const lower = key.toLowerCase();
+  const info = LETTERS.find((l) => l.letter.toLowerCase() === lower)!;
+  return {
+    glyphs: [key],
+    color,
+    intro: `Let's write ${letterName(lower)}! Start at the green dot.`,
+    praise: () => `${pick(PRAISE)} ${letterName(lower)}! ${letterName(lower)} is for ${info.word}!`,
+    listen: `${letterName(lower)} is for ${info.word}.`,
+    pic: h('div', { class: 'tr-pic', 'aria-hidden': 'true' }, wordEmoji(info.emoji) ?? ''),
+    word: h('div', { class: 'tr-word', lang: 'en' }, h('b', { style: `color:${color}` }, info.word.slice(0, 1)), info.word.slice(1)),
+  };
 }
 
 export function traceScreen(ctx: Ctx): HTMLElement {
-  const ch = STROKES[ctx.params.trace] ? ctx.params.trace : nextToTrace();
-  const upper = ch !== ch.toLowerCase();
-  const lower = ch.toLowerCase();
-  const info = LETTERS.find((l) => l.letter.toLowerCase() === lower)!;
-  const i = ORDER.indexOf(lower);
-  const color = COLORS[i % COLORS.length];
+  const ch = isTraceKey(ctx.params.trace) ? ctx.params.trace : nextToTrace();
+  const kind = kindOf(ch);
+  const list = LISTS[kind];
+  const i = list.indexOf(ch);
+  const item = itemFor(ch);
+  const color = item.color;
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('hello');
 
-  // the writing board: guide lines, the letter in grey, then each stroke filling in colour
-  const board = svg('svg', { viewBox: '0 0 100 120', class: 'tr-board', role: 'img', 'aria-label': `Write ${ch}` });
-  for (const [k, y] of Object.entries(GUIDES)) board.append(svg('line', { x1: 2, x2: 98, y1: y, y2: y, class: `tr-guide tr-guide-${k}` }));
-  const strokes = STROKES[ch].map((d) => {
-    const ghost = svg('path', { d, class: 'tr-ghost' });
-    const ink = svg('path', { d, class: 'tr-ink', stroke: color });
-    board.append(ghost);
-    return { d, ghost, ink };
-  });
+  // the writing board: guide lines, the letters in grey, then each stroke filling in colour;
+  // several letters (a word, 10) sit side by side
+  const ADV = item.glyphs.length > 1 ? 66 : 100;
+  const W = (item.glyphs.length - 1) * ADV + 100;
+  const board = svg('svg', { viewBox: `0 0 ${W} 120`, class: 'tr-board', role: 'img', 'aria-label': `Write ${ch.replace(/^w:/, '')}` });
+  for (const [k, y] of Object.entries(GUIDES)) board.append(svg('line', { x1: 2, x2: W - 2, y1: y, y2: y, class: `tr-guide tr-guide-${k}` }));
+  const strokes = item.glyphs.flatMap((g, gi) =>
+    STROKES[g].map((d) => {
+      const dx = gi * ADV;
+      const ghost = svg('path', { d, class: 'tr-ghost', transform: `translate(${dx} 0)` });
+      const ink = svg('path', { d, class: 'tr-ink', stroke: color, transform: `translate(${dx} 0)` });
+      board.append(ghost);
+      return { d, dx, ghost, ink };
+    }),
+  );
   strokes.forEach((s) => board.append(s.ink));
-  const startDot = svg('circle', { r: 6, class: 'tr-start' });
-  const startNum = svg('text', { class: 'tr-start-n', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
-  const guideBall = svg('circle', { r: 4.5, class: 'tr-ball' });
-  const finger = svg('circle', { r: 5, class: 'tr-finger' });
+  // a wide board (a word) is drawn smaller: keep the dots as big on screen
+  const k = Math.max(1, W / 150);
+  const startDot = svg('circle', { r: 6 * k, class: 'tr-start' });
+  const startNum = svg('text', { class: 'tr-start-n', 'text-anchor': 'middle', 'dominant-baseline': 'central', style: `font-size:${7 * k}px` });
+  const guideBall = svg('circle', { r: 4.5 * k, class: 'tr-ball' });
+  const finger = svg('circle', { r: 5 * k, class: 'tr-finger' });
   board.append(guideBall, startDot, startNum, finger); // the start dot stays on top of the ball
 
   // sample each stroke into points (the browser measures the path for us)
@@ -66,7 +134,7 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     const pts: Pt[] = [];
     for (let k = 0; k <= n; k++) {
       const p = s.ink.getPointAtLength((len * k) / n);
-      pts.push({ x: p.x, y: p.y });
+      pts.push({ x: p.x + s.dx, y: p.y });
     }
     s.ink.style.visibility = 'hidden';
     return { len, pts, dot: len < 3 };
@@ -183,7 +251,7 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     bix.setMood('happy');
     side.classList.add('is-done');
     nextBtn.classList.add('pop', 'is-ready');
-    await say(`${pick(PRAISE)} ${letterName(lower)}! ${letterName(lower)} is for ${info.word}!`);
+    await say(item.praise());
   };
 
   const move = (e: PointerEvent) => {
@@ -258,32 +326,36 @@ export function traceScreen(ctx: Ctx): HTMLElement {
   finger.setAttribute('visibility', 'hidden');
 
   const go = (c: string) => (sfx.tap(), ctx.go('abc', { trace: c }));
-  const prev = h('button', { class: 'btn btn-round btn-sun tr-prev', 'aria-label': 'Previous letter', style: i === 0 ? 'visibility:hidden' : '', onclick: () => go(ORDER[i - 1][upper ? 'toUpperCase' : 'toLowerCase']()) }, '◀');
-  const nextBtn = h('button', { class: 'btn btn-good tr-next', 'aria-label': 'Next letter', onclick: () => go(ORDER[(i + 1) % 26][upper ? 'toUpperCase' : 'toLowerCase']()) }, '▶');
-  // switch small ↔ big letters: shows what you get ("a → A")
-  const caseBtn = h('button', { class: 'btn btn-sun tr-case', 'aria-label': upper ? 'Small letters' : 'Big letters', onclick: () => go(upper ? lower : lower.toUpperCase()) }, `${ch} → ${upper ? lower : lower.toUpperCase()}`);
-  const again = h('button', { class: 'btn btn-round btn-sun tr-again', 'aria-label': 'Write again', onclick: () => go(ch) }, '🔁');
-  const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen', onclick: () => (sfx.tap(), void say(`${letterName(lower)} is for ${info.word}.`)) }, h('span', { class: 'icon-speaker' }));
-  const side = h(
+  const prev = h('button', { class: 'btn btn-round btn-sun tr-prev', 'aria-label': 'Previous', style: i === 0 ? 'visibility:hidden' : '', onclick: () => go(list[i - 1]) }, '◀');
+  const nextBtn = h('button', { class: 'btn btn-good tr-next', 'aria-label': 'Next', onclick: () => go(list[(i + 1) % list.length]) }, '▶');
+  // what to write: small letters, big letters, numbers, words
+  const MODES: [TraceKind, string, string][] = [
+    ['small', 'a', 'Small letters'],
+    ['big', 'A', 'Big letters'],
+    ['num', '123', 'Numbers'],
+    ['word', 'cat', 'Words'],
+  ];
+  const modes = h(
     'div',
-    { class: 'tr-side' },
-    h('div', { class: 'tr-pic', 'aria-hidden': 'true' }, wordEmoji(info.emoji) ?? ''),
-    h('div', { class: 'tr-word', lang: 'en' }, h('b', { style: `color:${color}` }, info.word.slice(0, 1)), info.word.slice(1)),
-    h('div', { class: 'tr-btns' }, hear, again),
+    { class: 'tr-modes' },
+    MODES.map(([k, label, aria]) => h('button', { class: `btn btn-sun tr-mode ${k === kind ? 'is-on' : ''}`, 'data-mode': k, 'aria-label': aria, 'aria-pressed': String(k === kind), onclick: () => k !== kind && go(nextToTrace(k)) }, label)),
   );
+  const again = h('button', { class: 'btn btn-round btn-sun tr-again', 'aria-label': 'Write again', onclick: () => go(ch) }, '🔁');
+  const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen', onclick: () => (sfx.tap(), void say(item.listen)) }, h('span', { class: 'icon-speaker' }));
+  const side = h('div', { class: 'tr-side' }, item.pic, item.word, h('div', { class: 'tr-btns' }, hear, again));
   const done = getState().traced ?? {};
   const back = h('button', { class: 'btn btn-round btn-sun', 'aria-label': 'ABC', onclick: () => (sfx.tap(), ctx.go('abc')) }, '🔤');
   const el = h(
     'main',
-    { class: 'abc trace' },
-    h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, 'Write'), caseBtn, h('div', { class: 'game-bix' }, bix.el)),
-    h('div', { class: 'tr-body' }, prev, h('div', { class: `tr-paper ${done[ch] ? 'was-done' : ''}` }, board), side, nextBtn),
+    { class: `abc trace trace-${kind}` },
+    h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, 'Write'), modes, h('div', { class: 'game-bix' }, bix.el)),
+    h('div', { class: 'tr-body' }, prev, h('div', { class: `tr-paper ${done[ch] ? 'was-done' : ''}`, style: `--w:${W}` }, board), side, nextBtn),
   );
   paint();
   setTimeout(() => {
     if (!ctx.alive()) return;
     showWay();
-    void say(`Let's write ${letterName(lower)}! Start at the green dot.`);
+    void say(item.intro);
   }, 300);
   ctx.onCleanup(() => (demo++, idle.stop()));
   idle.reset();
