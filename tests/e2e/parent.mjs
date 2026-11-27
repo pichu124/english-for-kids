@@ -78,6 +78,7 @@ console.log('✓ reset clears progress, keeps name');
   const { devices } = require('playwright');
   const ctx = await browser.newContext({ ...devices['Pixel 7'] });
   const ph = await ctx.newPage();
+  await ph.addInitScript(() => localStorage.setItem('efk.welcome', '1')); // not a first run
   await ph.goto(base);
   // Held upright, the kid screens ask to turn the phone; sideways they work.
   if (!(await ph.locator('.rotate').isVisible())) throw new Error('portrait phone should show "Turn me sideways"');

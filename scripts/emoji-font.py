@@ -35,7 +35,7 @@ font.flavor = 'woff2'
 out = os.path.join(out_dir, 'bix-emoji.woff2')
 font.save(out)
 
-# digits stay with the text font (they are in the font only for keycaps like 6️⃣)
+# digits stay with the text font, so keycaps like 6️⃣ use the phone's own emoji (old ones, every phone has them)
 def ranges(cps):
     out, run = [], []
     for c in sorted(cps):

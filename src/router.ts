@@ -72,7 +72,7 @@ export function go(name: ScreenName, params: Record<string, string> = {}): void 
   window.scrollTo(0, 0);
   // Android back button: screens other than home get a history entry, so "back"
   // returns to the home map instead of closing the app.
-  if (name !== 'home' && name !== 'start' && !history.state?.bix) {
+  if (name !== 'home' && name !== 'start' && name !== 'welcome' && !history.state?.bix) {
     try {
       history.pushState({ bix: 1 }, '');
     } catch {
@@ -83,7 +83,8 @@ export function go(name: ScreenName, params: Record<string, string> = {}): void 
 }
 
 window.addEventListener('popstate', () => {
-  if (current && current.name !== 'home' && current.name !== 'start') go('home');
+  // (the parents' first-run welcome stays put: it must end on the Play screen, which starts the day)
+  if (current && current.name !== 'home' && current.name !== 'start' && current.name !== 'welcome') go('home');
 });
 
 /** Shown only if a screen fails to draw (e.g. damaged saved data): a way to the parent area. */

@@ -15,7 +15,7 @@ import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
 import { tipCard } from './tip';
-import { NEWER_EMOJI, emojiOk, recheckEmoji, wordEmoji } from '../lib/emoji';
+import { NEWER_EMOJI, bundledEmoji, emojiOk, recheckEmoji, wordEmoji } from '../lib/emoji';
 import { wordPicture } from './lesson/shared';
 import { MUSIC_LABEL, musicMode, playTune, type MusicMode, type Player } from '../lib/music';
 import { TUNES } from '../lib/tunes';
@@ -355,7 +355,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
         }
       });
       wrap.replaceChildren(
-        h('p', {}, bad.length ? `Máy này không vẽ được ${bad.length}/${list.length} hình mới. App đã tự thay bằng hình cũ cùng nghĩa, hoặc ghi chữ.` : `✓ Máy này vẽ được đủ ${list.length} hình mới (emoji từ năm 2018 trở về sau).`),
+        h('p', {}, bundledEmoji() ? `✓ App dùng bộ hình emoji kèm sẵn (Noto), nên máy nào cũng hiện cùng một hình, kể cả ${list.length} hình mới.` : bad.length ? `Máy này không vẽ được ${bad.length}/${list.length} hình mới. App đã tự thay bằng hình cũ cùng nghĩa, hoặc ghi chữ.` : `✓ Máy này vẽ được đủ ${list.length} hình mới (emoji từ năm 2018 trở về sau).`),
         h(
           'div',
           { class: 'p-emoji-grid' },

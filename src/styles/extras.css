@@ -468,7 +468,7 @@
 .game-body.is-finished > :not(.game-done):not(.balloon-stars):not(.balloon-ear) { transform: translateY(-9vh) scale(.82); transition: transform .4s ease; }
 
 /* ---------- ✏️ Write: finger tracing (src/screens/trace.ts) ---------- */
-.abc-write { width: 64px; height: 56px; font-size: 26px; flex: none; }
+.abc-write { width: 72px; height: 64px; font-size: 28px; flex: none; }
 .trace { height: 100%; display: flex; flex-direction: column; }
 .trace .btn.tr-case { font-size: 34px; font-weight: 800; margin-left: auto; font-family: var(--font); }
 .tr-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2.5vmin, 28px); padding: 0 2vmin 2vmin; }

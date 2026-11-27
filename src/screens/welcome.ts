@@ -45,8 +45,11 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
     markWelcomed();
     ctx.go('start');
   };
-  const skip = () => h('button', { class: 'p-btn wl-skip', 'data-wl': 'skip', onclick: () => (sfx.tap(), finish()) }, 'Bỏ qua, cài sau');
+  /** What the current card keeps when the parent skips the rest (a name already typed). */
+  let keepOnSkip: (() => void) | null = null;
+  const skip = () => h('button', { class: 'p-btn wl-skip', 'data-wl': 'skip', onclick: () => (sfx.tap(), keepOnSkip?.(), finish()) }, 'Bỏ qua, cài sau');
   const card = (n: number, title: string, ...kids: (HTMLElement | HTMLElement[] | string | null)[]) => {
+    keepOnSkip = null;
     [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
     body.replaceChildren(h('div', { class: 'wl-card pop', 'data-step': String(n) }, h('h1', { class: 'wl-title' }, title), ...kids));
     body.scrollTop = 0;
@@ -122,29 +125,27 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
       levelBox,
       nav(() => (save(), time())),
     );
+    keepOnSkip = save;
   };
 
   // 3. Daily time
   const time = () => {
     const seg = h('div', { class: 'p-seg' });
+    // 15 minutes is suggested; it is saved only with "Tiếp" (skipping keeps no limit)
+    let pick = getState().settings.dailyLimitMin || 15;
     const render = () =>
       seg.replaceChildren(
-        ...LIMITS.map(([m, label]) =>
-          h('button', { class: `p-seg-btn ${m === getState().settings.dailyLimitMin ? 'is-on' : ''}`, 'data-limit': String(m), onclick: () => (update((s) => (s.settings.dailyLimitMin = m)), render()) }, label),
-        ),
+        ...LIMITS.map(([m, label]) => h('button', { class: `p-seg-btn ${m === pick ? 'is-on' : ''}`, 'data-limit': String(m), onclick: () => ((pick = m), render()) }, label)),
       );
-    if (getState().settings.dailyLimitMin === 0 && !time.done) update((s) => (s.settings.dailyLimitMin = 15)); // a gentle default
-    time.done = true;
     render();
     card(
       2,
       'Mỗi ngày học bao lâu?',
       h('p', {}, 'Hết giờ, Bix chào tạm biệt và hẹn bé ngày mai. Với bé 3–7 tuổi, 10–15 phút mỗi ngày là vừa.'),
       seg,
-      nav(check),
+      nav(() => (update((s) => (s.settings.dailyLimitMin = pick)), check())),
     );
   };
-  time.done = false;
 
   // 4. Sound and microphone
   const check = () => {

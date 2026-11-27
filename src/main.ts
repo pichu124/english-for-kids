@@ -95,6 +95,6 @@ document.addEventListener('visibilitychange', () => setBackground(!document.hidd
       h('p', { class: 'rotate-vi', lang: 'vi' }, 'Xoay ngang điện thoại để bé học nhé'),
     ),
   );
-  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report' || name === 'worksheet'));
+  onNavigate((name) => document.body.classList.toggle('allow-portrait', name === 'parent' || name === 'rest' || name === 'report' || name === 'worksheet' || name === 'welcome'));
 }
 go('start');

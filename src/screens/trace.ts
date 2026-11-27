@@ -76,6 +76,8 @@ export function traceScreen(ctx: Ctx): HTMLElement {
   let at = 0;
   let finished = false;
   let drawing = false;
+  /** The finger that is writing (a resting palm or a second finger is ignored). */
+  let pointer: number | null = null;
   /** The finger is on the stroke: it got there at the point reached so far, and has not wandered off. */
   let onTrack = false;
   let demo = 0;
@@ -151,6 +153,14 @@ export function traceScreen(ctx: Ctx): HTMLElement {
   };
 
   const move = (e: PointerEvent) => {
+    // all the points of a quick stroke, not only one per frame
+    const all = e.getCoalescedEvents?.() ?? [];
+    for (const ev of all.length ? all : [e]) {
+      moveTo(ev);
+      if (finished || (sampled[cur]?.dot ?? true)) break;
+    }
+  };
+  const moveTo = (e: PointerEvent) => {
     const p = toBoard(e);
     if (!p || finished) return;
     finger.setAttribute('cx', String(p.x));
@@ -166,7 +176,9 @@ export function traceScreen(ctx: Ctx): HTMLElement {
       if (here > 13) return;
       onTrack = true;
     }
-    const next = advance(s.pts, at, p);
+    let next = advance(s.pts, at, p);
+    // a quick finger can be further along: keep following while the line leads to it
+    for (let k = advance(s.pts, next, p); k !== next; k = advance(s.pts, next, p)) next = k;
     if (next === at && here > 16) {
       onTrack = false;
       return;
@@ -178,7 +190,8 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     }
   };
   board.addEventListener('pointerdown', (e) => {
-    if (finished) return;
+    if (finished || (drawing && pointer !== e.pointerId)) return;
+    pointer = e.pointerId;
     drawing = true;
     onTrack = false;
     demo++;
@@ -187,10 +200,11 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     finger.setAttribute('visibility', 'visible');
     move(e);
   });
-  board.addEventListener('pointermove', (e) => drawing && move(e));
-  const up = () => {
-    if (!drawing) return;
+  board.addEventListener('pointermove', (e) => drawing && e.pointerId === pointer && move(e));
+  const up = (e: PointerEvent) => {
+    if (!drawing || e.pointerId !== pointer) return;
     drawing = false;
+    pointer = null;
     finger.setAttribute('visibility', 'hidden');
     // lifted halfway: keep what was done (the child carries on from there), show the way again
     if (!finished) setTimeout(() => !drawing && showWay(), 600);

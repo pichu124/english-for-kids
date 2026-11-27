@@ -87,7 +87,10 @@ function detect(): Record<string, boolean> {
   return out;
 }
 
-/** The app's own emoji font (src/styles/emoji-font.css) is drawn here: every emoji it uses is in it. */
+/**
+ * The app's own emoji font (src/styles/emoji-font.css) is drawn here, so the newer emoji are always there
+ * (only keycaps like 6️⃣ still come from the phone, and those are old emoji every phone has).
+ */
 const bundled = (() => {
   try {
     return typeof CSS !== 'undefined' && CSS.supports('font-tech(color-COLRv1)') && !localStorage.getItem('efk.emoji.missing');

@@ -218,16 +218,14 @@ export function worksheetScreen(ctx: Ctx): HTMLElement {
       'Gợi ý: làm cùng con 10–15 phút, đọc to từng từ tiếng Anh trước khi bé viết. Chỗ nào bé chưa làm được, bố mẹ làm mẫu rồi để bé thử lại, khen khi bé cố gắng. In lại trong cùng ngày sẽ ra đúng phiếu này; ngày khác thứ tự bài sẽ đổi.',
     ),
   );
-  // counted once per sheet in the weekly report, however many copies are printed
-  let counted = false;
+  // counted once per sheet (unit + day) in the weekly report, however many copies are printed
   const print = () => {
-    if (!counted) {
-      counted = true;
-      update(() => {
-        const d = dayLog();
-        d.sheets = (d.sheets ?? 0) + 1;
-      });
-    }
+    update(() => {
+      const d = dayLog();
+      if (d.sheetUnits?.includes(topic.id)) return;
+      d.sheetUnits = [...(d.sheetUnits ?? []), topic.id];
+      d.sheets = (d.sheets ?? 0) + 1;
+    });
     window.print();
   };
   return h(
