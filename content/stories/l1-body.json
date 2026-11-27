@@ -5,7 +5,7 @@
   "icon": "👀",
   "pages": [
     {
-      "text": "Good morning! Bix wakes up and opens both eyes.",
+      "text": "Good morning! Bix opens both eyes.",
       "scene": "☀️👀",
       "bix": true
     },
@@ -32,7 +32,7 @@
   ],
   "questions": [
     {
-      "ask": "What does Bix open?",
+      "ask": "What does Bix open to see?",
       "answer": "eyes"
     },
     {

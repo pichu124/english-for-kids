@@ -63,12 +63,12 @@
     "tune": "twinkle"
   },
   "parentTip": {
-    "vi": "Chơi 'chạm vào…': bố mẹ nói, con chạm vào mũi, tai, tay. Đổi vai cho con ra lệnh.",
-    "say": "Where is your nose?"
+    "vi": "Chơi 'chạm vào…': bố mẹ nói, con chạm vào mũi, tai, tay. Sau đó đổi vai để con ra lệnh.",
+    "say": "Touch your nose!"
   },
   "chat": {
     "ask": "Can you touch your nose?",
-    "yes": "Great! Beep, beep, nose!",
+    "yes": "Great job! That's your nose!",
     "no": "Try it! It's fun!"
   }
 }

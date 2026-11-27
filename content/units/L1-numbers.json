@@ -5,7 +5,7 @@
   "order": 4,
   "title": "Count to Five",
   "titleVi": "Đếm đến 5",
-  "icon": "🐥",
+  "icon": "🦆",
   "color": "#b8e05a",
   "intro": "Let's count the little ducks!",
   "playPrompt": "Find {word} ducks!",
@@ -30,7 +30,7 @@
     {
       "id": "one",
       "image": {
-        "emoji": "🐥"
+        "emoji": "🦆"
       },
       "sentence": "Let's count! One duck.",
       "play": "Find one duck!"
@@ -38,28 +38,28 @@
     {
       "id": "two",
       "image": {
-        "emoji": "🐥🐥"
+        "emoji": "🦆🦆"
       },
       "sentence": "One, two! Two ducks."
     },
     {
       "id": "three",
       "image": {
-        "emoji": "🐥🐥🐥"
+        "emoji": "🦆🦆🦆"
       },
       "sentence": "One, two, three! Three ducks."
     },
     {
       "id": "four",
       "image": {
-        "emoji": "🐥🐥🐥🐥"
+        "emoji": "🦆🦆🦆🦆"
       },
       "sentence": "One, two, three, four! Four ducks."
     },
     {
       "id": "five",
       "image": {
-        "emoji": "🐥🐥🐥🐥🐥"
+        "emoji": "🦆🦆🦆🦆🦆"
       },
       "sentence": "One, two, three, four, five! Five ducks."
     }
@@ -82,14 +82,14 @@
     "title": "Counting Chant",
     "lines": [
       "One, two, three, four, five,",
-      "Five yellow ducks can swim and dive!",
+      "Five little ducks can swim and dive!",
       "Count with me, it's fun to do:",
       "One, two, three, four, five, for you!"
     ],
     "tune": "frere"
   },
   "parentTip": {
-    "vi": "Cùng đếm ngón tay, bậc cầu thang hay hạt kẹo đến 5.",
+    "vi": "Cùng con đếm đến 5: ngón tay, bậc cầu thang, viên kẹo.",
     "say": "Can you count to five?"
   },
   "chat": {

@@ -31,11 +31,11 @@
   ],
   "questions": [
     {
-      "ask": "How is Bix with the ball?",
+      "ask": "How does Bix feel with the ball?",
       "answer": "happy"
     },
     {
-      "ask": "How is Bix at night?",
+      "ask": "How does Bix feel at night?",
       "answer": "tired"
     }
   ]

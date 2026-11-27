@@ -125,7 +125,7 @@
             "emoji": "📌"
           },
           {
-            "text": "Tap, tap, tap!",
+            "text": "A tap.",
             "emoji": "🚰"
           },
           {
@@ -267,14 +267,14 @@
         }
       ],
       "reader": {
-        "title": "The Red Hat",
+        "title": "A Cat and a Hat",
         "pages": [
           {
             "text": "A cat.",
             "emoji": "🐱"
           },
           {
-            "text": "A red hat.",
+            "text": "A hat.",
             "emoji": "🎩"
           },
           {
@@ -282,7 +282,7 @@
             "emoji": "🐔"
           },
           {
-            "text": "The cat has the red hat.",
+            "text": "The cat is in the hat!",
             "emoji": "🐱🎩"
           }
         ]
@@ -430,7 +430,7 @@
             "emoji": "🐶"
           },
           {
-            "text": "The bus is red.",
+            "text": "The bus is big.",
             "emoji": "🚌"
           },
           {
@@ -574,7 +574,7 @@
             "emoji": "🦊📦"
           },
           {
-            "text": "A big red van.",
+            "text": "A big van.",
             "emoji": "🚐"
           },
           {
@@ -988,7 +988,7 @@
             "emoji": "👧🍔"
           },
           {
-            "text": "The owl sat on the king!",
+            "text": "The owl is on the king!",
             "emoji": "🦉👑"
           }
         ]

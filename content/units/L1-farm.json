@@ -77,7 +77,7 @@
     "tune": "oldmac"
   },
   "parentTip": {
-    "vi": "Bố mẹ giả tiếng con vật ('quạc quạc') và hỏi. Con đáp đúng thì đổi vai.",
+    "vi": "Bố mẹ giả tiếng con vật ('quạc quạc') rồi hỏi. Con đoán được thì đổi vai: con giả tiếng, bố mẹ đoán.",
     "say": "Is it a duck?"
   },
   "chat": {
