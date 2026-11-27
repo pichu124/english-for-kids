@@ -3,7 +3,7 @@
  * Listening (pictures + "who is who": find the child in the picture), Spelling (letters said one by one → the written word),
  * Reading (yes/no sentences, picture → word). First answer counts, no hints.
  */
-import { buildable, definable, firstSentence, mentions, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
+import { buildable, definable, firstSentence, mentions, playPromptFor, sentenceEnd, spellable, topicsOfLevel, writable, yesNoAble, type ReadingText, type Topic, type Word } from '../content';
 import { describeKid, makeKids, type Kid } from '../art/kids';
 import { shuffle } from './dom';
 import { isLearned } from './progress';
@@ -69,7 +69,7 @@ export function buildTest(level = 'L2'): Question[] {
   };
   const qs: Question[] = [];
   for (const it of take(() => true, 3)) {
-    qs.push({ part: 'listening', kind: 'pick-picture', target: it.word, options: shuffle([it.word, ...distractors(it, all, 3)]), prompt: it.word.play ?? `Where is the ${it.word.text}?` });
+    qs.push({ part: 'listening', kind: 'pick-picture', target: it.word, options: shuffle([it.word, ...distractors(it, all, 3)]), prompt: playPromptFor(it.topic, it.word) }); // the unit's own question ("Find the red one!", not "Where is the red?")
   }
   // Part 1 of the real test: one picture of children, find who is who from what you hear.
   const kids = makeKids();

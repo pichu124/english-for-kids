@@ -18,7 +18,10 @@
     "drum",
     "violin",
     "trumpet",
-    "saxophone",
+    {
+      "id": "saxophone",
+      "def": "This long, gold instrument looks like the letter J. You blow into it."
+    },
     {
       "id": "guitar",
       "sentence": "My sister is learning to play the guitar.",

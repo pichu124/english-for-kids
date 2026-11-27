@@ -32,7 +32,7 @@
   },
   "gaps": [
     {
-      "s": "The tortoise walks very ___.",
+      "s": "The tortoise isn't fast. It walks very ___.",
       "answer": "slowly",
       "options": [
         "quickly",

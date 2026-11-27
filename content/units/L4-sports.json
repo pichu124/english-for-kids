@@ -87,9 +87,9 @@
       {
         "q": "What happened when the writer tried snowboarding?",
         "options": [
-          "They fell over lots of times.",
-          "They won a race.",
-          "They didn't like it."
+          "The writer fell over lots of times.",
+          "The writer won a race.",
+          "The writer didn't like it."
         ],
         "answer": 0
       }

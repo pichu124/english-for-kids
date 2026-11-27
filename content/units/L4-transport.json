@@ -40,7 +40,7 @@
   },
   "chat": {
     "ask": "Have you ever been in a taxi?",
-    "yes": "Cool! Where did you go?",
+    "yes": "Cool! Taxis are fast!",
     "no": "Maybe one day!"
   },
   "gaps": [

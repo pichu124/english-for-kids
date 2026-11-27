@@ -28,7 +28,7 @@
   },
   "chat": {
     "ask": "Do you go to bed at nine o'clock?",
-    "yes": "Good night! Sleep well!",
+    "yes": "Great! Nine o'clock is a good time for bed!",
     "no": "Okay! Sleep is important!"
   },
   "gaps": [

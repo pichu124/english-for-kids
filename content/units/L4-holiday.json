@@ -19,7 +19,10 @@
     "passport",
     "backpack",
     "torch",
-    "suitcase",
+    {
+      "id": "suitcase",
+      "def": "You put your clothes in this big bag with wheels when you travel."
+    },
     {
       "id": "ticket",
       "sentence": "We're going to buy our train tickets today.",

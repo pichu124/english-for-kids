@@ -29,7 +29,7 @@
   "chat": {
     "ask": "Did you have fun last weekend?",
     "yes": "Great! Weekends are fun!",
-    "no": "Okay! Next weekend will be fun!"
+    "no": "Okay! Let's have fun next weekend!"
   },
   "text": {
     "title": "Lily's Birthday",
@@ -91,7 +91,7 @@
       "answer": "took",
       "options": [
         "wrote",
-        "had"
+        "gave"
       ]
     }
   ]

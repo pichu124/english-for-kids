@@ -29,7 +29,7 @@
   "chat": {
     "ask": "Are you taller than your friend?",
     "yes": "Wow! You are tall!",
-    "no": "That's okay! You will grow!"
+    "no": "That's okay! You are growing every day!"
   },
   "gaps": [
     {
@@ -61,13 +61,13 @@
     "title": "Race Day",
     "lines": [
       "Lily, her dad and her grandpa had a race in the park.",
-      "Dad is faster than Grandpa, but Lily is the fastest!",
-      "Grandpa is slow, but he is very strong.",
+      "Dad was faster than Grandpa, but Lily was the fastest!",
+      "Grandpa was slow, but he was very strong.",
       "After the race, he carried the big bag home."
     ],
     "questions": [
       {
-        "q": "Who is the fastest?",
+        "q": "Who was the fastest?",
         "options": [
           "Dad",
           "Grandpa",
@@ -76,10 +76,10 @@
         "answer": 2
       },
       {
-        "q": "Is Grandpa fast?",
+        "q": "Was Grandpa fast?",
         "options": [
-          "Yes, he is.",
-          "No, he is slow.",
+          "Yes, he was.",
+          "No, he was slow.",
           "He didn't run."
         ],
         "answer": 1

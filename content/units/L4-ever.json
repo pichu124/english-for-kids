@@ -28,7 +28,7 @@
   },
   "chat": {
     "ask": "Have you ever flown in a plane?",
-    "yes": "Wow! Where did you go?",
+    "yes": "Wow! Lucky you! Flying is exciting!",
     "no": "Maybe one day! It's exciting."
   },
   "gaps": [

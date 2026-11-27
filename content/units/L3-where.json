@@ -41,7 +41,7 @@
       ]
     },
     {
-      "s": "The bird is flying ___ the house.",
+      "s": "The bird is flying high ___ the house.",
       "answer": "above",
       "options": [
         "inside",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "s": "Where's my cat? She's ___ the box. I can see her ears!",
+      "s": "Where's my cat? She's ___ the box. Let's open it!",
       "answer": "inside",
       "options": [
         "above",

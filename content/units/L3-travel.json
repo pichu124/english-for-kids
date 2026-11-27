@@ -21,7 +21,7 @@
     "station",
     {
       "id": "bus-stop",
-      "sentence": "We wait at the bus stop."
+      "sentence": "We wait for the bus at the bus stop."
     }
   ],
   "parentTip": {

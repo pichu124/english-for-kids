@@ -37,7 +37,7 @@
   "text": {
     "title": "Mia's Week",
     "lines": [
-      "Mia loves sports.",
+      "Mia loves sport.",
       "On Mondays, she goes swimming.",
       "On Saturdays, she rides her bike with her dad.",
       "Her brother does not like sport. He likes to paint."
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "s": "Grandpa sits by the lake and goes ___.",
+      "s": "On Sundays, Grandpa goes ___ at the lake.",
       "answer": "fishing",
       "options": [
         "paint",

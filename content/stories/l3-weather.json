@@ -31,7 +31,7 @@
   ],
   "questions": [
     {
-      "ask": "How was the weather yesterday morning?",
+      "ask": "What was the weather like yesterday morning?",
       "answer": "cloudy"
     },
     {

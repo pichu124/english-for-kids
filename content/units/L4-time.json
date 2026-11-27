@@ -23,13 +23,13 @@
     "quarter-to-four"
   ],
   "parentTip": {
-    "vi": "Hỏi giờ con bằng tiếng Anh trong ngày: \"What time is it? It's quarter past three.\"",
+    "vi": "Trong ngày, thỉnh thoảng hỏi con giờ bằng tiếng Anh: \"What time is it? It's quarter past three.\"",
     "say": "What time is it?"
   },
   "chat": {
     "ask": "Do you get up at half past seven?",
     "yes": "Great! Just in time for school!",
-    "no": "Okay! What time do you get up?"
+    "no": "Okay! Everybody is different!"
   },
   "gaps": [
     {

@@ -332,7 +332,7 @@
               "reply": "Okay! Maybe later."
             }
           ],
-          "fallback": "OK! Let's go on."
+          "fallback": "Okay! Let's talk about food!"
         },
         {
           "bix": "What do you like to eat?",
@@ -739,7 +739,7 @@
                 "cloud",
                 "clouds"
               ],
-              "reply": "Cloudy! Maybe it will rain."
+              "reply": "Cloudy! I can't see the sun!"
             },
             {
               "say": "Windy",
@@ -754,7 +754,7 @@
           "fallback": "Thank you!"
         },
         {
-          "bix": "What are you going to do this weekend?",
+          "bix": "What do you like doing at the weekend?",
           "type": "any",
           "reply": "Wow! That sounds fun!"
         },
@@ -1215,8 +1215,8 @@
             "model": "Suddenly, it started to rain."
           },
           {
-            "emoji": "⛺👨‍👩‍👧",
-            "model": "They ran into a tent and waited."
+            "emoji": "🚗👨‍👩‍👧",
+            "model": "They ran back to the car and waited."
           },
           {
             "emoji": "🌈😀",

@@ -51,7 +51,7 @@
   },
   "gaps": [
     {
-      "s": "You've got a ___. You should go to bed and sneeze into a tissue.",
+      "s": "Atishoo! You've got a ___. You should stay in bed.",
       "answer": "cold",
       "options": [
         "earache",

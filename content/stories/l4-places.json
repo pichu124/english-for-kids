@@ -5,7 +5,7 @@
   "icon": "🏛️",
   "pages": [
     {
-      "text": "Today Bix and the class are going to the museum.",
+      "text": "Today Bix's class is going to the museum.",
       "scene": "🏛️",
       "bix": true
     },

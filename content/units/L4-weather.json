@@ -34,7 +34,7 @@
   },
   "chat": {
     "ask": "Are you scared of thunder?",
-    "yes": "That's okay! Let's count after the lightning.",
+    "yes": "That's okay! Thunder is very loud, but it can't hurt you.",
     "no": "Great! You are very brave!"
   },
   "gaps": [

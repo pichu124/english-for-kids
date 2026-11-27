@@ -19,7 +19,10 @@
     "silver",
     "paper",
     "metal",
-    "plastic",
+    {
+      "id": "plastic",
+      "def": "Lots of toys and bottles are made of this. It is light and it does not break easily."
+    },
     "glass"
   ],
   "parentTip": {
