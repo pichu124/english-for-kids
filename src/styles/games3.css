@@ -119,8 +119,8 @@
 /* ---------- phones (landscape, short screens) ---------- */
 @media (max-height: 500px) {
   /* 11+ games (Starters on): two rows of seven */
-  .games-list:has(> .game-pick:nth-child(11)) { max-width: calc(7 * min(12vw, 25vh) + 60px); gap: 8px; }
-  .games-list:has(> .game-pick:nth-child(11)) .game-pick { width: min(12vw, 25vh); font-size: 11px; line-height: 1.05; gap: 1px; padding: 4px 2px; }
+  .games-list:has(> .game-pick:nth-child(11)) { max-width: calc(7 * min(12.6vw, 30vh) + 60px); gap: 8px; }
+  .games-list:has(> .game-pick:nth-child(11)) .game-pick { width: min(12.6vw, 30vh); font-size: 12.5px; line-height: 1.05; gap: 1px; padding: 4px 2px; }
   .games-list:has(> .game-pick:nth-child(11)) .game-pick .game-pick-icon { font-size: min(5.6vw, 11vh); }
   /* Today with Hello!: six cards in one row, Bix steps aside */
   .today-body:has(.today-path > :nth-child(6)) .today-bix { display: none; }
@@ -253,4 +253,11 @@
   .today-path:has(> :nth-child(6)) { flex-wrap: wrap; display: grid; grid-template-columns: repeat(3, auto); }
   .today-path:has(> :nth-child(6)) .today-card { width: min(24vw, 170px); }
   .today-path:has(> :nth-child(6)) .today-card:nth-child(3n + 1)::before { display: none; }
+}
+
+/* little books on tablets: Read to me, ▶ and the 🎤 in one row under the sentence */
+@media (min-height: 501px) {
+  .ph-read { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .ph-read > .ph-read-pic, .ph-read > .ph-line { flex-basis: 100%; text-align: center; }
+  .ph-read > .ph-line { display: flex; flex-wrap: wrap; justify-content: center; }
 }

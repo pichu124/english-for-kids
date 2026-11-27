@@ -149,11 +149,15 @@ export function grammarItem(kind: string, lv: number): GItem | null {
     return { kind, pic: emojiPic(e), before: who, after: `${verb}.`, options: ['can', "can't"], answer: yes ? 'can' : "can't" };
   }
   if (kind === 'inon') {
-    const ws = topics.flatMap((t) => t.words).filter((w) => ['in', 'on', 'under'].includes(w.image.scene ?? '') && new RegExp(`\\b${w.text}\\b`).test(w.sentence));
+    // Starters prepositions with a drawn scene: in, on, under, next to, behind, in front of
+    const PREP = ['in', 'on', 'under', 'next to', 'behind', 'in front of'];
+    const ws = topics.flatMap((t) => t.words).filter((w) => PREP.includes(w.image.scene ?? '') && new RegExp(`\\b${w.text}\\b`).test(w.sentence));
     const w = one(ws.filter((x, i) => ws.findIndex((y) => y.text === x.text) === i));
     if (!w) return null;
     const [before, after] = w.sentence.split(new RegExp(`\\b${w.text}\\b`));
-    return { kind, pic: h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, wordPicture(w)), before: before.trim(), after: after.trim(), options: ['in', 'on', 'under'], answer: w.text };
+    // in/on/under first; the longer ones are offered with two others
+    const options = ['in', 'on', 'under'].includes(w.text) ? ['in', 'on', 'under'] : [w.text, ...shuffle(PREP.filter((x) => x !== w.text)).slice(0, 2)];
+    return { kind, pic: h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, wordPicture(w)), before: before.trim(), after: after.trim(), options, answer: w.text };
   }
   const list = FIXED[kind];
   if (!list) return null;
