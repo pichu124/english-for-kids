@@ -31,21 +31,21 @@
       "bix": true
     },
     {
-      "text": "Now smile with your face. Well done!",
-      "scene": "🙂⭐"
+      "text": "Bix says: make a happy face. Well done!",
+      "scene": "😄⭐"
     }
   ],
   "questions": [
     {
-      "ask": "What do we wave?",
+      "ask": "What do you wave?",
       "answer": "hand"
     },
     {
-      "ask": "What do we stand on?",
+      "ask": "What do you stand on?",
       "answer": "leg"
     },
     {
-      "ask": "What do we move up and down?",
+      "ask": "What do you move up and down?",
       "answer": "arm"
     }
   ]

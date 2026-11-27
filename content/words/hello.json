@@ -72,7 +72,7 @@
     {
       "id": "how-are-you",
       "text": "how are you",
-      "vi": "Con có khoẻ không?",
+      "vi": "bạn có khoẻ không?",
       "image": {
         "emoji": "🙂❓"
       },
@@ -90,7 +90,7 @@
     {
       "id": "im-fine",
       "text": "I'm fine",
-      "vi": "Con khoẻ",
+      "vi": "tôi khoẻ",
       "image": {
         "emoji": "👍"
       },

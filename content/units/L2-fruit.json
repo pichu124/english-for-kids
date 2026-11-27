@@ -40,20 +40,20 @@
     "title": "Fruit Chant",
     "lines": [
       {
-        "text": "Grapes and lemons, pears for me,",
+        "text": "Grapes and lemons, pears for me!",
         "emoji": "🍇"
       },
       {
-        "text": "Mango, pineapple, one, two, three!",
+        "text": "Mangoes for my family!",
         "emoji": "🥭"
       },
       {
-        "text": "I like watermelon, yes, I do!",
-        "emoji": "🍉"
+        "text": "I like pineapple, yes, I do!",
+        "emoji": "🍍"
       },
       {
-        "text": "Yummy fruit for me and you!",
-        "emoji": "🍍"
+        "text": "Watermelon for me and you!",
+        "emoji": "🍉"
       }
     ],
     "tune": "london"

@@ -18,7 +18,7 @@
     {
       "id": "giraffe",
       "text": "giraffe",
-      "vi": "hươu cao cổ",
+      "vi": "con hươu cao cổ",
       "topic": "zoo",
       "image": {
         "emoji": "🦒"
@@ -63,7 +63,7 @@
     {
       "id": "zebra",
       "text": "zebra",
-      "vi": "ngựa vằn",
+      "vi": "con ngựa vằn",
       "topic": "zoo",
       "image": {
         "emoji": "🦓"
@@ -77,7 +77,7 @@
     {
       "id": "crocodile",
       "text": "crocodile",
-      "vi": "cá sấu",
+      "vi": "con cá sấu",
       "topic": "zoo",
       "image": {
         "emoji": "🐊"

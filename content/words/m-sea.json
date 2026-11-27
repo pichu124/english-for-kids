@@ -4,7 +4,7 @@
     {
       "id": "dolphin",
       "text": "dolphin",
-      "vi": "cá heo",
+      "vi": "con cá heo",
       "topic": "sea",
       "image": {
         "emoji": "🐬"
@@ -18,7 +18,7 @@
     {
       "id": "whale",
       "text": "whale",
-      "vi": "cá voi",
+      "vi": "con cá voi",
       "topic": "sea",
       "image": {
         "emoji": "🐳"
@@ -32,7 +32,7 @@
     {
       "id": "shark",
       "text": "shark",
-      "vi": "cá mập",
+      "vi": "con cá mập",
       "topic": "sea",
       "image": {
         "emoji": "🦈"
@@ -46,7 +46,7 @@
     {
       "id": "penguin",
       "text": "penguin",
-      "vi": "chim cánh cụt",
+      "vi": "con chim cánh cụt",
       "topic": "sea",
       "image": {
         "emoji": "🐧"
@@ -60,7 +60,7 @@
     {
       "id": "panda",
       "text": "panda",
-      "vi": "gấu trúc",
+      "vi": "con gấu trúc",
       "topic": "sea",
       "image": {
         "emoji": "🐼"

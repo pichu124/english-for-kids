@@ -18,7 +18,7 @@
     {
       "id": "eagle",
       "text": "eagle",
-      "vi": "đại bàng",
+      "vi": "con đại bàng",
       "topic": "animals3",
       "image": {
         "emoji": "🦅"
@@ -33,7 +33,7 @@
     {
       "id": "dinosaur",
       "text": "dinosaur",
-      "vi": "khủng long",
+      "vi": "con khủng long",
       "topic": "animals3",
       "image": {
         "emoji": "🦖"
@@ -62,7 +62,7 @@
     {
       "id": "octopus",
       "text": "octopus",
-      "vi": "bạch tuộc",
+      "vi": "con bạch tuộc",
       "topic": "animals3",
       "image": {
         "emoji": "🐙"

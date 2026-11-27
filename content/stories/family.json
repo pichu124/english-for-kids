@@ -13,8 +13,8 @@
       "scene": "👩👨🎂"
     },
     {
-      "text": "My brother has got a red ball for Grandma.",
-      "scene": "👦🔴"
+      "text": "My brother has got a red flower for Grandma.",
+      "scene": "👦🌹"
     },
     {
       "text": "Grandpa sings a happy song.",
@@ -40,7 +40,7 @@
       "answer": "grandpa"
     },
     {
-      "ask": "Who has got a red ball?",
+      "ask": "Who has got a red flower?",
       "answer": "brother"
     }
   ]

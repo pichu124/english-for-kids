@@ -6,7 +6,7 @@
   "pages": [
     {
       "text": "Bix has got lots of fruit. Yum!",
-      "scene": "🍎🍌",
+      "scene": "🍍🍇🍐",
       "bix": true
     },
     {
@@ -22,7 +22,7 @@
       "scene": "🍇🍐"
     },
     {
-      "text": "Here is a mango. It is very nice.",
+      "text": "Here is a mango. It is sweet!",
       "scene": "🥭"
     },
     {
@@ -31,21 +31,21 @@
       "bix": true
     },
     {
-      "text": "Now Bix and the children eat the fruit. Yummy!",
+      "text": "Now everyone eats the fruit. Yummy!",
       "scene": "🍉😋"
     }
   ],
   "questions": [
     {
-      "ask": "What does Bix eat? It makes a funny face.",
+      "ask": "What makes Bix's face funny?",
       "answer": "lemon"
     },
     {
-      "ask": "What is big?",
+      "ask": "Which fruit is big?",
       "answer": "pineapple"
     },
     {
-      "ask": "What is purple?",
+      "ask": "Which fruit is purple?",
       "answer": "grapes"
     }
   ]

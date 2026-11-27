@@ -10,23 +10,23 @@
       "bix": true
     },
     {
-      "text": "Dad is in the kitchen. Yum!",
-      "scene": "🍳"
+      "text": "Dad is cooking in the kitchen. Yum!",
+      "scene": "👨🍳"
     },
     {
       "text": "Mum is reading in the living room.",
       "scene": "🛋️📖"
     },
     {
-      "text": "My brother is sleeping in the bedroom. Shh!",
-      "scene": "🛏️💤"
+      "text": "The baby is sleeping in the bedroom. Shh!",
+      "scene": "👶🛏️💤"
     },
     {
       "text": "The cat is in the bathroom! Splash!",
       "scene": "🛁🐱"
     },
     {
-      "text": "Lunch time! We all go to the dining room.",
+      "text": "Lunch time! Everyone goes to the dining room.",
       "scene": "🍽️"
     },
     {
@@ -41,11 +41,11 @@
       "answer": "kitchen"
     },
     {
-      "ask": "Where is the cat? Splash!",
-      "answer": "bathroom"
+      "ask": "Where is Mum reading?",
+      "answer": "living-room"
     },
     {
-      "ask": "Where is my brother sleeping?",
+      "ask": "Where is the baby sleeping?",
       "answer": "bedroom"
     }
   ]
