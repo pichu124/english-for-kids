@@ -68,7 +68,7 @@ export function reportScreen(ctx: Ctx): HTMLElement {
           'section',
           { class: 'rp-feelings' },
           h('h2', {}, '💛 Bé chào Bix mỗi ngày'),
-          h('p', {}, `${r.feelings.length}/7 ngày bé nói thứ, thời tiết và cảm xúc bằng tiếng Anh: `, r.feelings.map((f, i) => h('span', { class: 'rp-feel' }, i ? ' · ' : '', `${WEEKDAY[new Date(`${f.day}T12:00`).getDay()]} ${FEEL_VI[f.feel ?? ''] ?? ''}`))),
+          h('p', {}, `${r.feelings.length}/7 ngày bé chào Bix và chọn cảm xúc bằng tiếng Anh: `, r.feelings.map((f, i) => h('span', { class: 'rp-feel' }, i ? ' · ' : '', `${WEEKDAY[new Date(`${f.day}T12:00`).getDay()]} ${FEEL_VI[f.feel ?? ''] ?? ''}`))),
           r.feelings.some((f) => f.feel === 'sad' || f.feel === 'angry') ? h('p', { class: 'rp-muted' }, 'Có ngày bé chọn buồn hoặc bực. Hỏi nhẹ nhàng "Hôm đó có chuyện gì không con?" — Bix chỉ ôm và hít thở cùng bé, không hỏi thêm.') : null,
         )
       : null,

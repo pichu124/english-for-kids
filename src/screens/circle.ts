@@ -9,6 +9,7 @@ import type { Ctx } from '../router';
 import { once } from './games2';
 import { todayNextButton } from './today';
 import { homeButton } from './widgets';
+import { limitReached } from '../lib/usage';
 
 /**
  * Hello! (the first step of Today, about 30 seconds): like the morning circle at school.
@@ -31,6 +32,10 @@ export const FEELINGS: [string, string, string][] = [
 ];
 
 export function circleScreen(ctx: Ctx): HTMLElement {
+  if (limitReached()) {
+    queueMicrotask(() => ctx.go('rest'));
+    return h('main');
+  }
   const lv = Math.max(0, LEVELS.findIndex((l) => l.id === currentLevel().id));
   const showText = currentLevel().showText;
   const bix = new Bix({ size: 'md' }).setMood('hello');
@@ -59,7 +64,8 @@ export function circleScreen(ctx: Ctx): HTMLElement {
     const mine = week.find((b) => b.dataset.day === today)!;
     if (lv <= 2) mine.classList.add('is-hint'); // younger children: today glows, they touch it
     stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'day', 'data-answer': today }, h('div', { class: 'cc-week' }, week)));
-    await bix.talk(lv <= 2 ? `Today is ${today}! Touch ${today}!` : 'What day is it today?', 'happy', 'What day is it? 📅');
+    // the days work while Bix talks ("Touch Friday!" — a quick child taps at once)
+    void bix.talk(lv <= 2 ? `Today is ${today}! Touch ${today}!` : 'What day is it today?', 'happy', 'What day is it? 📅');
     for (let misses = 0; ; ) {
       const t = await once(week);
       if (!ctx.alive()) return;
@@ -85,7 +91,9 @@ export function circleScreen(ctx: Ctx): HTMLElement {
     const [id, , reply] = WEATHER.find((w) => w[0] === t.dataset.id)!;
     update(() => (dayLog().circle = { ...dayLog().circle, weather: id }));
     await bix.talk(`It's ${id}! Say it with me: it's ${id}!`, 'happy', `It's ${id}!`);
+    if (!ctx.alive()) return;
     await wait(900);
+    if (!ctx.alive()) return;
     await bix.talk(reply, 'happy');
   };
 
@@ -98,13 +106,16 @@ export function circleScreen(ctx: Ctx): HTMLElement {
     const [id, , reply] = FEELINGS.find((f) => f[0] === t.dataset.id)!;
     update(() => (dayLog().circle = { ...dayLog().circle, feel: id }));
     await bix.talk(`I'm ${id}. Say it with me: I'm ${id}!`, id === 'happy' ? 'happy' : 'encourage', `I'm ${id}.`);
+    if (!ctx.alive()) return;
     await wait(900);
+    if (!ctx.alive()) return;
     await bix.talk(reply, 'happy');
   };
 
   setTimeout(async () => {
     if (!ctx.alive()) return;
     await bix.talk(`${hello}${name ? `, ${name}` : ''}!`, 'hello', `${hello}! 👋`);
+    if (!ctx.alive()) return;
     if (lv >= 1) await dayPart();
     if (ctx.alive()) await weatherPart();
     if (ctx.alive()) await feelPart();

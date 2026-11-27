@@ -9,6 +9,7 @@ import { say } from '../lib/tts';
 import type { Ctx } from '../router';
 import { finish, once, shell } from './games2';
 import { graphemes, pick, PRAISE, wordPicture } from './lesson/shared';
+import { fixEmoji, wordEmoji } from '../lib/emoji';
 
 /**
  * Three more games (Games screen, and the game step of Today):
@@ -59,10 +60,12 @@ const shake = (el: HTMLElement) => {
 };
 const stars = (n: number) => h('div', { class: 'play-stars g3-stars', 'aria-hidden': 'true' }, Array.from({ length: n }, () => h('span', {}, '★')));
 const hearButton = () => h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen again' }, h('span', { class: 'icon-speaker' }));
-const emojiPic = (e: string) => h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, h('span', { class: `g3-emoji ${graphemes(e) > 1 ? 'is-two' : ''}` }, e));
+/** An emoji this device can draw (older look-alike if needed, see lib/emoji.ts). */
+const safe = (e: string) => (graphemes(e) > 1 ? fixEmoji(e) : (wordEmoji(e) ?? fixEmoji(e)));
+const emojiPic = (e: string) => h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, h('span', { class: `g3-emoji ${graphemes(e) > 1 ? 'is-two' : ''}` }, safe(e)));
 /** n copies of an emoji, five to a row (easier to count). */
 const group = (e: string, n: number, cls = '') =>
-  h('div', { class: `mt-group ${cls}`, 'aria-label': String(n), style: `--cols:${Math.min(Math.max(n, 1), 5)}` }, Array.from({ length: n }, (_, i) => h('span', { class: 'mt-item', style: `--i:${i}` }, e)));
+  h('div', { class: `mt-group ${cls} ${n > 10 ? 'is-many' : ''}`, 'aria-label': String(n), style: `--cols:${Math.min(Math.max(n, 1), 5)}` }, Array.from({ length: n }, (_, i) => h('span', { class: 'mt-item', style: `--i:${i}` }, safe(e))));
 
 /* ================================================================== Grammar */
 
@@ -72,7 +75,7 @@ const sentence = (before: string, word: string, after: string) => [before, word,
 
 /** Nouns that make a plural with -s / -es and take "a" or "an". */
 const NOUN_TOPICS = ['animals', 'animals2', 'animals3', 'zoo', 'farm', 'wild', 'food', 'food2', 'food3', 'food4', 'fruit', 'meals', 'toys', 'toys2', 'transport', 'transport3', 'school', 'home', 'home2', 'kitchen', 'clothes', 'clothes2', 'clothes3'];
-const UNCOUNT = new Set(['milk', 'rice', 'bread', 'juice', 'meat', 'lemonade', 'soup', 'pasta', 'salad', 'cheese', 'chocolate', 'tea', 'water', 'sweets', 'chips', 'noodles', 'grapes', 'chicken', 'game', 'teacher', 'orange']);
+const UNCOUNT = new Set(['milk', 'rice', 'bread', 'juice', 'meat', 'lemonade', 'soup', 'pasta', 'salad', 'cheese', 'chocolate', 'tea', 'water', 'sweets', 'chips', 'noodles', 'grapes', 'chicken', 'game', 'teacher', 'orange', 'underground']);
 const IRREGULAR = new Set(['mouse', 'sheep', 'fish', 'child', 'man', 'woman', 'foot', 'tooth', 'person', 'goose', 'deer', 'glasses', 'jeans', 'shorts', 'shoes', 'socks', 'boots', 'gloves']);
 export function plural(t: string): string | null {
   if (IRREGULAR.has(t) || /(f|fe|o)$/.test(t)) return null;
@@ -262,7 +265,7 @@ export function mathsGame(ctx: Ctx): HTMLElement {
   const rnd = (a: number, b: number) => a + Math.floor(Math.random() * (b - a + 1));
   const numButtons = (answer: number, near: number[]) => {
     const set = new Set([answer]);
-    for (const x of shuffle(near)) if (x >= 0 && x <= 100 && set.size < 3) set.add(x);
+    for (const x of shuffle(near)) if (x >= 1 && x <= 100 && set.size < 3) set.add(x);
     for (let d = 1; set.size < 3; d++) set.add(answer + d);
     return shuffle([...set]).map((n) => h('button', { class: 'mt-num pop', 'data-n': String(n), 'aria-label': numWord(n) }, String(n)));
   };
@@ -280,6 +283,7 @@ export function mathsGame(ctx: Ctx): HTMLElement {
     let options: HTMLElement[] = [];
     let scene: HTMLElement;
     let afterShow: (() => Promise<void>) | null = null;
+    let answered = false;
 
     if (kind === 'count') {
       answer = rnd(lv === 0 ? 1 : 2, lv >= 2 ? 12 : max);
@@ -291,7 +295,8 @@ export function mathsGame(ctx: Ctx): HTMLElement {
       const a = rnd(1, Math.floor(max / 2));
       const b = rnd(1, max - a);
       answer = a + b;
-      scene = h('div', { class: 'mt-sum' }, group(t.e, a), h('span', { class: 'mt-sign' }, '+'), group(t.e, b));
+      const size = Math.max(a, b) > 10 ? 'is-many' : ''; // both groups the same size
+      scene = h('div', { class: 'mt-sum' }, group(t.e, a, size), h('span', { class: 'mt-sign' }, '+'), group(t.e, b, size));
       options = numButtons(answer, [answer - 1, answer + 1, a, b]);
       prompt = `${cap(some(a, t))} and ${some(b, t)}. How many ${t.many}?`;
       praise = `${cap(numWord(a))} and ${numWord(b)} is ${numWord(answer)}!`;
@@ -308,10 +313,10 @@ export function mathsGame(ctx: Ctx): HTMLElement {
       again = 'Count the ones that are left!';
       afterShow = async () => {
         await bix.talk(`${cap(some(n, t))}.`, 'idle');
-        if (!ctx.alive()) return;
+        if (!ctx.alive() || answered) return;
         [...g.children].slice(-k).forEach((x) => x.classList.add('is-gone'));
         sfx.pop();
-        await bix.talk(`${goesAway(k, t)} ${prompt}`, 'idle', `${prompt} 🤔`);
+        if (!answered) await bix.talk(`${goesAway(k, t)} ${prompt}`, 'idle', `${prompt} 🤔`);
       };
     } else if (kind === 'more') {
       const a = rnd(1, max - 1);
@@ -336,7 +341,8 @@ export function mathsGame(ctx: Ctx): HTMLElement {
       again = '';
     }
     stage.replaceChildren(h('div', { class: 'mt-round', 'data-kind': kind, 'data-answer': String(answer) }, h('div', { class: 'mt-scene' }, scene), h('div', { class: 'mt-side' }, kind === 'more' ? null : h('div', { class: 'mt-nums' }, options), hear)));
-    if (afterShow) await afterShow();
+    // the buttons work at once, also while Bix shows the "take away"
+    if (afterShow) void afterShow();
     else void bix.talk(prompt, 'idle', `${prompt} 🤔`);
     for (;;) {
       if (!ctx.alive()) return;
@@ -348,8 +354,10 @@ export function mathsGame(ctx: Ctx): HTMLElement {
         continue;
       }
       if (Number(p.dataset.n) === answer) {
+        answered = true;
         sfx.success();
         p.classList.add('is-right');
+        stage.querySelectorAll('.mt-item').forEach((x, i) => i >= answer && kind === 'take' && x.classList.add('is-gone'));
         bar.children[r]?.classList.add('on');
         stage.querySelector('.mt-round')?.classList.add('is-counted');
         await bix.talk(`${pick(PRAISE)} ${praise}`, 'happy', `${answer} ✓`);
@@ -388,7 +396,7 @@ export const CATS: Cat[] = [
   { id: 'jobs', icon: '🧑‍🔧', name: 'Jobs', many: 'jobs', topics: ['jobs', 'jobs3'] },
 ];
 /** Words that could go in two baskets (a chicken is an animal and food; a toy car is transport…). */
-const TWO_BASKETS = new Set(['chicken', 'orange', 'train', 'car', 'guitar', 'piano', 'camera', 'game', 'handbag', 'teacher', 'baby', 'ice', 'sea']);
+const TWO_BASKETS = new Set(['chicken', 'orange', 'train', 'car', 'guitar', 'piano', 'camera', 'game', 'handbag', 'teacher', 'baby', 'ice', 'sea', 'fish', 'ball', 'watch', 'glasses']);
 
 /** Words of each basket the child can know by now (levels up to this one). */
 export function sortPool(lv: number): Map<Cat, Word[]> {
@@ -493,6 +501,7 @@ export function sortGame(ctx: Ctx): HTMLElement {
     await sorting();
     for (let i = 0; i < ODD && ctx.alive(); i++) {
       await wait(250);
+      if (!ctx.alive()) return;
       await oddOne();
     }
     if (ctx.alive()) finish(ctx, host, bix, 'sort', 'Super sorting! Play again?');

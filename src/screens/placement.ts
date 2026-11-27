@@ -9,6 +9,8 @@ import { say } from '../lib/tts';
 import type { Ctx } from '../router';
 import { once } from './games2';
 import { wordPicture } from './lesson/shared';
+import { homeButton } from './widgets';
+import { limitReached } from '../lib/usage';
 
 /**
  * Placement quiz (parent area → "Bé nên học bậc nào?", about 3 minutes, played by the child):
@@ -63,6 +65,10 @@ export function levelUpReason(levelId: string): { next: string; why: string } | 
 }
 
 export function placementScreen(ctx: Ctx): HTMLElement {
+  if (limitReached()) {
+    queueMicrotask(() => ctx.go('rest'));
+    return h('main');
+  }
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('hello');
   const stage = h('div', { class: 'pl-stage' });
   const dots = h('div', { class: 'play-stars pl-dots', 'aria-hidden': 'true' });
@@ -121,14 +127,15 @@ export function placementScreen(ctx: Ctx): HTMLElement {
     update((s) => (s.placement = { day: today(), level, score }));
     sfx.reward();
     const parent = h('button', { class: 'btn btn-good pl-parent', lang: 'vi', onclick: () => (sfx.tap(), ctx.go('parent')) }, '🔒 Bố mẹ xem kết quả');
-    stage.replaceChildren(h('div', { class: 'pl-round pl-done pop', 'data-level': level }, h('div', { class: 'test-medal', 'aria-hidden': 'true' }, '🌟'), parent));
+    const home = h('button', { class: 'btn btn-sun', 'aria-label': 'Home', onclick: () => (sfx.tap(), ctx.go('home')) }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home');
+    stage.replaceChildren(h('div', { class: 'pl-round pl-done pop', 'data-level': level }, h('div', { class: 'test-medal', 'aria-hidden': 'true' }, '🌟'), h('div', { class: 'reward-actions' }, home, parent)));
     await bix.talk('All done! Thank you! Now ask Mum or Dad to look.', 'happy', '🌟 Thank you!');
   }, 300);
 
   return h(
     'main',
     { class: 'game placement' },
-    h('header', { class: 'book-top' }, h('h1', { class: 'world-title' }, 'Little Quiz'), dots, h('div', { class: 'game-bix' }, bix.el)),
+    h('header', { class: 'book-top' }, homeButton(ctx), h('h1', { class: 'world-title' }, 'Little Quiz'), dots, h('div', { class: 'game-bix' }, bix.el)),
     h('div', { class: 'game-body pl-body' }, stage),
   );
 }

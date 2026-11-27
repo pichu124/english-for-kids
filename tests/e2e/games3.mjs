@@ -203,6 +203,32 @@ for (const level of ['L0', 'L2']) {
   await page.close();
 }
 
+// leaving Hello! halfway: Bix stops (nothing more is said on the home screen)
+{
+  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.addInitScript(FAKES);
+  // slow speech, like a real voice
+  await page.addInitScript(() => {
+    const s = window.speechSynthesis;
+    s.speak = (u) => { window.__spoken.push(u.text); setTimeout(() => u.onend && u.onend(), 1200); };
+    localStorage.setItem('efk.v1', JSON.stringify({ childName: 'Shin', settings: { dailyLimitMin: 0, rate: 0.8, level: 'L2' }, topics: {}, words: {}, blocks: { inventory: {}, placed: [], totalEarned: 0 }, days: {}, bonus: {}, review: {} }));
+  });
+  await page.goto(base);
+  await page.locator('.btn-play').click({ force: true });
+  await page.locator('.home-today').click({ force: true });
+  await page.locator('.today-go').click({ force: true });
+  await page.waitForFunction(() => window.__spoken.some((t) => /^Good /.test(t)));
+  await page.locator('[aria-label="Home"]').first().click({ force: true });
+  await page.waitForSelector('.home');
+  const n = await page.evaluate(() => window.__spoken.length);
+  await page.waitForTimeout(4000);
+  const after = await page.evaluate((k) => window.__spoken.slice(k), n);
+  if (after.some((t) => /Today is|Touch|weather|How are you/.test(t))) fail('Hello! must stop when the child leaves: ' + after.join(' | '));
+  step('leaving Hello! halfway: Bix does not go on talking on the next screen');
+  await page.close();
+}
+
 // Placement quiz from the parent area, then the result card
 {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });

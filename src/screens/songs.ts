@@ -2,7 +2,7 @@ import { Bix } from '../art/bix';
 import { LEVELS, topicById, topicsOfLevel, type Topic } from '../content';
 import { h, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
-import { musicMode, playTune, type Player } from '../lib/music';
+import { musicMode, playTune, setBackground, type Player } from '../lib/music';
 import { sfx } from '../lib/sfx';
 import { getState, update } from '../lib/storage';
 import { say, stopSpeaking } from '../lib/tts';
@@ -91,6 +91,8 @@ function player(ctx: Ctx, t: Topic): HTMLElement {
         await wait(beatMs);
       }
     };
+    // the quiet background music (Games screens) stops while a song plays
+    setBackground(false);
     if (tune) player = playTune(tune, { vol: 0.32, onBeat: hit });
     await beat(4);
     for (const [i, line] of c.lines.entries()) {

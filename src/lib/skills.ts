@@ -46,7 +46,9 @@ export function skillSummary(level: Level): Skill[] {
   const withReading = level.reading?.length ? units : [];
   const readParts = withReading.filter((t) => (s.topics[t.id]?.readDone ?? 0) > 0).length;
   const phonicsDone = phonicsData.sets.filter((x) => s.phonics?.[x.id]).length;
-  const stories = Object.keys(s.storiesRead ?? {}).length;
+  // stories (the 📚 Stories shelf); little phonics books are counted on their own
+  const stories = Object.keys(s.storiesRead ?? {}).filter((k) => !k.startsWith('book-')).length;
+  const books = Object.keys(s.storiesRead ?? {}).filter((k) => k.startsWith('book-')).length;
   const readShare = withReading.length ? (pct(readParts, withReading.length) * 2 + pct(phonicsDone, phonicsData.sets.length)) / 3 : pct(phonicsDone, phonicsData.sets.length);
 
   // writing: words spelled (Starters on), letters traced
@@ -82,7 +84,7 @@ export function skillSummary(level: Level): Skill[] {
       share: readShare,
       facts: [
         withReading.length ? `Phần "Đọc & Viết" xong: ${readParts}/${withReading.length} bài${score('reading')}` : 'Bậc này chưa có phần đọc chữ: bé làm quen âm trước.',
-        `Âm (phonics): ${phonicsDone}/${phonicsData.sets.length} nhóm · truyện đã đọc: ${stories}`,
+        `Âm (phonics): ${phonicsDone}/${phonicsData.sets.length} nhóm · truyện đã đọc: ${stories}${books ? ` · sách nhỏ phonics: ${books}` : ''}`,
         ...(played('grammar') ? [`Grammar (điền từ vào câu): ${played('grammar')} lượt`] : []),
       ],
       tip: 'Học tiếp nhóm âm ở ABC → 🔊 Sounds, cho bé tự đọc truyện phonics, và chơi 🧩 Grammar (từ Starters) ở Games.',

@@ -170,7 +170,7 @@ export function weekReport(): WeekReport {
     minutes: days.reduce((n, d) => n + d.minutes, 0),
     lessons: days.reduce((n, d) => n + d.lessons, 0),
     newWords,
-    feelings: list.filter((d) => s.days[d]?.circle).map((d) => ({ day: d, feel: s.days[d].circle!.feel, weather: s.days[d].circle!.weather })),
+    feelings: list.filter((d) => s.days[d]?.circle?.feel).map((d) => ({ day: d, feel: s.days[d].circle!.feel, weather: s.days[d].circle!.weather })),
     practise: uniqPractise,
     recentTopics,
     spoken,
