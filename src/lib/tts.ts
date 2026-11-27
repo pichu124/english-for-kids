@@ -1,5 +1,6 @@
 /** Text-to-speech via the browser's speechSynthesis (en-US). */
 import { getState } from './storage';
+import { playRecordings, recordingsFor, stopRecording } from './voice';
 
 const synth: SpeechSynthesis | undefined =
   typeof window !== 'undefined' && 'speechSynthesis' in window ? window.speechSynthesis : undefined;
@@ -71,6 +72,7 @@ export function pickVoice(): SpeechSynthesisVoice | undefined {
 /** Stop anything currently being spoken and invalidate pending sequences. */
 export function stopSpeaking(): void {
   generation++;
+  stopRecording();
   try {
     if (synth && (synth.speaking || synth.pending) && !onlyPrimer()) synth.cancel();
   } catch {
@@ -107,8 +109,31 @@ export function primeSpeech(): void {
  * devices `onend` never fires, so a length-based timeout backs it up.
  * If a line has not started after ~1.5 s (the engine dropped it), it is sent once more.
  */
-export function say(text: string, opts: { rate?: number; pitch?: number; onWord?: (charIndex: number) => void } = {}): Promise<void> {
+type SayOpts = { rate?: number; pitch?: number; onWord?: (charIndex: number) => void };
+export function say(text: string, opts: SayOpts = {}): Promise<void> {
   const myGen = ++generation;
+  // a real person's recording of this line, when there is one (src/lib/voice.ts)
+  const rec = recordingsFor(text);
+  if (rec) {
+    try {
+      if (synth && (synth.speaking || synth.pending) && !onlyPrimer()) synth.cancel();
+    } catch {
+      /* ignore */
+    }
+    lastSpeech.text = text;
+    lastSpeech.voice = 'giọng thu sẵn';
+    return playRecordings(rec, opts.rate ?? getState().settings.rate ?? 0.8, () => myGen === generation).then((ok) => {
+      if (ok || myGen !== generation) {
+        lastSpeech.result = '✓ Đã phát bản thu';
+        return;
+      }
+      return speakEngine(text, opts, myGen); // the file would not play: the speech engine says it
+    });
+  }
+  return speakEngine(text, opts, myGen);
+}
+
+function speakEngine(text: string, opts: SayOpts, myGen: number): Promise<void> {
   if (!synth) {
     lastSpeech.result = 'Trình duyệt không có giọng đọc';
     return new Promise((r) => setTimeout(r, 400));

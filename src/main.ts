@@ -17,6 +17,7 @@ import './styles/duo.css';
 import { readDeepLink } from './lib/level';
 import { initPWA } from './lib/pwa';
 import { requestPersistence } from './lib/storage';
+import { loadVoice } from './lib/voice';
 import { startUsageClock } from './lib/usage';
 import { currentScreen, go, mount, onNavigate, register } from './router';
 import { setBackground } from './lib/music';
@@ -68,6 +69,7 @@ register('worksheet', worksheetScreen);
 register('welcome', welcomeScreen);
 setOutfitSource(() => getState().outfit ?? {});
 
+void loadVoice(); // recorded lines, if the app ships any (public/audio)
 readDeepLink(); // before the first screen: a teacher's link skips the parents' welcome
 mount(document.getElementById('app')!);
 requestPersistence();

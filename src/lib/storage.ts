@@ -69,6 +69,8 @@ export type State = {
     voiceURI?: string;
     /** Speech-recognizer configuration that works on this device (see SR_MODES). */
     srMode?: SrMode;
+    /** Use real recordings when the app has them (src/lib/voice.ts); default on. */
+    recorded?: boolean;
     /** Level shown on the home map (L0…L4). */
     level?: string;
     /** Music: 'off', 'chant' (default: only during chants) or 'all' (also soft background music). */

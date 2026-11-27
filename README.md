@@ -170,6 +170,16 @@ Máy chưa có tiến độ nào thì app mở **màn chào cho bố mẹ** (`sr
 
 App kèm sẵn tệp `public/fonts/bix-emoji.woff2` (440 KB, chỉ các emoji app dùng, lấy từ **Noto Color Emoji** của Google, giấy phép SIL OFL 1.1 cho phép dùng thương mại, bản giấy phép kèm ở `public/fonts/LICENSE-bix-emoji.txt`), nên Samsung, Xiaomi hay máy Android cũ đều hiện cùng một hình, kể cả khi offline. Chrome 108+ và Firefox dùng tệp này; Safari (iPad/iPhone) vẫn dùng emoji của Apple. Thêm emoji mới vào nội dung thì tạo lại tệp: xem đầu `scripts/emoji-font.py` (bộ test `tests/emoji-font.test.ts` báo nếu quên).
 
+## Giọng người thật thu sẵn (tuỳ chọn)
+
+Mặc định Bix dùng giọng đọc của máy. Muốn giọng người thật (nghe tự nhiên hơn, nhất là trên máy Android rẻ):
+
+1. `node scripts/voice-lines.mjs > voice-lines.csv`: danh sách khoảng 3.400 câu/từ cần thu, mỗi dòng kèm tên tệp.
+2. Người thu âm (người bản ngữ, giọng thân thiện, không nhạc nền) thu mỗi dòng thành một tệp mp3/m4a đúng tên, bỏ vào `public/audio/`.
+3. `node scripts/voice-lines.mjs --manifest`: tạo `public/audio/manifest.json`.
+
+Câu nào có tệp thì phát tệp (câu dài phát từng câu nhỏ), câu nào chưa có thì vẫn dùng giọng máy, nên có thể thu dần. Bố mẹ tắt/bật ở khu bố mẹ → Giọng đọc & micro. Tệp thu được lưu sẵn để dùng offline (`src/lib/voice.ts`).
+
 ## Cách chấm điểm phần Nói
 
 - Chấm **dễ**: đúng nếu **bất kỳ** phương án nhận dạng nào (cả kết quả tạm thời) chứa từ mục tiêu, hoặc gần giống (sai 1–2 chữ cái tuỳ độ dài từ), hoặc có “khung phụ âm” giống nhau.

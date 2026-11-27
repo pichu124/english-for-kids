@@ -11,6 +11,7 @@ import { listenOnce, recognitionSupported } from '../lib/listen';
 import { canInstall, isInstalled, offlineReady, onInstallChange, promptInstall } from '../lib/pwa';
 import { addProfile, backupDue, checkBackup, exportBackup, lastBackup, markBackedUp, restoreBackup, type Backup, MAX_PROFILES, profileAnimal, profiles, removeProfile, switchProfile, getState, resetProgress, save, SR_MODE_LABEL, SR_MODES, today, update, wordKey, type DayLog, type SrMode } from '../lib/storage';
 import { allVoices, englishVoices, lastSpeech, pickVoice, say, ttsSupported } from '../lib/tts';
+import { recordedCount } from '../lib/voice';
 import { sfx } from '../lib/sfx';
 import { limitReached, minutesToday } from '../lib/usage';
 import type { Ctx } from '../router';
@@ -746,6 +747,13 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       showDiag(`Kết quả: ${lastSpeech.result || '—'} · giọng: ${lastSpeech.voice || '—'}`);
     });
     const beepBtn = h('button', { class: 'p-btn', onclick: () => { sfx.unlock(); sfx.success(); } }, '🔔 Thử loa (tiếng chuông)');
+    // real recordings (public/audio): on by default when the app has some
+    const recBox = h('label', { class: 'p-row p-recorded' });
+    if (recordedCount()) {
+      const cb = h('input', { type: 'checkbox', checked: getState().settings.recorded !== false }) as HTMLInputElement;
+      cb.addEventListener('change', () => update((st) => (st.settings.recorded = cb.checked)));
+      recBox.append(cb, h('span', {}, `Dùng giọng người thật thu sẵn (${recordedCount()} câu); câu nào chưa thu thì dùng giọng đọc của máy.`));
+    } else recBox.append(h('span', { class: 'p-muted' }, 'App chưa kèm giọng thu sẵn: Bix dùng giọng đọc của máy.'));
 
     // Microphone check in two parts, so a parent can tell *which* part is broken:
     // (1) can the page open the microphone at all, (2) does speech recognition answer.
@@ -920,6 +928,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
       h('label', { class: 'p-row' }, 'Tốc độ đọc', rate, rateLabel),
       h('label', { class: 'p-row' }, 'Giọng đọc', voiceSel),
       h('div', { class: 'p-row' }, testBtn, beepBtn),
+      recBox,
       diag,
       envInfo,
       h('div', { class: 'p-row' }, micBtn, micOut),
