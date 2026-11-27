@@ -49,7 +49,7 @@ function menu(ctx: Ctx): HTMLElement {
       'button',
       { class: `ph-set ${i === next ? 'is-next' : ''}`, 'data-set': st.id, 'aria-label': st.title, style: `--c:${st.color}`, onclick: () => (sfx.tap(), ctx.go('phonics', { set: st.id })) },
       // tricky words: the first few only (the whole list does not fit on a card)
-      h('span', { class: 'ph-set-letters', lang: 'en' }, st.tricky ? `${st.sounds.slice(0, 3).map((x) => x.s).join(' ')}…` : st.sounds.map((x) => x.s).join(' ')),
+      h('span', { class: `ph-set-letters ${st.sounds.map((x) => x.s).join(' ').length > 11 && !st.tricky ? 'is-long' : ''}`, lang: 'en' }, st.tricky ? `${st.sounds.slice(0, 3).map((x) => x.s).join(' ')}…` : st.sounds.map((x) => x.s).join(' ')),
       h('span', { class: 'ph-set-title' }, st.title),
       done[st.id] ? h('span', { class: 'ph-set-star', 'aria-hidden': 'true' }, '⭐') : null,
       // left halfway: how far the child got (4 steps after meeting the sounds)

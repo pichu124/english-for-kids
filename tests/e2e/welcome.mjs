@@ -45,6 +45,17 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 640, height: 320 }, { w
   if (!(await page.locator('[data-limit="15"].is-on').count())) fail('15 minutes is the default');
   await page.locator('[data-limit="20"]').click();
   await cut('time');
+  // ◀ and the Android back button go to the card before, keeping what was entered
+  await page.locator('[data-wl="back"]').click();
+  await page.waitForSelector('[data-step="1"]');
+  if ((await page.locator('.wl-name').inputValue()) !== 'Su') fail('the name is kept going back');
+  await page.locator('[data-wl="next"]').click();
+  await page.waitForSelector('[data-step="2"]');
+  await page.goBack();
+  await page.waitForSelector('[data-step="1"]');
+  await page.locator('[data-wl="next"]').click();
+  await page.waitForSelector('[data-step="2"]');
+  await page.locator('[data-limit="20"]').click();
   await page.locator('[data-wl="next"]').click();
   await page.waitForSelector('[data-step="3"]');
   await page.locator('[data-wl="sound"]').click();
@@ -77,8 +88,12 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 640, height: 320 }, { w
   await page.addInitScript(FAKES);
   await page.addInitScript(() => localStorage.removeItem('efk.welcome'));
   await page.goto(base);
+  await page.locator('[data-wl="next"]').click();
+  await page.locator('.wl-name').fill('Bin');
   await page.locator('[data-wl="skip"]').click();
   await page.waitForSelector('.btn-play');
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem('efk.v1')));
+  if (st.childName !== 'Bin' || st.settings.dailyLimitMin !== 0) fail('skip keeps the typed name and sets no limit it never showed: ' + JSON.stringify(st));
   await page.close();
   const p2 = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   await p2.addInitScript(FAKES);
@@ -94,7 +109,7 @@ for (const vp of [{ width: 1280, height: 800 }, { width: 640, height: 320 }, { w
   await p3.goto(base);
   await p3.waitForSelector('.btn-play');
   await p3.close();
-  step('skip → Play; a unit link and an existing child skip the welcome');
+  step('skip keeps the typed name → Play; a unit link and an existing child skip the welcome');
 }
 await browser.close();
 console.log('welcome e2e ok');

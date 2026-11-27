@@ -127,7 +127,7 @@ export type WeekReport = {
   recentTopics: Topic[];
   spoken: { auto: number; parent: number; miss: number };
   /** This week: phonics sets finished, pages the child read aloud, chats/speaking practice done. */
-  extra: { sounds: number; read: number; talk: number; duo: number; sheets: number };
+  extra: { sounds: number; read: number; talk: number; duo: number; sheets: number; letters: number };
 };
 
 const isoDay = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -174,9 +174,9 @@ export function weekReport(): WeekReport {
     extra: list.reduce(
       (acc, d) => {
         const x = s.days[d];
-        return { sounds: acc.sounds + (x?.sounds ?? 0), read: acc.read + (x?.read ?? 0), talk: acc.talk + (x?.talk ?? 0), duo: acc.duo + (x?.duo ?? 0), sheets: acc.sheets + (x?.sheets ?? 0) };
+        return { sounds: acc.sounds + (x?.sounds ?? 0), read: acc.read + (x?.read ?? 0), talk: acc.talk + (x?.talk ?? 0), duo: acc.duo + (x?.duo ?? 0), sheets: acc.sheets + (x?.sheets ?? 0), letters: acc.letters + (x?.letters ?? 0) };
       },
-      { sounds: 0, read: 0, talk: 0, duo: 0, sheets: 0 },
+      { sounds: 0, read: 0, talk: 0, duo: 0, sheets: 0, letters: 0 },
     ),
   };
 }

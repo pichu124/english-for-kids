@@ -11,6 +11,12 @@ const vn = (iso: string) => {
 };
 
 /** Weekly report for parents (Vietnamese), printable on A4 portrait or saved as PDF. */
+/** "Tuần này bé học 2 nhóm âm, tập viết 5 chữ." — only what was done (never "0 lượt"). */
+function said(parts: [number, string, string][], start: string, none: string): string {
+  const done = parts.filter(([n]) => n > 0).map(([n, verb, unit]) => `${verb} ${n} ${unit}`);
+  return done.length ? `${start} ${done.join(', ')}.` : none;
+}
+
 export function reportScreen(ctx: Ctx): HTMLElement {
   const r = weekReport();
   const name = getState().childName.trim() || 'bé';
@@ -42,14 +48,14 @@ export function reportScreen(ctx: Ctx): HTMLElement {
     h(
       'section',
       { class: 'rp-extra' },
-      h('h2', {}, '🔊 Âm, đọc to & trò chuyện'),
-      h('p', {}, r.extra.sounds || r.extra.read || r.extra.talk ? `Tuần này bé học ${r.extra.sounds} nhóm âm, tự đọc to ${r.extra.read} trang, trò chuyện / luyện nói với Bix ${r.extra.talk} lần.` : 'Tuần này bé chưa luyện âm, đọc to hay trò chuyện. Thử ABC → 🔊 Sounds, nút 🎤 My turn trong truyện, hoặc 💬 Talk.'),
+      h('h2', {}, '🔊 Âm, đọc to, tập viết & trò chuyện'),
+      h('p', {}, said([[r.extra.sounds, 'học', 'nhóm âm'], [r.extra.read, 'tự đọc to', 'trang'], [r.extra.letters, 'tập viết', 'chữ'], [r.extra.talk, 'trò chuyện / luyện nói với Bix', 'lần']], 'Tuần này bé', 'Tuần này bé chưa luyện âm, đọc to, tập viết hay trò chuyện. Thử ABC → 🔊 Sounds hoặc ✏️ Write, nút 🎤 My turn trong truyện, hoặc 💬 Talk.')),
     ),
     h(
       'section',
       { class: 'rp-extra' },
       h('h2', {}, '🧒👩 Cùng bố mẹ'),
-      h('p', {}, r.extra.duo || r.extra.sheets ? `Tuần này cả nhà chơi cùng nhau ${r.extra.duo} lượt, in ${r.extra.sheets} phiếu bài tập.` : 'Tuần này chưa chơi cùng nhau. Thử Games → 🧒👩 Play Together (2 người trên một máy), hoặc in một phiếu bài tập ở khu bố mẹ.'),
+      h('p', {}, said([[r.extra.duo, 'chơi cùng nhau', 'lượt'], [r.extra.sheets, 'in', 'phiếu bài tập']], 'Tuần này cả nhà', 'Tuần này chưa chơi cùng nhau. Thử Games → 🧒👩 Play Together (2 người trên một máy), hoặc in một phiếu bài tập ở khu bố mẹ.')),
     ),
     h('section', {}, h('h2', {}, '⭐ Từ mới tuần này'), r.newWords.length ? h('div', { class: 'rp-words' }, r.newWords.slice(0, 24).map(chip)) : h('p', { class: 'rp-muted' }, 'Tuần này chưa có từ mới. Mỗi ngày một bài ngắn là đủ.')),
     h(

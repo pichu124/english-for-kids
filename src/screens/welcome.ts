@@ -48,14 +48,39 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
   /** What the current card keeps when the parent skips the rest (a name already typed). */
   let keepOnSkip: (() => void) | null = null;
   const skip = () => h('button', { class: 'p-btn wl-skip', 'data-wl': 'skip', onclick: () => (sfx.tap(), keepOnSkip?.(), finish()) }, 'Bỏ qua, cài sau');
+  // ◀ and the Android back button go to the card before (each card after the first gets a history entry)
+  let step = 0;
+  let goingBack = false;
+  const steps: (() => void)[] = [];
+  const back = () => step > 0 && ((goingBack = true), steps[step - 1](), (goingBack = false));
+  const onPop = () => back();
+  window.addEventListener('popstate', onPop);
+  ctx.onCleanup(() => window.removeEventListener('popstate', onPop));
+  const enter = (n: number) => {
+    if (n > step && !goingBack) {
+      try {
+        history.pushState({ bixWelcome: n }, '');
+      } catch {
+        /* ignore */
+      }
+    }
+    step = n;
+  };
   const card = (n: number, title: string, ...kids: (HTMLElement | HTMLElement[] | string | null)[]) => {
+    enter(n);
     keepOnSkip = null;
     [...dots.children].forEach((d, k) => (d.classList.toggle('on', k < n), d.classList.toggle('now', k === n)));
     body.replaceChildren(h('div', { class: 'wl-card pop', 'data-step': String(n) }, h('h1', { class: 'wl-title' }, title), ...kids));
     body.scrollTop = 0;
   };
   const nav = (next: () => void, label = 'Tiếp ▶') =>
-    h('div', { class: 'wl-nav' }, skip(), h('button', { class: 'p-btn p-btn-main wl-next', 'data-wl': 'next', onclick: () => (sfx.tap(), next()) }, label));
+    h(
+      'div',
+      { class: 'wl-nav' },
+      step > 0 ? h('button', { class: 'p-btn wl-back', 'data-wl': 'back', 'aria-label': 'Quay lại', onclick: () => (sfx.tap(), back()) }, '◀') : null,
+      skip(),
+      h('button', { class: 'p-btn p-btn-main wl-next', 'data-wl': 'next', onclick: () => (sfx.tap(), next()) }, label),
+    );
 
   // 1. Hello
   const hello = () =>
@@ -67,8 +92,8 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
         'ul',
         { class: 'wl-points' },
         h('li', {}, '🎮 Bé tự chơi được: nghe, nhắc lại, chạm hình, đọc truyện. Bix không bao giờ chê “sai”.'),
-        h('li', {}, '📚 Đi từ 3 tuổi đến trình độ Starters, Movers, Flyers (theo khung Cambridge; app không liên kết với Cambridge).'),
-        h('li', {}, '🔒 Không quảng cáo, không thu thập dữ liệu. Tiến độ của bé chỉ lưu trên máy này.'),
+        h('li', {}, '📚 Bài học từ mức 3 tuổi đến trình độ Starters, Movers, Flyers (theo khung Cambridge; app không liên kết với Cambridge).'),
+        h('li', {}, '🔒 Không quảng cáo. App không thu thập dữ liệu: tiến độ của bé chỉ lưu trên máy này.'),
       ),
       h('p', { class: 'p-muted' }, 'Cài đặt mất khoảng 1 phút. Mọi thứ đều đổi lại được trong khu bố mẹ.'),
       nav(child, 'Bắt đầu ▶'),
@@ -86,7 +111,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
           : h(
               'div',
               {},
-              h('p', {}, 'Bậc gợi ý (bé thấy dễ hay khó quá thì đổi ở đây hoặc trong khu bố mẹ):'),
+              h('p', {}, 'Bậc gợi ý. Nếu bé thấy dễ hoặc khó quá, đổi ở đây hoặc trong khu bố mẹ:'),
               h(
                 'div',
                 { class: 'p-seg' },
@@ -131,7 +156,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
   // 3. Daily time
   const time = () => {
     const seg = h('div', { class: 'p-seg' });
-    // 15 minutes is suggested; it is saved only with "Tiếp" (skipping keeps no limit)
+    // 15 minutes is suggested (and kept if the parent skips from this card)
     let pick = getState().settings.dailyLimitMin || 15;
     const render = () =>
       seg.replaceChildren(
@@ -145,6 +170,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
       seg,
       nav(() => (update((s) => (s.settings.dailyLimitMin = pick)), check())),
     );
+    keepOnSkip = () => update((s) => (s.settings.dailyLimitMin = pick)); // what the card shows is what is kept
   };
 
   // 4. Sound and microphone
@@ -208,7 +234,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
         return;
       }
       const why: Record<string, string> = {
-        denied: 'Micro chưa được cho phép. Chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép, rồi thử lại.',
+        denied: 'Micro chưa được cho phép. Trong Chrome: chạm biểu tượng bên trái địa chỉ trang → Quyền → Micrô → Cho phép. Nếu app đã cài ra màn hình chính (không có thanh địa chỉ): Cài đặt Android → Ứng dụng → Chrome → Quyền → Micrô → Cho phép. Rồi thử lại.',
         offline: 'Nhận giọng nói cần Internet. Bật mạng rồi thử lại.',
         nomic: 'Không mở được micro (có ứng dụng khác đang dùng?).',
       };
@@ -222,6 +248,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
       'Thử loa và micro',
       h('div', { class: 'wl-test-row' }, soundBtn, soundOut),
       h('div', { class: 'wl-test-row' }, micBtn, micOut),
+      h('p', { class: 'p-muted' }, 'Bấm “Thử micro”, cho phép micro nếu máy hỏi, rồi nói “hello”.'),
       h('p', { class: 'p-muted wl-privacy' }, 'Khi bé nói, Chrome gửi tiếng nói tới dịch vụ nhận giọng nói của Google để chuyển thành chữ. App không lưu hay gửi bản ghi âm đi đâu khác.'),
       nav(done),
     );
@@ -229,6 +256,8 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
 
   // 5. Ready
   const done = () => {
+    enter(4);
+    keepOnSkip = null;
     [...dots.children].forEach((d) => (d.classList.add('on'), d.classList.remove('now')));
     bix.setMood('happy');
     const name = getState().childName.trim();
@@ -250,6 +279,7 @@ export function welcomeScreen(ctx: Ctx): HTMLElement {
     );
   };
 
+  steps.push(hello, child, time, check, done);
   hello();
   return el;
 }

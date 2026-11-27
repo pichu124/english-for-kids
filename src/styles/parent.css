@@ -167,6 +167,14 @@
 .wl-nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
 .wl-next { min-width: 150px; font-size: 18px; min-height: 56px; }
 .wl-skip { color: var(--ink-soft); }
+.wl-back { min-width: 56px; min-height: 56px; font-size: 20px; }
+.wl-nav .wl-skip { margin-right: auto; }
+@media (max-height: 500px) {
+  /* phones: the card gets the whole screen and Next stays in sight at the bottom */
+  .wl-side { display: none; }
+  .wl-nav { position: sticky; bottom: -12px; background: #fff; padding: 8px 0 12px; margin-bottom: -12px; box-shadow: 0 -8px 12px -10px rgba(29, 36, 64, .35); z-index: 1; }
+  .wl-next, .wl-back { min-height: 48px; }
+}
 @media (max-width: 760px), (max-height: 500px) {
   .welcome { align-items: stretch; padding: 8px; gap: 8px; }
   .wl-side .bix { transform: scale(.6); margin: -30px; }

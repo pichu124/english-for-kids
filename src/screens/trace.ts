@@ -3,7 +3,7 @@ import { h } from '../lib/dom';
 import { wordEmoji } from '../lib/emoji';
 import { letterName } from '../lib/letters';
 import { sfx } from '../lib/sfx';
-import { getState, update } from '../lib/storage';
+import { dayLog, getState, update } from '../lib/storage';
 import { advance, GUIDES, strokeDone, STROKES, type Pt } from '../lib/strokes';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
@@ -57,7 +57,7 @@ export function traceScreen(ctx: Ctx): HTMLElement {
   const startNum = svg('text', { class: 'tr-start-n', 'text-anchor': 'middle', 'dominant-baseline': 'central' });
   const guideBall = svg('circle', { r: 4.5, class: 'tr-ball' });
   const finger = svg('circle', { r: 5, class: 'tr-finger' });
-  board.append(startDot, startNum, guideBall, finger);
+  board.append(guideBall, startDot, startNum, finger); // the start dot stays on top of the ball
 
   // sample each stroke into points (the browser measures the path for us)
   const sampled = strokes.map((s) => {
@@ -76,6 +76,27 @@ export function traceScreen(ctx: Ctx): HTMLElement {
   let at = 0;
   let finished = false;
   let drawing = false;
+  /** This finger stroke filled some of the line. */
+  let moved = false;
+  // Bix says where to go when a try fills nothing, or after a while with no try (never "wrong")
+  let lastHint = 0;
+  const hint = () => {
+    if (finished || drawing || Date.now() - lastHint < 5000) return;
+    lastHint = Date.now();
+    startDot.classList.remove('is-hint');
+    void startDot.getBoundingClientRect();
+    startDot.classList.add('is-hint');
+    void say(at > 0 ? 'Keep going from the green dot!' : 'Start at the green dot!');
+  };
+  const idle = (() => {
+    let timer = 0;
+    let times = 0;
+    const reset = () => {
+      clearTimeout(timer);
+      if (times < 3) timer = window.setTimeout(() => (times++, hint(), reset()), 12000);
+    };
+    return { reset, stop: () => clearTimeout(timer) };
+  })();
   /** The finger that is writing (a resting palm or a second finger is ignored). */
   let pointer: number | null = null;
   /** The finger is on the stroke: it got there at the point reached so far, and has not wandered off. */
@@ -95,13 +116,15 @@ export function traceScreen(ctx: Ctx): HTMLElement {
       [startDot, startNum, guideBall].forEach((e) => e.setAttribute('visibility', 'hidden'));
       return;
     }
-    const p0 = s.pts[0];
+    // the green dot: where to start, or after lifting the finger, where to carry on
+    const p0 = s.pts[at];
     startDot.setAttribute('cx', String(p0.x));
     startDot.setAttribute('cy', String(p0.y));
     startNum.setAttribute('x', String(p0.x));
     startNum.setAttribute('y', String(p0.y));
-    startNum.textContent = String(cur + 1);
-    [startDot, startNum].forEach((e) => e.setAttribute('visibility', at > 0 ? 'hidden' : 'visible'));
+    startNum.textContent = at > 0 ? '' : String(cur + 1);
+    startDot.setAttribute('visibility', drawing ? 'hidden' : 'visible');
+    startNum.setAttribute('visibility', drawing || at > 0 ? 'hidden' : 'visible');
   };
 
   /** The little ball runs along the stroke to show the way (again after a pause). */
@@ -109,18 +132,25 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     const my = ++demo;
     const s = sampled[cur];
     if (!s || finished) return;
-    let k = 0;
+    // from where the ink stopped to the end of the stroke in about 1.2 s, then it disappears
+    // (it never rests on the end, where a child would start)
+    const from = at;
+    const t0 = performance.now();
+    const ms = Math.max(700, Math.min(1400, (s.pts.length - from) * 18));
     guideBall.setAttribute('visibility', 'visible');
-    const stepBall = () => {
+    const stepBall = (now: number) => {
       if (my !== demo || !ctx.alive() || drawing || finished) return guideBall.setAttribute('visibility', 'hidden');
-      const p = s.pts[Math.min(k, s.pts.length - 1)];
+      const f = Math.min(1, (now - t0) / ms);
+      const p = s.pts[Math.round(from + (s.pts.length - 1 - from) * f)];
       guideBall.setAttribute('cx', String(p.x));
       guideBall.setAttribute('cy', String(p.y));
-      k += 1;
-      if (k <= s.pts.length + 15) requestAnimationFrame(stepBall);
-      else setTimeout(() => my === demo && showWay(), 900);
+      if (f < 1) requestAnimationFrame(stepBall);
+      else {
+        guideBall.setAttribute('visibility', 'hidden');
+        setTimeout(() => my === demo && showWay(), 1300);
+      }
     };
-    stepBall();
+    requestAnimationFrame(stepBall);
   };
 
   const toBoard = (e: PointerEvent): Pt | null => {
@@ -143,7 +173,11 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     finished = true;
     paint();
     board.classList.add('is-done');
-    update((st) => (st.traced = { ...(st.traced ?? {}), [ch]: (st.traced?.[ch] ?? 0) + 1 }));
+    update((st) => {
+      st.traced = { ...(st.traced ?? {}), [ch]: (st.traced?.[ch] ?? 0) + 1 };
+      const d = dayLog();
+      d.letters = (d.letters ?? 0) + 1;
+    });
     sfx.success();
     confetti(document.body, 24);
     bix.setMood('happy');
@@ -160,31 +194,35 @@ export function traceScreen(ctx: Ctx): HTMLElement {
       if (finished || (sampled[cur]?.dot ?? true)) break;
     }
   };
+  /** How close the finger must be, in board units: at least ~35 px on screen (a small phone board too). */
+  const tol = () => Math.max(13, 35 / (board.getScreenCTM()?.a || 1));
   const moveTo = (e: PointerEvent) => {
     const p = toBoard(e);
     if (!p || finished) return;
+    const T = tol();
     finger.setAttribute('cx', String(p.x));
     finger.setAttribute('cy', String(p.y));
     const s = sampled[cur];
     if (s.dot) {
-      if (Math.hypot(s.pts[0].x - p.x, s.pts[0].y - p.y) < 14) void strokeFinished();
+      if (Math.hypot(s.pts[0].x - p.x, s.pts[0].y - p.y) < T + 1) void strokeFinished();
       return;
     }
     // (re)start only at the point reached so far (the green dot at first); wandering off stops it
     const here = Math.hypot(s.pts[at].x - p.x, s.pts[at].y - p.y);
     if (!onTrack) {
-      if (here > 13) return;
+      if (here > T) return;
       onTrack = true;
     }
-    let next = advance(s.pts, at, p);
+    let next = advance(s.pts, at, p, T);
     // a quick finger can be further along: keep following while the line leads to it
-    for (let k = advance(s.pts, next, p); k !== next; k = advance(s.pts, next, p)) next = k;
-    if (next === at && here > 16) {
+    for (let k = advance(s.pts, next, p, T); k !== next; k = advance(s.pts, next, p, T)) next = k;
+    if (next === at && here > T * 1.25) {
       onTrack = false;
       return;
     }
     if (next !== at) {
       at = next;
+      moved = true;
       paint();
       if (strokeDone(s.pts, at)) void strokeFinished();
     }
@@ -194,6 +232,8 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     pointer = e.pointerId;
     drawing = true;
     onTrack = false;
+    moved = false;
+    idle.reset();
     demo++;
     guideBall.setAttribute('visibility', 'hidden');
     board.setPointerCapture?.(e.pointerId);
@@ -206,17 +246,22 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     drawing = false;
     pointer = null;
     finger.setAttribute('visibility', 'hidden');
-    // lifted halfway: keep what was done (the child carries on from there), show the way again
-    if (!finished) setTimeout(() => !drawing && showWay(), 600);
+    paint();
+    // lifted halfway: keep what was done (the child carries on from the green dot), show the way again
+    if (!finished) {
+      if (!moved) hint(); // that try filled nothing: say where to go
+      setTimeout(() => !drawing && showWay(), 600);
+    }
   };
   board.addEventListener('pointerup', up);
   board.addEventListener('pointercancel', up);
   finger.setAttribute('visibility', 'hidden');
 
   const go = (c: string) => (sfx.tap(), ctx.go('abc', { trace: c }));
-  const prev = h('button', { class: 'btn btn-round btn-sun tr-prev', 'aria-label': 'Previous letter', onclick: () => go(ORDER[(i + 25) % 26][upper ? 'toUpperCase' : 'toLowerCase']()) }, '◀');
+  const prev = h('button', { class: 'btn btn-round btn-sun tr-prev', 'aria-label': 'Previous letter', style: i === 0 ? 'visibility:hidden' : '', onclick: () => go(ORDER[i - 1][upper ? 'toUpperCase' : 'toLowerCase']()) }, '◀');
   const nextBtn = h('button', { class: 'btn btn-good tr-next', 'aria-label': 'Next letter', onclick: () => go(ORDER[(i + 1) % 26][upper ? 'toUpperCase' : 'toLowerCase']()) }, '▶');
-  const caseBtn = h('button', { class: 'btn btn-round btn-sun tr-case', 'aria-label': upper ? 'Small letters' : 'Big letters', onclick: () => go(upper ? lower : lower.toUpperCase()) }, upper ? lower : lower.toUpperCase());
+  // switch small ↔ big letters: shows what you get ("a → A")
+  const caseBtn = h('button', { class: 'btn btn-sun tr-case', 'aria-label': upper ? 'Small letters' : 'Big letters', onclick: () => go(upper ? lower : lower.toUpperCase()) }, `${ch} → ${upper ? lower : lower.toUpperCase()}`);
   const again = h('button', { class: 'btn btn-round btn-sun tr-again', 'aria-label': 'Write again', onclick: () => go(ch) }, '🔁');
   const hear = h('button', { class: 'btn btn-round btn-sun btn-ear', 'aria-label': 'Listen', onclick: () => (sfx.tap(), void say(`${letterName(lower)} is for ${info.word}.`)) }, h('span', { class: 'icon-speaker' }));
   const side = h(
@@ -240,6 +285,7 @@ export function traceScreen(ctx: Ctx): HTMLElement {
     showWay();
     void say(`Let's write ${letterName(lower)}! Start at the green dot.`);
   }, 300);
-  ctx.onCleanup(() => demo++);
+  ctx.onCleanup(() => (demo++, idle.stop()));
+  idle.reset();
   return el;
 }

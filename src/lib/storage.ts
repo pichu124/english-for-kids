@@ -54,6 +54,8 @@ export type DayLog = {
   /** Play Together games finished (two players on one device), worksheets printed. */
   duo?: number;
   sheets?: number;
+  /** Letters traced with a finger (✏️ Write). */
+  letters?: number;
   /** Units whose worksheet was printed that day (a reprint is the same sheet). */
   sheetUnits?: string[];
 };
@@ -291,7 +293,7 @@ export function sanitizeState(raw: unknown): State {
   // day logs: every counter a number (a damaged file must not print "NaN minutes")
   for (const d of Object.values(s.days) as unknown as Record<string, unknown>[]) {
     for (const k of ['seconds', 'lessons', 'auto', 'parent', 'miss', 'noVoice'] as const) d[k] = num(d[k]);
-    for (const k of ['sounds', 'read', 'talk', 'duo', 'sheets'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
+    for (const k of ['sounds', 'read', 'talk', 'duo', 'sheets', 'letters'] as const) if (d[k] !== undefined) d[k] = num(d[k]);
     if (d.sheetUnits !== undefined) d.sheetUnits = Array.isArray(d.sheetUnits) ? d.sheetUnits.filter((x: unknown) => typeof x === 'string') : undefined;
   }
   // Optional parts: keep them only when they have the right shape.

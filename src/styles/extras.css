@@ -470,7 +470,7 @@
 /* ---------- ✏️ Write: finger tracing (src/screens/trace.ts) ---------- */
 .abc-write { width: 72px; height: 64px; font-size: 28px; flex: none; }
 .trace { height: 100%; display: flex; flex-direction: column; }
-.trace .btn.tr-case { font-size: 34px; font-weight: 800; margin-left: auto; font-family: var(--font); }
+.trace .btn.tr-case { font-size: 28px; font-weight: 800; margin-left: auto; min-height: 64px; padding: 0 16px; font-family: var(--font); white-space: nowrap; }
 .tr-body { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(10px, 2.5vmin, 28px); padding: 0 2vmin 2vmin; }
 .tr-paper { height: min(100%, 78vh); aspect-ratio: 100 / 120; background: #fff; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 0 8px 0 rgba(29, 36, 64, .2); padding: 1.5vmin; position: relative; }
 .tr-paper.was-done::after { content: '⭐'; position: absolute; top: -14px; right: -12px; font-size: 32px; }
@@ -488,6 +488,7 @@
 .tr-finger { fill: rgba(255, 209, 102, .55); pointer-events: none; }
 .tr-board.is-done .tr-ink { animation: tr-glow .9s ease-out; }
 @keyframes tr-pulse { 50% { transform: scale(1.25); } }
+.tr-start.is-hint { animation: tr-pulse .45s ease-in-out 6; }
 @keyframes tr-glow { 40% { stroke-width: 13; } }
 .tr-side { display: flex; flex-direction: column; align-items: center; gap: 1.5vmin; min-width: 0; }
 .tr-pic { font-size: clamp(56px, 13vmin, 120px); line-height: 1; }
