@@ -4,6 +4,7 @@
     {
       "id": "ambulance",
       "text": "ambulance",
+      "vi": "xe cứu thương",
       "topic": "transport3",
       "image": {
         "emoji": "🚑"
@@ -18,6 +19,7 @@
     {
       "id": "fire-engine",
       "text": "fire engine",
+      "vi": "xe cứu hỏa",
       "topic": "transport3",
       "image": {
         "emoji": "🚒"
@@ -31,6 +33,7 @@
     {
       "id": "underground",
       "text": "underground",
+      "vi": "tàu điện ngầm",
       "topic": "transport3",
       "image": {
         "emoji": "🚇"

@@ -4,6 +4,7 @@
     {
       "id": "hello",
       "text": "hello",
+      "vi": "xin chào",
       "image": {
         "emoji": "🙋"
       },
@@ -20,6 +21,7 @@
     {
       "id": "goodbye",
       "text": "goodbye",
+      "vi": "tạm biệt",
       "image": {
         "emoji": "👋"
       },
@@ -37,6 +39,7 @@
     {
       "id": "thank-you",
       "text": "thank you",
+      "vi": "cảm ơn",
       "image": {
         "emoji": "🙏"
       },
@@ -54,6 +57,7 @@
     {
       "id": "good-morning",
       "text": "good morning",
+      "vi": "chào buổi sáng",
       "image": {
         "emoji": "🌞"
       },
@@ -68,6 +72,7 @@
     {
       "id": "how-are-you",
       "text": "how are you",
+      "vi": "Con có khoẻ không?",
       "image": {
         "emoji": "🙂❓"
       },
@@ -85,6 +90,7 @@
     {
       "id": "im-fine",
       "text": "I'm fine",
+      "vi": "Con khoẻ",
       "image": {
         "emoji": "👍"
       },

@@ -1,0 +1,49 @@
+{
+  "id": "story-l2-outdoors",
+  "unit": "l2-outdoors",
+  "title": "A Day at the Beach",
+  "icon": "🏖️",
+  "pages": [
+    {
+      "text": "The sun is hot today.",
+      "scene": "☀️🕶️"
+    },
+    {
+      "text": "Bix goes to the beach.",
+      "scene": "🏖️",
+      "bix": true
+    },
+    {
+      "text": "Bix swims in the sea. Splash!",
+      "scene": "🌊💦"
+    },
+    {
+      "text": "There is a big tree and a pink flower.",
+      "scene": "🌴🌸"
+    },
+    {
+      "text": "Bix drinks some water. Ahh!",
+      "scene": "💧",
+      "bix": true
+    },
+    {
+      "text": "Now Bix is sleeping under the tree. Shh!",
+      "scene": "🌴💤",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where does Bix swim?",
+      "answer": "sea"
+    },
+    {
+      "ask": "What is pink?",
+      "answer": "flower"
+    },
+    {
+      "ask": "What does Bix drink?",
+      "answer": "water"
+    }
+  ]
+}

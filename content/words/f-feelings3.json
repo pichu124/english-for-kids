@@ -4,6 +4,7 @@
     {
       "id": "worried",
       "text": "worried",
+      "vi": "lo lắng",
       "topic": "feelings3",
       "image": {
         "emoji": "😟"
@@ -15,6 +16,7 @@
     {
       "id": "excited",
       "text": "excited",
+      "vi": "háo hức",
       "topic": "feelings3",
       "image": {
         "emoji": "🤩"
@@ -26,6 +28,7 @@
     {
       "id": "afraid",
       "text": "afraid",
+      "vi": "sợ",
       "topic": "feelings3",
       "image": {
         "emoji": "😨"
@@ -39,6 +42,7 @@
     {
       "id": "upset",
       "text": "upset",
+      "vi": "buồn bực",
       "topic": "feelings3",
       "image": {
         "emoji": "😢"

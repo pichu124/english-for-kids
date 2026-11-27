@@ -4,6 +4,7 @@
     {
       "id": "ball",
       "text": "ball",
+      "vi": "quả bóng",
       "topic": "toys",
       "image": {
         "emoji": "⚽"
@@ -18,6 +19,7 @@
     {
       "id": "teddy",
       "text": "teddy",
+      "vi": "gấu bông",
       "topic": "toys",
       "image": {
         "emoji": "🧸"
@@ -32,6 +34,7 @@
     {
       "id": "kite",
       "text": "kite",
+      "vi": "cái diều",
       "topic": "toys",
       "image": {
         "emoji": "🪁"
@@ -46,6 +49,7 @@
     {
       "id": "robot",
       "text": "robot",
+      "vi": "rô-bốt",
       "topic": "toys",
       "image": {
         "emoji": "🤖"
@@ -61,6 +65,7 @@
     {
       "id": "train",
       "text": "train",
+      "vi": "tàu hỏa",
       "topic": "toys",
       "image": {
         "emoji": "🚂"
@@ -75,6 +80,7 @@
     {
       "id": "car",
       "text": "car",
+      "vi": "ô tô",
       "topic": "toys",
       "image": {
         "emoji": "🚗"

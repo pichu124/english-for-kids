@@ -1,0 +1,48 @@
+{
+  "id": "story-l2-face",
+  "unit": "l2-face",
+  "title": "A Funny Face",
+  "icon": "🙂",
+  "pages": [
+    {
+      "text": "Bix is drawing a face.",
+      "scene": "✏️🙂",
+      "bix": true
+    },
+    {
+      "text": "Here are two big eyes.",
+      "scene": "👀"
+    },
+    {
+      "text": "Here is a nose. It is red!",
+      "scene": "👃🔴"
+    },
+    {
+      "text": "Here is a big happy mouth.",
+      "scene": "👄😄"
+    },
+    {
+      "text": "And two ears. One, two!",
+      "scene": "👂"
+    },
+    {
+      "text": "Look! It is Bix's face! Ha, ha!",
+      "scene": "🤖😄",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What is red?",
+      "answer": "nose"
+    },
+    {
+      "ask": "What is big and happy?",
+      "answer": "mouth"
+    },
+    {
+      "ask": "What does Bix draw first?",
+      "answer": "eye"
+    }
+  ]
+}

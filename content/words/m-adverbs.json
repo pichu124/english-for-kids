@@ -4,6 +4,7 @@
     {
       "id": "quickly",
       "text": "quickly",
+      "vi": "nhanh chóng",
       "topic": "adverbs",
       "image": {
         "emoji": "🐇"
@@ -16,6 +17,7 @@
     {
       "id": "slowly",
       "text": "slowly",
+      "vi": "chậm rãi",
       "topic": "adverbs",
       "image": {
         "emoji": "🐢"
@@ -29,6 +31,7 @@
     {
       "id": "loudly",
       "text": "loudly",
+      "vi": "to, ầm ĩ",
       "topic": "adverbs",
       "image": {
         "emoji": "🥁"
@@ -41,6 +44,7 @@
     {
       "id": "quietly",
       "text": "quietly",
+      "vi": "khẽ, nhỏ nhẹ",
       "topic": "adverbs",
       "image": {
         "emoji": "🤫"
@@ -53,6 +57,7 @@
     {
       "id": "well",
       "text": "well",
+      "vi": "giỏi, tốt",
       "topic": "adverbs",
       "image": {
         "emoji": "👍"

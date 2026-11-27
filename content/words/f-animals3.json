@@ -4,6 +4,7 @@
     {
       "id": "butterfly",
       "text": "butterfly",
+      "vi": "con bướm",
       "topic": "animals3",
       "image": {
         "emoji": "🦋"
@@ -17,6 +18,7 @@
     {
       "id": "eagle",
       "text": "eagle",
+      "vi": "đại bàng",
       "topic": "animals3",
       "image": {
         "emoji": "🦅"
@@ -31,6 +33,7 @@
     {
       "id": "dinosaur",
       "text": "dinosaur",
+      "vi": "khủng long",
       "topic": "animals3",
       "image": {
         "emoji": "🦖"
@@ -45,6 +48,7 @@
     {
       "id": "insect",
       "text": "insect",
+      "vi": "côn trùng",
       "topic": "animals3",
       "image": {
         "emoji": "🐞"
@@ -58,6 +62,7 @@
     {
       "id": "octopus",
       "text": "octopus",
+      "vi": "bạch tuộc",
       "topic": "animals3",
       "image": {
         "emoji": "🐙"
@@ -71,6 +76,7 @@
     {
       "id": "tortoise",
       "text": "tortoise",
+      "vi": "con rùa",
       "topic": "animals3",
       "image": {
         "emoji": "🐢"

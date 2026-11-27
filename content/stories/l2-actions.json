@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-actions",
+  "unit": "l2-actions",
+  "title": "Look at Me!",
+  "icon": "🏃",
+  "pages": [
+    {
+      "text": "Bix and the animals are in the park.",
+      "scene": "🌳",
+      "bix": true
+    },
+    {
+      "text": "The dog can run. Run, run, run!",
+      "scene": "🐶🏃"
+    },
+    {
+      "text": "The frog can jump. Jump, jump!",
+      "scene": "🐸"
+    },
+    {
+      "text": "The fish can swim in the water.",
+      "scene": "🐟💧"
+    },
+    {
+      "text": "The bird can sing. Tweet, tweet!",
+      "scene": "🐦🎵"
+    },
+    {
+      "text": "Bix can dance! Look at Bix! Ha, ha!",
+      "scene": "💃😁",
+      "bix": true
+    },
+    {
+      "text": "Now the cat is sleeping. Shh!",
+      "scene": "🐱💤"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What can the frog do?",
+      "answer": "jump"
+    },
+    {
+      "ask": "What can Bix do?",
+      "answer": "dance"
+    },
+    {
+      "ask": "What is the cat doing?",
+      "answer": "sleep"
+    }
+  ]
+}

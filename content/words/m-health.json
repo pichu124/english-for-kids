@@ -4,6 +4,7 @@
     {
       "id": "a-cold",
       "text": "cold",
+      "vi": "bị cảm lạnh",
       "topic": "health",
       "image": {
         "emoji": "🤧"
@@ -17,6 +18,7 @@
     {
       "id": "cough",
       "text": "cough",
+      "vi": "bị ho",
       "topic": "health",
       "image": {
         "emoji": "😷"
@@ -30,6 +32,7 @@
     {
       "id": "headache",
       "text": "headache",
+      "vi": "đau đầu",
       "topic": "health",
       "image": {
         "emoji": "🤕"
@@ -43,6 +46,7 @@
     {
       "id": "stomach-ache",
       "text": "stomach-ache",
+      "vi": "đau bụng",
       "topic": "health",
       "image": {
         "emoji": "🤢"
@@ -57,6 +61,7 @@
     {
       "id": "temperature",
       "text": "temperature",
+      "vi": "bị sốt",
       "topic": "health",
       "image": {
         "emoji": "🤒"
@@ -70,6 +75,7 @@
     {
       "id": "medicine",
       "text": "medicine",
+      "vi": "thuốc",
       "topic": "health",
       "image": {
         "emoji": "💊"

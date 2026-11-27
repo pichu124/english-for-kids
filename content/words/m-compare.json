@@ -4,6 +4,7 @@
     {
       "id": "tall",
       "text": "tall",
+      "vi": "cao",
       "topic": "compare",
       "image": {
         "emoji": "🦒"
@@ -17,6 +18,7 @@
     {
       "id": "fast",
       "text": "fast",
+      "vi": "nhanh",
       "topic": "compare",
       "image": {
         "emoji": "🏎️"
@@ -30,6 +32,7 @@
     {
       "id": "slow",
       "text": "slow",
+      "vi": "chậm",
       "topic": "compare",
       "image": {
         "emoji": "🐌"
@@ -43,6 +46,7 @@
     {
       "id": "strong",
       "text": "strong",
+      "vi": "khoẻ",
       "topic": "compare",
       "image": {
         "emoji": "💪"
@@ -56,6 +60,7 @@
     {
       "id": "quiet",
       "text": "quiet",
+      "vi": "yên lặng",
       "topic": "compare",
       "image": {
         "emoji": "🤫"
@@ -69,6 +74,7 @@
     {
       "id": "loud",
       "text": "loud",
+      "vi": "to, ồn",
       "topic": "compare",
       "image": {
         "emoji": "📢"

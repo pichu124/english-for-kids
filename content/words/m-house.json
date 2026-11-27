@@ -4,6 +4,7 @@
     {
       "id": "stairs",
       "text": "stairs",
+      "vi": "cầu thang",
       "topic": "house",
       "image": {
         "icon": "stairs"
@@ -17,6 +18,7 @@
     {
       "id": "roof",
       "text": "roof",
+      "vi": "mái nhà",
       "topic": "house",
       "image": {
         "icon": "roof"
@@ -30,6 +32,7 @@
     {
       "id": "towel",
       "text": "towel",
+      "vi": "khăn tắm",
       "topic": "house",
       "image": {
         "icon": "towel"
@@ -43,6 +46,7 @@
     {
       "id": "blanket",
       "text": "blanket",
+      "vi": "cái chăn",
       "topic": "house",
       "image": {
         "icon": "blanket"
@@ -56,6 +60,7 @@
     {
       "id": "toothbrush",
       "text": "toothbrush",
+      "vi": "bàn chải đánh răng",
       "topic": "house",
       "image": {
         "icon": "toothbrush"
@@ -69,6 +74,7 @@
     {
       "id": "toothpaste",
       "text": "toothpaste",
+      "vi": "kem đánh răng",
       "topic": "house",
       "image": {
         "icon": "toothpaste"

@@ -4,6 +4,7 @@
     {
       "id": "hat",
       "text": "hat",
+      "vi": "cái mũ",
       "topic": "clothes",
       "image": {
         "emoji": "👒"
@@ -17,6 +18,7 @@
     {
       "id": "shoes",
       "text": "shoes",
+      "vi": "đôi giày",
       "topic": "clothes",
       "image": {
         "emoji": "👟"
@@ -31,6 +33,7 @@
     {
       "id": "socks",
       "text": "socks",
+      "vi": "đôi tất",
       "topic": "clothes",
       "image": {
         "emoji": "🧦"
@@ -44,6 +47,7 @@
     {
       "id": "t-shirt",
       "text": "T-shirt",
+      "vi": "áo phông",
       "topic": "clothes",
       "image": {
         "emoji": "👕"
@@ -59,6 +63,7 @@
     {
       "id": "dress",
       "text": "dress",
+      "vi": "váy liền",
       "topic": "clothes",
       "image": {
         "emoji": "👗"
@@ -73,6 +78,7 @@
     {
       "id": "jacket",
       "text": "jacket",
+      "vi": "áo khoác",
       "topic": "clothes",
       "image": {
         "emoji": "🧥"

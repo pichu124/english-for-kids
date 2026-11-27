@@ -4,6 +4,7 @@
     {
       "id": "bank",
       "text": "bank",
+      "vi": "ngân hàng",
       "topic": "town2",
       "image": {
         "emoji": "🏦"
@@ -17,6 +18,7 @@
     {
       "id": "cafe",
       "text": "café",
+      "vi": "quán cà phê",
       "topic": "town2",
       "image": {
         "emoji": "☕"
@@ -31,6 +33,7 @@
     {
       "id": "car-park",
       "text": "car park",
+      "vi": "bãi đỗ xe",
       "topic": "town2",
       "image": {
         "emoji": "🅿️"
@@ -45,6 +48,7 @@
     {
       "id": "circus",
       "text": "circus",
+      "vi": "rạp xiếc",
       "topic": "town2",
       "image": {
         "emoji": "🎪"
@@ -58,6 +62,7 @@
     {
       "id": "funfair",
       "text": "funfair",
+      "vi": "khu vui chơi",
       "topic": "town2",
       "image": {
         "emoji": "🎡"
@@ -71,6 +76,7 @@
     {
       "id": "sports-centre",
       "text": "sports centre",
+      "vi": "trung tâm thể thao",
       "topic": "town2",
       "image": {
         "emoji": "🏟️"

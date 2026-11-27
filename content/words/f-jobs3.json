@@ -4,6 +4,7 @@
     {
       "id": "dentist",
       "text": "dentist",
+      "vi": "nha sĩ",
       "topic": "jobs3",
       "image": {
         "emoji": "🦷"
@@ -17,6 +18,7 @@
     {
       "id": "engineer",
       "text": "engineer",
+      "vi": "kỹ sư",
       "topic": "jobs3",
       "image": {
         "emoji": "👷"
@@ -31,6 +33,7 @@
     {
       "id": "mechanic",
       "text": "mechanic",
+      "vi": "thợ sửa xe",
       "topic": "jobs3",
       "image": {
         "emoji": "🔧"
@@ -45,6 +48,7 @@
     {
       "id": "police-officer",
       "text": "police officer",
+      "vi": "chú công an",
       "topic": "jobs3",
       "image": {
         "emoji": "👮"
@@ -59,6 +63,7 @@
     {
       "id": "photographer",
       "text": "photographer",
+      "vi": "thợ chụp ảnh",
       "topic": "jobs3",
       "image": {
         "emoji": "📸"
@@ -73,6 +78,7 @@
     {
       "id": "journalist",
       "text": "journalist",
+      "vi": "nhà báo",
       "topic": "jobs3",
       "image": {
         "emoji": "📰"

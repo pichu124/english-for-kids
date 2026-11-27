@@ -4,6 +4,7 @@
     {
       "id": "oclock-7",
       "text": "seven o'clock",
+      "vi": "7 giờ",
       "topic": "time",
       "image": {
         "clock": "7:00"
@@ -20,6 +21,7 @@
     {
       "id": "oclock-8",
       "text": "eight o'clock",
+      "vi": "8 giờ",
       "topic": "time",
       "image": {
         "clock": "8:00"
@@ -36,6 +38,7 @@
     {
       "id": "oclock-12",
       "text": "twelve o'clock",
+      "vi": "12 giờ",
       "topic": "time",
       "image": {
         "clock": "12:00"
@@ -52,6 +55,7 @@
     {
       "id": "oclock-3",
       "text": "three o'clock",
+      "vi": "3 giờ",
       "topic": "time",
       "image": {
         "clock": "3:00"
@@ -68,6 +72,7 @@
     {
       "id": "oclock-5",
       "text": "five o'clock",
+      "vi": "5 giờ",
       "topic": "time",
       "image": {
         "clock": "5:00"
@@ -84,6 +89,7 @@
     {
       "id": "oclock-9",
       "text": "nine o'clock",
+      "vi": "9 giờ",
       "topic": "time",
       "image": {
         "clock": "9:00"

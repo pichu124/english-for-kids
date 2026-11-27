@@ -4,6 +4,7 @@
     {
       "id": "clock",
       "text": "clock",
+      "vi": "đồng hồ",
       "topic": "home2",
       "image": {
         "emoji": "🕰️"
@@ -18,6 +19,7 @@
     {
       "id": "mirror",
       "text": "mirror",
+      "vi": "cái gương",
       "topic": "home2",
       "image": {
         "emoji": "🪞"
@@ -32,6 +34,7 @@
     {
       "id": "television",
       "text": "television",
+      "vi": "ti vi",
       "topic": "home2",
       "image": {
         "emoji": "📺"
@@ -47,6 +50,7 @@
     {
       "id": "phone",
       "text": "phone",
+      "vi": "điện thoại",
       "topic": "home2",
       "image": {
         "emoji": "📱"
@@ -62,6 +66,7 @@
     {
       "id": "computer",
       "text": "computer",
+      "vi": "máy tính",
       "topic": "home2",
       "image": {
         "emoji": "💻"
@@ -75,6 +80,7 @@
     {
       "id": "picture",
       "text": "picture",
+      "vi": "bức tranh",
       "topic": "home2",
       "image": {
         "emoji": "🖼️"

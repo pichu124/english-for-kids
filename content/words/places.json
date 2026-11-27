@@ -4,6 +4,7 @@
     {
       "id": "park",
       "text": "park",
+      "vi": "công viên",
       "topic": "places",
       "image": {
         "emoji": "🏞️"
@@ -17,6 +18,7 @@
     {
       "id": "shop",
       "text": "shop",
+      "vi": "cửa hàng",
       "topic": "places",
       "image": {
         "emoji": "🏪"
@@ -29,6 +31,7 @@
     {
       "id": "school",
       "text": "school",
+      "vi": "trường học",
       "topic": "places",
       "image": {
         "emoji": "🏫"
@@ -43,6 +46,7 @@
     {
       "id": "garden",
       "text": "garden",
+      "vi": "khu vườn",
       "topic": "places",
       "image": {
         "emoji": "🏡"
@@ -57,6 +61,7 @@
     {
       "id": "zoo",
       "text": "zoo",
+      "vi": "sở thú",
       "topic": "places",
       "image": {
         "emoji": "🦁🐘"
@@ -70,6 +75,7 @@
     {
       "id": "street",
       "text": "street",
+      "vi": "đường phố",
       "topic": "places",
       "image": {
         "emoji": "🛣️"

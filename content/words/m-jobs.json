@@ -4,6 +4,7 @@
     {
       "id": "doctor",
       "text": "doctor",
+      "vi": "bác sĩ",
       "topic": "jobs",
       "image": {
         "emoji": "👨‍⚕️"
@@ -17,6 +18,7 @@
     {
       "id": "nurse",
       "text": "nurse",
+      "vi": "y tá",
       "topic": "jobs",
       "image": {
         "emoji": "👩‍⚕️"
@@ -30,6 +32,7 @@
     {
       "id": "farmer",
       "text": "farmer",
+      "vi": "nông dân",
       "topic": "jobs",
       "image": {
         "emoji": "👨‍🌾"
@@ -43,6 +46,7 @@
     {
       "id": "cook",
       "text": "cook",
+      "vi": "đầu bếp",
       "topic": "jobs",
       "image": {
         "emoji": "👨‍🍳"
@@ -55,6 +59,7 @@
     {
       "id": "clown",
       "text": "clown",
+      "vi": "chú hề",
       "topic": "jobs",
       "image": {
         "emoji": "🤡"
@@ -68,6 +73,7 @@
     {
       "id": "pop-star",
       "text": "pop star",
+      "vi": "ca sĩ nổi tiếng",
       "topic": "jobs",
       "image": {
         "emoji": "👩‍🎤"

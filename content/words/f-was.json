@@ -4,6 +4,7 @@
     {
       "id": "reading",
       "text": "reading",
+      "vi": "đang đọc",
       "topic": "was",
       "image": {
         "emoji": "📖"
@@ -16,6 +17,7 @@
     {
       "id": "cooking",
       "text": "cooking",
+      "vi": "đang nấu ăn",
       "topic": "was",
       "image": {
         "emoji": "🍳"
@@ -26,6 +28,7 @@
     {
       "id": "sleeping",
       "text": "sleeping",
+      "vi": "đang ngủ",
       "topic": "was",
       "image": {
         "emoji": "🛌"
@@ -36,6 +39,7 @@
     {
       "id": "swimming",
       "text": "swimming",
+      "vi": "đang bơi",
       "topic": "was",
       "image": {
         "emoji": "🏊"
@@ -46,6 +50,7 @@
     {
       "id": "painting",
       "text": "painting",
+      "vi": "đang vẽ tranh",
       "topic": "was",
       "image": {
         "emoji": "🖌️"
@@ -56,6 +61,7 @@
     {
       "id": "singing",
       "text": "singing",
+      "vi": "đang hát",
       "topic": "was",
       "image": {
         "emoji": "🎤"

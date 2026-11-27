@@ -4,6 +4,7 @@
     {
       "id": "coffee",
       "text": "coffee",
+      "vi": "cà phê",
       "topic": "offers",
       "image": {
         "emoji": "☕"
@@ -17,6 +18,7 @@
     {
       "id": "milkshake",
       "text": "milkshake",
+      "vi": "sữa lắc",
       "topic": "offers",
       "image": {
         "emoji": "🥤"
@@ -30,6 +32,7 @@
     {
       "id": "biscuit",
       "text": "biscuit",
+      "vi": "bánh quy",
       "topic": "offers",
       "image": {
         "emoji": "🍪"

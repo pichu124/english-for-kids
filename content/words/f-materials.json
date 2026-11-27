@@ -4,6 +4,7 @@
     {
       "id": "gold",
       "text": "gold",
+      "vi": "vàng (kim loại)",
       "topic": "materials",
       "image": {
         "emoji": "🥇"
@@ -17,6 +18,7 @@
     {
       "id": "silver",
       "text": "silver",
+      "vi": "bạc (kim loại)",
       "topic": "materials",
       "image": {
         "emoji": "🥈"
@@ -30,6 +32,7 @@
     {
       "id": "paper",
       "text": "paper",
+      "vi": "giấy",
       "topic": "materials",
       "image": {
         "emoji": "📄"
@@ -43,6 +46,7 @@
     {
       "id": "metal",
       "text": "metal",
+      "vi": "kim loại",
       "topic": "materials",
       "image": {
         "emoji": "🔩"
@@ -56,6 +60,7 @@
     {
       "id": "plastic",
       "text": "plastic",
+      "vi": "nhựa",
       "topic": "materials",
       "image": {
         "emoji": "🥤"
@@ -69,6 +74,7 @@
     {
       "id": "glass",
       "text": "glass",
+      "vi": "thủy tinh",
       "topic": "materials",
       "image": {
         "emoji": "🥛"

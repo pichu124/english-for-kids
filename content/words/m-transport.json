@@ -4,6 +4,7 @@
     {
       "id": "ticket",
       "text": "ticket",
+      "vi": "vé",
       "topic": "travel",
       "image": {
         "emoji": "🎫"
@@ -17,6 +18,7 @@
     {
       "id": "tractor",
       "text": "tractor",
+      "vi": "máy cày",
       "topic": "travel",
       "image": {
         "emoji": "🚜"
@@ -30,6 +32,7 @@
     {
       "id": "taxi",
       "text": "taxi",
+      "vi": "xe taxi",
       "topic": "travel",
       "image": {
         "emoji": "🚕"
@@ -43,6 +46,7 @@
     {
       "id": "station",
       "text": "station",
+      "vi": "nhà ga",
       "topic": "travel",
       "image": {
         "emoji": "🚉"

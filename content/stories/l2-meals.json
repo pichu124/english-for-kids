@@ -1,0 +1,48 @@
+{
+  "id": "story-l2-meals",
+  "unit": "l2-meals",
+  "title": "Bix's Big Lunch",
+  "icon": "🍔",
+  "pages": [
+    {
+      "text": "It is lunch time. Yum!",
+      "scene": "🍽️",
+      "bix": true
+    },
+    {
+      "text": "Dad has got a burger.",
+      "scene": "🍔"
+    },
+    {
+      "text": "Mum has got a sausage and chips.",
+      "scene": "🌭🍟"
+    },
+    {
+      "text": "Grandpa has got a big potato.",
+      "scene": "🥔"
+    },
+    {
+      "text": "Bix has got an onion! Funny Bix! Ha, ha!",
+      "scene": "🧅😁",
+      "bix": true
+    },
+    {
+      "text": "Now there is chocolate for everyone. Yum, yum!",
+      "scene": "🍫😋"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What has Dad got?",
+      "answer": "burger"
+    },
+    {
+      "ask": "What has Grandpa got?",
+      "answer": "potato"
+    },
+    {
+      "ask": "What has Bix got?",
+      "answer": "onion"
+    }
+  ]
+}

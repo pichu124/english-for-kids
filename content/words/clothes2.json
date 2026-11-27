@@ -4,6 +4,7 @@
     {
       "id": "glasses",
       "text": "glasses",
+      "vi": "kính mắt",
       "topic": "clothes2",
       "image": {
         "emoji": "👓"
@@ -16,6 +17,7 @@
     {
       "id": "boots",
       "text": "boots",
+      "vi": "đôi ủng",
       "topic": "clothes2",
       "image": {
         "emoji": "👢"
@@ -29,6 +31,7 @@
     {
       "id": "handbag",
       "text": "handbag",
+      "vi": "túi xách",
       "topic": "clothes2",
       "image": {
         "emoji": "👜"
@@ -42,6 +45,7 @@
     {
       "id": "shorts",
       "text": "shorts",
+      "vi": "quần đùi",
       "topic": "clothes2",
       "image": {
         "emoji": "🩳"
@@ -55,6 +59,7 @@
     {
       "id": "jeans",
       "text": "jeans",
+      "vi": "quần bò",
       "topic": "clothes2",
       "image": {
         "emoji": "👖"
@@ -69,6 +74,7 @@
     {
       "id": "watch",
       "text": "watch",
+      "vi": "đồng hồ đeo tay",
       "topic": "clothes2",
       "image": {
         "emoji": "⌚"

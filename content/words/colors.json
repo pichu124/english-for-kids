@@ -4,6 +4,7 @@
     {
       "id": "red",
       "text": "red",
+      "vi": "màu đỏ",
       "image": {
         "color": "#e63946"
       },
@@ -19,6 +20,7 @@
     {
       "id": "blue",
       "text": "blue",
+      "vi": "màu xanh dương",
       "image": {
         "color": "#2f80ed"
       },
@@ -34,6 +36,7 @@
     {
       "id": "green",
       "text": "green",
+      "vi": "màu xanh lá",
       "image": {
         "color": "#43b649"
       },
@@ -49,6 +52,7 @@
     {
       "id": "yellow",
       "text": "yellow",
+      "vi": "màu vàng",
       "image": {
         "color": "#ffd23f"
       },
@@ -62,6 +66,7 @@
     {
       "id": "orange",
       "text": "orange",
+      "vi": "màu cam",
       "image": {
         "color": "#ff8c1a"
       },
@@ -77,6 +82,7 @@
     {
       "id": "pink",
       "text": "pink",
+      "vi": "màu hồng",
       "image": {
         "color": "#ff7eb6"
       },

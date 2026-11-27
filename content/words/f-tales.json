@@ -4,6 +4,7 @@
     {
       "id": "king",
       "text": "king",
+      "vi": "nhà vua",
       "topic": "tales",
       "image": {
         "emoji": "🤴"
@@ -17,6 +18,7 @@
     {
       "id": "queen",
       "text": "queen",
+      "vi": "nữ hoàng",
       "topic": "tales",
       "image": {
         "emoji": "👸"
@@ -30,6 +32,7 @@
     {
       "id": "crown",
       "text": "crown",
+      "vi": "vương miện",
       "topic": "tales",
       "image": {
         "emoji": "👑"
@@ -43,6 +46,7 @@
     {
       "id": "dragon",
       "text": "dragon",
+      "vi": "con rồng",
       "topic": "tales",
       "image": {
         "emoji": "🐉"
@@ -56,6 +60,7 @@
     {
       "id": "wizard",
       "text": "wizard",
+      "vi": "phù thủy",
       "topic": "tales",
       "image": {
         "emoji": "🧙"

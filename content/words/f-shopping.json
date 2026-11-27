@@ -4,6 +4,7 @@
     {
       "id": "money",
       "text": "money",
+      "vi": "tiền",
       "topic": "shopping",
       "image": {
         "emoji": "💰"
@@ -17,6 +18,7 @@
     {
       "id": "purse",
       "text": "purse",
+      "vi": "ví tiền",
       "topic": "shopping",
       "image": {
         "emoji": "👛"
@@ -30,6 +32,7 @@
     {
       "id": "price",
       "text": "price",
+      "vi": "giá tiền",
       "topic": "shopping",
       "image": {
         "emoji": "🏷️"
@@ -43,6 +46,7 @@
     {
       "id": "shopping",
       "text": "shopping",
+      "vi": "đi mua sắm",
       "topic": "shopping",
       "image": {
         "emoji": "🛍️"
@@ -56,6 +60,7 @@
     {
       "id": "expensive",
       "text": "expensive",
+      "vi": "đắt",
       "topic": "shopping",
       "image": {
         "emoji": "💎"

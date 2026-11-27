@@ -4,6 +4,7 @@
     {
       "id": "skate",
       "text": "skate",
+      "vi": "trượt băng",
       "topic": "hobbies",
       "image": {
         "emoji": "⛸️"
@@ -17,6 +18,7 @@
     {
       "id": "ride",
       "text": "ride",
+      "vi": "đạp xe, cưỡi",
       "topic": "hobbies",
       "image": {
         "emoji": "🚴"
@@ -29,6 +31,7 @@
     {
       "id": "fishing",
       "text": "fishing",
+      "vi": "câu cá",
       "topic": "hobbies",
       "image": {
         "emoji": "🎣"
@@ -42,6 +45,7 @@
     {
       "id": "paint",
       "text": "paint",
+      "vi": "vẽ (bằng màu)",
       "topic": "hobbies",
       "image": {
         "emoji": "🖌️"
@@ -55,6 +59,7 @@
     {
       "id": "sail",
       "text": "sail",
+      "vi": "đi thuyền buồm",
       "topic": "hobbies",
       "image": {
         "emoji": "⛵"

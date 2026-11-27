@@ -4,6 +4,7 @@
     {
       "id": "team",
       "text": "team",
+      "vi": "đội",
       "topic": "sports4",
       "image": {
         "emoji": "👥"
@@ -17,6 +18,7 @@
     {
       "id": "goal",
       "text": "goal",
+      "vi": "khung thành",
       "topic": "sports4",
       "image": {
         "emoji": "🥅"
@@ -30,6 +32,7 @@
     {
       "id": "winner",
       "text": "winner",
+      "vi": "người thắng cuộc",
       "topic": "sports4",
       "image": {
         "emoji": "🏆"
@@ -44,6 +47,7 @@
     {
       "id": "race",
       "text": "race",
+      "vi": "cuộc đua",
       "topic": "sports4",
       "image": {
         "emoji": "🏁"
@@ -57,6 +61,7 @@
     {
       "id": "prize",
       "text": "prize",
+      "vi": "giải thưởng",
       "topic": "sports4",
       "image": {
         "emoji": "🏅"

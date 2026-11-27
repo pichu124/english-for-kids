@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-farm",
+  "unit": "l2-farm",
+  "title": "The Hungry Goat",
+  "icon": "🐐",
+  "pages": [
+    {
+      "text": "Bix is on the farm today.",
+      "scene": "🚜",
+      "bix": true
+    },
+    {
+      "text": "The cow says moo.",
+      "scene": "🐮"
+    },
+    {
+      "text": "The sheep says baa.",
+      "scene": "🐑"
+    },
+    {
+      "text": "The chicken has got an egg.",
+      "scene": "🐔🥚"
+    },
+    {
+      "text": "The horse runs and jumps.",
+      "scene": "🐴"
+    },
+    {
+      "text": "The duck swims in the water. Quack!",
+      "scene": "🦆💧"
+    },
+    {
+      "text": "Oh! The goat is eating Bix's hat! Ha, ha!",
+      "scene": "🐐👒😁",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who has got an egg?",
+      "answer": "chicken-bird"
+    },
+    {
+      "ask": "Who is eating Bix's hat?",
+      "answer": "goat"
+    },
+    {
+      "ask": "Who says baa?",
+      "answer": "sheep"
+    }
+  ]
+}

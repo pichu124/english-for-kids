@@ -4,6 +4,7 @@
     {
       "id": "bread",
       "text": "bread",
+      "vi": "bánh mì",
       "topic": "food2",
       "image": {
         "emoji": "🍞"
@@ -17,6 +18,7 @@
     {
       "id": "rice",
       "text": "rice",
+      "vi": "cơm",
       "topic": "food2",
       "image": {
         "emoji": "🍚"
@@ -29,6 +31,7 @@
     {
       "id": "chicken",
       "text": "chicken",
+      "vi": "thịt gà",
       "topic": "food2",
       "image": {
         "emoji": "🍗"
@@ -42,6 +45,7 @@
     {
       "id": "juice",
       "text": "juice",
+      "vi": "nước ép",
       "topic": "food2",
       "image": {
         "emoji": "🧃"
@@ -55,6 +59,7 @@
     {
       "id": "carrot",
       "text": "carrot",
+      "vi": "cà rốt",
       "topic": "food2",
       "image": {
         "emoji": "🥕"
@@ -69,6 +74,7 @@
     {
       "id": "tomato",
       "text": "tomato",
+      "vi": "cà chua",
       "topic": "food2",
       "image": {
         "emoji": "🍅"

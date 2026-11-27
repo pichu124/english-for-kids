@@ -4,6 +4,7 @@
     {
       "id": "rocket",
       "text": "rocket",
+      "vi": "tên lửa",
       "topic": "space",
       "image": {
         "emoji": "🚀"
@@ -18,6 +19,7 @@
     {
       "id": "astronaut",
       "text": "astronaut",
+      "vi": "phi hành gia",
       "topic": "space",
       "image": {
         "emoji": "👨‍🚀"
@@ -32,6 +34,7 @@
     {
       "id": "planet",
       "text": "planet",
+      "vi": "hành tinh",
       "topic": "space",
       "image": {
         "icon": "planet"
@@ -46,6 +49,7 @@
     {
       "id": "earth",
       "text": "Earth",
+      "vi": "Trái Đất",
       "topic": "space",
       "image": {
         "emoji": "🌍"
@@ -59,6 +63,7 @@
     {
       "id": "space",
       "text": "space",
+      "vi": "vũ trụ",
       "topic": "space",
       "image": {
         "emoji": "🌌"
@@ -72,6 +77,7 @@
     {
       "id": "alien",
       "text": "alien",
+      "vi": "người ngoài hành tinh",
       "topic": "space",
       "image": {
         "emoji": "👽"

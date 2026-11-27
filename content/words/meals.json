@@ -4,6 +4,7 @@
     {
       "id": "burger",
       "text": "burger",
+      "vi": "bánh hamburger",
       "topic": "meals",
       "image": {
         "emoji": "🍔"
@@ -18,6 +19,7 @@
     {
       "id": "chips",
       "text": "chips",
+      "vi": "khoai tây chiên",
       "topic": "meals",
       "image": {
         "emoji": "🍟"
@@ -32,6 +34,7 @@
     {
       "id": "chocolate",
       "text": "chocolate",
+      "vi": "sô-cô-la",
       "topic": "meals",
       "image": {
         "emoji": "🍫"
@@ -46,6 +49,7 @@
     {
       "id": "sausage",
       "text": "sausage",
+      "vi": "xúc xích",
       "topic": "meals",
       "image": {
         "emoji": "🌭"
@@ -60,6 +64,7 @@
     {
       "id": "potato",
       "text": "potato",
+      "vi": "củ khoai tây",
       "topic": "meals",
       "image": {
         "emoji": "🥔"
@@ -74,6 +79,7 @@
     {
       "id": "onion",
       "text": "onion",
+      "vi": "củ hành tây",
       "topic": "meals",
       "image": {
         "emoji": "🧅"

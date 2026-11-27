@@ -4,6 +4,7 @@
     {
       "id": "umbrella",
       "text": "umbrella",
+      "vi": "cái ô",
       "topic": "weather3",
       "image": {
         "emoji": "☂️"
@@ -18,6 +19,7 @@
     {
       "id": "sunglasses",
       "text": "sunglasses",
+      "vi": "kính râm",
       "topic": "weather3",
       "image": {
         "emoji": "🕶️"

@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-body",
+  "unit": "l2-body",
+  "title": "Bix Says",
+  "icon": "✋",
+  "pages": [
+    {
+      "text": "Let's play a game with Bix!",
+      "scene": "🎲😄",
+      "bix": true
+    },
+    {
+      "text": "Bix says: wave your hand. Hello!",
+      "scene": "👋"
+    },
+    {
+      "text": "Bix says: move your arms up and down.",
+      "scene": "💪"
+    },
+    {
+      "text": "Bix says: stand on one leg. Can you do it?",
+      "scene": "🦵"
+    },
+    {
+      "text": "Bix says: touch your foot. Good!",
+      "scene": "🦶"
+    },
+    {
+      "text": "Bix says: touch your hair. Oh! Bix has got no hair! Ha, ha!",
+      "scene": "🤖😁",
+      "bix": true
+    },
+    {
+      "text": "Now smile with your face. Well done!",
+      "scene": "🙂⭐"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What do we wave?",
+      "answer": "hand"
+    },
+    {
+      "ask": "What do we stand on?",
+      "answer": "leg"
+    },
+    {
+      "ask": "What do we move up and down?",
+      "answer": "arm"
+    }
+  ]
+}

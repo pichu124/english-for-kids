@@ -4,6 +4,7 @@
     {
       "id": "sun",
       "text": "sun",
+      "vi": "mặt trời",
       "topic": "world",
       "image": {
         "emoji": "☀️"
@@ -15,6 +16,7 @@
     {
       "id": "tree",
       "text": "tree",
+      "vi": "cái cây",
       "topic": "world",
       "image": {
         "emoji": "🌳"
@@ -29,6 +31,7 @@
     {
       "id": "flower",
       "text": "flower",
+      "vi": "bông hoa",
       "topic": "world",
       "image": {
         "emoji": "🌸"
@@ -43,6 +46,7 @@
     {
       "id": "sea",
       "text": "sea",
+      "vi": "biển",
       "topic": "world",
       "image": {
         "emoji": "🌊"
@@ -57,6 +61,7 @@
     {
       "id": "beach",
       "text": "beach",
+      "vi": "bãi biển",
       "topic": "world",
       "image": {
         "emoji": "🏖️"
@@ -69,6 +74,7 @@
     {
       "id": "water",
       "text": "water",
+      "vi": "nước",
       "topic": "world",
       "image": {
         "emoji": "💧"

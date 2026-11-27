@@ -4,6 +4,7 @@
     {
       "id": "aunt",
       "text": "aunt",
+      "vi": "cô/dì",
       "topic": "family2",
       "image": {
         "family": "aunt"
@@ -17,6 +18,7 @@
     {
       "id": "uncle",
       "text": "uncle",
+      "vi": "chú/bác/cậu",
       "topic": "family2",
       "image": {
         "family": "uncle"
@@ -30,6 +32,7 @@
     {
       "id": "cousin",
       "text": "cousin",
+      "vi": "anh chị em họ",
       "topic": "family2",
       "image": {
         "family": "cousin"
@@ -43,6 +46,7 @@
     {
       "id": "parents",
       "text": "parents",
+      "vi": "bố mẹ",
       "topic": "family2",
       "image": {
         "family": "parents"
@@ -56,6 +60,7 @@
     {
       "id": "grandparents",
       "text": "grandparents",
+      "vi": "ông bà",
       "topic": "family2",
       "image": {
         "family": "grandparents"

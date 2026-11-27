@@ -4,6 +4,7 @@
     {
       "id": "flown",
       "text": "flown",
+      "vi": "đã từng bay (quá khứ phân từ của fly)",
       "topic": "ever",
       "image": {
         "emoji": "✈️"
@@ -14,6 +15,7 @@
     {
       "id": "ridden",
       "text": "ridden",
+      "vi": "đã từng cưỡi (quá khứ phân từ của ride)",
       "topic": "ever",
       "image": {
         "emoji": "🐪"
@@ -26,6 +28,7 @@
     {
       "id": "eaten",
       "text": "eaten",
+      "vi": "đã từng ăn (quá khứ phân từ của eat)",
       "topic": "ever",
       "image": {
         "emoji": "🍣"
@@ -36,6 +39,7 @@
     {
       "id": "seen",
       "text": "seen",
+      "vi": "đã từng thấy (quá khứ phân từ của see)",
       "topic": "ever",
       "image": {
         "emoji": "🐋"
@@ -48,6 +52,7 @@
     {
       "id": "climbed",
       "text": "climbed",
+      "vi": "đã từng leo (quá khứ phân từ của climb)",
       "topic": "ever",
       "image": {
         "emoji": "⛰️"
@@ -58,6 +63,7 @@
     {
       "id": "been",
       "text": "been",
+      "vi": "đã từng đến (quá khứ phân từ của be/go)",
       "topic": "ever",
       "image": {
         "emoji": "🗼"

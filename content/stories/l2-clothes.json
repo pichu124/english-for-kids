@@ -1,0 +1,53 @@
+{
+  "id": "story-l2-clothes",
+  "unit": "l2-clothes",
+  "title": "Bix Gets Dressed",
+  "icon": "👕",
+  "pages": [
+    {
+      "text": "Bix wants to go to the park.",
+      "scene": "🌳",
+      "bix": true
+    },
+    {
+      "text": "First, Bix puts on a blue T-shirt.",
+      "scene": "👕"
+    },
+    {
+      "text": "Then Bix puts on a green jacket.",
+      "scene": "🧥"
+    },
+    {
+      "text": "Now the socks. Oh! They are on Bix's hands! Ha, ha!",
+      "scene": "🧦✋😁",
+      "bix": true
+    },
+    {
+      "text": "Socks go on feet, Bix!",
+      "scene": "🧦👣"
+    },
+    {
+      "text": "Then the shoes go on Bix's feet too.",
+      "scene": "👟"
+    },
+    {
+      "text": "Last, Bix puts on a hat. Let's go!",
+      "scene": "👒🌳",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What is on Bix's hands?",
+      "answer": "socks"
+    },
+    {
+      "ask": "What does Bix put on first?",
+      "answer": "t-shirt"
+    },
+    {
+      "ask": "What does Bix put on last?",
+      "answer": "hat"
+    }
+  ]
+}

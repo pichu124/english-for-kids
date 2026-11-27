@@ -4,6 +4,7 @@
     {
       "id": "climb",
       "text": "climb",
+      "vi": "leo, trèo",
       "topic": "move",
       "image": {
         "icon": "climb"
@@ -17,6 +18,7 @@
     {
       "id": "hop",
       "text": "hop",
+      "vi": "nhảy lò cò",
       "topic": "move",
       "image": {
         "icon": "hop"
@@ -30,6 +32,7 @@
     {
       "id": "skip",
       "text": "skip",
+      "vi": "nhảy dây",
       "topic": "move",
       "image": {
         "icon": "skip"
@@ -43,6 +46,7 @@
     {
       "id": "kick",
       "text": "kick",
+      "vi": "đá",
       "topic": "move",
       "image": {
         "icon": "kick"
@@ -56,6 +60,7 @@
     {
       "id": "catch",
       "text": "catch",
+      "vi": "bắt (bóng)",
       "topic": "move",
       "image": {
         "icon": "catch"
@@ -69,6 +74,7 @@
     {
       "id": "throw",
       "text": "throw",
+      "vi": "ném",
       "topic": "move",
       "image": {
         "icon": "throw"

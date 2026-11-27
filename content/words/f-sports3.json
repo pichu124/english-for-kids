@@ -4,6 +4,7 @@
     {
       "id": "skiing",
       "text": "skiing",
+      "vi": "trượt tuyết",
       "topic": "sports3",
       "image": {
         "emoji": "⛷️"
@@ -17,6 +18,7 @@
     {
       "id": "snowboarding",
       "text": "snowboarding",
+      "vi": "trượt ván tuyết",
       "topic": "sports3",
       "image": {
         "emoji": "🏂"
@@ -30,6 +32,7 @@
     {
       "id": "ice-skating",
       "text": "ice skating",
+      "vi": "trượt băng",
       "topic": "sports3",
       "image": {
         "emoji": "⛸️"
@@ -43,6 +46,7 @@
     {
       "id": "surfing",
       "text": "surfing",
+      "vi": "lướt sóng",
       "topic": "sports3",
       "image": {
         "emoji": "🏄"
@@ -56,6 +60,7 @@
     {
       "id": "sailing",
       "text": "sailing",
+      "vi": "chèo thuyền buồm",
       "topic": "sports3",
       "image": {
         "emoji": "⛵"
@@ -67,6 +72,7 @@
     {
       "id": "climbing",
       "text": "climbing",
+      "vi": "leo núi",
       "topic": "sports3",
       "image": {
         "emoji": "🧗"

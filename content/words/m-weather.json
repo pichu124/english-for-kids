@@ -4,6 +4,7 @@
     {
       "id": "sunny",
       "text": "sunny",
+      "vi": "trời nắng",
       "topic": "weather",
       "image": {
         "emoji": "☀️"
@@ -17,6 +18,7 @@
     {
       "id": "cloudy",
       "text": "cloudy",
+      "vi": "trời nhiều mây",
       "topic": "weather",
       "image": {
         "emoji": "☁️"
@@ -30,6 +32,7 @@
     {
       "id": "windy",
       "text": "windy",
+      "vi": "trời có gió",
       "topic": "weather",
       "image": {
         "emoji": "🌬️"
@@ -43,6 +46,7 @@
     {
       "id": "rainbow",
       "text": "rainbow",
+      "vi": "cầu vồng",
       "topic": "weather",
       "image": {
         "emoji": "🌈"

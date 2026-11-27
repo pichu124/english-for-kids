@@ -4,6 +4,7 @@
     {
       "id": "run",
       "text": "run",
+      "vi": "chạy",
       "topic": "actions",
       "image": {
         "emoji": "🏃"
@@ -18,6 +19,7 @@
     {
       "id": "jump",
       "text": "jump",
+      "vi": "nhảy",
       "topic": "actions",
       "image": {
         "emoji": "🤸"
@@ -33,6 +35,7 @@
     {
       "id": "swim",
       "text": "swim",
+      "vi": "bơi",
       "topic": "actions",
       "image": {
         "emoji": "🏊"
@@ -48,6 +51,7 @@
     {
       "id": "dance",
       "text": "dance",
+      "vi": "nhảy múa",
       "topic": "actions",
       "image": {
         "emoji": "💃"
@@ -63,6 +67,7 @@
     {
       "id": "sing",
       "text": "sing",
+      "vi": "hát",
       "topic": "actions",
       "image": {
         "emoji": "🎤"
@@ -77,6 +82,7 @@
     {
       "id": "sleep",
       "text": "sleep",
+      "vi": "ngủ",
       "topic": "actions",
       "image": {
         "emoji": "😴"

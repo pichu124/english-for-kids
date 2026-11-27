@@ -4,6 +4,7 @@
     {
       "id": "above",
       "text": "above",
+      "vi": "ở phía trên",
       "topic": "where2",
       "image": {
         "icon": "above"
@@ -14,6 +15,7 @@
     {
       "id": "below",
       "text": "below",
+      "vi": "ở phía dưới",
       "topic": "where2",
       "image": {
         "icon": "below"
@@ -26,6 +28,7 @@
     {
       "id": "near",
       "text": "near",
+      "vi": "ở gần",
       "topic": "where2",
       "image": {
         "icon": "near"
@@ -39,6 +42,7 @@
     {
       "id": "opposite",
       "text": "opposite",
+      "vi": "đối diện",
       "topic": "where2",
       "image": {
         "icon": "opposite"
@@ -52,6 +56,7 @@
     {
       "id": "inside",
       "text": "inside",
+      "vi": "ở bên trong",
       "topic": "where2",
       "image": {
         "icon": "inside"
@@ -64,6 +69,7 @@
     {
       "id": "outside",
       "text": "outside",
+      "vi": "ở bên ngoài",
       "topic": "where2",
       "image": {
         "icon": "outside"

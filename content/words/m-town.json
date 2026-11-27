@@ -4,6 +4,7 @@
     {
       "id": "hospital",
       "text": "hospital",
+      "vi": "bệnh viện",
       "topic": "town",
       "image": {
         "emoji": "🏥"
@@ -17,6 +18,7 @@
     {
       "id": "library",
       "text": "library",
+      "vi": "thư viện",
       "topic": "town",
       "image": {
         "emoji": "📚"
@@ -30,6 +32,7 @@
     {
       "id": "cinema",
       "text": "cinema",
+      "vi": "rạp chiếu phim",
       "topic": "town",
       "image": {
         "emoji": "🎬"
@@ -43,6 +46,7 @@
     {
       "id": "supermarket",
       "text": "supermarket",
+      "vi": "siêu thị",
       "topic": "town",
       "image": {
         "emoji": "🛒"
@@ -56,6 +60,7 @@
     {
       "id": "bus-stop",
       "text": "bus stop",
+      "vi": "bến xe buýt",
       "topic": "town",
       "image": {
         "emoji": "🚏"
@@ -69,6 +74,7 @@
     {
       "id": "swimming-pool",
       "text": "swimming pool",
+      "vi": "bể bơi",
       "topic": "town",
       "image": {
         "emoji": "🏊"

@@ -4,6 +4,7 @@
     {
       "id": "bridge",
       "text": "bridge",
+      "vi": "cây cầu",
       "topic": "city",
       "image": {
         "emoji": "🌉"
@@ -17,6 +18,7 @@
     {
       "id": "office",
       "text": "office",
+      "vi": "văn phòng",
       "topic": "city",
       "image": {
         "emoji": "🏢"
@@ -30,6 +32,7 @@
     {
       "id": "post-office",
       "text": "post office",
+      "vi": "bưu điện",
       "topic": "city",
       "image": {
         "emoji": "🏣"
@@ -43,6 +46,7 @@
     {
       "id": "police-station",
       "text": "police station",
+      "vi": "đồn công an",
       "topic": "city",
       "image": {
         "emoji": "🚓"
@@ -55,6 +59,7 @@
     {
       "id": "chemist",
       "text": "chemist",
+      "vi": "hiệu thuốc",
       "topic": "city",
       "image": {
         "emoji": "💊"
@@ -69,6 +74,7 @@
     {
       "id": "university",
       "text": "university",
+      "vi": "trường đại học",
       "topic": "city",
       "image": {
         "emoji": "🎓"

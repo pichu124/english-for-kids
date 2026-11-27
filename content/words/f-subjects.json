@@ -4,6 +4,7 @@
     {
       "id": "maths",
       "text": "maths",
+      "vi": "môn Toán",
       "topic": "subjects",
       "image": {
         "emoji": "➗"
@@ -18,6 +19,7 @@
     {
       "id": "science",
       "text": "science",
+      "vi": "môn Khoa học",
       "topic": "subjects",
       "image": {
         "emoji": "🔬"
@@ -31,6 +33,7 @@
     {
       "id": "history",
       "text": "history",
+      "vi": "môn Lịch sử",
       "topic": "subjects",
       "image": {
         "emoji": "📜"
@@ -44,6 +47,7 @@
     {
       "id": "geography",
       "text": "geography",
+      "vi": "môn Địa lý",
       "topic": "subjects",
       "image": {
         "emoji": "🗺️"
@@ -57,6 +61,7 @@
     {
       "id": "art",
       "text": "art",
+      "vi": "môn Mỹ thuật",
       "topic": "subjects",
       "image": {
         "emoji": "🎨"
@@ -70,6 +75,7 @@
     {
       "id": "music",
       "text": "music",
+      "vi": "môn Âm nhạc",
       "topic": "subjects",
       "image": {
         "emoji": "🎵"

@@ -4,6 +4,7 @@
     {
       "id": "get-up",
       "text": "get up",
+      "vi": "thức dậy",
       "topic": "routine",
       "image": {
         "emoji": "⏰"
@@ -17,6 +18,7 @@
     {
       "id": "have-a-shower",
       "text": "have a shower",
+      "vi": "tắm vòi sen",
       "topic": "routine",
       "image": {
         "emoji": "🚿"
@@ -29,6 +31,7 @@
     {
       "id": "get-dressed",
       "text": "get dressed",
+      "vi": "mặc quần áo",
       "topic": "routine",
       "image": {
         "emoji": "👕"
@@ -39,6 +42,7 @@
     {
       "id": "have-breakfast",
       "text": "have breakfast",
+      "vi": "ăn sáng",
       "topic": "routine",
       "image": {
         "emoji": "🥣"
@@ -51,6 +55,7 @@
     {
       "id": "go-to-school",
       "text": "go to school",
+      "vi": "đi học",
       "topic": "routine",
       "image": {
         "emoji": "🏫"
@@ -61,6 +66,7 @@
     {
       "id": "go-to-bed",
       "text": "go to bed",
+      "vi": "đi ngủ",
       "topic": "routine",
       "image": {
         "emoji": "🛏️"

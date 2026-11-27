@@ -4,6 +4,7 @@
     {
       "id": "sandwich",
       "text": "sandwich",
+      "vi": "bánh mì kẹp",
       "topic": "food4",
       "image": {
         "emoji": "🥪"
@@ -17,6 +18,7 @@
     {
       "id": "soup",
       "text": "soup",
+      "vi": "súp, canh",
       "topic": "food4",
       "image": {
         "emoji": "🍲"
@@ -30,6 +32,7 @@
     {
       "id": "pasta",
       "text": "pasta",
+      "vi": "mì Ý",
       "topic": "food4",
       "image": {
         "emoji": "🍝"
@@ -43,6 +46,7 @@
     {
       "id": "salad",
       "text": "salad",
+      "vi": "rau trộn, salad",
       "topic": "food4",
       "image": {
         "emoji": "🥗"
@@ -56,6 +60,7 @@
     {
       "id": "cheese",
       "text": "cheese",
+      "vi": "phô mai",
       "topic": "food4",
       "image": {
         "emoji": "🧀"
@@ -69,6 +74,7 @@
     {
       "id": "pancake",
       "text": "pancake",
+      "vi": "bánh kếp",
       "topic": "food4",
       "image": {
         "emoji": "🥞"

@@ -4,6 +4,7 @@
     {
       "id": "eleven",
       "text": "eleven",
+      "vi": "số 11",
       "topic": "numbers2",
       "image": {
         "text": "11"
@@ -16,6 +17,7 @@
     {
       "id": "twelve",
       "text": "twelve",
+      "vi": "số 12",
       "topic": "numbers2",
       "image": {
         "text": "12"
@@ -28,6 +30,7 @@
     {
       "id": "thirteen",
       "text": "thirteen",
+      "vi": "số 13",
       "topic": "numbers2",
       "image": {
         "text": "13"
@@ -40,6 +43,7 @@
     {
       "id": "fourteen",
       "text": "fourteen",
+      "vi": "số 14",
       "topic": "numbers2",
       "image": {
         "text": "14"
@@ -52,6 +56,7 @@
     {
       "id": "fifteen",
       "text": "fifteen",
+      "vi": "số 15",
       "topic": "numbers2",
       "image": {
         "text": "15"
@@ -64,6 +69,7 @@
     {
       "id": "sixteen",
       "text": "sixteen",
+      "vi": "số 16",
       "topic": "numbers2",
       "image": {
         "text": "16"
@@ -76,6 +82,7 @@
     {
       "id": "seventeen",
       "text": "seventeen",
+      "vi": "số 17",
       "topic": "numbers2",
       "image": {
         "text": "17"
@@ -88,6 +95,7 @@
     {
       "id": "eighteen",
       "text": "eighteen",
+      "vi": "số 18",
       "topic": "numbers2",
       "image": {
         "text": "18"
@@ -100,6 +108,7 @@
     {
       "id": "nineteen",
       "text": "nineteen",
+      "vi": "số 19",
       "topic": "numbers2",
       "image": {
         "text": "19"
@@ -112,6 +121,7 @@
     {
       "id": "twenty",
       "text": "twenty",
+      "vi": "số 20",
       "topic": "numbers2",
       "image": {
         "text": "20"

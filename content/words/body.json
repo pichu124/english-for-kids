@@ -4,6 +4,7 @@
     {
       "id": "eyes",
       "text": "eyes",
+      "vi": "đôi mắt",
       "topic": "body",
       "image": {
         "emoji": "👀"
@@ -17,6 +18,7 @@
     {
       "id": "ears",
       "text": "ears",
+      "vi": "đôi tai",
       "topic": "body",
       "image": {
         "emoji": "👂"
@@ -30,6 +32,7 @@
     {
       "id": "nose",
       "text": "nose",
+      "vi": "cái mũi",
       "topic": "body",
       "image": {
         "emoji": "👃"
@@ -44,6 +47,7 @@
     {
       "id": "mouth",
       "text": "mouth",
+      "vi": "cái miệng",
       "topic": "body",
       "image": {
         "emoji": "👄"
@@ -57,6 +61,7 @@
     {
       "id": "hands",
       "text": "hands",
+      "vi": "đôi bàn tay",
       "topic": "body",
       "image": {
         "emoji": "👐"
@@ -71,6 +76,7 @@
     {
       "id": "feet",
       "text": "feet",
+      "vi": "đôi bàn chân",
       "topic": "body",
       "image": {
         "emoji": "🦶"
@@ -85,6 +91,7 @@
     {
       "id": "face",
       "text": "face",
+      "vi": "khuôn mặt",
       "topic": "body",
       "image": {
         "emoji": "🙂"
@@ -99,6 +106,7 @@
     {
       "id": "hair",
       "text": "hair",
+      "vi": "tóc",
       "topic": "body",
       "image": {
         "emoji": "💇‍♀️"
@@ -113,6 +121,7 @@
     {
       "id": "arm",
       "text": "arm",
+      "vi": "cánh tay",
       "topic": "body",
       "image": {
         "emoji": "💪"
@@ -126,6 +135,7 @@
     {
       "id": "hand",
       "text": "hand",
+      "vi": "bàn tay",
       "topic": "body",
       "image": {
         "emoji": "✋"
@@ -139,6 +149,7 @@
     {
       "id": "leg",
       "text": "leg",
+      "vi": "cái chân",
       "topic": "body",
       "image": {
         "emoji": "🦵"
@@ -152,6 +163,7 @@
     {
       "id": "foot",
       "text": "foot",
+      "vi": "bàn chân",
       "topic": "body",
       "image": {
         "emoji": "🦶"
@@ -164,6 +176,7 @@
     {
       "id": "eye",
       "text": "eye",
+      "vi": "con mắt",
       "topic": "body",
       "image": {
         "emoji": "👁️"
@@ -177,6 +190,7 @@
     {
       "id": "ear",
       "text": "ear",
+      "vi": "cái tai",
       "topic": "body",
       "image": {
         "emoji": "👂"

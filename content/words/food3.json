@@ -4,6 +4,7 @@
     {
       "id": "orange-fruit",
       "text": "orange",
+      "vi": "quả cam",
       "image": {
         "emoji": "🍊"
       },
@@ -17,6 +18,7 @@
     {
       "id": "meat",
       "text": "meat",
+      "vi": "thịt",
       "image": {
         "emoji": "🥩"
       },
@@ -30,6 +32,7 @@
     {
       "id": "coconut",
       "text": "coconut",
+      "vi": "quả dừa",
       "image": {
         "emoji": "🥥"
       },
@@ -43,6 +46,7 @@
     {
       "id": "kiwi",
       "text": "kiwi",
+      "vi": "quả kiwi",
       "image": {
         "emoji": "🥝"
       },
@@ -56,6 +60,7 @@
     {
       "id": "sweets",
       "text": "sweets",
+      "vi": "kẹo",
       "image": {
         "emoji": "🍬"
       },
@@ -70,6 +75,7 @@
     {
       "id": "lemonade",
       "text": "lemonade",
+      "vi": "nước chanh",
       "image": {
         "emoji": "🍋🥤"
       },

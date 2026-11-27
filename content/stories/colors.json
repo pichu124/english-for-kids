@@ -1,0 +1,48 @@
+{
+  "id": "story-colors",
+  "unit": "colors",
+  "title": "Bix Paints a Picture",
+  "icon": "🎨",
+  "pages": [
+    {
+      "text": "Bix has got lots of paint.",
+      "scene": "🎨",
+      "bix": true
+    },
+    {
+      "text": "Bix paints a red apple.",
+      "scene": "🍎"
+    },
+    {
+      "text": "Bix paints a yellow sun.",
+      "scene": "☀️"
+    },
+    {
+      "text": "Bix paints a green tree.",
+      "scene": "🌳"
+    },
+    {
+      "text": "Bix paints a blue sea.",
+      "scene": "🌊"
+    },
+    {
+      "text": "Oh! Now Bix is pink and orange! Ha, ha!",
+      "scene": "🎨😁",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What colour is the sun?",
+      "answer": "yellow"
+    },
+    {
+      "ask": "What colour is the tree?",
+      "answer": "green"
+    },
+    {
+      "ask": "What colour is the apple?",
+      "answer": "red"
+    }
+  ]
+}

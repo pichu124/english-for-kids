@@ -4,6 +4,7 @@
     {
       "id": "artist",
       "text": "artist",
+      "vi": "họa sĩ",
       "topic": "workers",
       "image": {
         "emoji": "👩‍🎨"
@@ -18,6 +19,7 @@
     {
       "id": "scientist",
       "text": "scientist",
+      "vi": "nhà khoa học",
       "topic": "workers",
       "image": {
         "emoji": "👨‍🔬"
@@ -32,6 +34,7 @@
     {
       "id": "businessman",
       "text": "businessman",
+      "vi": "doanh nhân",
       "topic": "workers",
       "image": {
         "emoji": "👨‍💼"
@@ -46,6 +49,7 @@
     {
       "id": "firefighter",
       "text": "firefighter",
+      "vi": "lính cứu hỏa",
       "topic": "workers",
       "image": {
         "emoji": "👩‍🚒"
@@ -60,6 +64,7 @@
     {
       "id": "waiter",
       "text": "waiter",
+      "vi": "người phục vụ bàn",
       "topic": "workers",
       "image": {
         "emoji": "🤵"

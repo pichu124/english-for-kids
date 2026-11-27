@@ -1,0 +1,47 @@
+{
+  "id": "story-family",
+  "unit": "family",
+  "title": "Happy Birthday, Grandma!",
+  "icon": "🎂",
+  "pages": [
+    {
+      "text": "It is Grandma's birthday today!",
+      "scene": "👵🎉"
+    },
+    {
+      "text": "Mum and Dad make a big cake.",
+      "scene": "👩👨🎂"
+    },
+    {
+      "text": "My brother has got a red ball for Grandma.",
+      "scene": "👦🔴"
+    },
+    {
+      "text": "Grandpa sings a happy song.",
+      "scene": "👴🎵"
+    },
+    {
+      "text": "Look! The baby is eating the cake! Ha, ha!",
+      "scene": "👶🎂😁"
+    },
+    {
+      "text": "Grandma laughs. Bix sings too. Happy birthday!",
+      "scene": "👵😄🎶",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Who is eating the cake?",
+      "answer": "baby"
+    },
+    {
+      "ask": "Who sings a happy song?",
+      "answer": "grandpa"
+    },
+    {
+      "ask": "Who has got a red ball?",
+      "answer": "brother"
+    }
+  ]
+}

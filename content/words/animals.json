@@ -4,6 +4,7 @@
     {
       "id": "dog",
       "text": "dog",
+      "vi": "con chó",
       "image": {
         "emoji": "🐶"
       },
@@ -18,6 +19,7 @@
     {
       "id": "cat",
       "text": "cat",
+      "vi": "con mèo",
       "image": {
         "emoji": "🐱"
       },
@@ -32,6 +34,7 @@
     {
       "id": "fish",
       "text": "fish",
+      "vi": "con cá",
       "image": {
         "emoji": "🐟"
       },
@@ -46,6 +49,7 @@
     {
       "id": "bird",
       "text": "bird",
+      "vi": "con chim",
       "image": {
         "emoji": "🐦"
       },
@@ -62,6 +66,7 @@
     {
       "id": "duck",
       "text": "duck",
+      "vi": "con vịt",
       "image": {
         "emoji": "🦆"
       },
@@ -77,6 +82,7 @@
     {
       "id": "cow",
       "text": "cow",
+      "vi": "con bò",
       "image": {
         "emoji": "🐮"
       },

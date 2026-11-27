@@ -4,6 +4,7 @@
     {
       "id": "ran",
       "text": "ran",
+      "vi": "đã chạy (quá khứ của run)",
       "topic": "past3",
       "image": {
         "emoji": "🏃"
@@ -16,6 +17,7 @@
     {
       "id": "sang",
       "text": "sang",
+      "vi": "đã hát (quá khứ của sing)",
       "topic": "past3",
       "image": {
         "emoji": "🎤"
@@ -26,6 +28,7 @@
     {
       "id": "drove",
       "text": "drove",
+      "vi": "đã lái xe (quá khứ của drive)",
       "topic": "past3",
       "image": {
         "emoji": "🚗"
@@ -38,6 +41,7 @@
     {
       "id": "flew",
       "text": "flew",
+      "vi": "đã bay (quá khứ của fly)",
       "topic": "past3",
       "image": {
         "emoji": "✈️"
@@ -50,6 +54,7 @@
     {
       "id": "rode",
       "text": "rode",
+      "vi": "đã cưỡi (quá khứ của ride)",
       "topic": "past3",
       "image": {
         "emoji": "🐎"
@@ -62,6 +67,7 @@
     {
       "id": "came",
       "text": "came",
+      "vi": "đã đến (quá khứ của come)",
       "topic": "past3",
       "image": {
         "emoji": "👋"

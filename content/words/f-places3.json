@@ -4,6 +4,7 @@
     {
       "id": "museum",
       "text": "museum",
+      "vi": "bảo tàng",
       "topic": "places3",
       "image": {
         "emoji": "🏛️"
@@ -18,6 +19,7 @@
     {
       "id": "airport",
       "text": "airport",
+      "vi": "sân bay",
       "topic": "places3",
       "image": {
         "emoji": "🛫"
@@ -32,6 +34,7 @@
     {
       "id": "castle",
       "text": "castle",
+      "vi": "lâu đài",
       "topic": "places3",
       "image": {
         "emoji": "🏰"
@@ -46,6 +49,7 @@
     {
       "id": "factory",
       "text": "factory",
+      "vi": "nhà máy",
       "topic": "places3",
       "image": {
         "emoji": "🏭"
@@ -60,6 +64,7 @@
     {
       "id": "hotel",
       "text": "hotel",
+      "vi": "khách sạn",
       "topic": "places3",
       "image": {
         "emoji": "🏨"
@@ -73,6 +78,7 @@
     {
       "id": "restaurant",
       "text": "restaurant",
+      "vi": "nhà hàng",
       "topic": "places3",
       "image": {
         "emoji": "🍽️"

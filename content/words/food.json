@@ -4,6 +4,7 @@
     {
       "id": "apple",
       "text": "apple",
+      "vi": "quả táo",
       "image": {
         "emoji": "🍎"
       },
@@ -18,6 +19,7 @@
     {
       "id": "banana",
       "text": "banana",
+      "vi": "quả chuối",
       "image": {
         "emoji": "🍌"
       },
@@ -32,6 +34,7 @@
     {
       "id": "cake",
       "text": "cake",
+      "vi": "bánh ngọt",
       "image": {
         "emoji": "🍰"
       },
@@ -47,6 +50,7 @@
     {
       "id": "egg",
       "text": "egg",
+      "vi": "quả trứng",
       "image": {
         "emoji": "🥚"
       },
@@ -63,6 +67,7 @@
     {
       "id": "milk",
       "text": "milk",
+      "vi": "sữa",
       "image": {
         "emoji": "🥛"
       },
@@ -79,6 +84,7 @@
     {
       "id": "ice-cream",
       "text": "ice cream",
+      "vi": "kem",
       "image": {
         "emoji": "🍦"
       },

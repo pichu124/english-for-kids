@@ -4,6 +4,7 @@
     {
       "id": "tent",
       "text": "tent",
+      "vi": "cái lều",
       "topic": "holiday",
       "image": {
         "emoji": "⛺"
@@ -17,6 +18,7 @@
     {
       "id": "passport",
       "text": "passport",
+      "vi": "hộ chiếu",
       "topic": "holiday",
       "image": {
         "emoji": "🛂"
@@ -31,6 +33,7 @@
     {
       "id": "backpack",
       "text": "backpack",
+      "vi": "ba lô",
       "topic": "holiday",
       "image": {
         "emoji": "🎒"
@@ -45,6 +48,7 @@
     {
       "id": "torch",
       "text": "torch",
+      "vi": "đèn pin",
       "topic": "holiday",
       "image": {
         "emoji": "🔦"
@@ -59,6 +63,7 @@
     {
       "id": "suitcase",
       "text": "suitcase",
+      "vi": "va li",
       "topic": "holiday",
       "image": {
         "emoji": "🧳"

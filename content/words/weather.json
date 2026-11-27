@@ -4,6 +4,7 @@
     {
       "id": "rain",
       "text": "rain",
+      "vi": "mưa",
       "topic": "weather",
       "image": {
         "emoji": "🌧️"
@@ -18,6 +19,7 @@
     {
       "id": "snow",
       "text": "snow",
+      "vi": "tuyết",
       "topic": "weather",
       "image": {
         "emoji": "❄️"
@@ -33,6 +35,7 @@
     {
       "id": "wind",
       "text": "wind",
+      "vi": "gió",
       "topic": "weather",
       "image": {
         "emoji": "💨"

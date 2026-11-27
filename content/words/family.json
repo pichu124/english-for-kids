@@ -4,6 +4,7 @@
     {
       "id": "mum",
       "text": "mum",
+      "vi": "mẹ",
       "image": {
         "emoji": "👩"
       },
@@ -23,6 +24,7 @@
     {
       "id": "dad",
       "text": "dad",
+      "vi": "bố",
       "image": {
         "emoji": "👨"
       },
@@ -37,6 +39,7 @@
     {
       "id": "baby",
       "text": "baby",
+      "vi": "em bé",
       "image": {
         "emoji": "👶"
       },
@@ -51,6 +54,7 @@
     {
       "id": "grandma",
       "text": "grandma",
+      "vi": "bà",
       "image": {
         "emoji": "👵"
       },
@@ -67,6 +71,7 @@
     {
       "id": "grandpa",
       "text": "grandpa",
+      "vi": "ông",
       "image": {
         "emoji": "👴"
       },
@@ -83,6 +88,7 @@
     {
       "id": "brother",
       "text": "brother",
+      "vi": "anh/em trai",
       "image": {
         "emoji": "👦"
       },
@@ -99,6 +105,7 @@
     {
       "id": "sister",
       "text": "sister",
+      "vi": "chị/em gái",
       "topic": "family",
       "image": {
         "emoji": "👧"

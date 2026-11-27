@@ -4,6 +4,7 @@
     {
       "id": "grapes",
       "text": "grapes",
+      "vi": "quả nho",
       "topic": "fruit",
       "image": {
         "emoji": "🍇"
@@ -17,6 +18,7 @@
     {
       "id": "lemon",
       "text": "lemon",
+      "vi": "quả chanh vàng",
       "topic": "fruit",
       "image": {
         "emoji": "🍋"
@@ -31,6 +33,7 @@
     {
       "id": "mango",
       "text": "mango",
+      "vi": "quả xoài",
       "topic": "fruit",
       "image": {
         "emoji": "🥭"
@@ -45,6 +48,7 @@
     {
       "id": "pear",
       "text": "pear",
+      "vi": "quả lê",
       "topic": "fruit",
       "image": {
         "emoji": "🍐"
@@ -58,6 +62,7 @@
     {
       "id": "pineapple",
       "text": "pineapple",
+      "vi": "quả dứa",
       "topic": "fruit",
       "image": {
         "emoji": "🍍"
@@ -71,6 +76,7 @@
     {
       "id": "watermelon",
       "text": "watermelon",
+      "vi": "quả dưa hấu",
       "topic": "fruit",
       "image": {
         "emoji": "🍉"

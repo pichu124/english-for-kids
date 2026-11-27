@@ -4,6 +4,7 @@
     {
       "id": "desert",
       "text": "desert",
+      "vi": "sa mạc",
       "topic": "world2",
       "image": {
         "emoji": "🏜️"
@@ -17,6 +18,7 @@
     {
       "id": "ocean",
       "text": "ocean",
+      "vi": "đại dương",
       "topic": "world2",
       "image": {
         "emoji": "🌊"
@@ -31,6 +33,7 @@
     {
       "id": "volcano",
       "text": "volcano",
+      "vi": "núi lửa",
       "topic": "world2",
       "image": {
         "emoji": "🌋"
@@ -45,6 +48,7 @@
     {
       "id": "hill",
       "text": "hill",
+      "vi": "ngọn đồi",
       "topic": "world2",
       "image": {
         "emoji": "🌄"
@@ -59,6 +63,7 @@
     {
       "id": "world",
       "text": "world",
+      "vi": "thế giới",
       "topic": "world2",
       "image": {
         "emoji": "🌐"

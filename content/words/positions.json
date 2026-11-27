@@ -4,6 +4,7 @@
     {
       "id": "in",
       "text": "in",
+      "vi": "ở trong",
       "topic": "positions",
       "image": {
         "scene": "in"
@@ -16,6 +17,7 @@
     {
       "id": "on",
       "text": "on",
+      "vi": "ở trên",
       "topic": "positions",
       "image": {
         "scene": "on"
@@ -26,6 +28,7 @@
     {
       "id": "under",
       "text": "under",
+      "vi": "ở dưới",
       "topic": "positions",
       "image": {
         "scene": "under"
@@ -39,6 +42,7 @@
     {
       "id": "next-to",
       "text": "next to",
+      "vi": "bên cạnh",
       "topic": "positions",
       "image": {
         "scene": "next to"
@@ -52,6 +56,7 @@
     {
       "id": "behind",
       "text": "behind",
+      "vi": "phía sau",
       "topic": "positions",
       "image": {
         "scene": "behind"
@@ -65,6 +70,7 @@
     {
       "id": "in-front-of",
       "text": "in front of",
+      "vi": "phía trước",
       "topic": "positions",
       "image": {
         "scene": "in front of"

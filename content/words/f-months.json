@@ -4,6 +4,7 @@
     {
       "id": "january",
       "text": "January",
+      "vi": "tháng Một",
       "topic": "months",
       "image": {
         "text": "Jan"
@@ -17,6 +18,7 @@
     {
       "id": "february",
       "text": "February",
+      "vi": "tháng Hai",
       "topic": "months",
       "image": {
         "text": "Feb"
@@ -30,6 +32,7 @@
     {
       "id": "march",
       "text": "March",
+      "vi": "tháng Ba",
       "topic": "months",
       "image": {
         "text": "Mar"
@@ -43,6 +46,7 @@
     {
       "id": "april",
       "text": "April",
+      "vi": "tháng Tư",
       "topic": "months",
       "image": {
         "text": "Apr"
@@ -56,6 +60,7 @@
     {
       "id": "may",
       "text": "May",
+      "vi": "tháng Năm",
       "topic": "months",
       "image": {
         "text": "May"
@@ -69,6 +74,7 @@
     {
       "id": "june",
       "text": "June",
+      "vi": "tháng Sáu",
       "topic": "months",
       "image": {
         "text": "Jun"
@@ -82,6 +88,7 @@
     {
       "id": "july",
       "text": "July",
+      "vi": "tháng Bảy",
       "topic": "months",
       "image": {
         "text": "Jul"
@@ -95,6 +102,7 @@
     {
       "id": "august",
       "text": "August",
+      "vi": "tháng Tám",
       "topic": "months",
       "image": {
         "text": "Aug"
@@ -108,6 +116,7 @@
     {
       "id": "september",
       "text": "September",
+      "vi": "tháng Chín",
       "topic": "months",
       "image": {
         "text": "Sep"
@@ -121,6 +130,7 @@
     {
       "id": "october",
       "text": "October",
+      "vi": "tháng Mười",
       "topic": "months",
       "image": {
         "text": "Oct"
@@ -134,6 +144,7 @@
     {
       "id": "november",
       "text": "November",
+      "vi": "tháng Mười Một",
       "topic": "months",
       "image": {
         "text": "Nov"
@@ -147,6 +158,7 @@
     {
       "id": "december",
       "text": "December",
+      "vi": "tháng Mười Hai",
       "topic": "months",
       "image": {
         "text": "Dec"

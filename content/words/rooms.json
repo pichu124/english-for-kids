@@ -4,6 +4,7 @@
     {
       "id": "kitchen",
       "text": "kitchen",
+      "vi": "nhà bếp",
       "image": {
         "emoji": "🍳"
       },
@@ -17,6 +18,7 @@
     {
       "id": "bathroom",
       "text": "bathroom",
+      "vi": "phòng tắm",
       "image": {
         "emoji": "🚿"
       },
@@ -30,6 +32,7 @@
     {
       "id": "bedroom",
       "text": "bedroom",
+      "vi": "phòng ngủ",
       "image": {
         "emoji": "🛏️"
       },
@@ -43,6 +46,7 @@
     {
       "id": "living-room",
       "text": "living room",
+      "vi": "phòng khách",
       "image": {
         "emoji": "🛋️"
       },
@@ -57,6 +61,7 @@
     {
       "id": "dining-room",
       "text": "dining room",
+      "vi": "phòng ăn",
       "image": {
         "emoji": "🍽️"
       },
@@ -70,6 +75,7 @@
     {
       "id": "hall",
       "text": "hall",
+      "vi": "hành lang, sảnh",
       "image": {
         "emoji": "🚪"
       },

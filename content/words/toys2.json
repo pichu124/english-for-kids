@@ -4,6 +4,7 @@
     {
       "id": "doll",
       "text": "doll",
+      "vi": "búp bê",
       "topic": "toys2",
       "image": {
         "emoji": "🪆"
@@ -17,6 +18,7 @@
     {
       "id": "game",
       "text": "game",
+      "vi": "trò chơi",
       "topic": "toys2",
       "image": {
         "emoji": "🎲"
@@ -30,6 +32,7 @@
     {
       "id": "monster",
       "text": "monster",
+      "vi": "quái vật",
       "topic": "toys2",
       "image": {
         "emoji": "👾"
@@ -43,6 +46,7 @@
     {
       "id": "guitar",
       "text": "guitar",
+      "vi": "đàn ghi-ta",
       "topic": "toys2",
       "image": {
         "emoji": "🎸"
@@ -57,6 +61,7 @@
     {
       "id": "piano",
       "text": "piano",
+      "vi": "đàn piano",
       "topic": "toys2",
       "image": {
         "emoji": "🎹"
@@ -71,6 +76,7 @@
     {
       "id": "camera",
       "text": "camera",
+      "vi": "máy ảnh",
       "topic": "toys2",
       "image": {
         "emoji": "📷"

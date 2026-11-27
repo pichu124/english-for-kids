@@ -4,6 +4,7 @@
     {
       "id": "village",
       "text": "village",
+      "vi": "ngôi làng",
       "topic": "country",
       "image": {
         "emoji": "🏘️"
@@ -18,6 +19,7 @@
     {
       "id": "cottage",
       "text": "cottage",
+      "vi": "ngôi nhà nhỏ ở quê",
       "topic": "country",
       "image": {
         "emoji": "🏡"
@@ -32,6 +34,7 @@
     {
       "id": "countryside",
       "text": "countryside",
+      "vi": "vùng quê, nông thôn",
       "topic": "country",
       "image": {
         "emoji": "🏞️"

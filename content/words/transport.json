@@ -4,6 +4,7 @@
     {
       "id": "bus",
       "text": "bus",
+      "vi": "xe buýt",
       "topic": "transport",
       "image": {
         "emoji": "🚌"
@@ -18,6 +19,7 @@
     {
       "id": "plane",
       "text": "plane",
+      "vi": "máy bay",
       "topic": "transport",
       "image": {
         "emoji": "✈️"
@@ -34,6 +36,7 @@
     {
       "id": "boat",
       "text": "boat",
+      "vi": "con thuyền",
       "topic": "transport",
       "image": {
         "emoji": "⛵"
@@ -47,6 +50,7 @@
     {
       "id": "bike",
       "text": "bike",
+      "vi": "xe đạp",
       "topic": "transport",
       "image": {
         "emoji": "🚲"
@@ -61,6 +65,7 @@
     {
       "id": "helicopter",
       "text": "helicopter",
+      "vi": "máy bay trực thăng",
       "topic": "transport",
       "image": {
         "emoji": "🚁"
@@ -76,6 +81,7 @@
     {
       "id": "motorbike",
       "text": "motorbike",
+      "vi": "xe máy",
       "topic": "transport",
       "image": {
         "emoji": "🏍️"

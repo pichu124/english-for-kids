@@ -4,6 +4,7 @@
     {
       "id": "rabbit",
       "text": "rabbit",
+      "vi": "con thỏ",
       "topic": "animals3",
       "image": {
         "emoji": "🐰"
@@ -17,6 +18,7 @@
     {
       "id": "lion",
       "text": "lion",
+      "vi": "sư tử",
       "topic": "animals3",
       "image": {
         "emoji": "🦁"
@@ -30,6 +32,7 @@
     {
       "id": "kitten",
       "text": "kitten",
+      "vi": "mèo con",
       "topic": "animals3",
       "image": {
         "emoji": "🐈"
@@ -43,6 +46,7 @@
     {
       "id": "puppy",
       "text": "puppy",
+      "vi": "chó con",
       "topic": "animals3",
       "image": {
         "emoji": "🐕"
@@ -56,6 +60,7 @@
     {
       "id": "bear",
       "text": "bear",
+      "vi": "con gấu",
       "topic": "animals3",
       "image": {
         "emoji": "🐻"

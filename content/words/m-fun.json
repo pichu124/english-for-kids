@@ -4,6 +4,7 @@
     {
       "id": "party",
       "text": "party",
+      "vi": "bữa tiệc",
       "topic": "fun",
       "image": {
         "emoji": "🎉"
@@ -17,6 +18,7 @@
     {
       "id": "present",
       "text": "present",
+      "vi": "món quà",
       "topic": "fun",
       "image": {
         "emoji": "🎁"
@@ -30,6 +32,7 @@
     {
       "id": "band",
       "text": "band",
+      "vi": "ban nhạc",
       "topic": "fun",
       "image": {
         "emoji": "🎸"
@@ -43,6 +46,7 @@
     {
       "id": "video",
       "text": "video",
+      "vi": "video",
       "topic": "fun",
       "image": {
         "emoji": "📹"
@@ -56,6 +60,7 @@
     {
       "id": "email",
       "text": "email",
+      "vi": "thư điện tử",
       "topic": "fun",
       "image": {
         "emoji": "📧"

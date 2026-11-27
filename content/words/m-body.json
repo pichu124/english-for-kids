@@ -4,6 +4,7 @@
     {
       "id": "head",
       "text": "head",
+      "vi": "cái đầu",
       "topic": "body2",
       "image": {
         "body": "head"
@@ -17,6 +18,7 @@
     {
       "id": "neck",
       "text": "neck",
+      "vi": "cái cổ",
       "topic": "body2",
       "image": {
         "body": "neck"
@@ -30,6 +32,7 @@
     {
       "id": "shoulder",
       "text": "shoulder",
+      "vi": "vai",
       "topic": "body2",
       "image": {
         "body": "shoulder"
@@ -43,6 +46,7 @@
     {
       "id": "stomach",
       "text": "stomach",
+      "vi": "bụng",
       "topic": "body2",
       "image": {
         "body": "stomach"
@@ -56,6 +60,7 @@
     {
       "id": "knee",
       "text": "knee",
+      "vi": "đầu gối",
       "topic": "body2",
       "image": {
         "body": "knee"
@@ -69,6 +74,7 @@
     {
       "id": "teeth",
       "text": "teeth",
+      "vi": "răng",
       "topic": "body2",
       "image": {
         "body": "teeth"

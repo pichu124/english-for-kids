@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-sports",
+  "unit": "l2-sports",
+  "title": "Sports Day",
+  "icon": "🏅",
+  "pages": [
+    {
+      "text": "It is sports day at school!",
+      "scene": "🏫🏅"
+    },
+    {
+      "text": "The children play football. Kick!",
+      "scene": "⚽"
+    },
+    {
+      "text": "Two girls play tennis.",
+      "scene": "🎾"
+    },
+    {
+      "text": "Some boys play basketball. Jump and throw!",
+      "scene": "🏀"
+    },
+    {
+      "text": "Bix plays baseball. Bix hits the ball. Wow!",
+      "scene": "⚾",
+      "bix": true
+    },
+    {
+      "text": "The ball goes up, up, up... into a tree! Ha, ha!",
+      "scene": "🌳⚾😁"
+    },
+    {
+      "text": "Well done, everyone! What a fun day!",
+      "scene": "🏅🎉",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix play?",
+      "answer": "baseball"
+    },
+    {
+      "ask": "What do the two girls play?",
+      "answer": "tennis"
+    },
+    {
+      "ask": "What do the boys play?",
+      "answer": "basketball"
+    }
+  ]
+}

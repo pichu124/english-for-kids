@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-rooms",
+  "unit": "l2-rooms",
+  "title": "Lunch Time!",
+  "icon": "🍽️",
+  "pages": [
+    {
+      "text": "Bix is looking for the family.",
+      "scene": "🏠",
+      "bix": true
+    },
+    {
+      "text": "Dad is in the kitchen. Yum!",
+      "scene": "🍳"
+    },
+    {
+      "text": "Mum is reading in the living room.",
+      "scene": "🛋️📖"
+    },
+    {
+      "text": "My brother is sleeping in the bedroom. Shh!",
+      "scene": "🛏️💤"
+    },
+    {
+      "text": "The cat is in the bathroom! Splash!",
+      "scene": "🛁🐱"
+    },
+    {
+      "text": "Lunch time! We all go to the dining room.",
+      "scene": "🍽️"
+    },
+    {
+      "text": "Look! The cat is sitting on Bix's chair! Ha, ha!",
+      "scene": "🐱😁",
+      "bix": true
+    }
+  ],
+  "questions": [
+    {
+      "ask": "Where is Dad?",
+      "answer": "kitchen"
+    },
+    {
+      "ask": "Where is the cat? Splash!",
+      "answer": "bathroom"
+    },
+    {
+      "ask": "Where is my brother sleeping?",
+      "answer": "bedroom"
+    }
+  ]
+}

@@ -4,6 +4,7 @@
     {
       "id": "had",
       "text": "had",
+      "vi": "đã có (quá khứ của have)",
       "topic": "past2",
       "image": {
         "emoji": "🎉"
@@ -14,6 +15,7 @@
     {
       "id": "made",
       "text": "made",
+      "vi": "đã làm (quá khứ của make)",
       "topic": "past2",
       "image": {
         "emoji": "🍪"
@@ -27,6 +29,7 @@
     {
       "id": "took",
       "text": "took",
+      "vi": "đã chụp, lấy (quá khứ của take)",
       "topic": "past2",
       "image": {
         "emoji": "📸"
@@ -39,6 +42,7 @@
     {
       "id": "gave",
       "text": "gave",
+      "vi": "đã tặng, cho (quá khứ của give)",
       "topic": "past2",
       "image": {
         "emoji": "🎁"
@@ -52,6 +56,7 @@
     {
       "id": "wrote",
       "text": "wrote",
+      "vi": "đã viết (quá khứ của write)",
       "topic": "past2",
       "image": {
         "emoji": "✉️"
@@ -64,6 +69,7 @@
     {
       "id": "bought",
       "text": "bought",
+      "vi": "đã mua (quá khứ của buy)",
       "topic": "past2",
       "image": {
         "emoji": "🛍️"

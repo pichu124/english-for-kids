@@ -4,6 +4,7 @@
     {
       "id": "river",
       "text": "river",
+      "vi": "dòng sông",
       "topic": "water",
       "image": {
         "icon": "river"
@@ -17,6 +18,7 @@
     {
       "id": "lake",
       "text": "lake",
+      "vi": "cái hồ",
       "topic": "water",
       "image": {
         "icon": "lake"
@@ -30,6 +32,7 @@
     {
       "id": "waterfall",
       "text": "waterfall",
+      "vi": "thác nước",
       "topic": "water",
       "image": {
         "icon": "waterfall"
@@ -43,6 +46,7 @@
     {
       "id": "rock",
       "text": "rock",
+      "vi": "hòn đá",
       "topic": "water",
       "image": {
         "icon": "rock"
@@ -56,6 +60,7 @@
     {
       "id": "wave",
       "text": "wave",
+      "vi": "con sóng",
       "topic": "water",
       "image": {
         "emoji": "🌊"

@@ -4,6 +4,7 @@
     {
       "id": "thirty",
       "text": "thirty",
+      "vi": "ba mươi (30)",
       "topic": "numbers3",
       "image": {
         "text": "30"
@@ -16,6 +17,7 @@
     {
       "id": "forty",
       "text": "forty",
+      "vi": "bốn mươi (40)",
       "topic": "numbers3",
       "image": {
         "text": "40"
@@ -29,6 +31,7 @@
     {
       "id": "fifty",
       "text": "fifty",
+      "vi": "năm mươi (50)",
       "topic": "numbers3",
       "image": {
         "text": "50"
@@ -41,6 +44,7 @@
     {
       "id": "sixty",
       "text": "sixty",
+      "vi": "sáu mươi (60)",
       "topic": "numbers3",
       "image": {
         "text": "60"
@@ -53,6 +57,7 @@
     {
       "id": "seventy",
       "text": "seventy",
+      "vi": "bảy mươi (70)",
       "topic": "numbers3",
       "image": {
         "text": "70"
@@ -65,6 +70,7 @@
     {
       "id": "eighty",
       "text": "eighty",
+      "vi": "tám mươi (80)",
       "topic": "numbers3",
       "image": {
         "text": "80"
@@ -77,6 +83,7 @@
     {
       "id": "ninety",
       "text": "ninety",
+      "vi": "chín mươi (90)",
       "topic": "numbers3",
       "image": {
         "text": "90"
@@ -89,6 +96,7 @@
     {
       "id": "hundred",
       "text": "a hundred",
+      "vi": "một trăm (100)",
       "topic": "numbers3",
       "image": {
         "text": "100"

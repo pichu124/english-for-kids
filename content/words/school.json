@@ -4,6 +4,7 @@
     {
       "id": "book",
       "text": "book",
+      "vi": "quyển sách",
       "topic": "school",
       "image": {
         "emoji": "📕"
@@ -17,6 +18,7 @@
     {
       "id": "pen",
       "text": "pen",
+      "vi": "cái bút bi",
       "topic": "school",
       "image": {
         "emoji": "🖊️"
@@ -31,6 +33,7 @@
     {
       "id": "pencil",
       "text": "pencil",
+      "vi": "bút chì",
       "topic": "school",
       "image": {
         "emoji": "✏️"
@@ -45,6 +48,7 @@
     {
       "id": "ruler",
       "text": "ruler",
+      "vi": "thước kẻ",
       "topic": "school",
       "image": {
         "emoji": "📏"
@@ -59,6 +63,7 @@
     {
       "id": "bag",
       "text": "bag",
+      "vi": "cặp sách",
       "topic": "school",
       "image": {
         "emoji": "🎒"
@@ -73,6 +78,7 @@
     {
       "id": "teacher",
       "text": "teacher",
+      "vi": "thầy/cô giáo",
       "topic": "school",
       "image": {
         "emoji": "🧑‍🏫"

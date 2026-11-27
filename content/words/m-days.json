@@ -4,6 +4,7 @@
     {
       "id": "monday",
       "text": "Monday",
+      "vi": "thứ Hai",
       "topic": "days",
       "image": {
         "text": "Mon"
@@ -16,6 +17,7 @@
     {
       "id": "tuesday",
       "text": "Tuesday",
+      "vi": "thứ Ba",
       "topic": "days",
       "image": {
         "text": "Tue"
@@ -28,6 +30,7 @@
     {
       "id": "wednesday",
       "text": "Wednesday",
+      "vi": "thứ Tư",
       "topic": "days",
       "image": {
         "text": "Wed"
@@ -40,6 +43,7 @@
     {
       "id": "thursday",
       "text": "Thursday",
+      "vi": "thứ Năm",
       "topic": "days",
       "image": {
         "text": "Thu"
@@ -52,6 +56,7 @@
     {
       "id": "friday",
       "text": "Friday",
+      "vi": "thứ Sáu",
       "topic": "days",
       "image": {
         "text": "Fri"
@@ -64,6 +69,7 @@
     {
       "id": "saturday",
       "text": "Saturday",
+      "vi": "thứ Bảy",
       "topic": "days",
       "image": {
         "text": "Sat"
@@ -76,6 +82,7 @@
     {
       "id": "sunday",
       "text": "Sunday",
+      "vi": "Chủ nhật",
       "topic": "days",
       "image": {
         "text": "Sun"

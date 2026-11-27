@@ -4,6 +4,7 @@
     {
       "id": "half-past-seven",
       "text": "half past seven",
+      "vi": "7 giờ 30",
       "topic": "time2",
       "image": {
         "clock": "7:30"
@@ -17,6 +18,7 @@
     {
       "id": "quarter-past-three",
       "text": "quarter past three",
+      "vi": "3 giờ 15",
       "topic": "time2",
       "image": {
         "clock": "3:15"
@@ -31,6 +33,7 @@
     {
       "id": "quarter-to-nine",
       "text": "quarter to nine",
+      "vi": "9 giờ kém 15",
       "topic": "time2",
       "image": {
         "clock": "8:45"
@@ -45,6 +48,7 @@
     {
       "id": "half-past-twelve",
       "text": "half past twelve",
+      "vi": "12 giờ 30",
       "topic": "time2",
       "image": {
         "clock": "12:30"
@@ -58,6 +62,7 @@
     {
       "id": "quarter-past-six",
       "text": "quarter past six",
+      "vi": "6 giờ 15",
       "topic": "time2",
       "image": {
         "clock": "6:15"
@@ -72,6 +77,7 @@
     {
       "id": "quarter-to-four",
       "text": "quarter to four",
+      "vi": "4 giờ kém 15",
       "topic": "time2",
       "image": {
         "clock": "3:45"

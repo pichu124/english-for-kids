@@ -4,6 +4,7 @@
     {
       "id": "elephant",
       "text": "elephant",
+      "vi": "con voi",
       "topic": "zoo",
       "image": {
         "emoji": "🐘"
@@ -17,6 +18,7 @@
     {
       "id": "giraffe",
       "text": "giraffe",
+      "vi": "hươu cao cổ",
       "topic": "zoo",
       "image": {
         "emoji": "🦒"
@@ -31,6 +33,7 @@
     {
       "id": "monkey",
       "text": "monkey",
+      "vi": "con khỉ",
       "topic": "zoo",
       "image": {
         "emoji": "🐒"
@@ -45,6 +48,7 @@
     {
       "id": "tiger",
       "text": "tiger",
+      "vi": "con hổ",
       "topic": "zoo",
       "image": {
         "emoji": "🐯"
@@ -59,6 +63,7 @@
     {
       "id": "zebra",
       "text": "zebra",
+      "vi": "ngựa vằn",
       "topic": "zoo",
       "image": {
         "emoji": "🦓"
@@ -72,6 +77,7 @@
     {
       "id": "crocodile",
       "text": "crocodile",
+      "vi": "cá sấu",
       "topic": "zoo",
       "image": {
         "emoji": "🐊"

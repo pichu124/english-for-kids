@@ -4,6 +4,7 @@
     {
       "id": "frog",
       "text": "frog",
+      "vi": "con ếch",
       "topic": "animals2",
       "image": {
         "emoji": "🐸"
@@ -17,6 +18,7 @@
     {
       "id": "snake",
       "text": "snake",
+      "vi": "con rắn",
       "topic": "animals2",
       "image": {
         "emoji": "🐍"
@@ -31,6 +33,7 @@
     {
       "id": "spider",
       "text": "spider",
+      "vi": "con nhện",
       "topic": "animals2",
       "image": {
         "emoji": "🕷️"
@@ -45,6 +48,7 @@
     {
       "id": "mouse",
       "text": "mouse",
+      "vi": "con chuột",
       "topic": "animals2",
       "image": {
         "emoji": "🐭"
@@ -59,6 +63,7 @@
     {
       "id": "lizard",
       "text": "lizard",
+      "vi": "con thằn lằn",
       "topic": "animals2",
       "image": {
         "emoji": "🦎"
@@ -73,6 +78,7 @@
     {
       "id": "hippo",
       "text": "hippo",
+      "vi": "con hà mã",
       "topic": "animals2",
       "image": {
         "emoji": "🦛"

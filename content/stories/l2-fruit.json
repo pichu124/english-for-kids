@@ -1,0 +1,52 @@
+{
+  "id": "story-l2-fruit",
+  "unit": "l2-fruit",
+  "title": "Lots of Fruit",
+  "icon": "🍉",
+  "pages": [
+    {
+      "text": "Bix has got lots of fruit. Yum!",
+      "scene": "🍎🍌",
+      "bix": true
+    },
+    {
+      "text": "Here is a big pineapple.",
+      "scene": "🍍"
+    },
+    {
+      "text": "Here is a green watermelon.",
+      "scene": "🍉"
+    },
+    {
+      "text": "Here are some purple grapes and a pear.",
+      "scene": "🍇🍐"
+    },
+    {
+      "text": "Here is a mango. It is very nice.",
+      "scene": "🥭"
+    },
+    {
+      "text": "Bix eats a lemon. What a funny face! Ha, ha!",
+      "scene": "🍋😮",
+      "bix": true
+    },
+    {
+      "text": "Now Bix and the children eat the fruit. Yummy!",
+      "scene": "🍉😋"
+    }
+  ],
+  "questions": [
+    {
+      "ask": "What does Bix eat? It makes a funny face.",
+      "answer": "lemon"
+    },
+    {
+      "ask": "What is big?",
+      "answer": "pineapple"
+    },
+    {
+      "ask": "What is purple?",
+      "answer": "grapes"
+    }
+  ]
+}

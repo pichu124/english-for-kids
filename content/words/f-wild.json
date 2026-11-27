@@ -4,6 +4,7 @@
     {
       "id": "gorilla",
       "text": "gorilla",
+      "vi": "khỉ đột",
       "topic": "wild",
       "image": {
         "emoji": "🦍"
@@ -18,6 +19,7 @@
     {
       "id": "wolf",
       "text": "wolf",
+      "vi": "con sói",
       "topic": "wild",
       "image": {
         "emoji": "🐺"
@@ -31,6 +33,7 @@
     {
       "id": "fox",
       "text": "fox",
+      "vi": "con cáo",
       "topic": "wild",
       "image": {
         "emoji": "🦊"
@@ -44,6 +47,7 @@
     {
       "id": "owl",
       "text": "owl",
+      "vi": "con cú",
       "topic": "wild",
       "image": {
         "emoji": "🦉"
@@ -57,6 +61,7 @@
     {
       "id": "bee",
       "text": "bee",
+      "vi": "con ong",
       "topic": "wild",
       "image": {
         "emoji": "🐝"

@@ -4,6 +4,7 @@
     {
       "id": "coat",
       "text": "coat",
+      "vi": "áo khoác dày",
       "topic": "clothes3",
       "image": {
         "emoji": "🧥"
@@ -17,6 +18,7 @@
     {
       "id": "scarf",
       "text": "scarf",
+      "vi": "khăn quàng cổ",
       "topic": "clothes3",
       "image": {
         "emoji": "🧣"
@@ -30,6 +32,7 @@
     {
       "id": "helmet",
       "text": "helmet",
+      "vi": "mũ bảo hiểm",
       "topic": "clothes3",
       "image": {
         "emoji": "⛑️"
@@ -43,6 +46,7 @@
     {
       "id": "gloves",
       "text": "gloves",
+      "vi": "găng tay",
       "topic": "clothes3",
       "image": {
         "emoji": "🧤"

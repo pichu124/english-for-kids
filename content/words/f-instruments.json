@@ -4,6 +4,7 @@
     {
       "id": "drum",
       "text": "drum",
+      "vi": "cái trống",
       "topic": "instruments",
       "image": {
         "emoji": "🥁"
@@ -17,6 +18,7 @@
     {
       "id": "violin",
       "text": "violin",
+      "vi": "đàn vi-ô-lông",
       "topic": "instruments",
       "image": {
         "emoji": "🎻"
@@ -31,6 +33,7 @@
     {
       "id": "trumpet",
       "text": "trumpet",
+      "vi": "kèn trumpet",
       "topic": "instruments",
       "image": {
         "emoji": "🎺"
@@ -44,6 +47,7 @@
     {
       "id": "saxophone",
       "text": "saxophone",
+      "vi": "kèn saxophone",
       "topic": "instruments",
       "image": {
         "emoji": "🎷"

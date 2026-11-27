@@ -4,6 +4,7 @@
     {
       "id": "biggest",
       "text": "biggest",
+      "vi": "to nhất",
       "topic": "superlatives",
       "image": {
         "emoji": "🐳"
@@ -17,6 +18,7 @@
     {
       "id": "smallest",
       "text": "smallest",
+      "vi": "nhỏ nhất",
       "topic": "superlatives",
       "image": {
         "emoji": "🐜"
@@ -30,6 +32,7 @@
     {
       "id": "tallest",
       "text": "tallest",
+      "vi": "cao nhất",
       "topic": "superlatives",
       "image": {
         "emoji": "🦒"
@@ -43,6 +46,7 @@
     {
       "id": "fastest",
       "text": "fastest",
+      "vi": "nhanh nhất",
       "topic": "superlatives",
       "image": {
         "emoji": "🐆"
@@ -56,6 +60,7 @@
     {
       "id": "best",
       "text": "best",
+      "vi": "giỏi nhất, tốt nhất",
       "topic": "superlatives",
       "image": {
         "emoji": "🏆"

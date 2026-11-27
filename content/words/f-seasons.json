@@ -4,6 +4,7 @@
     {
       "id": "spring",
       "text": "spring",
+      "vi": "mùa xuân",
       "topic": "seasons",
       "image": {
         "emoji": "🌸"
@@ -17,6 +18,7 @@
     {
       "id": "summer",
       "text": "summer",
+      "vi": "mùa hè",
       "topic": "seasons",
       "image": {
         "emoji": "🏖️"
@@ -30,6 +32,7 @@
     {
       "id": "autumn",
       "text": "autumn",
+      "vi": "mùa thu",
       "topic": "seasons",
       "image": {
         "emoji": "🍂"
@@ -44,6 +47,7 @@
     {
       "id": "winter",
       "text": "winter",
+      "vi": "mùa đông",
       "topic": "seasons",
       "image": {
         "emoji": "⛄"
@@ -57,6 +61,7 @@
     {
       "id": "month",
       "text": "month",
+      "vi": "tháng",
       "topic": "seasons",
       "image": {
         "emoji": "📅"

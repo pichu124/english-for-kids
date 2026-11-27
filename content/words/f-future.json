@@ -4,6 +4,7 @@
     {
       "id": "spaceship",
       "text": "spaceship",
+      "vi": "tàu vũ trụ",
       "topic": "future",
       "image": {
         "emoji": "🛸"
@@ -18,6 +19,7 @@
     {
       "id": "machine",
       "text": "machine",
+      "vi": "cái máy",
       "topic": "future",
       "image": {
         "emoji": "⚙️"
