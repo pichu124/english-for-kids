@@ -370,6 +370,23 @@ export function dayLog(date = today()): DayLog {
 
 export const wordKey = (topicId: string, wordId: string) => `${topicId}/${wordId}`;
 
+/** Change another child's saved progress on this device (Play Together: both children get it). */
+export function updateProfile(id: string, fn: (s: State, day: DayLog) => void): void {
+  if (id === index.active) {
+    update((s) => fn(s, dayLog()));
+    return;
+  }
+  if (!index.ids.includes(id)) return;
+  try {
+    const s = sanitizeState(JSON.parse(localStorage.getItem(keyFor(id)) ?? '{}'));
+    const d = (s.days[today()] ??= { seconds: 0, lessons: 0, auto: 0, parent: 0, miss: 0, noVoice: 0 });
+    fn(s, d);
+    localStorage.setItem(keyFor(id), JSON.stringify(s));
+  } catch {
+    /* unreadable or storage full: skip */
+  }
+}
+
 /** Ask the browser not to evict our storage (best effort). */
 export function requestPersistence(): void {
   try {

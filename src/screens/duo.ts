@@ -4,7 +4,7 @@ import { h, shuffle, wait } from '../lib/dom';
 import { currentLevel } from '../lib/level';
 import { practicePool } from '../lib/progress';
 import { sfx } from '../lib/sfx';
-import { dayLog, getState, profileAnimal, profiles, update } from '../lib/storage';
+import { dayLog, getState, profileAnimal, profiles, update, updateProfile } from '../lib/storage';
 import { todayRunning } from '../lib/today';
 import { say } from '../lib/tts';
 import type { Ctx } from '../router';
@@ -27,6 +27,8 @@ const ROUNDS = 6;
 
 type Player = {
   n: 1 | 2;
+  /** A child profile on this device (player 2 can be a brother or sister): their progress counts too. */
+  profile?: string;
   name: string;
   icon: string;
   stars: number;
@@ -43,14 +45,22 @@ const P2_KINDS = [
   { id: 'friend', name: 'Friend', icon: '🧑' },
 ] as const;
 const P2_KEY = 'efk.duo.p2';
-function p2Kind(): (typeof P2_KINDS)[number] {
+type P2 = { id: string; name: string; icon: string; profile?: string };
+/** Player 2: Mum, Dad, a friend, or another child who has a profile on this device. */
+function p2Choices(): P2[] {
+  const siblings = profiles()
+    .filter((p) => !p.active)
+    .map((p, i) => ({ id: `profile:${p.id}`, name: p.name || `Player ${i + 2}`, icon: profileAnimal(p.id), profile: p.id }));
+  return [...P2_KINDS, ...siblings];
+}
+function p2Kind(): P2 {
   let id = '';
   try {
     id = localStorage.getItem(P2_KEY) ?? '';
   } catch {
     /* private mode: default */
   }
-  return P2_KINDS.find((k) => k.id === id) ?? P2_KINDS[0];
+  return p2Choices().find((k) => k.id === id) ?? P2_KINDS[0];
 }
 function setP2Kind(id: string): void {
   try {
@@ -64,7 +74,7 @@ function makePlayers(): [Player, Player] {
   const child = getState().childName.trim();
   const active = profiles().find((p) => p.active);
   const k = p2Kind();
-  const make = (n: 1 | 2, name: string, icon: string): Player => {
+  const make = (n: 1 | 2, name: string, icon: string, profile?: string): Player => {
     const score = h('div', { class: 'duo-score', 'data-stars': '0', 'aria-label': '0 stars' }, h('span', { class: 'duo-star', 'aria-hidden': 'true' }, '★'), h('b', {}, '0'));
     const slot = h('div', { class: 'duo-slot' });
     const side = h(
@@ -74,9 +84,9 @@ function makePlayers(): [Player, Player] {
       score,
       slot,
     );
-    return { n, name, icon, stars: 0, side, score, slot };
+    return { n, profile, name, icon, stars: 0, side, score, slot };
   };
-  return [make(1, child || 'Player 1', active ? profileAnimal(active.id) : '🧒'), make(2, k.name, k.icon)];
+  return [make(1, child || 'Player 1', active ? profileAnimal(active.id) : '🧒', active?.id), make(2, k.name, k.icon, k.profile)];
 }
 
 function addStar(p: Player): void {
@@ -153,10 +163,13 @@ function host(ctx: Ctx, bix: Bix) {
 /** The happy end: both players praised, a team star for each, then Again / Home (or Today ▶ Next). */
 function duoEnd(ctx: Ctx, body: HTMLElement, bix: Bix, players: [Player, Player], mode: DuoMode): void {
   if (!ctx.alive()) return;
+  // the game counts for this child, and for a brother or sister who played as player 2
   update(() => {
     const d = dayLog();
     d.duo = (d.duo ?? 0) + 1;
   });
+  const other = players[1].profile;
+  if (other) updateProfile(other, (_, d) => (d.duo = (d.duo ?? 0) + 1));
   sfx.reward();
   confetti(document.body, 40);
   bix.setMood('happy');
@@ -193,7 +206,7 @@ export function duoScreen(ctx: Ctx): HTMLElement {
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('hello');
   const [p1] = makePlayers();
   const kind = p2Kind();
-  const p2Buttons = P2_KINDS.map((k) => {
+  const p2Buttons = p2Choices().map((k) => {
     const b = h(
       'button',
       { class: `duo-p2-pick ${k.id === kind.id ? 'is-on' : ''}`, 'data-p2': k.id, 'aria-label': k.name, 'aria-pressed': String(k.id === kind.id) },

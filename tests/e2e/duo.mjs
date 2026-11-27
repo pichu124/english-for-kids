@@ -304,6 +304,35 @@ for (const [vn, vp] of VIEWS.filter((v) => !ONLY || v[0] === ONLY)) {
     await page.context().close();
   }
 }
+// ---------- two children on one device: a brother or sister can be player 2, and both get the game ----------
+{
+  const page = await newPage({ width: 1280, height: 800 });
+  await page.addInitScript(() => {
+    if (localStorage.getItem('efk.profiles')) return;
+    localStorage.setItem('efk.profiles', JSON.stringify({ active: 'p1', ids: ['p1', 'p2'] }));
+    localStorage.setItem('efk.v1.p2', JSON.stringify({ childName: 'Bin', settings: { dailyLimitMin: 0, rate: 0.8, level: 'L2' }, topics: {}, words: {}, blocks: { inventory: {}, placed: [], totalEarned: 0 }, days: {}, bonus: {}, review: {} }));
+  });
+  // two children: each starts by tapping their own animal
+  await page.goto(base);
+  await page.locator('.who-btn[data-profile="p1"]').click({ force: true });
+  await page.waitForSelector('.home');
+  await page.locator('.dock-btn[aria-label="Games"]').click({ force: true });
+  await page.locator('.game-pick[data-game="duo"]').click({ force: true });
+  await page.waitForSelector('.duo-menu');
+  const sib = page.locator('.duo-p2-pick[data-p2="profile:p2"]');
+  if (!(await sib.count()) || !(await sib.textContent()).includes('Bin')) fail('the brother/sister is a player-2 choice');
+  await sib.click();
+  await page.locator('.duo-mode[data-mode="say"]').click({ force: true });
+  await page.waitForSelector('.duo-body');
+  if (!(await page.locator('.duo-side[data-player="2"] .duo-name').textContent()).includes('Bin')) fail('player 2 is Bin');
+  await playSay(page);
+  await checkEnd(page, 'Say It! with a sibling');
+  const [me, bin] = await page.evaluate(() => [JSON.parse(localStorage.getItem('efk.v1')), JSON.parse(localStorage.getItem('efk.v1.p2'))]);
+  const sum = (st) => Object.values(st.days ?? {}).reduce((n, d) => n + (d.duo ?? 0), 0);
+  if (sum(me) !== 1 || sum(bin) !== 1) fail(`both children get the game: ${sum(me)} / ${sum(bin)}`);
+  step('a brother or sister on this device can be player 2, and the game counts for both');
+  await page.context().close();
+}
 await browser.close();
 const problems = report.filter((r) => !r.endsWith('ok'));
 if (problems.length) {
