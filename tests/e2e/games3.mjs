@@ -157,7 +157,7 @@ for (const level of ['L0', 'L2']) {
   const locked = page.locator('.song-tile.is-locked').first();
   await locked.click();
   await page.waitForFunction(() => /to sing this song/.test(window.__spoken.at(-1) || ''));
-  const open1 = page.locator('.song-tile:not(.is-locked)');
+  const open1 = page.locator('.song-tile:not(.is-locked):not(.song-more)');
   if ((await open1.count()) !== 1) fail('one song unlocked: ' + (await open1.count()));
   await open1.click();
   await page.waitForSelector('.song-play .chant-line');
@@ -266,7 +266,7 @@ for (const level of ['L0', 'L2']) {
   await page.click('.key-ok');
   await page.waitForSelector('.p-placement');
   const text = await page.locator('.p-placement').textContent();
-  if (!/Movers/.test(text) || !/Starters: 4\/4/.test(text)) fail('result: Movers, with the scores: ' + text);
+  if (!/Movers/.test(text) || !/Starters 4\/4/.test(text)) fail('result: Movers, with the scores: ' + text);
   await page.locator('[data-placement="L3"]').click();
   await page.waitForFunction(() => JSON.parse(localStorage.getItem('efk.v1')).settings.level === 'L3');
   step(`placement: ${n} questions (no right/wrong for the child), result for parents → Movers, one tap to switch`);

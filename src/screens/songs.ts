@@ -22,7 +22,8 @@ export function songList(levelId = currentLevel().id): { topic: Topic; open: boo
     .flatMap((l) => topicsOfLevel(l.id))
     .filter((t) => t.chant?.lines.length)
     .map((t) => ({ topic: t, open: (s.topics[t.id]?.completed ?? 0) > 0 }))
-    .sort((a, b) => Number(b.open) - Number(a.open));
+    // songs to sing first, then the locked ones of this level, then the earlier levels'
+    .sort((a, b) => Number(b.open) - Number(a.open) || Number(b.topic.level === levelId) - Number(a.topic.level === levelId));
 }
 
 export function songsScreen(ctx: Ctx): HTMLElement {
@@ -32,6 +33,18 @@ export function songsScreen(ctx: Ctx): HTMLElement {
   const bix = new Bix({ size: 'sm', bubble: false }).setMood('happy');
   const list = songList();
   const open = list.filter((x) => x.open).length;
+  const hint = h('div', { class: 'song-hint', 'aria-live': 'polite' });
+  let hintTimer = 0;
+  const showHint = (text: string) => {
+    hint.textContent = text;
+    hint.classList.add('is-on');
+    clearTimeout(hintTimer);
+    hintTimer = window.setTimeout(() => hint.classList.remove('is-on'), 2600);
+  };
+  ctx.onCleanup(() => clearTimeout(hintTimer));
+  const level = currentLevel().id;
+  // locked songs of earlier levels wait behind one button (no wall of locks)
+  const later = list.filter((x) => !x.open && x.topic.level !== level);
   const tiles = list.map(({ topic, open }) =>
     h(
       'button',
@@ -43,6 +56,7 @@ export function songsScreen(ctx: Ctx): HTMLElement {
         onclick: () => {
           sfx.tap();
           if (open) return ctx.go('games', { game: 'songs', song: topic.id });
+          showHint(`🔒 ${topic.icon} ${topic.title}`);
           void bix.talk(`Finish ${topic.title} to sing this song!`, 'encourage', `🔒 ${topic.icon}`);
         },
       },
@@ -56,7 +70,8 @@ export function songsScreen(ctx: Ctx): HTMLElement {
     'main',
     { class: 'game songs' },
     h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, 'Songs'), h('div', { class: 'book-count' }, `🎵 ${open}/${list.length}`), h('div', { class: 'game-bix' }, bix.el)),
-    h('div', { class: 'songs-grid' }, tiles),
+    h('div', { class: 'songs-grid' }, ...tiles.map((t, i) => (later.includes(list[i]) ? (t.classList.add('is-later'), t) : t)), later.length ? h('button', { class: 'song-tile song-more', 'aria-label': 'More songs', onclick: (e: Event) => (sfx.tap(), (e.currentTarget as HTMLElement).closest('.songs-grid')?.classList.add('show-all'), (e.currentTarget as HTMLElement).remove()) }, h('span', { class: 'song-icon', 'aria-hidden': 'true' }, '🔒'), h('span', { class: 'song-name' }, `+${later.length}`)) : null),
+    hint,
   );
 }
 
@@ -98,6 +113,7 @@ function player(ctx: Ctx, t: Topic): HTMLElement {
     for (const [i, line] of c.lines.entries()) {
       if (!ctx.alive()) return;
       rows.forEach((r, j) => r.classList.toggle('is-on', j === i));
+      rows[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' }); // small phones: the line being sung stays in view
       bix.setMood('talk');
       bix.show(line.text);
       await say(line.text, { rate: 0.85 });

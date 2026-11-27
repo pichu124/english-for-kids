@@ -61,7 +61,7 @@ function menu(ctx: Ctx): HTMLElement {
   );
   // little books of the sets done so far (each set's book and its extra ones)
   const nBooks = SETS.filter((st) => done[st.id]).reduce((n, st) => n + 1 + (st.more?.length ?? 0), 0);
-  const books = nBooks ? h('button', { class: 'btn btn-sun ph-books-btn', 'aria-label': 'Little Books', onclick: () => (sfx.tap(), ctx.go('phonics', { books: '1' })) }, `📚 ${nBooks}`) : null;
+  const books = nBooks ? h('button', { class: 'btn btn-sun ph-books-btn', 'aria-label': 'Little Books', onclick: () => (sfx.tap(), ctx.go('phonics', { books: '1' })) }, '📚 Books') : null;
   // every set done: the "Sounds Star" certificate
   const cert = phonicsAllDone() ? h('button', { class: 'btn btn-sun ph-cert', 'aria-label': 'Certificate', onclick: () => (sfx.tap(), ctx.go('certificate', { kind: 'phonics', from: 'phonics' })) }, '🏆') : null;
   setTimeout(() => ctx.alive() && void bix.talk("Let's learn the sounds of the letters!", 'happy', 'Sounds! 🔊'), 300);
@@ -420,5 +420,5 @@ function bookScreen(ctx: Ctx, id: string): HTMLElement {
     stage.replaceChildren(h('div', { class: 'ph-done pop' }, h('div', { class: 'ph-done-star', 'aria-hidden': 'true' }, '⭐'), h('div', { class: 'reward-actions' }, more)));
     await say(byChild ? `You read the book by yourself! ${pick(PRAISE)}` : `The end! ${pick(PRAISE)}`);
   }, 300);
-  return h('main', { class: 'phonics ph-lesson', style: `--c:${set.color}`, 'data-book': id }, h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title', lang: 'en' }, book.title)), stage);
+  return h('main', { class: 'phonics ph-lesson', style: `--c:${set.color}`, 'data-book': id }, h('header', { class: 'book-top' }, homeButton(ctx), back, h('h1', { class: 'world-title' }, 'Little Books')), stage);
 }

@@ -84,6 +84,17 @@ function gate(ctx: Ctx, onPass: () => void): HTMLElement {
 }
 
 // ---------------------------------------------------------------- panel
+/** [id, card title, chip label] for the jump links at the top of the parent area. */
+const JUMP: [string, string, string?][] = [
+  ['p-skills', '4 kỹ năng: nghe, nói, đọc, viết', '📊 4 kỹ năng'],
+  ['p-week', 'Tuần này', '📅 Tuần này'],
+  ['p-level', 'Bậc học của bé', '🧭 Bậc học'],
+  ['p-sheets', 'Phiếu bài tập in', '🖨️ Phiếu in'],
+  ['p-test', 'Thi thử', '🎓 Thi thử'],
+  ['p-voice', 'Giọng đọc & micro', '🔊 Giọng & micro'],
+  ['p-limit', 'Giới hạn thời gian mỗi ngày', '🕐 Giờ học'],
+  ['p-words', 'Từ bé đã nói được', '🗣️ Từ đã nói'],
+];
 function panel(ctx: Ctx, rerender: () => void): HTMLElement {
   const s = getState();
   return h(
@@ -98,6 +109,8 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     backupDue()
       ? h('a', { class: 'p-notice', href: '#p-backup', onclick: (e: Event) => (e.preventDefault(), document.getElementById('p-backup')?.scrollIntoView({ behavior: 'smooth' })) }, lastBackup() ? '💾 Đã hơn 7 ngày chưa sao lưu tiến độ của bé. Bấm để sao lưu (chỉ mất vài giây).' : '💾 Chưa sao lưu tiến độ của bé lần nào. Bấm để sao lưu (chỉ mất vài giây).')
       : null,
+    levelUpBanner(),
+    jumpLinks(),
     summaryCard(),
     card('4 kỹ năng: nghe, nói, đọc, viết', skillsCard(currentLevel())),
     card('Tuần này', weekField()),
@@ -114,7 +127,7 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
     card('Nhạc', musicField()),
     card('Giới hạn thời gian mỗi ngày', limitField()),
     card('Nhật ký 14 ngày', logTable(), h('p', { class: 'p-muted' }, `Độ khó trò chọn hình: ${ADJUST_LABEL[String(adjustment()) as '0']}. App tự điều chỉnh theo khoảng 12 lượt gần nhất.`)),
-    card('Từ bé đã nói được', wordsList()),
+    card('Từ bé đã nói được', h('details', { class: 'p-details' }, h('summary', {}, 'Xem danh sách từng bài (từ, nghĩa, máy nghe được gì)'), wordsList())),
     card('Kiểm tra hình', emojiField()),
     card('Cài ứng dụng & hướng dẫn', installHelp()),
     card('Quyền riêng tư', privacy()),
@@ -272,7 +285,38 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
   }
 
   function card(title: string, ...body: (HTMLElement | null)[]) {
-    return h('section', { class: 'p-card' }, h('h2', {}, title), ...body);
+    const id = JUMP.find((j) => j[1] === title)?.[0];
+    return h('section', { class: 'p-card', ...(id ? { id } : {}) }, h('h2', {}, title), ...body);
+  }
+
+  /** Chips at the top that jump to the cards parents look for most. */
+  function jumpLinks() {
+    return h(
+      'nav',
+      { class: 'p-jump', 'aria-label': 'Mục lục' },
+      JUMP.map(([id, title, label]) =>
+        h('a', { class: 'p-jump-chip', href: `#${id}`, onclick: (e: Event) => (e.preventDefault(), document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })) }, label ?? title),
+      ),
+    );
+  }
+
+  /** Ready for the next level? (mock test passed, or every unit done) — shown at the top. */
+  function levelUpBanner() {
+    const cur = currentLevel().id;
+    const up = levelUpReason(cur);
+    if (!up || getState().levelHintHidden === `${cur}>${up.next}`) return null;
+    const next = LEVELS.find((l) => l.id === up.next)?.nameVi ?? up.next;
+    return h(
+      'div',
+      { class: 'p-notice p-levelup', 'data-next': up.next },
+      h('p', {}, `🎉 ${getState().childName || 'Bé'} ${up.why}. Có thể chuyển lên ${next}. Bài cũ, sao và khối vẫn giữ nguyên; phần ôn tập vẫn có từ của bậc cũ.`),
+      h(
+        'div',
+        { class: 'p-row' },
+        h('button', { class: 'p-btn p-btn-main', onclick: () => (setLevel(up.next), rerender()) }, `⬆️ Lên ${next}`),
+        h('button', { class: 'p-btn', onclick: () => (update((st) => (st.levelHintHidden = `${cur}>${up.next}`)), rerender()) }, 'Để sau'),
+      ),
+    );
   }
 
   function levelField() {
@@ -284,23 +328,13 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
         setLevel(id);
         render();
       };
-      // ready for the next level? (mock test passed, or every unit done)
-      const up = levelUpReason(cur);
-      const hidden = getState().levelHintHidden === `${cur}>${up?.next}`;
-      const upCard =
-        up && !hidden
-          ? h(
-              'div',
-              { class: 'p-hint p-levelup', 'data-next': up.next },
-              h('p', {}, `🎉 ${getState().childName || 'Bé'} ${up.why}. Có thể chuyển lên ${nameOf(up.next)}. Bài cũ, sao và khối vẫn giữ nguyên, ôn tập vẫn có từ của bậc cũ.`),
-              h('div', { class: 'p-row' }, h('button', { class: 'p-btn p-btn-main', onclick: switchTo(up.next) }, `⬆️ Lên ${nameOf(up.next)}`), h('button', { class: 'p-btn', onclick: () => (update((st) => (st.levelHintHidden = `${cur}>${up.next}`)), render()) }, 'Để sau')),
-            )
-          : null;
       const pl = placementSummary();
       const plCard = h(
         'div',
         { class: 'p-hint p-placement' },
-        h('p', {}, pl ? pl.text : 'Chưa chắc bé hợp bậc nào? Cho bé làm bài xếp bậc khoảng 3 phút: nghe từ chọn hình, từ Starters có thêm đọc chữ. Bé không bị báo đúng/sai, kết quả hiện ở đây.'),
+        // an older placement result that the level-up banner has overtaken is not repeated here
+        pl && levelUpReason(cur) && LEVELS.findIndex((l) => l.id === pl.level) <= LEVELS.findIndex((l) => l.id === cur) ? null :
+        h('p', {}, pl ? (pl.level === cur ? `✓ ${pl.text} Bé đang học đúng bậc này.` : pl.text) : 'Chưa chắc bé hợp bậc nào? Cho bé làm bài xếp bậc khoảng 3 phút: bé nghe một từ rồi chạm vào hình đúng; từ bậc Starters có thêm câu đọc chữ. Bé không bị báo đúng/sai, kết quả hiện ở đây.'),
         h(
           'div',
           { class: 'p-row' },
@@ -309,7 +343,6 @@ function panel(ctx: Ctx, rerender: () => void): HTMLElement {
         ),
       );
       wrap.replaceChildren(
-        ...(upCard ? [upCard] : []),
         h(
           'div',
           { class: 'p-seg' },

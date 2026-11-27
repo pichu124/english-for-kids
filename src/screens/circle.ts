@@ -52,6 +52,12 @@ export function circleScreen(ctx: Ctx): HTMLElement {
     opts.forEach((o) => o !== t && o.classList.add('is-faded'));
     return t;
   };
+  /** The question on screen (readers) and a 🔊 to hear it again (Bix is hidden on phones). */
+  const ask = (q: string, line: string) => [
+    showText ? h('p', { class: 'cc-q', lang: 'en' }, q) : null,
+    h('button', { class: 'btn btn-round btn-sun btn-ear cc-ear', 'aria-label': 'Listen again', onclick: () => (sfx.tap(), void bix.talk(line, 'idle')) }, h('span', { class: 'icon-speaker' })),
+  ];
+  const said: { day?: string; weather?: string; feel?: string } = {};
   const card = (id: string, emoji: string, label: string) =>
     h('button', { class: 'cc-opt pop', 'data-id': id, 'aria-label': label }, h('span', { class: 'cc-emoji', 'aria-hidden': 'true' }, emoji), showText ? h('span', { class: 'cc-label', lang: 'en' }, label) : null);
 
@@ -63,15 +69,18 @@ export function circleScreen(ctx: Ctx): HTMLElement {
     );
     const mine = week.find((b) => b.dataset.day === today)!;
     if (lv <= 2) mine.classList.add('is-hint'); // younger children: today glows, they touch it
-    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'day', 'data-answer': today }, h('div', { class: 'cc-week' }, week)));
+    const line = lv <= 2 ? `Today is ${today}! Touch ${today}!` : 'What day is it today?';
+    const [q, ear] = ask('What day is it today?', line);
+    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'day', 'data-answer': today }, q, h('div', { class: 'cc-week' }, week), ear));
     // the days work while Bix talks ("Touch Friday!" — a quick child taps at once)
-    void bix.talk(lv <= 2 ? `Today is ${today}! Touch ${today}!` : 'What day is it today?', 'happy', 'What day is it? 📅');
+    void bix.talk(line, 'happy', 'What day is it? 📅');
     for (let misses = 0; ; ) {
       const t = await once(week);
       if (!ctx.alive()) return;
       if (t === mine) {
         sfx.success();
         t.classList.add('is-right');
+        said.day = today;
         await bix.talk(`Yes! Today is ${today}!`, 'happy', `${today}! ✓`);
         return;
       }
@@ -84,11 +93,13 @@ export function circleScreen(ctx: Ctx): HTMLElement {
 
   const weatherPart = async () => {
     const opts = WEATHER.map(([id, e]) => card(id, e, id));
-    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'weather' }, h('div', { class: 'cc-opts' }, opts)));
+    const [q, ear] = ask("What's the weather like?", "What's the weather like today? Look outside!");
+    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'weather' }, q, h('div', { class: 'cc-opts' }, opts), ear));
     void bix.talk("What's the weather like today? Look outside!", 'idle', "What's the weather like? 🌤️");
     const t = await choose(opts);
     if (!ctx.alive()) return;
     const [id, , reply] = WEATHER.find((w) => w[0] === t.dataset.id)!;
+    said.weather = id;
     update(() => (dayLog().circle = { ...dayLog().circle, weather: id }));
     await bix.talk(`It's ${id}! Say it with me: it's ${id}!`, 'happy', `It's ${id}!`);
     if (!ctx.alive()) return;
@@ -99,11 +110,13 @@ export function circleScreen(ctx: Ctx): HTMLElement {
 
   const feelPart = async () => {
     const opts = FEELINGS.map(([id, e]) => card(id, e, id));
-    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'feel' }, h('div', { class: 'cc-opts' }, opts)));
+    const [q, ear] = ask('How are you today?', `How are you today${name ? `, ${name}` : ''}?`);
+    stage.replaceChildren(h('div', { class: 'cc-round', 'data-part': 'feel' }, q, h('div', { class: 'cc-opts' }, opts), ear));
     void bix.talk(`How are you today${name ? `, ${name}` : ''}?`, 'idle', 'How are you? 💛');
     const t = await choose(opts);
     if (!ctx.alive()) return;
     const [id, , reply] = FEELINGS.find((f) => f[0] === t.dataset.id)!;
+    said.feel = id;
     update(() => (dayLog().circle = { ...dayLog().circle, feel: id }));
     await bix.talk(`I'm ${id}. Say it with me: I'm ${id}!`, id === 'happy' ? 'happy' : 'encourage', `I'm ${id}.`);
     if (!ctx.alive()) return;
@@ -125,6 +138,13 @@ export function circleScreen(ctx: Ctx): HTMLElement {
       h(
         'div',
         { class: 'cc-round cc-done pop' },
+        // what the child said today, as pictures (and sentences for readers)
+        h(
+          'div',
+          { class: 'cc-recap' },
+          h('div', { class: 'cc-recap-pics', 'aria-hidden': 'true' }, said.day ? h('span', { class: 'cc-recap-day', lang: 'en' }, said.day.slice(0, 3)) : null, WEATHER.find((w) => w[0] === said.weather)?.[1] ?? '', FEELINGS.find((f) => f[0] === said.feel)?.[1] ?? ''),
+          showText ? h('p', { class: 'cc-recap-text', lang: 'en' }, [said.day ? `Today is ${said.day}.` : '', said.weather ? `It's ${said.weather}.` : '', said.feel ? `I'm ${said.feel}.` : ''].filter(Boolean).join(' ')) : null,
+        ),
         todayRunning() ? todayNextButton(ctx) : h('button', { class: 'btn btn-good', 'aria-label': 'Home', onclick: () => (sfx.tap(), ctx.go('home')) }, h('span', { class: 'icon-home', style: 'width:36px' }), 'Home'),
       ),
     );

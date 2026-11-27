@@ -99,7 +99,7 @@ const CAN: [string, string, string, boolean][] = [
 const FIXED: Record<string, [string, string, string, string, string][]> = {
   was: [
     ['☀️', 'Yesterday it', 'was', 'were', 'sunny.'], ['🏖️', 'Last week we', 'were', 'was', 'at the beach.'], ['😴', 'Last night I', 'was', 'were', 'very tired.'],
-    ['🧒😊', 'The children', 'were', 'was', 'happy.'], ['🐶🌳', 'The dogs', 'were', 'was', 'in the garden.'], ['👩🏠', 'My mum', 'was', 'were', 'at home.'],
+    ['🧒🧒😊', 'The children', 'were', 'was', 'happy.'], ['🐶🐶🌳', 'The dogs', 'were', 'was', 'in the garden.'], ['👩🏠', 'My mum', 'was', 'were', 'at home.'],
   ],
   past: [
     ['⚽', 'Yesterday I', 'played', 'play', 'football.'], ['🦁', 'Last week we', 'went', 'go', 'to the zoo.'], ['🎂', 'Yesterday Mum', 'made', 'make', 'a cake.'],
@@ -127,7 +127,7 @@ export function grammarItem(kind: string, lv: number): GItem | null {
     const an = ns.filter((w) => article(w.text) === 'an');
     const w = an.length && Math.random() < 0.5 ? one(an) : one(ns);
     if (!w) return null;
-    return { kind, pic: wordPicture(w, 'g3-word-pic'), before: "It's", after: `${w.text}.`, options: ['a', 'an'], answer: article(w.text) };
+    return { kind, pic: h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, wordPicture(w)), before: "It's", after: `${w.text}.`, options: ['a', 'an'], answer: article(w.text) };
   }
   if (kind === 'plural' || kind === 'isare') {
     const ns = nouns(lv).filter((w) => w.image.emoji && !w.text.includes(' ') && plural(w.text));
@@ -135,7 +135,7 @@ export function grammarItem(kind: string, lv: number): GItem | null {
     if (!w) return null;
     const n = kind === 'plural' ? one([1, 2, 3, 4]) : one([1, 2, 3, 4, 5]);
     const many = plural(w.text)!;
-    const pic = group(w.image.emoji!, n, 'is-small gr-group');
+    const pic = h('div', { class: 'g3-pic gr-count', 'aria-hidden': 'true' }, group(w.image.emoji!, n, `gr-group ${n > 4 ? 'is-five' : ''}`));
     if (kind === 'plural') return { kind, pic, before: `I can see ${numWord(n)}`, after: '.', options: [w.text, many], answer: n === 1 ? w.text : many };
     return { kind, pic, before: 'There', after: `${numWord(n)} ${n === 1 ? w.text : many}.`, options: ['is', 'are'], answer: n === 1 ? 'is' : 'are' };
   }
@@ -153,7 +153,7 @@ export function grammarItem(kind: string, lv: number): GItem | null {
     const w = one(ws.filter((x, i) => ws.findIndex((y) => y.text === x.text) === i));
     if (!w) return null;
     const [before, after] = w.sentence.split(new RegExp(`\\b${w.text}\\b`));
-    return { kind, pic: wordPicture(w, 'g3-word-pic'), before: before.trim(), after: after.trim(), options: ['in', 'on', 'under'], answer: w.text };
+    return { kind, pic: h('div', { class: 'g3-pic', 'aria-hidden': 'true' }, wordPicture(w)), before: before.trim(), after: after.trim(), options: ['in', 'on', 'under'], answer: w.text };
   }
   const list = FIXED[kind];
   if (!list) return null;

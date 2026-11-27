@@ -112,7 +112,7 @@ export function bingoCards(topic: Topic, back: () => void): HTMLElement {
       h('li', {}, 'Đổi vai: để bé làm người đọc từ. Ai cũng được khen, không có người thua.'),
     ),
     h('h3', {}, 'Danh sách từ để đọc'),
-    h('div', { class: 'bg-list' }, words.map((w) => h('span', { class: 'bg-list-item', lang: 'en' }, h('span', { class: 'bg-list-pic' }, wordPicture(w)), w.text, w.vi ? h('small', { class: 'bg-list-vi', lang: 'vi' }, w.vi) : null))),
+    h('div', { class: 'bg-list' }, words.map((w) => h('span', { class: 'bg-list-item', lang: 'en' }, h('span', { class: 'bg-list-pic' }, wordPicture(w)), h('span', { class: 'bg-list-txt' }, w.text, w.vi ? h('small', { class: 'bg-list-vi', lang: 'vi' }, w.vi) : null)))),
   );
   const sheets = [
     h('article', { class: 'ws-sheet pc-sheet bg-sheet' }, boards[0], boards[1]),

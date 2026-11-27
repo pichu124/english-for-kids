@@ -144,7 +144,12 @@ export function placementScreen(ctx: Ctx): HTMLElement {
 export function placementSummary(): { level: string; text: string } | null {
   const p = getState().placement;
   if (!p) return null;
-  const parts = TRY.filter((l) => p.score[l]).map((l) => `${LEVELS.find((x) => x.id === l)?.name}: ${p.score[l][0]}/${p.score[l][1]}`);
+  const nameOf = (id: string) => LEVELS.find((x) => x.id === id)?.name ?? id;
+  const tried = TRY.filter((l) => Array.isArray(p.score[l]) && p.score[l].length === 2);
+  const easy = tried.filter((l) => p.score[l][0] >= 3).map((l) => `${nameOf(l)} ${p.score[l][0]}/${p.score[l][1]}`);
+  const hard = tried.filter((l) => p.score[l][0] < 3).map((l) => `${nameOf(l)} ${p.score[l][0]}/${p.score[l][1]}`);
+  const day = p.day.split('-').reverse().slice(0, 2).join('/');
   const name = LEVELS.find((l) => l.id === p.level)?.nameVi ?? p.level;
-  return { level: p.level, text: `Bài xếp bậc ngày ${p.day.split('-').reverse().join('/')} gợi ý bậc ${name} (${parts.join(' · ')}).` };
+  const why = [easy.length ? `bé nắm chắc từ ${easy.join(', ')}` : '', hard.length ? `từ ${hard.join(', ')} còn mới` : ''].filter(Boolean).join('; ');
+  return { level: p.level, text: `Kết quả bài xếp bậc ${day}: ${why || 'chưa đủ câu'} → nên học ${name}.` };
 }

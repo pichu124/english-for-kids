@@ -69,7 +69,7 @@ export function reportScreen(ctx: Ctx): HTMLElement {
           { class: 'rp-feelings' },
           h('h2', {}, '💛 Bé chào Bix mỗi ngày'),
           h('p', {}, `${r.feelings.length}/7 ngày bé chào Bix và chọn cảm xúc bằng tiếng Anh: `, r.feelings.map((f, i) => h('span', { class: 'rp-feel' }, i ? ' · ' : '', `${WEEKDAY[new Date(`${f.day}T12:00`).getDay()]} ${FEEL_VI[f.feel ?? ''] ?? ''}`))),
-          r.feelings.some((f) => f.feel === 'sad' || f.feel === 'angry') ? h('p', { class: 'rp-muted' }, 'Có ngày bé chọn buồn hoặc bực. Hỏi nhẹ nhàng "Hôm đó có chuyện gì không con?" — Bix chỉ ôm và hít thở cùng bé, không hỏi thêm.') : null,
+          r.feelings.some((f) => f.feel === 'sad' || f.feel === 'angry') ? h('p', { class: 'rp-muted' }, 'Có ngày bé chọn buồn hoặc bực. Bix chỉ an ủi và cùng bé hít thở, không hỏi thêm. Bố mẹ có thể nhẹ nhàng hỏi: "Hôm đó có chuyện gì không con?"') : null,
         )
       : null,
     h('section', {}, h('h2', {}, '⭐ Từ mới tuần này'), r.newWords.length ? h('div', { class: 'rp-words' }, r.newWords.slice(0, 24).map(chip)) : h('p', { class: 'rp-muted' }, 'Tuần này chưa có từ mới. Mỗi ngày một bài ngắn là đủ.')),
