@@ -179,6 +179,7 @@ Một nghiên cứu năm 2021 chấm điểm 100 app trẻ em được tải nhi
 - [x] Bài xếp bậc 3 phút và gợi ý lên bậc trong khu bố mẹ.
 - [x] 🎵 Songs: hộp nhạc bài vè; thêm 25 bài vè (L0, L1 và 15 bài Starters), tổng 32.
 - [x] 🧺 Sort it!: xếp vào giỏ và tìm hình khác loại.
+- [x] Rà lại nội dung mới (12 truyện, 25 vè, 549 nghĩa tiếng Việt) và sửa; thêm 29 bài vè cho Starters, Movers, Flyers (tổng 61); 8 cuộc trò chuyện mới (tổng 19); kệ 📚 Little Books với 16 truyện phonics mới.
 - [ ] Nghe lại giọng mình (bé nói xong được nghe lại): cần thu âm tạm trong máy, phải sửa câu "App không ghi âm" — bố mẹ quyết định.
 
 #### Trò chuyện bằng AI thật: bố mẹ quyết định
